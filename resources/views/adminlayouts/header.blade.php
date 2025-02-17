@@ -4,6 +4,7 @@
 
 
 <!-- Mirrored from coderthemes.com/uplon/layouts/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 31 Jan 2025 10:56:29 GMT -->
+
 <head>
     <meta charset="utf-8" />
     <title>Dashboard | Uplon - Responsive Bootstrap 5 Admin Dashboard</title>
@@ -19,36 +20,40 @@
     <!-- Bootstrap JS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
 
-    <link rel="stylesheet" href="assets/libs/datatables.net-bs5/css/dataTables.bootstrap5.min.css">
-    <link rel="stylesheet" href="assets/libs/datatables.net-buttons-bs5/css/buttons.bootstrap5.min.css">
-    <link rel="stylesheet" href="assets/libs/datatables.net-responsive-bs5/css/responsive.bootstrap5.min.css">
-    <link rel="stylesheet" href="assets/libs/datatables.net-select-bs5/css/select.bootstrap5.min.css">
-    
+    <link rel="stylesheet" href="{{asset('assets/libs/datatables.net-bs5/css/dataTables.bootstrap5.min.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/libs/datatables.net-buttons-bs5/css/buttons.bootstrap5.min.css')}}">
+    <link rel="stylesheet"
+        href="{{asset('assets/libs/datatables.net-responsive-bs5/css/responsive.bootstrap5.min.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/libs/datatables.net-select-bs5/css/select.bootstrap5.min.css')}}">
+
     <!-- App favicon -->
-    <link rel="shortcut icon" href="assets/images/favicon.ico">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <link rel="shortcut icon" href="{{asset('assets/images/favicon.ico')}}">
 
     <!-- Vendor css -->
-    <link href="assets/css/vendor.min.css" rel="stylesheet" type="text/css" />
+    <link href="{{asset('assets/css/vendor.min.css')}}" rel="stylesheet" type="text/css" />
 
     <!-- App css -->
-    <link href="assets/css/app.min.css" rel="stylesheet" type="text/css" id="app-style" />
-    <link href="assets/css/style.css" rel="stylesheet" type="text/css" />
+    <link href="{{asset('assets/css/app.min.css')}}" rel="stylesheet" type="text/css" id="app-style" />
+    <link href="{{asset('assets/css/style.css')}}" rel="stylesheet" type="text/css" />
 
     <!-- Icons css -->
-    <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+    <link href="{{asset('assets/css/icons.min.css')}}" rel="stylesheet" type="text/css" />
 
     <!-- Theme Config Js -->
-    <script src="assets/js/config.js"></script>
+    <script src="{{asset('assets/js/config.js')}}"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
     <style>
         html[data-sidenav-size=condensed]:not([data-layout=topnav]) .sidenav-menu .sidebar-footer .footer-content {
             overflow: hidden;
-            white-space: nowrap; 
+            white-space: nowrap;
         }
+
         html[data-sidenav-size=condensed]:not([data-layout=topnav]) .sidenav-menu .sidebar-footer .footer-dot {
             overflow: hidden;
         }
+
         .sidebar-footer {
             position: sticky;
             bottom: 0;
@@ -57,39 +62,38 @@
             text-align: center;
             padding: 1px;
             width: 100%;
-            z-index: 10; 
+            z-index: 10;
         }
+
         .app-topbar .topbar-menu {
-            background-color: #F5F5F5;   
-        }
-        body{
-            font-size: 15px;
-            font-family: 'Inter', sans-serif;
-            font-weight: 400 !important;
-            letter-spacing: 0.9px;
             background-color: #F5F5F5;
         }
-        .side-nav{
+
+        .side-nav {
             height: 30px;
             padding-top: 70px;
         }
+
         .side-nav .side-nav-item .side-nav-link {
-            font-size: 12px; 
+            font-size: 12px;
             font-family: 'Inter', sans-serif;
             font-weight: 400 !important;
             color: rgb(197, 193, 193);
             letter-spacing: 0.9px;
             padding: 7px;
         }
+
         .side-nav .side-nav-item .side-nav-link .menu-icon {
-           height: 20px;
-           width: 20px;
-           font-size: 10px;
-           padding-left: 30px;
+            height: 20px;
+            width: 20px;
+            font-size: 10px;
+            padding-left: 30px;
         }
+
         .side-nav .side-nav-item .side-nav-link .menu-text {
-           padding-left: 20px;
+            padding-left: 20px;
         }
+
         .app-topbar .app-search .form-control {
             height: 35px;
             /* width: 200px; */
@@ -97,32 +101,36 @@
             background-color: white;
             box-shadow: 0 4px 5px rgba(209, 209, 209, 0.2);
         }
+
         .app-topbar .app-search .btn-icon {
             height: 35px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
             border-radius: 0 10px 10px 0;
             background-color: white;
         }
+
         .notification-icon {
             height: 20px;
         }
+
         .page-title-box {
             background-color: #F5F5F5;
         }
-        .hr {
-            border-color: grey;
-        }
-        
+
         .custom-pagination {
             display: flex;
-            flex-wrap: nowrap;  /* Prevents vertical stacking */
+            flex-wrap: nowrap;
+            /* Prevents vertical stacking */
             justify-content: center;
             align-items: center;
             list-style: none;
             padding: 10px 0;
             gap: 5px;
+            float: left;
+
             /* overflow-x: auto;  Enables horizontal scrolling if needed */
-            white-space: nowrap;  /* Keeps buttons in one row */
+            white-space: nowrap;
+            /* Keeps buttons in one row */
         }
 
         .custom-pagination .page-item {
@@ -154,8 +162,10 @@
         /* POS Terminal & Small Mobile Screens (Fix Vertical Issue) */
         @media (max-width: 480px) {
             .custom-pagination {
-                flex-wrap: nowrap;  /* Prevents stacking */
-                overflow-x: auto;  /* Adds horizontal scrolling if needed */
+                flex-wrap: nowrap;
+                /* Prevents stacking */
+                overflow-x: auto;
+                /* Adds horizontal scrolling if needed */
                 padding: 5px 0;
             }
 
@@ -177,49 +187,15 @@
                 font-size: 12px;
             }
         }
-        .modal-content {
-            border-radius: 12px;
-                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-                height: 50%;
-                width: 80%;
-                line-height: 0px;
-        }
-
-        .table tbody tr td {
-            vertical-align: middle;
-            font-size: 14px;
-        }
-
-        .text-success {
-            color: #28a745 !important;
-        }
-
-        .text-danger {
-            color: #dc3545 !important;
-        }
-
-        .pagination .page-item .page-link {
-            border-radius: 5px;
-            color: #6c757d;
-        }
-
-        .pagination .page-item.active .page-link {
-            background-color: #198754;
-            border-color: #198754;
-            color: white;
-        }
-
     </style>
-
 </head>
-       
+
 <body>
     <!-- Begin page -->
     <div class="wrapper">
 
-
         <!-- Sidenav Menu Start -->
-        <div class="sidenav-menu" style="background-color: rgb(24, 24, 24);">
+        <div class="sidenav-menu" id="sidebar" style="background-color: rgb(24, 24, 24);">
             <div data-simplebar>
 
                 <!--- Sidenav Menu -->
@@ -228,49 +204,52 @@
 
                     <li class="side-nav-item">
                         <a href="index.html" class="side-nav-link">
-                            <span class="menu-icon"><img src="../../assets/image/element-3.svg" alt="dashboard"></span>
+                            <span class="menu-icon"><img src="{{asset('assets/image/element-3.svg')}}"
+                                    alt="dashboard"></span>
                             <span class="menu-text mt-2"> Dashboard </span>
                             <!-- <span class="badge bg-success rounded-pill">5</span> -->
                         </a>
                     </li>
-
                     <li class="side-nav-item">
                         <a href="users.html" class="side-nav-link">
-                            <span class="menu-icon"><img src="../../assets/image/profile.svg" alt="user"></span>
+                            <span class="menu-icon"><img src="{{asset('assets/image/profile.svg')}}" alt="user"></span>
                             <span class="menu-text mt-2"> User </span>
                         </a>
                     </li>
                     <li class="side-nav-item">
                         <a href="venues.html" class="side-nav-link">
-                            <span class="menu-icon"><img src="../../assets/image/bank.svg" alt="venues"></span>
+                            <span class="menu-icon"><img src="{{asset('assets/image/bank.svg')}}" alt="venues"></span>
                             <span class="menu-text mt-2"> Venues </span>
                         </a>
                     </li>
                     <li class="side-nav-item">
                         <a href="bookings.html" class="side-nav-link">
-                            <span class="menu-icon"><img src="../../assets/image/shopping-cart.svg" alt="bookings"></span>
+                            <span class="menu-icon"><img src="{{asset('assets/image/shopping-cart.svg')}}"
+                                    alt="bookings"></span>
                             <span class="menu-text mt-2"> Bookings </span>
                         </a>
                     </li>
                     <li class="side-nav-item">
                         <a href="freeze.html" class="side-nav-link">
-                            <span class="menu-icon"><img src="../../assets/image/sun.svg" alt="freeze"></span>
+                            <span class="menu-icon"><img src="{{asset('assets/image/sun.svg')}}" alt="freeze"></span>
                             <span class="menu-text mt-2"> Freeze </span>
                         </a>
                     </li>
                     <li class="side-nav-item">
                         <a href="transaction.html" class="side-nav-link">
-                            <span class="menu-icon"><img src="../../assets/image/Transaction.svg" alt="transaction"></span>
+                            <span class="menu-icon"><img src="{{asset('assets/image/Transaction.svg')}}"
+                                    alt="transaction"></span>
                             <span class="menu-text mt-2"> Transactions </span>
                         </a>
                     </li>
                     <li class="side-nav-item">
-                        <a href="#sidebarPagesAuth" data-bs-toggle="collapse" aria-expanded="false" aria-controls="sidebarPagesAuth" class="side-nav-link">
+                        <a href="#sidebarPagesAuth" data-bs-toggle="collapse" aria-expanded="false"
+                            aria-controls="sidebarPagesAuth" class="side-nav-link">
                             <span class="menu-icon">
-                                <img src="../../assets/image/clipboard-tick.svg" alt="configuration">
+                                <img src="{{asset('assets/image/clipboard-tick.svg')}}" alt="configuration">
                             </span>
                             <span class="menu-text mt-2"> Configurations </span>
-                            <img src="../../assets/image/Polygon 1.svg" alt="" class="dropdown-icon">
+                            <img src="{{asset('assets/image/Polygon 1.svg')}}" alt="" class="dropdown-icon">
                         </a>
                         <div class="collapse" id="sidebarPagesAuth">
                             <ul class="sub-menu">
@@ -292,22 +271,23 @@
                             </ul>
                         </div>
                     </li>
-                    
+
                     <li class="side-nav-item">
                         <a href="couponscode.html" class="side-nav-link">
-                            <span class="menu-icon"><img src="../../assets/image/ticket.svg" alt="coupons"></span>
+                            <span class="menu-icon"><img src="{{asset('assets/image/ticket.svg')}}"
+                                    alt="coupons"></span>
                             <span class="menu-text mt-2"> Coupons Code </span>
                         </a>
                     </li>
                     <li class="side-nav-item">
                         <a href="banner.html" class="side-nav-link">
-                            <span class="menu-icon"><img src="../../assets/image/money-4.svg" alt="money"></span>
+                            <span class="menu-icon"><img src="{{asset('assets/image/money-4.svg')}}" alt="money"></span>
                             <span class="menu-text mt-2"> Banners </span>
                         </a>
                     </li>
                     <li class="side-nav-item">
                         <a href="subscribers.html" class="side-nav-link">
-                            <span class="menu-icon"><img src="../../assets/image/sms.svg" alt="sms"></span>
+                            <span class="menu-icon"><img src="{{asset('assets/image/sms.svg')}}" alt="sms"></span>
                             <span class="menu-text mt-2"> Subscribers </span>
                         </a>
                     </li>
@@ -320,41 +300,42 @@
 
                     <li class="side-nav-item">
                         <a href="#" class="side-nav-link mt-5 mb-5">
-                            <span class="menu-icon"><img src="../../assets/image/Logout.svg" alt="logout"></span>
+                            <span class="menu-icon"><img src="{{asset('assets/image/Logout.svg')}}" alt="logout"></span>
                             <span class="menu-text"> Logout </span>
                         </a>
                     </li>
-                    
+
                 </ul>
-                
-                
+
+
                 <div class="clearfix"></div>
-                
+
             </div>
             <!-- <div class="sidebar"> -->
-                <div class="sidebar-footer p-3">
-                    <hr class="hr">
-                    <div class="side-nav-item d-flex align-items-center justify-content-between">
-                        <!-- Left: Profile Image -->
-                        <div class="d-flex align-items-center">
-                            <span class="menu-icon me-2">
-                                <img src="../../assets/image/Image.svg" alt="profile" class="rounded-circle" style="width: 35px; height: 35px; border: 2px solid #ccc;">
-                            </span>
-                        </div>
-                
-                        <!-- Right: Name, Profile Link, and Dots -->
-                        <div class="footer-content d-flex flex-column flex-grow-1">
-                            <span class="menu-text text-white" style="font-size: 14px;">Abhishek Guleria</span>
-                            <a href="profile.html" class="text-muted" style="font-size: 11px;">View Profile</a>
-                        </div>
-                        <div class="footer-dot text-white" style="font-size: 20px;">
-                            <i class="bi bi-three-dots-vertical"></i>
-                        </div>
-                
+            <div class="sidebar-footer p-3">
+                <hr class="hr">
+                <div class="side-nav-item d-flex align-items-center justify-content-between">
+                    <!-- Left: Profile Image -->
+                    <div class="d-flex align-items-center">
+                        <span class="menu-icon me-2">
+                            <img src="{{asset('assets/image/Image.svg')}}" alt="profile" class="rounded-circle"
+                                style="width: 35px; height: 35px; border: 2px solid #ccc;">
+                        </span>
                     </div>
+
+                    <!-- Right: Name, Profile Link, and Dots -->
+                    <div class="footer-content d-flex flex-column flex-grow-1">
+                        <span class="menu-text text-white" style="font-size: 14px;">Abhishek Guleria</span>
+                        <a href="profile.html" class="text-muted" style="font-size: 11px;">View Profile</a>
+                    </div>
+                    <div class="footer-dot text-white" style="font-size: 20px;">
+                        <i class="bi bi-three-dots-vertical"></i>
+                    </div>
+
                 </div>
+            </div>
+
             <!-- </div>  -->
-            
         </div>
         <!-- Sidenav Menu End -->
 
@@ -378,7 +359,7 @@
 
 
                     <!-- Sidebar Menu Toggle Button -->
-                    <button class="sidenav-toggle-button px-2" id="toggleSidebar">
+                    <button class="sidenav-toggle-button px-2" id="toggleBtn">
                         <i class="mdi mdi-menu font-24"></i>
                     </button>
 
@@ -389,7 +370,7 @@
 
 
                     <h5 class="m-3">Hello, Abhi</h5>
-                        <img src="../../assets/image/chevrons-right.svg" alt="image" >
+                    <img src="{{ asset('assets/image/chevrons-right.svg') }}" alt="image">
                     <h6 class="mt-2" style="color: #99a1a8;"> Feb 01, 2025</h6>
                     <!-- Mega Menu Dropdown -->
                     <div class="topbar-item d-none d-md-flex">
@@ -405,25 +386,30 @@
 
                 <div class="d-flex align-items-center gap-2">
                     <!-- Light/Dark Toggle Button  -->
-                    
+
                     <!-- Language Dropdown -->
-                    
+
 
                     <!-- Notification Dropdown -->
                     <div class="topbar-item">
                         <div class="dropdown position-relative">
-                            <button class="topbar-link dropdown-toggle drop-arrow-none notification" data-bs-toggle="dropdown" data-bs-offset="0,25" type="button" data-bs-auto-close="outside" aria-haspopup="false" aria-expanded="false">
-                                <img src="../../assets/image/Group 2.svg" alt="dashboard" class="notification-icon">
+                            <button class="topbar-link dropdown-toggle drop-arrow-none notification"
+                                data-bs-toggle="dropdown" data-bs-offset="0,25" type="button"
+                                data-bs-auto-close="outside" aria-haspopup="false" aria-expanded="false">
+                                <img src="{{asset('assets/image/Group 2.svg')}}" alt="dashboard"
+                                    class="notification-icon">
                                 <!-- <span class="noti-icon-badge"></span> -->
                             </button>
 
-                            <div class="dropdown-menu p-0 dropdown-menu-end dropdown-menu-lg" style="min-height: 300px;">
+                            <div class="dropdown-menu p-0 dropdown-menu-end dropdown-menu-lg"
+                                style="min-height: 300px;">
 
                                 <div class="position-relative z-2" style="max-height: 300px;" data-simplebar>
 
-                   
+
                                     <!-- item-->
-                                    <div class="dropdown-item notification-item py-2 text-wrap mb-5" id="notification-5">
+                                    <div class="dropdown-item notification-item py-2 text-wrap mb-5"
+                                        id="notification-5">
                                         <span class="d-flex align-items-center">
                                             <span class="me-3 position-relative flex-shrink-0">
                                                 <div class="avatar avatar-md">
@@ -437,7 +423,9 @@
                                                 <span class="font-12">There are 2 new updates available</span>
                                             </span>
                                             <span class="notification-item-close">
-                                                <button type="button" class="btn btn-ghost-danger rounded-circle btn-sm btn-icon" data-dismissible="#notification-1">
+                                                <button type="button"
+                                                    class="btn btn-ghost-danger rounded-circle btn-sm btn-icon"
+                                                    data-dismissible="#notification-1">
                                                     <i class="mdi mdi-close font-16"></i>
                                                 </button>
                                             </span>
@@ -447,7 +435,8 @@
 
 
                                 <!-- All-->
-                                <a href="javascript:void(0);" class="dropdown-item notification-item position-fixed z-2 bottom-0 text-center text-reset text-decoration-underline link-offset-2 fw-bold notify-item border-top border-light py-2">
+                                <a href="javascript:void(0);"
+                                    class="dropdown-item notification-item position-fixed z-2 bottom-0 text-center text-reset text-decoration-underline link-offset-2 fw-bold notify-item border-top border-light py-2">
                                     View All
                                 </a>
                             </div>
@@ -455,13 +444,14 @@
                     </div>
 
                     <!-- Email Dropdown -->
-                    
+
                     <div class="d-none d-md-flex">
                         <form class="app-search">
                             <div class="app-search-box">
                                 <div class="input-group">
                                     <input type="text" class="form-control" placeholder="Search...">
-                                    <div class="input-group-append" style="box-shadow: 0 4px 5px rgba(209, 209, 209, 0.2);">
+                                    <div class="input-group-append"
+                                        style="box-shadow: 0 4px 5px rgba(209, 209, 209, 0.2);">
                                         <button class="btn btn-icon" type="submit">
                                             <i class="fas fa-search"></i>
                                         </button>
@@ -528,117 +518,10 @@
             </div>
         </header>
 
+
+        <!-- ============================================================== -->
+        <!-- Start Page Content here -->
+        <!-- ============================================================== -->
         <div class="page-content">
 
             <div class="page-container" style="background-color: transparent;">
-
-                <div class="page-title-box">
-                    
-                    <div class="d-flex align-items-sm-center flex-sm-row flex-column gap-2">
-                        <div class="flex-grow-1">
-                            <h2 class="ml-3"><strong>Amenities</strong></h2>
-                        </div>
-                        <div class="float-end mr-3">
-                            <a href="#add" class="add-amenities waves-effect waves-light" data-animation="blur" data-plugin="custommodal" data-overlaySpeed="100" data-overlayColor="#36404a">
-                                <h2 class="btn btn-success" style="border-radius: 40px;">+ Add Amenities</h2>
-                            </a>
-    
-                            <!-- Custom theme modal -->
-                            <div id="add" class="modal-demo" style="width: 380px !important; padding: 20px; border-radius: 12px; box-shadow: 0 15px 15px rgba(0, 0, 0, 0.3);">
-                                <div class="d-flex p-3 align-items-center justify-content-between" style="width: 100%;">
-                                    <h4 class="add-title">Add Amenities</h4>
-                                    <button type="button" class="btn-close btn-close-white" onclick="Custombox.modal.close();">
-                                        <span class="sr-only">Close</span>
-                                    </button>
-                                </div>
-                                <div class="d-flex mt-3 mb-4" style="margin-left: 120px;">
-                                    <label for="uploadInput" style="width: 100px; height: 90px; border: 2px dashed #706d6d; border-radius: 10px; display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer;">
-                                        <img src="../../assets/image/gallery-add.svg" alt="dashboard" data-bs-toggle="modal" data-bs-target="#editModal" style="cursor: pointer; height: 25px; width: 25px;">
-                                        <span style="font-size: 10px; color: #cac9c9; margin-top: 7px; font-size: 7px;">Upload image</span>
-                                        <input type="file" id="uploadInput" style="display: none;">
-                                    </label>
-                                </div>
-                                <div class="modal-body p-3" style="font-size: small;">
-                                    <label for="date" class="mb-2">Name of the Amenities</label>
-                                    <input type="text" class="form-control text-muted mb-2" name="amenities" placeholder="Name">
-                                </div>
-                                
-                                <div class="modal-footer justify-content-end mb-3" style="margin-top: 90px; border: none;">
-                                    <button type="button" class="btn btn-success col-md-5"> Add </button>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                    <h4 class="m-3">
-                        <div class="d-inline-flex align-items-center px-3 py-2 rounded-pill" style="background-color: #cce8e6;">
-                            <img class="m-1 me-3" src="../../assets/image/Vector.svg" alt="football" style="height: 15px;">
-                            <span class="text-success" style="font-weight: 500; font-size: medium;">Wi-fi</span>
-                            <button type="button" class="btn-close ms-3" aria-label="Close" style="font-size: small;"></button>
-                        </div>
-                    </h4>
-                </div>
-            </div>
-        </div>
-
-    </div>
-
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
-
-    <script>
-        $(document).ready(function () {
-            // Get the current page URL (excluding query params)
-            var currentUrl = window.location.pathname.split("/").pop();
-
-            // Loop through sidebar links
-            $(".side-nav-link").each(function () {
-                var linkUrl = $(this).attr("href");
-
-                // If the href matches the current page, add 'active' class
-                if (linkUrl === currentUrl) {
-                    $(this).addClass("active");
-
-                    // Optional: Add active class to the parent <li> for better styling
-                    $(this).closest(".side-nav-item").addClass("active");
-                }
-            });
-        });
-    </script>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Vendor js -->
-    <script src="assets/js/vendor.min.js"></script>
-
-    <!-- App js -->
-    <script src="assets/js/app.js"></script>
-
-    <!--Morris Chart-->
-    <script src="assets/libs/morris.js/morris.min.js"></script>
-    <script src="assets/libs/raphael/raphael.min.js"></script>
-
-    <!-- Projects Analytics Dashboard App js -->
-    <script src="assets/js/pages/dashboard-sales.js"></script>
-
-    <script src="assets/libs/datatables.net/js/dataTables.min.js"></script>
-    <script src="assets/libs/datatables.net-bs5/js/dataTables.bootstrap5.min.js"></script>
-
-    <script src="assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
-    <script src="assets/libs/datatables.net-responsive-bs5/js/responsive.bootstrap5.min.js"></script>
-
-    <script src="assets/libs/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-    <script src="assets/libs/datatables.net-buttons-bs5/js/buttons.bootstrap5.min.js"></script>
-
-    <script src="assets/libs/datatables.net-buttons/js/buttons.html5.min.js"></script>
-    <script src="assets/libs/datatables.net-buttons/js/buttons.print.min.js"></script>
-
-    <script src="assets/libs/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
-    <script src="assets/libs/datatables.net-select/js/dataTables.select.min.js"></script>
-
-    <!-- Datatables init -->
-    <script src="assets/js/pages/table-datatable.js"></script>
-
-</body>
-<!-- Mirrored from coderthemes.com/uplon/layouts/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 31 Jan 2025 10:56:29 GMT -->
-</html>    
