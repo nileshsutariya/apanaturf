@@ -341,7 +341,7 @@
 
 
                     <h5 class="m-3">Hello, Abhi</h5>
-                        <img src="../../assets/image/chevrons-right.svg" alt="image" >
+                        <img src="{{asset('assets/image/chevrons-right.svg')}}" alt="image" >
                     <h6 class="mt-2" style="color: #99a1a8;"> Feb 01, 2025</h6>
                     <!-- Mega Menu Dropdown -->
                     <div class="topbar-item d-none d-md-flex">
@@ -808,7 +808,7 @@
     <script src="{{asset('assets/libs/datatables.net-select/js/dataTables.select.min.js')}}"></script>
 
     <!-- Datatables init -->
-    <script src="assets/js/pages/table-datatable.js"></script>
+    <script src="{{asset('assets/js/pages/table-datatable.js')}}"></script>
 
 
 </body>
