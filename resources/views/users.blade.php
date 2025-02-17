@@ -19,26 +19,26 @@
     <!-- Bootstrap JS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
 
-    <link rel="stylesheet" href="assets/libs/datatables.net-bs5/css/dataTables.bootstrap5.min.css">
-    <link rel="stylesheet" href="assets/libs/datatables.net-buttons-bs5/css/buttons.bootstrap5.min.css">
-    <link rel="stylesheet" href="assets/libs/datatables.net-responsive-bs5/css/responsive.bootstrap5.min.css">
-    <link rel="stylesheet" href="assets/libs/datatables.net-select-bs5/css/select.bootstrap5.min.css">
+    <link rel="stylesheet" href="{{asset('assets/libs/datatables.net-bs5/css/dataTables.bootstrap5.min.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/libs/datatables.net-buttons-bs5/css/buttons.bootstrap5.min.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/libs/datatables.net-responsive-bs5/css/responsive.bootstrap5.min.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/libs/datatables.net-select-bs5/css/select.bootstrap5.min.css')}}">
     
     <!-- App favicon -->
-    <link rel="shortcut icon" href="assets/images/favicon.ico">
+    <link rel="shortcut icon" href="{{asset('assets/images/favicon.ico')}}">
 
     <!-- Vendor css -->
-    <link href="assets/css/vendor.min.css" rel="stylesheet" type="text/css" />
+    <link href="{{asset('assets/css/vendor.min.css')}}" rel="stylesheet" type="text/css" />
 
     <!-- App css -->
-    <link href="assets/css/app.min.css" rel="stylesheet" type="text/css" id="app-style" />
-    <link href="assets/css/style.css" rel="stylesheet" type="text/css" />
+    <link href="{{asset('assets/css/app.min.css')}}" rel="stylesheet" type="text/css" id="app-style" />
+    <link href="{{asset('assets/css/style.css')}}" rel="stylesheet" type="text/css" />
 
     <!-- Icons css -->
-    <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+    <link href="{{asset('assets/css/icons.min.css')}}" rel="stylesheet" type="text/css" />
 
     <!-- Theme Config Js -->
-    <script src="assets/js/config.js"></script>
+    <script src="{{asset('assets/js/config.js')}}"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <style>
@@ -276,7 +276,7 @@
 
                     <li class="side-nav-item">
                         <a href="index.html" class="side-nav-link">
-                            <span class="menu-icon"><img src="../../assets/image/element-3.svg" alt="dashboard"></span>
+                            <span class="menu-icon"><img src="{{asset('assets/image/element-3.svg')}}" alt="dashboard"></span>
                             <span class="menu-text mt-2"> Dashboard </span>
                             <!-- <span class="badge bg-success rounded-pill">5</span> -->
                         </a>
@@ -284,7 +284,7 @@
 
                     <li class="side-nav-item">
                         <a href="users.html" class="side-nav-link">
-                            <span class="menu-icon"><img src="../../assets/image/profile.svg" alt="user"></span>
+                            <span class="menu-icon"><img src="{{asset('assets/image/profile.svg')}}" alt="user"></span>
                             <span class="menu-text mt-2"> User </span>
                         </a>
                     </li>

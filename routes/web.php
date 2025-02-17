@@ -27,3 +27,6 @@ Route::get('/couponscode', function () {
 Route::get('/', function () {
     return view('profile');
 });
+Route::get('admin/users', function () {
+    return view('users');
+});
