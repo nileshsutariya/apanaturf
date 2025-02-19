@@ -1,10 +1,7 @@
-<<<<<<< HEAD
-    <footer class="footer mt-5">
-=======
+
 </div>
 </div>
     <footer class="footer">
->>>>>>> 7aedaa89c187558677821d692b65878881dff1af
         <div class="container text-center text-md-start mt-5">
             <div class="row mt-3">
                 <div class="col-md-3 col-lg-4 col-xl-4 mx-auto mb-4">
@@ -76,7 +73,7 @@
                     <p>
                         <form class="form-inline">
                             <input class="form-control" type="search" aria-label="Search" style="opacity: 0.4; border-top-left-radius: 7px; border-bottom-left-radius: 7px; border-top-right-radius: 0px; border-bottom-right-radius: 0px;">
-                            <button class="btn btn-outline-success my-2 my-sm-0 p-4" type="submit" style="background-color: #fff; border: none;"></button>
+                            <button class="btn btn-outline-success my-2 my-sm-0 p-4" type="submit" style="background-color: #fff; border: none; border-radius: 9px;"></button>
                         </form>                    
                     </p>
                 </div>

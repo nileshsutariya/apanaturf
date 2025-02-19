@@ -30,8 +30,12 @@ Route::get('/couponscode', function () {
 //     return view(view: 'financialyear');
 // });
 Route::get('/', function () {
-    return view('profile');
+    return view('users.index');
 });
-Route::get('admin/users', function () {
-    return view('users');
+
+Route::get('users/matches', function() {
+    return view('users.matches');
+});
+Route::get('users/setting', function() {
+    return view('users.setting');
 });
