@@ -1,4 +1,10 @@
+<<<<<<< HEAD
     <footer class="footer mt-5">
+=======
+</div>
+</div>
+    <footer class="footer">
+>>>>>>> 7aedaa89c187558677821d692b65878881dff1af
         <div class="container text-center text-md-start mt-5">
             <div class="row mt-3">
                 <div class="col-md-3 col-lg-4 col-xl-4 mx-auto mb-4">
@@ -76,10 +82,15 @@
                 </div>
             </div>
             <hr>
-            <p style="font-size: 12px; margin-left: 800px;">
-                <a href="#" class="fa fa-linkedin text-decoration-none" style="color: #e0e0e0;">  User Terms & Conditions |  </a>
-                <a href="#" class="fa fa-linkedin text-decoration-none" style="color: #e0e0e0;">  Privacy Policy  </a>
-            </p>
+            <div  style="font-size: 12px;">
+            <div class="row">
+                <div class="col-6 ml-auto text-right">
+
+                    <a href="#" class="fa fa-linkedin text-decoration-none " style="color: #e0e0e0;">  User Terms & Conditions |  </a>
+                    <a href="#" class="fa fa-linkedin text-decoration-none" style="color: #e0e0e0;">  Privacy Policy  </a>
+                </div>
+            </div>
+</div>
         </div>
     </footer>
 

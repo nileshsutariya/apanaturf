@@ -7,13 +7,10 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-
+<!-- <meta http-equiv="refresh" content="3"> -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Bootstrap JS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
-   
-    <link href="https://fonts.googleapis.com/css2?family=Monda:wght@400;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400&display=swap" rel="stylesheet">
 
 
     <title>Document</title>
@@ -22,13 +19,18 @@
 
       html,
       body {
-          height: 100%; 
-          margin: 0;
+          height: 100%; /* Ensure the page takes full height */
+          margin: 0; /* Remove default margins */
       }
+      .wrapper {
+    height: 100vh;
+    overflow: scroll; /* Enable scrolling for the wrapper */
+}
+
       body{
         display: flex;
         flex-direction: column;
-        overflow-x: hidden;
+        
         font-family: 'Inter', sans-serif;
         letter-spacing: 0.9px;
         background-color: #F5F5F5;
@@ -44,7 +46,7 @@
 
       }
       .navbar-nav {
-        padding-left: 500px;
+        padding-left: 600px;
       }
       .navbar-nav .nav-link {
           font-size: 12px;
@@ -72,7 +74,7 @@
         padding: 8px 25px;
         border-radius: 25px;
         text-decoration: none;
-        margin-left: 20px;
+        margin-left: 30px;
         font-size: 12px;
         margin-right: 2px;
       }
@@ -105,57 +107,6 @@
           text-align: left;
           flex-grow: 1; 
       }
-      @font-face {
-          font-family: 'NicoMoji';
-          src: url('{{ asset('assets/fonts/nicomoji-plus_v2-5.ttf') }}') format('truetype');
-          font-weight: normal;
-          font-style: normal;
-          font-display: swap;
-      }
-      .title {
-          font-family: 'NicoMoji', sans-serif;
-          font-size: 3rem;
-      }
-
-      .subtitle {
-          font-family: 'NicoMoji', sans-serif;
-          font-size: 3rem;
-          float: right;
-      }
-      .sport {
-        font-family: 'NicoMoji', sans-serif;
-        font-size: 14rem;
-        color: white;
-        -webkit-text-stroke: 2px rgb(6, 179, 6);
-      }
-      @media (max-width: 768px) {
-          .sport {
-              font-size: 2rem; /* Smaller font size on mobile */
-          }
-
-          .title {
-              font-size: 2rem; /* Adjust title size */
-          }
-
-          .subtitle {
-              font-size: 1.5rem; /* Adjust subtitle size */
-          }
-      }
-
-      @media (max-width: 576px) {
-          .sport {
-              font-size: 1.5rem; /* Further adjust for very small screens */
-          }
-
-          .title {
-              font-size: 1.5rem; /* Adjust title size for small screens */
-          }
-
-          .subtitle {
-              font-size: 1.2rem; /* Adjust subtitle size for small screens */
-          }
-      }
-
     </style>
 </head>
 <body>
@@ -188,7 +139,9 @@
           </ul>
         </div>
       </nav>
+      <div class="page-content">
 
+<div class="page-container" style="background-color: transparent;">
 
 
   
