@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- <meta http-equiv="refresh" content="3"> -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+    <!-- <meta http-equiv="refresh" content="3"> -->
+
+    <title>Document</title>
+    <style>
+        @import url(https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap);
+
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+        }
+
+        .wrapper {
+            height: 100vh;
+            overflow: scroll;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            font-family: 'Inter', sans-serif;
+            letter-spacing: 0.9px;
+            font-weight: 400 !important;
+        }
+
+        .navbar {
+            padding: 5px 0;
+        }
+
+        .line {
+            background-color: #10998B29;
+        }
+
+        .logo {
+            margin-right: 10px;
+        }
+
+        .navbar-nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .navbar-nav .nav-link {
+            font-size: 15px;
+            font-weight: 600;
+            color: #10998B;
+            margin: 0 15px;
+            position: relative;
+            align-items: end;
+
+        }
+
+        .navbar-nav .nav-item.active {
+            font-weight: bold;
+        }
+
+        .navbar-nav .nav-item.active::after {
+            content: "";
+            /* display: block; */
+            width: 100%;
+            height: 2px;
+            background-color: #1d7c46;
+            margin-top: 3px;
+        }
+
+        .navbar-expand-lg .navbar-collapse {
+            justify-content: center;
+        }
+
+        @media (max-width: 1400px) {
+            .navbar-nav {
+                text-align: center;
+            }
+        }
+
+        .footer {
+            background-color: #212529;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .content {
+            padding: 50px 0;
+            position: relative;
+            text-align: left;
+            flex-grow: 1;
+        }
+
+        .navbar-light .navbar-nav .nav-link {
+            color: #10998B;
+        }
+
+        .navbar-brand {
+            display: flex;
+            justify-content: center;
+            width: 20%;
+            Ensures centering within the navbar
+        }
+
+        .row {
+            --bs-gutter-x: 0rem;
+        }
+        @media (max-width: 1400px) {
+            .navbar-nav {
+                text-align: center;
+            }
+        }
+        @media (max-width: 1100px) {
+            .profilename {
+                display: none;
+            }
+        }
+
+        .sidebar {
+
+            background: white;
+            padding-top: 200px;
+            padding-bottom: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-right: 1px solid #079646;
+            border-bottom: 1px solid #079646;
+            border-bottom-right-radius: 10px;
+            border-top-right-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 250px;
+        }
+
+        .sidebar a {
+            display: block;
+            padding: 10px 10px 0px 50px;
+            color: #333;
+            text-decoration: none;
+            margin: 5px 0;
+            font-size: 15.5px
+        }
+
+        .sidebar a.active {
+            background-color: #10998B;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <a class="navbar-brand logo" href="#">
+            <img src="{{asset('assets/image/users/logo2.svg')}}" class="d-inline-block align-top m-3" alt="logo"
+                class="logo-img">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mr-5 pr-5">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Turf <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Terms & Conditions <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">About <span class="sr-only">(current)</span></a>
+                </li>
+            </ul>
+        </div>
+        <div class="mr-4">
+            <img src="{{asset('assets/image/users/Image.svg')}}" alt="profile" class="rounded-circle"
+                style="width: 40px; height: 40px; border: 2px solid #ccc;">
+
+            <span class=" profilename ml-2" style="color:#10998B; font-size: 15px; font-weight:500;">Abhishek</span>
+
+        </div>
+    </nav>
+    <div class="line">
+        <div class="row" style="height: 60px;">
+            <div class="col-md-1">
+                <img src="{{asset('assets/image/users/Image.svg')}}" alt="profile" class="rounded-circle"
+                    style="width: 40px; height: 40px; border: 2px solid #ccc;">
+            </div>
+            <div class="col-md-5">
+                lijuygtf
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-2">
+            <div class="sidebar">
+                <a href="#">
+                    <span class="menu-icon text-dark"><img src="{{asset('assets/image/users/element-3.svg')}}" alt="user"></span>
+                    Dashboard
+                </a>
+                <a href="#">
+                    <span class="menu-icon text-dark"><img src="{{asset('assets/image/users/clock.svg')}}" alt="user"></span>
+                    Booking
+                </a>
+                <a href="#">
+                    <span class="menu-icon text-dark"><img src="{{asset('assets/image/users/calendar.svg')}}" alt="user"></span>
+                    My Matches
+                </a>
+                <a href="#">
+                    <span class="menu-icon text-dark"><img src="{{asset('assets/image/users/wallet-remove.svg')}}" alt="user"></span>
+                    Wallet
+                </a>
+                <a href="#">
+                    <span class="menu-icon text-dark"><img src="{{asset('assets/image/users/Setting.svg')}}" alt="user"></span>
+                    Split & Pay
+                </a>
+                <a href="#">
+                    <span class="menu-icon text-dark"><img src="{{asset('assets/image/users/Setting2.svg')}}" alt="user"></span>
+                    Settings
+                </a>
+                <a href="#">
+                    <span class="menu-icon text-dark"><img src="{{asset('assets/image/users/Setting1.svg')}}" alt="user"></span>
+                    Refer & Earn
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="page-content">
+
+        <div class="page-container" style="background-color: transparent;">

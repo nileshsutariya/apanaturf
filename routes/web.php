@@ -25,7 +25,7 @@ Route::get('/couponscode', function () {
 //     return view(view: 'financialyear');
 // });
 Route::get('/', function () {
-    return view('profile');
+    return view('users.setting');
 });
 Route::get('admin/users', function () {
     return view('users');
