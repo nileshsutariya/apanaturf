@@ -1,10 +1,16 @@
-    <footer class="footer">
+    <footer class="footer mt-5">
         <div class="container text-center text-md-start mt-5">
             <div class="row mt-3">
                 <div class="col-md-3 col-lg-4 col-xl-4 mx-auto mb-4">
                     <img src="{{asset('assets/image/users/Image.svg')}}" alt="profile" class="rounded-circle" style="width: 50px; height: 50px; border: 2px solid #ccc;">
 
-                <span class="ml-2" style="font-weight: 600; letter-spacing: 2px;">SportsAstra</span>
+                <span class="ml-2" style="
+                        font-weight: 600 !important; 
+                        letter-spacing: 2px;
+                        font-family: 'Monda', sans-serif;
+                        font-style: normal;
+                        font-optical-sizing: auto;
+                    ">SportsAstra</span>
                 
                 <p class="mt-3" style="font-size: 11px; color: #e0e0e0;">
                 Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quam, expedita?

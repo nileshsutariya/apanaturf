@@ -11,6 +11,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Bootstrap JS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+   
+    <link href="https://fonts.googleapis.com/css2?family=Monda:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400&display=swap" rel="stylesheet">
 
 
     <title>Document</title>
@@ -19,13 +22,13 @@
 
       html,
       body {
-          height: 100%; /* Ensure the page takes full height */
-          margin: 0; /* Remove default margins */
+          height: 100%; 
+          margin: 0;
       }
       body{
         display: flex;
         flex-direction: column;
-        
+        overflow-x: hidden;
         font-family: 'Inter', sans-serif;
         letter-spacing: 0.9px;
         background-color: #F5F5F5;
@@ -97,11 +100,62 @@
           width: 100%;
       }
       .content {
-          padding: 50px 0;
+          /* padding: 50px 0; */
           position: relative;
           text-align: left;
           flex-grow: 1; 
       }
+      @font-face {
+          font-family: 'NicoMoji';
+          src: url('{{ asset('assets/fonts/nicomoji-plus_v2-5.ttf') }}') format('truetype');
+          font-weight: normal;
+          font-style: normal;
+          font-display: swap;
+      }
+      .title {
+          font-family: 'NicoMoji', sans-serif;
+          font-size: 3rem;
+      }
+
+      .subtitle {
+          font-family: 'NicoMoji', sans-serif;
+          font-size: 3rem;
+          float: right;
+      }
+      .sport {
+        font-family: 'NicoMoji', sans-serif;
+        font-size: 14rem;
+        color: white;
+        -webkit-text-stroke: 2px rgb(6, 179, 6);
+      }
+      @media (max-width: 768px) {
+          .sport {
+              font-size: 2rem; /* Smaller font size on mobile */
+          }
+
+          .title {
+              font-size: 2rem; /* Adjust title size */
+          }
+
+          .subtitle {
+              font-size: 1.5rem; /* Adjust subtitle size */
+          }
+      }
+
+      @media (max-width: 576px) {
+          .sport {
+              font-size: 1.5rem; /* Further adjust for very small screens */
+          }
+
+          .title {
+              font-size: 1.5rem; /* Adjust title size for small screens */
+          }
+
+          .subtitle {
+              font-size: 1.2rem; /* Adjust subtitle size for small screens */
+          }
+      }
+
     </style>
 </head>
 <body>

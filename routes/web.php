@@ -3,11 +3,16 @@
 use App\Livewire\Dashboard;
 use Illuminate\Support\Facades\Route;
 
+Route::get('admin/index', function () {
+    return view('index');
+})->name('admin.index');
+
+Route::get('admin/users', function () {
+    return view('users');
+})->name('admin.users');
+
 Route::get('/amenities', function () {
     return view('amenities');
-});
-Route::get('index', function () {
-    return view('index');
 });
 Route::get('banner', function () {
     return view('banner');
@@ -25,8 +30,5 @@ Route::get('/couponscode', function () {
 //     return view(view: 'financialyear');
 // });
 Route::get('/', function () {
-    return view('profile');
-});
-Route::get('admin/users', function () {
-    return view('users');
+    return view('users.index');
 });
