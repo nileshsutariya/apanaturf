@@ -45,6 +45,21 @@
     <script src="{{asset('assets/js/config.js')}}"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
+        body {
+            font-size: 15px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 500 !important;
+            letter-spacing: 0.9px;
+            background-color: #F5F5F5;
+        }
+        .content {
+            margin-left: 0;
+            transition: 0.3s;
+        }
+
+        .content.active {
+            margin-left: 250px;
+        }
         html[data-sidenav-size=condensed]:not([data-layout=topnav]) .sidenav-menu .sidebar-footer .footer-content {
             overflow: hidden;
             white-space: nowrap;
@@ -203,7 +218,7 @@
                     <!-- <li cla'ss="side-nav-title">Navigation</li> -->
 
                     <li class="side-nav-item">
-                        <a href="index.html" class="side-nav-link">
+                        <a href="{{route('admin.index')}}" class="side-nav-link">
                             <span class="menu-icon"><img src="{{asset('assets/image/element-3.svg')}}"
                                     alt="dashboard"></span>
                             <span class="menu-text mt-2"> Dashboard </span>
@@ -211,7 +226,7 @@
                         </a>
                     </li>
                     <li class="side-nav-item">
-                        <a href="users.html" class="side-nav-link">
+                        <a href="{{route('admin.users')}}" class="side-nav-link">
                             <span class="menu-icon"><img src="{{asset('assets/image/profile.svg')}}" alt="user"></span>
                             <span class="menu-text mt-2"> User </span>
                         </a>

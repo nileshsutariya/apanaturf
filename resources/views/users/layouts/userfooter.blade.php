@@ -1,3 +1,4 @@
+
 </div>
 </div>
     <footer class="footer">
@@ -6,7 +7,13 @@
                 <div class="col-md-3 col-lg-4 col-xl-4 mx-auto mb-4">
                     <img src="{{asset('assets/image/users/Image.svg')}}" alt="profile" class="rounded-circle" style="width: 50px; height: 50px; border: 2px solid #ccc;">
 
-                <span class="ml-2" style="font-weight: 600; letter-spacing: 2px;">SportsAstra</span>
+                <span class="ml-2" style="
+                        font-weight: 600 !important; 
+                        letter-spacing: 2px;
+                        font-family: 'Monda', sans-serif;
+                        font-style: normal;
+                        font-optical-sizing: auto;
+                    ">SportsAstra</span>
                 
                 <p class="mt-3" style="font-size: 11px; color: #e0e0e0;">
                 Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quam, expedita?
@@ -66,7 +73,7 @@
                     <p>
                         <form class="form-inline">
                             <input class="form-control" type="search" aria-label="Search" style="opacity: 0.4; border-top-left-radius: 7px; border-bottom-left-radius: 7px; border-top-right-radius: 0px; border-bottom-right-radius: 0px;">
-                            <button class="btn btn-outline-success my-2 my-sm-0 p-4" type="submit" style="background-color: #fff; border: none;"></button>
+                            <button class="btn btn-outline-success my-2 my-sm-0 p-4" type="submit" style="background-color: #fff; border: none; border-radius: 9px;"></button>
                         </form>                    
                     </p>
                 </div>

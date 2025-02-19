@@ -12,7 +12,7 @@
     <!-- Bootstrap JS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
 <!-- <meta http-equiv="refresh" content="3"> -->
-<link href="https://fonts.googleapis.com/css2?family=Monda:wght@400..700&display=swap" rel="stylesheet">
+
     <title>Document</title>
     <style>
       @import url(https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap);
@@ -21,7 +21,6 @@
       body {
           height: 100%; /* Ensure the page takes full height */
           margin: 0; /* Remove default margins */
-         
       }
       .wrapper {
     height: 100vh;
@@ -31,6 +30,7 @@
       body{
         display: flex;
         flex-direction: column;
+        
         font-family: 'Inter', sans-serif;
         letter-spacing: 0.9px;
         background-color: #F5F5F5;
@@ -102,14 +102,11 @@
           width: 100%;
       }
       .content {
-          padding: 50px 0;
+          /* padding: 50px 0; */
           position: relative;
           text-align: left;
           flex-grow: 1; 
       }
-      .row{
-             --bs-gutter-x: 0rem;
-        }
     </style>
 </head>
 <body>

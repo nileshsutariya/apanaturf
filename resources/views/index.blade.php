@@ -1,6 +1,6 @@
 
 @include('adminlayouts.header')
-    <style> .chart-container
+    <style> 
         html[data-sidenav-size=condensed]:not([data-layout=topnav]) .sidenav-menu .side-nav .side-nav-item .side-nav-link {
             -webkit-transition: none !important;
             transition: none !important;
