@@ -103,6 +103,7 @@
     .imgcontent {
         font-size: 13.27px;
         align-self: center;
+        font-family: "Monda", serif !important;
 
     }
 
