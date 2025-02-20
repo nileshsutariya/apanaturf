@@ -32,3 +32,10 @@ Route::get('/couponscode', function () {
 Route::get('/', function () {
     return view('users.setting');
 });
+
+Route::get('users/matches', function() {
+    return view('users.matches');
+});
+Route::get('users/setting', function() {
+    return view('users.setting');
+});

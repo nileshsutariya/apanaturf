@@ -1,5 +1,6 @@
 
-</div>
+{{-- </div>
+</div> --}}
 </div>
 </div>
 <div class="m-4">
@@ -75,9 +76,9 @@
                     <h6 class="mb-4">Get the Latest Information</h6>
                 
                     <p>
-                        <form class="form-inline">
-                            <input class="form-control" type="search" aria-label="Search" style="opacity: 0.4; border-top-left-radius: 7px; border-bottom-left-radius: 7px; border-top-right-radius: 0px; border-bottom-right-radius: 0px;">
-                            <button class="btn btn-outline-success my-2 my-sm-0 p-4" type="submit" style="background-color: #fff; border: none; border-radius: 9px;"></button>
+                        <form class="form-inline d-flex flex-nowrap w-100">
+                            <input class="form-control flex-grow-1" type="search" aria-label="Search" style="opacity: 0.4; border-top-left-radius: 7px; border-bottom-left-radius: 7px; border-top-right-radius: 0px; border-bottom-right-radius: 0px;">
+                            <button class="btn btn-outline-success my-2 my-sm-0 p-4 d-flex align-items-center justify-content-center" type="submit" style="background-color: #fff; border: none; border-radius: 9px;"></button>
                         </form>                    
                     </p>
                 </div>
@@ -91,11 +92,22 @@
                     <a href="#" class="fa fa-linkedin text-decoration-none" style="color: #e0e0e0;">  Privacy Policy  </a>
                 </div>
             </div>
-</div>
+        </div>
         </div>
     </footer>
-
+{{-- </div> --}}
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+<!-- Vendor js -->
+<script src="{{asset('assets/js/vendor.min.js')}}"></script>
+
+<!-- App js -->
+<script src="{{asset('assets/js/app.js')}}"></script>
+
+<!--Morris Chart-->
+<!-- <script src="{{asset('assets/libs/morris.js/morris.min.js')}}"></script> -->
+<script src="{{asset('assets/libs/raphael/raphael.min.js')}}"></script>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
 
