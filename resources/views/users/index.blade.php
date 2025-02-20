@@ -96,7 +96,7 @@
                 <div class="card" style="background-color: transparent; border: none; padding: 10px;">
                     <div class="card-body">
                         <button class="btn btn-light">
-                            <img src="{{asset('assets/image/users/Clock.svg')}}" class="d-inline-block align-top pt-1 pb-1" alt="" style="width: 40px;">
+                            <img src="{{asset('assets/image/users/Clockindex.svg')}}" class="d-inline-block align-top pt-1 pb-1" alt="" style="width: 40px;">
                         </button>
                         <div class="fw-bold mt-4 mb-2">
                             Fast Booking
@@ -143,7 +143,7 @@
 </section>
 
 
-<section class="content">
+<section class="content pt-5 pb-5">
     <div class="container p-5">
         <div class="row">
             <div class="col-md-5">
@@ -187,25 +187,31 @@
                 <div class="card mt-4" style="background-color: transparent; border: none;">
                     <div class="card-body">
                         <div style="display: flex; gap: 20px; justify-content: center; align-items: center;">
-                            <div style="width: 250px; height: 260px; padding: 15px; border-radius: 17px; background: #dfdddd; text-align: center; position: relative;">
-                                <h3 style="margin: 0; font-size: 30px; ">For iOS</h3>
-                                <p style="margin: 5px 0; font-size: 13px; color: #666;">iOS +15</p>
-                                <button style="background: #279B5A; color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer;">Download App</button>
-                                <div style="margin-top: 10px;"><img src="qr-ios.png" alt="QR Code for iOS" style="width: 80px; height: 80px;"></div>
-                                <div style="position: absolute; bottom: -20px; right: -20px; background: white; border-radius: 50%; padding: 10px; box-shadow: 2px 2px 5px rgba(0,0,0,0.1);">
-                                    <img src="apple-icon.png" alt="Apple Logo" style="width: 30px; height: 30px;">
+                            <div class="mr-3" style="width: 250px; height: auto; padding: 15px; border-radius: 17px; background: #dfdddd; text-align: center; position: relative;">
+                                <h3 class="mt-2" style="margin-right: 75px; font-size: 25px; font-family: 'NATS', sans-serif !important; ">For iOS</h3>
+                                <p style="margin-right: 110px; font-size: 13px; color: #666; font-family: 'NATS', sans-serif !important;">iOS +15</p>
+                                <button class="shadow mb-2" style="background: #279B5A; color: white; border: none; padding: 8px 15px; border-radius: 20px; cursor: pointer; font-size: 12px; margin-right: 60px; ">Download App</button>
+                                <div class="card p-1" style="width: 110px; border-radius: 15px; margin-left: 25px; ">
+                                    <img src="{{asset('assets/image/users/qrcode.svg')}}" class="d-inline-block align-top" alt="" height="100px" width="100px">
+                                </div>
+                                {{-- <div style="margin-top: 10px;"><img src="qr-ios.png" alt="QR Code for iOS" style="width: 80px; height: 80px;"></div> --}}
+                                <div style="position: absolute; bottom: -10px; right: -10px; background: white; border-radius: 50%; padding: 10px; background-color: #F5F5F5; ">
+                                    <img src="{{asset('assets/image/users/AppleLogo.svg')}}" class="d-inline-block align-top p-2" alt="" height="70px">
+                                </div>
+                            </div>
+                            <div style="width: 250px; height: auto; padding: 15px; border-radius: 17px; background: #dfdddd; text-align: center; position: relative;">
+                                <h3 class="mt-2" style="margin-right: 40px; font-size: 25px; font-family: 'NATS', sans-serif !important; ">For Android</h3>
+                                <p style="margin-right: 90px; font-size: 13px; color: #666; font-family: 'NATS', sans-serif !important;">Android 9.0+</p>
+                                <button class="shadow mb-2" style="background: #279B5A; color: white; border: none; padding: 8px 15px; border-radius: 20px; cursor: pointer; font-size: 12px; margin-right: 60px; ">Download App</button>
+                                <div class="card p-1" style="width: 110px; border-radius: 15px; margin-left: 25px; ">
+                                    <img src="{{asset('assets/image/users/qrcode.svg')}}" class="d-inline-block align-top" alt="" height="100px" width="100px">
+                                </div>
+                                {{-- <div style="margin-top: 10px;"><img src="qr-ios.png" alt="QR Code for iOS" style="width: 80px; height: 80px;"></div> --}}
+                                <div style="position: absolute; bottom: -10px; right: -10px; background: white; border-radius: 50%; padding: 10px; background-color: #F5F5F5; ">
+                                    <img src="{{asset('assets/image/users/Android.svg')}}" class="d-inline-block align-top p-2" alt="" height="70px">
                                 </div>
                             </div>
                         
-                            <div style="width: 200px; padding: 15px; border-radius: 15px; background: #F5F5F5; box-shadow: 2px 2px 10px rgba(0,0,0,0.1); text-align: center; position: relative;">
-                                <h3 style="margin: 0; font-size: 16px; font-weight: bold;">For Android</h3>
-                                <p style="margin: 5px 0; font-size: 12px; color: #666;">Android 9.0+</p>
-                                <button style="background: #279B5A; color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer;">Download App</button>
-                                <div style="margin-top: 10px;"><img src="qr-android.png" alt="QR Code for Android" style="width: 80px; height: 80px;"></div>
-                                <div style="position: absolute; bottom: -20px; right: -20px; background: white; border-radius: 50%; padding: 10px; box-shadow: 2px 2px 5px rgba(0,0,0,0.1);">
-                                    <img src="android-icon.png" alt="Android Logo" style="width: 30px; height: 30px;">
-                                </div>
-                            </div>
                         </div>
                         
                     </div>
