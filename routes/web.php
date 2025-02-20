@@ -30,5 +30,5 @@ Route::get('/couponscode', function () {
 //     return view(view: 'financialyear');
 // });
 Route::get('/', function () {
-    return view('users.productlanding');
+    return view('users.setting');
 });

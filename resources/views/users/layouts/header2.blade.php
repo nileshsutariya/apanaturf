@@ -4,16 +4,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <!-- <meta http-equiv="refresh" content="3"> -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
     <!-- Bootstrap JS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
     <!-- <meta http-equiv="refresh" content="3"> -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
     <title>Document</title>
     <style>
         @import url(https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap);
@@ -22,6 +26,7 @@
         body {
             height: 100%;
             margin: 0;
+            overflow-x: hidden;
         }
 
         .wrapper {
@@ -116,14 +121,14 @@
             width: 20%;
         }
 
-        .row {
-            --bs-gutter-x: 0rem;
-        }
+
+
         @media (max-width: 1400px) {
             .navbar-nav {
                 text-align: center;
             }
         }
+
         @media (max-width: 1100px) {
             .profilename {
                 display: none;
@@ -138,10 +143,10 @@
             border-right: 1px solid #079646;
             border-bottom: 1px solid #079646;
             border-top: 1px solid #079646;
-            border-bottom-right-radius: 4px;
-            border-top-right-radius: 4px;
+            border-bottom-right-radius: 5px;
+            border-top-right-radius: 5px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            width: 220px;
+            width: 220px !important;
         }
 
         .sidebar a {
@@ -158,6 +163,7 @@
             background-color: #10998B;
             color: white;
         }
+
         .sidebar-footer {
             position: sticky;
             background-color: white;
@@ -166,7 +172,9 @@
             z-index: 10;
             align-items: flex-end;
         }
-
+        .menu{
+            overflow: hidden;
+        }
     </style>
 </head>
 
@@ -209,80 +217,84 @@
             {{-- <div class="col-md-1"> --}}
                 {{-- <img src="{{asset('assets/image/users/Image.svg')}}" alt="profile" class="rounded-circle"
                     style="width: 40px; height: 40px; border: 2px solid #ccc;"> --}}
-            {{-- </div> --}}
+                {{-- </div> --}}
             <div class="col-md-12" style="justify-items: baseline; margin-left: 70px;">
                 <div class="d-flex flex-row bd-highlight" style="margin-top: 20px;">
-                    <a class="nav-link mr-3" href="#" style="color: rgb(148, 147, 147); font-size: 13px;">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-link mr-3" href="#" style="color: rgb(148, 147, 147); font-size: 13px;">Home <span
+                            class="sr-only">(current)</span></a>
                     <img class="mr-3" src="{{asset('assets/image/users/arrow.svg')}}" alt="profile">
-                    <a class="nav-link" href="#" style="color: rgb(148, 147, 147); font-size: 13px;">Terms & Conditions <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="#" style="color: rgb(148, 147, 147); font-size: 13px;">Terms & Conditions
+                        <span class="sr-only">(current)</span></a>
                 </div>
             </div>
         </div>
     </div>
 
 
-    
-
-    <div class="page-content">
-
-        <div class="page-container" style="background-color: transparent;">
-
-            {{-- <section class="content"> --}}
-               
-                <div class="row">
-                    <div class="col-md-2">
-                        <div class="sidenav-menu sidebar d-flex flex-column" style="height: auto;">
-                            <div data-simplebar class="flex-grow-1">
-                                <ul class="side-nav" style="padding-bottom: 200px;">
-                                    <a href="#" class="pb-3 ml-3">
-                                        <img src="{{asset('assets/image/users/element-3.svg')}}" alt="user">
-                                        <span class="menu-icon text-dark ml-1">Dashboard</span>
-                                    </a>
-                                    <a href="#" class="pb-3 ml-3">
-                                        <img src="{{asset('assets/image/users/calendar.svg')}}" alt="user">
-                                        <span class="menu-icon text-dark ml-1">Booking</span>
-                                    </a>
-                                    <a href="#" class="pb-3 ml-3">
-                                        <img src="{{asset('assets/image/users/clock.svg')}}" alt="user">
-                                        <span class="menu-icon text-dark ml-1">My Matches</span>
-                                    </a>
-                                    <a href="#" class="pb-3 ml-3">
-                                        <img src="{{asset('assets/image/users/wallet-remove.svg')}}" alt="user">
-                                        <span class="menu-icon text-dark ml-1">Wallet</span>
-                                    </a>
-                                    <a href="#" class="pb-3 ml-3">
-                                        <img src="{{asset('assets/image/users/Setting.svg')}}" alt="user">
-                                        <span class="menu-icon text-dark ml-1">Split & Pay</span>
-                                    </a>
-                                    <a href="#" class="pb-3 ml-3">
-                                        <img src="{{asset('assets/image/users/Setting2.svg')}}" alt="user">
-                                        <span class="menu-icon text-dark ml-1">Settings</span>
-                                    </a>
-                                    <a href="#" class="pb-3 ml-3">
-                                        <img src="{{asset('assets/image/users/Setting1.svg')}}" alt="user">
-                                        <span class="menu-icon text-dark ml-1">Refer & Earn</span>
-                                    </a>
-                                </ul>
+<div class="wrapper">
+    <div class="row ">
+        <div class="col-md-2 ">
+            <div class="sidenav-menu sidebar d-flex flex-column" style="height: auto;">
+                <div data-simplebar class="flex-grow-1">
+                    <ul class="side-nav">
+                        <a href="#" class="pb-3 ml-3">
+                            <img src="{{asset('assets/image/users/element-3.svg')}}" alt="user">
+                            <span class="text-dark ml-1">Dashboard</span>
+                        </a>
+                        <a href="#" class="pb-3 ml-3">
+                            <img src="{{asset('assets/image/users/calendar.svg')}}" alt="user">
+                            <span class="menu text-dark ml-1">Booking</span>
+                        </a>
+                        <a href="#" class="pb-3 ml-3">
+                            <img src="{{asset('assets/image/users/clock.svg')}}" alt="user">
+                            <span class="menu text-dark ml-1">My Matches</span>
+                        </a>
+                        <a href="#" class="pb-3 ml-3">
+                            <img src="{{asset('assets/image/users/wallet-remove.svg')}}" alt="user">
+                            <span class="menu text-dark ml-1">Wallet</span>
+                        </a>
+                        <a href="#" class="pb-3 ml-3">
+                            <img src="{{asset('assets/image/users/Setting.svg')}}" alt="user">
+                            <span class="menu text-dark ml-1">Split & Pay</span>
+                        </a>
+                        <a href="#" class="pb-3 ml-3">
+                            <img src="{{asset('assets/image/users/Setting2.svg')}}" alt="user">
+                            <span class="menu text-dark ml-1">Settings</span>
+                        </a>
+                        <a href="#" class="pb-3 ml-3">
+                            <img src="{{asset('assets/image/users/Setting1.svg')}}" alt="user">
+                            <span class="menu-icon text-dark ml-1">Refer & Earn</span>
+                        </a>
+                    </ul>
+                    <div class="sidebar-footer p-3" >
+                        {{--
+                        <hr class="hr"> --}}
+                        <div class="side-nav-item d-flex align-items-center justify-content-between">
+                            <!-- Left: Profile Image -->
+                            <div class="d-flex align-items-center">
+                                <span class="menu-icon me-3">
+                                    <img src="{{asset('assets/image/Image.svg')}}" alt="profile" class="rounded-circle"
+                                        style="width: 40px; height:40px; border: 2px solid #ccc;">
+                                </span>
                             </div>
-                
-                            <!-- Sidebar Footer -->
-                            <div class="sidebar-footer p-3" style="">
-                                {{-- <hr class="hr"> --}}
-                                <div class="side-nav-item d-flex align-items-center justify-content-between">
-                                    <!-- Left: Profile Image -->
-                                    <div class="d-flex align-items-center">
-                                        <span class="menu-icon me-3">
-                                            <img src="{{asset('assets/image/Image.svg')}}" alt="profile" class="rounded-circle"
-                                                style="width: 40px; height:40px; border: 2px solid #ccc;">
-                                        </span>
-                                    </div>
-                
-                                    <!-- Right: Name, Profile Link, and Dots -->
-                                    <div class="footer-content d-flex flex-column flex-grow-1">
-                                        <span class="menu-text" style="font-size: 12px;">Abhishek Guleria</span>
-                                        <a href="" class="text-muted" style="font-size: 11px;">View Profile</a>
-                                    </div>
-                                </div>
+    
+                            <!-- Right: Name, Profile Link, and Dots -->
+                            <div class="footer-content d-flex flex-column flex-grow-1">
+                                <span class="menu-text" style="font-size: 12px;">Abhishek Guleria</span>
+                                <a href="" class="text-muted" style="font-size: 11px;">View Profile</a>
                             </div>
                         </div>
                     </div>
+                </div>
+
+                <!-- Sidebar Footer -->
+            </div>
+        </div>
+        <div class="col-md-9 mt-3 p-2">
+
+        <div class="page-content">
+    
+            <div class="page-container" style="background-color: transparent;">
+            
+              
+            {{-- <section class="content"> --}}

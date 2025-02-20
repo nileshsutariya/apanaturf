@@ -164,7 +164,6 @@ class ThemeCustomizer {
         this.html = document.getElementsByTagName("html")[0], this.config = {}, this.defaultConfig = window.config
     }
     initConfig() {
-        this.defaultConfig = JSON.parse(JSON.stringify(window.defaultConfig)), this.config = JSON.parse(JSON.stringify(window.config)), this.setSwitchFromConfig()
     }
     changeMenuColor(t) {
         this.config.menu.color = t, this.html.setAttribute("data-menu-color", t), this.setSwitchFromConfig()
@@ -185,47 +184,6 @@ class ThemeCustomizer {
         this.config = JSON.parse(JSON.stringify(window.defaultConfig)), this.changeMenuColor(this.config.menu.color), this.changeLeftbarSize(this.config.sidenav.size), this.changeLayoutColor(this.config.theme), this.changeLayoutMode(this.config.layout.mode), this.changeTopbarColor(this.config.topbar.color), this._adjustLayout()
     }
     initSwitchListener() {
-        var a = this,
-            t = (document.querySelectorAll("input[name=data-menu-color]").forEach(function (e) {
-                e.addEventListener("change", function (t) {
-                    a.changeMenuColor(e.value)
-                })
-            }), document.querySelectorAll("input[name=data-sidenav-size]").forEach(function (e) {
-                e.addEventListener("change", function (t) {
-                    a.changeLeftbarSize(e.value)
-                })
-            }), document.querySelectorAll("input[name=data-bs-theme]").forEach(function (e) {
-                e.addEventListener("change", function (t) {
-                    a.changeLayoutColor(e.value)
-                })
-            }), document.querySelectorAll("input[name=data-layout-mode]").forEach(function (e) {
-                e.addEventListener("change", function (t) {
-                    a.changeLayoutMode(e.value)
-                })
-            }), document.querySelectorAll("input[name=data-topbar-color]").forEach(function (e) {
-                e.addEventListener("change", function (t) {
-                    a.changeTopbarColor(e.value)
-                })
-            }), document.getElementById("light-dark-mode")),
-            t = (t && t.addEventListener("click", function (t) {
-                "light" === a.config.theme ? a.changeLayoutColor("dark") : a.changeLayoutColor("light")
-            }), document.querySelector("#reset-layout")),
-            t = (t && t.addEventListener("click", function (t) {
-                a.resetTheme()
-            }), document.querySelector(".sidenav-toggle-button")),
-            t = (t && t.addEventListener("click", function () {
-                var t = a.config.sidenav.size,
-                    e = a.html.getAttribute("data-sidenav-size", t);
-                "full" === e ? a.showBackdrop() : "fullscreen" == t ? "fullscreen" === e ? a.changeLeftbarSize("fullscreen" == t ? "default" : t, !1) : a.changeLeftbarSize("fullscreen", !1) : "condensed" === e ? a.changeLeftbarSize("condensed" == t ? "default" : t, !1) : a.changeLeftbarSize("condensed", !1), a.html.classList.toggle("sidebar-enable")
-            }), document.querySelector(".button-close-fullsidebar"));
-        t && t.addEventListener("click", function () {
-            a.html.classList.remove("sidebar-enable"), a.hideBackdrop()
-        }), document.querySelectorAll(".button-sm-hover").forEach(function (t) {
-            t.addEventListener("click", function () {
-                var t = a.config.sidenav.size;
-                "sm-hover-active" === a.html.getAttribute("data-sidenav-size", t) ? a.changeLeftbarSize("sm-hover", !1) : a.changeLeftbarSize("sm-hover-active", !1)
-            })
-        })
     }
     showBackdrop() {
         const t = document.createElement("div"),
@@ -245,7 +203,6 @@ class ThemeCustomizer {
         })
     }
     _adjustLayout() {
-        window.innerWidth <= 1199 ? html.setAttribute("data-sidenav-size", "full") : html.setAttribute("data-sidenav-size", this.config.sidenav.size)
     }
     setSwitchFromConfig() {
         sessionStorage.setItem("__UPLON_CONFIG__", JSON.stringify(this.config)), document.querySelectorAll("#theme-settings-offcanvas input[type=radio]").forEach(function (t) {
@@ -255,7 +212,7 @@ class ThemeCustomizer {
         i && (t = document.querySelector("input[type=radio][name=data-bs-theme][value=" + i.theme + "]"), e = document.querySelector("input[type=radio][name=data-layout-mode][value=" + i.layout.mode + "]"), a = document.querySelector("input[type=radio][name=data-topbar-color][value=" + i.topbar.color + "]"), n = document.querySelector("input[type=radio][name=data-menu-color][value=" + i.menu.color + "]"), i = document.querySelector("input[type=radio][name=data-sidenav-size][value=" + i.sidenav.size + "]"), t && (t.checked = !0), e && (e.checked = !0), a && (a.checked = !0), n && (n.checked = !0), i && (i.checked = !0))
     }
     init() {
-        this.initConfig(), this.initSwitchListener(), this.initWindowSize(), this._adjustLayout(), this.setSwitchFromConfig()
+        this.initConfig(), this.initSwitchListener(), this.initWindowSize()
     }
 }
 document.addEventListener("DOMContentLoaded", function (t) {

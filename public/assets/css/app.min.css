@@ -16903,7 +16903,7 @@ html[data-bs-theme=dark] #light-dark-mode .ti-moon::before {
 }
 
 .sidenav-menu [data-simplebar] {
-    height: calc(100% - var(--bs-topbar-height))
+    height: calc(100% - var(--bs-topbar-height));
 }
 
 .side-nav {

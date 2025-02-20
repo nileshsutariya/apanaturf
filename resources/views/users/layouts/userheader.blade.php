@@ -107,6 +107,59 @@
           text-align: left;
           flex-grow: 1; 
       }
+      .row{
+             --bs-gutter-x: 0rem;
+      }
+      @font-face {
+          font-family: 'NicoMoji';
+          src: url('{{ asset('assets/fonts/nicomoji-plus_v2-5.ttf') }}') format('truetype');
+          font-weight: normal;
+          font-style: normal;
+          font-display: swap;
+      }
+      .title {
+          font-family: 'NicoMoji', sans-serif;
+          font-size: 3rem;
+      }
+
+      .subtitle {
+          font-family: 'NicoMoji', sans-serif;
+          font-size: 3rem;
+          float: right;
+      }
+      .sport {
+        font-family: 'NicoMoji', sans-serif;
+        font-size: 14rem;
+        color: white;
+        -webkit-text-stroke: 2px rgb(6, 179, 6);
+      }
+      @media (max-width: 768px) {
+          .sport {
+              font-size: 2rem; /* Smaller font size on mobile */
+          }
+
+          .title {
+              font-size: 2rem; /* Adjust title size */
+          }
+
+          .subtitle {
+              font-size: 1.5rem; /* Adjust subtitle size */
+          }
+      }
+
+      @media (max-width: 576px) {
+          .sport {
+              font-size: 1.5rem; /* Further adjust for very small screens */
+          }
+
+          .title {
+              font-size: 1.5rem; /* Adjust title size for small screens */
+          }
+
+          .subtitle {
+              font-size: 1.2rem; /* Adjust subtitle size for small screens */
+          }
+      }
     </style>
 </head>
 <body>
