@@ -132,7 +132,7 @@
         }
 
         .sidebar {
-            background: white;
+            background-color: white;
             padding-top: 150px;
             /* padding-bottom: 400px; */
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -253,7 +253,10 @@
             }
         }
         
-       
+       .menu{
+        background-color: #10998B29;
+
+       }
 
     </style>
 </head>
@@ -302,7 +305,7 @@
                 
                 <div class="d-flex flex-row bd-highlight">
                     <button class="btn mt-2 ml-2" id="toggleSidebar" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCard">
-                        <i class="bi bi-list menu" style="color: #000; font-size: 25px;"></i>
+                        <i class="bi bi-list menu" style="color: #000; font-size: 25px; background-color: #10998B29;"></i>
                     </button>
                     <a class="nav-link mr-3 ml-3" href="#" style="align-self: center; color: rgb(148, 147, 147); font-size: 13px;">Home <span class="sr-only">(current)</span></a>
                     <img class="mr-3" src="{{asset('assets/image/users/arrow.svg')}}" alt="profile">
@@ -324,7 +327,7 @@
                         <img src="{{asset('assets/image/users/calendar.svg')}}" alt="user">
                         <span class="menu-text text-dark ml-1">Booking</span>
                     </a>
-                    <a href="{{route('users.matches')}}" class="pb-3 ml-3 active-link">
+                    <a href="#" class="pb-3 ml-3 active-link">
                         <img src="{{asset('assets/image/users/clock.svg')}}" alt="user">
                         <span class="menu-text text-dark ml-1">My Matches</span>
                     </a>

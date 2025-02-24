@@ -8,6 +8,7 @@
     body {
         overflow-x: hidden;
     }
+    
     .custom-card {
         border-radius: 10px;
         box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.16);

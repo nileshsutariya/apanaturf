@@ -23,19 +23,20 @@ Route::get('booking', function () {
 Route::get('/couponscode', function () {
     return view('couponscode');
 });
-// Route::get('/enquiries', function () {
-//     return view('enquiries');
-// });
-// Route::get('/financialyear', function () {
-//     return view(view: 'financialyear');
-// });
-Route::get('/', function () {
-    return view('users.setting');
+Route::get('/enquiries', function () {
+    return view('enquiries');
 });
-
-Route::get('users/matches', function() {
+Route::get('/financialyear', function () {
+    return view(view: 'financialyear');
+});
+Route::get('/', function () {
+    return view('users.productlanding');
+});
+Route::get('/jn', function () {
+    return view('users.design');
+});
+Route::get('/matches', function () {
     return view('users.matches');
 });
-Route::get('users/setting', function() {
-    return view('users.setting');
-});
+
+
