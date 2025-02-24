@@ -11,31 +11,80 @@ Route::get('admin/users', function () {
     return view('users');
 })->name('admin.users');
 
-Route::get('/amenities', function () {
-    return view('amenities');
-});
-Route::get('banner', function () {
-    return view('banner');
-});
-Route::get('booking', function () {
+Route::get('admin/venues', function () {
+    return view('venues');
+})->name('admin.venues');
+
+Route::get('admin/booking', function () {
     return view('bookings');
-});
+})->name('admin.bookings');
+
+Route::get('admin/freeze', function () {
+    return view('freeze');
+})->name('admin.freeze');
+
+Route::get('admin/transaction', function () {
+    return view('transaction');
+})->name('admin.transaction');
+
+Route::get('admin/configuration', function () {
+    return view('configuration');
+})->name('admin.configuration');
+
+    Route::get('admin/sports', function () {
+        return view('sports');
+    })->name('admin.sports');
+
+    Route::get('admin/amenities', function () {
+        return view('amenities');
+    })->name('admin.amenities');
+
+    Route::get('admin/financialyear', function () {
+        return view('financialyear');
+    })->name('admin.financialyear');
+
 Route::get('/couponscode', function () {
     return view('couponscode');
-});
-// Route::get('/enquiries', function () {
-//     return view('enquiries');
-// });
-// Route::get('/financialyear', function () {
-//     return view(view: 'financialyear');
-// });
+})->name('admin.couponscode');
+
+Route::get('banner', function () {
+    return view('banner');
+})->name('admin.banner');
+
+Route::get('subscribers', function () {
+    return view('subscribers');
+})->name('admin.subscribers');
+
+Route::get('admin/enquiries', function () {
+    return view('enquiries');
+})->name('admin.enquiries');
+
+Route::get('admin/profile', function () {
+    return view('profile');
+})->name('admin.profile');
+
+
+
+
+
+
+
 Route::get('/', function () {
-    return view('users.setting');
+    return view('users.layouts.demoheader');
 });
+
+Route::get('/index', function () {
+    return view('users.index');
+})->name('users.index');
 
 Route::get('users/matches', function() {
     return view('users.matches');
-});
+})->name('users.matches');
+
+Route::get('users/wallet', function() {
+    return view('users.wallet');
+})->name('users.wallet');
+
 Route::get('users/setting', function() {
     return view('users.setting');
 });

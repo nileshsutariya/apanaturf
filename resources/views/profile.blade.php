@@ -244,7 +244,7 @@
                                             Your Profile Picture
                                             <div class="d-flex mt-3 mb-5" style="margin-left: 2px;">
                                                 <label for="uploadInput" style="width: 100px; height: 90px; border: 2px dashed #706d6d; border-radius: 10px; display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer;">
-                                                    <img src="../../assets/image/gallery-add.svg" alt="dashboard" data-bs-toggle="modal" data-bs-target="#editModal" style="cursor: pointer; height: 25px; width: 25px;">
+                                                    <img src="{{asset('assets/image/gallery-add.svg')}}" alt="dashboard" data-bs-toggle="modal" data-bs-target="#editModal" style="cursor: pointer; height: 25px; width: 25px;">
                                                     <span style="font-size: 10px; color: #cac9c9; margin-top: 7px; font-size: 7px;">Upload image</span>
                                                     <input type="file" id="uploadInput" style="display: none;">
                                                 </label>

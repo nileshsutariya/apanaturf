@@ -1,11 +1,13 @@
 
 {{-- </div>
 </div> --}}
-</div>
-</div>
-<div class="m-4">
- 
-</div>
+{{-- </div>
+</div> --}}
+    <div class="m-4">
+    
+    </div>
+
+
     <footer class="footer">
         <div class="container text-center text-md-start mt-5">
             <div class="row mt-3">
@@ -95,21 +97,21 @@
         </div>
         </div>
     </footer>
-{{-- </div> --}}
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    
-<!-- Vendor js -->
-<script src="{{asset('assets/js/vendor.min.js')}}"></script>
+    {{-- </div> --}}
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        
+    <!-- Vendor js -->
+    <script src="{{asset('assets/js/vendor.min.js')}}"></script>
 
-<!-- App js -->
-<script src="{{asset('assets/js/app.js')}}"></script>
+    <!-- App js -->
+    <script src="{{asset('assets/js/app.js')}}"></script>
 
-<!--Morris Chart-->
-<!-- <script src="{{asset('assets/libs/morris.js/morris.min.js')}}"></script> -->
-<script src="{{asset('assets/libs/raphael/raphael.min.js')}}"></script>
+    <!--Morris Chart-->
+    <!-- <script src="{{asset('assets/libs/morris.js/morris.min.js')}}"></script> -->
+    <script src="{{asset('assets/libs/raphael/raphael.min.js')}}"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
-
+</div>
 </body>
 </html>

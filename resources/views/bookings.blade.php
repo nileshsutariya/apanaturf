@@ -548,98 +548,98 @@
  
 
     <script>
-        $(document).ready(function () {
-            // Get the current page URL (excluding query params)
-            var currentUrl = window.location.pathname.split("/").pop();
+        // $(document).ready(function () {
+        //     // Get the current page URL (excluding query params)
+        //     var currentUrl = window.location.pathname.split("/").pop();
 
-            // Loop through sidebar links
-            $(".side-nav-link").each(function () {
-                var linkUrl = $(this).attr("href");
+        //     // Loop through sidebar links
+        //     $(".side-nav-link").each(function () {
+        //         var linkUrl = $(this).attr("href");
 
-                // If the href matches the current page, add 'active' class
-                if (linkUrl === currentUrl) {
-                    $(this).addClass("active");
+        //         // If the href matches the current page, add 'active' class
+        //         if (linkUrl === currentUrl) {
+        //             $(this).addClass("active");
 
-                    // Optional: Add active class to the parent <li> for better styling
-                    $(this).closest(".side-nav-item").addClass("active");
-                }
-            });
-        });
+        //             // Optional: Add active class to the parent <li> for better styling
+        //             $(this).closest(".side-nav-item").addClass("active");
+        //         }
+        //     });
+        // });
 
 
 
-        $(document).ready(function () {
-            var table = $('#responsive-datatable').DataTable({
-                "ordering": false,
-                "paging": true,
-                "searching": true,
-                "info": false,
-                "pageLength": 10,  // Show 10 records per page
-                "lengthChange": false,
-                "dom": 'rt',
-            });
+        // $(document).ready(function () {
+        //     var table = $('#responsive-datatable').DataTable({
+        //         "ordering": false,
+        //         "paging": true,
+        //         "searching": true,
+        //         "info": false,
+        //         "pageLength": 10,  // Show 10 records per page
+        //         "lengthChange": false,
+        //         "dom": 'rt',
+        //     });
 
-            function columnSearch(inputSelector, columnIndex) {
-                $(inputSelector).on('keyup', function () {
-                    table.column(columnIndex).search(this.value).draw();
-                });
-            }
+        //     function columnSearch(inputSelector, columnIndex) {
+        //         $(inputSelector).on('keyup', function () {
+        //             table.column(columnIndex).search(this.value).draw();
+        //         });
+        //     }
 
-            // Attach search functionality to respective input fields
-            columnSearch('#nameSearch', 0);
-            columnSearch('#dateSearch', 1);
-            columnSearch('#customerSearch', 2);
-            columnSearch('#mobileSearch', 3);
-            columnSearch('#paidSearch', 4);
-            columnSearch('#typeSearch', 5);
-            columnSearch('#statusSearch', 6);
+        //     // Attach search functionality to respective input fields
+        //     columnSearch('#nameSearch', 0);
+        //     columnSearch('#dateSearch', 1);
+        //     columnSearch('#customerSearch', 2);
+        //     columnSearch('#mobileSearch', 3);
+        //     columnSearch('#paidSearch', 4);
+        //     columnSearch('#typeSearch', 5);
+        //     columnSearch('#statusSearch', 6);
 
-            // Function to create custom pagination
-            function createCustomPagination() {
-                var totalPages = table.page.info().pages;  // Get total number of pages
-                var currentPage = table.page.info().page; // Get current page (zero-based index)
-                var pagination = $('.custom-pagination');
-                pagination.empty();  // Clear existing pagination
+        //     // Function to create custom pagination
+        //     function createCustomPagination() {
+        //         var totalPages = table.page.info().pages;  // Get total number of pages
+        //         var currentPage = table.page.info().page; // Get current page (zero-based index)
+        //         var pagination = $('.custom-pagination');
+        //         pagination.empty();  // Clear existing pagination
 
-                // Create previous button (disable if on first page)
-                var prevDisabled = (currentPage === 0) ? 'disabled' : '';
-                pagination.append('<li class="page-item ' + prevDisabled + '"><a class="page-link" href="javascript:void(0);" id="prevPage">&lt;</a></li>');
+        //         // Create previous button (disable if on first page)
+        //         var prevDisabled = (currentPage === 0) ? 'disabled' : '';
+        //         pagination.append('<li class="page-item ' + prevDisabled + '"><a class="page-link" href="javascript:void(0);" id="prevPage">&lt;</a></li>');
 
-                // Create page numbers
-                for (var i = 0; i < totalPages; i++) {
-                    var activeClass = (i === currentPage) ? 'active success' : '';
-                    pagination.append('<li class="page-item ' + activeClass + '"><a class="page-link page-num" href="javascript:void(0);" data-page="' + i + '">' + (i + 1) + '</a></li>');
-                }
+        //         // Create page numbers
+        //         for (var i = 0; i < totalPages; i++) {
+        //             var activeClass = (i === currentPage) ? 'active success' : '';
+        //             pagination.append('<li class="page-item ' + activeClass + '"><a class="page-link page-num" href="javascript:void(0);" data-page="' + i + '">' + (i + 1) + '</a></li>');
+        //         }
 
-                // Create next button (disable if on last page)
-                var nextDisabled = (currentPage === totalPages - 1) ? 'disabled' : '';
-                pagination.append('<li class="page-item ' + nextDisabled + '"><a class="page-link" href="javascript:void(0);" id="nextPage">&gt;</a></li>');
-            }
+        //         // Create next button (disable if on last page)
+        //         var nextDisabled = (currentPage === totalPages - 1) ? 'disabled' : '';
+        //         pagination.append('<li class="page-item ' + nextDisabled + '"><a class="page-link" href="javascript:void(0);" id="nextPage">&gt;</a></li>');
+        //     }
 
-            // Custom pagination button click handlers
-            $(document).on('click', '.page-num', function () {
-                var pageNum = $(this).data('page');  // Get page number from `data-page` attribute
-                table.page(pageNum).draw(false);
-                createCustomPagination();  // Update pagination
-            });
+        //     // Custom pagination button click handlers
+        //     $(document).on('click', '.page-num', function () {
+        //         var pageNum = $(this).data('page');  // Get page number from `data-page` attribute
+        //         table.page(pageNum).draw(false);
+        //         createCustomPagination();  // Update pagination
+        //     });
 
-            $(document).on('click', '#prevPage', function () {
-                if (!$(this).parent().hasClass('disabled')) {
-                    table.page('previous').draw(false);
-                    createCustomPagination();
-                }
-            });
+        //     $(document).on('click', '#prevPage', function () {
+        //         if (!$(this).parent().hasClass('disabled')) {
+        //             table.page('previous').draw(false);
+        //             createCustomPagination();
+        //         }
+        //     });
 
-            $(document).on('click', '#nextPage', function () {
-                if (!$(this).parent().hasClass('disabled')) {
-                    table.page('next').draw(false);
-                    createCustomPagination();
-                }
-            });
+        //     $(document).on('click', '#nextPage', function () {
+        //         if (!$(this).parent().hasClass('disabled')) {
+        //             table.page('next').draw(false);
+        //             createCustomPagination();
+        //         }
+        //     });
 
-            // Initialize the custom pagination
-            createCustomPagination();
-        });
+        //     // Initialize the custom pagination
+        //     createCustomPagination();
+        // });
 
 
 
@@ -673,83 +673,7 @@
 
 
 
-        $(document).ready(function () {
-            // Sample transaction data (Can be fetched from an API)
-            let transactions = [
-                { id: "#000001", date: "23 Dec. 2023", amount: "+400", type: "success" },
-                { id: "#000001", date: "23 Dec. 2023", amount: "-400", type: "danger" },
-                { id: "#000001", date: "23 Dec. 2023", amount: "-400", type: "danger" },
-                { id: "#000001", date: "23 Dec. 2023", amount: "-400", type: "danger" },
-                { id: "#000001", date: "23 Dec. 2023", amount: "-400", type: "danger" },
-                { id: "#000001", date: "23 Dec. 2023", amount: "-400", type: "danger" },
-                { id: "#000001", date: "23 Dec. 2023", amount: "-400", type: "danger" },
-                { id: "#000001", date: "23 Dec. 2023", amount: "-400", type: "danger" },
-                { id: "#000001", date: "23 Dec. 2023", amount: "-400", type: "danger" },
-                { id: "#000001", date: "23 Dec. 2023", amount: "-400", type: "danger" },
-                { id: "#000001", date: "23 Dec. 2023", amount: "-400", type: "danger" },
-                { id: "#000001", date: "23 Dec. 2023", amount: "-400", type: "danger" }
-            ];
-    
-            let rowsPerPage = 10;  // Number of rows per page
-            let currentPage = 1;   // Current page number
-    
-            function displayTransactions(page) {
-                let start = (page - 1) * rowsPerPage;
-                let end = start + rowsPerPage;
-                let paginatedItems = transactions.slice(start, end);
-    
-                $("#transactionTable").html(""); // Clear previous data
-                $.each(paginatedItems, function (index, transaction) {
-                    $("#transactionTable").append(`
-                        <tr>
-                            <td class="text-start">${transaction.id}</td>
-                            <td>${transaction.date}</td>
-                            <td class="text-${transaction.type} fw-bold">${transaction.amount}</td>
-                        </tr>
-                    `);
-                });
-            }
-    
-            function setupPagination() {
-                let totalPages = Math.ceil(transactions.length / rowsPerPage);
-                $("#pagination").html(""); // Clear previous pagination
-    
-                // Previous Button
-                $("#pagination").append(`
-                    <li class="page-item ${currentPage === 1 ? "disabled" : ""}">
-                        <a class="page-link" href="#" onclick="changePage(${currentPage - 1})">‹</a>
-                    </li>
-                `);
-    
-                // Page Numbers
-                for (let i = 1; i <= totalPages; i++) {
-                    $("#pagination").append(`
-                        <li class="page-item ${i === currentPage ? "active" : ""}">
-                            <a class="page-link" href="#" onclick="changePage(${i})">${i}</a>
-                        </li>
-                    `);
-                }
-    
-                // Next Button
-                $("#pagination").append(`
-                    <li class="page-item ${currentPage === totalPages ? "disabled" : ""}">
-                        <a class="page-link" href="#" onclick="changePage(${currentPage + 1})">›</a>
-                    </li>
-                `);
-            }
-    
-            window.changePage = function (page) {
-                if (page < 1 || page > Math.ceil(transactions.length / rowsPerPage)) return;
-                currentPage = page;
-                displayTransactions(currentPage);
-                setupPagination();
-            };
-    
-            // Initialize the modal with the first page
-            displayTransactions(currentPage);
-            setupPagination();
-        });
-
+      
 
 
 

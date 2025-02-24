@@ -120,6 +120,10 @@
             border-color: grey;
         }
         .custom-pagination {
+            /* position: sticky;
+            bottom: 0;
+            z-index: 2; */
+
             display: flex;
             flex-wrap: nowrap;  /* Prevents vertical stacking */
             justify-content: center;
@@ -215,330 +219,29 @@
             border-color: #198754;
             color: white;
         }
-
+        thead {
+            position: sticky;
+            background: #F5F5F5;
+            top: 0;
+            z-index: 10;
+        }
+        .table-container {
+            max-height: 400px; /* Adjust as needed */
+            overflow-y: auto;
+            scrollbar-width: none; 
+            position: relative;
+        }
+        .pagination-container {
+            position: sticky;
+            bottom: 0;
+            background-color: #F5F5F5;
+            padding: 10px 0;
+            z-index: 2;
+            text-align: center;
+            /* box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.1);  */
+        }
     </style>
 
-</head>
-       
-<body>
-    <!-- Begin page -->
-    <div class="wrapper">
-
-
-        <!-- Sidenav Menu Start -->
-        <div class="sidenav-menu" style="background-color: rgb(24, 24, 24);">
-            <div data-simplebar>
-
-                <!--- Sidenav Menu -->
-                <ul class="side-nav">
-                    <!-- <li cla'ss="side-nav-title">Navigation</li> -->
-
-                    <li class="side-nav-item">
-                        <a href="index.html" class="side-nav-link">
-                            <span class="menu-icon"><img src="{{asset('assets/image/element-3.svg')}}" alt="dashboard"></span>
-                            <span class="menu-text mt-2"> Dashboard </span>
-                            <!-- <span class="badge bg-success rounded-pill">5</span> -->
-                        </a>
-                    </li>
-
-                    <li class="side-nav-item">
-                        <a href="users.html" class="side-nav-link">
-                            <span class="menu-icon"><img src="{{asset('assets/image/profile.svg')}}" alt="user"></span>
-                            <span class="menu-text mt-2"> User </span>
-                        </a>
-                    </li>
-                    <li class="side-nav-item">
-                        <a href="venues.html" class="side-nav-link">
-                            <span class="menu-icon"><img src="../../assets/image/bank.svg" alt="venues"></span>
-                            <span class="menu-text mt-2"> Venues </span>
-                        </a>
-                    </li>
-                    <li class="side-nav-item">
-                        <a href="bookings.html" class="side-nav-link">
-                            <span class="menu-icon"><img src="../../assets/image/shopping-cart.svg" alt="bookings"></span>
-                            <span class="menu-text mt-2"> Bookings </span>
-                        </a>
-                    </li>
-                    <li class="side-nav-item">
-                        <a href="freeze.html" class="side-nav-link">
-                            <span class="menu-icon"><img src="../../assets/image/sun.svg" alt="freeze"></span>
-                            <span class="menu-text mt-2"> Freeze </span>
-                        </a>
-                    </li>
-                    <li class="side-nav-item">
-                        <a href="transaction.html" class="side-nav-link">
-                            <span class="menu-icon"><img src="../../assets/image/Transaction.svg" alt="transaction"></span>
-                            <span class="menu-text mt-2"> Transactions </span>
-                        </a>
-                    </li>
-                    <li class="side-nav-item">
-                        <a href="#sidebarPagesAuth" data-bs-toggle="collapse" aria-expanded="false" aria-controls="sidebarPagesAuth" class="side-nav-link">
-                            <span class="menu-icon">
-                                <img src="../../assets/image/clipboard-tick.svg" alt="configuration">
-                            </span>
-                            <span class="menu-text mt-2"> Configurations </span>
-                            <img src="../../assets/image/Polygon 1.svg" alt="" class="dropdown-icon">
-                        </a>
-                        <div class="collapse" id="sidebarPagesAuth">
-                            <ul class="sub-menu">
-                                <li class="side-nav-item">
-                                    <a href="sports.html" class="side-nav-link">
-                                        <span class="menu-text"> Sports </span>
-                                    </a>
-                                </li>
-                                <li class="side-nav-item">
-                                    <a href="amenities.html" class="side-nav-link">
-                                        <span class="menu-text"> Amenities </span>
-                                    </a>
-                                </li>
-                                <li class="side-nav-item">
-                                    <a href="financialyear.html" class="side-nav-link">
-                                        <span class="menu-text"> Financial Year </span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
-                    
-                    <li class="side-nav-item">
-                        <a href="couponscode.html" class="side-nav-link">
-                            <span class="menu-icon"><img src="../../assets/image/ticket.svg" alt="coupons"></span>
-                            <span class="menu-text mt-2"> Coupons Code </span>
-                        </a>
-                    </li>
-                    <li class="side-nav-item">
-                        <a href="banner.html" class="side-nav-link">
-                            <span class="menu-icon"><img src="../../assets/image/money-4.svg" alt="money"></span>
-                            <span class="menu-text mt-2"> Banners </span>
-                        </a>
-                    </li>
-                    <li class="side-nav-item">
-                        <a href="subscribers.html" class="side-nav-link">
-                            <span class="menu-icon"><img src="../../assets/image/sms.svg" alt="sms"></span>
-                            <span class="menu-text mt-2"> Subscribers </span>
-                        </a>
-                    </li>
-                    <li class="side-nav-item">
-                        <a href="enquiries.html" class="side-nav-link">
-                            <span class="menu-icon"><i class="bi bi-info-circle"></i></span>
-                            <span class="menu-text mt-2"> Enquiries </span>
-                        </a>
-                    </li>
-
-                    <li class="side-nav-item">
-                        <a href="#" class="side-nav-link mt-5 mb-5">
-                            <span class="menu-icon"><img src="../../assets/image/Logout.svg" alt="logout"></span>
-                            <span class="menu-text"> Logout </span>
-                        </a>
-                    </li>
-                    
-                </ul>
-                
-                
-                <div class="clearfix"></div>
-                
-            </div>
-            <!-- <div class="sidebar"> -->
-                <div class="sidebar-footer p-3">
-                    <hr class="hr">
-                    <div class="side-nav-item d-flex align-items-center justify-content-between">
-                        <!-- Left: Profile Image -->
-                        <div class="d-flex align-items-center">
-                            <span class="menu-icon me-2">
-                                <img src="../../assets/image/Image.svg" alt="profile" class="rounded-circle" style="width: 35px; height: 35px; border: 2px solid #ccc;">
-                            </span>
-                        </div>
-                
-                        <!-- Right: Name, Profile Link, and Dots -->
-                        <div class="footer-content d-flex flex-column flex-grow-1">
-                            <span class="menu-text text-white" style="font-size: 14px;">Abhishek Guleria</span>
-                            <a href="profile.html" class="text-muted" style="font-size: 11px;">View Profile</a>
-                        </div>
-                        <div class="footer-dot text-white" style="font-size: 20px;">
-                            <i class="bi bi-three-dots-vertical"></i>
-                        </div>
-                
-                    </div>
-                </div>
-            <!-- </div>  -->
-            
-        </div>
-        <!-- Sidenav Menu End -->
-
-        <!-- Topbar Start -->
-        <header class="app-topbar">
-            <div class="topbar-menu">
-                <div class="d-flex align-items-center gap-2">
-
-                    <!-- Brand Logo -->
-                    <!-- <a href="index.html" class="logo">
-                        <span class="logo-light">
-                            <span class="logo-lg"><img src="assets/images/logo-light.png" alt="logo"></span>
-                            <span class="logo-sm"><img src="assets/images/logo-sm-light.png" alt="small logo"></span>
-                        </span>
-
-                        <span class="logo-dark">
-                            <span class="logo-lg"><img src="assets/images/logo-dark.png" alt="dark logo"></span>
-                            <span class="logo-sm"><img src="assets/images/logo-sm.png" alt="small logo"></span>
-                        </span>
-                    </a> -->
-
-
-                    <!-- Sidebar Menu Toggle Button -->
-                    <button class="sidenav-toggle-button px-2" id="toggleSidebar">
-                        <i class="mdi mdi-menu font-24"></i>
-                    </button>
-
-                    <!-- Horizontal Menu Toggle Button -->
-                    <!-- <button class="topnav-toggle-button px-2" data-bs-toggle="collapse" data-bs-target="#topnav-menu-content">
-                        <i class="mdi mdi-menu font-22"></i>
-                    </button> -->
-
-
-                    <h5 class="m-3">Hello, Abhi</h5>
-                        <img src="../../assets/image/chevrons-right.svg" alt="image" >
-                    <h6 class="mt-2" style="color: #99a1a8;"> Feb 01, 2025</h6>
-                    <!-- Mega Menu Dropdown -->
-                    <div class="topbar-item d-none d-md-flex">
-                        <div class="dropdown">
-                            <!-- <a href="#" class="topbar-link btn btn-link px-2 dropdown-toggle drop-arrow-none fw-medium" data-bs-toggle="dropdown" data-bs-offset="0,17" aria-haspopup="false" aria-expanded="false">
-                                Pages <i class="mdi mdi-chevron-down ms-1"></i>
-                            </a> -->
-
-                            <!-- .dropdown-menu-->
-                        </div> <!-- .dropdown-->
-                    </div> <!-- end topbar-item -->
-                </div>
-
-                <div class="d-flex align-items-center gap-2">
-                    <!-- Light/Dark Toggle Button  -->
-                    
-                    <!-- Language Dropdown -->
-                    
-
-                    <!-- Notification Dropdown -->
-                    <div class="topbar-item">
-                        <div class="dropdown position-relative">
-                            <button class="topbar-link dropdown-toggle drop-arrow-none notification" data-bs-toggle="dropdown" data-bs-offset="0,25" type="button" data-bs-auto-close="outside" aria-haspopup="false" aria-expanded="false">
-                                <img src="../../assets/image/Group 2.svg" alt="dashboard" class="notification-icon">
-                                <!-- <span class="noti-icon-badge"></span> -->
-                            </button>
-
-                            <div class="dropdown-menu p-0 dropdown-menu-end dropdown-menu-lg" style="min-height: 300px;">
-
-                                <div class="position-relative z-2" style="max-height: 300px;" data-simplebar>
-
-                   
-                                    <!-- item-->
-                                    <div class="dropdown-item notification-item py-2 text-wrap mb-5" id="notification-5">
-                                        <span class="d-flex align-items-center">
-                                            <span class="me-3 position-relative flex-shrink-0">
-                                                <div class="avatar avatar-md">
-                                                    <span class="avatar-title bg-info rounded-circle">
-                                                        <i class="mdi mdi-bell-outline font-20"></i>
-                                                    </span>
-                                                </div>
-                                            </span>
-                                            <span class="flex-grow-1 text-muted">
-                                                <p class="fw-medium mb-0 text-dark">Updates</p>
-                                                <span class="font-12">There are 2 new updates available</span>
-                                            </span>
-                                            <span class="notification-item-close">
-                                                <button type="button" class="btn btn-ghost-danger rounded-circle btn-sm btn-icon" data-dismissible="#notification-1">
-                                                    <i class="mdi mdi-close font-16"></i>
-                                                </button>
-                                            </span>
-                                        </span>
-                                    </div>
-                                </div>
-
-
-                                <!-- All-->
-                                <a href="javascript:void(0);" class="dropdown-item notification-item position-fixed z-2 bottom-0 text-center text-reset text-decoration-underline link-offset-2 fw-bold notify-item border-top border-light py-2">
-                                    View All
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Email Dropdown -->
-                    
-                    <div class="d-none d-md-flex">
-                        <form class="app-search">
-                            <div class="app-search-box">
-                                <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Search...">
-                                    <div class="input-group-append" style="box-shadow: 0 4px 5px rgba(209, 209, 209, 0.2);">
-                                        <button class="btn btn-icon" type="submit">
-                                            <i class="fas fa-search"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-
-
-                    <!-- User Dropdown -->
-                    <div class="topbar-item nav-user">
-                        <div class="dropdown">
-                            <!-- <a class="topbar-link dropdown-toggle drop-arrow-none px-2" data-bs-toggle="dropdown" data-bs-offset="0,25" type="button" aria-haspopup="false" aria-expanded="false">
-                                <img src="assets/images/users/avatar-1.jpg" width="32" class="rounded-circle me-lg-2 d-flex" alt="user-image">
-                                <span class="d-lg-flex flex-column gap-1 d-none">
-                                    <h6 class="my-0">Alex M.</h6>
-                                </span>
-                                <i class="mdi mdi-chevron-down d-none d-lg-block align-middle ms-2"></i>
-                            </a> -->
-                            <div class="dropdown-menu dropdown-menu-end">
-                                <!-- item-->
-                                <div class="dropdown-header bg-primary mt-n3 rounded-top-2">
-                                    <h6 class="text-overflow text-white m-0">Welcome !</h6>
-                                </div>
-
-                                <!-- item-->
-                                <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                    <i class="mdi mdi-account-outline"></i>
-                                    <span>Profile</span>
-                                </a>
-
-                                <!-- item-->
-                                <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                    <i class="mdi mdi-cog"></i>
-                                    <span>Settings</span>
-                                </a>
-
-                                <!-- item-->
-                                <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                    <i class="mdi mdi-lock-outline"></i>
-                                    <span>Lock Screen</span>
-                                </a>
-
-                                <div class="dropdown-divider"></div>
-
-                                <!-- item-->
-                                <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                    <i class="mdi mdi-logout-variant"></i>
-                                    <span>Logout</span>
-                                </a>
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Button Trigger Customizer Offcanvas -->
-                    <!-- <div class="topbar-item d-none d-sm-flex">
-                        <button class="topbar-link" data-bs-toggle="offcanvas" data-bs-target="#theme-settings-offcanvas" type="button">
-                            <i class="mdi mdi-cog-outline font-22"></i>
-                        </button>
-                    </div> -->
-                </div>
-            </div>
-        </header>
-        <!-- Topbar End -->
-        <div class="page-content">
-    
-            <div class="page-container" style="background-color: transparent;">
-    
                 <div class="page-title-box">
                     
                     <div class="d-flex align-items-sm-center flex-sm-row flex-column gap-2">
@@ -646,339 +349,1472 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="card" style="background-color: transparent; box-shadow: none;">
-                                <div class="card-body pt-2">
-                                    <table id="responsive-datatable" id="walletTable"  class="table dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%; font-size: 13px;">
-                                        <thead>
-                                            <tr class="text-uppercase">
-                                                <th>Name</th>
-                                                <th>Email</th>
-                                                <th class="text-start">Mobile No.</th>
-                                                <th>Type</th>
-                                                <th>Balance</th>
-                                                <th>Action</th>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="d-none d-sm-flex">
-                                                        <form class="app-search">
-                                                            <div class="app-search-box">
-                                                                <div class="input-group">
-                                                                    <input type="text" id="nameSearch" class="form-control" placeholder="Name" style="border-radius: 10px;">
+                                <div class="card-body pt-2" style="overflow: hidden;">
+                                    
+                                    <div class="table-container" style="max-height: 400px; overflow-y: auto;">
+                                        <table id="responsive-datatable" id="walletTable"  class="table dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%; font-size: 13px;">
+                                            <thead>
+                                                <tr class="text-uppercase">
+                                                    <th>Name</th>
+                                                    <th>Email</th>
+                                                    <th class="text-start">Mobile No.</th>
+                                                    <th>Type</th>
+                                                    <th>Balance</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <div class="d-none d-sm-flex">
+                                                            <form class="app-search">
+                                                                <div class="app-search-box">
+                                                                    <div class="input-group">
+                                                                        <input type="text" id="nameSearch" class="form-control" placeholder="Name" style="border-radius: 10px;">
+                                                                    </div>
                                                                 </div>
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="d-none d-sm-flex">
-                                                        <form class="app-search">
-                                                            <div class="app-search-box">
-                                                                <div class="input-group">
-                                                                    <input type="text" id="emailSearch" class="form-control" placeholder="Email" style="border-radius: 10px;">
+                                                            </form>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="d-none d-sm-flex">
+                                                            <form class="app-search">
+                                                                <div class="app-search-box">
+                                                                    <div class="input-group">
+                                                                        <input type="text" id="emailSearch" class="form-control" placeholder="Email" style="border-radius: 10px;">
+                                                                    </div>
                                                                 </div>
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="d-none d-sm-flex">
-                                                        <form class="app-search">
-                                                            <div class="app-search-box">
-                                                                <div class="input-group">
-                                                                    <input type="text" id="mobileSearch" class="form-control" placeholder="Mob. No." style="border-radius: 10px;">
+                                                            </form>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="d-none d-sm-flex">
+                                                            <form class="app-search">
+                                                                <div class="app-search-box">
+                                                                    <div class="input-group">
+                                                                        <input type="text" id="mobileSearch" class="form-control" placeholder="Mob. No." style="border-radius: 10px;">
+                                                                    </div>
                                                                 </div>
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="d-none d-sm-flex">
-                                                        <form class="app-search">
-                                                            <div class="app-search-box">
-                                                                <div class="input-group">
-                                                                    <input type="text" id="typeSearch" class="form-control" placeholder="Type" style="border-radius: 10px;">
+                                                            </form>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="d-none d-sm-flex">
+                                                            <form class="app-search">
+                                                                <div class="app-search-box">
+                                                                    <div class="input-group">
+                                                                        <input type="text" id="typeSearch" class="form-control" placeholder="Type" style="border-radius: 10px;">
+                                                                    </div>
                                                                 </div>
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="d-none d-sm-flex">
-                                                        <form class="app-search">
-                                                            <div class="app-search-box">
-                                                                <div class="input-group">
-                                                                    <input type="text" id="balanceSearch" class="form-control" placeholder="Balance" style="border-radius: 10px;">
+                                                            </form>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="d-none d-sm-flex">
+                                                            <form class="app-search">
+                                                                <div class="app-search-box">
+                                                                    <div class="input-group">
+                                                                        <input type="text" id="balanceSearch" class="form-control" placeholder="Balance" style="border-radius: 10px;">
+                                                                    </div>
                                                                 </div>
+                                                            </form>
+                                                        </div>
+                                                    </td>
+                                                    <td></td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td> #000001 </td>
+                                                    <td>abhishguleri1555@gmail.com</td>
+                                                    <td class="text-start">1234567890</td>
+                                                    <td><h4><span class="badge badge-soft-info" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">User</span></h4></td>
+                                                    <td style="color: green;">₹400</td>
+        
+                                                    <td>
+                                                        <a href="#walletModal" class="open-wallet waves-effect waves-light" data-animation="blur" data-plugin="custommodal" data-overlaySpeed="100" data-overlayColor="#36404a">
+                                                            <img src="{{asset('assets/image/empty-wallet.svg')}}" alt="dashboard"  style="cursor: pointer;">
+                                                        </a>
+                                                        
+                                                        <!-- Theme Modal for Wallet -->
+                                                        <div id="walletModal" class="modal-demo modal-lg" style="width: 400px !important; height: auto; padding: 20px; box-shadow: 0 15px 15px rgba(0, 0, 0, 0.3); border-radius: 12px; display: none;">
+                                                            <!-- Modal Header -->
+                                                            <div class="d-flex p-3 align-items-center justify-content-between">
+                                                                <h4 class="fw-bold">Wallet</h4>
+                                                                <button type="button" class="btn-close btn-close-white" onclick="Custombox.modal.close();">
+                                                                    <span class="sr-only">Close</span>
+                                                                </button>
                                                             </div>
-                                                        </form>
-                                                    </div>
-                                                </td>
-                                                <td></td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td> #000001 </td>
-                                                <td>abhishguleri1555@gmail.com</td>
-                                                <td class="text-start">1234567890</td>
-                                                <td><h4><span class="badge badge-soft-info" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">User</span></h4></td>
-                                                <td style="color: green;">₹400</td>
-    
-                                                <td>
-                                                    <a href="#walletModal" class="open-wallet waves-effect waves-light" data-animation="blur" data-plugin="custommodal" data-overlaySpeed="100" data-overlayColor="#36404a">
-                                                        <img src="../../assets/image/empty-wallet.svg" alt="dashboard"  style="cursor: pointer;">
-                                                    </a>
-                                                    
-                                                    <!-- Theme Modal for Wallet -->
-                                                    <div id="walletModal" class="modal-demo modal-lg" style="width: 400px !important; height: auto; padding: 20px; box-shadow: 0 15px 15px rgba(0, 0, 0, 0.3); border-radius: 12px; display: none;">
-                                                         <!-- Modal Header -->
-                                                        <div class="d-flex p-3 align-items-center justify-content-between">
-                                                            <h4 class="fw-bold">Wallet</h4>
-                                                            <button type="button" class="btn-close btn-close-white" onclick="Custombox.modal.close();">
-                                                                <span class="sr-only">Close</span>
-                                                            </button>
+                                                        
+                                                            <!-- Available Balance -->
+                                                            <div class="text-muted px-3 pb-3 mb-2" style="font-size: 12px;">Available Balance: <span class="fw-bold">₹1000</span></div>
+                                                        
+                                                            <!-- Transaction History Table -->
+                                                            <div class="modal-body">
+                                                                <table class="table table-borderless text-center">
+                                                                    <thead>
+                                                                        <tr style="font-weight: 400; font-size: 13px; color: #9da7b1;">
+                                                                            <th class="text-start">User Name</th>
+                                                                            <th>Booking Date</th>
+                                                                            <th>Amount</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody id="transactionTable" style="color: grey; font-weight: 400; font-size: 10px;">
+                                                                        <!-- Data will be inserted dynamically here -->
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        
+                                                            <!-- Pagination -->
+                                                            <div class="modal-footer border-0 justify-content-center">
+                                                                <nav>
+                                                                    <ul class="pagination pagination-sm" id="pagination">
+                                                                        <!-- Dynamic Pagination Buttons Here -->
+                                                                    </ul>
+                                                                </nav>
+                                                            </div>
                                                         </div>
-                                                    
-                                                        <!-- Available Balance -->
-                                                        <div class="text-muted px-3 pb-3 mb-2" style="font-size: 12px;">Available Balance: <span class="fw-bold">₹1000</span></div>
-                                                    
-                                                        <!-- Transaction History Table -->
-                                                        <div class="modal-body">
-                                                            <table class="table table-borderless text-center">
-                                                                <thead>
-                                                                    <tr style="font-weight: 400; font-size: 13px; color: #9da7b1;">
-                                                                        <th class="text-start">User Name</th>
-                                                                        <th>Booking Date</th>
-                                                                        <th>Amount</th>
-                                                                    </tr>
-                                                                </thead>
-                                                                <tbody id="transactionTable" style="color: grey; font-weight: 400; font-size: 10px;">
-                                                                    <!-- Data will be inserted dynamically here -->
-                                                                </tbody>
-                                                            </table>
+                                                        
+                                                        | 
+                                                        <!-- Button to Open Modal -->
+                                                        <button class="open-modal" data-id="1" style="border: none; background: none;">
+                                                            <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard" style="cursor: pointer;">
+                                                        </button>
+                                                        
+                                                        <!-- Custom Modal -->
+                                                        <div id="customModal" style="
+                                                        display: none;
+                                                        position: fixed;
+                                                        top: 50%;
+                                                        left: 50%;
+                                                        transform: translate(-50%, -50%);
+                                                        width: 400px;
+                                                        background: #fff;
+                                                        padding: 25px;
+                                                        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+                                                        border-radius: 13px;
+                                                        z-index: 1000;
+                                                        font-size: 13px;
+                                                        padding: 40px;
+                                                        ">
+                                                        <!-- Modal Header -->
+                                                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                                                            <h4 style="font-weight: bold; margin: 0;">Edit</h4>
+                                                            <button type="button" class="btn-close close-modal"></button>
                                                         </div>
-                                                    
-                                                        <!-- Pagination -->
-                                                        <div class="modal-footer border-0 justify-content-center">
-                                                            <nav>
-                                                                <ul class="pagination pagination-sm" id="pagination">
-                                                                    <!-- Dynamic Pagination Buttons Here -->
-                                                                </ul>
-                                                            </nav>
+                                                        
+                                                        <!-- Modal Body -->
+                                                        <div class="modal-body" style="margin-top: 15px;">
+                                                            <div style="margin-bottom: 12px;">
+                                                                <label style="display: block;">User Name</label>
+                                                                <input type="text" class="form-control" name="username" placeholder="Abhishek Guleria">
+                                                            </div>
+                                                        
+                                                            <div style="margin-bottom: 12px;">
+                                                                <label style="display: block;">Mob. No.</label>
+                                                                <input type="text" class="form-control" name="mobileno" placeholder="9876543210">
+                                                            </div>
+                                                        
+                                                            <div style="margin-bottom: 12px;">
+                                                                <label style="display: block;">Email</label>
+                                                                <input type="email" class="form-control" name="email" placeholder="abhiguleria1599@gmail.com">
+                                                            </div>
+                                                        
+                                                            <div style="margin-bottom: 12px;">
+                                                                <label style="display: block;">Role</label>
+                                                                <select id="userRole" class="form-control select2">
+                                                                    <option value="user" selected>User</option>
+                                                                    <option value="admin">Admin</option>
+                                                                </select>
+                                                            </div>
+                                                        
+                                                            <div style="margin-bottom: 12px;">
+                                                                <label style="display: block;">Balance</label>
+                                                                <input type="text" class="form-control" name="balance" placeholder="N/A">
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    
-                                                     | 
-                                                    <!-- Button to Open Modal -->
-                                                    <button class="open-modal" data-id="1" style="border: none; background: none;">
-                                                        <img src="../../assets/image/edit.svg" alt="dashboard" style="cursor: pointer;">
-                                                    </button>
-                                                    
-                                                    <!-- Custom Modal -->
-                                                    <div id="customModal" style="
-                                                    display: none;
-                                                    position: fixed;
-                                                    top: 50%;
-                                                    left: 50%;
-                                                    transform: translate(-50%, -50%);
-                                                    width: 400px;
-                                                    background: #fff;
-                                                    padding: 25px;
-                                                    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-                                                    border-radius: 13px;
-                                                    z-index: 1000;
-                                                    font-size: 13px;
-                                                    padding: 40px;
-                                                    ">
-                                                    <!-- Modal Header -->
-                                                    <div style="display: flex; justify-content: space-between; align-items: center;">
-                                                        <h4 style="font-weight: bold; margin: 0;">Edit</h4>
-                                                        <button type="button" class="btn-close close-modal"></button>
-                                                    </div>
-                                                    
-                                                    <!-- Modal Body -->
-                                                    <div class="modal-body" style="margin-top: 15px;">
-                                                        <div style="margin-bottom: 12px;">
-                                                            <label style="display: block;">User Name</label>
-                                                            <input type="text" class="form-control" name="username" placeholder="Abhishek Guleria">
+                                                        
+                                                        <!-- Modal Footer -->
+                                                        <div class="modal-footer justify-content-start mt-4" style="margin-top: 10px; text-align: center;">
+                                                            <button class="btn btn-success close-modal col-5">Save</button>
                                                         </div>
-                                                    
-                                                        <div style="margin-bottom: 12px;">
-                                                            <label style="display: block;">Mob. No.</label>
-                                                            <input type="text" class="form-control" name="mobileno" placeholder="9876543210">
-                                                        </div>
-                                                    
-                                                        <div style="margin-bottom: 12px;">
-                                                            <label style="display: block;">Email</label>
-                                                            <input type="email" class="form-control" name="email" placeholder="abhiguleria1599@gmail.com">
-                                                        </div>
-                                                    
-                                                        <div style="margin-bottom: 12px;">
-                                                            <label style="display: block;">Role</label>
-                                                            <select id="userRole" class="form-control select2">
-                                                                <option value="user" selected>User</option>
-                                                                <option value="admin">Admin</option>
-                                                            </select>
-                                                        </div>
-                                                    
-                                                        <div style="margin-bottom: 12px;">
-                                                            <label style="display: block;">Balance</label>
-                                                            <input type="text" class="form-control" name="balance" placeholder="N/A">
-                                                        </div>
-                                                    </div>
-                                                    
-                                                    <!-- Modal Footer -->
-                                                    <div class="modal-footer justify-content-start mt-4" style="margin-top: 10px; text-align: center;">
-                                                        <button class="btn btn-success close-modal col-5">Save</button>
-                                                    </div>
-                                                    </div>                                  
-                                             
-                                                     | <img src="../../assets/image/trash.svg" alt="dashboard">
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td> #000002 </td>
-                                                <td>abhishguleri15@gmail.com</td>
-                                                <td class="text-start">1234567891</td>
-                                                <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
-                                                <td style="color: green;">₹400</td>
-                                                <td>
-                                                    <img src="../../assets/image/empty-wallet.svg" alt="dashboard"> |
-                                                    <img src="../../assets/image/edit.svg" alt="dashboard"> |
-                                                    <img src="../../assets/image/trash.svg" alt="dashboard">
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td> #000003 </td>
-                                                <td>abhiguleri1@gmail.com</td>
-                                                <td class="text-start">1234567892</td>
-                                                <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
-                                                <td style="color: green;">₹400</td>
-                                                <td>
-                                                    <img src="../../assets/image/empty-wallet.svg" alt="dashboard"> |
-                                                    <img src="../../assets/image/edit.svg" alt="dashboard"> |
-                                                    <img src="../../assets/image/trash.svg" alt="dashboard">
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td> #000001 </td>
-                                                <td>abhishguleri1555@gmail.com</td>
-                                                <td class="text-start">1234567890</td>
-                                                <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
-                                                <td style="color: green;">₹400</td>
-                                                <td>
-                                                    <img src="../../assets/image/empty-wallet.svg" alt="dashboard"> |
-                                                    <img src="../../assets/image/edit.svg" alt="dashboard"> |
-                                                    <img src="../../assets/image/trash.svg" alt="dashboard">
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td> #000001 </td>
-                                                <td>abhishguleri1555@gmail.com</td>
-                                                <td class="text-start">1234567890</td>
-                                                <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
-                                                <td style="color: green;">₹400</td>
-                                                <td>
-                                                    <img src="../../assets/image/empty-wallet.svg" alt="dashboard"> |
-                                                    <img src="../../assets/image/edit.svg" alt="dashboard"> |
-                                                    <img src="../../assets/image/trash.svg" alt="dashboard">
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td> #000001 </td>
-                                                <td>abhishguleri1555@gmail.com</td>
-                                                <td class="text-start">1234567890</td>
-                                                <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
-                                                <td style="color: green;">₹400</td>
-                                                <td>
-                                                    <img src="../../assets/image/empty-wallet.svg" alt="dashboard"> |
-                                                    <img src="../../assets/image/edit.svg" alt="dashboard"> |
-                                                    <img src="../../assets/image/trash.svg" alt="dashboard">
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td> #000001 </td>
-                                                <td>abhishguleri1555@gmail.com</td>
-                                                <td class="text-start">1234567890</td>
-                                                <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
-                                                <td style="color: green;">₹400</td>
-                                                <td>
-                                                    <img src="../../assets/image/empty-wallet.svg" alt="dashboard"> |
-                                                    <img src="../../assets/image/edit.svg" alt="dashboard"> |
-                                                    <img src="../../assets/image/trash.svg" alt="dashboard">
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td> #000001 </td>
-                                                <td>abhishguleri1555@gmail.com</td>
-                                                <td class="text-start">1234567890</td>
-                                                <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
-                                                <td style="color: green;">₹400</td>
-                                                <td>
-                                                    <img src="../../assets/image/empty-wallet.svg" alt="dashboard"> |
-                                                    <img src="../../assets/image/edit.svg" alt="dashboard"> |
-                                                    <img src="../../assets/image/trash.svg" alt="dashboard">
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td> #000001 </td>
-                                                <td>abhishguleri1555@gmail.com</td>
-                                                <td class="text-start">1234567890</td>
-                                                <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
-                                                <td style="color: green;">₹400</td>
-                                                <td>
-                                                    <img src="../../assets/image/empty-wallet.svg" alt="dashboard"> |
-                                                    <img src="../../assets/image/edit.svg" alt="dashboard"> |
-                                                    <img src="../../assets/image/trash.svg" alt="dashboard">
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td> #000001 </td>
-                                                <td>abhishguleri1555@gmail.com</td>
-                                                <td class="text-start">1234567890</td>
-                                                <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
-                                                <td style="color: green;">₹400</td>
-                                                <td>
-                                                    <img src="../../assets/image/empty-wallet.svg" alt="dashboard"> |
-                                                    <img src="../../assets/image/edit.svg" alt="dashboard"> |
-                                                    <img src="../../assets/image/trash.svg" alt="dashboard">
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td> #000001 </td>
-                                                <td>abhishguleri1555@gmail.com</td>
-                                                <td class="text-start">1234567890</td>
-                                                <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
-                                                <td style="color: green;">₹400</td>
-                                                <td>
-                                                    <img src="../../assets/image/empty-wallet.svg" alt="dashboard"> |
-                                                    <img src="../../assets/image/edit.svg" alt="dashboard"> |
-                                                    <img src="../../assets/image/trash.svg" alt="dashboard">
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td> #000001 </td>
-                                                <td>abhishguleri1555@gmail.com</td>
-                                                <td class="text-start">1234567890</td>
-                                                <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
-                                                <td style="color: green;">₹400</td>
-                                                <td>
-                                                    <img src="../../assets/image/empty-wallet.svg" alt="dashboard"> |
-                                                    <img src="../../assets/image/edit.svg" alt="dashboard"> |
-                                                    <img src="../../assets/image/trash.svg" alt="dashboard">
-                                                </td>
-                                            </tr>
-                                        </tbody>
-    
-                                    </table>
+                                                        </div>                                  
+                                                
+                                                        | <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000002 </td>
+                                                    <td>abhishguleri15@gmail.com</td>
+                                                    <td class="text-start">1234567891</td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td style="color: green;">₹400</td>
+                                                    <td>
+                                                        <img src="{{asset('assets/image/empty-wallet.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000002 </td>
+                                                    <td>abhishguleri15@gmail.com</td>
+                                                    <td class="text-start">1234567891</td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td style="color: green;">₹400</td>
+                                                    <td>
+                                                        <img src="{{asset('assets/image/empty-wallet.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000002 </td>
+                                                    <td>abhishguleri15@gmail.com</td>
+                                                    <td class="text-start">1234567891</td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td style="color: green;">₹400</td>
+                                                    <td>
+                                                        <img src="{{asset('assets/image/empty-wallet.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000002 </td>
+                                                    <td>abhishguleri15@gmail.com</td>
+                                                    <td class="text-start">1234567891</td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td style="color: green;">₹400</td>
+                                                    <td>
+                                                        <img src="{{asset('assets/image/empty-wallet.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000002 </td>
+                                                    <td>abhishguleri15@gmail.com</td>
+                                                    <td class="text-start">1234567891</td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td style="color: green;">₹400</td>
+                                                    <td>
+                                                        <img src="{{asset('assets/image/empty-wallet.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000002 </td>
+                                                    <td>abhishguleri15@gmail.com</td>
+                                                    <td class="text-start">1234567891</td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td style="color: green;">₹400</td>
+                                                    <td>
+                                                        <img src="{{asset('assets/image/empty-wallet.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000002 </td>
+                                                    <td>abhishguleri15@gmail.com</td>
+                                                    <td class="text-start">1234567891</td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td style="color: green;">₹400</td>
+                                                    <td>
+                                                        <img src="{{asset('assets/image/empty-wallet.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000002 </td>
+                                                    <td>abhishguleri15@gmail.com</td>
+                                                    <td class="text-start">1234567891</td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td style="color: green;">₹400</td>
+                                                    <td>
+                                                        <img src="{{asset('assets/image/empty-wallet.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000002 </td>
+                                                    <td>abhishguleri15@gmail.com</td>
+                                                    <td class="text-start">1234567891</td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td style="color: green;">₹400</td>
+                                                    <td>
+                                                        <img src="{{asset('assets/image/empty-wallet.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000002 </td>
+                                                    <td>abhishguleri15@gmail.com</td>
+                                                    <td class="text-start">1234567891</td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td style="color: green;">₹400</td>
+                                                    <td>
+                                                        <img src="{{asset('assets/image/empty-wallet.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000002 </td>
+                                                    <td>abhishguleri15@gmail.com</td>
+                                                    <td class="text-start">1234567891</td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td style="color: green;">₹400</td>
+                                                    <td>
+                                                        <img src="{{asset('assets/image/empty-wallet.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000002 </td>
+                                                    <td>abhishguleri15@gmail.com</td>
+                                                    <td class="text-start">1234567891</td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td style="color: green;">₹400</td>
+                                                    <td>
+                                                        <img src="{{asset('assets/image/empty-wallet.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000002 </td>
+                                                    <td>abhishguleri15@gmail.com</td>
+                                                    <td class="text-start">1234567891</td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td style="color: green;">₹400</td>
+                                                    <td>
+                                                        <img src="{{asset('assets/image/empty-wallet.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000002 </td>
+                                                    <td>abhishguleri15@gmail.com</td>
+                                                    <td class="text-start">1234567891</td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td style="color: green;">₹400</td>
+                                                    <td>
+                                                        <img src="{{asset('assets/image/empty-wallet.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000002 </td>
+                                                    <td>abhishguleri15@gmail.com</td>
+                                                    <td class="text-start">1234567891</td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td style="color: green;">₹400</td>
+                                                    <td>
+                                                        <img src="{{asset('assets/image/empty-wallet.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000002 </td>
+                                                    <td>abhishguleri15@gmail.com</td>
+                                                    <td class="text-start">1234567891</td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td style="color: green;">₹400</td>
+                                                    <td>
+                                                        <img src="{{asset('assets/image/empty-wallet.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000002 </td>
+                                                    <td>abhishguleri15@gmail.com</td>
+                                                    <td class="text-start">1234567891</td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td style="color: green;">₹400</td>
+                                                    <td>
+                                                        <img src="{{asset('assets/image/empty-wallet.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000002 </td>
+                                                    <td>abhishguleri15@gmail.com</td>
+                                                    <td class="text-start">1234567891</td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td style="color: green;">₹400</td>
+                                                    <td>
+                                                        <img src="{{asset('assets/image/empty-wallet.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000002 </td>
+                                                    <td>abhishguleri15@gmail.com</td>
+                                                    <td class="text-start">1234567891</td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td style="color: green;">₹400</td>
+                                                    <td>
+                                                        <img src="{{asset('assets/image/empty-wallet.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000002 </td>
+                                                    <td>abhishguleri15@gmail.com</td>
+                                                    <td class="text-start">1234567891</td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td style="color: green;">₹400</td>
+                                                    <td>
+                                                        <img src="{{asset('assets/image/empty-wallet.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000002 </td>
+                                                    <td>abhishguleri15@gmail.com</td>
+                                                    <td class="text-start">1234567891</td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td style="color: green;">₹400</td>
+                                                    <td>
+                                                        <img src="{{asset('assets/image/empty-wallet.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000002 </td>
+                                                    <td>abhishguleri15@gmail.com</td>
+                                                    <td class="text-start">1234567891</td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td style="color: green;">₹400</td>
+                                                    <td>
+                                                        <img src="{{asset('assets/image/empty-wallet.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000002 </td>
+                                                    <td>abhishguleri15@gmail.com</td>
+                                                    <td class="text-start">1234567891</td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td style="color: green;">₹400</td>
+                                                    <td>
+                                                        <img src="{{asset('assets/image/empty-wallet.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000002 </td>
+                                                    <td>abhishguleri15@gmail.com</td>
+                                                    <td class="text-start">1234567891</td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td style="color: green;">₹400</td>
+                                                    <td>
+                                                        <img src="{{asset('assets/image/empty-wallet.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000002 </td>
+                                                    <td>abhishguleri15@gmail.com</td>
+                                                    <td class="text-start">1234567891</td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td style="color: green;">₹400</td>
+                                                    <td>
+                                                        <img src="{{asset('assets/image/empty-wallet.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000002 </td>
+                                                    <td>abhishguleri15@gmail.com</td>
+                                                    <td class="text-start">1234567891</td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td style="color: green;">₹400</td>
+                                                    <td>
+                                                        <img src="{{asset('assets/image/empty-wallet.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000002 </td>
+                                                    <td>abhishguleri15@gmail.com</td>
+                                                    <td class="text-start">1234567891</td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td style="color: green;">₹400</td>
+                                                    <td>
+                                                        <img src="{{asset('assets/image/empty-wallet.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000002 </td>
+                                                    <td>abhishguleri15@gmail.com</td>
+                                                    <td class="text-start">1234567891</td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td style="color: green;">₹400</td>
+                                                    <td>
+                                                        <img src="{{asset('assets/image/empty-wallet.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000002 </td>
+                                                    <td>abhishguleri15@gmail.com</td>
+                                                    <td class="text-start">1234567891</td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td style="color: green;">₹400</td>
+                                                    <td>
+                                                        <img src="{{asset('assets/image/empty-wallet.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000002 </td>
+                                                    <td>abhishguleri15@gmail.com</td>
+                                                    <td class="text-start">1234567891</td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td style="color: green;">₹400</td>
+                                                    <td>
+                                                        <img src="{{asset('assets/image/empty-wallet.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000002 </td>
+                                                    <td>abhishguleri15@gmail.com</td>
+                                                    <td class="text-start">1234567891</td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td style="color: green;">₹400</td>
+                                                    <td>
+                                                        <img src="{{asset('assets/image/empty-wallet.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000002 </td>
+                                                    <td>abhishguleri15@gmail.com</td>
+                                                    <td class="text-start">1234567891</td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td style="color: green;">₹400</td>
+                                                    <td>
+                                                        <img src="{{asset('assets/image/empty-wallet.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000002 </td>
+                                                    <td>abhishguleri15@gmail.com</td>
+                                                    <td class="text-start">1234567891</td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td style="color: green;">₹400</td>
+                                                    <td>
+                                                        <img src="{{asset('assets/image/empty-wallet.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000002 </td>
+                                                    <td>abhishguleri15@gmail.com</td>
+                                                    <td class="text-start">1234567891</td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td style="color: green;">₹400</td>
+                                                    <td>
+                                                        <img src="{{asset('assets/image/empty-wallet.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000002 </td>
+                                                    <td>abhishguleri15@gmail.com</td>
+                                                    <td class="text-start">1234567891</td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td style="color: green;">₹400</td>
+                                                    <td>
+                                                        <img src="{{asset('assets/image/empty-wallet.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000002 </td>
+                                                    <td>abhishguleri15@gmail.com</td>
+                                                    <td class="text-start">1234567891</td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td style="color: green;">₹400</td>
+                                                    <td>
+                                                        <img src="{{asset('assets/image/empty-wallet.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000002 </td>
+                                                    <td>abhishguleri15@gmail.com</td>
+                                                    <td class="text-start">1234567891</td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td style="color: green;">₹400</td>
+                                                    <td>
+                                                        <img src="{{asset('assets/image/empty-wallet.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000002 </td>
+                                                    <td>abhishguleri15@gmail.com</td>
+                                                    <td class="text-start">1234567891</td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td style="color: green;">₹400</td>
+                                                    <td>
+                                                        <img src="{{asset('assets/image/empty-wallet.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000002 </td>
+                                                    <td>abhishguleri15@gmail.com</td>
+                                                    <td class="text-start">1234567891</td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td style="color: green;">₹400</td>
+                                                    <td>
+                                                        <img src="{{asset('assets/image/empty-wallet.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000002 </td>
+                                                    <td>abhishguleri15@gmail.com</td>
+                                                    <td class="text-start">1234567891</td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td style="color: green;">₹400</td>
+                                                    <td>
+                                                        <img src="{{asset('assets/image/empty-wallet.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000002 </td>
+                                                    <td>abhishguleri15@gmail.com</td>
+                                                    <td class="text-start">1234567891</td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td style="color: green;">₹400</td>
+                                                    <td>
+                                                        <img src="{{asset('assets/image/empty-wallet.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000002 </td>
+                                                    <td>abhishguleri15@gmail.com</td>
+                                                    <td class="text-start">1234567891</td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td style="color: green;">₹400</td>
+                                                    <td>
+                                                        <img src="{{asset('assets/image/empty-wallet.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000002 </td>
+                                                    <td>abhishguleri15@gmail.com</td>
+                                                    <td class="text-start">1234567891</td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td style="color: green;">₹400</td>
+                                                    <td>
+                                                        <img src="{{asset('assets/image/empty-wallet.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000002 </td>
+                                                    <td>abhishguleri15@gmail.com</td>
+                                                    <td class="text-start">1234567891</td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td style="color: green;">₹400</td>
+                                                    <td>
+                                                        <img src="{{asset('assets/image/empty-wallet.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000002 </td>
+                                                    <td>abhishguleri15@gmail.com</td>
+                                                    <td class="text-start">1234567891</td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td style="color: green;">₹400</td>
+                                                    <td>
+                                                        <img src="{{asset('assets/image/empty-wallet.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000002 </td>
+                                                    <td>abhishguleri15@gmail.com</td>
+                                                    <td class="text-start">1234567891</td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td style="color: green;">₹400</td>
+                                                    <td>
+                                                        <img src="{{asset('assets/image/empty-wallet.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000002 </td>
+                                                    <td>abhishguleri15@gmail.com</td>
+                                                    <td class="text-start">1234567891</td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td style="color: green;">₹400</td>
+                                                    <td>
+                                                        <img src="{{asset('assets/image/empty-wallet.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000002 </td>
+                                                    <td>abhishguleri15@gmail.com</td>
+                                                    <td class="text-start">1234567891</td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td style="color: green;">₹400</td>
+                                                    <td>
+                                                        <img src="{{asset('assets/image/empty-wallet.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000002 </td>
+                                                    <td>abhishguleri15@gmail.com</td>
+                                                    <td class="text-start">1234567891</td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td style="color: green;">₹400</td>
+                                                    <td>
+                                                        <img src="{{asset('assets/image/empty-wallet.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000002 </td>
+                                                    <td>abhishguleri15@gmail.com</td>
+                                                    <td class="text-start">1234567891</td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td style="color: green;">₹400</td>
+                                                    <td>
+                                                        <img src="{{asset('assets/image/empty-wallet.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000002 </td>
+                                                    <td>abhishguleri15@gmail.com</td>
+                                                    <td class="text-start">1234567891</td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td style="color: green;">₹400</td>
+                                                    <td>
+                                                        <img src="{{asset('assets/image/empty-wallet.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000002 </td>
+                                                    <td>abhishguleri15@gmail.com</td>
+                                                    <td class="text-start">1234567891</td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td style="color: green;">₹400</td>
+                                                    <td>
+                                                        <img src="{{asset('assets/image/empty-wallet.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000002 </td>
+                                                    <td>abhishguleri15@gmail.com</td>
+                                                    <td class="text-start">1234567891</td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td style="color: green;">₹400</td>
+                                                    <td>
+                                                        <img src="{{asset('assets/image/empty-wallet.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000002 </td>
+                                                    <td>abhishguleri15@gmail.com</td>
+                                                    <td class="text-start">1234567891</td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td style="color: green;">₹400</td>
+                                                    <td>
+                                                        <img src="{{asset('assets/image/empty-wallet.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000002 </td>
+                                                    <td>abhishguleri15@gmail.com</td>
+                                                    <td class="text-start">1234567891</td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td style="color: green;">₹400</td>
+                                                    <td>
+                                                        <img src="{{asset('assets/image/empty-wallet.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000002 </td>
+                                                    <td>abhishguleri15@gmail.com</td>
+                                                    <td class="text-start">1234567891</td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td style="color: green;">₹400</td>
+                                                    <td>
+                                                        <img src="{{asset('assets/image/empty-wallet.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000002 </td>
+                                                    <td>abhishguleri15@gmail.com</td>
+                                                    <td class="text-start">1234567891</td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td style="color: green;">₹400</td>
+                                                    <td>
+                                                        <img src="{{asset('assets/image/empty-wallet.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000002 </td>
+                                                    <td>abhishguleri15@gmail.com</td>
+                                                    <td class="text-start">1234567891</td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td style="color: green;">₹400</td>
+                                                    <td>
+                                                        <img src="{{asset('assets/image/empty-wallet.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000002 </td>
+                                                    <td>abhishguleri15@gmail.com</td>
+                                                    <td class="text-start">1234567891</td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td style="color: green;">₹400</td>
+                                                    <td>
+                                                        <img src="{{asset('assets/image/empty-wallet.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000002 </td>
+                                                    <td>abhishguleri15@gmail.com</td>
+                                                    <td class="text-start">1234567891</td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td style="color: green;">₹400</td>
+                                                    <td>
+                                                        <img src="{{asset('assets/image/empty-wallet.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000002 </td>
+                                                    <td>abhishguleri15@gmail.com</td>
+                                                    <td class="text-start">1234567891</td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td style="color: green;">₹400</td>
+                                                    <td>
+                                                        <img src="{{asset('assets/image/empty-wallet.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000002 </td>
+                                                    <td>abhishguleri15@gmail.com</td>
+                                                    <td class="text-start">1234567891</td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td style="color: green;">₹400</td>
+                                                    <td>
+                                                        <img src="{{asset('assets/image/empty-wallet.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000002 </td>
+                                                    <td>abhishguleri15@gmail.com</td>
+                                                    <td class="text-start">1234567891</td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td style="color: green;">₹400</td>
+                                                    <td>
+                                                        <img src="{{asset('assets/image/empty-wallet.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000002 </td>
+                                                    <td>abhishguleri15@gmail.com</td>
+                                                    <td class="text-start">1234567891</td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td style="color: green;">₹400</td>
+                                                    <td>
+                                                        <img src="{{asset('assets/image/empty-wallet.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000002 </td>
+                                                    <td>abhishguleri15@gmail.com</td>
+                                                    <td class="text-start">1234567891</td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td style="color: green;">₹400</td>
+                                                    <td>
+                                                        <img src="{{asset('assets/image/empty-wallet.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000002 </td>
+                                                    <td>abhishguleri15@gmail.com</td>
+                                                    <td class="text-start">1234567891</td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td style="color: green;">₹400</td>
+                                                    <td>
+                                                        <img src="{{asset('assets/image/empty-wallet.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000002 </td>
+                                                    <td>abhishguleri15@gmail.com</td>
+                                                    <td class="text-start">1234567891</td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td style="color: green;">₹400</td>
+                                                    <td>
+                                                        <img src="{{asset('assets/image/empty-wallet.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000002 </td>
+                                                    <td>abhishguleri15@gmail.com</td>
+                                                    <td class="text-start">1234567891</td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td style="color: green;">₹400</td>
+                                                    <td>
+                                                        <img src="{{asset('assets/image/empty-wallet.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000002 </td>
+                                                    <td>abhishguleri15@gmail.com</td>
+                                                    <td class="text-start">1234567891</td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td style="color: green;">₹400</td>
+                                                    <td>
+                                                        <img src="{{asset('assets/image/empty-wallet.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000002 </td>
+                                                    <td>abhishguleri15@gmail.com</td>
+                                                    <td class="text-start">1234567891</td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td style="color: green;">₹400</td>
+                                                    <td>
+                                                        <img src="{{asset('assets/image/empty-wallet.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000002 </td>
+                                                    <td>abhishguleri15@gmail.com</td>
+                                                    <td class="text-start">1234567891</td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td style="color: green;">₹400</td>
+                                                    <td>
+                                                        <img src="{{asset('assets/image/empty-wallet.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000002 </td>
+                                                    <td>abhishguleri15@gmail.com</td>
+                                                    <td class="text-start">1234567891</td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td style="color: green;">₹400</td>
+                                                    <td>
+                                                        <img src="{{asset('assets/image/empty-wallet.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000002 </td>
+                                                    <td>abhishguleri15@gmail.com</td>
+                                                    <td class="text-start">1234567891</td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td style="color: green;">₹400</td>
+                                                    <td>
+                                                        <img src="{{asset('assets/image/empty-wallet.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000002 </td>
+                                                    <td>abhishguleri15@gmail.com</td>
+                                                    <td class="text-start">1234567891</td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td style="color: green;">₹400</td>
+                                                    <td>
+                                                        <img src="{{asset('assets/image/empty-wallet.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000002 </td>
+                                                    <td>abhishguleri15@gmail.com</td>
+                                                    <td class="text-start">1234567891</td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td style="color: green;">₹400</td>
+                                                    <td>
+                                                        <img src="{{asset('assets/image/empty-wallet.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000002 </td>
+                                                    <td>abhishguleri15@gmail.com</td>
+                                                    <td class="text-start">1234567891</td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td style="color: green;">₹400</td>
+                                                    <td>
+                                                        <img src="{{asset('assets/image/empty-wallet.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000002 </td>
+                                                    <td>abhishguleri15@gmail.com</td>
+                                                    <td class="text-start">1234567891</td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td style="color: green;">₹400</td>
+                                                    <td>
+                                                        <img src="{{asset('assets/image/empty-wallet.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000002 </td>
+                                                    <td>abhishguleri15@gmail.com</td>
+                                                    <td class="text-start">1234567891</td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td style="color: green;">₹400</td>
+                                                    <td>
+                                                        <img src="{{asset('assets/image/empty-wallet.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000002 </td>
+                                                    <td>abhishguleri15@gmail.com</td>
+                                                    <td class="text-start">1234567891</td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td style="color: green;">₹400</td>
+                                                    <td>
+                                                        <img src="{{asset('assets/image/empty-wallet.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000002 </td>
+                                                    <td>abhishguleri15@gmail.com</td>
+                                                    <td class="text-start">1234567891</td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td style="color: green;">₹400</td>
+                                                    <td>
+                                                        <img src="{{asset('assets/image/empty-wallet.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000002 </td>
+                                                    <td>abhishguleri15@gmail.com</td>
+                                                    <td class="text-start">1234567891</td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td style="color: green;">₹400</td>
+                                                    <td>
+                                                        <img src="{{asset('assets/image/empty-wallet.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000002 </td>
+                                                    <td>abhishguleri15@gmail.com</td>
+                                                    <td class="text-start">1234567891</td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td style="color: green;">₹400</td>
+                                                    <td>
+                                                        <img src="{{asset('assets/image/empty-wallet.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000002 </td>
+                                                    <td>abhishguleri15@gmail.com</td>
+                                                    <td class="text-start">1234567891</td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td style="color: green;">₹400</td>
+                                                    <td>
+                                                        <img src="{{asset('assets/image/empty-wallet.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000002 </td>
+                                                    <td>abhishguleri15@gmail.com</td>
+                                                    <td class="text-start">1234567891</td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td style="color: green;">₹400</td>
+                                                    <td>
+                                                        <img src="{{asset('assets/image/empty-wallet.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000002 </td>
+                                                    <td>abhishguleri15@gmail.com</td>
+                                                    <td class="text-start">1234567891</td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td style="color: green;">₹400</td>
+                                                    <td>
+                                                        <img src="{{asset('assets/image/empty-wallet.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000002 </td>
+                                                    <td>abhishguleri15@gmail.com</td>
+                                                    <td class="text-start">1234567891</td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td style="color: green;">₹400</td>
+                                                    <td>
+                                                        <img src="{{asset('assets/image/empty-wallet.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000002 </td>
+                                                    <td>abhishguleri15@gmail.com</td>
+                                                    <td class="text-start">1234567891</td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td style="color: green;">₹400</td>
+                                                    <td>
+                                                        <img src="{{asset('assets/image/empty-wallet.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000002 </td>
+                                                    <td>abhishguleri15@gmail.com</td>
+                                                    <td class="text-start">1234567891</td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td style="color: green;">₹400</td>
+                                                    <td>
+                                                        <img src="{{asset('assets/image/empty-wallet.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000002 </td>
+                                                    <td>abhishguleri15@gmail.com</td>
+                                                    <td class="text-start">1234567891</td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td style="color: green;">₹400</td>
+                                                    <td>
+                                                        <img src="{{asset('assets/image/empty-wallet.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000002 </td>
+                                                    <td>abhishguleri15@gmail.com</td>
+                                                    <td class="text-start">1234567891</td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td style="color: green;">₹400</td>
+                                                    <td>
+                                                        <img src="{{asset('assets/image/empty-wallet.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000002 </td>
+                                                    <td>abhishguleri15@gmail.com</td>
+                                                    <td class="text-start">1234567891</td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td style="color: green;">₹400</td>
+                                                    <td>
+                                                        <img src="{{asset('assets/image/empty-wallet.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000002 </td>
+                                                    <td>abhishguleri15@gmail.com</td>
+                                                    <td class="text-start">1234567891</td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td style="color: green;">₹400</td>
+                                                    <td>
+                                                        <img src="{{asset('assets/image/empty-wallet.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000002 </td>
+                                                    <td>abhishguleri15@gmail.com</td>
+                                                    <td class="text-start">1234567891</td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td style="color: green;">₹400</td>
+                                                    <td>
+                                                        <img src="{{asset('assets/image/empty-wallet.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000002 </td>
+                                                    <td>abhishguleri15@gmail.com</td>
+                                                    <td class="text-start">1234567891</td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td style="color: green;">₹400</td>
+                                                    <td>
+                                                        <img src="{{asset('assets/image/empty-wallet.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000002 </td>
+                                                    <td>abhishguleri15@gmail.com</td>
+                                                    <td class="text-start">1234567891</td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td style="color: green;">₹400</td>
+                                                    <td>
+                                                        <img src="{{asset('assets/image/empty-wallet.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000002 </td>
+                                                    <td>abhishguleri15@gmail.com</td>
+                                                    <td class="text-start">1234567891</td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td style="color: green;">₹400</td>
+                                                    <td>
+                                                        <img src="{{asset('assets/image/empty-wallet.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000002 </td>
+                                                    <td>abhishguleri15@gmail.com</td>
+                                                    <td class="text-start">1234567891</td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td style="color: green;">₹400</td>
+                                                    <td>
+                                                        <img src="{{asset('assets/image/empty-wallet.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000002 </td>
+                                                    <td>abhishguleri15@gmail.com</td>
+                                                    <td class="text-start">1234567891</td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td style="color: green;">₹400</td>
+                                                    <td>
+                                                        <img src="{{asset('assets/image/empty-wallet.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000002 </td>
+                                                    <td>abhishguleri15@gmail.com</td>
+                                                    <td class="text-start">1234567891</td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td style="color: green;">₹400</td>
+                                                    <td>
+                                                        <img src="{{asset('assets/image/empty-wallet.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000002 </td>
+                                                    <td>abhishguleri15@gmail.com</td>
+                                                    <td class="text-start">1234567891</td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td style="color: green;">₹400</td>
+                                                    <td>
+                                                        <img src="{{asset('assets/image/empty-wallet.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000002 </td>
+                                                    <td>abhishguleri15@gmail.com</td>
+                                                    <td class="text-start">1234567891</td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td style="color: green;">₹400</td>
+                                                    <td>
+                                                        <img src="{{asset('assets/image/empty-wallet.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000002 </td>
+                                                    <td>abhishguleri15@gmail.com</td>
+                                                    <td class="text-start">1234567891</td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td style="color: green;">₹400</td>
+                                                    <td>
+                                                        <img src="{{asset('assets/image/empty-wallet.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000002 </td>
+                                                    <td>abhishguleri15@gmail.com</td>
+                                                    <td class="text-start">1234567891</td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td style="color: green;">₹400</td>
+                                                    <td>
+                                                        <img src="{{asset('assets/image/empty-wallet.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000002 </td>
+                                                    <td>abhishguleri15@gmail.com</td>
+                                                    <td class="text-start">1234567891</td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td style="color: green;">₹400</td>
+                                                    <td>
+                                                        <img src="{{asset('assets/image/empty-wallet.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000002 </td>
+                                                    <td>abhishguleri15@gmail.com</td>
+                                                    <td class="text-start">1234567891</td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td style="color: green;">₹400</td>
+                                                    <td>
+                                                        <img src="{{asset('assets/image/empty-wallet.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                
+                                            </tbody>
+        
+                                        </table>
+                                    </div>
                                 </div>
                     
-                                <!-- Custom Pagination -->
-                                <nav>
-                                    <ul class="pagination custom-pagination mb-0">
-                                        <!-- Custom pagination links will be inserted here by JS -->
-                                    </ul>
-                                </nav>
+                                <div class="pagination-container">
+                                    <nav>
+                                        <ul class="pagination custom-pagination mb-0">
+                                            <!-- Pagination will be dynamically inserted -->
+                                        </ul>
+                                    </nav>
+                                </div>
                                 
                             </div>
                         </div>
@@ -994,99 +1830,180 @@
     <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
 
     <script>
-        $(document).ready(function () {
-            // Get the current page URL (excluding query params)
-            var currentUrl = window.location.pathname.split("/").pop();
+        // $(document).ready(function () {
+        //     // Get the current page URL (excluding query params)
+        //     var currentUrl = window.location.pathname.split("/").pop();
     
-            // Loop through sidebar links
-            $(".side-nav-link").each(function () {
-                var linkUrl = $(this).attr("href");
+        //     // Loop through sidebar links
+        //     $(".side-nav-link").each(function () {
+        //         var linkUrl = $(this).attr("href");
     
-                // If the href matches the current page, add 'active' class
-                if (linkUrl === currentUrl) {
-                    $(this).addClass("active");
+        //         // If the href matches the current page, add 'active' class
+        //         if (linkUrl === currentUrl) {
+        //             $(this).addClass("active");
     
-                    // Optional: Add active class to the parent <li> for better styling
-                    $(this).closest(".side-nav-item").addClass("active");
-                }
-            });
-        });
+        //             // Optional: Add active class to the parent <li> for better styling
+        //             $(this).closest(".side-nav-item").addClass("active");
+        //         }
+        //     });
+        // });
 
 
 
 
-        $(document).ready(function () {
-            var table = $('#responsive-datatable').DataTable({
-                "ordering": false,
-                "paging": true,
-                "searching": true,
-                "info": false,
-                "pageLength": 10,
-                "lengthChange": false,
-                "dom": 'rt',
-            });
+        // $(document).ready(function () {
+        //     var table = $('#responsive-datatable').DataTable({
+        //         "ordering": false,
+        //         "paging": true,
+        //         "searching": true,
+        //         "info": false,
+        //         "pageLength": 10,
+        //         "lengthChange": false,
+        //         "dom": 'rt',
+        //     });
 
-            function createCustomPagination() {
-                var totalPages = table.page.info().pages;
-                var currentPage = table.page.info().page;
-                var pagination = $('.custom-pagination');
-                pagination.empty();
+        //     function createCustomPagination() {
+        //         var pageInfo = table.page.info();
+        //         var totalPages = pageInfo.pages;
+        //         var currentPage = pageInfo.page;
+        //         var pagination = $('.custom-pagination');
+        //         pagination.empty();
 
-                // Previous Button
-                pagination.append('<li class="page-item ' + (currentPage === 0 ? 'disabled' : '') + '"><a class="page-link prev-page" href="javascript:void(0);">&lt;</a></li>');
+        //         // Previous Button
+        //         pagination.append('<li class="page-item ' + (currentPage === 0 ? 'disabled' : '') + '"><a class="page-link prev-page" href="javascript:void(0);">&lt;</a></li>');
 
-                // Always Show First Page
-                pagination.append('<li class="page-item ' + (currentPage === 0 ? 'active' : '') + '"><a class="page-link page-num" href="javascript:void(0);" data-page="0">1</a></li>');
+        //         // First Page
+        //         if (totalPages > 0) {
+        //             pagination.append('<li class="page-item ' + (currentPage === 0 ? 'active' : '') + '"><a class="page-link page-num" href="javascript:void(0);" data-page="0">1</a></li>');
+        //         }
 
-                if (totalPages > 3) {
-                    if (currentPage > 1) {
-                        pagination.append('<li class="page-item"><a class="page-link">...</a></li>');
-                    }
+        //         // Show '...' before current range if needed
+        //         if (currentPage > 2) {
+        //             pagination.append('<li class="page-item"><a class="page-link">...</a></li>');
+        //         }
 
-                    // Show two pages around the current page
-                    for (var i = Math.max(1, currentPage - 1); i <= Math.min(totalPages - 2, currentPage + 1); i++) {
-                        pagination.append('<li class="page-item ' + (i === currentPage ? 'active' : '') + '"><a class="page-link page-num" href="javascript:void(0);" data-page="' + i + '">' + (i + 1) + '</a></li>');
-                    }
+        //         // Show two pages around the current page
+        //         for (var i = Math.max(1, currentPage - 1); i <= Math.min(totalPages - 2, currentPage + 1); i++) {
+        //             pagination.append('<li class="page-item ' + (i === currentPage ? 'active' : '') + '"><a class="page-link page-num" href="javascript:void(0);" data-page="' + i + '">' + (i + 1) + '</a></li>');
+        //         }
 
-                    if (currentPage < totalPages - 2) {
-                        pagination.append('<li class="page-item"><a class="page-link">...</a></li>');
-                    }
-                }
+        //         // Show '...' before last page if needed
+        //         if (currentPage < totalPages - 3) {
+        //             pagination.append('<li class="page-item"><a class="page-link">...</a></li>');
+        //         }
 
-                // Always Show Last Page
-                pagination.append('<li class="page-item ' + (currentPage === totalPages - 1 ? 'active' : '') + '"><a class="page-link page-num" href="javascript:void(0);" data-page="' + (totalPages - 1) + '">' + totalPages + '</a></li>');
+        //         // Last Page
+        //         if (totalPages > 1) {
+        //             pagination.append('<li class="page-item ' + (currentPage === totalPages - 1 ? 'active' : '') + '"><a class="page-link page-num" href="javascript:void(0);" data-page="' + (totalPages - 1) + '">' + totalPages + '</a></li>');
+        //         }
 
-                // Next Button
-                pagination.append('<li class="page-item ' + (currentPage === totalPages - 1 ? 'disabled' : '') + '"><a class="page-link next-page" href="javascript:void(0);">&gt;</a></li>');
-            }
+        //         // Next Button
+        //         pagination.append('<li class="page-item ' + (currentPage === totalPages - 1 ? 'disabled' : '') + '"><a class="page-link next-page" href="javascript:void(0);">&gt;</a></li>');
+        //     }
 
-            // Pagination Click Events
-            $(document).on('click', '.page-num', function () {
-                var pageNum = $(this).data('page');
-                table.page(pageNum).draw(false);
-                createCustomPagination();
-            });
+        //     // Pagination Click Events
+        //     $(document).on('click', '.page-num', function () {
+        //         var pageNum = $(this).data('page');
+        //         table.page(pageNum).draw(false);
+        //         createCustomPagination();
+        //     });
 
-            $(document).on('click', '.prev-page', function () {
-                var currentPage = table.page.info().page;
-                if (currentPage > 0) {
-                    table.page(currentPage - 1).draw(false);
-                    createCustomPagination();
-                }
-            });
+        //     $(document).on('click', '.prev-page', function () {
+        //         var currentPage = table.page.info().page;
+        //         if (currentPage > 0) {
+        //             table.page(currentPage - 1).draw(false);
+        //             createCustomPagination();
+        //         }
+        //     });
 
-            $(document).on('click', '.next-page', function () {
-                var currentPage = table.page.info().page;
-                var totalPages = table.page.info().pages;
-                if (currentPage < totalPages - 1) {
-                    table.page(currentPage + 1).draw(false);
-                    createCustomPagination();
-                }
-            });
+        //     $(document).on('click', '.next-page', function () {
+        //         var currentPage = table.page.info().page;
+        //         var totalPages = table.page.info().pages;
+        //         if (currentPage < totalPages - 1) {
+        //             table.page(currentPage + 1).draw(false);
+        //             createCustomPagination();
+        //         }
+        //     });
 
-            // Initialize Pagination
-            createCustomPagination();
-        });
+        //     // Initialize Pagination
+        //     createCustomPagination();
+        // });
+
+
+
+
+        // $(document).ready(function () {
+        //     var table = $('#responsive-datatable').DataTable({
+        //         "ordering": false,
+        //         "paging": true,
+        //         "searching": true,
+        //         "info": false,
+        //         "pageLength": 10,
+        //         "lengthChange": false,
+        //         "dom": 'rt',
+        //     });
+
+        //     function createCustomPagination() {
+        //         var totalPages = table.page.info().pages;
+        //         var currentPage = table.page.info().page;
+        //         var pagination = $('.custom-pagination');
+        //         pagination.empty();
+
+        //         // Previous Button
+        //         pagination.append('<li class="page-item ' + (currentPage === 0 ? 'disabled' : '') + '"><a class="page-link prev-page" href="javascript:void(0);">&lt;</a></li>');
+
+        //         // Always Show First Page
+        //         pagination.append('<li class="page-item ' + (currentPage === 0 ? 'active' : '') + '"><a class="page-link page-num" href="javascript:void(0);" data-page="0">1</a></li>');
+
+        //         if (totalPages > 3) {
+        //             if (currentPage > 1) {
+        //                 pagination.append('<li class="page-item"><a class="page-link">...</a></li>');
+        //             }
+
+        //             // Show two pages around the current page
+        //             for (var i = Math.max(1, currentPage - 1); i <= Math.min(totalPages - 2, currentPage + 1); i++) {
+        //                 pagination.append('<li class="page-item ' + (i === currentPage ? 'active' : '') + '"><a class="page-link page-num" href="javascript:void(0);" data-page="' + i + '">' + (i + 1) + '</a></li>');
+        //             }
+
+        //             if (currentPage < totalPages - 2) {
+        //                 pagination.append('<li class="page-item"><a class="page-link">...</a></li>');
+        //             }
+        //         }
+
+        //         // Always Show Last Page
+        //         pagination.append('<li class="page-item ' + (currentPage === totalPages - 1 ? 'active' : '') + '"><a class="page-link page-num" href="javascript:void(0);" data-page="' + (totalPages - 1) + '">' + totalPages + '</a></li>');
+
+        //         // Next Button
+        //         pagination.append('<li class="page-item ' + (currentPage === totalPages - 1 ? 'disabled' : '') + '"><a class="page-link next-page" href="javascript:void(0);">&gt;</a></li>');
+        //     }
+
+        //     // Pagination Click Events
+        //     $(document).on('click', '.page-num', function () {
+        //         var pageNum = $(this).data('page');
+        //         table.page(pageNum).draw(false);
+        //         createCustomPagination();
+        //     });
+
+        //     $(document).on('click', '.prev-page', function () {
+        //         var currentPage = table.page.info().page;
+        //         if (currentPage > 0) {
+        //             table.page(currentPage - 1).draw(false);
+        //             createCustomPagination();
+        //         }
+        //     });
+
+        //     $(document).on('click', '.next-page', function () {
+        //         var currentPage = table.page.info().page;
+        //         var totalPages = table.page.info().pages;
+        //         if (currentPage < totalPages - 1) {
+        //             table.page(currentPage + 1).draw(false);
+        //             createCustomPagination();
+        //         }
+        //     });
+
+        //     // Initialize Pagination
+        //     createCustomPagination();
+        // });
 
         $('#nameSearch').on('keyup', function () {
             table.column(0).search(this.value).draw();
@@ -1293,40 +2210,4 @@
 
     </script>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Vendor js -->
-    <script src="assets/js/vendor.min.js"></script>
-
-    <!-- App js -->
-    <script src="assets/js/app.js"></script>
-
-    <!--Morris Chart-->
-    <script src="assets/libs/morris.js/morris.min.js"></script>
-    <script src="assets/libs/raphael/raphael.min.js"></script>
-
-    <!-- Projects Analytics Dashboard App js -->
-    <script src="assets/js/pages/dashboard-sales.js"></script>
-
-    <script src="assets/libs/datatables.net/js/dataTables.min.js"></script>
-    <script src="assets/libs/datatables.net-bs5/js/dataTables.bootstrap5.min.js"></script>
-
-    <script src="assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
-    <script src="assets/libs/datatables.net-responsive-bs5/js/responsive.bootstrap5.min.js"></script>
-
-    <script src="assets/libs/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-    <script src="assets/libs/datatables.net-buttons-bs5/js/buttons.bootstrap5.min.js"></script>
-
-    <script src="assets/libs/datatables.net-buttons/js/buttons.html5.min.js"></script>
-    <script src="assets/libs/datatables.net-buttons/js/buttons.print.min.js"></script>
-
-    <script src="assets/libs/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
-    <script src="assets/libs/datatables.net-select/js/dataTables.select.min.js"></script>
-
-    <!-- Datatables init -->
-    <script src="assets/js/pages/table-datatable.js"></script>
-
-
-</body>
-<!-- Mirrored from coderthemes.com/uplon/layouts/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 31 Jan 2025 10:56:29 GMT -->
-</html>
+@include('adminlayouts.footer')

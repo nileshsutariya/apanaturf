@@ -1,46 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<!-- <html lang="en" data-layout="topnav"> -->
-
-
-<!-- Mirrored from coderthemes.com/uplon/layouts/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 31 Jan 2025 10:56:29 GMT -->
-<head>
-    <meta charset="utf-8" />
-    <title>Dashboard | Uplon - Responsive Bootstrap 5 Admin Dashboard</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
-    <meta content="Coderthemes" name="author" />
-
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Bootstrap JS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
-
-    <link rel="stylesheet" href="assets/libs/datatables.net-bs5/css/dataTables.bootstrap5.min.css">
-    <link rel="stylesheet" href="assets/libs/datatables.net-buttons-bs5/css/buttons.bootstrap5.min.css">
-    <link rel="stylesheet" href="assets/libs/datatables.net-responsive-bs5/css/responsive.bootstrap5.min.css">
-    <link rel="stylesheet" href="assets/libs/datatables.net-select-bs5/css/select.bootstrap5.min.css">
-    
-    <!-- App favicon -->
-    <link rel="shortcut icon" href="assets/images/favicon.ico">
-
-    <!-- Vendor css -->
-    <link href="assets/css/vendor.min.css" rel="stylesheet" type="text/css" />
-
-    <!-- App css -->
-    <link href="assets/css/app.min.css" rel="stylesheet" type="text/css" id="app-style" />
-    <link href="assets/css/style.css" rel="stylesheet" type="text/css" />
-
-    <!-- Icons css -->
-    <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
-
-    <!-- Theme Config Js -->
-    <script src="assets/js/config.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
+@include('adminlayouts.header')
     <style>
         html[data-sidenav-size=condensed]:not([data-layout=topnav]) .sidenav-menu .sidebar-footer .footer-content {
             overflow: hidden;
@@ -247,327 +205,6 @@
         }
     </style>
 
-</head>
-       
-<body>
-    <!-- Begin page -->
-    <div class="wrapper">
-
-
-        <!-- Sidenav Menu Start -->
-        <div class="sidenav-menu" style="background-color: rgb(24, 24, 24);">
-            <div data-simplebar>
-
-                <!--- Sidenav Menu -->
-                <ul class="side-nav">
-                    <!-- <li cla'ss="side-nav-title">Navigation</li> -->
-
-                    <li class="side-nav-item">
-                        <a href="index.html" class="side-nav-link">
-                            <span class="menu-icon"><img src="../../assets/image/element-3.svg" alt="dashboard"></span>
-                            <span class="menu-text mt-2"> Dashboard </span>
-                            <!-- <span class="badge bg-success rounded-pill">5</span> -->
-                        </a>
-                    </li>
-
-                    <li class="side-nav-item">
-                        <a href="users.html" class="side-nav-link">
-                            <span class="menu-icon"><img src="../../assets/image/profile.svg" alt="user"></span>
-                            <span class="menu-text mt-2"> User </span>
-                        </a>
-                    </li>
-                    <li class="side-nav-item">
-                        <a href="venues.html" class="side-nav-link">
-                            <span class="menu-icon"><img src="../../assets/image/bank.svg" alt="venues"></span>
-                            <span class="menu-text mt-2"> Venues </span>
-                        </a>
-                    </li>
-                    <li class="side-nav-item">
-                        <a href="bookings.html" class="side-nav-link">
-                            <span class="menu-icon"><img src="../../assets/image/shopping-cart.svg" alt="bookings"></span>
-                            <span class="menu-text mt-2"> Bookings </span>
-                        </a>
-                    </li>
-                    <li class="side-nav-item">
-                        <a href="freeze.html" class="side-nav-link">
-                            <span class="menu-icon"><img src="../../assets/image/sun.svg" alt="freeze"></span>
-                            <span class="menu-text mt-2"> Freeze </span>
-                        </a>
-                    </li>
-                    <li class="side-nav-item">
-                        <a href="transaction.html" class="side-nav-link">
-                            <span class="menu-icon"><img src="../../assets/image/Transaction.svg" alt="transaction"></span>
-                            <span class="menu-text mt-2"> Transactions </span>
-                        </a>
-                    </li>
-                    <li class="side-nav-item">
-                        <a href="#sidebarPagesAuth" data-bs-toggle="collapse" aria-expanded="false" aria-controls="sidebarPagesAuth" class="side-nav-link">
-                            <span class="menu-icon">
-                                <img src="../../assets/image/clipboard-tick.svg" alt="configuration">
-                            </span>
-                            <span class="menu-text mt-2"> Configurations </span>
-                            <img src="../../assets/image/Polygon 1.svg" alt="" class="dropdown-icon">
-                        </a>
-                        <div class="collapse" id="sidebarPagesAuth">
-                            <ul class="sub-menu">
-                                <li class="side-nav-item">
-                                    <a href="sports.html" class="side-nav-link">
-                                        <span class="menu-text"> Sports </span>
-                                    </a>
-                                </li>
-                                <li class="side-nav-item">
-                                    <a href="amenities.html" class="side-nav-link">
-                                        <span class="menu-text"> Amenities </span>
-                                    </a>
-                                </li>
-                                <li class="side-nav-item">
-                                    <a href="financialyear.html" class="side-nav-link">
-                                        <span class="menu-text"> Financial Year </span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
-                    
-                    <li class="side-nav-item">
-                        <a href="couponscode.html" class="side-nav-link">
-                            <span class="menu-icon"><img src="../../assets/image/ticket.svg" alt="coupons"></span>
-                            <span class="menu-text mt-2"> Coupons Code </span>
-                        </a>
-                    </li>
-                    <li class="side-nav-item">
-                        <a href="banner.html" class="side-nav-link">
-                            <span class="menu-icon"><img src="../../assets/image/money-4.svg" alt="money"></span>
-                            <span class="menu-text mt-2"> Banners </span>
-                        </a>
-                    </li>
-                    <li class="side-nav-item">
-                        <a href="subscribers.html" class="side-nav-link">
-                            <span class="menu-icon"><img src="../../assets/image/sms.svg" alt="sms"></span>
-                            <span class="menu-text mt-2"> Subscribers </span>
-                        </a>
-                    </li>
-                    <li class="side-nav-item">
-                        <a href="enquiries.html" class="side-nav-link">
-                            <span class="menu-icon"><i class="bi bi-info-circle"></i></span>
-                            <span class="menu-text mt-2"> Enquiries </span>
-                        </a>
-                    </li>
-
-                    <li class="side-nav-item">
-                        <a href="#" class="side-nav-link mt-5 mb-5">
-                            <span class="menu-icon"><img src="../../assets/image/Logout.svg" alt="logout"></span>
-                            <span class="menu-text"> Logout </span>
-                        </a>
-                    </li>
-                    
-                </ul>
-                
-                
-                <div class="clearfix"></div>
-                
-            </div>
-            <!-- <div class="sidebar"> -->
-                <div class="sidebar-footer p-3">
-                    <hr class="hr">
-                    <div class="side-nav-item d-flex align-items-center justify-content-between">
-                        <!-- Left: Profile Image -->
-                        <div class="d-flex align-items-center">
-                            <span class="menu-icon me-2">
-                                <img src="../../assets/image/Image.svg" alt="profile" class="rounded-circle" style="width: 35px; height: 35px; border: 2px solid #ccc;">
-                            </span>
-                        </div>
-                
-                        <!-- Right: Name, Profile Link, and Dots -->
-                        <div class="footer-content d-flex flex-column flex-grow-1">
-                            <span class="menu-text text-white" style="font-size: 14px;">Abhishek Guleria</span>
-                            <a href="profile.html" class="text-muted" style="font-size: 11px;">View Profile</a>
-                        </div>
-                        <div class="footer-dot text-white" style="font-size: 20px;">
-                            <i class="bi bi-three-dots-vertical"></i>
-                        </div>
-                
-                    </div>
-                </div>
-            <!-- </div>  -->
-            
-        </div>
-        <!-- Sidenav Menu End -->
-
-        <!-- Topbar Start -->
-        <header class="app-topbar">
-            <div class="topbar-menu">
-                <div class="d-flex align-items-center gap-2">
-
-                    <!-- Brand Logo -->
-                    <!-- <a href="index.html" class="logo">
-                        <span class="logo-light">
-                            <span class="logo-lg"><img src="assets/images/logo-light.png" alt="logo"></span>
-                            <span class="logo-sm"><img src="assets/images/logo-sm-light.png" alt="small logo"></span>
-                        </span>
-
-                        <span class="logo-dark">
-                            <span class="logo-lg"><img src="assets/images/logo-dark.png" alt="dark logo"></span>
-                            <span class="logo-sm"><img src="assets/images/logo-sm.png" alt="small logo"></span>
-                        </span>
-                    </a> -->
-
-
-                    <!-- Sidebar Menu Toggle Button -->
-                    <button class="sidenav-toggle-button px-2" id="toggleSidebar">
-                        <i class="mdi mdi-menu font-24"></i>
-                    </button>
-
-                    <!-- Horizontal Menu Toggle Button -->
-                    <!-- <button class="topnav-toggle-button px-2" data-bs-toggle="collapse" data-bs-target="#topnav-menu-content">
-                        <i class="mdi mdi-menu font-22"></i>
-                    </button> -->
-
-
-                    <h5 class="m-3">Hello, Abhi</h5>
-                        <img src="../../assets/image/chevrons-right.svg" alt="image" >
-                    <h6 class="mt-2" style="color: #99a1a8;"> Feb 01, 2025</h6>
-                    <!-- Mega Menu Dropdown -->
-                    <div class="topbar-item d-none d-md-flex">
-                        <div class="dropdown">
-                            <!-- <a href="#" class="topbar-link btn btn-link px-2 dropdown-toggle drop-arrow-none fw-medium" data-bs-toggle="dropdown" data-bs-offset="0,17" aria-haspopup="false" aria-expanded="false">
-                                Pages <i class="mdi mdi-chevron-down ms-1"></i>
-                            </a> -->
-
-                            <!-- .dropdown-menu-->
-                        </div> <!-- .dropdown-->
-                    </div> <!-- end topbar-item -->
-                </div>
-
-                <div class="d-flex align-items-center gap-2">
-                    <!-- Light/Dark Toggle Button  -->
-                    
-                    <!-- Language Dropdown -->
-                    
-
-                    <!-- Notification Dropdown -->
-                    <div class="topbar-item">
-                        <div class="dropdown position-relative">
-                            <button class="topbar-link dropdown-toggle drop-arrow-none notification" data-bs-toggle="dropdown" data-bs-offset="0,25" type="button" data-bs-auto-close="outside" aria-haspopup="false" aria-expanded="false">
-                                <img src="../../assets/image/Group 2.svg" alt="dashboard" class="notification-icon">
-                                <!-- <span class="noti-icon-badge"></span> -->
-                            </button>
-
-                            <div class="dropdown-menu p-0 dropdown-menu-end dropdown-menu-lg" style="min-height: 300px;">
-
-                                <div class="position-relative z-2" style="max-height: 300px;" data-simplebar>
-
-                   
-                                    <!-- item-->
-                                    <div class="dropdown-item notification-item py-2 text-wrap mb-5" id="notification-5">
-                                        <span class="d-flex align-items-center">
-                                            <span class="me-3 position-relative flex-shrink-0">
-                                                <div class="avatar avatar-md">
-                                                    <span class="avatar-title bg-info rounded-circle">
-                                                        <i class="mdi mdi-bell-outline font-20"></i>
-                                                    </span>
-                                                </div>
-                                            </span>
-                                            <span class="flex-grow-1 text-muted">
-                                                <p class="fw-medium mb-0 text-dark">Updates</p>
-                                                <span class="font-12">There are 2 new updates available</span>
-                                            </span>
-                                            <span class="notification-item-close">
-                                                <button type="button" class="btn btn-ghost-danger rounded-circle btn-sm btn-icon" data-dismissible="#notification-1">
-                                                    <i class="mdi mdi-close font-16"></i>
-                                                </button>
-                                            </span>
-                                        </span>
-                                    </div>
-                                </div>
-
-
-                                <!-- All-->
-                                <a href="javascript:void(0);" class="dropdown-item notification-item position-fixed z-2 bottom-0 text-center text-reset text-decoration-underline link-offset-2 fw-bold notify-item border-top border-light py-2">
-                                    View All
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Email Dropdown -->
-                    
-                    <div class="d-none d-md-flex">
-                        <form class="app-search">
-                            <div class="app-search-box">
-                                <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Search...">
-                                    <div class="input-group-append" style="box-shadow: 0 4px 5px rgba(209, 209, 209, 0.2);">
-                                        <button class="btn btn-icon" type="submit">
-                                            <i class="fas fa-search"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-
-
-                    <!-- User Dropdown -->
-                    <div class="topbar-item nav-user">
-                        <div class="dropdown">
-                            <!-- <a class="topbar-link dropdown-toggle drop-arrow-none px-2" data-bs-toggle="dropdown" data-bs-offset="0,25" type="button" aria-haspopup="false" aria-expanded="false">
-                                <img src="assets/images/users/avatar-1.jpg" width="32" class="rounded-circle me-lg-2 d-flex" alt="user-image">
-                                <span class="d-lg-flex flex-column gap-1 d-none">
-                                    <h6 class="my-0">Alex M.</h6>
-                                </span>
-                                <i class="mdi mdi-chevron-down d-none d-lg-block align-middle ms-2"></i>
-                            </a> -->
-                            <div class="dropdown-menu dropdown-menu-end">
-                                <!-- item-->
-                                <div class="dropdown-header bg-primary mt-n3 rounded-top-2">
-                                    <h6 class="text-overflow text-white m-0">Welcome !</h6>
-                                </div>
-
-                                <!-- item-->
-                                <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                    <i class="mdi mdi-account-outline"></i>
-                                    <span>Profile</span>
-                                </a>
-
-                                <!-- item-->
-                                <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                    <i class="mdi mdi-cog"></i>
-                                    <span>Settings</span>
-                                </a>
-
-                                <!-- item-->
-                                <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                    <i class="mdi mdi-lock-outline"></i>
-                                    <span>Lock Screen</span>
-                                </a>
-
-                                <div class="dropdown-divider"></div>
-
-                                <!-- item-->
-                                <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                    <i class="mdi mdi-logout-variant"></i>
-                                    <span>Logout</span>
-                                </a>
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Button Trigger Customizer Offcanvas -->
-                    <!-- <div class="topbar-item d-none d-sm-flex">
-                        <button class="topbar-link" data-bs-toggle="offcanvas" data-bs-target="#theme-settings-offcanvas" type="button">
-                            <i class="mdi mdi-cog-outline font-22"></i>
-                        </button>
-                    </div> -->
-                </div>
-            </div>
-        </header>
-        <!-- Topbar End -->
-        <div class="page-content">
-
-            <div class="page-container" style="background-color: transparent;">
-
                 <div class="page-title-box">
                     
                     <div class="d-flex align-items-sm-center flex-sm-row flex-column gap-2">
@@ -626,14 +263,14 @@
                                                         <label style="font-size: 11px; font-weight: 400;">Your Profile Picture</label>
                                                         <div class="d-flex flex-column justify-content-left align-items-left">
                                                             <label for="uploadInput" style="width: 90px; height: 80px; border: 2px dashed #706d6d; border-radius: 10px; display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer;">
-                                                                <img src="../../assets/image/gallery-add.svg" alt="dashboard" data-bs-toggle="modal" data-bs-target="#editModal" style="cursor: pointer; height: 25px; width: 25px;">
+                                                                <img src="{{asset('assets/image/gallery-add.svg')}}" alt="dashboard" data-bs-toggle="modal" data-bs-target="#editModal" style="cursor: pointer; height: 25px; width: 25px;">
                                                                 <span style="font-size: 10px; color: #cac9c9; margin-top: 7px; font-size: 7px;">Upload image</span>
                                                                 <input type="file" id="uploadInput" style="display: none;">
                                                             </label>
                                                             <label class="mt-4 mb-3" style="font-size: 11px; font-weight: 400;">Your Turf Image</label>
                                                             <div class="d-flex flex-column justify-content-left align-items-left">
                                                                 <label for="uploadInput" style="width: 90px; height: 80px; border: 2px dashed #706d6d; border-radius: 10px; display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer;">
-                                                                    <img src="../../assets/image/gallery-add.svg" alt="dashboard" data-bs-toggle="modal" data-bs-target="#editModal" style="cursor: pointer; height: 25px; width: 25px;">
+                                                                    <img src="{{asset('assets/image/gallery-add.svg')}}" alt="dashboard" data-bs-toggle="modal" data-bs-target="#editModal" style="cursor: pointer; height: 25px; width: 25px;">
                                                                     <span style="font-size: 10px; color: #cac9c9; margin-top: 7px; font-size: 7px;">Upload image</span>
                                                                     <input type="file" id="uploadInput" style="display: none;">
                                                                 </label>
@@ -696,7 +333,7 @@
                                                     <div class="col-md-12 col-12" style="font-size: 12px;">
                                                         <div class="mb-3">
                                                             <label class="form-label me-3">Map Location </label>
-                                                            <img src="../../assets/image/link-2.svg" alt="map" data-bs-toggle="modal" data-bs-target="#editModal" style="cursor: pointer;">
+                                                            <img src="{{asset('assets/image/link-2.svg')}}" alt="map" data-bs-toggle="modal" data-bs-target="#editModal" style="cursor: pointer;">
                                                             <input type="text" class="form-control text-muted" value="https://www.google.com/maps/@21.2108425,72.8727263,17z/data=!5m1!1e2?entry" style="font-size: 12px; letter-spacing: 0.7px; border: none; background-color: transparent;" readonly>
                                                         </div>
                                                     </div>
@@ -809,7 +446,7 @@
                                                 <td style="color: green;">₹400</td>
                                                 <td>
                                                     <button class="open-modal" data-id="1" style="border: none; background: none;">
-                                                        <img src="../../assets/image/edit.svg" alt="dashboard" style="cursor: pointer;">
+                                                        <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard" style="cursor: pointer;">
                                                     </button>
                                                     
                                                     <!-- Custom Modal -->
@@ -876,7 +513,7 @@
                                                         <!-- Include Bootstrap JS (if not already included) -->
                                                         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
                                                         
-                                                     | <img src="../../assets/image/trash.svg" alt="dashboard">
+                                                     | <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
                                                 </td>
                                             </tr>
                                             <tr>
@@ -887,8 +524,8 @@
                                                 <td><h4><span class="badge badge-soft-danger" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Unactive</span></h4></td>
                                                 <td style="color: green;">₹400</td>
                                                 <td>
-                                                    <img src="../../assets/image/edit.svg" alt="dashboard"> |
-                                                    <img src="../../assets/image/trash.svg" alt="dashboard">
+                                                    <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                    <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
                                                 </td>
                                             </tr>
                                             <tr>
@@ -899,8 +536,8 @@
                                                 <td><h4><span class="badge badge-soft-danger" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Unactive</span></h4></td>
                                                 <td style="color: green;">₹400</td>
                                                 <td>
-                                                    <img src="../../assets/image/edit.svg" alt="dashboard"> |
-                                                    <img src="../../assets/image/trash.svg" alt="dashboard">
+                                                    <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                    <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
                                                 </td>
                                             </tr>
                                             <tr>
@@ -911,8 +548,8 @@
                                                 <td><h4><span class="badge badge-soft-danger" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Unactive</span></h4></td>
                                                 <td style="color: green;">₹400</td>
                                                 <td>
-                                                    <img src="../../assets/image/edit.svg" alt="dashboard"> |
-                                                    <img src="../../assets/image/trash.svg" alt="dashboard">
+                                                    <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                    <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
                                                 </td>
                                             </tr>
                                             <tr>
@@ -923,8 +560,8 @@
                                                 <td><h4><span class="badge badge-soft-danger" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Unactive</span></h4></td>
                                                 <td style="color: green;">₹400</td>
                                                 <td>
-                                                    <img src="../../assets/image/edit.svg" alt="dashboard"> |
-                                                    <img src="../../assets/image/trash.svg" alt="dashboard">
+                                                    <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                    <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
                                                 </td>
                                             </tr>
                                             <tr>
@@ -935,8 +572,8 @@
                                                 <td><h4><span class="badge badge-soft-danger" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Unactive</span></h4></td>
                                                 <td style="color: green;">₹400</td>
                                                 <td>
-                                                    <img src="../../assets/image/edit.svg" alt="dashboard"> |
-                                                    <img src="../../assets/image/trash.svg" alt="dashboard">
+                                                    <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                    <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
                                                 </td>
                                             </tr>
                                             <tr>
@@ -947,8 +584,8 @@
                                                 <td><h4><span class="badge badge-soft-danger" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Unactive</span></h4></td>
                                                 <td style="color: green;">₹400</td>
                                                 <td>
-                                                    <img src="../../assets/image/edit.svg" alt="dashboard"> |
-                                                    <img src="../../assets/image/trash.svg" alt="dashboard">
+                                                    <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                    <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
                                                 </td>
                                             </tr>
                                             <tr>
@@ -959,8 +596,8 @@
                                                 <td><h4><span class="badge badge-soft-danger" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Unactive</span></h4></td>
                                                 <td style="color: green;">₹400</td>
                                                 <td>
-                                                    <img src="../../assets/image/edit.svg" alt="dashboard"> |
-                                                    <img src="../../assets/image/trash.svg" alt="dashboard">
+                                                    <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                    <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
                                                 </td>
                                             </tr>
                                             <tr>
@@ -971,8 +608,8 @@
                                                 <td><h4><span class="badge badge-soft-danger" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Unactive</span></h4></td>
                                                 <td style="color: green;">₹400</td>
                                                 <td>
-                                                    <img src="../../assets/image/edit.svg" alt="dashboard"> |
-                                                    <img src="../../assets/image/trash.svg" alt="dashboard">
+                                                    <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                    <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
                                                 </td>
                                             </tr>
                                             <tr>
@@ -983,8 +620,8 @@
                                                 <td><h4><span class="badge badge-soft-danger" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Unactive</span></h4></td>
                                                 <td style="color: green;">₹400</td>
                                                 <td>
-                                                    <img src="../../assets/image/edit.svg" alt="dashboard"> |
-                                                    <img src="../../assets/image/trash.svg" alt="dashboard">
+                                                    <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                    <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
                                                 </td>
                                             </tr>
                                             <tr>
@@ -995,8 +632,8 @@
                                                 <td><h4><span class="badge badge-soft-danger" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Unactive</span></h4></td>
                                                 <td style="color: green;">₹400</td>
                                                 <td>
-                                                    <img src="../../assets/image/edit.svg" alt="dashboard"> |
-                                                    <img src="../../assets/image/trash.svg" alt="dashboard">
+                                                    <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                    <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
                                                 </td>
                                             </tr>
                                             <tr>
@@ -1007,8 +644,8 @@
                                                 <td><h4><span class="badge badge-soft-danger" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Unactive</span></h4></td>
                                                 <td style="color: green;">₹400</td>
                                                 <td>
-                                                    <img src="../../assets/image/edit.svg" alt="dashboard"> |
-                                                    <img src="../../assets/image/trash.svg" alt="dashboard">
+                                                    <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                    <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -1038,97 +675,97 @@
     <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
 
     <script>
-        $(document).ready(function () {
-            // Get the current page URL (excluding query params)
-            var currentUrl = window.location.pathname.split("/").pop();
+        // $(document).ready(function () {
+        //     // Get the current page URL (excluding query params)
+        //     var currentUrl = window.location.pathname.split("/").pop();
 
-            // Loop through sidebar links
-            $(".side-nav-link").each(function () {
-                var linkUrl = $(this).attr("href");
+        //     // Loop through sidebar links
+        //     $(".side-nav-link").each(function () {
+        //         var linkUrl = $(this).attr("href");
 
-                // If the href matches the current page, add 'active' class
-                if (linkUrl === currentUrl) {
-                    $(this).addClass("active");
+        //         // If the href matches the current page, add 'active' class
+        //         if (linkUrl === currentUrl) {
+        //             $(this).addClass("active");
 
-                    // Optional: Add active class to the parent <li> for better styling
-                    $(this).closest(".side-nav-item").addClass("active");
-                }
-            });
-        });
+        //             // Optional: Add active class to the parent <li> for better styling
+        //             $(this).closest(".side-nav-item").addClass("active");
+        //         }
+        //     });
+        // });
 
 
 
-        $(document).ready(function () {
-            var table = $('#responsive-datatable').DataTable({
-                "ordering": false,
-                "paging": true,
-                "searching": true,
-                "info": false,
-                "pageLength": 10,  // Show 10 records per page
-                "lengthChange": false,
-                "dom": 'rt',
-            });
+        // $(document).ready(function () {
+        //     var table = $('#responsive-datatable').DataTable({
+        //         "ordering": false,
+        //         "paging": true,
+        //         "searching": true,
+        //         "info": false,
+        //         "pageLength": 10,  // Show 10 records per page
+        //         "lengthChange": false,
+        //         "dom": 'rt',
+        //     });
 
-            function columnSearch(inputSelector, columnIndex) {
-                $(inputSelector).on('keyup', function () {
-                    table.column(columnIndex).search(this.value).draw();
-                });
-            }
+        //     function columnSearch(inputSelector, columnIndex) {
+        //         $(inputSelector).on('keyup', function () {
+        //             table.column(columnIndex).search(this.value).draw();
+        //         });
+        //     }
 
-            // Attach search functionality to respective input fields
-            columnSearch('#nameSearch', 0);
-            columnSearch('#citySearch', 1);
-            columnSearch('#placeSearch', 2);
-            columnSearch('#mobileSearch', 3);
-            columnSearch('#typeSearch', 4);
-            columnSearch('#balanceSearch', 5);
+        //     // Attach search functionality to respective input fields
+        //     columnSearch('#nameSearch', 0);
+        //     columnSearch('#citySearch', 1);
+        //     columnSearch('#placeSearch', 2);
+        //     columnSearch('#mobileSearch', 3);
+        //     columnSearch('#typeSearch', 4);
+        //     columnSearch('#balanceSearch', 5);
 
-            // Function to create custom pagination
-            function createCustomPagination() {
-                var totalPages = table.page.info().pages;  // Get total number of pages
-                var currentPage = table.page.info().page; // Get current page (zero-based index)
-                var pagination = $('.custom-pagination');
-                pagination.empty();  // Clear existing pagination
+        //     // Function to create custom pagination
+        //     function createCustomPagination() {
+        //         var totalPages = table.page.info().pages;  // Get total number of pages
+        //         var currentPage = table.page.info().page; // Get current page (zero-based index)
+        //         var pagination = $('.custom-pagination');
+        //         pagination.empty();  // Clear existing pagination
 
-                // Create previous button (disable if on first page)
-                var prevDisabled = (currentPage === 0) ? 'disabled' : '';
-                pagination.append('<li class="page-item ' + prevDisabled + '"><a class="page-link" href="javascript:void(0);" id="prevPage">&lt;</a></li>');
+        //         // Create previous button (disable if on first page)
+        //         var prevDisabled = (currentPage === 0) ? 'disabled' : '';
+        //         pagination.append('<li class="page-item ' + prevDisabled + '"><a class="page-link" href="javascript:void(0);" id="prevPage">&lt;</a></li>');
 
-                // Create page numbers
-                for (var i = 0; i < totalPages; i++) {
-                    var activeClass = (i === currentPage) ? 'active success' : '';
-                    pagination.append('<li class="page-item ' + activeClass + '"><a class="page-link page-num" href="javascript:void(0);" data-page="' + i + '">' + (i + 1) + '</a></li>');
-                }
+        //         // Create page numbers
+        //         for (var i = 0; i < totalPages; i++) {
+        //             var activeClass = (i === currentPage) ? 'active success' : '';
+        //             pagination.append('<li class="page-item ' + activeClass + '"><a class="page-link page-num" href="javascript:void(0);" data-page="' + i + '">' + (i + 1) + '</a></li>');
+        //         }
 
-                // Create next button (disable if on last page)
-                var nextDisabled = (currentPage === totalPages - 1) ? 'disabled' : '';
-                pagination.append('<li class="page-item ' + nextDisabled + '"><a class="page-link" href="javascript:void(0);" id="nextPage">&gt;</a></li>');
-            }
+        //         // Create next button (disable if on last page)
+        //         var nextDisabled = (currentPage === totalPages - 1) ? 'disabled' : '';
+        //         pagination.append('<li class="page-item ' + nextDisabled + '"><a class="page-link" href="javascript:void(0);" id="nextPage">&gt;</a></li>');
+        //     }
 
-            // Custom pagination button click handlers
-            $(document).on('click', '.page-num', function () {
-                var pageNum = $(this).data('page');  // Get page number from `data-page` attribute
-                table.page(pageNum).draw(false);
-                createCustomPagination();  // Update pagination
-            });
+        //     // Custom pagination button click handlers
+        //     $(document).on('click', '.page-num', function () {
+        //         var pageNum = $(this).data('page');  // Get page number from `data-page` attribute
+        //         table.page(pageNum).draw(false);
+        //         createCustomPagination();  // Update pagination
+        //     });
 
-            $(document).on('click', '#prevPage', function () {
-                if (!$(this).parent().hasClass('disabled')) {
-                    table.page('previous').draw(false);
-                    createCustomPagination();
-                }
-            });
+        //     $(document).on('click', '#prevPage', function () {
+        //         if (!$(this).parent().hasClass('disabled')) {
+        //             table.page('previous').draw(false);
+        //             createCustomPagination();
+        //         }
+        //     });
 
-            $(document).on('click', '#nextPage', function () {
-                if (!$(this).parent().hasClass('disabled')) {
-                    table.page('next').draw(false);
-                    createCustomPagination();
-                }
-            });
+        //     $(document).on('click', '#nextPage', function () {
+        //         if (!$(this).parent().hasClass('disabled')) {
+        //             table.page('next').draw(false);
+        //             createCustomPagination();
+        //         }
+        //     });
 
-            // Initialize the custom pagination
-            createCustomPagination();
-        });
+        //     // Initialize the custom pagination
+        //     createCustomPagination();
+        // });
 
 
         $('#nameSearch').on('keyup', function () {
@@ -1399,41 +1036,4 @@
 
     </script>
 
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Vendor js -->
-    <script src="assets/js/vendor.min.js"></script>
-
-    <!-- App js -->
-    <script src="assets/js/app.js"></script>
-
-    <!--Morris Chart-->
-    <script src="assets/libs/morris.js/morris.min.js"></script>
-    <script src="assets/libs/raphael/raphael.min.js"></script>
-
-    <!-- Projects Analytics Dashboard App js -->
-    <script src="assets/js/pages/dashboard-sales.js"></script>
-
-    <script src="assets/libs/datatables.net/js/dataTables.min.js"></script>
-    <script src="assets/libs/datatables.net-bs5/js/dataTables.bootstrap5.min.js"></script>
-
-    <script src="assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
-    <script src="assets/libs/datatables.net-responsive-bs5/js/responsive.bootstrap5.min.js"></script>
-
-    <script src="assets/libs/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-    <script src="assets/libs/datatables.net-buttons-bs5/js/buttons.bootstrap5.min.js"></script>
-
-    <script src="assets/libs/datatables.net-buttons/js/buttons.html5.min.js"></script>
-    <script src="assets/libs/datatables.net-buttons/js/buttons.print.min.js"></script>
-
-    <script src="assets/libs/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
-    <script src="assets/libs/datatables.net-select/js/dataTables.select.min.js"></script>
-
-    <!-- Datatables init -->
-    <script src="assets/js/pages/table-datatable.js"></script>
-
-
-</body>
-<!-- Mirrored from coderthemes.com/uplon/layouts/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 31 Jan 2025 10:56:29 GMT -->
-</html>
+@include('adminlayouts.footer')
