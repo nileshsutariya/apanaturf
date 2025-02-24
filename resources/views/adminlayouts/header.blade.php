@@ -232,26 +232,26 @@
                         </a>
                     </li>
                     <li class="side-nav-item">
-                        <a href="venues.html" class="side-nav-link">
+                        <a href="{{route('admin.venues')}}" class="side-nav-link">
                             <span class="menu-icon"><img src="{{asset('assets/image/bank.svg')}}" alt="venues"></span>
                             <span class="menu-text mt-2"> Venues </span>
                         </a>
                     </li>
                     <li class="side-nav-item">
-                        <a href="bookings.html" class="side-nav-link">
+                        <a href="{{route('admin.bookings')}}" class="side-nav-link">
                             <span class="menu-icon"><img src="{{asset('assets/image/shopping-cart.svg')}}"
                                     alt="bookings"></span>
                             <span class="menu-text mt-2"> Bookings </span>
                         </a>
                     </li>
                     <li class="side-nav-item">
-                        <a href="freeze.html" class="side-nav-link">
+                        <a href="{{route('admin.freeze')}}" class="side-nav-link">
                             <span class="menu-icon"><img src="{{asset('assets/image/sun.svg')}}" alt="freeze"></span>
                             <span class="menu-text mt-2"> Freeze </span>
                         </a>
                     </li>
                     <li class="side-nav-item">
-                        <a href="transaction.html" class="side-nav-link">
+                        <a href="{{route('admin.transaction')}}" class="side-nav-link">
                             <span class="menu-icon"><img src="{{asset('assets/image/Transaction.svg')}}"
                                     alt="transaction"></span>
                             <span class="menu-text mt-2"> Transactions </span>
@@ -269,17 +269,17 @@
                         <div class="collapse" id="sidebarPagesAuth">
                             <ul class="sub-menu">
                                 <li class="side-nav-item">
-                                    <a href="sports.html" class="side-nav-link">
+                                    <a href="{{route('admin.sports')}}" class="side-nav-link">
                                         <span class="menu-text"> Sports </span>
                                     </a>
                                 </li>
                                 <li class="side-nav-item">
-                                    <a href="amenities.html" class="side-nav-link">
+                                    <a href="{{route('admin.amenities')}}" class="side-nav-link">
                                         <span class="menu-text"> Amenities </span>
                                     </a>
                                 </li>
                                 <li class="side-nav-item">
-                                    <a href="financialyear.html" class="side-nav-link">
+                                    <a href="{{route('admin.financialyear')}}" class="side-nav-link">
                                         <span class="menu-text"> Financial Year </span>
                                     </a>
                                 </li>
@@ -288,26 +288,26 @@
                     </li>
 
                     <li class="side-nav-item">
-                        <a href="couponscode.html" class="side-nav-link">
+                        <a href="{{route('admin.couponscode')}}" class="side-nav-link">
                             <span class="menu-icon"><img src="{{asset('assets/image/ticket.svg')}}"
                                     alt="coupons"></span>
                             <span class="menu-text mt-2"> Coupons Code </span>
                         </a>
                     </li>
                     <li class="side-nav-item">
-                        <a href="banner.html" class="side-nav-link">
+                        <a href="{{route('admin.banner')}}" class="side-nav-link">
                             <span class="menu-icon"><img src="{{asset('assets/image/money-4.svg')}}" alt="money"></span>
                             <span class="menu-text mt-2"> Banners </span>
                         </a>
                     </li>
                     <li class="side-nav-item">
-                        <a href="subscribers.html" class="side-nav-link">
+                        <a href="{{route('admin.subscribers')}}" class="side-nav-link">
                             <span class="menu-icon"><img src="{{asset('assets/image/sms.svg')}}" alt="sms"></span>
                             <span class="menu-text mt-2"> Subscribers </span>
                         </a>
                     </li>
                     <li class="side-nav-item">
-                        <a href="enquiries.html" class="side-nav-link">
+                        <a href="{{route('admin.enquiries')}}" class="side-nav-link">
                             <span class="menu-icon"><i class="bi bi-info-circle"></i></span>
                             <span class="menu-text mt-2"> Enquiries </span>
                         </a>
@@ -341,7 +341,7 @@
                     <!-- Right: Name, Profile Link, and Dots -->
                     <div class="footer-content d-flex flex-column flex-grow-1">
                         <span class="menu-text text-white" style="font-size: 14px;">Abhishek Guleria</span>
-                        <a href="profile.html" class="text-muted" style="font-size: 11px;">View Profile</a>
+                        <a href="{{route('admin.profile')}}" class="text-muted" style="font-size: 11px;">View Profile</a>
                     </div>
                     <div class="footer-dot text-white" style="font-size: 20px;">
                         <i class="bi bi-three-dots-vertical"></i>

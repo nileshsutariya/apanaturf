@@ -11,6 +11,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Bootstrap JS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=NATS&display=swap" rel="stylesheet">
 
     <link href="https://fonts.googleapis.com/css2?family=NATS&display=swap" rel="stylesheet">
 
@@ -33,7 +34,7 @@
         display: flex;
         flex-direction: column;
         overflow-x: hidden;
-        font-family: 'Inter', sans-serif;
+        font-family: 'Inter', sans-serif !important;
         letter-spacing: 0.9px;
         background-color: #F5F5F5;
         font-weight: 400 !important;
@@ -48,7 +49,7 @@
 
       }
       .navbar-nav {
-        padding-left: 600px;
+        padding-left: 400px;
       }
       .navbar-nav .nav-link {
           font-size: 12px;
@@ -109,7 +110,6 @@
           text-align: left;
           flex-grow: 1; 
       }
-               
       @font-face {
           font-family: 'NicoMoji';
           src: url('{{ asset('assets/fonts/nicomoji-plus_v2-5.ttf') }}') format('truetype');
@@ -135,29 +135,29 @@
       }
       @media (max-width: 768px) {
           .sport {
-              font-size: 2rem; /* Smaller font size on mobile */
+              font-size:10rem;
           }
 
           .title {
-              font-size: 2rem; /* Adjust title size */
+              font-size: 2rem; 
           }
 
           .subtitle {
-              font-size: 1.5rem; /* Adjust subtitle size */
+              font-size: 1.5rem; 
           }
       }
 
       @media (max-width: 576px) {
           .sport {
-              font-size: 1.5rem; /* Further adjust for very small screens */
+              font-size: 6rem ;
           }
 
           .title {
-              font-size: 1.5rem; /* Adjust title size for small screens */
+              font-size: 1.5rem;
           }
 
           .subtitle {
-              font-size: 1.2rem; /* Adjust subtitle size for small screens */
+              font-size: 1.2rem; 
           }
       }
     </style>

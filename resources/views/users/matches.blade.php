@@ -1,14 +1,13 @@
 @include('users.layouts.header2')
 <style>
     html, body {
-    overflow-x: hidden;
-    width: 100%;
-}
-
-    body {
         overflow-x: hidden;
+        width: 100%;
     }
-    
+
+    /* body {
+        overflow-x: hidden;
+    } */
     .custom-card {
         border-radius: 10px;
         box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.16);
@@ -25,25 +24,25 @@
         font-weight: 600;
     }
     .main-container {
-    display: flex;
-}
-
-.sidebar {
-    flex-shrink: 0;
-}
-
-.page-content {
-    flex-grow: 1;
-    padding: 20px; /* Adjust spacing */
-}
- @media (max-width: 768px) {
-    .page-content{
-        flex-grow:0;
+        display: flex;
     }
-}
-/* .row {
-    --bs-gutter-x: 1.5rem;
-} */
+
+    .sidebar {
+        flex-shrink: 0;
+    }
+
+    .page-content {
+        flex-grow: 1;
+        padding: 20px; /* Adjust spacing */
+    }
+    @media (max-width: 768px) {
+        .page-content{
+            flex-grow:0;
+        }
+    }
+    /* .row {
+        --bs-gutter-x: 1.5rem;
+    } */
 
 </style>
     <div class="page-content" id="mainContent">
@@ -51,18 +50,19 @@
             <div class="row">
                 <div class="col-md-12">
                     <h4 class="mb-0 ml-4" style=" font-family: 'Poppins', serif !important;">The Matches</h4>
-                <div class="ml-4" style="font-size: 15px; color: rgb(184, 180, 180); font-family: 'Poppins', serif !important;">
-                    Details of all matches
+                    <div class="ml-4" style="font-size: 15px; color: rgb(184, 180, 180); font-family: 'Poppins', serif !important;">
+                        Details of all matches
+                    </div>
                 </div>
-                <div class="d-flex flex-row bd-highlight ml-4" style="margin-top: 20px;">
-                    <a class="nav-link mr-5 text-muted" data-filter="complete" href="#" style="font-size: 15px; font-weight: 600 !important;">Complete <span class="sr-only">(current)</span></a>
-                    <a class="nav-link mr-5 text-muted" data-filter="going-on" href="#" style="font-size: 15px; font-weight: 600 !important;">Going ON <span class="sr-only">(current)</span></a>
-                    <a class="nav-link mr-5 text-muted" data-filter="upcoming" href="#" style="font-size: 15px; font-weight: 600 !important;">Upcoming <span class="sr-only">(current)</span></a>
-                    <a class="nav-link mr-5 text-muted" data-filter="bidding" href="#" style="font-size: 15px; font-weight: 600 !important;">Bidding <span class="sr-only">(current)</span></a>
+                <div class="d-flex flex-wrap bd-highlight ml-4" style="margin-top: 20px;">
+                    <a class="nav-link mx-2 text-muted" data-filter="complete" href="#" style="font-size: 15px; font-weight: 600 !important;">Complete <span class="sr-only">(current)</span></a>
+                    <a class="nav-link mx-2 text-muted" data-filter="going-on" href="#" style="font-size: 15px; font-weight: 600 !important;">Going ON <span class="sr-only">(current)</span></a>
+                    <a class="nav-link mx-2 text-muted" data-filter="upcoming" href="#" style="font-size: 15px; font-weight: 600 !important;">Upcoming <span class="sr-only">(current)</span></a>
+                    <a class="nav-link mx-2 text-muted" data-filter="bidding" href="#" style="font-size: 15px; font-weight: 600 !important;">Bidding <span class="sr-only">(current)</span></a>
                 </div>
             </div>
             <div class="row">
-                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                <div class="col-lg-6 col-md-6 col-md-12 col-sm-12 col-12">
                     <div class="container mt-5">
                         <div class="card custom-card">
                             <div class="card-body">
@@ -87,7 +87,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                <div class="col-lg-6 col-md-6 col-md-12 col-sm-12 col-12">
                     <div class="container mt-5">
                         <div class="card custom-card">
                             <div class="card-body">
@@ -114,7 +114,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                <div class="col-lg-6 col-md-6 col-md-12 col-sm-12 col-12">
                     <div class="container mt-5">
                         <div class="card custom-card disabled" style="pointer-events: none; opacity: 0.6;">
                             <div class="card-body">
@@ -139,7 +139,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                <div class="col-lg-6 col-md-6 col-md-12 col-sm-12 col-12">
                     <div class="container mt-5">
                         <div class="card custom-card">
                             <div class="card-body">
@@ -166,7 +166,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                <div class="col-lg-6 col-md-6 col-md-12 col-sm-12 col-12">
                     <div class="container mt-5">
                         <div class="card custom-card">
                             <div class="card-body">
@@ -196,6 +196,8 @@
 
         </div>
     </div>
+</div>
+
 </div>
 
     <script>
