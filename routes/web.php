@@ -45,46 +45,20 @@ Route::get('admin/configuration', function () {
 
 Route::get('/couponscode', function () {
     return view('couponscode');
-})->name('admin.couponscode');
-
-Route::get('banner', function () {
-    return view('banner');
-})->name('admin.banner');
-
-Route::get('subscribers', function () {
-    return view('subscribers');
-})->name('admin.subscribers');
-
-Route::get('admin/enquiries', function () {
-    return view('enquiries');
-})->name('admin.enquiries');
-
-Route::get('admin/profile', function () {
-    return view('profile');
-})->name('admin.profile');
-
-
-
-
-
-
-
-Route::get('/', function () {
-    return view('users.layouts.demoheader');
 });
-
-Route::get('/index', function () {
-    return view('users.index');
-})->name('users.index');
+// Route::get('/enquiries', function () {
+//     return view('enquiries');
+// });
+// Route::get('/financialyear', function () {
+//     return view(view: 'financialyear');
+// });
+Route::get('/', function () {
+    return view('users.setting');
+});
 
 Route::get('users/matches', function() {
     return view('users.matches');
-})->name('users.matches');
-
-Route::get('users/wallet', function() {
-    return view('users.wallet');
-})->name('users.wallet');
-
+});
 Route::get('users/setting', function() {
     return view('users.setting');
 });

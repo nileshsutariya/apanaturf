@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
     <link href="https://fonts.googleapis.com/css2?family=NATS&display=swap" rel="stylesheet">
 
+    <link href="https://fonts.googleapis.com/css2?family=NATS&display=swap" rel="stylesheet">
 
     <title>Document</title>
     <style>
@@ -22,6 +23,7 @@
       body {
           height: 100%; /* Ensure the page takes full height */
           margin: 0; /* Remove default margins */
+          overflow-x: hidden;
       }
       .wrapper {
           height: 100vh;
