@@ -59,7 +59,7 @@
     }
 
     .sidebar {
-        height: ;
+        height: 800px !important;
     }
 
     .page-content {
@@ -68,24 +68,29 @@
         /* Adjust spacing */
     }
 
-    .main-container {
-        display: flex;
-    }
-
-    @media (max-width: 768px) {
-        .page-content {
-            flex-grow: 0;
-        }
-    }
     #otp::placeholder {
         font-size: 16px;
     }
+
+    .modal-demo {
+        width: 380px !important;
+        height: 240px;
+        padding: 30px;
+        box-shadow: 0 15px 15px rgba(0, 0, 0, 0.3);
+        border-radius: 12px;
+        position: relative;
+    }
+
+    @media (max-width: 435px) {
+        .modal-demo{
+            width:86%!important;
+        }
+    }
 </style>
-<!-- <div class="col-lg-9 col-md-10 col-sm-12"> -->
 <div class="page-content" id="mainContent">
     <div class="page-container" style="background-color: transparent;">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-lg-12 col-md-12 col-sm-12">
                 <h4 class="mb-0 ml-3" style=" font-family: 'Poppins', serif !important; font-size: 22px;  ">Setting</h4>
                 <div class="ml-3 pb-2"
                     style="font-size: 14px; color: rgb(184, 180, 180); font-family: 'Poppins', serif !important; ">
@@ -95,7 +100,6 @@
                     style=" border-radius: 13px; height: auto; box-shadow: 0 15px 15px rgba(0, 0, 0, 0.3);">
                     <div class="card-body">
 
-                        <!-- Account Section -->
                         <div class="row">
                             <div class="col-md-5">
                                 <div id="account" class="headeruser active" style="padding-left: 15px;"> Account </div>
@@ -157,24 +161,20 @@
         </div>
     </div>
 </div>
+</div>
+
 <!-- Add Banners Button -->
 
 <!-- Theme Modal for Add Banners -->
-<div id="addBanner" class="modal-demo" style="width: 380px !important;
-                                                height: 240px;
-                                                padding: 30px;
-                                                box-shadow: 0 15px 15px rgba(0, 0, 0, 0.3);
-                                                border-radius: 12px;
-                                                position: relative;"> 
+<div id="addBanner" class="modal-demo">
 
     <!-- Close Button (Bootstrap) -->
     <div class="d-flex  align-items-center justify-content-between mt-0"
-                                            style="max-width: 700px; width: 100%; height: auto;">
-                                            <button type="button" class="btn-close btn-close-black ml-auto "
-                                                onclick="Custombox.modal.close();">
-                                                <span class="sr-only">Close</span>
-                                            </button>
-                                        </div>
+        style="max-width: 700px; width: 100%; height: auto;">
+        <button type="button" class="btn-close btn-close-black ml-auto " onclick="Custombox.modal.close();">
+            <span class="sr-only">Close</span>
+        </button>
+    </div>
 
     <!-- Modal Header -->
     <div class="otp-container mt-0">
@@ -193,9 +193,9 @@
 </div>
 
 <script>
-function closeModal() {
-    document.getElementById('addBanner').style.display = 'none';
-}
+    function closeModal() {
+        document.getElementById('addBanner').style.display = 'none';
+    }
 </script>
 
 
@@ -203,7 +203,7 @@ function closeModal() {
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/custombox@4.0.3/dist/custombox.min.js"></script>
 
-<script src="https://unpkg.com/lucide@latest"></script>
+<!-- <script src="https://unpkg.com/lucide@latest"></script> -->
 
 <!-- App js -->
 <script src="{{asset('assets/js/app2.js')}}"></script>

@@ -278,14 +278,14 @@
         width: 500px;
     }
 
-    /* .address-turf,
+    .address-turf,
     .bid-turf {
         display: none;
-    } */
+    }
     .details-turf,
     .booking-date-container,
     .booknow-turf {
-        display: none;
+        display: block;
     }
 
     @media (max-width: 1000px) {

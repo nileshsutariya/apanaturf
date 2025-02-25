@@ -1,8 +1,4 @@
 @include('users.layouts.header2')
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css">
-<link rel="stylesheet"
-    href="https://cdn.jsdelivr.net/npm/admin-lte@3.2/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
-
 <style>
     @import url(https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap);
 
@@ -99,27 +95,36 @@
         align-items: center;
         gap: 10px;
     }
-
+    .sidebar {
+        height:800px !important ;
+    }
     .page-content {
         flex-grow: 1;
         padding: 20px;
         /* Adjust spacing */
     }
 
-    @media (max-width: 768px) {
-        .page-content {
-            flex-grow: 0;
+
+    @media (min-width: 768px) and (max-width: 1000px) {
+        .content-wrapper {
+            display: flex;
+        }
+    }
+    @media (max-width: 630px) {
+        .price{
+            text-align: right!important;
+            width: 100px;
+        }
+        .content-wrapper {
+            display: block !important;
         }
     }
 
-    .main-container {
-        display: flex;
-    }
 </style>
 <div class="page-content" id="mainContent">
     <div class="page-container" style="background-color: transparent;">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-lg-12 col-md-12 col-sm-12">
                 <h4 class="mb-0 ml-3" style=" font-family: 'Poppins', serif !important; font-size: 22px;  ">Split & Pay
                 </h4>
                 <div class="ml-3 pb-2"
@@ -141,7 +146,7 @@
                                             <option selected="selected" style="border: none;">Name of the Match</option>
                                             <option>Alaska</option>
                                         </select>
-                                        <input type="text" class="text-center" style="color:#9F9F9F; border: none;"
+                                        <input type="text" class="text-center price" style="color:#9F9F9F; border: none;"
                                             value="₹600">
                                     </div>
                                 </div>
@@ -195,7 +200,7 @@
         </div>
     </div>
 </div>
-
+</div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
