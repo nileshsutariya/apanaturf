@@ -45,7 +45,24 @@ Route::get('admin/configuration', function () {
 
 Route::get('/couponscode', function () {
     return view('couponscode');
-});
+})->name('admin.couponscode');
+
+Route::get('/banner', function () {
+    return view('banner');
+})->name('admin.banner');
+
+Route::get('/subscribers', function () {
+    return view('subscribers');
+})->name('admin.subscribers');
+
+Route::get('/enquiries', function () {
+    return view('enquiries');
+})->name('admin.enquiries');
+
+Route::get('/profile', function () {
+    return view('profile');
+})->name('admin.profile');
+
 // Route::get('/enquiries', function () {
 //     return view('enquiries');
 // });
@@ -53,12 +70,17 @@ Route::get('/couponscode', function () {
 //     return view(view: 'financialyear');
 // });
 Route::get('/', function () {
-    return view('users.setting');
+    return view('users.layouts.demoheader');
 });
+
+Route::get('index', function() {
+    return view('users.index');
+})->name('users.index');
 
 Route::get('users/matches', function() {
     return view('users.matches');
-});
-Route::get('users/setting', function() {
-    return view('users.setting');
-});
+})->name('users.matches');
+
+Route::get('users/wallet', function() {
+    return view('users.wallet');
+})->name('users.wallet');

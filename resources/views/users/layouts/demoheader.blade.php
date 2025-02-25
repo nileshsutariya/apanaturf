@@ -98,6 +98,8 @@
 
         .content-wrapper {
             display: flex;
+            align-items: stretch;
+
             flex: 1;
             transition: margin-left 0.3s ease-in-out;
         }
