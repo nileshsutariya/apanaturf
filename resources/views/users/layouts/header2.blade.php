@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,9 +14,9 @@
     <!-- Bootstrap JS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
     <!-- <meta http-equiv="refresh" content="3"> -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
-
     <style>
         body {
             margin: 0;
@@ -36,9 +37,11 @@
             color: white;
             text-align: center;
         }
+
         .navbar {
             padding: 5px 0;
         }
+
         .navbar-nav {
             display: flex;
             justify-content: center;
@@ -82,6 +85,7 @@
             justify-content: center;
             width: 20%;
         }
+
         @media (max-width: 1400px) {
             .navbar-nav {
                 text-align: center;
@@ -135,12 +139,15 @@
         .main-content.expanded {
             margin-left: 0px;
         }
+
         .line {
             background-color: #10998B29;
         }
+
         .logo {
             margin-right: 10px;
         }
+
         .sidebar {
             background-color: white;
             padding-top: 150px;
@@ -152,6 +159,7 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 
         }
+
         .sidebar a {
             display: block;
             color: #333;
@@ -160,6 +168,7 @@
             font-size: 13px;
             font-weight: 500 !important;
         }
+
         .sidebar-footer {
             position: sticky;
             background-color: white;
@@ -168,7 +177,7 @@
             z-index: 10;
             align-items: flex-end;
         }
-      
+
         /* Sidebar transition effect */
         #sidebar {
             width: 220px;
@@ -200,21 +209,24 @@
             }
 
             #sidebar.active {
-                width: 200px; 
+                width: 200px;
                 /* z-index: 10; */
             }
-            
+
         }
+
         @media (max-width: 768px) {
             .profilename {
                 display: none;
             }
         }
+
         @media (min-width: 768px) {
-            .bd-highlight{
+            .bd-highlight {
                 margin-top: 13px;
             }
         }
+
         .footer {
             background-color: #212529;
             color: white;
@@ -223,12 +235,21 @@
             position: relative;
             bottom: 0;
             width: 100%;
-            
+
             margin-top: 80px;
         }
-        
+
+        @media (max-width: 430px) {
+            .navbar-toggler {
+                margin-left: 65px;
+            }
+            .navbar-brand {
+                display: block;
+            }
+        }
     </style>
 </head>
+
 <body>
 
     <div class="wrapper">
@@ -264,28 +285,33 @@
                 <span class=" profilename ml-2" style="color:#10998B; font-size: 15px; font-weight:500;">Abhishek</span>
 
             </div>
-        </nav>    
-        
+        </nav>
+
         <div class="line">
             <div class="row" style="height: 60px;">
-                
+
                 <div class="col-md-12" style="justify-items: baseline;">
-                    
+
                     <div class="d-flex flex-row bd-highlight">
-                        <button class="btn mt-2 ml-2 d-block d-md-none" id="toggleSidebar" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCard">
+                        <button class="btn mt-2 ml-2 d-block d-md-none" id="toggleSidebar" type="button"
+                            data-bs-toggle="collapse" data-bs-target="#collapseCard">
                             <i class="bi bi-list menu" style="color: #000; font-size: 25px;"></i>
                         </button>
-                        
-                        <a class="nav-link mr-3 ml-3" href="#" style="align-self: center; color: rgb(148, 147, 147); font-size: 13px;">Home <span class="sr-only">(current)</span></a>
+
+                        <a class="nav-link mr-3 ml-3" href="#"
+                            style="align-self: center; color: rgb(148, 147, 147); font-size: 13px;">Home <span
+                                class="sr-only">(current)</span></a>
                         <img class="mr-3" src="{{asset('assets/image/users/arrow.svg')}}" alt="profile">
-                        <a class="nav-link" href="#" style="align-self: center; color: rgb(148, 147, 147); font-size: 13px;">Terms & Conditions <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="#"
+                            style="align-self: center; color: rgb(148, 147, 147); font-size: 13px;">Terms & Conditions
+                            <span class="sr-only">(current)</span></a>
                     </div>
                 </div>
             </div>
         </div>
-        
+
         <div class="content-wrapper">
-            
+
             <div class="sidenav-menu sidebar" id="sidebar" style="height: auto;">
                 <div data-simplebar class="flex-grow-1">
                     <ul class="side-nav" style="padding-bottom: 200px;">
@@ -298,7 +324,7 @@
                             <span class="menu-text text-dark ml-1">Booking</span>
                         </a>
                         <a href="{{route('users.matches')}}" class="pb-3 ml-3 active-link">
-                            <img src="{{asset('assets/image/users/clock.svg')}}" alt="user">
+                            <img src="{{asset('assets/image/users/bell.svg')}}" alt="user">
                             <span class="menu-text text-dark ml-1">My Matches</span>
                         </a>
                         <a href="#" class="pb-3 ml-3">
@@ -319,10 +345,11 @@
                         </a>
                     </ul>
                 </div>
-                        
+
                 <div class="sidebar-footer p-3" style="">
-                    {{-- <hr class="hr"> --}}
-                    <div class="side-nav-item d-flex align-items-center justify-content-between" >
+                    {{--
+                    <hr class="hr"> --}}
+                    <div class="side-nav-item d-flex align-items-center justify-content-between">
                         <!-- Left: Profile Image -->
                         <div class="d-flex align-items-center">
                             <span class="menu-icon me-3">
@@ -340,26 +367,26 @@
                 </div>
             </div>
 
-           
 
-    <script>
-        document.getElementById("toggleSidebar").addEventListener("click", function () {
-            const sidebar = document.getElementById("sidebar");
-            const mainContent = document.getElementById("mainContent");
-           
-            sidebar.classList.toggle("collapsed");
-            mainContent.classList.toggle("expanded");
-        });
 
-    </script>
-    <script>
-        document.getElementById("toggleSidebar").addEventListener("click", function () {
-            const sidebar = document.getElementById("sidebar");
-    
-            if (window.innerWidth <= 768) {
-                sidebar.classList.toggle("active"); // Expand sidebar on small screens
-            } else {
-                sidebar.classList.toggle("collapsed"); // Normal toggle for large screens
-            }
-        });
-    </script>
+            <script>
+                document.getElementById("toggleSidebar").addEventListener("click", function () {
+                    const sidebar = document.getElementById("sidebar");
+                    const mainContent = document.getElementById("mainContent");
+
+                    sidebar.classList.toggle("collapsed");
+                    mainContent.classList.toggle("expanded");
+                });
+
+            </script>
+            <script>
+                document.getElementById("toggleSidebar").addEventListener("click", function () {
+                    const sidebar = document.getElementById("sidebar");
+
+                    if (window.innerWidth <= 768) {
+                        sidebar.classList.toggle("active"); // Expand sidebar on small screens
+                    } else {
+                        sidebar.classList.toggle("collapsed"); // Normal toggle for large screens
+                    }
+                });
+            </script>

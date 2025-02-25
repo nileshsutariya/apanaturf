@@ -1,4 +1,6 @@
 @include('users.layouts.userheader')
+<link href="https://fonts.googleapis.com/css2?family=Monda:wght@400..700&display=swap" rel="stylesheet">
+
 <style>
     body {
         background-color: #FFFFFF;
@@ -13,7 +15,6 @@
         border-right: 1px solid #BEBCBD;
         border-bottom: 1px solid #BEBCBD;
         border-bottom-right-radius: 10px;
-
     }
 
     .card-img-top {
@@ -94,7 +95,7 @@
         border-radius: 17px;
     }
 
-   
+
 
     .content {
         padding-top: 0px;
@@ -104,7 +105,6 @@
         font-size: 13.27px;
         align-self: center;
         font-family: "Monda", serif !important;
-
     }
 
     .imgprice {
@@ -135,14 +135,16 @@
         transform: translateY(-50%);
         width: 20px;
         height: 20px;
-        
+
     }
+
     .search-with-icon {
         padding-right: 35px;
         font-size: 16px;
         border-radius: 12px;
         border: none;
-        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Adds a shadow */
+        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+        /* Adds a shadow */
 
     }
 
@@ -155,17 +157,69 @@
         height: 20px;
     }
 
+    .imgdetails {
+        display: flex;
+    }
+
     .input-with-icon::placeholder {
         font-size: 14px;
         letter-spacing: 1px;
         color: #DDDDDD;
         padding: 5px;
     }
+
+    @media (min-width: 575px) and (max-width: 1441px) {
+        .imgdetails {
+            display: block;
+        }
+
+        .imgcontent {
+            padding-bottom: 5px;
+        }
+
+        .imgprice {
+            margin-top: 5px;
+        }
+    }
+
+    .header-2 {
+        display: none;
+    }
+
+    @media (max-width: 390px) {
+        .imgdetails {
+            display: block;
+        }
+
+        .imgcontent {
+            padding-bottom: 5px;
+        }
+
+        .imgprice {
+            margin-top: 5px;
+        }
+
+    }
+
+    @media (max-width: 575px) {
+        .imagebox {
+            padding: 40px;
+        }
+
+        .header-1 {
+            display: none;
+        }
+
+        .header-2 {
+            display: flex;
+        }
+
+    }
 </style>
 <section class="content">
 
     <div class="row">
-        <div class="col-md-2">
+        <div class="col-lg-2 col-md-3 col-sm-3">
             <div class="filter-box">
                 <div class="filter">
                     <h6>Filter<img src="{{ asset('assets/image/users/filter.svg') }}"></h6>
@@ -194,9 +248,9 @@
             </div>
         </div>
         <!-- <div class="col-md-1"></div> -->
-        <div class="col-md-9 imagebox ml-5 mt-1">
+        <div class="col-md-9 col-sm-9 imagebox mt-1">
             <div class="row mt-3 mb-3 ">
-                <div class="col-sm-6">
+                <div class=" col-lg-6 col-md-4 col-sm-4">
                     <h6 class="pt-1"><strong> Turf Booking</strong> </h6>
                 </div>
                 <div class="col-sm-3">
@@ -207,15 +261,24 @@
                         </div>
                     </form>
                 </div>
-                <div class="col-sm-1 active pl-3 pt-1" style="align-self:center;">
-                   <p>New</p> 
+                <div class="col-sm-1 active pl-3 pt-1 header-1" style="align-self:center;">
+                    <span>New</span>
                 </div>
-                <div class="col-sm-2 pl-4 pt-1" style="align-self:center;">
-                    <p class="ml-auto"> Recommended</p>
+                <div class="col-sm-2 pl-4 pt-1 header-1" style="align-self:center;">
+                    <span class="ml-auto"> Recommended</span>
                 </div>
+                <div class="header-2 ">
+                    <div class="col-sm-1 active pl-3 pt-1" style="align-self:center;">
+                        <span>New</span>
+                    </div>
+                    <div class="col-sm-2 pl-4 pt-1 text-right" style="align-self:center;">
+                        <span class="ml-auto"> Recommended</span>
+                    </div>
+                </div>
+
             </div>
             <div class="row">
-                <div class="col-md-4 col-sm-4 mb-3">
+                <div class="col-md-4 col-sm-6 mb-3">
                     <div class="card position-relative">
                         <div class="m-1 box-image">
                             <div class="row">
@@ -231,18 +294,19 @@
                         </div>
                         <div class="card-body boxcontent ">
                             <h6 class="m-0">Venue name</h6>
-                            <div class="d-flex">
-                                <img src="{{ asset('assets/image/users/location.svg') }}"
-                                    style="height: 19.22px; width: 16.31px;   align-self:center;">
-                                <p class="imgcontent mb-0 ml-1 "> Vaghodia rd, Vadodara
-                                </p>
+                            <div class="imgdetails">
+                                <div class="d-flex p-0 mt-1">
+                                    <img src="{{ asset('assets/image/users/location.svg') }}"
+                                        style="height: 19.22px; width: 16.31px;   align-self:center;">
+                                    <p class="imgcontent mb-0 ml-1 "> Vaghodia rd, Vadodara </p>
+                                </div>
                                 <p class="imgrate mb-0">⭐ 4.5 (200)</p>
                             </div>
                             <p class="fw-bold imgprice">$200.00/Hrs.</p>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4 col-sm-4 mb-3">
+                <div class="col-md-4 col-sm-6 mb-3">
                     <div class="card position-relative">
                         <div class="m-1 box-image">
                             <div class="row">
@@ -258,18 +322,19 @@
                         </div>
                         <div class="card-body boxcontent ">
                             <h6 class="m-0">Venue name</h6>
-                            <div class="d-flex">
-                                <img src="{{ asset('assets/image/users/location.svg') }}"
-                                    style="height: 19.22px; width: 16.31px;   align-self:center;">
-                                <p class="imgcontent mb-0 ml-1 "> Vaghodia rd, Vadodara
-                                </p>
+                            <div class="imgdetails">
+                                <div class="d-flex p-0 mt-1">
+                                    <img src="{{ asset('assets/image/users/location.svg') }}"
+                                        style="height: 19.22px; width: 16.31px;   align-self:center;">
+                                    <p class="imgcontent mb-0 ml-1 "> Vaghodia rd, Vadodara </p>
+                                </div>
                                 <p class="imgrate mb-0">⭐ 4.5 (200)</p>
                             </div>
                             <p class="fw-bold imgprice">$200.00/Hrs.</p>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4 col-sm-4 mb-3">
+                <div class="col-md-4 col-sm-6 mb-3">
                     <div class="card position-relative">
                         <div class="m-1 box-image">
                             <div class="row">
@@ -285,45 +350,19 @@
                         </div>
                         <div class="card-body boxcontent ">
                             <h6 class="m-0">Venue name</h6>
-                            <div class="d-flex">
-                                <img src="{{ asset('assets/image/users/location.svg') }}"
-                                    style="height: 19.22px; width: 16.31px;   align-self:center;">
-                                <p class="imgcontent mb-0 ml-1 "> Vaghodia rd, Vadodara
-                                </p>
-                                <p class="imgrate mb-0">⭐ 4.5 (200)</p>
-                            </div>
-                            <p class="fw-bold imgprice">$200.00/Hrs.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-4 mb-3">
-                    <div class="card position-relative">
-                        <div class="m-1 box-image">
-                            <div class="row">
-                                <div class="col-12 ">
-                                    <img src="{{ asset('assets/image/users/booking2.svg') }}" class="card-img-top"
-                                        style="height: 100%;width: 100%;" alt="Turf">
+                            <div class="imgdetails">
+                                <div class="d-flex p-0 mt-1">
+                                    <img src="{{ asset('assets/image/users/location.svg') }}"
+                                        style="height: 19.22px; width: 16.31px;   align-self:center;">
+                                    <p class="imgcontent mb-0 ml-1 "> Vaghodia rd, Vadodara </p>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="favorite">
-                            <i class="fa fa-heart"></i>
-                            <img src="{{ asset('assets/image/users/frame 50.svg') }}">
-                        </div>
-                        <div class="card-body boxcontent ">
-                            <h6 class="m-0">Venue name</h6>
-                            <div class="d-flex">
-                                <img src="{{ asset('assets/image/users/location.svg') }}"
-                                    style="height: 19.22px; width: 16.31px;   align-self:center;">
-                                <p class="imgcontent mb-0 ml-1 "> Vaghodia rd, Vadodara
-                                </p>
                                 <p class="imgrate mb-0">⭐ 4.5 (200)</p>
                             </div>
                             <p class="fw-bold imgprice">$200.00/Hrs.</p>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4 col-sm-4 mb-3">
+                <div class="col-md-4 col-sm-6 mb-3">
                     <div class="card position-relative">
                         <div class="m-1 box-image">
                             <div class="row">
@@ -339,18 +378,19 @@
                         </div>
                         <div class="card-body boxcontent ">
                             <h6 class="m-0">Venue name</h6>
-                            <div class="d-flex">
-                                <img src="{{ asset('assets/image/users/location.svg') }}"
-                                    style="height: 19.22px; width: 16.31px;   align-self:center;">
-                                <p class="imgcontent mb-0 ml-1 "> Vaghodia rd, Vadodara
-                                </p>
+                            <div class="imgdetails">
+                                <div class="d-flex p-0 mt-1">
+                                    <img src="{{ asset('assets/image/users/location.svg') }}"
+                                        style="height: 19.22px; width: 16.31px;   align-self:center;">
+                                    <p class="imgcontent mb-0 ml-1 "> Vaghodia rd, Vadodara </p>
+                                </div>
                                 <p class="imgrate mb-0">⭐ 4.5 (200)</p>
                             </div>
                             <p class="fw-bold imgprice">$200.00/Hrs.</p>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4 col-sm-4 mb-3">
+                <div class="col-md-4 col-sm-6 mb-3">
                     <div class="card position-relative">
                         <div class="m-1 box-image">
                             <div class="row">
@@ -366,11 +406,41 @@
                         </div>
                         <div class="card-body boxcontent ">
                             <h6 class="m-0">Venue name</h6>
-                            <div class="d-flex">
-                                <img src="{{ asset('assets/image/users/location.svg') }}"
-                                    style="height: 19.22px; width: 16.31px;   align-self:center;">
-                                <p class="imgcontent mb-0 ml-1 "> Vaghodia rd, Vadodara
-                                </p>
+                            <div class="imgdetails">
+                                <div class="d-flex p-0 mt-1">
+                                    <img src="{{ asset('assets/image/users/location.svg') }}"
+                                        style="height: 19.22px; width: 16.31px;   align-self:center;">
+                                    <p class="imgcontent mb-0 ml-1 "> Vaghodia rd, Vadodara </p>
+                                </div>
+                                <p class="imgrate mb-0">⭐ 4.5 (200)</p>
+                            </div>
+                            <p class="fw-bold imgprice">$200.00/Hrs.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 col-sm-6 mb-3">
+                    <div class="card position-relative">
+                        <div class="m-1 box-image">
+                            <div class="row">
+                                <div class="col-12 ">
+                                    <img src="{{ asset('assets/image/users/booking2.svg') }}" class="card-img-top"
+                                        style="height: 100%;width: 100%;" alt="Turf">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="favorite">
+                            <i class="fa fa-heart"></i>
+                            <img src="{{ asset('assets/image/users/frame 50.svg') }}">
+                        </div>
+                        <div class="card-body boxcontent ">
+                            <h6 class="m-0">Venue name</h6>
+                            <div class="imgdetails">
+                                <div class="d-flex p-0 mt-1">
+                                    <img src="{{ asset('assets/image/users/location.svg') }}"
+                                        style="height: 19.22px; width: 16.31px;   align-self:center;">
+                                    <p class="imgcontent mb-0 ml-1 "> Vaghodia rd, Vadodara </p>
+                                </div>
                                 <p class="imgrate mb-0">⭐ 4.5 (200)</p>
                             </div>
                             <p class="fw-bold imgprice">$200.00/Hrs.</p>
@@ -390,5 +460,3 @@
 </body>
 
 </html>
-
-

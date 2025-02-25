@@ -104,7 +104,7 @@
     <script src="{{asset('assets/js/vendor.min.js')}}"></script>
 
     <!-- App js -->
-    <script src="{{asset('assets/js/app.js')}}"></script>
+    <!-- <script src="{{asset('assets/js/app.js')}}"></script> -->
 
     <!--Morris Chart-->
     <!-- <script src="{{asset('assets/libs/morris.js/morris.min.js')}}"></script> -->

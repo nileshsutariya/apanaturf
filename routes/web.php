@@ -53,12 +53,14 @@ Route::get('/couponscode', function () {
 //     return view(view: 'financialyear');
 // });
 Route::get('/', function () {
-    return view('users.setting');
+    return view('users.split
+
+');
 });
 
 Route::get('users/matches', function() {
     return view('users.matches');
-});
+})->name('users.matches');
 Route::get('users/setting', function() {
     return view('users.setting');
 });
