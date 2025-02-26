@@ -79,16 +79,227 @@
         color: green;
         font-size: 16px;
     }
+    @media (max-width: 767px) {
+        .sport-image {
+            display: none;
+        }
+        .title {
+            font-size: 40px !important;
+        }
+        .subtitle {
+            font-size: 40px !important;
+            margin-right: 17px;
+        }
+        .sport-section {
+            margin-right: 90px;
+        }
+        .circle-logo {
+            display: none;
+        }
+        .loader {
+            display: none;
+        }
+        .text-section {
+            margin-left: 48px !important;
+        }
+    }
+/* Default styles */
+    .download-container {
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap; 
+    }
+
+    .download-box {
+        width: 250px;
+        height: auto;
+        padding: 15px;
+        border-radius: 17px;
+        background: #dfdddd;
+        text-align: center;
+        position: relative;
+    }
+
+    .download-box h3,
+    .download-box p,
+    .download-box button {
+        font-family: 'NATS', sans-serif !important;
+    }
+
+    .download-box h3 {
+        font-size: 25px;
+    }
+
+    .download-box p {
+        font-size: 13px;
+        color: #666;
+    }
+
+    .download-btn {
+        background: #279B5A;
+        color: white;
+        border: none;
+        padding: 8px 15px;
+        border-radius: 20px;
+        cursor: pointer;
+        font-size: 12px;
+        margin-top: 5px;
+    }
+
+    .qr-card {
+        width: 110px;
+        border-radius: 15px;
+        margin: 0 auto;
+    }
+
+    .logo-icon {
+        position: absolute;
+        bottom: -10px;
+        right: -10px;
+        background: white;
+        border-radius: 50%;
+        padding: 10px;
+        background-color: #F5F5F5;
+    }
+
+    /* Media Query for Smaller Screens (max-width: 576px) */
+    @media (max-width: 576px) {
+        .download-container {
+            flex-direction: column; /* Stacks elements vertically */
+            gap: 15px;
+        }
+
+        .download-box {
+            width: 90%; /* Takes full width with some margin */
+            margin: 0 auto;
+        }
+
+        .download-box h3 {
+            font-size: 22px;
+        }
+
+        .download-box p {
+            font-size: 12px;
+        }
+
+        .download-btn {
+            padding: 6px 12px;
+            font-size: 11px;
+        }
+    }
+    .frame {
+        max-height: 400px;
+        width: auto;
+    }
+
+    /* Responsive Fix */
+    @media (max-width: 768px) {
+        .desktop {
+            display: none;
+        }
+        .mobile {
+            display: flex !important;
+        }
+        .jquery-hover {
+            padding-bottom: 0px !important;
+        }
+        .frame {
+            max-height: 350px !important;
+        }
+        .label {
+            font-size: 22px !important;
+        }
+        .front-line {
+            font-size: 12px !important;
+        }
+        .appstore {
+            max-width: 170px !important;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .frame {
+            max-height: 200px; 
+        }
+    }
+
+    .mobile {
+        display: none;
+    }
+
+    .desktop {
+        /* display: flex; */
+    }
+
+    @media (max-width: 991px) {
+        /* .desktop {
+            display: none;
+        }
+        .mobile {
+            display: flex;
+        }
+        .jquery-hover {
+            padding-bottom: 0px !important;
+        } */
+        .frame {
+            max-height: 300px !important;
+        }
+        .img-loader {
+            margin-top: 200px !important;
+        }
+    }
+    @media (max-width: 1024px) {
+    /* .card {
+        padding: 30px; 
+        border-radius: 20px;
+        top: 400px;
+    } */
+    .frametwo {
+        padding: 30px; 
+        border-radius: 20px;
+        position: relative;
+        top: 80px !important;
+        max-width: 90% !important;
+    }
+
+    .label {
+        font-size: 1.8rem; /* Reduce title size */
+    }
+
+    .front-line {
+        font-size: 12px; /* Adjust text size */
+    }
+
+    .appstore {
+        max-width: 200px; /* Reduce image size */
+    }
+    .img-loader {
+        min-height: 70vh !important;
+    }
+}
+        .footer {
+            background-color: #212529;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+
+
 
 </style>
 <section class="content">
     <div class="container-fluid">
-        <div class="row align-items-center">
-            <div class="col-12 col-md-4 text-section text-center text-md-left mb-4 mb-md-0 mt-5">
+        <div class="row align-items-center sport-section">
+            <div class="col-md-4 col-sm-12 text-section text-center mb-4 mb-md-0 mt-4">
                 <h1 class="title">MY GROUND</h1>
                 <h2 class="subtitle" style="color: #279B5A;">MY GAME</h2>
             </div>
-            <div class="col-12 col-md-6 text-section text-center position-relative">
+            <div class="col-md-6 col-sm-12 text-section text-center position-relative sport-image">
                 <h1 class="sport text-outline-success ml-5">SPORT</h1>
                 <img src="{{asset('assets/image/users/mockuuups-female-hand.svg')}}" 
                      class="position-absolute" 
@@ -103,44 +314,45 @@
 
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-5">
-                    <div class="card ml-3" style="background-color: transparent; border: solid black 1px; border-radius: 11px;">
+                <div class="col-md-5 col-12">
+                    <div class="card mx-3 mt-3" style="background-color: transparent; border: solid black 1px; border-radius: 11px;">
                         <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-5">
+                            <div class="row align-items-center">
+                                <div class="col-md-6 col-sm-5 col-auto mb-2">
                                     <div class="row">
-                                        <div class="col-md-1">
-                                            <img src="{{asset('assets/image/users/Group.svg')}}" class="d-inline-block align-top" alt="">
+                                        <div class="col-auto">
+                                            <img src="{{asset('assets/image/users/Group.svg')}}" class="d-flex-block align-top" alt="">
                                         </div>
-                                        <div class="col-md-10">
-                                            <span class="" style="font-size: 13px;">Location</span>
+                                        <div class="col-auto">
+                                            <span style="font-size: 13px;">Location</span>
                                             <div class="text-muted" style="font-size: 12px;">Ankleshwar, Gujarat</div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-5">
+                                <div class="col-md-4 col-sm-5 col-auto mb-2">
                                     <div class="row">
-                                        <div class="col-md-1">
+                                        <div class="col-auto">
                                             <img src="{{asset('assets/image/users/calendar.svg')}}" class="d-inline-block align-top" alt="">
                                         </div>
-                                        <div class="col-md-10">
-                                            <span class="" style="font-size: 13px;">Date</span>
+                                        <div class="col-auto">
+                                            <span style="font-size: 13px;">Date</span>
                                             <div class="text-muted" style="font-size: 12px;">01-01-2003</div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-2">
-                                    <button class="btn btn-outline-success pt-2 pb-2 pl-3 pr-3" type="submit" style=" background-color: #000; border: none;">
+                                <div class="col-md-2 col-sm-2 col-auto d-flex justify-content-center d-md-none" id="searching">
+                                    <button class="btn btn-outline-dark d-flex align-items-center justify-content-center" type="submit" style="background-color: #000; border: none; width: 48px; height: 47px; padding: 30px; margin-right: 20px;">
                                         <i class="bi bi-search" style="color: #fff; font-size: 25px;"></i>
                                     </button>
                                 </div>
                             </div>
+                            
                         </div>
                     </div>
-                    <div class="ml-3 mr-5" style="font-size: 12px; line-height: 25px;">
+                    <div class="mx-3 mt-3" style="font-size: 12px; line-height: 25px;">
                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos corporis assumenda dolor in consequatur hic molestias delectus sapiente incidunt culpa!
                     </div>
-                    <div class="ml-3 mt-4 mr-5" style="font-size: 12px; line-height: 25px;">
+                    <div class="mx-3 mt-4 text-center text-md-left" style="font-size: 12px; line-height: 25px;">
                         <img src="{{asset('assets/image/users/appstore.svg')}}" class="d-inline-block align-top" alt="" style="width: 250px;">
                     </div>
                 </div>
@@ -267,46 +479,44 @@
             <div class="col-md-7">
                 <div class="card mt-4" style="background-color: transparent; border: none;">
                     <div class="card-body">
-                        <div style="display: flex; gap: 20px; justify-content: center; align-items: center;">
-                            <div class="mr-3" style="width: 250px; height: auto; padding: 15px; border-radius: 17px; background: #dfdddd; text-align: center; position: relative;">
-                                <h3 class="mt-2" style="margin-right: 75px; font-size: 25px; font-family: 'NATS', sans-serif !important; ">For iOS</h3>
-                                <p style="margin-right: 110px; font-size: 13px; color: #666; font-family: 'NATS', sans-serif !important;">iOS +15</p>
-                                <button class="shadow mb-2" style="background: #279B5A; color: white; border: none; padding: 8px 15px; border-radius: 20px; cursor: pointer; font-size: 12px; margin-right: 60px; ">Download App</button>
-                                <div class="card p-1" style="width: 110px; border-radius: 15px; margin-left: 25px; ">
-                                    <img src="{{asset('assets/image/users/qrcode.svg')}}" class="d-inline-block align-top" alt="" height="100px" width="100px">
+                        <div class="download-container">
+                            <div class="download-box">
+                                <h3 class="mt-2">For iOS</h3>
+                                <p>iOS +15</p>
+                                <button class="shadow mb-2 download-btn">Download App</button>
+                                <div class="card p-1 qr-card">
+                                    <img src="{{asset('assets/image/users/qrcode.svg')}}" alt="" height="100px" width="100px">
                                 </div>
-                                {{-- <div style="margin-top: 10px;"><img src="qr-ios.png" alt="QR Code for iOS" style="width: 80px; height: 80px;"></div> --}}
-                                <div style="position: absolute; bottom: -10px; right: -10px; background: white; border-radius: 50%; padding: 10px; background-color: #F5F5F5; ">
-                                    <img src="{{asset('assets/image/users/AppleLogo.svg')}}" class="d-inline-block align-top p-2" alt="" height="70px">
-                                </div>
-                            </div>
-                            <div style="width: 250px; height: auto; padding: 15px; border-radius: 17px; background: #dfdddd; text-align: center; position: relative;">
-                                <h3 class="mt-2" style="margin-right: 40px; font-size: 25px; font-family: 'NATS', sans-serif !important; ">For Android</h3>
-                                <p style="margin-right: 90px; font-size: 13px; color: #666; font-family: 'NATS', sans-serif !important;">Android 9.0+</p>
-                                <button class="shadow mb-2" style="background: #279B5A; color: white; border: none; padding: 8px 15px; border-radius: 20px; cursor: pointer; font-size: 12px; margin-right: 60px; ">Download App</button>
-                                <div class="card p-1" style="width: 110px; border-radius: 15px; margin-left: 25px; ">
-                                    <img src="{{asset('assets/image/users/qrcode.svg')}}" class="d-inline-block align-top" alt="" height="100px" width="100px">
-                                </div>
-                                {{-- <div style="margin-top: 10px;"><img src="qr-ios.png" alt="QR Code for iOS" style="width: 80px; height: 80px;"></div> --}}
-                                <div style="position: absolute; bottom: -10px; right: -10px; background: white; border-radius: 50%; padding: 10px; background-color: #F5F5F5; ">
-                                    <img src="{{asset('assets/image/users/Android.svg')}}" class="d-inline-block align-top p-2" alt="" height="70px">
+                                <div class="logo-icon">
+                                    <img src="{{asset('assets/image/users/AppleLogo.svg')}}" class="p-2" alt="" height="70px">
                                 </div>
                             </div>
-                        
+                            <div class="download-box">
+                                <h3 class="mt-2">For Android</h3>
+                                <p>Android 9.0+</p>
+                                <button class="shadow mb-2 download-btn">Download App</button>
+                                <div class="card p-1 qr-card">
+                                    <img src="{{asset('assets/image/users/qrcode.svg')}}" alt="" height="100px" width="100px">
+                                </div>
+                                <div class="logo-icon">
+                                    <img src="{{asset('assets/image/users/Android.svg')}}" class="p-2" alt="" height="70px">
+                                </div>
+                            </div>
                         </div>
-                        
                     </div>
                 </div>
             </div>
+            
         </div>
 
     </div>
 </section>
-<section class="content" style="background-color: #2b2a2a; padding-bottom: 160px;">
+
+<section class="content jquery-hover" style="background-color: #2b2a2a; padding-bottom: 160px;">
     <div class="container p-5">
         <div class="row">
             <div class="col-md-1 mt-4">
-                <img class="" src="{{asset('assets/image/users/animation1.svg')}}" alt="user" height="120px">
+                <img class="loader" src="{{asset('assets/image/users/animation1.svg')}}" alt="user" height="120px">
             </div>
             <div class="col-md-5">
                 <div class="text-white mb-2 mt-3" style="font-size: 13px;">
@@ -319,12 +529,12 @@
 
             </div>
             <div class="col-md-1">
-                <button class="p-3 bg-white" style="border-radius: 50%;">
+                <button class="p-3 bg-white circle-logo" style="border-radius: 50%;">
                     <img class="" src="{{asset('assets/image/users/tyrflogo5.svg')}}" alt="user" height="70px">
                 </button>
             </div>
         </div>
-        <div class="row mt-5">
+        <div class="row mt-5 desktop">
             <div class="col-md-4">
                 <img src="{{asset('assets/image/users/Frame1.svg')}}" 
                                     class="position-absolute frame" 
@@ -344,14 +554,29 @@
                                 alt="frame" height="400px">
             </div>
         </div>
+
+        <div class="row mt-5 mobile">
+            
+            <div class="col-12 col-sm-4 d-flex justify-content-center">
+                <img src="{{asset('assets/image/users/Frame1.svg')}}" class="frame img-fluid" alt="frame">
+            </div>
+            <div class="col-12 col-sm-4 d-flex justify-content-center">
+                <img src="{{asset('assets/image/users/Frame2.svg')}}" class="frame img-fluid" alt="frame">
+            </div>
+            <div class="col-12 col-sm-4 d-flex justify-content-center">
+                <img src="{{asset('assets/image/users/Frame3.svg')}}" class="frame img-fluid" alt="frame">
+            </div>
+        </div>
+        
     </div>
 </section>
-<section class="content justify-content-center align-items-center" style="margin-top: 300px; min-height: 100vh;">
+
+<section class="content img-loader justify-content-center align-items-center" style="margin-top: 300px; min-height: 100vh;">
     <div class="row">
         <div class="col-md-12 text-center">
             {{-- <img src="{{asset('assets/image/users/Line23.svg')}}" class="d-inline-block align-top" alt=""> --}}
 
-            <div style="font-weight: 600;"><h6>— Reviews</h6></div>
+            <div class="review" style="font-weight: 600;"><h6>— Reviews</h6></div>
         </div>
     </div>
     <div class="row">
@@ -409,7 +634,7 @@
     </div>
     <div class="row">
         <div class="col-md-3 mt-3 text-center">
-            <img style="margin-left: 50px;" class="" src="{{asset('assets/image/users/animation2.svg')}}" alt="user" height="120px">
+            <img style="margin-left: 50px;" class="loader" src="{{asset('assets/image/users/animation2.svg')}}" alt="user" height="120px">
         </div>
         <div class="col-md-6 text-center">
             <div class="fw-bold" style="font-size: 25px;">Danial Smith</div>
@@ -417,7 +642,7 @@
                 <img src="{{asset('assets/image/users/rating.svg')}}" class="d-inline-block align-top pt-1 pb-1" alt="" style="width: 220px;">
             </div>
             <div class="mt-3" style="font-size: 25px; font-weight: 500 !important; font-size: 25px; font-family: 'NATS', sans-serif !important;">Satisfied App User</div>
-            <div class="mt-3" style="font-size: 25px; font-weight: 500 !important; font-size: 14px; line-height: 30px; letter-spacing: 2px; color: gray; margin-bottom: 300px;">
+            <div class="mt-3" style="font-size: 25px; font-weight: 500 !important; font-size: 14px; line-height: 30px; letter-spacing: 2px; color: gray;">
                 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Illum, earum ea cumque fuga, nisi fugiat deleniti accusamus perspiciatis consequuntur iusto veniam officia sed placeat rem?
 
             </div>
@@ -426,23 +651,24 @@
 
         </div>
     </div>
-    <div class="row">
-        <div class="container">
-            <div class="col-md-12">
+    <div class="container">
+    <div class="row justify-content-center">
+            <div class="col-12">
                 {{-- class="position-absolute frame" 
                                     style="top: -0px;"  --}}
-                <div class="card position-absolute" style="top: -300px; z-index:10; background-color: #0B7C3C; border-radius: 25px; margin:100px 200px 0px 200px; padding: 40px 200px 40px 200px;">
-                    <div class="mt-3 text-center text-white" style="font-size: 14px;">
+                <div class="card frametwo position-relative mx-auto text-center text-white" style="top: 100px; z-index:10; background-color: #0B7C3C; border-radius: 25px; max-width: 75%; padding: 45px;">
+                    <div class="mt-2 front-line" style="font-size: 14px;">
                         Find and Enjoy Your Perfect Ground for Your Game
                     </div>
-                    <div class="mt-3 text-center text-white" style="font-size: 40px;">
+                    <div class="mt-3 label" style="font-size: 40px; font-weight: bold;">
                         Download the App Now!
                     </div>
-                    <div class="mt-3 text-center text-white" style="font-size: 14px;">
+                    <div class="mt-3 front-line" style="font-size: 14px;">
                         Subscribe to our email newsletter now and stay informed about the latest updates
                     </div>
-                    <div class="ml-5 mt-4 mr-5 text-center" style="font-size: 12px; line-height: 25px;">
-                        <img src="{{asset('assets/image/users/appstore.svg')}}" class="d-inline-block align-top" alt="" style="width: 250px;">
+        
+                    <div class="mt-4">
+                        <img src="{{asset('assets/image/users/appstore.svg')}}" class="img-fluid appstore" alt="App Store" style="max-width: 250px;">
                     </div>
                 </div>
             </div>
@@ -452,7 +678,6 @@
 
 
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script src="script.js"></script>
     <script>
         var swiper = new Swiper('.mySwiper', {
             loop: true,
@@ -466,6 +691,13 @@
             navigation: {
                 nextEl: '.swiper-button-next',
                 prevEl: '.swiper-button-prev',
+            },  
+            breakpoints: {
+                970: { slidesPerView: 5, spaceBetween: 10 },  // Medium screens
+                768: { slidesPerView: 3, spaceBetween: 10 },  // Tablets
+                576: { slidesPerView: 1, spaceBetween: 5 },   // Mobile devices
+                375: { slidesPerView: 1, spaceBetween: 0 },   // Small screens
+                344: { slidesPerView: 1, spaceBetween: 0 }    // Small screens
             },
             on: {
                 slideChangeTransitionEnd: function () {
@@ -490,7 +722,7 @@
 
 
 
-<footer class="footer">
+<footer class="footer"> 
     <div class="container text-center text-md-start mt-5" style="padding-top: 80px;">
         <div class="row mt-3">
             <div class="col-md-3 col-lg-4 col-xl-4 mx-auto mb-4">
@@ -560,8 +792,8 @@
                 <h6 class="mb-4">Get the Latest Information</h6>
             
                 <p>
-                    <form class="form-inline d-flex flex-nowrap w-100">
-                        <input class="form-control flex-grow-1" type="search" aria-label="Search" style="opacity: 0.4; border-top-left-radius: 7px; border-bottom-left-radius: 7px; border-top-right-radius: 0px; border-bottom-right-radius: 0px;">
+                    <form class="form-inline d-flex flex-nowrap">
+                        <input class="form-control flex-grow-1" type="search" aria-label="Search" style="width: 100% !important; opacity: 0.4; border-top-left-radius: 7px; border-bottom-left-radius: 7px; border-top-right-radius: 0px; border-bottom-right-radius: 0px;">
                         <button class="btn btn-outline-success my-2 my-sm-0 p-4 d-flex align-items-center justify-content-center" type="submit" style="background-color: #fff; border: none; border-radius: 9px;"></button>
                     </form>                    
                 </p>
@@ -571,8 +803,8 @@
         <div  style="font-size: 12px;">
         <div class="row">
             <div class="col-6 ml-auto text-right">
-
-                <a href="#" class="fa fa-linkedin text-decoration-none " style="color: #e0e0e0;">  User Terms & Conditions |  </a>
+                User
+                <a href="#" class="fa fa-linkedin text-decoration-none " style="color: #e0e0e0;">   Terms & Conditions |  </a>
                 <a href="#" class="fa fa-linkedin text-decoration-none" style="color: #e0e0e0;">  Privacy Policy  </a>
             </div>
         </div>
@@ -583,7 +815,6 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     
 <!-- Vendor js -->
-<script src="{{asset('assets/js/vendor.min.js')}}"></script>
 
 <!-- App js -->
 <script src="{{asset('assets/js/app.js')}}"></script>
@@ -597,8 +828,6 @@
 {{-- </div> --}}
 </body>
 </html>
-
-
 
 
 <style>

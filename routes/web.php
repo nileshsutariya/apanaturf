@@ -69,9 +69,18 @@ Route::get('/', function () {
 ');
 });
 
+Route::get('index', function() {
+    return view('users.index');
+})->name('users.index');
+
 Route::get('users/matches', function() {
     return view('users.matches');
 })->name('users.matches');
-Route::get('users/setting', function() {
-    return view('users.setting');
-});
+
+Route::get('users/wallet', function() {
+    return view('users.wallet');
+})->name('users.wallet');
+
+Route::get('users/refer', function() {
+    return view('users.refer');
+})->name('users.refer');

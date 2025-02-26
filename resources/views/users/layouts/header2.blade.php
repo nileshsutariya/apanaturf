@@ -17,6 +17,8 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Monda:wght@400;700&display=swap" rel="stylesheet">
+
     <style>
         html{
             overflow: auto;
@@ -24,7 +26,9 @@
         body {
             margin: 0;
             padding: 0;
-            font-family: "Inter", sans-serif;
+            font-family: 'Inter', sans-serif;
+            font-weight: 500 !important;
+            letter-spacing: 0.9px;
             overflow-x: hidden;
         }
 
@@ -250,6 +254,42 @@
                 display: block;
             }
         }
+        ol, ul {
+            padding-left: 0px;
+        }
+        
+        .nav-link {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    /* border-radius: 5px; */
+    text-decoration: none;
+    transition: all 0.3s ease;
+    color: #000;  /* Default text color */
+}
+
+.nav-link img {
+    width: 20px;
+    height: 20px;
+    transition: filter 0.3s ease;
+}
+
+/* Active link styling */
+.nav-link.active {
+    background-color: #079666 !important; /* Green background */
+    color: white !important; /* White text */
+}
+
+.nav-link.active img {
+    filter: brightness(0) invert(1); /* Change icon color to white */
+}
+
+/* Default hover effect */
+.nav-link:hover {
+    background-color: rgba(29, 185, 84, 0.1);
+    color: #079666;
+}
+
     </style>
 </head>
 
@@ -317,34 +357,37 @@
 
             <div class="sidenav-menu sidebar" id="sidebar" style="height: auto;">
                 <div data-simplebar class="flex-grow-1">
-                    <ul class="side-nav" style="padding-bottom: 200px;">
-                        <a href="#" class="pb-3 ml-3">
-                            <img src="{{asset('assets/image/users/element-3.svg')}}" alt="user">
-                            <span class="menu-text text-dark ml-1">Dashboard</span>
+                    <ul class="side-nav" style="padding-bottom: 200px;" id="ul">
+                        <a href="#" class="pb-3 nav-link">
+                            <img src="{{asset('assets/image/users/element-3.svg')}}" class="nav-icon ml-4"  alt="user">
+                            <span class="menu-text ml-1">Dashboard</span>
                         </a>
-                        <a href="#" class="pb-3 ml-3">
-                            <img src="{{asset('assets/image/users/calendar.svg')}}" alt="user">
-                            <span class="menu-text text-dark ml-1">Booking</span>
+                        <a href="#" class="pb-3 nav-link">
+                            <img src="{{asset('assets/image/users/calendar.svg')}}" class="nav-icon ml-4"  alt="user">
+                            <span class="menu-text ml-1">Booking</span>
                         </a>
-                        <a href="{{route('users.matches')}}" class="pb-3 ml-3 active-link">
-                            <img src="{{asset('assets/image/users/bell.svg')}}" alt="user">
-                            <span class="menu-text text-dark ml-1">My Matches</span>
+                        {{-- <li class="side-nav-item"> --}}
+                            <a href="{{route('users.matches')}}" class="pb-3 nav-link">
+                                <img src="{{asset('assets/image/users/bell.svg')}}" class="nav-icon ml-4"  alt="user">
+                                <span class="menu-text ml-1">My Matches</span>
+                            </a>
+                        {{-- </li> --}}
+
+                        <a href="{{route('users.wallet')}}" class="pb-3 nav-link">
+                            <img src="{{asset('assets/image/users/wallet-remove.svg')}}" class="nav-icon ml-4"  alt="user">
+                            <span class="menu-text ml-1">Wallet</span>
                         </a>
-                        <a href="#" class="pb-3 ml-3">
-                            <img src="{{asset('assets/image/users/wallet-remove.svg')}}" alt="user">
-                            <span class="menu-text text-dark ml-1">Wallet</span>
+                        <a href="#" class="pb-3 nav-link">
+                            <img src="{{asset('assets/image/users/Setting.svg')}}" class="nav-icon ml-4"  alt="user">
+                            <span class="menu-text ml-1">Split & Pay</span>
                         </a>
-                        <a href="#" class="pb-3 ml-3">
-                            <img src="{{asset('assets/image/users/Setting.svg')}}" alt="user">
-                            <span class="menu-text text-dark ml-1">Split & Pay</span>
+                        <a href="#" class="pb-3 nav-link">
+                            <img src="{{asset('assets/image/users/Setting2.svg')}}" class="nav-icon ml-4"  alt="user">
+                            <span class="menu-text ml-1">Settings</span>
                         </a>
-                        <a href="#" class="pb-3 ml-3">
-                            <img src="{{asset('assets/image/users/Setting2.svg')}}" alt="user">
-                            <span class="menu-text text-dark ml-1">Settings</span>
-                        </a>
-                        <a href="#" class="pb-3 ml-3">
-                            <img src="{{asset('assets/image/users/Setting1.svg')}}" alt="user">
-                            <span class="menu-text text-dark ml-1">Refer & Earn</span>
+                        <a href="{{route('users.refer')}}" class="pb-3 nav-link">
+                            <img src="{{asset('assets/image/users/Setting1.svg')}}" class="nav-icon ml-4"  alt="user">
+                            <span class="menu-text ml-1">Refer & Earn</span>
                         </a>
                     </ul>
                 </div>
@@ -392,4 +435,44 @@
                         sidebar.classList.toggle("collapsed"); // Normal toggle for large screens
                     }
                 });
+            </script>
+           
+            <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                    let links = document.querySelectorAll(".nav-link");
+
+                    links.forEach(link => {
+                        link.addEventListener("click", function () {
+                            links.forEach(l => l.classList.remove("active"));
+                            this.classList.add("active");
+
+                            // Change icons when active
+                            links.forEach(l => {
+                                let img = l.querySelector(".nav-icon");
+                                if (l.classList.contains("active")) {
+                                    img.src = img.src.replace(".svg", "-active.svg"); // Use different icons
+                                } else {
+                                    img.src = img.src.replace("-active.svg", ".svg");
+                                }
+                            });
+                        });
+                    });
+                });
+
+            </script>
+
+            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+            <script>
+                 $(function(){
+                    var current = location.pathname;
+                    
+                    $('.side-nav a').each(function(){
+                        var a = $(this);
+                        if(a.attr('href').indexOf(current) !== -1){
+                                a.addClass('active');
+                            }
+                        })
+                    })
+
             </script>

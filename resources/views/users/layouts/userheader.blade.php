@@ -41,60 +41,75 @@
 
       }
       .navbar {
-        padding: 5px 0;
-        border-bottom: solid #279B5A 23px;
-      }
-      .logo {
-        margin-right: 10px;
+  padding: 5px 0;
+  border-bottom: solid #279B5A 23px;
+}
 
-      }
-      .navbar-nav {
-        padding-left: 400px;
-      }
-      .navbar-nav .nav-link {
-          font-size: 12px;
-          font-weight: 500;
-          color: black;
-          margin: 0 15px;
-          position: relative;
-          align-items: end;
-      }
-      .navbar-nav .nav-item.active {
-          color: #1d7c46;
-          font-weight: bold;
-      }
-      .navbar-nav .nav-item.active::after {
-          content: "";
-          display: block;
-          width: 100%;
-          height: 2px;
-          background-color: #1d7c46;
-          margin-top: 3px;
-      }
-      .book-now {
-        background-color: #279B5A;
-        color: white;
-        padding: 8px 25px;
-        border-radius: 25px;
-        text-decoration: none;
-        margin-left: 30px;
-        font-size: 12px;
-        margin-right: 2px;
-      }
-      .book-now:hover {
-          background-color: #145e33;
-          color: white;
-      }
-      @media (max-width: 992px) {
-          .navbar-nav {
-              text-align: center;
-          }
-          
-          .book-now {
-              display: block;
-              margin: 10px auto;
-          }
-      }
+.logo {
+  margin-right: 10px;
+}
+
+.navbar-nav {
+  padding-left: 0; /* Removed large left padding */
+}
+
+.navbar-nav .nav-link {
+  font-size: 12px;
+  font-weight: 500;
+  color: black;
+  margin: 0 15px;
+  position: relative;
+}
+
+.navbar-nav .nav-item.active .nav-link {
+  color: #1d7c46;
+  font-weight: bold;
+}
+
+.navbar-nav .nav-item.active::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color: #1d7c46;
+  margin-top: 3px;
+}
+
+.book-now {
+  background-color: #279B5A;
+  color: white;
+  padding: 8px 25px;
+  border-radius: 25px;
+  text-decoration: none;
+  font-size: 12px;
+  margin-top: 5px;
+  width: 100%;
+}
+
+.book-now:hover {
+  background-color: #145e33;
+  color: white;
+}
+
+/* Responsive Styles */
+@media (max-width: 992px) {
+  .navbar-nav {
+    text-align: center;
+    width: 100%;
+  }
+
+  .navbar-collapse {
+    text-align: center;
+  }
+
+  .book-now {
+    display: block;
+    width: 100%;
+    max-width: 200px;
+    margin: 10px auto;
+  }
+}
+
       .footer {
           background-color: #212529;
           color: white;
@@ -160,38 +175,89 @@
               font-size: 1.2rem; 
           }
       }
+      @media (min-width: 376px) and (max-width: 430px) {
+        .jquery-hover {
+          height: 770px !important;
+        }
+        .review {
+          margin-top: 300px !important;
+        }
+      }
+      @media (min-width: 344px) and (max-width: 361px) {
+        .jquery-hover {
+          height: 850px !important;
+        }
+        .review {
+          margin-top: 300px !important;
+        }
+      }
+      @media (min-width: 371px) and (max-width: 375px) {
+        .jquery-hover {
+          height: 800px !important;
+        }
+        .review {
+          margin-top: 300px !important;
+        }
+      }
+      @media (min-width: 539px) and (max-width: 541px) {
+        .jquery-hover {
+          height: 750px !important;
+        }
+        .review {
+          margin-top: 300px !important;
+        }
+      }
+      @media (min-width: 766px) and (max-width: 769px) {
+        .jquery-hover {
+          height: 500px !important;
+        }
+        .frame {
+          position: relative;
+          top: 10px !important;
+        }
+        .circle-logo {
+          background-color: transparent !important;
+          border: none !important;
+        }
+      }
+      @media (max-width: 533px) {
+        #searching {
+          display: none !important;
+        }
+      }
+      
     </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #F5F5F5;">
-      <a class="navbar-brand logo" href="#">
-        <img src="{{asset('assets/image/users/logo.svg')}}" class="d-inline-block align-top" alt="">
-      </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
-          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-      </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item active  ">
-              <a class="nav-link" href="#">Turf <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Terms & Conditions <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">About <span class="sr-only">(current)</span></a>
-            </li>
-
-            <button type="button" class="btn book-now">
-              Book Now
-            </button>
-          </ul>
-        </div>
-      </nav>
+  <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #F5F5F5;">
+    <a class="navbar-brand logo" href="#">
+      <img src="{{asset('assets/image/users/logo.svg')}}" class="d-inline-block align-top" alt="">
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+      <ul class="navbar-nav text-center">
+        <li class="nav-item">
+          <a class="nav-link" href="#">Home</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Turf</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Terms & Conditions</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">About</a>
+        </li>
+        <li class="nav-item">
+          <button type="button" class="btn book-now">Book Now</button>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  
       <div class="page-content">
 
         <div class="page-container" style="background-color: transparent;">
