@@ -75,7 +75,7 @@
 
 .modal-demo {
     background-color: #fff;
-    width: 600px !important;
+    width: 600px ;
     border-radius: 4px;
     display: none;
     position: relative

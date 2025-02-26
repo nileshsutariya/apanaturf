@@ -334,6 +334,18 @@
             margin-right: 35px;
         }
     }
+    @media (max-width: 450px) {
+        .booking-time {
+            margin-right: 20px;
+            width: 25%;
+        }
+        .booking-date-container{
+            margin-left: 20px !important;
+        }
+        .booknow {
+            padding: 15px 150px;
+        }
+    }
 
     @media (min-width: 990px) and (max-width: 1220px) {
         .imagecol {
@@ -382,28 +394,6 @@
 
         .booking-time {
             width: 18%
-        }
-    }
-    @media (min-width: 1260px) and (max-width: 1500px) {
-        .note-box{
-            margin-left: 90px;
-        }
-    }
-    @media (min-width: 985px) and (max-width: 1260px) {
-        .note-box{
-            margin-left: 35px;
-            width: 400px;
-        }
-    }
-    @media (max-width: 985px) {
-        .note-box{
-            margin-left: 100px;
-        }
-    }
-    @media (max-width: 740px) {
-        .note-box{
-            margin-left: 0px;
-            width: 350px;
         }
     }
 </style>
@@ -460,80 +450,6 @@
                     Now</p>
             </div>
         </div>
-
-
-        <div class="col-xl-5 col-lg-5 col-md-12 col-sm-12  p-3 mt-3 address-turf">
-            <h2>Address of the Turf</h2>
-            <div class="row d-flex mt-3">
-                <div class="col-sm-5 text-left" style="font-size: 16px; font-weight: 500; color: #929292;">23 March 2024 | Saturday | 24:00</div>
-                <div class="col-sm-3 text-center" style="font-size: 14px; color: #7C8082;">Starting Bid <br>₹400
-                </div>
-                <div class="col-sm-4 text-right" style="font-size: 14px; color: #7C8082;">End in 
-                <span style="font-weight: bold; color: #000000;">
-                    00:00:00
-                </span>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-12 text-left mt-4" style="font-size: 20px; font-weight: 400;">
-                Bidding
-                </div>
-            </div>
-
-        </div>
-
-
-
-
-
-
-
-
-
-
-
-    </div>
-
-    <div class="container mt-4 bid-turf mb-4">
-        <div class="row">
-            <div class="col-lg-6">
-                <div class="bid-container ml-auto">
-                    <div class="profile" style="font-size: 18px;">
-                    <span class="p-3">#</span>
-                        <img src="{{ asset(path: 'assets/image/users/Ellipse 4.svg') }}" alt="Profile">
-                        <span> Devon Lane</span>
-                    </div>
-                    <input type="text" class="form-control w-25 text-center"
-                        style="border-radius: 26px; background-color: #E7F0E3;">
-                </div>
-
-                <div class="d-flex mt-4 row">
-                    <div class="bid col-5">
-                        <button class="btn text-center">Cancel</button>
-                    </div>
-                    <div class="col-1"></div>
-                    <div class="bid col-5">
-                        <button class="btn text-center ">Bid</button>
-                    </div>
-                </div>
-                <div class="mt-3 d-flex gap-2">
-                </div>
-            </div>
-            <div class="col-md-6 mr-0">
-                <div class="note-box">
-                    <strong style="font-size: 21px; color: #000000;">NOTE:</strong>
-                    <p style="font-size: 15px; letter-spacing: 0px; color: #848484; margin-top: 10px;">"Welcome
-                        to our turf booking app's bidding system! Now, users can bid on available slots,
-                        ensuring fair access and competitive pricing. Enjoy the flexibility to choose the best
-                        offers
-                        while engaging in friendly competition. Bid smartly, play heartily, and make the most of
-                        your
-                        turf experience with us!"</p>
-                </div>
-            </div>
-
-        </div>
-        <div class="col-lg-1 mr-0"></div>
     </div>
     </div>
 
@@ -936,10 +852,10 @@
             delay: 0, // No delay, constant motion
             disableOnInteraction: false,
         },
-        allowTouchMove: false, // Disable manual swipe for perfect flow
+        allowTouchMove: false, 
     });
 </script>
-<script>
+<!-- <script>
     document.addEventListener("DOMContentLoaded", function () {
         const bookNow = document.querySelector(".booknow");
         const detailsTurf = document.querySelector(".details-turf");
@@ -959,6 +875,6 @@
         // Initially hide address-turf
         // addressTurf.style.display = "none";
     });
-</script>
+</script> -->
 
 @include('users.layouts.userfooter')

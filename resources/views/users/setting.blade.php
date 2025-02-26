@@ -74,7 +74,7 @@
 
     .modal-demo {
         width: 380px !important;
-        height: 240px;
+        height: 200px;
         padding: 30px;
         box-shadow: 0 15px 15px rgba(0, 0, 0, 0.3);
         border-radius: 12px;
@@ -82,8 +82,8 @@
     }
 
     @media (max-width: 435px) {
-        .modal-demo{
-            width:86%!important;
+        .modal-demo {
+            width: 86% !important;
         }
     }
 </style>
@@ -169,18 +169,15 @@
 <div id="addBanner" class="modal-demo">
 
     <!-- Close Button (Bootstrap) -->
-    <div class="d-flex  align-items-center justify-content-between mt-0"
-        style="max-width: 700px; width: 100%; height: auto;">
-        <button type="button" class="btn-close btn-close-black ml-auto " onclick="Custombox.modal.close();">
-            <span class="sr-only">Close</span>
-        </button>
+    <div style="display: flex; justify-content: space-between; align-items: center; mb-5">
+        <h6 style="font-weight: bold; margin: 0;">Code</h6>
+        <button type="button" class="btn-close close-modal"  onclick="Custombox.modal.close();"></button>
     </div>
 
     <!-- Modal Header -->
-    <div class="otp-container mt-0">
+    <div class="otp-container mt-2">
         <form>
             <div class="mb-3" style="font-size: 16px;">
-                <label for="otp" class="form-label" style="color: #525256;">Code</label>
                 <input type="text" class="form-control" id="otp" placeholder="Enter the Otp here"
                     style="border: 2px solid #D0D5DD;">
             </div>
@@ -203,7 +200,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/custombox@4.0.3/dist/custombox.min.js"></script>
 
-<!-- <script src="https://unpkg.com/lucide@latest"></script> -->
+<script src="https://unpkg.com/lucide@latest"></script>
 
 <!-- App js -->
 <script src="{{asset('assets/js/app2.js')}}"></script>

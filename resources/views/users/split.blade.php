@@ -43,7 +43,7 @@
 
     }
 
-     .save  {
+    .save {
         background-color: #299D91;
         color: white;
         font-size: 16px;
@@ -95,9 +95,11 @@
         align-items: center;
         gap: 10px;
     }
+
     .sidebar {
-        height:800px !important ;
+        height: 800px !important;
     }
+
     .page-content {
         flex-grow: 1;
         padding: 20px;
@@ -110,13 +112,30 @@
             display: flex;
         }
     }
+
     @media (max-width: 630px) {
-        .price{
-            text-align: right!important;
+        .price {
+            text-align: right !important;
             width: 100px;
         }
+
         .content-wrapper {
             display: block !important;
+        }
+    }
+
+    @media (min-width: 769px) and (max-width: 1022px) {
+        #sidebar {
+            overflow: visible;
+        }
+
+        .page-content {
+            width: 610px;
+        }
+    }
+    @media (min-width: 655px) and (max-width: 690px) {
+        .page-content {
+            width: 510px;
         }
     }
 
@@ -134,7 +153,7 @@
                     style="border-radius: 13px; height: auto; box-shadow: 0 15px 15px rgba(0, 0, 0, 0.3);">
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-md-4" style="font-size: 12px;">
+                            <div class="col-md-4 col-sm-4" style="font-size: 12px;">
                                 <div class="mb-3">
                                     <label class="form-label">Title</label>
                                     <input type="text" class="form-control input" placeholder="enter the title here">
@@ -146,8 +165,8 @@
                                             <option selected="selected" style="border: none;">Name of the Match</option>
                                             <option>Alaska</option>
                                         </select>
-                                        <input type="text" class="text-center price" style="color:#9F9F9F; border: none;"
-                                            value="₹600">
+                                        <input type="text" class="text-center price"
+                                            style="color:#9F9F9F; border: none;" value="₹600">
                                     </div>
                                 </div>
 
@@ -167,9 +186,9 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-2">
+                            <div class="col-md-2 col-sm-2">
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-6 col-sm-6">
                                 <div id="account" class="headeruser "> Upload your Qr</div>
                                 <div class="d-flex mt-1 mb-5" style="margin-left: 2px;">
                                     <label for="uploadInput"
@@ -186,7 +205,8 @@
                                     <label
                                         style="width: 120px; height: 110px; border:none; border-radius: 10px; display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; background-color: #D9D9D9; margin-left: 30px;">
                                         <img src="{{ asset('assets/image/gallery-add.svg')}}" alt="dashboard"
-                                            data-bs-toggle="modal" data-bs-target="#editModal" style="cursor: pointer; height: 35px; width: 35px;">
+                                            data-bs-toggle="modal" data-bs-target="#editModal"
+                                            style="cursor: pointer; height: 35px; width: 35px;">
                                     </label>
                                 </div>
                             </div>
@@ -200,7 +220,7 @@
         </div>
     </div>
 </div>
-</div>
+
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
@@ -219,7 +239,7 @@
     });
 
 
-    
+
 </script>
 
 
@@ -247,4 +267,5 @@
         element.parentElement.remove();
     }
 </script>
+
 @include('users.layouts.userfooter')
