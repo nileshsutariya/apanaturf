@@ -84,3 +84,7 @@ Route::get('users/matches', function() {
 Route::get('users/wallet', function() {
     return view('users.wallet');
 })->name('users.wallet');
+
+Route::get('users/refer', function() {
+    return view('users.refer');
+})->name('users.refer');

@@ -84,10 +84,11 @@
             display: none;
         }
         .title {
-            font-size: 50px !important;
+            font-size: 40px !important;
         }
         .subtitle {
             font-size: 40px !important;
+            margin-right: 17px;
         }
         .sport-section {
             margin-right: 90px;
@@ -97,6 +98,9 @@
         }
         .loader {
             display: none;
+        }
+        .text-section {
+            margin-left: 48px !important;
         }
     }
 /* Default styles */
@@ -246,18 +250,56 @@
             margin-top: 200px !important;
         }
     }
-    
+    @media (max-width: 1024px) {
+    /* .card {
+        padding: 30px; 
+        border-radius: 20px;
+        top: 400px;
+    } */
+    .frametwo {
+        padding: 30px; 
+        border-radius: 20px;
+        position: relative;
+        top: 80px !important;
+        max-width: 90% !important;
+    }
+
+    .label {
+        font-size: 1.8rem; /* Reduce title size */
+    }
+
+    .front-line {
+        font-size: 12px; /* Adjust text size */
+    }
+
+    .appstore {
+        max-width: 200px; /* Reduce image size */
+    }
+    .img-loader {
+        min-height: 70vh !important;
+    }
+}
+        .footer {
+            background-color: #212529;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+
 
 
 </style>
 <section class="content">
     <div class="container-fluid">
         <div class="row align-items-center sport-section">
-            <div class="col-12 col-md-4 text-section text-center text-md-left mb-4 mb-md-0 mt-4">
+            <div class="col-md-4 col-sm-12 text-section text-center mb-4 mb-md-0 mt-4">
                 <h1 class="title">MY GROUND</h1>
                 <h2 class="subtitle" style="color: #279B5A;">MY GAME</h2>
             </div>
-            <div class="col-12 col-md-6 text-section text-center position-relative sport-image">
+            <div class="col-md-6 col-sm-12 text-section text-center position-relative sport-image">
                 <h1 class="sport text-outline-success ml-5">SPORT</h1>
                 <img src="{{asset('assets/image/users/mockuuups-female-hand.svg')}}" 
                      class="position-absolute" 
@@ -274,12 +316,12 @@
             <div class="row">
                 <div class="col-md-5 col-12">
                     <div class="card mx-3 mt-3" style="background-color: transparent; border: solid black 1px; border-radius: 11px;">
-                        <div class="card-body" style="padding: 30px;">
+                        <div class="card-body">
                             <div class="row align-items-center">
-                                <div class="col-md-5 col-sm-5 col-auto mb-2">
+                                <div class="col-md-6 col-sm-5 col-auto mb-2">
                                     <div class="row">
                                         <div class="col-auto">
-                                            <img src="{{asset('assets/image/users/Group.svg')}}" class="d-inline-block align-top" alt="">
+                                            <img src="{{asset('assets/image/users/Group.svg')}}" class="d-flex-block align-top" alt="">
                                         </div>
                                         <div class="col-auto">
                                             <span style="font-size: 13px;">Location</span>
@@ -287,7 +329,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-5 col-sm-5 col-auto mb-2">
+                                <div class="col-md-4 col-sm-5 col-auto mb-2">
                                     <div class="row">
                                         <div class="col-auto">
                                             <img src="{{asset('assets/image/users/calendar.svg')}}" class="d-inline-block align-top" alt="">
@@ -298,8 +340,8 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-2 col-sm-2 col-auto d-flex justify-content-center">
-                                    <button class="btn btn-outline-dark d-flex align-items-center justify-content-center col" type="submit" style="background-color: #000; border: none; width: 48px; height: 47px;">
+                                <div class="col-md-2 col-sm-2 col-auto d-flex justify-content-center d-md-none" id="searching">
+                                    <button class="btn btn-outline-dark d-flex align-items-center justify-content-center" type="submit" style="background-color: #000; border: none; width: 48px; height: 47px; padding: 30px; margin-right: 20px;">
                                         <i class="bi bi-search" style="color: #fff; font-size: 25px;"></i>
                                     </button>
                                 </div>
@@ -310,7 +352,7 @@
                     <div class="mx-3 mt-3" style="font-size: 12px; line-height: 25px;">
                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos corporis assumenda dolor in consequatur hic molestias delectus sapiente incidunt culpa!
                     </div>
-                    <div class="mx-3 mt-4 text-center text-md-left  " style="font-size: 12px; line-height: 25px;">
+                    <div class="mx-3 mt-4 text-center text-md-left" style="font-size: 12px; line-height: 25px;">
                         <img src="{{asset('assets/image/users/appstore.svg')}}" class="d-inline-block align-top" alt="" style="width: 250px;">
                     </div>
                 </div>
@@ -469,6 +511,7 @@
 
     </div>
 </section>
+
 <section class="content jquery-hover" style="background-color: #2b2a2a; padding-bottom: 160px;">
     <div class="container p-5">
         <div class="row">
@@ -527,12 +570,13 @@
         
     </div>
 </section>
+
 <section class="content img-loader justify-content-center align-items-center" style="margin-top: 300px; min-height: 100vh;">
     <div class="row">
         <div class="col-md-12 text-center">
             {{-- <img src="{{asset('assets/image/users/Line23.svg')}}" class="d-inline-block align-top" alt=""> --}}
 
-            <div style="font-weight: 600;"><h6>— Reviews</h6></div>
+            <div class="review" style="font-weight: 600;"><h6>— Reviews</h6></div>
         </div>
     </div>
     <div class="row">
@@ -607,12 +651,12 @@
 
         </div>
     </div>
+    <div class="container">
     <div class="row justify-content-center">
-        <div class="container">
             <div class="col-12">
                 {{-- class="position-absolute frame" 
                                     style="top: -0px;"  --}}
-                <div class="card position-relative mx-auto text-center text-white" style="top: 100px; z-index:10; background-color: #0B7C3C; border-radius: 25px; max-width: 75%; padding: 45px;">
+                <div class="card frametwo position-relative mx-auto text-center text-white" style="top: 100px; z-index:10; background-color: #0B7C3C; border-radius: 25px; max-width: 75%; padding: 45px;">
                     <div class="mt-2 front-line" style="font-size: 14px;">
                         Find and Enjoy Your Perfect Ground for Your Game
                     </div>
@@ -634,7 +678,6 @@
 
 
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script src="script.js"></script>
     <script>
         var swiper = new Swiper('.mySwiper', {
             loop: true,
@@ -653,7 +696,8 @@
                 970: { slidesPerView: 5, spaceBetween: 10 },  // Medium screens
                 768: { slidesPerView: 3, spaceBetween: 10 },  // Tablets
                 576: { slidesPerView: 1, spaceBetween: 5 },   // Mobile devices
-                375: { slidesPerView: 1, spaceBetween: 0 }    // Small screens
+                375: { slidesPerView: 1, spaceBetween: 0 },   // Small screens
+                344: { slidesPerView: 1, spaceBetween: 0 }    // Small screens
             },
             on: {
                 slideChangeTransitionEnd: function () {
@@ -748,8 +792,8 @@
                 <h6 class="mb-4">Get the Latest Information</h6>
             
                 <p>
-                    <form class="form-inline d-flex flex-nowrap w-100">
-                        <input class="form-control flex-grow-1" type="search" aria-label="Search" style="opacity: 0.4; border-top-left-radius: 7px; border-bottom-left-radius: 7px; border-top-right-radius: 0px; border-bottom-right-radius: 0px;">
+                    <form class="form-inline d-flex flex-nowrap">
+                        <input class="form-control flex-grow-1" type="search" aria-label="Search" style="width: 100% !important; opacity: 0.4; border-top-left-radius: 7px; border-bottom-left-radius: 7px; border-top-right-radius: 0px; border-bottom-right-radius: 0px;">
                         <button class="btn btn-outline-success my-2 my-sm-0 p-4 d-flex align-items-center justify-content-center" type="submit" style="background-color: #fff; border: none; border-radius: 9px;"></button>
                     </form>                    
                 </p>
@@ -759,8 +803,8 @@
         <div  style="font-size: 12px;">
         <div class="row">
             <div class="col-6 ml-auto text-right">
-
-                <a href="#" class="fa fa-linkedin text-decoration-none " style="color: #e0e0e0;">  User Terms & Conditions |  </a>
+                User
+                <a href="#" class="fa fa-linkedin text-decoration-none " style="color: #e0e0e0;">   Terms & Conditions |  </a>
                 <a href="#" class="fa fa-linkedin text-decoration-none" style="color: #e0e0e0;">  Privacy Policy  </a>
             </div>
         </div>
@@ -771,7 +815,6 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     
 <!-- Vendor js -->
-<script src="{{asset('assets/js/vendor.min.js')}}"></script>
 
 <!-- App js -->
 <script src="{{asset('assets/js/app.js')}}"></script>
@@ -785,8 +828,6 @@
 {{-- </div> --}}
 </body>
 </html>
-
-
 
 
 <style>
