@@ -169,13 +169,13 @@
 <div id="addBanner" class="modal-demo">
 
     <!-- Close Button (Bootstrap) -->
-    <div style="display: flex; justify-content: space-between; align-items: center; mb-5">
+    <div style="display: flex; justify-content: space-between; align-items: center; ">
         <h6 style="font-weight: bold; margin: 0;">Code</h6>
         <button type="button" class="btn-close close-modal"  onclick="Custombox.modal.close();"></button>
     </div>
 
     <!-- Modal Header -->
-    <div class="otp-container mt-2">
+    <div class="otp-container mt-3">
         <form>
             <div class="mb-3" style="font-size: 16px;">
                 <input type="text" class="form-control" id="otp" placeholder="Enter the Otp here"

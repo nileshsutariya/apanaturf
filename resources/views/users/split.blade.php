@@ -1,4 +1,9 @@
 @include('users.layouts.header2')
+<link href="{{asset('assets/css/vendor.min.css')}}" rel="stylesheet" type="text/css" />
+
+<!-- App css -->
+<link href="{{asset('assets/css/app2.min.css')}}" rel="stylesheet" type="text/css" id="app-style" />
+
 <style>
     @import url(https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap);
 
@@ -133,12 +138,31 @@
             width: 610px;
         }
     }
+
     @media (min-width: 655px) and (max-width: 690px) {
         .page-content {
             width: 510px;
         }
     }
 
+    #otp::placeholder {
+        font-size: 16px;
+    }
+
+    .modal-demo {
+        width: 380px !important;
+        height: 200px;
+        padding: 30px;
+        box-shadow: 0 15px 15px rgba(0, 0, 0, 0.3);
+        border-radius: 12px;
+        position: relative;
+    }
+
+    @media (max-width: 435px) {
+        .modal-demo {
+            width: 86% !important;
+        }
+    }
 </style>
 <div class="page-content" id="mainContent">
     <div class="page-container" style="background-color: transparent;">
@@ -178,9 +202,13 @@
                                 <div class="mb-3">
                                     <label class="form-label">Add members here</label>
                                     <div class="member-list">
-                                        <button class="add-member-btn" onclick="addMember()">+</button>
-                                        <div id="members">
-                                            <div class="member-tag">Rohit <span class="ms-2 text-danger"
+                                        <a href="#addmember" class="add-banner waves-effect waves-light"
+                                            data-animation="blur" data-plugin="custommodal" data-overlaySpeed="100"
+                                            data-overlayColor="#36404a">
+                                            <button class="add-member-btn">+</button>
+                                        </a>
+                                        <div id="members" class="d-flex">
+                                            <div class="member-tag">Rohit <span class="ms-2 text-dark"
                                                     onclick="removeMember(this)">×</span></div>
                                         </div>
                                     </div>
@@ -220,11 +248,34 @@
         </div>
     </div>
 </div>
+<div id="addmember" class="modal-demo">
 
+    <!-- Close Button (Bootstrap) -->
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <h6 style="font-weight: bold; margin: 0;">Add Member</h6>
+        <button type="button" class="btn-close close-modal" onclick="Custombox.modal.close();"></button>
+    </div>
+
+    <!-- Modal Header -->
+    <div class="otp-container mt-3">
+        <form>
+            <div class="mb-3" style="font-size: 16px;">
+                <input type="text" class="form-control" id="newmember" placeholder="Enter Member Name"
+                    style="border: 2px solid #D0D5DD;">
+            </div>
+            <div style="text-align: center;">
+                <button type="button" class="btn save" onclick="addMember()">Save</button>
+            </div>
+        </form>
+    </div>
+</div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
 
+<script src="https://cdn.jsdelivr.net/npm/custombox@4.0.3/dist/custombox.min.js"></script>
+<script src="{{asset('assets/js/app2.js')}}"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
 <script>
@@ -237,6 +288,7 @@
             theme: 'bootstrap4'
         })
     });
+
 
 
 
@@ -254,18 +306,30 @@
     }
 
     function addMember() {
-        let name = prompt("Enter member name:");
+        let name = document.getElementById("newmember").value.trim();
+
         if (name) {
             let memberDiv = document.createElement("div");
             memberDiv.classList.add("member-tag");
-            memberDiv.innerHTML = `${name} <span class="ms-2 text-danger" onclick="removeMember(this)">×</span>`;
+
+            memberDiv.innerHTML = `          
+             ${name}  <span class="ms-2 text-dark"
+                                                    onclick="removeMember(this)">×</span>`;
+
             document.getElementById("members").appendChild(memberDiv);
+
+            // Clear input field
+            document.getElementById("newmember").value = "";
+
+            // Close modal
+            Custombox.modal.close();
         }
     }
 
     function removeMember(element) {
         element.parentElement.remove();
     }
+
 </script>
 
 @include('users.layouts.userfooter')

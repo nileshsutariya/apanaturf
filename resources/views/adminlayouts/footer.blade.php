@@ -6,7 +6,21 @@
         <!-- ============================================================== -->
 
     </div>
+    <script>
+    // Get current date
+   
+const currentDate = new Date();
 
+// Format the date as "MMM DD, YYYY" (e.g., Feb 27, 2025)
+const options = { month: 'short', day: '2-digit', year: 'numeric' };
+let formattedDate = currentDate.toLocaleDateString('en-US', options);
+
+// Insert a comma after the day
+formattedDate = formattedDate.replace(/(\d{2}) /, '$1, ');
+
+// Set the formatted date inside the <h6> tag
+document.getElementById("currentDate").innerText = formattedDate;
+</script>
 
 <script>
     $(document).ready(function () {

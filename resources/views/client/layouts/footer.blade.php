@@ -1,14 +1,26 @@
 </div>
         </div>
 
-        <!-- ============================================================== -->
-        <!-- End Page content -->
-        <!-- ============================================================== -->
-
     </div>
 
+    <script>
+    // Get current date
+   
+const currentDate = new Date();
 
+// Format the date as "MMM DD, YYYY" (e.g., Feb 27, 2025)
+const options = { month: 'short', day: '2-digit', year: 'numeric' };
+let formattedDate = currentDate.toLocaleDateString('en-US', options);
+
+// Insert a comma after the day
+formattedDate = formattedDate.replace(/(\d{2}) /, '$1, ');
+
+// Set the formatted date inside the <h6> tag
+document.getElementById("currentDate").innerText = formattedDate;
+</script>
 <script>
+
+    
     $(document).ready(function () {
         // Get the current page URL (excluding query params)
         var currentUrl = window.location.pathname.split("/").pop();
@@ -118,7 +130,7 @@
 </script>
 
 
-    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 <!-- Vendor js -->

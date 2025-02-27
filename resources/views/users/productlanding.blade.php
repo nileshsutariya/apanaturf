@@ -1,8 +1,9 @@
 @include('users.layouts.userheader')
 <style>
-    .body{
+    .body {
         font-family: 'NATS', sans-serif !important;
     }
+
     .img {
         height: 100px;
         width: 100px;
@@ -282,6 +283,7 @@
     .bid-turf {
         display: none;
     }
+
     .details-turf,
     .booking-date-container,
     .booknow-turf {
@@ -334,14 +336,17 @@
             margin-right: 35px;
         }
     }
+
     @media (max-width: 450px) {
         .booking-time {
             margin-right: 20px;
             width: 25%;
         }
-        .booking-date-container{
+
+        .booking-date-container {
             margin-left: 20px !important;
         }
+
         .booknow {
             padding: 15px 150px;
         }
@@ -395,6 +400,19 @@
         .booking-time {
             width: 18%
         }
+    }
+
+    .booking-time.selected {
+        background-color: #3F61DB !important;
+        /* Highlight color */
+        color: white !important;
+        border-color: #3F61DB !important;
+    }
+    .booking-date.selected {
+        background-color: #3F61DB !important;
+        /* Highlight color */
+        color: white !important;
+        border-color: #3F61DB !important;
     }
 </style>
 <section class="content pt-0">
@@ -467,40 +485,7 @@
                 <img src="{{ asset('assets/image/users/Group 1272628533.svg') }}" class="ml-auto">
             </div>
             <div class="col-lg-9">
-                <div class="row">
-                    <div class="col-sm-1 booking-date active">
-                        <span style="font-weight: 500;">Sat</span><br><span style="font-weight:600;">23</span>
-                    </div>
-                    <div class="col-sm-1 booking-date">
-                        <span style="font-weight: 500;">Sat</span><br><span style="font-weight:600;">23</span>
-                    </div>
-                    <div class="col-sm-1 booking-date">
-                        <span style="font-weight: 500;">Sat</span><br><span style="font-weight:600;">23</span>
-                    </div>
-                    <div class="col-sm-1 booking-date">
-                        <span style="font-weight: 500;">Sat</span><br><span style="font-weight:600;">23</span>
-                    </div>
-                    <div class="col-sm-1 booking-date">
-                        <span style="font-weight: 500;">Sat</span><br><span style="font-weight:600;">23</span>
-                    </div>
-                    <div class="col-sm-1 booking-date">
-                        <span style="font-weight: 500;">Sat</span><br><span style="font-weight:600;">23</span>
-                    </div>
-                    <div class="col-sm-1 booking-date">
-                        <span style="font-weight: 500;">Sat</span><br><span style="font-weight:600;">23</span>
-                    </div>
-                    <div class="col-sm-1 booking-date">
-                        <span style="font-weight: 500;">Sat</span><br><span style="font-weight:600;">23</span>
-                    </div>
-                    <div class="col-sm-1 booking-date">
-                        <span style="font-weight: 500;">Sat</span><br><span style="font-weight:600;">23</span>
-                    </div>
-                    <div class="col-sm-1 booking-date">
-                        <span style="font-weight: 500;">Sat</span><br><span style="font-weight:600;">23</span>
-                    </div>
-                    <div class="col-sm-1 booking-date">
-                        <span style="font-weight: 500;">Sat</span><br><span style="font-weight:600;">23</span>
-                    </div>
+                <div class="row date-selection" id="dateSelection">
                 </div>
             </div>
             <div class="row mt-3">
@@ -510,53 +495,53 @@
                     </div>
                     <div class="row ml-0">
                         <div class="col-sm-3 booking-time" style="background-color:#279B5A;color:#FFFFFF;">
-                            09:00 pm
+                            09:00 am
                         </div>
                         <div class="col-sm-3 booking-time"
                             style="background-color:#3F61DB;color:#FFFFFF; border: #3F61DB;">
-                            09:00 pm
+                            10:00 am
                         </div>
                         <div class="col-sm-3 booking-time">
-                            09:00 pm
+                            11:00 am
                         </div>
                         <div class="col-sm-3 booking-time" style="background-color:#279B5A;color:#FFFFFF;">
-                            09:00 pm
+                            12:00 am
+                        </div>
+                        <div class="col-sm-3 booking-time">
+                            01:00 pm
+                        </div>
+                        <div class="col-sm-3 booking-time">
+                            02:00 pm
+                        </div>
+                        <div class="col-sm-3 booking-time">
+                            03:00 pm
+                        </div>
+                        <div class="col-sm-3 booking-time">
+                            04:00 pm
+                        </div>
+                        <div class="col-sm-3 booking-time">
+                            05:00 pm
+                        </div>
+                        <div class="col-sm-3 booking-time">
+                            06:00 pm
+                        </div>
+                        <div class="col-sm-3 booking-time">
+                            07:00 pm
+                        </div>
+                        <div class="col-sm-3 booking-time">
+                            08:00 pm
                         </div>
                         <div class="col-sm-3 booking-time">
                             09:00 pm
                         </div>
                         <div class="col-sm-3 booking-time">
-                            09:00 pm
+                            10:00 pm
                         </div>
                         <div class="col-sm-3 booking-time">
-                            09:00 pm
+                            11:00 pm
                         </div>
                         <div class="col-sm-3 booking-time">
-                            09:00 pm
-                        </div>
-                        <div class="col-sm-3 booking-time">
-                            09:00 pm
-                        </div>
-                        <div class="col-sm-3 booking-time">
-                            09:00 pm
-                        </div>
-                        <div class="col-sm-3 booking-time">
-                            09:00 pm
-                        </div>
-                        <div class="col-sm-3 booking-time">
-                            09:00 pm
-                        </div>
-                        <div class="col-sm-3 booking-time">
-                            09:00 pm
-                        </div>
-                        <div class="col-sm-3 booking-time">
-                            09:00 pm
-                        </div>
-                        <div class="col-sm-3 booking-time">
-                            09:00 pm
-                        </div>
-                        <div class="col-sm-3 booking-time">
-                            09:00 pm
+                            12:00 pm
                         </div>
                     </div>
                 </div>
@@ -852,9 +837,62 @@
             delay: 0, // No delay, constant motion
             disableOnInteraction: false,
         },
-        allowTouchMove: false, 
+        allowTouchMove: false,
     });
 </script>
+<script>
+    function generateCurrentWeek() {
+        const dateSelection = document.getElementById("dateSelection");
+        dateSelection.innerHTML = ""; // Clear existing dates
+
+        let today = new Date();
+        let dayOfWeek = today.getDay(); // 0 = Sunday, 1 = Monday, etc.
+        let startOfWeek = new Date(today);
+        startOfWeek.setDate(today.getDate() - dayOfWeek + (dayOfWeek === 0 ? -6 : 1)); // Adjust for Monday start
+
+        for (let i = 0; i < 7; i++) {
+            let date = new Date(startOfWeek);
+            date.setDate(startOfWeek.getDate() + i);
+
+            let dayName = date.toLocaleDateString("en-US", { weekday: "short" });
+            let dayNumber = date.getDate();
+
+            let dateDiv = document.createElement("div");
+            dateDiv.classList.add("col-sm-1", "booking-date");
+            if (i === today.getDay() - 1) dateDiv.classList.add("active"); // Highlight today
+
+            dateDiv.innerHTML = `<span style="font-weight: 500;">${dayName}</span><br>
+                                 <span style="font-weight:600;">${dayNumber}</span>`;
+
+            dateSelection.appendChild(dateDiv);
+        }
+    }
+
+    generateCurrentWeek();
+
+
+</script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const bookingTimes = document.querySelectorAll(".booking-time");
+
+        bookingTimes.forEach(time => {
+            time.addEventListener("click", function () {
+                this.classList.toggle("selected"); // Toggle selected state
+            });
+        });
+    });
+    document.addEventListener("DOMContentLoaded", function () {
+        const bookingTimes = document.querySelectorAll(".booking-date");
+
+        bookingTimes.forEach(time => {
+            time.addEventListener("click", function () {
+                this.classList.toggle("selected"); // Toggle selected state
+            });
+        });
+    });
+</script>
+
 <!-- <script>
     document.addEventListener("DOMContentLoaded", function () {
         const bookNow = document.querySelector(".booknow");
