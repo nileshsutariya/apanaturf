@@ -44,6 +44,8 @@
     <!-- Theme Config Js -->
     <script src="{{asset('assets/js/config.js')}}"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
     <style>
         body {
             font-size: 15px;
@@ -86,7 +88,7 @@
 
         .side-nav {
             height: 30px;
-            padding-top: 70px;
+            padding-top: 71px;
         }
 
         .side-nav .side-nav-item .side-nav-link {

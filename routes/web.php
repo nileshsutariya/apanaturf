@@ -64,10 +64,17 @@ Route::get('/profile', function () {
 // Route::get('/financialyear', function () {
 //     return view(view: 'financialyear');
 // });
+
+
 Route::get('/', function () {
-    return view('client.index
-');
+    return view('client.index');
 });
+
+Route::get('/client/booking', function () {
+    return view('client.booking');
+});
+
+
 
 Route::get('index', function() {
     return view('users.index');
@@ -84,3 +91,14 @@ Route::get('users/wallet', function() {
 Route::get('users/refer', function() {
     return view('users.refer');
 })->name('users.refer');
+
+
+
+
+
+
+
+
+Route::get('demo', function() {
+    return view('users.layouts.demoheader');
+})->name('users.demo');
