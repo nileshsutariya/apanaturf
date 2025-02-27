@@ -263,7 +263,7 @@
                     </li>
 
                     <li class="side-nav-item">
-                        <a href="#" class="side-nav-link mb-5" style="margin-top: 200px;">
+                        <a href="#" class="side-nav-link mb-5" style="margin-top: 150px;">
                             <span class="menu-icon"><img src="{{asset('assets/image/client/Logout.svg')}}" alt="logout"></span>
                             <span class="menu-text"> Logout </span>
                         </a>
@@ -335,7 +335,7 @@
 
                     <h5 class="m-3">Hello, Abhi</h5>
                     <img src="{{ asset('assets/image/client/chevrons-right.svg') }}" alt="image">
-                    <h6 class="mt-2" style="color: #99a1a8;"> Feb 01, 2025</h6>
+                    <h6 id="currentDate" class="mt-2" style="color: #99a1a8;"></h6>
                     <!-- Mega Menu Dropdown -->
                     <div class="topbar-item d-none d-md-flex">
                         <div class="dropdown">

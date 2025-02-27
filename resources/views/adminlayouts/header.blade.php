@@ -386,7 +386,7 @@
 
                     <h5 class="m-3">Hello, Abhi</h5>
                     <img src="{{ asset('assets/image/chevrons-right.svg') }}" alt="image">
-                    <h6 class="mt-2" style="color: #99a1a8;"> Feb 01, 2025</h6>
+                    <h6 id="currentDate" class="mt-2" style="color: #99a1a8;"></h6>
                     <!-- Mega Menu Dropdown -->
                     <div class="topbar-item d-none d-md-flex">
                         <div class="dropdown">
@@ -394,18 +394,11 @@
                                 Pages <i class="mdi mdi-chevron-down ms-1"></i>
                             </a> -->
 
-                            <!-- .dropdown-menu-->
-                        </div> <!-- .dropdown-->
-                    </div> <!-- end topbar-item -->
+                        </div>
+                    </div> 
                 </div>
 
                 <div class="d-flex align-items-center gap-2">
-                    <!-- Light/Dark Toggle Button  -->
-
-                    <!-- Language Dropdown -->
-
-
-                    <!-- Notification Dropdown -->
                     <div class="topbar-item">
                         <div class="dropdown position-relative">
                             <button class="topbar-link dropdown-toggle drop-arrow-none notification"

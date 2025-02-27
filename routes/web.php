@@ -64,9 +64,11 @@ Route::get('/profile', function () {
 // Route::get('/financialyear', function () {
 //     return view(view: 'financialyear');
 // });
+Route::get('/ss', function () {
+    return view('client.account');
+});
 Route::get('/', function () {
-    return view('client.index
-');
+    return view('users.split');
 });
 
 Route::get('index', function() {
