@@ -68,7 +68,7 @@ Route::get('/ss', function () {
     return view('client.account');
 });
 Route::get('/', function () {
-    return view('users.split');
+    return view('users.design');
 });
 
 Route::get('index', function() {
