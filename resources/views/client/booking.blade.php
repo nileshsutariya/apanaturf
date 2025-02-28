@@ -1,6 +1,62 @@
 @include('client.layouts.header')
     <style>
-        
+        .week-calendar {
+            width: 670px !important;
+        }
+    
+        @media (max-width: 376px) and (max-width: 376px) {
+            .week-calendar {
+                overflow-x: auto; /* Enable scrolling */
+                white-space: nowrap;
+                scrollbar-width: thin;
+            }
+            .week-container, .calendar {
+                width: 670px; 
+            }
+        } 
+        @media  (max-width: 1000px) and (max-width: 1024px) { 
+            .week-calendar {
+                overflow-x: auto; /* Enable scrolling */
+                white-space: nowrap;
+                scrollbar-width: thin;
+            }
+            .week-container, .calendar {
+                width: 670px; 
+            }
+        }
+        .week-container {
+            display: grid !important;
+            grid-template-columns: 90px repeat(7, 1fr); /* First column blank, then 7 equal columns */
+            width: 100%;
+            margin-left: -23px;
+            gap: 29px;
+        }
+        /* .week-container div:first-child {
+            visibility: hidden; 
+        } */
+
+        .time-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr); /* Match with week-container */
+            width: 100%;
+        }
+
+        .week-container div, 
+        .time-grid div {
+            text-align: center;
+            /* border: 1px solid #ddd; For visibility */
+        }
+
+        .week-container {
+            display: flex;
+            width: 100%;
+        }
+
+        .week-container div {
+            flex: 1; /* Ensure equal width */
+            text-align: center;
+        }
+
         .calendar-container {
             background: white;
             border-radius: 51px;
@@ -8,6 +64,7 @@
             text-align: center;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
+
         .calendar-header {
             display: flex;
             justify-content: center;
@@ -16,31 +73,38 @@
             font-weight: bold;
             color: #2d472c;
         }
+
         .calendar-header i {
             margin-right: 10px;
         }
+
         .calendar-grid {
             display: grid;
             grid-template-columns: repeat(7, 1fr);
             gap: 5px;
             margin-top: 10px;
         }
+
         .calendar-day {
             padding: 10px;
             text-align: center;
             border-radius: 5px;
             cursor: pointer;
         }
+
         .calendar-day:hover {
             background-color: #e9ecef;
         }
+
         .calendar-today {
             background-color: #2d472c;
             color: white;
         }
+
         .calendar-selected {
             border: 1px solid #2d472c;
         }
+
         .month-year {
             display: flex;
             align-items: center;
@@ -48,9 +112,11 @@
             gap: 10px;
             margin-top: 0px;
         }
+
         .dropdown {
             display: inline-block;
         }
+
         select {
             border: none;
             font-size: 18px;
@@ -61,6 +127,7 @@
             outline: none;
             overflow-y: hidden !important;
         }
+
         .weekdays {
             display: grid;
             grid-template-columns: repeat(7, 1fr);
@@ -68,6 +135,7 @@
             margin-top: 25px;
             color: #234723;
         }
+
         .toggle-container {
             display: flex;
             align-items: center;
@@ -160,7 +228,7 @@
         .event {
             background-color: lightblue;
             padding: 5px;
-            border-radius: 5px;
+            border-radius: 4px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -168,7 +236,7 @@
             margin: auto;
             font-size: 14px;
         }
-        
+
         .time-slot, .day-header {
             /* border: 1px solid #ddd; */
             border-bottom: 1px solid #ddd;
@@ -177,45 +245,35 @@
             padding: 5px;
             cursor: pointer;
         }
-        .week-container {
-        display: flex;
-        justify-content: end;
-        gap: 30px;
-        margin-right: 20px;
-        /* margin-bottom: 10px; */
-    }
 
-    .week-day {
-        text-align: center;
-        padding: 8px;
-        /* border: 1px solid #ddd; */
-        /* border-radius: 5px; */
-        width: 55px;
-    }
-    .highlight {
-    background-color: #191919; 
-    color: white;
-    font-weight: bold;
-    border-radius: 5px;
-    padding: 3px;
-}
-=
-    /* @media (max-width: 1000px) {
-        #calendarDays {
-            grid-template-columns: repeat(7, 1fr);
+        /* .week-container {
+            display: flex;
+            justify-content: end;
+            gap: 30px;
+            margin-right: 20px;
+            margin-bottom: 10px;
+        } */
+
+        .week-day {
+            text-align: center;
+            padding: 8px;
+            font-size: small;
+            width: 55px;
         }
-    }
-    @media (max-width: 500px) {
-        #calendarDays {
-            grid-template-columns: repeat(7, 1fr);
+        
+        .highlight {
+            background-color: #191919; 
+            color: white;
+            font-weight: bold;
+            border-radius: 5px;
+            padding: 3px;
         }
-    } */
 
     </style>
     <div class="page-title-box">
 
             <div class="row" style="font-family: 'Poppins', sans-serif !important;">
-                <div class="col-md-4">
+                <div class="col-md-4 col-lg-4">
                     <div class="calendar-container" id="calendar" style="font-size: 12px !important;  box-shadow: 0px 25px 30px #00000040;">
                         <div class="calendar-header">
                             <img class="mr-2" src="{{asset('assets/image/client/calendargreen.svg')}}" alt="dashboard" height="">
@@ -225,13 +283,13 @@
                             </div>
                         </div>
                         <div class="weekdays">
+                            <div>Su</div>
                             <div>Mo</div>
                             <div>Tu</div>
                             <div>We</div>
                             <div>Th</div>
                             <div>Fr</div>
                             <div>Sa</div>
-                            <div>Su</div>
                         </div>
                         <div class="calendar-grid" id="calendarDays"></div>
                     </div>
@@ -296,36 +354,98 @@
                     </div>
 
                 </div>
-                <div class="col-md-8">
-                    <div class="container">
-                        <div id="weekDates" class="week-container"></div>
-                        <div class="calendar" id="schedular"></div>
-                    </div>
-                
-                    <!-- Modal for Adding/Editing Events -->
-                    <div class="modal fade" id="eventModal" tabindex="-1">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title">Event Details</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                <div class="col-md-8 col-lg-8 col-sm-8">
+                    <table class="table table-hover text-nowrap">
+               
+                        <tbody>
+                            
+                            <div class="row" style="font-family: 'Poppins', sans-serif !important;">
+                            <div class="container week-calendar">
+                                <div id="weekDates" class="week-container">
+                                    <div class="empty" style="padding: 12px;"></div>
                                 </div>
-                                <div class="modal-body">
-                                    <input type="hidden" id="eventId">
-                                    <label>Event Title</label>
-                                    <input type="text" id="eventTitle" class="form-control" required>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary" id="saveEvent">Save</button>
+                                
+                                <div class="calendar" id="schedular"></div>
+                            </div>
+                        
+                            <!-- Modal for Adding/Editing Events -->
+                            <div class="modal fade" id="addEventModal" tabindex="-1">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">Add Event</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <input type="hidden" id="eventId">
+                                            <div class="mb-3">
+                                                <label class="form-label">Event Title</label>
+                                                <input type="text" class="form-control" id="eventTitle">
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button class="btn btn-primary" id="saveEvent">Save</button>
+                                            <button class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
+                            <!-- Event Modal -->
+                            <div class="modal fade" id="editEventModal" tabindex="-1">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">Edit Event</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <input type="hidden" id="editEventId">
+                                            <div class="mb-3">
+                                                <label class="form-label">Event Title</label>
+                                                <input type="text" class="form-control" id="editEventTitle">
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button class="btn btn-danger" id="deleteEvent">Delete</button>
+                                            <button class="btn btn-primary" id="updateEvent">Save</button>
+                                            <button class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+
+                        </tbody>
+                    </table>
                 </div>
             </div>
 
     </div>   
+
+
+
+
+
+    <!-- jQuery (Required for DataTables) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+<!-- Bootstrap 4 JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/js/bootstrap.bundle.min.js"></script>
+
+<!-- AdminLTE 3 JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.2.0/js/adminlte.min.js"></script>
+
+<!-- DataTables JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/datatables.net/1.13.6/jquery.dataTables.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/datatables.net-bs4/1.11.5/dataTables.bootstrap4.min.js"></script>
+
+<!-- DataTables Buttons (For Export, Print, Copy) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/datatables.net-buttons/2.4.2/js/dataTables.buttons.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/datatables.net-buttons/2.4.2/js/buttons.html5.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/datatables.net-buttons/2.4.2/js/buttons.print.min.js"></script>
 
     <script>
         const calendarDays = document.getElementById("calendarDays");
@@ -357,6 +477,10 @@
             calendarDays.innerHTML = "";
             let firstDay = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1).getDay();
             let lastDate = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0).getDate();
+            
+            let today = new Date();
+            today.setHours(0, 0, 0, 0);
+
             for (let i = 0; i < firstDay; i++) {
                 let emptyDiv = document.createElement("div");
                 calendarDays.appendChild(emptyDiv);
@@ -365,128 +489,186 @@
                 let dayDiv = document.createElement("div");
                 dayDiv.textContent = day;
                 dayDiv.classList.add("calendar-day");
-                
-                let today = new Date();
+
+                let selectedDay = new Date(currentDate.getFullYear(), currentDate.getMonth(), day);
+                if (selectedDay < today) {
+                    dayDiv.classList.add("disabled-date"); // Disable past dates
+                }
+
                 if (day === today.getDate() && currentDate.getMonth() === today.getMonth() && currentDate.getFullYear() === today.getFullYear()) {
                     dayDiv.classList.add("calendar-today");
                 }
-                dayDiv.addEventListener("click", function() {
+
+                dayDiv.addEventListener("click", function () {
+                    if (selectedDay < today) {
+                        return; // Prevent selecting past dates
+                    }
+
                     if (selectedDate) {
                         selectedDate.classList.remove("calendar-selected");
                     }
                     selectedDate = dayDiv;
                     selectedDate.classList.add("calendar-selected");
-                    updateSchedule(day);
+                    updateWeekView(new Date(currentDate.getFullYear(), currentDate.getMonth(), day));
                 });
                 calendarDays.appendChild(dayDiv);
             }
         }
-        function updateCalendar() {
-            currentDate.setMonth(parseInt(monthSelector.value));
-            currentDate.setFullYear(parseInt(yearSelector.value));
-            renderCalendar();
+
+        function updateWeekView(selectedDate) {
+            const weekContainer = document.getElementById("weekDates");
+            let weekDates = [];
+
+            for (let i = 0; i < 7; i++) {
+                let date = new Date(selectedDate);
+                date.setDate(selectedDate.getDate() + i);
+                weekDates.push({
+                    dayName: date.toLocaleString('en-US', { weekday: 'short' }),
+                    dayNumber: date.getDate()
+                });
+            }
+
+            weekContainer.innerHTML = weekDates.map(date =>
+                `<div class="week-day">
+                    <strong class="${date.dayNumber === selectedDate.getDate() ? 'highlight' : ''}" style="font-size: 20px;">${date.dayNumber}</strong>
+                    <div style="font-size: 12px; font-weight: bold;">${date.dayName}</div>
+                </div>`
+            ).join('');
+
+            updateSchedule(weekDates);
         }
 
-        function updateSchedule(day) {
-            console.log("Fetching schedule for", day);
-            // Implement logic to fetch & display schedule data based on selected day.
+
+        function updateSchedule(weekDates) {
+            const scheduler = document.getElementById("schedular");
+            const times = ["9AM", "10AM", "11AM", "12PM", "1PM", "2PM", "3PM", "4PM", "5PM", "6PM"];
+            let events = JSON.parse(localStorage.getItem("events")) || {};
+            // scheduler.innerHTML = `<div class='time-slot'></div>` + weekDates.map(date => `<div class='day-header'>${date.dayName} ${date.dayNumber}</div>`).join('');
+
+            times.forEach(time => {
+                scheduler.innerHTML += `<div class='time-slot'>${time}</div>`;
+                weekDates.forEach(date => {
+                    const key = `${date.dayName} ${date.dayNumber}-${time}`;
+                    scheduler.innerHTML += `<div class='time-slot' data-time='${key}'>${events[key] || ''}</div>`;
+                });
+            });
         }
-        
+
+        monthSelector.addEventListener("change", function () {
+            currentDate.setMonth(parseInt(this.value));
+            renderCalendar();
+        });
+
+        yearSelector.addEventListener("change", function () {
+            currentDate.setFullYear(parseInt(this.value));
+            renderCalendar();
+        });
+
         populateSelectors();
         renderCalendar();
     </script>
     
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-    const calendar = document.getElementById("schedular");
-    const weekContainer = document.getElementById("weekDates");
-
-    function getCurrentWeekDates() {
-        const today = new Date();
-        const firstDayOfWeek = today.getDate() - today.getDay() + 1; // Get Monday of current week
-        const currentWeek = [];
-
-        for (let i = 0; i < 7; i++) {
-            const date = new Date(today);
-            date.setDate(firstDayOfWeek + i);
-            const dayName = date.toLocaleString('en-US', { weekday: 'short' }); // Mon, Tue, etc.
-            const dayNumber = date.getDate();
-            currentWeek.push({ dayName, dayNumber });
-        }
-        return currentWeek;
-    }
-
-    function displayWeek() {
-        const weekDates = getCurrentWeekDates();
-        const today = new Date().getDate(); // Get today's date
-
-        weekContainer.innerHTML = weekDates.map(date => 
-            ``
-            // `<div class="week-day">
-            //     <strong class=" ${date.dayNumber === today ? 'highlight' : ''} " style="font-size: 20px;">${date.dayNumber}</strong>
-            //     <div style="font-size: 12px; font-weight: bold;">${date.dayName}</div>
-            // </div>`
-        ).join('');
-    }
-
-    displayWeek(); // Show current week dates
-
-    const days = getCurrentWeekDates().map(date => `${date.dayName} ${date.dayNumber}`);
-    const times = ["9AM", "10AM", "11AM", "12PM", "1PM", "2PM", "3PM", "4PM", "5PM", "6PM"];
-    let events = JSON.parse(localStorage.getItem("events")) || {};
-
-    // Generate calendar headers
-    calendar.innerHTML = `<div class='time-slot'></div>` + days.map(day => `<div class='day-header'>${day}</div>`).join('');
+            const calendar = document.getElementById("schedular");
+            const weekContainer = document.getElementById("weekDates");
     
-    // Generate time slots
-    times.forEach(time => {
-        calendar.innerHTML += `<div class='time-slot'>${time}</div>`;
-        days.forEach(day => {
-            const key = `${day}-${time}`;
-            calendar.innerHTML += `<div class='time-slot' data-time='${key}'>
-                ${events[key] ? `<div class='event px-3' style="font-size: 10px;">
-                    ${events[key]} 
-                    <a href="#" class="delete-event pl-2" style="text-decoration: none;color: black;" data-key="${key}">✖</a>
-                </div>` : ''}
-            </div>`;
-        });
-    });
+            let events = {}; // Temporary storage (Clears on refresh)
+    
+            function getNext7Days() {
+                const today = new Date();
+                const next7Days = [];
 
-    // Handle clicks to add/edit events
-    calendar.addEventListener("click", function (e) {
-        if (e.target.classList.contains("time-slot") && !e.target.querySelector(".event")) {
-            const timeKey = e.target.getAttribute("data-time");
-            if (timeKey) {
-                document.getElementById("eventId").value = timeKey;
-                document.getElementById("eventTitle").value = events[timeKey] || "";
-                new bootstrap.Modal(document.getElementById("eventModal")).show();
+                for (let i = 0; i < 7; i++) {
+                    const date = new Date();
+                    date.setDate(today.getDate() + i);
+                    const dayName = date.toLocaleString('en-US', { weekday: 'short' });
+                    const dayNumber = date.getDate();
+                    next7Days.push({ dayName, dayNumber });
+                }
+                return next7Days;
             }
-        }
-    });
-
-    // Save event
-    document.getElementById("saveEvent").addEventListener("click", function () {
-        const timeKey = document.getElementById("eventId").value;
-        const title = document.getElementById("eventTitle").value;
-        events[timeKey] = title;
-        localStorage.setItem("events", JSON.stringify(events));
-        location.reload();
-    });
-
-    // Delete event
-    calendar.addEventListener("click", function (e) {
-        if (e.target.classList.contains("delete-event")) {
-            const timeKey = e.target.getAttribute("data-key");
-            delete events[timeKey]; // Remove event from storage
-            localStorage.setItem("events", JSON.stringify(events));
-            location.reload();
-        }
-    });
-});
-    </script>
-
-<script>
     
-</script>
+            function displayWeek() {
+                const weekDates = getNext7Days();
+                const today = new Date().getDate();
+
+                weekContainer.innerHTML = `<div class="week-day empty"></div>` + weekDates.map(date =>
+                    `<div class="week-day">
+                        <strong class="${date.dayNumber === today ? 'highlight' : ''}" style="font-size: 18px;">${date.dayNumber}</strong>
+                        <div style="font-size: 12px; font-weight: bold;">${date.dayName}</div>
+                    </div>`
+                ).join('');
+            }
+        
+            function renderCalendar() {
+                calendar.innerHTML = ""; // Clear previous content
+                const days = getNext7Days().map(date => `${date.dayName} ${date.dayNumber}`);
+                const times = ["9AM", "10AM", "11AM", "12PM", "1PM", "2PM", "3PM", "4PM", "5PM", "6PM"];
+
+                times.forEach(time => {
+                    calendar.innerHTML += `<div class='time-slot'>${time}</div>`;
+                    days.forEach(day => {
+                        const key = `${day}-${time}`;
+                        calendar.innerHTML += `<div class='time-slot' data-time='${key}'>
+                            ${events[key] ? `<div class='event px-3' data-key="${key}" style="cursor:pointer; font-size: 10px;">${events[key]}</div>` : ''}
+                        </div>`;
+                    });
+                });
+            }
+            
+            // Initial rendering
+            displayWeek();
+            renderCalendar();
+    
+            // Event handler for adding/editing events
+            calendar.addEventListener("click", function (e) {
+                if (e.target.classList.contains("time-slot") && !e.target.querySelector(".event")) {
+                    const timeKey = e.target.getAttribute("data-time");
+                    if (timeKey) {
+                        document.getElementById("eventId").value = timeKey;
+                        document.getElementById("eventTitle").value = "";
+                        new bootstrap.Modal(document.getElementById("addEventModal")).show();
+                    }
+                } else if (e.target.classList.contains("event")) {
+                    const key = e.target.getAttribute("data-key");
+                    document.getElementById("editEventId").value = key;
+                    document.getElementById("editEventTitle").value = events[key];
+                    new bootstrap.Modal(document.getElementById("editEventModal")).show();
+                }
+            });
+    
+            // Save new event
+            document.getElementById("saveEvent").addEventListener("click", function () {
+                const timeKey = document.getElementById("eventId").value;
+                const title = document.getElementById("eventTitle").value;
+                if (title.trim() !== "") {
+                    events[timeKey] = title;
+                    renderCalendar();
+                }
+                bootstrap.Modal.getInstance(document.getElementById("addEventModal")).hide();
+            });
+    
+            // Update event
+            document.getElementById("updateEvent").addEventListener("click", function () {
+                const key = document.getElementById("editEventId").value;
+                const newTitle = document.getElementById("editEventTitle").value;
+                if (newTitle.trim() !== "") {
+                    events[key] = newTitle;
+                    renderCalendar();
+                }
+                bootstrap.Modal.getInstance(document.getElementById("editEventModal")).hide();
+            });
+    
+            // Delete event
+            document.getElementById("deleteEvent").addEventListener("click", function () {
+                const key = document.getElementById("editEventId").value;
+                delete events[key];
+                renderCalendar();
+                bootstrap.Modal.getInstance(document.getElementById("editEventModal")).hide();
+            });
+        });
+    </script>
+    
 
 @include('client.layouts.footer')
