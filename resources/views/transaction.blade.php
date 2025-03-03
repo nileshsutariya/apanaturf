@@ -191,7 +191,33 @@
             border-color: #198754;
             color: white;
         }
-
+        thead {
+            position: sticky;
+            background: #F5F5F5;
+            top: 0;
+            z-index: 10;
+        }
+        .table-container {
+            max-height: 400px; /* Adjust as needed */
+            overflow-y: auto;
+            scrollbar-width: none; 
+            position: relative;
+        }
+        .pagination-container {
+            position: sticky;
+            bottom: 0;
+            background-color: #F5F5F5;
+            padding: 10px 0;
+            z-index: 2;
+            text-align: center;
+            /* box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.1);  */
+        }
+        table.dataTable th.dt-type-numeric, table.dataTable th.dt-type-date, table.dataTable td.dt-type-numeric, table.dataTable td.dt-type-date {
+            text-align: left;
+        }
+        .app-search .form-control {
+            padding-left: 15px;
+        }
     </style>
 
                 <div class="page-title-box">
@@ -317,312 +343,316 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="card" style="background-color: transparent; box-shadow: none;">
-                                <div class="card-body pt-2">
-                                    <table id="responsive-datatable" class="table dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%; font-size: 13px;">
-                                        <thead>
-                                            <tr class="text-uppercase">
-                                                <th>Transaction ID</th>
-                                                <th>Transaction Date</th>
-                                                <th>Transaction By</th>
-                                                <th>Transaction Type</th>
-                                                <th>Method</th>
-                                                <th>Total Amount</th>
-                                                <th>Action</th>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="d-none d-sm-flex">
-                                                        <form class="app-search">
-                                                            <div class="app-search-box">
-                                                                <div class="input-group">
-                                                                    <input type="text" id="transactionidSearch" class="form-control" placeholder="ID" style="border-radius: 10px;">
+                                <div class="card-body pt-2" style="overflow: hidden;">
+                                    <div class="table-container" style="max-height: 400px; overflow-y: auto;">    
+                                        <table id="responsive-datatable" class="table dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%; font-size: 13px;">
+                                            <thead>
+                                                <tr class="text-uppercase">
+                                                    <th>Transaction ID</th>
+                                                    <th>Transaction Date</th>
+                                                    <th>Transaction By</th>
+                                                    <th>Transaction Type</th>
+                                                    <th>Method</th>
+                                                    <th>Total Amount</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <div class="d-none d-sm-flex">
+                                                            <form class="app-search">
+                                                                <div class="app-search-box">
+                                                                    <div class="input-group">
+                                                                        <input type="text" id="transactionidSearch" class="form-control" placeholder="ID" style="border-radius: 10px;">
+                                                                    </div>
                                                                 </div>
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="d-none d-sm-flex">
-                                                        <form class="app-search">
-                                                            <div class="app-search-box">
-                                                                <div class="input-group">
-                                                                    <input type="text" id="transactiondateSearch" class="form-control" placeholder="Date" style="border-radius: 10px;">
+                                                            </form>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="d-none d-sm-flex">
+                                                            <form class="app-search">
+                                                                <div class="app-search-box">
+                                                                    <div class="input-group">
+                                                                        <input type="text" id="transactiondateSearch" class="form-control" placeholder="Date" style="border-radius: 10px;">
+                                                                    </div>
                                                                 </div>
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="d-none d-sm-flex">
-                                                        <form class="app-search">
-                                                            <div class="app-search-box">
-                                                                <div class="input-group">
-                                                                    <input type="text" id="transactionbySearch" class="form-control" placeholder="Role" style="border-radius: 10px;">
+                                                            </form>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="d-none d-sm-flex">
+                                                            <form class="app-search">
+                                                                <div class="app-search-box">
+                                                                    <div class="input-group">
+                                                                        <input type="text" id="transactionbySearch" class="form-control" placeholder="Role" style="border-radius: 10px;">
+                                                                    </div>
                                                                 </div>
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="d-none d-sm-flex">
-                                                        <form class="app-search">
-                                                            <div class="app-search-box">
-                                                                <div class="input-group">
-                                                                    <input type="text" id="transactiontypeSearch" class="form-control" placeholder="Type" style="border-radius: 10px;">
+                                                            </form>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="d-none d-sm-flex">
+                                                            <form class="app-search">
+                                                                <div class="app-search-box">
+                                                                    <div class="input-group">
+                                                                        <input type="text" id="transactiontypeSearch" class="form-control" placeholder="Type" style="border-radius: 10px;">
+                                                                    </div>
                                                                 </div>
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="d-none d-sm-flex">
-                                                        <form class="app-search">
-                                                            <div class="app-search-box">
-                                                                <div class="input-group">
-                                                                    <input type="text" id="methodSearch" class="form-control" placeholder="Method" style="border-radius: 10px;">
+                                                            </form>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="d-none d-sm-flex">
+                                                            <form class="app-search">
+                                                                <div class="app-search-box">
+                                                                    <div class="input-group">
+                                                                        <input type="text" id="methodSearch" class="form-control" placeholder="Method" style="border-radius: 10px;">
+                                                                    </div>
                                                                 </div>
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="d-none d-sm-flex">
-                                                        <form class="app-search">
-                                                            <div class="app-search-box">
-                                                                <div class="input-group">
-                                                                    <input type="text" id="amountSearch" class="form-control" placeholder="Amount" style="border-radius: 10px;">
+                                                            </form>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="d-none d-sm-flex">
+                                                            <form class="app-search">
+                                                                <div class="app-search-box">
+                                                                    <div class="input-group">
+                                                                        <input type="text" id="amountSearch" class="form-control" placeholder="Amount" style="border-radius: 10px;">
+                                                                    </div>
                                                                 </div>
+                                                            </form>
+                                                        </div>
+                                                    </td>
+                                                    <td></td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td> #000001 </td>
+                                                    <td>23 Dec.2024</td>
+                                                    <td>Vender</td>
+                                                    <td>Withdrawal</td>
+                                                    <td>Net Banking</td>
+                                                    <td>400</td>
+                                                    
+                                                    <td>
+                                                        <button class="open-modal" data-id="1" style="border: none; background: none;">
+                                                            <i class="bi bi-info-circle" style="font-size: 19px; color: blue; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#infoModal"></i>
+                                                        </button>
+                                                        
+                                                        <!-- Custom Modal -->
+                                                        <div id="customModal" style="
+                                                                display: none;
+                                                                position: fixed;
+                                                                top: 50%;
+                                                                left: 50%;
+                                                                transform: translate(-50%, -50%);
+                                                                width: 400px;
+                                                                background: #fff;
+                                                                padding: 25px;
+                                                                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+                                                                border-radius: 13px;
+                                                                z-index: 1000;
+                                                                font-size: 13px;
+                                                                padding: 40px;
+                                                            ">
+                                                            <!-- Modal Header -->
+                                                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                                                <h4 style="font-weight: bold; margin: 12px;">Transaction Details</h4>
+                                                                <button type="button" class="btn-close close-modal"></button>
                                                             </div>
-                                                        </form>
-                                                    </div>
-                                                </td>
-                                                <td></td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td> #000001 </td>
-                                                <td>23 Dec.2024</td>
-                                                <td>Vender</td>
-                                                <td>Withdrawal</td>
-                                                <td>Net Banking</td>
-                                                <td>400</td>
-                                                
-                                                <td>
-                                                    <button class="open-modal" data-id="1" style="border: none; background: none;">
+                                                        
+                                                            <!-- Modal Body -->
+                                                            <div class="modal-body ml-4" style="margin-top: 23px; ">
+                                                                <div style="margin-bottom: 12px;">
+                                                                    <div>
+                                                                        <strong>Transaction ID: </strong>
+                                                                        <div class="text-muted ml-3">#000001</div>
+                                                                    </div>
+                                                                </div>
+                                                                <div style="margin-bottom: 12px;">
+                                                                    <div>
+                                                                        <strong>Date: </strong>
+                                                                        <div class="text-muted ml-3">23 Dec.2024</div>
+                                                                    </div>
+                                                                </div>
+                                                                <div style="margin-bottom: 12px;">
+                                                                    <div>
+                                                                        <strong>Transaction By: </strong>
+                                                                        <div class="text-muted ml-3">Vender</div>
+                                                                    </div>
+                                                                </div>
+                                                                <div style="margin-bottom: 12px;">
+                                                                    <div>
+                                                                        <strong>Type: </strong>
+                                                                        <div class="text-muted ml-3">Withdrawal</div>
+                                                                    </div>
+                                                                </div>
+                                                                <div style="margin-bottom: 12px;">
+                                                                    <div>
+                                                                        <strong>Method: </strong>
+                                                                        <div class="text-muted ml-3">Net Banking</div>
+                                                                    </div>
+                                                                </div>
+                                                                <div style="margin-bottom: 12px;">
+                                                                    <div>
+                                                                        <strong>Total Amount: </strong>
+                                                                        <div class="text-muted ml-3">400</div>
+                                                                    </div>
+                                                                </div>
+                                                        
+                                                            </div>
+                                                        
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000002 </td>
+                                                    <td>4 Feb. 2025</td>
+                                                    <td>User</td>
+                                                    <td>Booking</td>
+                                                    <td>UPI</td>
+                                                    <td>600</td>
+                                                    
+                                                    <td>
                                                         <i class="bi bi-info-circle" style="font-size: 19px; color: blue; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#infoModal"></i>
-                                                    </button>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000002 </td>
+                                                    <td>4 Feb. 2025</td>
+                                                    <td>User</td>
+                                                    <td>Booking</td>
+                                                    <td>UPI</td>
+                                                    <td>600</td>
                                                     
-                                                    <!-- Custom Modal -->
-                                                    <div id="customModal" style="
-                                                            display: none;
-                                                            position: fixed;
-                                                            top: 50%;
-                                                            left: 50%;
-                                                            transform: translate(-50%, -50%);
-                                                            width: 400px;
-                                                            background: #fff;
-                                                            padding: 25px;
-                                                            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-                                                            border-radius: 13px;
-                                                            z-index: 1000;
-                                                            font-size: 13px;
-                                                            padding: 40px;
-                                                        ">
-                                                        <!-- Modal Header -->
-                                                        <div style="display: flex; justify-content: space-between; align-items: center;">
-                                                            <h4 style="font-weight: bold; margin: 12px;">Transaction Details</h4>
-                                                            <button type="button" class="btn-close close-modal"></button>
-                                                        </div>
+                                                    <td>
+                                                        <i class="bi bi-info-circle" style="font-size: 19px; color: blue; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#infoModal"></i>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000002 </td>
+                                                    <td>4 Feb. 2025</td>
+                                                    <td>User</td>
+                                                    <td>Booking</td>
+                                                    <td>UPI</td>
+                                                    <td>600</td>
                                                     
-                                                        <!-- Modal Body -->
-                                                        <div class="modal-body ml-4" style="margin-top: 23px; ">
-                                                            <div style="margin-bottom: 12px;">
-                                                                <div>
-                                                                    <strong>Transaction ID: </strong>
-                                                                    <div class="text-muted ml-3">#000001</div>
-                                                                </div>
-                                                            </div>
-                                                            <div style="margin-bottom: 12px;">
-                                                                <div>
-                                                                    <strong>Date: </strong>
-                                                                    <div class="text-muted ml-3">23 Dec.2024</div>
-                                                                </div>
-                                                            </div>
-                                                            <div style="margin-bottom: 12px;">
-                                                                <div>
-                                                                    <strong>Transaction By: </strong>
-                                                                    <div class="text-muted ml-3">Vender</div>
-                                                                </div>
-                                                            </div>
-                                                            <div style="margin-bottom: 12px;">
-                                                                <div>
-                                                                    <strong>Type: </strong>
-                                                                    <div class="text-muted ml-3">Withdrawal</div>
-                                                                </div>
-                                                            </div>
-                                                            <div style="margin-bottom: 12px;">
-                                                                <div>
-                                                                    <strong>Method: </strong>
-                                                                    <div class="text-muted ml-3">Net Banking</div>
-                                                                </div>
-                                                            </div>
-                                                            <div style="margin-bottom: 12px;">
-                                                                <div>
-                                                                    <strong>Total Amount: </strong>
-                                                                    <div class="text-muted ml-3">400</div>
-                                                                </div>
-                                                            </div>
+                                                    <td>
+                                                        <i class="bi bi-info-circle" style="font-size: 19px; color: blue; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#infoModal"></i>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000002 </td>
+                                                    <td>4 Feb. 2025</td>
+                                                    <td>User</td>
+                                                    <td>Booking</td>
+                                                    <td>UPI</td>
+                                                    <td>600</td>
                                                     
-                                                        </div>
+                                                    <td>
+                                                        <i class="bi bi-info-circle" style="font-size: 19px; color: blue; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#infoModal"></i>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000002 </td>
+                                                    <td>4 Feb. 2025</td>
+                                                    <td>User</td>
+                                                    <td>Booking</td>
+                                                    <td>UPI</td>
+                                                    <td>600</td>
                                                     
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td> #000002 </td>
-                                                <td>4 Feb. 2025</td>
-                                                <td>User</td>
-                                                <td>Booking</td>
-                                                <td>UPI</td>
-                                                <td>600</td>
+                                                    <td>
+                                                        <i class="bi bi-info-circle" style="font-size: 19px; color: blue; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#infoModal"></i>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000002 </td>
+                                                    <td>4 Feb. 2025</td>
+                                                    <td>User</td>
+                                                    <td>Booking</td>
+                                                    <td>UPI</td>
+                                                    <td>600</td>
+                                                    
+                                                    <td>
+                                                        <i class="bi bi-info-circle" style="font-size: 19px; color: blue; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#infoModal"></i>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000002 </td>
+                                                    <td>4 Feb. 2025</td>
+                                                    <td>User</td>
+                                                    <td>Booking</td>
+                                                    <td>UPI</td>
+                                                    <td>600</td>
+                                                    
+                                                    <td>
+                                                        <i class="bi bi-info-circle" style="font-size: 19px; color: blue; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#infoModal"></i>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000002 </td>
+                                                    <td>4 Feb. 2025</td>
+                                                    <td>User</td>
+                                                    <td>Booking</td>
+                                                    <td>UPI</td>
+                                                    <td>600</td>
+                                                    
+                                                    <td>
+                                                        <i class="bi bi-info-circle" style="font-size: 19px; color: blue; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#infoModal"></i>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000002 </td>
+                                                    <td>4 Feb. 2025</td>
+                                                    <td>User</td>
+                                                    <td>Booking</td>
+                                                    <td>UPI</td>
+                                                    <td>600</td>
+                                                    
+                                                    <td>
+                                                        <i class="bi bi-info-circle" style="font-size: 19px; color: blue; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#infoModal"></i>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000002 </td>
+                                                    <td>4 Feb. 2025</td>
+                                                    <td>User</td>
+                                                    <td>Booking</td>
+                                                    <td>UPI</td>
+                                                    <td>600</td>
+                                                    
+                                                    <td>
+                                                        <i class="bi bi-info-circle" style="font-size: 19px; color: blue; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#infoModal"></i>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000002 </td>
+                                                    <td>4 Feb. 2025</td>
+                                                    <td>User</td>
+                                                    <td>Booking</td>
+                                                    <td>UPI</td>
+                                                    <td>600</td>
+                                                    
+                                                    <td>
+                                                        <i class="bi bi-info-circle" style="font-size: 19px; color: blue; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#infoModal"></i>
+                                                    </td>
+                                                </tr>
                                                 
-                                                <td>
-                                                    <i class="bi bi-info-circle" style="font-size: 19px; color: blue; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#infoModal"></i>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td> #000002 </td>
-                                                <td>4 Feb. 2025</td>
-                                                <td>User</td>
-                                                <td>Booking</td>
-                                                <td>UPI</td>
-                                                <td>600</td>
-                                                
-                                                <td>
-                                                    <i class="bi bi-info-circle" style="font-size: 19px; color: blue; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#infoModal"></i>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td> #000002 </td>
-                                                <td>4 Feb. 2025</td>
-                                                <td>User</td>
-                                                <td>Booking</td>
-                                                <td>UPI</td>
-                                                <td>600</td>
-                                                
-                                                <td>
-                                                    <i class="bi bi-info-circle" style="font-size: 19px; color: blue; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#infoModal"></i>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td> #000002 </td>
-                                                <td>4 Feb. 2025</td>
-                                                <td>User</td>
-                                                <td>Booking</td>
-                                                <td>UPI</td>
-                                                <td>600</td>
-                                                
-                                                <td>
-                                                    <i class="bi bi-info-circle" style="font-size: 19px; color: blue; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#infoModal"></i>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td> #000002 </td>
-                                                <td>4 Feb. 2025</td>
-                                                <td>User</td>
-                                                <td>Booking</td>
-                                                <td>UPI</td>
-                                                <td>600</td>
-                                                
-                                                <td>
-                                                    <i class="bi bi-info-circle" style="font-size: 19px; color: blue; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#infoModal"></i>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td> #000002 </td>
-                                                <td>4 Feb. 2025</td>
-                                                <td>User</td>
-                                                <td>Booking</td>
-                                                <td>UPI</td>
-                                                <td>600</td>
-                                                
-                                                <td>
-                                                    <i class="bi bi-info-circle" style="font-size: 19px; color: blue; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#infoModal"></i>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td> #000002 </td>
-                                                <td>4 Feb. 2025</td>
-                                                <td>User</td>
-                                                <td>Booking</td>
-                                                <td>UPI</td>
-                                                <td>600</td>
-                                                
-                                                <td>
-                                                    <i class="bi bi-info-circle" style="font-size: 19px; color: blue; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#infoModal"></i>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td> #000002 </td>
-                                                <td>4 Feb. 2025</td>
-                                                <td>User</td>
-                                                <td>Booking</td>
-                                                <td>UPI</td>
-                                                <td>600</td>
-                                                
-                                                <td>
-                                                    <i class="bi bi-info-circle" style="font-size: 19px; color: blue; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#infoModal"></i>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td> #000002 </td>
-                                                <td>4 Feb. 2025</td>
-                                                <td>User</td>
-                                                <td>Booking</td>
-                                                <td>UPI</td>
-                                                <td>600</td>
-                                                
-                                                <td>
-                                                    <i class="bi bi-info-circle" style="font-size: 19px; color: blue; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#infoModal"></i>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td> #000002 </td>
-                                                <td>4 Feb. 2025</td>
-                                                <td>User</td>
-                                                <td>Booking</td>
-                                                <td>UPI</td>
-                                                <td>600</td>
-                                                
-                                                <td>
-                                                    <i class="bi bi-info-circle" style="font-size: 19px; color: blue; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#infoModal"></i>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td> #000002 </td>
-                                                <td>4 Feb. 2025</td>
-                                                <td>User</td>
-                                                <td>Booking</td>
-                                                <td>UPI</td>
-                                                <td>600</td>
-                                                
-                                                <td>
-                                                    <i class="bi bi-info-circle" style="font-size: 19px; color: blue; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#infoModal"></i>
-                                                </td>
-                                            </tr>
-                                            
-                                        </tbody>
+                                            </tbody>
 
-                                    </table>
+                                        </table>
+                                    </div>
                                 </div>
                     
                                 <!-- Custom Pagination -->
-                                <nav>
-                                    <ul class="pagination custom-pagination mb-0" style="margin-left: 340px;">
-                                        <!-- Custom pagination links will be inserted here by JS -->
-                                    </ul>
-                                </nav>
+                                <div class="pagination-container">
+                                    <nav>
+                                        <ul class="pagination custom-pagination mb-0">
+                                            <!-- Custom pagination links will be inserted here by JS -->
+                                        </ul>
+                                    </nav>
+                                </div>
                                 
                             </div>
                         </div>

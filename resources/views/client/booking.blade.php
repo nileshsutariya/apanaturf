@@ -610,6 +610,28 @@
                                 <div class="calendar" id="schedular"></div>
                             </div>
                         
+                            <!-- Modal for Adding/Editing Events -->
+                            {{-- <div class="modal fade" id="addEventModal" tabindex="-1">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">Add Event</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <input type="hidden" id="eventId">
+                                            <div class="mb-3">
+                                                <label class="form-label">Event Title</label>
+                                                <input type="text" class="form-control" id="eventTitle">
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button class="btn btn-primary" id="saveEvent">Save</button>
+                                            <button class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> --}}
 
 
                             <div id="payment-withdraw" class="modal-demo">
@@ -620,16 +642,118 @@
                                 </div>
                                 <div class="add-text ml-2 mt-0" style="font-size: small;">
                                     <div class="container-fluid">
+                                        <!-- Date Section -->
                                         <div class="mb-2">
                                             <div class="row">
-                                                <input type="hidden" id="userid">
                                                 <div class="col-md-12">
                                                     <span>User Name</span>
                                                 </div>
                                             </div>
+                                            <div class="row ">
+                                                <div class="col-md-12">
+                                                    <input type="text" class="form-control" name="name" placeholder="Abhishek Guleria">
+                                                </div>
+                                            </div>
+                                        </div>
+                            
+                                        <!-- Amount Section -->
+                                        <div class="mb-2">
                                             <div class="row">
                                                 <div class="col-md-12">
-                                                    <input type="text" id="username" class="form-control" name="name" placeholder="Abhishek Guleria">
+                                                    <span>Venue</span>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <input type="text" class="form-control" name="venue" placeholder="Sports complex,abc,393001">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="mb-2">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <span>Time & Date</span>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <input type="text" class="form-control" name="timedate" placeholder="9AM , 17 Jan 2025">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="mb-2">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <span>Entry Time</span>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <input type="text" class="form-control" name="entrytime" placeholder="N/A">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="mb-2">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <span>Exit Time</span>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <input type="text" class="form-control" name="exittime" placeholder="N/A">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="mb-2">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <span>Pending Payment</span>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <input type="text" class="form-control" name="pendingpayment" placeholder="00.00 ₹">
+                                                </div>
+                                            </div>
+                                        </div>
+                            
+                                        <div class=" mt-4 mb-2" style="border: none;">
+                                            <div class="mb-2">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <button class="btn save mr-3">
+                                                            <a href="#view-details" class="add-banner waves-effect waves-light" data-animation="blur"
+                                                                data-plugin="custommodal" data-overlaySpeed="100" data-overlayColor="#36404a"
+                                                                style="text-decoration: none;">
+                                                                <div style="color: #FFFFFF;">
+                                                                Refund                                                                
+                                                                </div>
+                                                            </a></button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="view-details" class="modal-demo">
+                                <div class="d-flex pr-3 pt-3 align-items-center justify-content-between mb-0" style="width: 100%; height: auto;">
+                                    <button type="button" class="btn-close ml-auto" onclick="Custombox.modal.close();">
+                                        <span class="sr-only">Close</span>
+                                    </button>
+                                </div>
+                                <div class="add-text ml-2 mt-0" style="font-size: small;">
+                                    <div class="container-fluid">
+                                        <div class="mb-2">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <span>User Name</span>
+                                                </div>
+                                            </div>
+                                            <div class="row ">
+                                                <div class="col-md-12">
+                                                    <input type="text" class="form-control" name="name" placeholder="Abhishek Guleria">
                                                 </div>
                                             </div>
                                         </div>
@@ -682,8 +806,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                
-                                        <div class="mb-2 pending-payment">
+                                        <div class="mb-2">
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <span>Pending Payment</span>
@@ -695,67 +818,145 @@
                                                 </div>
                                             </div>
                                         </div>
-
-                                        <div class="mb-2 total-fields" style="display: none;">
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <span>Total Amount</span>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <input type="text" class="form-control" id="total_amount" name="total_amount" placeholder="00.00 ₹" readonly>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="mb-2 total-fields" style="display: none;">
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <span>Amount Payable</span>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <input type="text" class="form-control" id="amount_payable" name="amount_payable" placeholder="00.00 ₹" readonly>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        
                             
-                                        <div class="mt-4 mb-2 pay-buttons" style="border: none;">
+                                        <div class=" mt-4 mb-2" style="border: none;">
                                             <div class="mb-2">
                                                 <div class="row">
-                                                    <div class="col-md-12 d-flex action-buttons">
-                                                        <button class="btn save mr-2 refund-btn" style="width: 100%;">Refund</button>
-                                                        <button class="btn pay mr-3 pay-btn" style="width: 100%;">
-                                                        {{-- <button class="btn pay mr-3 pay-btn" style="width: 100%;" id="addname"> --}}
-                                                            Pay
-                                                        </button>
+                                                    <div class="col-md-12 d-flex">
+                                                        <button class="btn save mr-2" style="width: 100%;">Refund</button>
+                                                        <button class="btn pay mr-3"  style="width: 100%;">
+                                                            <a href="#Booking-venue" class="add-banner waves-effect waves-light" data-animation="blur"
+                                                                data-plugin="custommodal" data-overlaySpeed="100" data-overlayColor="#36404a"
+                                                                style="text-decoration: none;            color: #299D91;
+">
+                                                                Pay
+                                                            </a></button>
+                                                        {{-- <button class="btn pay" style="width: 100%;">pay</button> --}}
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                       
-                                        <div class=" mt-4 mb-2 book-buttons" style="border: none; display: none;">
-                                            <div class="mb-2">
-                                                <div class="row">
-                                                    <div class="col-md-12 d-flex action-buttons">
-                                                        <button class="btn save mr-2 cancel-button" style="width: 100%;">Cancel</button>
-                                                        {{-- <button class="btn pay mr-3 book-btn" style="width: 100%;" onclick="switchToBooking();"> --}}
-                                                        <button class="btn pay mr-3 book-btn" style="width: 100%;" id="addname">
-                                                            Book
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        
                                     </div>
                                 </div>
                             </div>
+                            <div id="Booking-venue" class="modal-demo">
+                                <div class="d-flex pr-3 pt-3 align-items-center justify-content-between mb-0" style="width: 100%; height: auto;">
+                                    <button type="button" class="btn-close ml-auto" onclick="Custombox.modal.close();">
+                                        <span class="sr-only">Close</span>
+                                    </button>
+                                </div>
+                                <div class="add-text ml-2 mt-0" style="font-size: small;">
+                                    <div class="container-fluid">
+                                        <!-- Date Section -->
+                                        <div class="mb-2">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <span>User Name</span>
+                                                </div>
+                                            </div>
+                                            <div class="row ">
+                                                <div class="col-md-12">
+                                                    <input type="text" class="form-control" name="name" placeholder="Abhishek Guleria">
+                                                </div>
+                                            </div>
+                                        </div>
                             
+                                        <!-- Amount Section -->
+                                        <div class="mb-2">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <span>Venue</span>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <input type="text" class="form-control" name="venue" placeholder="Sports complex,abc,393001">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="mb-2">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <span>Time & Date</span>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <input type="text" class="form-control" name="timedate" placeholder="9AM , 17 Jan 2025">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="mb-2">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <span>Entry Time</span>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <input type="text" class="form-control" name="entrydate" placeholder="N/A">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="mb-2">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <span>Exit Time</span>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <input type="text" class="form-control" name="exittime" placeholder="N/A">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="mb-2">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <span>Total amount</span>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <input type="text" class="form-control" name="totalamount" placeholder="00.00 ₹">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="mb-2">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <span>Amount Pay</span>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <input type="text" class="form-control" name="amoutpay" placeholder="00.00 ₹">
+                                                </div>
+                                            </div>
+                                        </div>
+                            
+                                        <div class=" mt-4 mb-2" style="border: none;">
+                                            <div class="mb-2">
+                                                <div class="row">
+                                                    <div class="col-md-12 d-flex">
+                                                        <button class="btn pay mr-2" style="width: 100%;"
+                                                            onclick="Custombox.modal.close();">cancel</button>
+                                                            <button class="btn save mr-3">
+                                                                <a href="#bedding" class="add-banner waves-effect waves-light" data-animation="blur"
+                                                                    data-plugin="custommodal" data-overlaySpeed="100" data-overlayColor="#36404a"
+                                                                    style="text-decoration: none;">
+                                                                    <div style="color: #FFFFFF;">
+                                                                        Book
+                                                                    </div>
+                                                                </a></button>
+                                                        {{-- <button class="btn save " style="width: 100%;">Book</button> --}}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <div id="bedding" class="modal-demo">
                                 <div class="d-flex pr-3 pt-3 align-items-center justify-content-between mb-0" style="width: 100%; height: auto;">
                                     <button type="button" class="btn-close ml-auto pl-3 pb-0" onclick="Custombox.modal.close();">
@@ -845,7 +1046,31 @@
                                 </div>
                             </div>
 
-                           
+                            <!-- Event Modal -->
+                            {{-- <div class="modal fade" id="editEventModal" tabindex="-1">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">Edit Event</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <input type="hidden" id="editEventId">
+                                            <div class="mb-3">
+                                                <label class="form-label">Event Title</label>
+                                                <input type="text" class="form-control" id="editEventTitle">
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button class="btn btn-danger" id="deleteEvent">Delete</button>
+                                            <button class="btn btn-primary" id="updateEvent">Save</button>
+                                            <button class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> --}}
+                            
+
                         </tbody>
                     </table>
                 </div>
@@ -879,40 +1104,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables.net-buttons/2.4.2/js/buttons.print.min.js"></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/custombox/4.0.3/custombox.min.js"></script>
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        // Add click event to the Pay button
-        let payButton = document.querySelector(".pay-btn");
-        if (payButton) {
-            payButton.addEventListener("click", switchToBooking);
-        }
-    });
 
-    function switchToBooking() {
-        // Hide Pending Payment & Pay Button
-        document.querySelector('.pending-payment').style.display = 'none';
-        document.querySelector('.refund-btn').style.display = 'none';
-        document.querySelector('.pay-btn').style.display = 'none';
-        // document.querySelector('.pay-buttons').style.display = 'none';
-
-
-        // Show Total Amount & Amount Payable
-        let totalFields = document.querySelectorAll('.total-fields');
-        totalFields.forEach(field => {
-            field.style.display = 'block';
-        });
-        
-        let bookButtons = document.querySelectorAll('.book-buttons');
-        bookButtons.forEach(field => {
-            field.style.display = 'block';
-        });
-
-   
-}
-
-
-</script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
         const calendarDays = document.getElementById("calendarDays");
@@ -1041,95 +1233,114 @@
     
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-    const calendar = document.getElementById("schedular");
-    const weekContainer = document.getElementById("weekDates");
-
-    let events = {}; // Temporary storage (Clears on refresh)
-    let selectedTimeSlot = null; // Stores the selected grid cell
-
-    // Function to get the next 7 days
-    function getNext7Days() {
-        const today = new Date();
-        const next7Days = [];
-
-        for (let i = 0; i < 7; i++) {
-            const date = new Date();
-            date.setDate(today.getDate() + i);
-            const dayName = date.toLocaleString('en-US', { weekday: 'short' });
-            const dayNumber = date.getDate();
-            next7Days.push({ dayName, dayNumber });
+            const calendar = document.getElementById("schedular");
+            const weekContainer = document.getElementById("weekDates");
+    
+            let events = {}; // Temporary storage (Clears on refresh)
+            calendar.addEventListener("click", function (e) {
+        if (e.target.classList.contains("time-slot")) {
+            // Open the modal using Custombox.js
+            new Custombox.modal({
+                content: {
+                    target: "#payment-withdraw",
+                    effect: "blur"
+                }
+            }).open();
         }
-        return next7Days;
-    }
-
-    // Function to display week days
-    function displayWeek() {
-        const weekDates = getNext7Days();
-        const today = new Date().getDate();
-
-        weekContainer.innerHTML = `<div class="week-day empty"></div>` + weekDates.map(date =>
-            `<div class="week-day">
-                <strong class="${date.dayNumber === today ? 'highlight' : ''}" style="font-size: 18px;">${date.dayNumber}</strong>
-                <div style="font-size: 12px; font-weight: bold;">${date.dayName}</div>
-            </div>`
-        ).join('');
-    }
-
-    // Function to render the calendar grid
-    function renderCalendar() {
-        calendar.innerHTML = ""; // Clear previous content
-        const days = getNext7Days().map(date => `${date.dayName} ${date.dayNumber}`);
-        const times = ["9AM", "10AM", "11AM", "12PM", "1PM", "2PM", "3PM", "4PM", "5PM", "6PM"];
-
-        times.forEach(time => {
-            calendar.innerHTML += `<div class='time-slot time-label'>${time}</div>`; // Time column
-            days.forEach(day => {
-                const key = `${day}-${time}`;
-                calendar.innerHTML += `<div class='time-slot' data-time='${key}'>
-                    ${events[key] ? `<div class='event px-3' data-key="${key}" style="cursor:pointer; font-size: 10px;">${events[key]}</div>` : ''}
-                </div>`;
-            });
-        });
-
-        // Reattach event listeners to all time slots after re-rendering
-        attachTimeSlotListeners();
-    }
-
-    // Function to attach click event to all time slots
-    function attachTimeSlotListeners() {
-        document.querySelectorAll('.time-slot[data-time]').forEach(slot => {
-            slot.addEventListener("click", function () {
-                selectedTimeSlot = this.getAttribute("data-time"); // Store clicked time slot
-
-                // Open the modal using Custombox.js
-                new Custombox.modal({
-                    content: {
-                        target: "#payment-withdraw",
-                        effect: "blur"
-                    }
-                }).open();
-            });
-        });
-    }
-
-    // Save event when clicking "Book"
-    document.getElementById("addname").addEventListener("click", function () {
-        if (!selectedTimeSlot) return; // No slot selected
-
-        const username = document.getElementById("username").value.trim();
-        if (username !== "") {
-            events[selectedTimeSlot] = username; // Store event in selected slot
-            renderCalendar(); // Re-render the grid to update
-        }
-        Custombox.modal.close();
-        selectedTimeSlot = null; // Reset selection
     });
+            function getNext7Days() {
+                const today = new Date();
+                const next7Days = [];
 
-    // Initial rendering
-    displayWeek();
-    renderCalendar();
-});
+                for (let i = 0; i < 7; i++) {
+                    const date = new Date();
+                    date.setDate(today.getDate() + i);
+                    const dayName = date.toLocaleString('en-US', { weekday: 'short' });
+                    const dayNumber = date.getDate();
+                    next7Days.push({ dayName, dayNumber });
+                }
+                return next7Days;
+            }
+    
+            function displayWeek() {
+                const weekDates = getNext7Days();
+                const today = new Date().getDate();
 
+                weekContainer.innerHTML = `<div class="week-day empty"></div>` + weekDates.map(date =>
+                    `<div class="week-day">
+                        <strong class="${date.dayNumber === today ? 'highlight' : ''}" style="font-size: 18px;">${date.dayNumber}</strong>
+                        <div style="font-size: 12px; font-weight: bold;">${date.dayName}</div>
+                    </div>`
+                ).join('');
+            }
+        
+            function renderCalendar() {
+                calendar.innerHTML = ""; // Clear previous content
+                const days = getNext7Days().map(date => `${date.dayName} ${date.dayNumber}`);
+                const times = ["9AM", "10AM", "11AM", "12PM", "1PM", "2PM", "3PM", "4PM", "5PM", "6PM"];
+
+                times.forEach(time => {
+                    calendar.innerHTML += `<div class='time-slot'>${time}</div>`;
+                    days.forEach(day => {
+                        const key = `${day}-${time}`;
+                        calendar.innerHTML += `<div class='time-slot' data-time='${key}'>
+                            ${events[key] ? `<div class='event px-3' data-key="${key}" style="cursor:pointer; font-size: 10px;">${events[key]}</div>` : ''}
+                        </div>`;
+                    });
+                });
+            }
+            
+            // Initial rendering
+            displayWeek();
+            renderCalendar();
+    
+            // Event handler for adding/editing events
+            // calendar.addEventListener("click", function (e) {
+            //     if (e.target.classList.contains("time-slot") && !e.target.querySelector(".event")) {
+            //         const timeKey = e.target.getAttribute("data-time");
+            //         if (timeKey) {
+            //             document.getElementById("eventId").value = timeKey;
+            //             document.getElementById("eventTitle").value = "";
+            //             new bootstrap.Modal(document.getElementById("payment-withdraw")).show();
+            //         }
+            //     } else if (e.target.classList.contains("event")) {
+            //         const key = e.target.getAttribute("data-key");
+            //         document.getElementById("editEventId").value = key;
+            //         document.getElementById("editEventTitle").value = events[key];
+            //         new bootstrap.Modal(document.getElementById("editEventModal")).show();
+            //     }
+            // });
+    
+            // Save new event
+            document.getElementById("saveEvent").addEventListener("click", function () {
+                const timeKey = document.getElementById("eventId").value;
+                const title = document.getElementById("eventTitle").value;
+                if (title.trim() !== "") {
+                    events[timeKey] = title;
+                    renderCalendar();
+                }
+                bootstrap.Modal.getInstance(document.getElementById("payment-withdraw")).hide();
+            });
+    
+            // Update event
+            document.getElementById("updateEvent").addEventListener("click", function () {
+                const key = document.getElementById("editEventId").value;
+                const newTitle = document.getElementById("editEventTitle").value;
+                if (newTitle.trim() !== "") {
+                    events[key] = newTitle;
+                    renderCalendar();
+                }
+                bootstrap.Modal.getInstance(document.getElementById("editEventModal")).hide();
+            });
+    
+            // Delete event
+            document.getElementById("deleteEvent").addEventListener("click", function () {
+                const key = document.getElementById("editEventId").value;
+                delete events[key];
+                renderCalendar();
+                bootstrap.Modal.getInstance(document.getElementById("editEventModal")).hide();
+            });
+        });
     </script>
     
 

@@ -1,5 +1,6 @@
 @include('adminlayouts.header')
     <style>
+        
         html[data-sidenav-size=condensed]:not([data-layout=topnav]) .sidenav-menu .sidebar-footer .footer-content {
             overflow: hidden;
             white-space: nowrap; 
@@ -203,6 +204,33 @@
             border-color: #198754;
             color: white;
         }
+        thead {
+            position: sticky;
+            background: #F5F5F5;
+            top: 0;
+            z-index: 10;
+        }
+        .table-container {
+            max-height: 400px; /* Adjust as needed */
+            overflow-y: auto;
+            scrollbar-width: none; 
+            position: relative;
+        }
+        .pagination-container {
+            position: sticky;
+            bottom: 0;
+            background-color: #F5F5F5;
+            padding: 10px 0;
+            z-index: 2;
+            text-align: center;
+            /* box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.1);  */
+        }
+        table.dataTable th.dt-type-numeric, table.dataTable th.dt-type-date, table.dataTable td.dt-type-numeric, table.dataTable td.dt-type-date {
+            text-align: left;
+        }
+        .app-search .form-control {
+            padding-left: 15px;
+        }
     </style>
 
                 <div class="page-title-box">
@@ -354,311 +382,315 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="card" style="background-color: transparent; box-shadow: none;">
-                                <div class="card-body pt-2">
-                                    <table id="responsive-datatable" id="venuetable" class="table dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%; font-size: 13px;">
-                                        <thead>
-                                            <tr class="text-uppercase">
-                                                <th>Name</th>
-                                                <th>city</th>
-                                                <th>place</th>
-                                                <th>Mobile No.</th>
-                                                <th>Type</th>
-                                                <th>Balance</th>
-                                                <th>Action</th>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="d-none d-sm-flex">
-                                                        <form class="app-search">
-                                                            <div class="app-search-box">
-                                                                <div class="input-group">
-                                                                    <input type="text" id="nameSearch" class="form-control" placeholder="Name" style="border-radius: 10px;">
+                                <div class="card-body pt-2" style="overflow: hidden;">
+                                    <div class="table-container" style="max-height: 400px; overflow-y: auto;">
+                                        <table id="responsive-datatable" id="venuetable" class="table dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%; font-size: 13px;">
+                                            <thead>
+                                                <tr class="text-uppercase">
+                                                    <th>Name</th>
+                                                    <th>city</th>
+                                                    <th>place</th>
+                                                    <th>Mobile No.</th>
+                                                    <th>Type</th>
+                                                    <th>Balance</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <div class="d-none d-sm-flex">
+                                                            <form class="app-search">
+                                                                <div class="app-search-box">
+                                                                    <div class="input-group">
+                                                                        <input type="text" id="nameSearch" class="form-control" placeholder="Name" style="border-radius: 10px;">
+                                                                    </div>
                                                                 </div>
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="d-none d-sm-flex">
-                                                        <form class="app-search">
-                                                            <div class="app-search-box">
-                                                                <div class="input-group">
-                                                                    <input type="text" id="citySearch" class="form-control" placeholder="City" style="border-radius: 10px;">
-                                                                </div>
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="d-none d-sm-flex">
-                                                        <form class="app-search">
-                                                            <div class="app-search-box">
-                                                                <div class="input-group">
-                                                                    <input type="text" id="placeSearch" class="form-control" placeholder="Place" style="border-radius: 10px;">
-                                                                </div>
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="d-none d-sm-flex">
-                                                        <form class="app-search">
-                                                            <div class="app-search-box">
-                                                                <div class="input-group">
-                                                                    <input type="text" id="mobileSearch" class="form-control" placeholder="Mob. No." style="border-radius: 10px;">
-                                                                </div>
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="d-none d-sm-flex">
-                                                        <form class="app-search">
-                                                            <div class="app-search-box">
-                                                                <div class="input-group">
-                                                                    <input type="text" id="typeSearch" class="form-control" placeholder="Type" style="border-radius: 10px;">
-                                                                </div>
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="d-none d-sm-flex">
-                                                        <form class="app-search">
-                                                            <div class="app-search-box">
-                                                                <div class="input-group">
-                                                                    <input type="text" id="balanceSearch" class="form-control" placeholder="Balance" style="border-radius: 10px;">
-                                                                </div>
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                </td>
-                                                <td></td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td> #000001 </td>
-                                                <td>#000001</td>
-                                                <td>#000001</td>
-                                                <td>1234567890</td>
-                                                <td><h4><span class="badge badge-soft-success" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Active</span></h4></td>
-                                                <td style="color: green;">₹400</td>
-                                                <td>
-                                                    <button class="open-modal" data-id="1" style="border: none; background: none;">
-                                                        <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard" style="cursor: pointer;">
-                                                    </button>
-                                                    
-                                                    <!-- Custom Modal -->
-                                                    <div id="customModal" style="
-                                                            display: none;
-                                                            position: fixed;
-                                                            top: 50%;
-                                                            left: 50%;
-                                                            transform: translate(-50%, -50%);
-                                                            width: 400px;
-                                                            background: #fff;
-                                                            padding: 25px;
-                                                            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-                                                            border-radius: 13px;
-                                                            z-index: 1000;
-                                                            font-size: 13px;
-                                                            padding: 40px;
-                                                        ">
-                                                        <!-- Modal Header -->
-                                                        <div style="display: flex; justify-content: space-between; align-items: center;">
-                                                            <h4 style="font-weight: bold; margin: 0;">Edit</h4>
-                                                            <button type="button" class="btn-close close-modal"></button>
+                                                            </form>
                                                         </div>
-                                                    
-                                                        <!-- Modal Body -->
-                                                        <div class="modal-body" style="margin-top: 15px;">
-                                                            <div style="margin-bottom: 12px;">
-                                                                <label style="display: block;">User Name</label>
-                                                                <input type="text" class="form-control" name="username" placeholder="Abhishek Guleria">
-                                                            </div>
-                                                    
-                                                            <div style="margin-bottom: 12px;">
-                                                                <label style="display: block;">Mob. No.</label>
-                                                                <input type="text" class="form-control" name="mobileno" placeholder="9876543210">
-                                                            </div>
-                                                    
-                                                            <div style="margin-bottom: 12px;">
-                                                                <label style="display: block;">Email</label>
-                                                                <input type="email" class="form-control" name="email" placeholder="abhiguleria1599@gmail.com">
-                                                            </div>
-                                                    
-                                                            <div style="margin-bottom: 12px;">
-                                                                <label style="display: block;">Role</label>
-                                                                <select id="userRole" class="form-control select2">
-                                                                    <option value="user" selected>User</option>
-                                                                    <option value="admin">Admin</option>
-                                                                </select>
-                                                            </div>
-                                                    
-                                                            <div style="margin-bottom: 12px;">
-                                                                <label style="display: block;">Balance</label>
-                                                                <input type="text" class="form-control" name="balance" placeholder="N/A">
-                                                            </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="d-none d-sm-flex">
+                                                            <form class="app-search">
+                                                                <div class="app-search-box">
+                                                                    <div class="input-group">
+                                                                        <input type="text" id="citySearch" class="form-control" placeholder="City" style="border-radius: 10px;">
+                                                                    </div>
+                                                                </div>
+                                                            </form>
                                                         </div>
-                                                    
-                                                        <!-- Modal Footer -->
-                                                        <div class="modal-footer justify-content-start mt-4" style="margin-top: 10px; text-align: center;">
-                                                            <button class="btn btn-success close-modal col-5">Save</button>
+                                                    </td>
+                                                    <td>
+                                                        <div class="d-none d-sm-flex">
+                                                            <form class="app-search">
+                                                                <div class="app-search-box">
+                                                                    <div class="input-group">
+                                                                        <input type="text" id="placeSearch" class="form-control" placeholder="Place" style="border-radius: 10px;">
+                                                                    </div>
+                                                                </div>
+                                                            </form>
                                                         </div>
-                                                    </div>
-                                                              
-                                                    
-
-                                                        <!-- Include Bootstrap JS (if not already included) -->
-                                                        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+                                                    </td>
+                                                    <td>
+                                                        <div class="d-none d-sm-flex">
+                                                            <form class="app-search">
+                                                                <div class="app-search-box">
+                                                                    <div class="input-group">
+                                                                        <input type="text" id="mobileSearch" class="form-control" placeholder="Mob. No." style="border-radius: 10px;">
+                                                                    </div>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="d-none d-sm-flex">
+                                                            <form class="app-search">
+                                                                <div class="app-search-box">
+                                                                    <div class="input-group">
+                                                                        <input type="text" id="typeSearch" class="form-control" placeholder="Type" style="border-radius: 10px;">
+                                                                    </div>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="d-none d-sm-flex">
+                                                            <form class="app-search">
+                                                                <div class="app-search-box">
+                                                                    <div class="input-group">
+                                                                        <input type="text" id="balanceSearch" class="form-control" placeholder="Balance" style="border-radius: 10px;">
+                                                                    </div>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </td>
+                                                    <td></td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td> #000001 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567890</td>
+                                                    <td><h4><span class="badge badge-soft-success" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Active</span></h4></td>
+                                                    <td style="color: green;">₹400</td>
+                                                    <td>
+                                                        <button class="open-modal" data-id="1" style="border: none; background: none;">
+                                                            <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard" style="cursor: pointer;">
+                                                        </button>
                                                         
-                                                     | <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td> #000002 </td>
-                                                <td>#000001</td>
-                                                <td>#000001</td>
-                                                <td>1234567891</td>
-                                                <td><h4><span class="badge badge-soft-danger" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Unactive</span></h4></td>
-                                                <td style="color: green;">₹400</td>
-                                                <td>
-                                                    <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
-                                                    <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td> #000003 </td>
-                                                <td>#000001</td>
-                                                <td>#000001</td>
-                                                <td>1234567892</td>
-                                                <td><h4><span class="badge badge-soft-danger" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Unactive</span></h4></td>
-                                                <td style="color: green;">₹400</td>
-                                                <td>
-                                                    <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
-                                                    <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td> #000001 </td>
-                                                <td>#000001</td>
-                                                <td>#000001</td>
-                                                <td>1234567890</td>
-                                                <td><h4><span class="badge badge-soft-danger" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Unactive</span></h4></td>
-                                                <td style="color: green;">₹400</td>
-                                                <td>
-                                                    <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
-                                                    <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td> #000001 </td>
-                                                <td>#000001</td>
-                                                <td>#000001</td>
-                                                <td>1234567890</td>
-                                                <td><h4><span class="badge badge-soft-danger" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Unactive</span></h4></td>
-                                                <td style="color: green;">₹400</td>
-                                                <td>
-                                                    <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
-                                                    <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td> #000001 </td>
-                                                <td>#000001</td>
-                                                <td>#000001</td>
-                                                <td>1234567890</td>
-                                                <td><h4><span class="badge badge-soft-danger" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Unactive</span></h4></td>
-                                                <td style="color: green;">₹400</td>
-                                                <td>
-                                                    <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
-                                                    <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td> #000001 </td>
-                                                <td>#000001</td>
-                                                <td>#000001</td>
-                                                <td>1234567890</td>
-                                                <td><h4><span class="badge badge-soft-danger" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Unactive</span></h4></td>
-                                                <td style="color: green;">₹400</td>
-                                                <td>
-                                                    <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
-                                                    <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td> #000001 </td>
-                                                <td>#000001</td>
-                                                <td>#000001</td>
-                                                <td>1234567890</td>
-                                                <td><h4><span class="badge badge-soft-danger" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Unactive</span></h4></td>
-                                                <td style="color: green;">₹400</td>
-                                                <td>
-                                                    <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
-                                                    <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td> #000001 </td>
-                                                <td>#000001</td>
-                                                <td>#000001</td>
-                                                <td>1234567890</td>
-                                                <td><h4><span class="badge badge-soft-danger" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Unactive</span></h4></td>
-                                                <td style="color: green;">₹400</td>
-                                                <td>
-                                                    <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
-                                                    <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td> #000001 </td>
-                                                <td>#000001</td>
-                                                <td>#000001</td>
-                                                <td>1234567890</td>
-                                                <td><h4><span class="badge badge-soft-danger" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Unactive</span></h4></td>
-                                                <td style="color: green;">₹400</td>
-                                                <td>
-                                                    <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
-                                                    <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td> #000001 </td>
-                                                <td>#000001</td>
-                                                <td>#000001</td>
-                                                <td>1234567890</td>
-                                                <td><h4><span class="badge badge-soft-danger" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Unactive</span></h4></td>
-                                                <td style="color: green;">₹400</td>
-                                                <td>
-                                                    <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
-                                                    <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td> #000001 </td>
-                                                <td>#000001</td>
-                                                <td>#000001</td>
-                                                <td>1234567890</td>
-                                                <td><h4><span class="badge badge-soft-danger" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Unactive</span></h4></td>
-                                                <td style="color: green;">₹400</td>
-                                                <td>
-                                                    <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
-                                                    <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
-                                                </td>
-                                            </tr>
-                                        </tbody>
+                                                        <!-- Custom Modal -->
+                                                        <div id="customModal" style="
+                                                                display: none;
+                                                                position: fixed;
+                                                                top: 50%;
+                                                                left: 50%;
+                                                                transform: translate(-50%, -50%);
+                                                                width: 400px;
+                                                                background: #fff;
+                                                                padding: 25px;
+                                                                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+                                                                border-radius: 13px;
+                                                                z-index: 1000;
+                                                                font-size: 13px;
+                                                                padding: 40px;
+                                                            ">
+                                                            <!-- Modal Header -->
+                                                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                                                <h4 style="font-weight: bold; margin: 0;">Edit</h4>
+                                                                <button type="button" class="btn-close close-modal"></button>
+                                                            </div>
+                                                        
+                                                            <!-- Modal Body -->
+                                                            <div class="modal-body" style="margin-top: 15px;">
+                                                                <div style="margin-bottom: 12px;">
+                                                                    <label style="display: block;">User Name</label>
+                                                                    <input type="text" class="form-control" name="username" placeholder="Abhishek Guleria">
+                                                                </div>
+                                                        
+                                                                <div style="margin-bottom: 12px;">
+                                                                    <label style="display: block;">Mob. No.</label>
+                                                                    <input type="text" class="form-control" name="mobileno" placeholder="9876543210">
+                                                                </div>
+                                                        
+                                                                <div style="margin-bottom: 12px;">
+                                                                    <label style="display: block;">Email</label>
+                                                                    <input type="email" class="form-control" name="email" placeholder="abhiguleria1599@gmail.com">
+                                                                </div>
+                                                        
+                                                                <div style="margin-bottom: 12px;">
+                                                                    <label style="display: block;">Role</label>
+                                                                    <select id="userRole" class="form-control select2">
+                                                                        <option value="user" selected>User</option>
+                                                                        <option value="admin">Admin</option>
+                                                                    </select>
+                                                                </div>
+                                                        
+                                                                <div style="margin-bottom: 12px;">
+                                                                    <label style="display: block;">Balance</label>
+                                                                    <input type="text" class="form-control" name="balance" placeholder="N/A">
+                                                                </div>
+                                                            </div>
+                                                        
+                                                            <!-- Modal Footer -->
+                                                            <div class="modal-footer justify-content-start mt-4" style="margin-top: 10px; text-align: center;">
+                                                                <button class="btn btn-success close-modal col-5">Save</button>
+                                                            </div>
+                                                        </div>
+                                                                
+                                                        
 
-                                    </table>
+                                                            <!-- Include Bootstrap JS (if not already included) -->
+                                                            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+                                                            
+                                                        | <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000002 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567891</td>
+                                                    <td><h4><span class="badge badge-soft-danger" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Unactive</span></h4></td>
+                                                    <td style="color: green;">₹400</td>
+                                                    <td>
+                                                        <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000003 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567892</td>
+                                                    <td><h4><span class="badge badge-soft-danger" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Unactive</span></h4></td>
+                                                    <td style="color: green;">₹400</td>
+                                                    <td>
+                                                        <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000001 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567890</td>
+                                                    <td><h4><span class="badge badge-soft-danger" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Unactive</span></h4></td>
+                                                    <td style="color: green;">₹400</td>
+                                                    <td>
+                                                        <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000001 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567890</td>
+                                                    <td><h4><span class="badge badge-soft-danger" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Unactive</span></h4></td>
+                                                    <td style="color: green;">₹400</td>
+                                                    <td>
+                                                        <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000001 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567890</td>
+                                                    <td><h4><span class="badge badge-soft-danger" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Unactive</span></h4></td>
+                                                    <td style="color: green;">₹400</td>
+                                                    <td>
+                                                        <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000001 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567890</td>
+                                                    <td><h4><span class="badge badge-soft-danger" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Unactive</span></h4></td>
+                                                    <td style="color: green;">₹400</td>
+                                                    <td>
+                                                        <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000001 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567890</td>
+                                                    <td><h4><span class="badge badge-soft-danger" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Unactive</span></h4></td>
+                                                    <td style="color: green;">₹400</td>
+                                                    <td>
+                                                        <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000001 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567890</td>
+                                                    <td><h4><span class="badge badge-soft-danger" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Unactive</span></h4></td>
+                                                    <td style="color: green;">₹400</td>
+                                                    <td>
+                                                        <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000001 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567890</td>
+                                                    <td><h4><span class="badge badge-soft-danger" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Unactive</span></h4></td>
+                                                    <td style="color: green;">₹400</td>
+                                                    <td>
+                                                        <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000001 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567890</td>
+                                                    <td><h4><span class="badge badge-soft-danger" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Unactive</span></h4></td>
+                                                    <td style="color: green;">₹400</td>
+                                                    <td>
+                                                        <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000001 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567890</td>
+                                                    <td><h4><span class="badge badge-soft-danger" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Unactive</span></h4></td>
+                                                    <td style="color: green;">₹400</td>
+                                                    <td>
+                                                        <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"> |
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+
+                                        </table>
+                                    </div>
                                 </div>
                     
                                 <!-- Custom Pagination -->
-                                <nav>
-                                    <ul class="pagination custom-pagination mb-0" style="margin-left: 340px;">
-                                        <!-- Custom pagination links will be inserted here by JS -->
-                                    </ul>
-                                </nav>
+                                <div class="pagination-container">
+                                    <nav>
+                                        <ul class="pagination custom-pagination mb-0">
+                                            <!-- Custom pagination links will be inserted here by JS -->
+                                        </ul>
+                                    </nav>
+                                </div>
                                 
                             </div>
                         </div>
@@ -871,7 +903,6 @@
             displayTransactions(currentPage);
             setupPagination();
         });
-
 
 
         $(document).ready(function() {

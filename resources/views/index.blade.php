@@ -173,7 +173,9 @@
                         <div class="col-md-8">
                             <div class="chart-container">
                                 <div class="mb-4" style="font-size: 13px; font-weight: 500;">Total Users</div>
-                                <canvas id="myChart"></canvas>
+                                <canvas id="myChart">
+                                    
+                                </canvas>
                             </div>
                         </div>
                         <div class="col-md-4 pl-4">

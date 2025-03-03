@@ -171,6 +171,33 @@
             background-color: #2a9d8f !important; /* Green color */
             border-color: #2a9d8f !important;
         }
+        thead {
+            position: sticky;
+            background: #F5F5F5;
+            top: 0;
+            z-index: 10;
+        }
+        .table-container {
+            max-height: 400px; /* Adjust as needed */
+            overflow-y: auto;
+            scrollbar-width: none; 
+            position: relative;
+        }
+        .pagination-container {
+            position: sticky;
+            bottom: 0;
+            background-color: #F5F5F5;
+            padding: 10px 0;
+            z-index: 2;
+            text-align: center;
+            /* box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.1);  */
+        }
+        table.dataTable th.dt-type-numeric, table.dataTable th.dt-type-date, table.dataTable td.dt-type-numeric, table.dataTable td.dt-type-date {
+            text-align: left;
+        }
+        .app-search .form-control {
+            padding-left: 15px;
+        }
     </style>
 
                 <div class="page-title-box">
@@ -277,222 +304,540 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="card" style="background-color: transparent; box-shadow: none;">
-                                <div class="card-body pt-2">
-                                    <table id="responsive-datatable" id="yeartable" class="table dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%; font-size: 13px;">
-                                        <thead>
-                                            <tr class="text-uppercase">
-                                                <th>Financial Year</th>
-                                                <th>Starting Date</th>
-                                                <th>Ending Date</th>
-                                                <th>Year</th>
-                                                <th>Status</th>
-                                                <th>Action</th>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="d-none d-sm-flex">
-                                                        <form class="app-search">
-                                                            <div class="app-search-box">
-                                                                <div class="input-group">
-                                                                    <input type="text" id="financialSearch" class="form-control" placeholder="Year" style="border-radius: 10px;">
+                                <div class="card-body pt-2" style="overflow: hidden;">
+                                    <div class="table-container" style="max-height: 400px; overflow-y: auto;">
+                                        <table id="responsive-datatable" id="yeartable" class="table dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%; font-size: 13px;">
+                                            <thead>
+                                                <tr class="text-uppercase">
+                                                    <th>Financial Year</th>
+                                                    <th>Starting Date</th>
+                                                    <th>Ending Date</th>
+                                                    <th>Year</th>
+                                                    <th>Status</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <div class="d-none d-sm-flex">
+                                                            <form class="app-search">
+                                                                <div class="app-search-box">
+                                                                    <div class="input-group">
+                                                                        <input type="text" id="financialSearch" class="form-control" placeholder="Year" style="border-radius: 10px;">
+                                                                    </div>
                                                                 </div>
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="d-none d-sm-flex">
-                                                        <form class="app-search">
-                                                            <div class="app-search-box">
-                                                                <div class="input-group">
-                                                                    <input type="text" id="startSearch" class="form-control" placeholder="Start Date" style="border-radius: 10px;">
-                                                                </div>
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="d-none d-sm-flex">
-                                                        <form class="app-search">
-                                                            <div class="app-search-box">
-                                                                <div class="input-group">
-                                                                    <input type="text" id="endSearch" class="form-control" placeholder="End Date" style="border-radius: 10px;">
-                                                                </div>
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="d-none d-sm-flex">
-                                                        <form class="app-search">
-                                                            <div class="app-search-box">
-                                                                <div class="input-group">
-                                                                    <input type="text" id="yearSearch" class="form-control" placeholder="Year" style="border-radius: 10px;">
-                                                                </div>
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="d-none d-sm-flex">
-                                                        <form class="app-search">
-                                                            <div class="app-search-box">
-                                                                <div class="input-group">
-                                                                    <input type="text" id="statusSearch" class="form-control" placeholder="Status" style="border-radius: 10px;">
-                                                                </div>
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                </td>
-                                                <td></td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td> 2022-2023 </td>
-                                                <td>dd/mm/yyyy</td>
-                                                <td>dd/mm/yyyy</td>
-                                                <td>yyyy</td>
-                                                <td><h4><span class="badge badge-soft-info pt-2" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Active</span></h4></td>
-
-                                                <td>
-                                                   <!-- Edit Button with Custom Modal Trigger -->
-                                                    <a href="#editYear" class="edit-year waves-effect waves-light" data-animation="blur" data-plugin="custommodal" data-overlaySpeed="100" data-overlayColor="#36404a">
-                                                        <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard" style="cursor: pointer;">
-                                                    </a>
-
-                                                    <!-- Custom Theme Modal for Edit Year -->
-                                                    <div id="editYear" class="modal-demo" style="width: 400px !important; height: 550px; padding: 20px; box-shadow: 0 15px 15px rgba(0, 0, 0, 0.3); border-radius: 12px;">
-                                                        <div class="d-flex p-3 align-items-center justify-content-between" style="width: 100%; height: auto;">
-                                                            <h4 class="add-title">
-                                                                Edit Financial Year
-                                                            </h4>
-                                                            <button type="button" class="btn-close btn-close-white" onclick="Custombox.modal.close();">
-                                                                <span class="sr-only">Close</span>
-                                                            </button>
+                                                            </form>
                                                         </div>
-                                                        <div class="add-text ml-2" style="font-size: small;">
-                                                            <div class="container-fluid">
-                                                                <!-- Financial Year Section -->
-                                                                <div class="mb-4">
-                                                                    <div class="row">
-                                                                        <div class="col-md-12">
-                                                                            <strong>Financial Year:</strong>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="row">
-                                                                        <div class="col-md-12">
-                                                                            <input type="text" class="form-control text-muted mt-2" name="date" placeholder="yyyy-yyyy">
-
-                                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="d-none d-sm-flex">
+                                                            <form class="app-search">
+                                                                <div class="app-search-box">
+                                                                    <div class="input-group">
+                                                                        <input type="text" id="startSearch" class="form-control" placeholder="Start Date" style="border-radius: 10px;">
                                                                     </div>
                                                                 </div>
-
-                                                                <!-- Starting Date Section -->
-                                                                <div class="mb-4">
-                                                                    <div class="row">
-                                                                        <div class="col-md-12">
-                                                                            <strong>Starting Date:</strong>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="row">
-                                                                        <div class="col-md-12">
-                                                                            <input type="date" class="form-control text-muted mt-2" name="startdate">
-                                                                        </div>
+                                                            </form>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="d-none d-sm-flex">
+                                                            <form class="app-search">
+                                                                <div class="app-search-box">
+                                                                    <div class="input-group">
+                                                                        <input type="text" id="endSearch" class="form-control" placeholder="End Date" style="border-radius: 10px;">
                                                                     </div>
                                                                 </div>
-
-                                                                <!-- Ending Date Section -->
-                                                                <div class="mb-4">
-                                                                    <div class="row">
-                                                                        <div class="col-md-12">
-                                                                            <strong>Ending Date:</strong>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="row">
-                                                                        <div class="col-md-12">
-                                                                            <input type="date" class="form-control text-muted mt-2" name="enddate">
-                                                                        </div>
+                                                            </form>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="d-none d-sm-flex">
+                                                            <form class="app-search">
+                                                                <div class="app-search-box">
+                                                                    <div class="input-group">
+                                                                        <input type="text" id="yearSearch" class="form-control" placeholder="Year" style="border-radius: 10px;">
                                                                     </div>
                                                                 </div>
-
-                                                                <!-- Ending Year Section -->
-                                                                <div class="mb-4">
-                                                                    <div class="row">
-                                                                        <div class="col-md-12">
-                                                                            <strong>Ending Year:</strong>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="row">
-                                                                        <div class="col-md-12">
-                                                                            <input type="text" class="form-control text-muted mt-2" name="date" placeholder="yyyy">
-                                                                        </div>
+                                                            </form>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="d-none d-sm-flex">
+                                                            <form class="app-search">
+                                                                <div class="app-search-box">
+                                                                    <div class="input-group">
+                                                                        <input type="text" id="statusSearch" class="form-control" placeholder="Status" style="border-radius: 10px;">
                                                                     </div>
                                                                 </div>
+                                                            </form>
+                                                        </div>
+                                                    </td>
+                                                    <td></td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td> 2022-2023 </td>
+                                                    <td>dd/mm/yyyy</td>
+                                                    <td>dd/mm/yyyy</td>
+                                                    <td>yyyy</td>
+                                                    <td><h4><span class="badge badge-soft-info pt-2" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Active</span></h4></td>
 
-                                                                <!-- Is Current Checkbox -->
-                                                                <div class="mb-4">
-                                                                    <div class="d-flex align-items-center ml-4">
-                                                                        <input class="form-check-input me-2" type="checkbox" id="isCurrent" checked style="width: 18px; height: 18px; border-radius: 4px;">
-                                                                        <span for="isCurrent" class="mt-1 ml-2" style="font-size: 14px; font-weight: 500; color: #4a4a4a;">Is Current?</span>
+                                                    <td>
+                                                    <!-- Edit Button with Custom Modal Trigger -->
+                                                        <a href="#editYear" class="edit-year waves-effect waves-light" data-animation="blur" data-plugin="custommodal" data-overlaySpeed="100" data-overlayColor="#36404a">
+                                                            <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard" style="cursor: pointer;">
+                                                        </a>
+
+                                                        <!-- Custom Theme Modal for Edit Year -->
+                                                        <div id="editYear" class="modal-demo" style="width: 400px !important; height: 550px; padding: 20px; box-shadow: 0 15px 15px rgba(0, 0, 0, 0.3); border-radius: 12px;">
+                                                            <div class="d-flex p-3 align-items-center justify-content-between" style="width: 100%; height: auto;">
+                                                                <h4 class="add-title">
+                                                                    Edit Financial Year
+                                                                </h4>
+                                                                <button type="button" class="btn-close btn-close-white" onclick="Custombox.modal.close();">
+                                                                    <span class="sr-only">Close</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="add-text ml-2" style="font-size: small;">
+                                                                <div class="container-fluid">
+                                                                    <!-- Financial Year Section -->
+                                                                    <div class="mb-4">
+                                                                        <div class="row">
+                                                                            <div class="col-md-12">
+                                                                                <strong>Financial Year:</strong>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="col-md-12">
+                                                                                <input type="text" class="form-control text-muted mt-2" name="date" placeholder="yyyy-yyyy">
+
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <!-- Starting Date Section -->
+                                                                    <div class="mb-4">
+                                                                        <div class="row">
+                                                                            <div class="col-md-12">
+                                                                                <strong>Starting Date:</strong>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="col-md-12">
+                                                                                <input type="date" class="form-control text-muted mt-2" name="startdate">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <!-- Ending Date Section -->
+                                                                    <div class="mb-4">
+                                                                        <div class="row">
+                                                                            <div class="col-md-12">
+                                                                                <strong>Ending Date:</strong>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="col-md-12">
+                                                                                <input type="date" class="form-control text-muted mt-2" name="enddate">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <!-- Ending Year Section -->
+                                                                    <div class="mb-4">
+                                                                        <div class="row">
+                                                                            <div class="col-md-12">
+                                                                                <strong>Ending Year:</strong>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="col-md-12">
+                                                                                <input type="text" class="form-control text-muted mt-2" name="date" placeholder="yyyy">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <!-- Is Current Checkbox -->
+                                                                    <div class="mb-4">
+                                                                        <div class="d-flex align-items-center ml-4">
+                                                                            <input class="form-check-input me-2" type="checkbox" id="isCurrent" checked style="width: 18px; height: 18px; border-radius: 4px;">
+                                                                            <span for="isCurrent" class="mt-1 ml-2" style="font-size: 14px; font-weight: 500; color: #4a4a4a;">Is Current?</span>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
+
+                                                            <!-- Footer with Save Button -->
+                                                            <div class="modal-footer justify-content-end mb-3" style="border: none;">
+                                                                <button type="button" class="btn btn-success col-md-5">Save</button>
+                                                            </div>
                                                         </div>
 
-                                                        <!-- Footer with Save Button -->
-                                                        <div class="modal-footer justify-content-end mb-3" style="border: none;">
-                                                            <button type="button" class="btn btn-success col-md-5">Save</button>
+
+                                                        <!-- Include Bootstrap JS (if not already included) -->
+                                                        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+                                                        | <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> 2022-2023 </td>
+                                                    <td>dd/mm/yyyy</td>
+                                                    <td>dd/mm/yyyy</td>
+                                                    <td>yyyy</td>
+                                                    <td><h4><span class="badge badge-soft-info pt-2" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Active</span></h4></td>
+
+                                                    <td>
+                                                    <!-- Edit Button with Custom Modal Trigger -->
+                                                        <a href="#editYear" class="edit-year waves-effect waves-light" data-animation="blur" data-plugin="custommodal" data-overlaySpeed="100" data-overlayColor="#36404a">
+                                                            <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard" style="cursor: pointer;">
+                                                        </a>
+
+                                                        <!-- Custom Theme Modal for Edit Year -->
+                                                        <div id="editYear" class="modal-demo" style="width: 400px !important; height: 550px; padding: 20px; box-shadow: 0 15px 15px rgba(0, 0, 0, 0.3); border-radius: 12px;">
+                                                            <div class="d-flex p-3 align-items-center justify-content-between" style="width: 100%; height: auto;">
+                                                                <h4 class="add-title">
+                                                                    Edit Financial Year
+                                                                </h4>
+                                                                <button type="button" class="btn-close btn-close-white" onclick="Custombox.modal.close();">
+                                                                    <span class="sr-only">Close</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="add-text ml-2" style="font-size: small;">
+                                                                <div class="container-fluid">
+                                                                    <!-- Financial Year Section -->
+                                                                    <div class="mb-4">
+                                                                        <div class="row">
+                                                                            <div class="col-md-12">
+                                                                                <strong>Financial Year:</strong>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="col-md-12">
+                                                                                <input type="text" class="form-control text-muted mt-2" name="date" placeholder="yyyy-yyyy">
+
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <!-- Starting Date Section -->
+                                                                    <div class="mb-4">
+                                                                        <div class="row">
+                                                                            <div class="col-md-12">
+                                                                                <strong>Starting Date:</strong>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="col-md-12">
+                                                                                <input type="date" class="form-control text-muted mt-2" name="startdate">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <!-- Ending Date Section -->
+                                                                    <div class="mb-4">
+                                                                        <div class="row">
+                                                                            <div class="col-md-12">
+                                                                                <strong>Ending Date:</strong>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="col-md-12">
+                                                                                <input type="date" class="form-control text-muted mt-2" name="enddate">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <!-- Ending Year Section -->
+                                                                    <div class="mb-4">
+                                                                        <div class="row">
+                                                                            <div class="col-md-12">
+                                                                                <strong>Ending Year:</strong>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="col-md-12">
+                                                                                <input type="text" class="form-control text-muted mt-2" name="date" placeholder="yyyy">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <!-- Is Current Checkbox -->
+                                                                    <div class="mb-4">
+                                                                        <div class="d-flex align-items-center ml-4">
+                                                                            <input class="form-check-input me-2" type="checkbox" id="isCurrent" checked style="width: 18px; height: 18px; border-radius: 4px;">
+                                                                            <span for="isCurrent" class="mt-1 ml-2" style="font-size: 14px; font-weight: 500; color: #4a4a4a;">Is Current?</span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <!-- Footer with Save Button -->
+                                                            <div class="modal-footer justify-content-end mb-3" style="border: none;">
+                                                                <button type="button" class="btn btn-success col-md-5">Save</button>
+                                                            </div>
                                                         </div>
-                                                    </div>
 
 
-                                                    <!-- Include Bootstrap JS (if not already included) -->
-                                                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+                                                        <!-- Include Bootstrap JS (if not already included) -->
+                                                        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-                                                     | <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td> 2022-2023 </td>
-                                                <td>dd/mm/yyyy</td>
-                                                <td>dd/mm/yyyy</td>
-                                                <td>yyyy</td>
-                                                <td><h4><span class="badge badge-soft-danger pt-2" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Unactive</span></h4></td>
+                                                        | <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> 2022-2023 </td>
+                                                    <td>dd/mm/yyyy</td>
+                                                    <td>dd/mm/yyyy</td>
+                                                    <td>yyyy</td>
+                                                    <td><h4><span class="badge badge-soft-info pt-2" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Active</span></h4></td>
 
-                                                <td>
-                                                    <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard" data-bs-toggle="modal" data-bs-target="#editModal" style="cursor: pointer;">
+                                                    <td>
+                                                    <!-- Edit Button with Custom Modal Trigger -->
+                                                        <a href="#editYear" class="edit-year waves-effect waves-light" data-animation="blur" data-plugin="custommodal" data-overlaySpeed="100" data-overlayColor="#36404a">
+                                                            <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard" style="cursor: pointer;">
+                                                        </a>
 
-                                                     | <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
-                                                </td>
-                                            </tr>
-                                            
-                                            <tr>
-                                                <td> 2022-2023 </td>
-                                                <td>dd/mm/yyyy</td>
-                                                <td>dd/mm/yyyy</td>
-                                                <td>yyyy</td>
-                                                <td><h4><span class="badge badge-soft-danger pt-2" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Unactive</span></h4></td>
+                                                        <!-- Custom Theme Modal for Edit Year -->
+                                                        <div id="editYear" class="modal-demo" style="width: 400px !important; height: 550px; padding: 20px; box-shadow: 0 15px 15px rgba(0, 0, 0, 0.3); border-radius: 12px;">
+                                                            <div class="d-flex p-3 align-items-center justify-content-between" style="width: 100%; height: auto;">
+                                                                <h4 class="add-title">
+                                                                    Edit Financial Year
+                                                                </h4>
+                                                                <button type="button" class="btn-close btn-close-white" onclick="Custombox.modal.close();">
+                                                                    <span class="sr-only">Close</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="add-text ml-2" style="font-size: small;">
+                                                                <div class="container-fluid">
+                                                                    <!-- Financial Year Section -->
+                                                                    <div class="mb-4">
+                                                                        <div class="row">
+                                                                            <div class="col-md-12">
+                                                                                <strong>Financial Year:</strong>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="col-md-12">
+                                                                                <input type="text" class="form-control text-muted mt-2" name="date" placeholder="yyyy-yyyy">
 
-                                                <td>
-                                                    <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard" data-bs-toggle="modal" data-bs-target="#editModal" style="cursor: pointer;">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
 
-                                                     | <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
-                                                </td>
-                                            </tr>
-                                            
-                                        </tbody>
+                                                                    <!-- Starting Date Section -->
+                                                                    <div class="mb-4">
+                                                                        <div class="row">
+                                                                            <div class="col-md-12">
+                                                                                <strong>Starting Date:</strong>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="col-md-12">
+                                                                                <input type="date" class="form-control text-muted mt-2" name="startdate">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
 
-                                    </table>
+                                                                    <!-- Ending Date Section -->
+                                                                    <div class="mb-4">
+                                                                        <div class="row">
+                                                                            <div class="col-md-12">
+                                                                                <strong>Ending Date:</strong>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="col-md-12">
+                                                                                <input type="date" class="form-control text-muted mt-2" name="enddate">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <!-- Ending Year Section -->
+                                                                    <div class="mb-4">
+                                                                        <div class="row">
+                                                                            <div class="col-md-12">
+                                                                                <strong>Ending Year:</strong>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="col-md-12">
+                                                                                <input type="text" class="form-control text-muted mt-2" name="date" placeholder="yyyy">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <!-- Is Current Checkbox -->
+                                                                    <div class="mb-4">
+                                                                        <div class="d-flex align-items-center ml-4">
+                                                                            <input class="form-check-input me-2" type="checkbox" id="isCurrent" checked style="width: 18px; height: 18px; border-radius: 4px;">
+                                                                            <span for="isCurrent" class="mt-1 ml-2" style="font-size: 14px; font-weight: 500; color: #4a4a4a;">Is Current?</span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <!-- Footer with Save Button -->
+                                                            <div class="modal-footer justify-content-end mb-3" style="border: none;">
+                                                                <button type="button" class="btn btn-success col-md-5">Save</button>
+                                                            </div>
+                                                        </div>
+
+
+                                                        <!-- Include Bootstrap JS (if not already included) -->
+                                                        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+                                                        | <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> 2022-2023 </td>
+                                                    <td>dd/mm/yyyy</td>
+                                                    <td>dd/mm/yyyy</td>
+                                                    <td>yyyy</td>
+                                                    <td><h4><span class="badge badge-soft-info pt-2" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Active</span></h4></td>
+
+                                                    <td>
+                                                    <!-- Edit Button with Custom Modal Trigger -->
+                                                        <a href="#editYear" class="edit-year waves-effect waves-light" data-animation="blur" data-plugin="custommodal" data-overlaySpeed="100" data-overlayColor="#36404a">
+                                                            <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard" style="cursor: pointer;">
+                                                        </a>
+
+                                                        <!-- Custom Theme Modal for Edit Year -->
+                                                        <div id="editYear" class="modal-demo" style="width: 400px !important; height: 550px; padding: 20px; box-shadow: 0 15px 15px rgba(0, 0, 0, 0.3); border-radius: 12px;">
+                                                            <div class="d-flex p-3 align-items-center justify-content-between" style="width: 100%; height: auto;">
+                                                                <h4 class="add-title">
+                                                                    Edit Financial Year
+                                                                </h4>
+                                                                <button type="button" class="btn-close btn-close-white" onclick="Custombox.modal.close();">
+                                                                    <span class="sr-only">Close</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="add-text ml-2" style="font-size: small;">
+                                                                <div class="container-fluid">
+                                                                    <!-- Financial Year Section -->
+                                                                    <div class="mb-4">
+                                                                        <div class="row">
+                                                                            <div class="col-md-12">
+                                                                                <strong>Financial Year:</strong>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="col-md-12">
+                                                                                <input type="text" class="form-control text-muted mt-2" name="date" placeholder="yyyy-yyyy">
+
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <!-- Starting Date Section -->
+                                                                    <div class="mb-4">
+                                                                        <div class="row">
+                                                                            <div class="col-md-12">
+                                                                                <strong>Starting Date:</strong>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="col-md-12">
+                                                                                <input type="date" class="form-control text-muted mt-2" name="startdate">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <!-- Ending Date Section -->
+                                                                    <div class="mb-4">
+                                                                        <div class="row">
+                                                                            <div class="col-md-12">
+                                                                                <strong>Ending Date:</strong>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="col-md-12">
+                                                                                <input type="date" class="form-control text-muted mt-2" name="enddate">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <!-- Ending Year Section -->
+                                                                    <div class="mb-4">
+                                                                        <div class="row">
+                                                                            <div class="col-md-12">
+                                                                                <strong>Ending Year:</strong>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="col-md-12">
+                                                                                <input type="text" class="form-control text-muted mt-2" name="date" placeholder="yyyy">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <!-- Is Current Checkbox -->
+                                                                    <div class="mb-4">
+                                                                        <div class="d-flex align-items-center ml-4">
+                                                                            <input class="form-check-input me-2" type="checkbox" id="isCurrent" checked style="width: 18px; height: 18px; border-radius: 4px;">
+                                                                            <span for="isCurrent" class="mt-1 ml-2" style="font-size: 14px; font-weight: 500; color: #4a4a4a;">Is Current?</span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <!-- Footer with Save Button -->
+                                                            <div class="modal-footer justify-content-end mb-3" style="border: none;">
+                                                                <button type="button" class="btn btn-success col-md-5">Save</button>
+                                                            </div>
+                                                        </div>
+
+
+                                                        <!-- Include Bootstrap JS (if not already included) -->
+                                                        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+                                                        | <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> 2022-2023 </td>
+                                                    <td>dd/mm/yyyy</td>
+                                                    <td>dd/mm/yyyy</td>
+                                                    <td>yyyy</td>
+                                                    <td><h4><span class="badge badge-soft-danger pt-2" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Unactive</span></h4></td>
+
+                                                    <td>
+                                                        <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard" data-bs-toggle="modal" data-bs-target="#editModal" style="cursor: pointer;">
+
+                                                        | <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                
+                                                <tr>
+                                                    <td> 2022-2023 </td>
+                                                    <td>dd/mm/yyyy</td>
+                                                    <td>dd/mm/yyyy</td>
+                                                    <td>yyyy</td>
+                                                    <td><h4><span class="badge badge-soft-danger pt-2" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Unactive</span></h4></td>
+
+                                                    <td>
+                                                        <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard" data-bs-toggle="modal" data-bs-target="#editModal" style="cursor: pointer;">
+
+                                                        | <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                
+                                            </tbody>
+
+                                        </table>
+                                    </div>
                                 </div>
                     
                                 <!-- Custom Pagination -->
-                                <nav>
-                                    <ul class="pagination custom-pagination mb-0" style="margin-left: 340px;">
-                                        <!-- Custom pagination links will be inserted here by JS -->
-                                    </ul>
-                                </nav>
-                                
+                                <div class="pagination-container">
+                                    <nav>
+                                        <ul class="pagination custom-pagination mb-0">
+                                            <!-- Custom pagination links will be inserted here by JS -->
+                                        </ul>
+                                    </nav>
+                                </div>
                             </div>
                         </div>
                     </div> 

@@ -167,7 +167,33 @@
             border-color: #198754;
             color: white;
         }
-
+        thead {
+            position: sticky;
+            background: #F5F5F5;
+            top: 0;
+            z-index: 10;
+        }
+        .table-container {
+            max-height: 400px; /* Adjust as needed */
+            overflow-y: auto;
+            scrollbar-width: none; 
+            position: relative;
+        }
+        .pagination-container {
+            position: sticky;
+            bottom: 0;
+            background-color: #F5F5F5;
+            padding: 10px 0;
+            z-index: 2;
+            text-align: center;
+            /* box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.1);  */
+        }
+        table.dataTable th.dt-type-numeric, table.dataTable th.dt-type-date, table.dataTable td.dt-type-numeric, table.dataTable td.dt-type-date {
+            text-align: left;
+        }
+        .app-search .form-control {
+            padding-left: 15px;
+        }
     </style>
 
                 <div class="page-title-box">
@@ -227,197 +253,201 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="card" style="background-color: transparent; box-shadow: none;">
-                                <div class="card-body pt-2">
-                                    <table id="responsive-datatable" class="table dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%; font-size: 13px;">
-                                        <thead>
-                                            <tr class="text-uppercase">
-                                                <th>Name</th>
-                                                <th>Email</th>
-                                                <th>Place</th>
-                                                <th>Mob.No.</th>
-                                                <th>Action</th>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="d-none d-sm-flex">
-                                                        <form class="app-search">
-                                                            <div class="app-search-box">
-                                                                <div class="input-group">
-                                                                    <input type="text" id="nameSearch" class="form-control" placeholder="Name" style="border-radius: 10px;">
+                                <div class="card-body pt-2" style="overflow: hidden;">
+                                    <div class="table-container" style="max-height: 400px; overflow-y: auto;">
+                                        <table id="responsive-datatable" class="table dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%; font-size: 13px;">
+                                            <thead>
+                                                <tr class="text-uppercase">
+                                                    <th>Name</th>
+                                                    <th>Email</th>
+                                                    <th>Place</th>
+                                                    <th>Mob.No.</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <div class="d-none d-sm-flex">
+                                                            <form class="app-search">
+                                                                <div class="app-search-box">
+                                                                    <div class="input-group">
+                                                                        <input type="text" id="nameSearch" class="form-control" placeholder="Name" style="border-radius: 10px;">
+                                                                    </div>
                                                                 </div>
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="d-none d-sm-flex">
-                                                        <form class="app-search">
-                                                            <div class="app-search-box">
-                                                                <div class="input-group">
-                                                                    <input type="text" id="emailSearch" class="form-control" placeholder="Email" style="border-radius: 10px;">
+                                                            </form>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="d-none d-sm-flex">
+                                                            <form class="app-search">
+                                                                <div class="app-search-box">
+                                                                    <div class="input-group">
+                                                                        <input type="text" id="emailSearch" class="form-control" placeholder="Email" style="border-radius: 10px;">
+                                                                    </div>
                                                                 </div>
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="d-none d-sm-flex">
-                                                        <form class="app-search">
-                                                            <div class="app-search-box">
-                                                                <div class="input-group">
-                                                                    <input type="text" id="placeSearch" class="form-control" placeholder="Place" style="border-radius: 10px;">
+                                                            </form>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="d-none d-sm-flex">
+                                                            <form class="app-search">
+                                                                <div class="app-search-box">
+                                                                    <div class="input-group">
+                                                                        <input type="text" id="placeSearch" class="form-control" placeholder="Place" style="border-radius: 10px;">
+                                                                    </div>
                                                                 </div>
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="d-none d-sm-flex">
-                                                        <form class="app-search">
-                                                            <div class="app-search-box">
-                                                                <div class="input-group">
-                                                                    <input type="text" id="mobileSearch" class="form-control" placeholder="Mobile" style="border-radius: 10px;">
+                                                            </form>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="d-none d-sm-flex">
+                                                            <form class="app-search">
+                                                                <div class="app-search-box">
+                                                                    <div class="input-group">
+                                                                        <input type="text" id="mobileSearch" class="form-control" placeholder="Mobile" style="border-radius: 10px;">
+                                                                    </div>
                                                                 </div>
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                </td>
-                                                <td></td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td> #000001 </td>
-                                                <td>#000001</td>
-                                                <td>#000001</td>
-                                                <td>1234567890</td>
+                                                            </form>
+                                                        </div>
+                                                    </td>
+                                                    <td></td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td> #000001 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567890</td>
+                                                    
+                                                    <td>
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000001 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567890</td>
+                                                    
+                                                    <td>
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000001 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567890</td>
+                                                    
+                                                    <td>
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000001 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567890</td>
+                                                    
+                                                    <td>
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000001 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567890</td>
+                                                    
+                                                    <td>
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000001 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567890</td>
+                                                    
+                                                    <td>
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000001 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567890</td>
+                                                    
+                                                    <td>
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000001 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567890</td>
+                                                    
+                                                    <td>
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000001 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567890</td>
+                                                    
+                                                    <td>
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000001 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567890</td>
+                                                    
+                                                    <td>
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000001 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567890</td>
+                                                    
+                                                    <td>
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000001 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567890</td>
+                                                    
+                                                    <td>
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
                                                 
-                                                <td>
-                                                    <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td> #000001 </td>
-                                                <td>#000001</td>
-                                                <td>#000001</td>
-                                                <td>1234567890</td>
-                                                
-                                                <td>
-                                                    <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td> #000001 </td>
-                                                <td>#000001</td>
-                                                <td>#000001</td>
-                                                <td>1234567890</td>
-                                                
-                                                <td>
-                                                    <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td> #000001 </td>
-                                                <td>#000001</td>
-                                                <td>#000001</td>
-                                                <td>1234567890</td>
-                                                
-                                                <td>
-                                                    <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td> #000001 </td>
-                                                <td>#000001</td>
-                                                <td>#000001</td>
-                                                <td>1234567890</td>
-                                                
-                                                <td>
-                                                    <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td> #000001 </td>
-                                                <td>#000001</td>
-                                                <td>#000001</td>
-                                                <td>1234567890</td>
-                                                
-                                                <td>
-                                                    <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td> #000001 </td>
-                                                <td>#000001</td>
-                                                <td>#000001</td>
-                                                <td>1234567890</td>
-                                                
-                                                <td>
-                                                    <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td> #000001 </td>
-                                                <td>#000001</td>
-                                                <td>#000001</td>
-                                                <td>1234567890</td>
-                                                
-                                                <td>
-                                                    <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td> #000001 </td>
-                                                <td>#000001</td>
-                                                <td>#000001</td>
-                                                <td>1234567890</td>
-                                                
-                                                <td>
-                                                    <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td> #000001 </td>
-                                                <td>#000001</td>
-                                                <td>#000001</td>
-                                                <td>1234567890</td>
-                                                
-                                                <td>
-                                                    <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td> #000001 </td>
-                                                <td>#000001</td>
-                                                <td>#000001</td>
-                                                <td>1234567890</td>
-                                                
-                                                <td>
-                                                    <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td> #000001 </td>
-                                                <td>#000001</td>
-                                                <td>#000001</td>
-                                                <td>1234567890</td>
-                                                
-                                                <td>
-                                                    <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
-                                                </td>
-                                            </tr>
-                                            
-                                        </tbody>
+                                            </tbody>
 
-                                    </table>
+                                        </table>
+                                    </div>
                                 </div>
                     
                                 <!-- Custom Pagination -->
-                                <nav>
-                                    <ul class="pagination custom-pagination mb-0" style="margin-left: 340px;">
-                                        <!-- Custom pagination links will be inserted here by JS -->
-                                    </ul>
-                                </nav>
+                                <div class="pagination-container">
+                                    <nav>
+                                        <ul class="pagination custom-pagination mb-0">
+                                            <!-- Custom pagination links will be inserted here by JS -->
+                                        </ul>
+                                    </nav>
+                                </div>
                                 
                             </div>
                         </div>

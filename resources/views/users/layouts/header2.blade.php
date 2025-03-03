@@ -288,17 +288,21 @@
     background-color: rgba(29, 185, 84, 0.1);
     color: #079666;
 }
-
+@media (max-width: 768px) {
+ .nav-btn {
+    margin: 0px !important;
+ }
+}
     </style>
 </head>
 
 <body>
 
     <div class="wrapper">
-        <nav class="d-flex navbar navbar-expand-lg navbar-light">
+        {{-- <nav class="d-flex navbar navbar-expand-lg navbar-light">
             <a class="navbar-brand logo" href="#">
                 <img src="{{asset('assets/image/users/logo2.svg')}}" class="d-inline-block align-top m-3" alt="logo"
-                    class="logo-img">
+                class="logo-img">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -325,7 +329,44 @@
                     style="width: 40px; height: 40px; border: 2px solid #ccc;">
                 <span class=" profilename ml-2" style="color:#10998B; font-size: 15px; font-weight:500;">Abhishek</span>
             </div>
+        </nav> --}}
+
+
+        <nav class="navbar navbar-expand-lg navbar-light bg-white">
+            <div class="container-fluid d-flex align-items-center">
+                
+                <!-- Logo -->
+                <a class="navbar-brand logo me-auto" href="#">
+                    <img src="{{asset('assets/image/users/logo2.svg')}}" class="d-inline-block align-top m-3 logo-img" alt="logo" style="max-height: 50px;">
+                </a>
+               
+                <!-- Toggle Button for Mobile -->
+                <button class="navbar-toggler nav-btn mx-5" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+        
+                <!-- Profile (Always on Right) -->
+                <div class="d-flex align-items-center order-lg-2 mx-4">
+                    <img src="{{asset('assets/image/users/Image.svg')}}" alt="profile" class="rounded-circle"
+                        style="width: 40px; height: 40px; border: 2px solid #ccc;">
+                    <span class="profilename ms-2" style="color:#10998B; font-size: 15px; font-weight:500;">Abhishek</span>
+                </div>
+        
+        
+                <!-- Navbar Items -->
+                <div class="collapse navbar-collapse justify-content-center order-lg-1" id="navbarNav">
+                    <ul class="navbar-nav mx-auto text-center">
+                        <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Turf</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Terms & Conditions</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">About</a></li>
+                    </ul>
+                </div>
+        
+            </div>
         </nav>
+        
 
         <div class="line">
             <div class="row" style="height: 60px;">

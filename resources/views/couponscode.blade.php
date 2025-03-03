@@ -56,6 +56,33 @@
             border-color: #198754;
             color: white;
         }
+        thead {
+            position: sticky;
+            background: #F5F5F5;
+            top: 0;
+            z-index: 10;
+        }
+        .table-container {
+            max-height: 400px; /* Adjust as needed */
+            overflow-y: auto;
+            scrollbar-width: none; 
+            position: relative;
+        }
+        .pagination-container {
+            position: sticky;
+            bottom: 0;
+            background-color: #F5F5F5;
+            padding: 10px 0;
+            z-index: 2;
+            text-align: center;
+            /* box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.1);  */
+        }
+        table.dataTable th.dt-type-numeric, table.dataTable th.dt-type-date, table.dataTable td.dt-type-numeric, table.dataTable td.dt-type-date {
+            text-align: left;
+        }
+        .app-search .form-control {
+            padding-left: 15px;
+        }
     </style>
 
  
@@ -144,316 +171,319 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="card" style="background-color: transparent; box-shadow: none;">
-                                <div class="card-body pt-2">
-                                    <table id="responsive-datatable" id="coupontable" class="table dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%; font-size: 13px;">
-                                        <thead>
-                                            <tr class="text-uppercase">
-                                                <th>Coupon Code</th>
-                                                <th>Created Date</th>
-                                                <th>Created By</th>
-                                                <th>Name</th>
-                                                <th>Validity</th>
-                                                <th>Discount(₹/%)</th>
-                                                <th>Action</th>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="d-none d-sm-flex">
-                                                        <form class="app-search">
-                                                            <div class="app-search-box">
-                                                                <div class="input-group">
-                                                                    <input type="text" id="codeSearch" class="form-control" placeholder="Code" style="border-radius: 10px;">
+                                <div class="card-body pt-2" style="overflow: hidden;">
+                                    <div class="table-container" style="max-height: 400px; overflow-y: auto;">
+                                        <table id="responsive-datatable" id="coupontable" class="table dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%; font-size: 13px;">
+                                            <thead>
+                                                <tr class="text-uppercase">
+                                                    <th>Coupon Code</th>
+                                                    <th>Created Date</th>
+                                                    <th>Created By</th>
+                                                    <th>Name</th>
+                                                    <th>Validity</th>
+                                                    <th>Discount(₹/%)</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <div class="d-none d-sm-flex">
+                                                            <form class="app-search">
+                                                                <div class="app-search-box">
+                                                                    <div class="input-group">
+                                                                        <input type="text" id="codeSearch" class="form-control" placeholder="Code" style="border-radius: 10px;">
+                                                                    </div>
                                                                 </div>
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="d-none d-sm-flex">
-                                                        <form class="app-search">
-                                                            <div class="app-search-box">
-                                                                <div class="input-group">
-                                                                    <input type="text" id="createdateSearch" class="form-control" placeholder="date" style="border-radius: 10px;">
-                                                                </div>
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="d-none d-sm-flex">
-                                                        <form class="app-search">
-                                                            <div class="app-search-box">
-                                                                <div class="input-group">
-                                                                    <input type="text" id="createdbySearch" class="form-control" placeholder="Role" style="border-radius: 10px;">
-                                                                </div>
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="d-none d-sm-flex">
-                                                        <form class="app-search">
-                                                            <div class="app-search-box">
-                                                                <div class="input-group">
-                                                                    <input type="text" id="nameSearch" class="form-control" placeholder="Name" style="border-radius: 10px;">
-                                                                </div>
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="d-none d-sm-flex">
-                                                        <form class="app-search">
-                                                            <div class="app-search-box">
-                                                                <div class="input-group">
-                                                                    <input type="text" id="validitySearch" class="form-control" placeholder="Date" style="border-radius: 10px;">
-                                                                </div>
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="d-none d-sm-flex">
-                                                        <form class="app-search">
-                                                            <div class="app-search-box">
-                                                                <div class="input-group">
-                                                                    <input type="text" id="discountSearch" class="form-control" placeholder="Discount" style="border-radius: 10px;">
-                                                                </div>
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                </td>
-                                                <td></td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td> #000001 </td>
-                                                <td>#000001</td>
-                                                <td>#000001</td>
-                                                <td>1234567890</td>
-                                                <td><h4><span class="badge badge-soft-info" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Full</span></h4></td>
-                                                <td><h4><span class="badge badge-soft-info" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Online</span></h4></td>
-                                                <td>
-                                                   <!-- Trigger Button -->
-                                                   <a href="infoModal" class="coupon-detail waves-effect waves-light" data-bs-toggle="modal" data-bs-target="#addModal">
-                                                    <i class="bi bi-info-circle" style="font-size: 19px; color: blue; cursor: pointer;" data-animation="blur" data-plugin="custommodal" data-overlaySpeed="100" data-overlayColor="#36404a" href="#infoModal"></i>
-                                                   </a>
-                                                    <!-- Custom Theme Modal -->
-                                                    <div id="infoModal" class="modal-demo" style="width: 400px !important; padding: 20px; border-radius: 12px; box-shadow: 0 15px 15px rgba(0, 0, 0, 0.3);">
-                                                        <div class="d-flex p-3 align-items-center justify-content-between" style="width: 100%;">
-                                                            <h4 class="modal-title">View Coupons</h4>
-                                                            <button type="button" class="btn-close btn-close-white" onclick="Custombox.modal.close();">
-                                                                <span class="sr-only">Close</span>
-                                                            </button>
+                                                            </form>
                                                         </div>
-                                                        <div class="modal-body" style="font-size: 12px; letter-spacing: 0.9px; line-height: normal;">
-                                                            <div class="container-fluid">
-                                                                <div class="mt-0">
-                                                                    <div class="row">
-                                                                        <div class="col-md-12">
-                                                                            <img class="justify-content-center ml-2 " src="{{ asset('assets/image/coupon.svg')}}" alt="dashboard" style="height: 70px; width: 320px;">
-                                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="d-none d-sm-flex">
+                                                            <form class="app-search">
+                                                                <div class="app-search-box">
+                                                                    <div class="input-group">
+                                                                        <input type="text" id="createdateSearch" class="form-control" placeholder="date" style="border-radius: 10px;">
                                                                     </div>
                                                                 </div>
-                                                                <div class="mb-4 mt-4 ml-3">
-                                                                    <div class="row">
-                                                                        <div class="col-md-12">
-                                                                            <strong>Created By : </strong><span class="text-muted">Mr. Abhishek</span>
-                                                                        </div>
+                                                            </form>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="d-none d-sm-flex">
+                                                            <form class="app-search">
+                                                                <div class="app-search-box">
+                                                                    <div class="input-group">
+                                                                        <input type="text" id="createdbySearch" class="form-control" placeholder="Role" style="border-radius: 10px;">
                                                                     </div>
                                                                 </div>
-                                                                <div class="mb-4 ml-3">
-                                                                    <div class="row">
-                                                                        <div class="col-md-12">
-                                                                            <strong>Turf ID : </strong><span class="text-muted">784412</span>
-                                                                        </div>
+                                                            </form>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="d-none d-sm-flex">
+                                                            <form class="app-search">
+                                                                <div class="app-search-box">
+                                                                    <div class="input-group">
+                                                                        <input type="text" id="nameSearch" class="form-control" placeholder="Name" style="border-radius: 10px;">
                                                                     </div>
                                                                 </div>
-                                                                <div class="mb-4 ml-3">
-                                                                    <div class="row">
-                                                                        <div class="col-md-12">
-                                                                            <strong>Created On : </strong><span class="text-muted"> dd/mm/yyyy </span>
-                                                                        </div>
+                                                            </form>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="d-none d-sm-flex">
+                                                            <form class="app-search">
+                                                                <div class="app-search-box">
+                                                                    <div class="input-group">
+                                                                        <input type="text" id="validitySearch" class="form-control" placeholder="Date" style="border-radius: 10px;">
                                                                     </div>
                                                                 </div>
-                                                                <div class="mb-3 ml-3">
-                                                                    <div class="row">
-                                                                        <div class="col-md-12">
-                                                                            <strong>Valid Date : </strong><span class="text-muted"> 9876 </span>
-                                                                        </div>
+                                                            </form>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="d-none d-sm-flex">
+                                                            <form class="app-search">
+                                                                <div class="app-search-box">
+                                                                    <div class="input-group">
+                                                                        <input type="text" id="discountSearch" class="form-control" placeholder="Discount" style="border-radius: 10px;">
                                                                     </div>
                                                                 </div>
-                                                                <div class="mb-3 ml-3">
-                                                                    <div class="row">
-                                                                        <div class="col-md-12 ml-4">
-                                                                            <strong>Start Date : </strong><span class="text-muted"> 9876 </span>
+                                                            </form>
+                                                        </div>
+                                                    </td>
+                                                    <td></td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td> #000001 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567890</td>
+                                                    <td><h4><span class="badge badge-soft-info" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Full</span></h4></td>
+                                                    <td><h4><span class="badge badge-soft-info" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Online</span></h4></td>
+                                                    <td>
+                                                    <!-- Trigger Button -->
+                                                    <a href="infoModal" class="coupon-detail waves-effect waves-light" data-bs-toggle="modal" data-bs-target="#addModal">
+                                                        <i class="bi bi-info-circle" style="font-size: 19px; color: blue; cursor: pointer;" data-animation="blur" data-plugin="custommodal" data-overlaySpeed="100" data-overlayColor="#36404a" href="#infoModal"></i>
+                                                    </a>
+                                                        <!-- Custom Theme Modal -->
+                                                        <div id="infoModal" class="modal-demo" style="width: 400px !important; padding: 20px; border-radius: 12px; box-shadow: 0 15px 15px rgba(0, 0, 0, 0.3);">
+                                                            <div class="d-flex p-3 align-items-center justify-content-between" style="width: 100%;">
+                                                                <h4 class="modal-title">View Coupons</h4>
+                                                                <button type="button" class="btn-close btn-close-white" onclick="Custombox.modal.close();">
+                                                                    <span class="sr-only">Close</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body" style="font-size: 12px; letter-spacing: 0.9px; line-height: normal;">
+                                                                <div class="container-fluid">
+                                                                    <div class="mt-0">
+                                                                        <div class="row">
+                                                                            <div class="col-md-12">
+                                                                                <img class="justify-content-center ml-2 " src="{{ asset('assets/image/coupon.svg')}}" alt="dashboard" style="height: 70px; width: 320px;">
+                                                                            </div>
                                                                         </div>
                                                                     </div>
-                                                                </div>
-                                                                <div class="mb-4 ml-3">
-                                                                    <div class="row">
-                                                                        <div class="col-md-12 ml-4">
-                                                                            <strong>End Date : </strong><span class="text-muted"> 9876 </span>
+                                                                    <div class="mb-4 mt-4 ml-3">
+                                                                        <div class="row">
+                                                                            <div class="col-md-12">
+                                                                                <strong>Created By : </strong><span class="text-muted">Mr. Abhishek</span>
+                                                                            </div>
                                                                         </div>
                                                                     </div>
-                                                                </div>
-                                                                <div class="mb-4 ml-3">
-                                                                    <div class="row">
-                                                                        <div class="col-md-12">
-                                                                            <strong>Min. Order : </strong><span class="text-muted"> 800 </span>
+                                                                    <div class="mb-4 ml-3">
+                                                                        <div class="row">
+                                                                            <div class="col-md-12">
+                                                                                <strong>Turf ID : </strong><span class="text-muted">784412</span>
+                                                                            </div>
                                                                         </div>
                                                                     </div>
-                                                                </div>
-                                                                <div class="mb-4 ml-3">
-                                                                    <div class="row">
-                                                                        <div class="col-md-12">
-                                                                            <strong>Discount : </strong><span class="text-muted"> 500 </span>
+                                                                    <div class="mb-4 ml-3">
+                                                                        <div class="row">
+                                                                            <div class="col-md-12">
+                                                                                <strong>Created On : </strong><span class="text-muted"> dd/mm/yyyy </span>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="mb-3 ml-3">
+                                                                        <div class="row">
+                                                                            <div class="col-md-12">
+                                                                                <strong>Valid Date : </strong><span class="text-muted"> 9876 </span>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="mb-3 ml-3">
+                                                                        <div class="row">
+                                                                            <div class="col-md-12 ml-4">
+                                                                                <strong>Start Date : </strong><span class="text-muted"> 9876 </span>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="mb-4 ml-3">
+                                                                        <div class="row">
+                                                                            <div class="col-md-12 ml-4">
+                                                                                <strong>End Date : </strong><span class="text-muted"> 9876 </span>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="mb-4 ml-3">
+                                                                        <div class="row">
+                                                                            <div class="col-md-12">
+                                                                                <strong>Min. Order : </strong><span class="text-muted"> 800 </span>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="mb-4 ml-3">
+                                                                        <div class="row">
+                                                                            <div class="col-md-12">
+                                                                                <strong>Discount : </strong><span class="text-muted"> 500 </span>
+                                                                            </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
+                                                            <div class="modal-footer" style="border: none;">
+                                                                <button type="button" class="btn btn-success px-5 mr-4 mb-4">Save</button>
+                                                            </div>
                                                         </div>
-                                                        <div class="modal-footer" style="border: none;">
-                                                            <button type="button" class="btn btn-success px-5 mr-4 mb-4">Save</button>
-                                                        </div>
-                                                    </div>
 
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td> #000002 </td>
-                                                <td>#000001</td>
-                                                <td>#000001</td>
-                                                <td>1234567891</td>
-                                                <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Part</span></h4></td>
-                                                <td><h4><span class="badge badge-soft-danger" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
-                                                <td>
-                                                    <i class="bi bi-info-circle" style="font-size: 19px; color: blue"></i>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td> #000003 </td>
-                                                <td>#000001</td>
-                                                <td>#000001</td>
-                                                <td>1234567892</td>
-                                                <td><h4><span class="badge badge-soft-info" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Full</span></h4></td>
-                                                <td><h4><span class="badge badge-soft-danger" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
-                                                <td>
-                                                    <i class="bi bi-info-circle" style="font-size: 19px; color: blue"></i>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td> #000001 </td>
-                                                <td>#000001</td>
-                                                <td>#000001</td>
-                                                <td>1234567890</td>
-                                                <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Part</span></h4></td>
-                                                <td><h4><span class="badge badge-soft-danger" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
-                                                <td>
-                                                    <i class="bi bi-info-circle" style="font-size: 19px; color: blue"></i>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td> #000001 </td>
-                                                <td>#000001</td>
-                                                <td>#000001</td>
-                                                <td>1234567890</td>
-                                                <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Part</span></h4></td>
-                                                <td><h4><span class="badge badge-soft-danger" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
-                                                <td>
-                                                    <i class="bi bi-info-circle" style="font-size: 19px; color: blue"></i>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td> #000001 </td>
-                                                <td>#000001</td>
-                                                <td>#000001</td>
-                                                <td>1234567890</td>
-                                                <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Part</span></h4></td>
-                                                <td><h4><span class="badge badge-soft-danger" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
-                                                <td>
-                                                    <i class="bi bi-info-circle" style="font-size: 19px; color: blue"></i>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td> #000001 </td>
-                                                <td>#000001</td>
-                                                <td>#000001</td>
-                                                <td>1234567890</td>
-                                                <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Part</span></h4></td>
-                                                <td><h4><span class="badge badge-soft-danger" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
-                                                <td>
-                                                    <i class="bi bi-info-circle" style="font-size: 19px; color: blue"></i>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td> #000001 </td>
-                                                <td>#000001</td>
-                                                <td>#000001</td>
-                                                <td>1234567890</td>
-                                                <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Part</span></h4></td>
-                                                <td><h4><span class="badge badge-soft-danger" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
-                                                <td>
-                                                    <i class="bi bi-info-circle" style="font-size: 19px; color: blue"></i>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td> #000001 </td>
-                                                <td>#000001</td>
-                                                <td>#000001</td>
-                                                <td>1234567890</td>
-                                                <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Part</span></h4></td>
-                                                <td><h4><span class="badge badge-soft-danger" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
-                                                <td>
-                                                    <i class="bi bi-info-circle" style="font-size: 19px; color: blue"></i>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td> #000001 </td>
-                                                <td>#000001</td>
-                                                <td>#000001</td>
-                                                <td>1234567890</td>
-                                                <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Part</span></h4></td>
-                                                <td><h4><span class="badge badge-soft-danger" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
-                                                <td>
-                                                    <i class="bi bi-info-circle" style="font-size: 19px; color: blue"></i>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td> #000001 </td>
-                                                <td>#000001</td>
-                                                <td>#000001</td>
-                                                <td>1234567890</td>
-                                                <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Part</span></h4></td>
-                                                <td><h4><span class="badge badge-soft-danger" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
-                                                <td>
-                                                    <i class="bi bi-info-circle" style="font-size: 19px; color: blue"></i>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td> #000001 </td>
-                                                <td>#000001</td>
-                                                <td>#000001</td>
-                                                <td>1234567890</td>
-                                                <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Part</span></h4></td>
-                                                <td><h4><span class="badge badge-soft-danger" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
-                                                <td>
-                                                    <i class="bi bi-info-circle" style="font-size: 19px; color: blue"></i>
-                                                </td>
-                                            </tr>
-                                        </tbody>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000002 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567891</td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Part</span></h4></td>
+                                                    <td><h4><span class="badge badge-soft-danger" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td>
+                                                        <i class="bi bi-info-circle" style="font-size: 19px; color: blue"></i>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000003 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567892</td>
+                                                    <td><h4><span class="badge badge-soft-info" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Full</span></h4></td>
+                                                    <td><h4><span class="badge badge-soft-danger" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td>
+                                                        <i class="bi bi-info-circle" style="font-size: 19px; color: blue"></i>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000001 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567890</td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Part</span></h4></td>
+                                                    <td><h4><span class="badge badge-soft-danger" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td>
+                                                        <i class="bi bi-info-circle" style="font-size: 19px; color: blue"></i>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000001 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567890</td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Part</span></h4></td>
+                                                    <td><h4><span class="badge badge-soft-danger" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td>
+                                                        <i class="bi bi-info-circle" style="font-size: 19px; color: blue"></i>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000001 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567890</td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Part</span></h4></td>
+                                                    <td><h4><span class="badge badge-soft-danger" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td>
+                                                        <i class="bi bi-info-circle" style="font-size: 19px; color: blue"></i>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000001 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567890</td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Part</span></h4></td>
+                                                    <td><h4><span class="badge badge-soft-danger" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td>
+                                                        <i class="bi bi-info-circle" style="font-size: 19px; color: blue"></i>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000001 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567890</td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Part</span></h4></td>
+                                                    <td><h4><span class="badge badge-soft-danger" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td>
+                                                        <i class="bi bi-info-circle" style="font-size: 19px; color: blue"></i>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000001 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567890</td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Part</span></h4></td>
+                                                    <td><h4><span class="badge badge-soft-danger" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td>
+                                                        <i class="bi bi-info-circle" style="font-size: 19px; color: blue"></i>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000001 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567890</td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Part</span></h4></td>
+                                                    <td><h4><span class="badge badge-soft-danger" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td>
+                                                        <i class="bi bi-info-circle" style="font-size: 19px; color: blue"></i>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000001 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567890</td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Part</span></h4></td>
+                                                    <td><h4><span class="badge badge-soft-danger" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td>
+                                                        <i class="bi bi-info-circle" style="font-size: 19px; color: blue"></i>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000001 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567890</td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Part</span></h4></td>
+                                                    <td><h4><span class="badge badge-soft-danger" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td>
+                                                        <i class="bi bi-info-circle" style="font-size: 19px; color: blue"></i>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
 
-                                    </table>
+                                        </table>
+                                    </div>
                                 </div>
                     
                                 <!-- Custom Pagination -->
-                                <nav>
-                                    <ul class="pagination custom-pagination mb-0" style="margin-left: 340px;">
-                                        <!-- Custom pagination links will be inserted here by JS -->
-                                    </ul>
-                                </nav>
-                                
+                                <div class="pagination-container">
+                                    <nav>
+                                        <ul class="pagination custom-pagination mb-0">
+                                            <!-- Custom pagination links will be inserted here by JS -->
+                                        </ul>
+                                    </nav>
+                                </div>
                             </div>
                         </div>
                     </div> 
@@ -596,7 +626,7 @@
                 e.preventDefault();
 
                 // Check if screen width is less than 768px (mobile devices)
-                if ($(window).width() < 768) {
+                if ($(window).width() < 846) {
                     // Open Modal using Custombox
                     new Custombox.modal({
                         content: {

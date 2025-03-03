@@ -60,6 +60,8 @@ Route::get('/profile', function () {
 })->name('admin.profile');
 
 
+
+
 Route::get('index', function() {
     return view('users.index');
 })->name('users.dashboard');

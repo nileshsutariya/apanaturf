@@ -240,6 +240,9 @@
             text-align: center;
             /* box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.1);  */
         }
+        .app-search .form-control {
+            padding-left: 15px !important;
+        }
     </style>
 
                 <div class="page-title-box">
@@ -1830,6 +1833,8 @@
     <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
 
     <script>
+       
+
         // $(document).ready(function () {
         //     // Get the current page URL (excluding query params)
         //     var currentUrl = window.location.pathname.split("/").pop();
@@ -2005,27 +2010,38 @@
         //     createCustomPagination();
         // });
 
-        $('#nameSearch').on('keyup', function () {
-            table.column(0).search(this.value).draw();
-        });
+        $(document).ready(function () {
+            var table = $('#responsive-datatable').DataTable({
+                "ordering": false,
+                "paging": true,
+                "searching": true,
+                "info": false,
+                "pageLength": 10,
+                "lengthChange": false,
+                "dom": 'rt'
+            });
 
-        $('#emailSearch').on('keyup', function () {
-            table.column(1).search(this.value).draw();
-        });
+            $('#nameSearch').on('keyup', function () {
+                table.column(0).search(this.value).draw();
+            });
 
-        $('#mobileSearch').on('keyup', function () {
-            table.column(2).search(this.value).draw();
-        });
+            $('#emailSearch').on('keyup', function () {
+                table.column(1).search(this.value).draw();
+            });
 
-        $('#typeSearch').on('keyup', function () {
-            table.column(3).search(this.value).draw();
-        });
+            $('#mobileSearch').on('keyup', function () {
+                table.column(2).search(this.value).draw();
+            });
 
-        $('#balanceSearch').on('keyup', function () {
-            table.column(4).search(this.value).draw();
-        });
-        
-        
+            $('#typeSearch').on('keyup', function () {
+                table.column(3).search(this.value).draw();
+            });
+
+            $('#balanceSearch').on('keyup', function () {
+                table.column(4).search(this.value).draw();
+            });
+        });    
+            
 
 
         $(document).ready(function () {
@@ -2128,7 +2144,7 @@
                 e.preventDefault();
 
                 // Check if screen width is less than 768px (mobile devices)
-                if ($(window).width() < 768) {
+                if ($(window).width() < 900) {
                     // Open Modal using Custombox
                     new Custombox.modal({
                         content: {

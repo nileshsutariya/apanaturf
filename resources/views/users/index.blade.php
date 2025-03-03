@@ -79,6 +79,12 @@
         color: green;
         font-size: 16px;
     }
+    @media (max-width: 534px) {
+        
+        .searching {
+            display: none !important;
+        }
+    }
     @media (max-width: 767px) {
         .sport-image {
             display: none;
@@ -340,7 +346,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-2 col-sm-2 col-auto d-flex justify-content-center d-md-none" id="searching">
+                                <div class="col-md-2 col-sm-2 col-auto d-flex justify-content-center" id="searching">
                                     <button class="btn btn-outline-dark d-flex align-items-center justify-content-center" type="submit" style="background-color: #000; border: none; width: 48px; height: 47px; padding: 30px; margin-right: 20px;">
                                         <i class="bi bi-search" style="color: #fff; font-size: 25px;"></i>
                                     </button>
