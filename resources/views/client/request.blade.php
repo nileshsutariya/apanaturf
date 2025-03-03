@@ -1,55 +1,73 @@
 @include('client.layouts.header')
 <style>
-         .card {
-            background-color: #ffffff;
-            border-radius: 0.5rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            padding: 25px;
-        }
-        .card-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center; 
-            padding: 0px;
-        }
-        .card hr {
-            margin-bottom: 1rem;
-        }
-        .card h2 {
-            font-size: 1.25rem;
-            font-weight: 700;
-            margin: 0;
-        }
-        .card-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0px;
+    .card {
+        background-color: #ffffff;
+        border-radius: 0.5rem;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        padding: 25px;
+    }
 
+    .card-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0px;
+    }
+
+    .card hr {
+        margin-bottom: 1rem;
+    }
+
+    .card h2 {
+        font-size: 1.25rem;
+        font-weight: 700;
+        margin: 0;
+    }
+
+    .card-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0px;
+
+    }
+
+    .card-footer a {
+        color: #299D91;
+        text-decoration: none;
+    }
+
+    .card-footer button {
+        background-color: #299D91;
+        color: #ffffff;
+        padding: 0.5rem 1rem;
+        border: none;
+        border-radius: 4px;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+    }
+
+    .card-footer button i {
+        margin-left: 0.5rem;
+    }
+
+    @media (max-width:768px) {
+        .card {
+            margin-right: 0px !important;
         }
-        .card-footer a {
-            color: #0d9488;
-            text-decoration: none;
+    }
+
+    @media (min-width:576px) and (max-width:692px) {
+        .card-header {
+            display: contents;
         }
-        .card-footer button {
-            background-color: #0d9488;
-            color: #ffffff;
-            padding: 0.5rem 1rem;
-            border: none;
-            border-radius: 0.375rem;
-            display: flex;
-            align-items: center;
-            cursor: pointer;
+
+        .nameofuser {
+            margin-right: 50px;
         }
-        .card-footer button i {
-            margin-left: 0.5rem;
-        }
-        @media (max-width:768px){
-            .card{
-                margin-right: 0px !important;
-            }
-        }
-    </style>
+    }
+</style>
 </style>
 
 <div class="page-title-box">
@@ -60,11 +78,12 @@
         </div>
     </div>
     <hr>
-<div class="row">
-    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
-        <div class="card mr-3">
+    <div class="row">
+        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
+            <div class="card mr-3">
                 <div class="card-header">
-                    <span style="font-size: 16px; color:#878787; font-weight: 700;">Name Of User</span>
+                    <span style="font-size: 16px; color:#878787; font-weight: 700;" class="nameofuser">Name Of
+                        User</span>
                     <span style="font-size: 12px; color:#666666; font-weight:500;">UserID:1234</span>
                 </div>
                 <hr>
@@ -73,7 +92,7 @@
                     <p style="font-size: 14px; color:#9F9F9F; font-weight:400;">Turf Name</p>
                 </div>
                 <div>
-                    <p class="m-0"  style="font-size: 20px; color:#191919; font-weight:600;">May 19, 2023</p>
+                    <p class="m-0" style="font-size: 20px; color:#191919; font-weight:600;">May 19, 2023</p>
                     <p class="m-0" style="font-size: 20px; color:#191919; font-weight:600;">9 Am</p>
                     <p class="mt-1" style="font-size: 14px; color:#9F9F9F; font-weight:400;">Date/Time</p>
                 </div>
@@ -84,9 +103,9 @@
                     </button>
                 </div>
             </div>
-    </div>
-    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
-        <div class="card mr-3">
+        </div>
+        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
+            <div class="card mr-3">
                 <div class="card-header">
                     <span style="font-size: 16px; color:#878787; font-weight: 700;">Name Of User</span>
                     <span style="font-size: 12px; color:#666666; font-weight:500;">UserID:1234</span>
@@ -97,7 +116,7 @@
                     <p style="font-size: 14px; color:#9F9F9F; font-weight:400;">Turf Name</p>
                 </div>
                 <div>
-                    <p class="m-0"  style="font-size: 20px; color:#191919; font-weight:600;">May 19, 2023</p>
+                    <p class="m-0" style="font-size: 20px; color:#191919; font-weight:600;">May 19, 2023</p>
                     <p class="m-0" style="font-size: 20px; color:#191919; font-weight:600;">9 Am</p>
                     <p class="mt-1" style="font-size: 14px; color:#9F9F9F; font-weight:400;">Date/Time</p>
                 </div>
@@ -108,9 +127,9 @@
                     </button>
                 </div>
             </div>
-    </div>
-    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
-        <div class="card mr-3">
+        </div>
+        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
+            <div class="card mr-3">
                 <div class="card-header">
                     <span style="font-size: 16px; color:#878787; font-weight: 700;">Name Of User</span>
                     <span style="font-size: 12px; color:#666666; font-weight:500;">UserID:1234</span>
@@ -121,7 +140,7 @@
                     <p style="font-size: 14px; color:#9F9F9F; font-weight:400;">Turf Name</p>
                 </div>
                 <div>
-                    <p class="m-0"  style="font-size: 20px; color:#191919; font-weight:600;">May 19, 2023</p>
+                    <p class="m-0" style="font-size: 20px; color:#191919; font-weight:600;">May 19, 2023</p>
                     <p class="m-0" style="font-size: 20px; color:#191919; font-weight:600;">9 Am</p>
                     <p class="mt-1" style="font-size: 14px; color:#9F9F9F; font-weight:400;">Date/Time</p>
                 </div>
@@ -132,9 +151,9 @@
                     </button>
                 </div>
             </div>
-    </div>
-    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
-        <div class="card mr-3">
+        </div>
+        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
+            <div class="card mr-3">
                 <div class="card-header">
                     <span style="font-size: 16px; color:#878787; font-weight: 700;">Name Of User</span>
                     <span style="font-size: 12px; color:#666666; font-weight:500;">UserID:1234</span>
@@ -145,7 +164,7 @@
                     <p style="font-size: 14px; color:#9F9F9F; font-weight:400;">Turf Name</p>
                 </div>
                 <div>
-                    <p class="m-0"  style="font-size: 20px; color:#191919; font-weight:600;">May 19, 2023</p>
+                    <p class="m-0" style="font-size: 20px; color:#191919; font-weight:600;">May 19, 2023</p>
                     <p class="m-0" style="font-size: 20px; color:#191919; font-weight:600;">9 Am</p>
                     <p class="mt-1" style="font-size: 14px; color:#9F9F9F; font-weight:400;">Date/Time</p>
                 </div>
@@ -156,8 +175,8 @@
                     </button>
                 </div>
             </div>
+        </div>
     </div>
-</div>
 </div>
 
 

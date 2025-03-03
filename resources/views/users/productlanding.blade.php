@@ -290,13 +290,26 @@
         display: block;
     }
 
-    @media (max-width: 1000px) {
-        .booknow {
-            padding: 15px 240px;
+    @media (min-width:800px) and (max-width:992px) {
+        .page-container {
+            margin-left: 30px;
         }
+    }
+
+    @media (max-width: 992px) {
 
         .booknow img {
             margin-left: 10px;
+        }
+
+        .booknow {
+            padding: 15px 420px;
+        }
+    }
+
+    @media (max-width:892px) {
+        .booknow {
+            padding: 15px 370px;
         }
     }
 
@@ -315,11 +328,29 @@
         .content {
             margin: 10px;
         }
+
+        .timeframe {
+            padding-left: 10px !important;
+        }
+
+        .booknow {
+            padding: 15px 320px;
+        }
+    }
+
+    @media (max-width:692px) {
+        .booknow {
+            padding: 15px 220px;
+        }
     }
 
     @media (max-width: 520px) {
         .imagecol {
             display: contents;
+        }
+
+        .booknow {
+            padding: 15px 150px 15px 120px;
         }
 
         .img {
@@ -333,7 +364,13 @@
 
     @media (max-width: 980px) {
         .booking-time {
-            margin-right: 35px;
+            margin-right: 29px;
+        }
+    }
+
+    @media (max-width: 630px) {
+        .booking-time {
+            margin-right: 18px;
         }
     }
 
@@ -347,12 +384,9 @@
             margin-left: 20px !important;
         }
 
-        .booknow {
-            padding: 15px 150px;
-        }
     }
 
-    @media (min-width: 990px) and (max-width: 1220px) {
+    @media (min-width: 980px) and (max-width: 1220px) {
         .imagecol {
             justify-content: start;
             padding: 20px;
@@ -371,7 +405,7 @@
         }
 
         .booking-time {
-            margin-right: 40px;
+            margin-right: 36px;
         }
     }
 
@@ -408,6 +442,7 @@
         color: white !important;
         border-color: #3F61DB !important;
     }
+
     .booking-date.selected {
         background-color: #3F61DB !important;
         /* Highlight color */
@@ -426,7 +461,8 @@
         <div class="col-xl-4 col-lg-5 col-md-7 col-sm-12">
             <img src="{{ asset('assets/image/users/Group 95.svg') }}" alt="Turf" class="bigimage"><br>
         </div>
-        <!-- <div class="col-md-1"></div> -->
+
+        <!--<div class="col-xl-1 col-lg-1 col-md-1 col-sm-1"></div>  -->
 
         <div class="col-xl-4 col-lg-3 col-md-12 col-sm-12  p-3 mt-3 details-turf">
             <h2>Name of the Turf</h2>
@@ -462,7 +498,7 @@
                 <div class="imgsport active"><img src="{{ asset('assets/image/users/cricket-bat.svg') }}"></div>
             </div>
         </div>
-        <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12 align-items-center justify-content-center booknow-turf ">
+        <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12 align-items-center justify-items-center booknow-turf ">
             <div class="booknow"><img src="{{ asset('assets/image/users/Groupb.svg') }}">
                 <p class="mb-0">Book <br>
                     Now</p>
@@ -490,7 +526,7 @@
             </div>
             <div class="row mt-3">
                 <div class="col-md-1"></div>
-                <div class="col-md-10 pl-0">
+                <div class="col-md-10 pl-0 timeframe">
                     <div class="mb-3 ml-0">Time Frame
                     </div>
                     <div class="row ml-0">
@@ -567,11 +603,11 @@
                                 <div class="rating">
                                     <span class="rating-score">4.5</span>
                                     <div class="stars">
-                                        <img src="{{ asset(path: 'assets/image/users/Star 10.svg') }}">
-                                        <img src="{{ asset(path: 'assets/image/users/Star 10.svg') }}">
-                                        <img src="{{ asset(path: 'assets/image/users/Star 10.svg') }}">
-                                        <img src="{{ asset(path: 'assets/image/users/Star 10.svg') }}">
-                                        <img src="{{ asset(path: 'assets/image/users/Star 10.svg') }}">
+                                        <img src="{{ asset('assets/image/users/Star 10.svg') }}">
+                                        <img src="{{ asset('assets/image/users/Star 10.svg') }}">
+                                        <img src="{{ asset('assets/image/users/Star 10.svg') }}">
+                                        <img src="{{ asset('assets/image/users/Star 10.svg') }}">
+                                        <img src="{{ asset('assets/image/users/Star 10.svg') }}">
                                     </div>
                                 </div>
                             </div>
@@ -593,11 +629,11 @@
                                 <div class="rating">
                                     <span class="rating-score">4.5</span>
                                     <div class="stars">
-                                        <img src="{{ asset(path: 'assets/image/users/Star 10.svg') }}">
-                                        <img src="{{ asset(path: 'assets/image/users/Star 10.svg') }}">
-                                        <img src="{{ asset(path: 'assets/image/users/Star 10.svg') }}">
-                                        <img src="{{ asset(path: 'assets/image/users/Star 10.svg') }}">
-                                        <img src="{{ asset(path: 'assets/image/users/Star 10.svg') }}">
+                                        <img src="{{ asset('assets/image/users/Star 10.svg') }}">
+                                        <img src="{{ asset('assets/image/users/Star 10.svg') }}">
+                                        <img src="{{ asset('assets/image/users/Star 10.svg') }}">
+                                        <img src="{{ asset('assets/image/users/Star 10.svg') }}">
+                                        <img src="{{ asset('assets/image/users/Star 10.svg') }}">
                                     </div>
                                 </div>
                             </div>
@@ -619,11 +655,11 @@
                                 <div class="rating">
                                     <span class="rating-score">4.5</span>
                                     <div class="stars">
-                                        <img src="{{ asset(path: 'assets/image/users/Star 10.svg') }}">
-                                        <img src="{{ asset(path: 'assets/image/users/Star 10.svg') }}">
-                                        <img src="{{ asset(path: 'assets/image/users/Star 10.svg') }}">
-                                        <img src="{{ asset(path: 'assets/image/users/Star 10.svg') }}">
-                                        <img src="{{ asset(path: 'assets/image/users/Star 10.svg') }}">
+                                        <img src="{{ asset('assets/image/users/Star 10.svg') }}">
+                                        <img src="{{ asset('assets/image/users/Star 10.svg') }}">
+                                        <img src="{{ asset('assets/image/users/Star 10.svg') }}">
+                                        <img src="{{ asset('assets/image/users/Star 10.svg') }}">
+                                        <img src="{{ asset('assets/image/users/Star 10.svg') }}">
                                     </div>
                                 </div>
                             </div>
@@ -645,11 +681,11 @@
                                 <div class="rating">
                                     <span class="rating-score">4.5</span>
                                     <div class="stars">
-                                        <img src="{{ asset(path: 'assets/image/users/Star 10.svg') }}">
-                                        <img src="{{ asset(path: 'assets/image/users/Star 10.svg') }}">
-                                        <img src="{{ asset(path: 'assets/image/users/Star 10.svg') }}">
-                                        <img src="{{ asset(path: 'assets/image/users/Star 10.svg') }}">
-                                        <img src="{{ asset(path: 'assets/image/users/Star 10.svg') }}">
+                                        <img src="{{ asset('assets/image/users/Star 10.svg') }}">
+                                        <img src="{{ asset('assets/image/users/Star 10.svg') }}">
+                                        <img src="{{ asset('assets/image/users/Star 10.svg') }}">
+                                        <img src="{{ asset('assets/image/users/Star 10.svg') }}">
+                                        <img src="{{ asset('assets/image/users/Star 10.svg') }}">
                                     </div>
                                 </div>
                             </div>
@@ -671,11 +707,11 @@
                                 <div class="rating">
                                     <span class="rating-score">4.5</span>
                                     <div class="stars">
-                                        <img src="{{ asset(path: 'assets/image/users/Star 10.svg') }}">
-                                        <img src="{{ asset(path: 'assets/image/users/Star 10.svg') }}">
-                                        <img src="{{ asset(path: 'assets/image/users/Star 10.svg') }}">
-                                        <img src="{{ asset(path: 'assets/image/users/Star 10.svg') }}">
-                                        <img src="{{ asset(path: 'assets/image/users/Star 10.svg') }}">
+                                        <img src="{{ asset('assets/image/users/Star 10.svg') }}">
+                                        <img src="{{ asset('assets/image/users/Star 10.svg') }}">
+                                        <img src="{{ asset('assets/image/users/Star 10.svg') }}">
+                                        <img src="{{ asset('assets/image/users/Star 10.svg') }}">
+                                        <img src="{{ asset('assets/image/users/Star 10.svg') }}">
                                     </div>
                                 </div>
                             </div>
@@ -697,11 +733,11 @@
                                 <div class="rating">
                                     <span class="rating-score">4.5</span>
                                     <div class="stars">
-                                        <img src="{{ asset(path: 'assets/image/users/Star 10.svg') }}">
-                                        <img src="{{ asset(path: 'assets/image/users/Star 10.svg') }}">
-                                        <img src="{{ asset(path: 'assets/image/users/Star 10.svg') }}">
-                                        <img src="{{ asset(path: 'assets/image/users/Star 10.svg') }}">
-                                        <img src="{{ asset(path: 'assets/image/users/Star 10.svg') }}">
+                                        <img src="{{ asset('assets/image/users/Star 10.svg') }}">
+                                        <img src="{{ asset('assets/image/users/Star 10.svg') }}">
+                                        <img src="{{ asset('assets/image/users/Star 10.svg') }}">
+                                        <img src="{{ asset('assets/image/users/Star 10.svg') }}">
+                                        <img src="{{ asset('assets/image/users/Star 10.svg') }}">
                                     </div>
                                 </div>
                             </div>
@@ -723,11 +759,11 @@
                                 <div class="rating">
                                     <span class="rating-score">4.5</span>
                                     <div class="stars">
-                                        <img src="{{ asset(path: 'assets/image/users/Star 10.svg') }}">
-                                        <img src="{{ asset(path: 'assets/image/users/Star 10.svg') }}">
-                                        <img src="{{ asset(path: 'assets/image/users/Star 10.svg') }}">
-                                        <img src="{{ asset(path: 'assets/image/users/Star 10.svg') }}">
-                                        <img src="{{ asset(path: 'assets/image/users/Star 10.svg') }}">
+                                        <img src="{{ asset('assets/image/users/Star 10.svg') }}">
+                                        <img src="{{ asset('assets/image/users/Star 10.svg') }}">
+                                        <img src="{{ asset('assets/image/users/Star 10.svg') }}">
+                                        <img src="{{ asset('assets/image/users/Star 10.svg') }}">
+                                        <img src="{{ asset('assets/image/users/Star 10.svg') }}">
                                     </div>
                                 </div>
                             </div>
@@ -749,11 +785,11 @@
                                 <div class="rating">
                                     <span class="rating-score">4.5</span>
                                     <div class="stars">
-                                        <img src="{{ asset(path: 'assets/image/users/Star 10.svg') }}">
-                                        <img src="{{ asset(path: 'assets/image/users/Star 10.svg') }}">
-                                        <img src="{{ asset(path: 'assets/image/users/Star 10.svg') }}">
-                                        <img src="{{ asset(path: 'assets/image/users/Star 10.svg') }}">
-                                        <img src="{{ asset(path: 'assets/image/users/Star 10.svg') }}">
+                                        <img src="{{ asset('assets/image/users/Star 10.svg') }}">
+                                        <img src="{{ asset('assets/image/users/Star 10.svg') }}">
+                                        <img src="{{ asset('assets/image/users/Star 10.svg') }}">
+                                        <img src="{{ asset('assets/image/users/Star 10.svg') }}">
+                                        <img src="{{ asset('assets/image/users/Star 10.svg') }}">
                                     </div>
                                 </div>
                             </div>
@@ -775,11 +811,11 @@
                                 <div class="rating">
                                     <span class="rating-score">4.5</span>
                                     <div class="stars">
-                                        <img src="{{ asset(path: 'assets/image/users/Star 10.svg') }}">
-                                        <img src="{{ asset(path: 'assets/image/users/Star 10.svg') }}">
-                                        <img src="{{ asset(path: 'assets/image/users/Star 10.svg') }}">
-                                        <img src="{{ asset(path: 'assets/image/users/Star 10.svg') }}">
-                                        <img src="{{ asset(path: 'assets/image/users/Star 10.svg') }}">
+                                        <img src="{{ asset('assets/image/users/Star 10.svg') }}">
+                                        <img src="{{ asset('assets/image/users/Star 10.svg') }}">
+                                        <img src="{{ asset('assets/image/users/Star 10.svg') }}">
+                                        <img src="{{ asset('assets/image/users/Star 10.svg') }}">
+                                        <img src="{{ asset('assets/image/users/Star 10.svg') }}">
                                     </div>
                                 </div>
                             </div>
@@ -801,11 +837,11 @@
                                 <div class="rating">
                                     <span class="rating-score">4.5</span>
                                     <div class="stars">
-                                        <img src="{{ asset(path: 'assets/image/users/Star 10.svg') }}">
-                                        <img src="{{ asset(path: 'assets/image/users/Star 10.svg') }}">
-                                        <img src="{{ asset(path: 'assets/image/users/Star 10.svg') }}">
-                                        <img src="{{ asset(path: 'assets/image/users/Star 10.svg') }}">
-                                        <img src="{{ asset(path: 'assets/image/users/Star 10.svg') }}">
+                                        <img src="{{ asset('assets/image/users/Star 10.svg') }}">
+                                        <img src="{{ asset('assets/image/users/Star 10.svg') }}">
+                                        <img src="{{ asset('assets/image/users/Star 10.svg') }}">
+                                        <img src="{{ asset('assets/image/users/Star 10.svg') }}">
+                                        <img src="{{ asset('assets/image/users/Star 10.svg') }}">
                                     </div>
                                 </div>
                             </div>
@@ -843,12 +879,12 @@
 <script>
     function generateCurrentWeek() {
         const dateSelection = document.getElementById("dateSelection");
-        dateSelection.innerHTML = ""; // Clear existing dates
+        dateSelection.innerHTML = "";
 
         let today = new Date();
-        let dayOfWeek = today.getDay(); // 0 = Sunday, 1 = Monday, etc.
+        let dayOfWeek = today.getDay();
         let startOfWeek = new Date(today);
-        startOfWeek.setDate(today.getDate() - dayOfWeek + (dayOfWeek === 0 ? -6 : 1)); // Adjust for Monday start
+        startOfWeek.setDate(today.getDate() - dayOfWeek + (dayOfWeek === 0 ? -6 : 1));
 
         for (let i = 0; i < 7; i++) {
             let date = new Date(startOfWeek);
@@ -859,7 +895,7 @@
 
             let dateDiv = document.createElement("div");
             dateDiv.classList.add("col-sm-1", "booking-date");
-            if (i === today.getDay() - 1) dateDiv.classList.add("active"); // Highlight today
+            if (i === today.getDay() - 1) dateDiv.classList.add("active");
 
             dateDiv.innerHTML = `<span style="font-weight: 500;">${dayName}</span><br>
                                  <span style="font-weight:600;">${dayNumber}</span>`;
@@ -878,7 +914,7 @@
 
         bookingTimes.forEach(time => {
             time.addEventListener("click", function () {
-                this.classList.toggle("selected"); // Toggle selected state
+                this.classList.toggle("selected");
             });
         });
     });
@@ -887,7 +923,7 @@
 
         bookingTimes.forEach(time => {
             time.addEventListener("click", function () {
-                this.classList.toggle("selected"); // Toggle selected state
+                this.classList.toggle("selected");
             });
         });
     });

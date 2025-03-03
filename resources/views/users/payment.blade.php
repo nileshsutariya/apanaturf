@@ -3,7 +3,7 @@
 <link href="{{asset('assets/css/app2.min.css')}}" rel="stylesheet" type="text/css" id="app-style" />
 <style>
     .body {
-        font-family: 'NATS', sans-serif !important;
+        font-family: 'poppins', sans-serif !important;
     }
 
     .img {
@@ -256,7 +256,6 @@
         padding: 10px 10px;
         display: flex;
         text-align: center;
-
         background-color: #FFFFFF;
         justify-content: center;
         margin: auto;
@@ -273,7 +272,6 @@
         border-radius: 50%;
         margin-right: 10px;
     }
-
 
     @media (min-width: 990px) and (max-width: 1220px) {
         .imagecol {
@@ -323,7 +321,6 @@
         }
 
     }
-
 
     @media (min-width: 1200px) and (max-width: 1550px) {
         .imagecol {
@@ -401,14 +398,14 @@
 
     @media (max-width: 580px) {
         .booking-time {
-            margin-right: 0px;
+            margin-right: 7px;
             width: 20%;
         }
     }
 
     @media (max-width: 450px) {
         .booking-time {
-            margin-right: 15px;
+            margin-right: 13px;
             width: 25%;
         }
 
@@ -549,33 +546,90 @@
         color: #001833;
     }
 
+    @media(min-width:415px)and (max-width:435px) {
+        .half-payment {
+            margin-right: 170px;
+        }
+
+        #full-payment {
+            margin-left: 0px !important;
+        }
+    }
+
     @media (max-width:410px) {
         #full-payment {
             margin-left: 0px !important;
         }
     }
 
-    @media (min-width: 390px) and (max-width: 410px) {
+    @media (min-width: 391px) and (max-width: 415px) {
         .half-payment {
             margin-right: 150px;
         }
+
+        #full-payment {
+            margin-left: 0px !important;
+        }
+
     }
 
-    @media (min-width: 375px) and (max-width: 390px) {
+    @media (min-width: 375px) and (max-width: 391px) {
         .half-payment {
-            margin-right: 135px;
+            margin-right: 120px;
         }
     }
 
-    @media(min-width: 350px) and (max-width: 375px) {
+    @media(min-width: 361px) and (max-width: 375px) {
         .half-payment {
             margin-right: 110px;
         }
     }
-    @media (max-width: 350px) {
+
+    @media (max-width: 360px) {
         .half-payment {
             margin-right: 100px;
         }
+    }
+
+    .booking-time.selected {
+        background-color: #3F61DB !important;
+        color: white !important;
+        border-color: #3F61DB !important;
+    }
+
+    .booking-date.selected {
+        background-color: #3F61DB !important;
+        color: white !important;
+        border-color: #3F61DB !important;
+    }
+
+
+    /* Hide default radio button */
+    input[type="radio"] {
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        width: 15px;
+        height: 15px;
+        border: 2px solid black;
+        /* Black border */
+        border-radius: 50%;
+        outline: none;
+        cursor: pointer;
+        position: relative;
+    }
+
+    /* Add black dot when checked */
+    input[type="radio"]:checked::before {
+        content: "";
+        width: 8.5px;
+        height: 8.5px;
+        background-color: black;
+        border-radius: 50%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
     }
 </style>
 </style>
@@ -630,7 +684,8 @@
             </div>
             <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12 align-items-center justify-content-center booknow-turf ">
                 <a href="#addBanner" class="add-banner waves-effect waves-light" data-animation="blur"
-                    data-plugin="custommodal" data-overlaySpeed="100" data-overlayColor="#36404a" style="text-decoration: none;">
+                    data-plugin="custommodal" data-overlaySpeed="100" data-overlayColor="#36404a"
+                    style="text-decoration: none;">
                     <div class="booknow">
                         <img src="{{ asset('assets/image/users/Groupb.svg') }}">
                         <p class="mb-0">Book <br>
@@ -648,41 +703,11 @@
                 </div>
             </div>
             <div class="row ml-0" style="margin-left:0px ;">
-                <div class="col-lg-2 pl-0 booking-icon">
+                <div class="col-lg-2 col-md-2 col-sm-2 pl-0 booking-icon">
                     <img src="{{ asset('assets/image/users/Group 1272628533.svg') }}" class="ml-auto">
                 </div>
-                <div class="col-lg-9">
-                    <div class="row">
-                        <div class="col-sm-1 booking-date active">
-                            <span style="font-weight: 500;">Sat</span><br><span style="font-weight:600;">23</span>
-                        </div>
-                        <div class="col-sm-1 booking-date">
-                            <span style="font-weight: 500;">Sat</span><br><span style="font-weight:600;">23</span>
-                        </div>
-                        <div class="col-sm-1 booking-date">
-                            <span style="font-weight: 500;">Sat</span><br><span style="font-weight:600;">23</span>
-                        </div>
-                        <div class="col-sm-1 booking-date">
-                            <span style="font-weight: 500;">Sat</span><br><span style="font-weight:600;">23</span>
-                        </div>
-                        <div class="col-sm-1 booking-date">
-                            <span style="font-weight: 500;">Sat</span><br><span style="font-weight:600;">23</span>
-                        </div>
-                        <div class="col-sm-1 booking-date">
-                            <span style="font-weight: 500;">Sat</span><br><span style="font-weight:600;">23</span>
-                        </div>
-                        <div class="col-sm-1 booking-date">
-                            <span style="font-weight: 500;">Sat</span><br><span style="font-weight:600;">23</span>
-                        </div>
-                        <div class="col-sm-1 booking-date">
-                            <span style="font-weight: 500;">Sat</span><br><span style="font-weight:600;">23</span>
-                        </div>
-                        <div class="col-sm-1 booking-date">
-                            <span style="font-weight: 500;">Sat</span><br><span style="font-weight:600;">23</span>
-                        </div>
-                        <div class="col-sm-1 booking-date">
-                            <span style="font-weight: 500;">Sat</span><br><span style="font-weight:600;">23</span>
-                        </div>
+                <div class="col-lg-9 col-md-9 col-sm-9">
+                    <div class="row date-selection" id="dateSelection">
                     </div>
                 </div>
                 <div class="row mt-3">
@@ -692,17 +717,16 @@
                         </div>
                         <div class="row ml-0">
                             <div class="col-sm-2 booking-time" style="background-color:#279B5A;color:#FFFFFF;">
-                                09:00 pm
-                            </div>
-                            <div class="col-sm-2 booking-time"
-                                style="background-color:#3F61DB;color:#FFFFFF; border: #3F61DB;">
-                                09:00 pm
+                                09:00 pm <br> to <br> 10:00 pm
                             </div>
                             <div class="col-sm-2 booking-time">
-                                09:00 pm
+                                09:00 pm <br> to <br> 10:00 pm
                             </div>
-                            <div class="col-sm-2 booking-time" style="background-color:#279B5A;color:#FFFFFF;">
-                                09:00 pm
+                            <div class="col-sm-2 booking-time">
+                                09:00 pm <br> to <br> 10:00 pm
+                            </div>
+                            <div class="col-sm-2 booking-time">
+                                09:00 pm <br> to <br> 10:00 pm
                             </div>
                             <div class="col-sm-2 booking-time">
                                 09:00 pm
@@ -837,11 +861,61 @@
     </div>
 </div>
 
+<script>
+    function generateCurrentWeek() {
+        const dateSelection = document.getElementById("dateSelection");
+        dateSelection.innerHTML = "";
 
+        let today = new Date();
+        let dayOfWeek = today.getDay();
+        let startOfWeek = new Date(today);
+        startOfWeek.setDate(today.getDate() - dayOfWeek + (dayOfWeek === 0 ? -6 : 1)); // Adjust for Monday start
+
+        for (let i = 0; i < 7; i++) {
+            let date = new Date(startOfWeek);
+            date.setDate(startOfWeek.getDate() + i);
+
+            let dayName = date.toLocaleDateString("en-US", { weekday: "short" });
+            let dayNumber = date.getDate();
+
+            let dateDiv = document.createElement("div");
+            dateDiv.classList.add("col-sm-1", "booking-date");
+            if (i === today.getDay() - 1) dateDiv.classList.add("active");
+
+            dateDiv.innerHTML = `<span style="font-weight: 500;">${dayName}</span><br>
+                                 <span style="font-weight:600;">${dayNumber}</span>`;
+
+            dateSelection.appendChild(dateDiv);
+        }
+    }
+
+    generateCurrentWeek();
+
+
+</script>
 <script>
     function closeModal() {
         document.getElementById('addBanner').style.display = 'none';
     }
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const bookingTimes = document.querySelectorAll(".booking-time");
+
+        bookingTimes.forEach(time => {
+            time.addEventListener("click", function () {
+                this.classList.toggle("selected");
+            });
+        });
+    });
+    document.addEventListener("DOMContentLoaded", function () {
+        const bookingTimes = document.querySelectorAll(".booking-date");
+
+        bookingTimes.forEach(time => {
+            time.addEventListener("click", function () {
+                this.classList.toggle("selected");
+            });
+        });
+    });
 </script>
 
 

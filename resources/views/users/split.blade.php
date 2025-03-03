@@ -121,7 +121,7 @@
     @media (max-width: 630px) {
         .price {
             text-align: right !important;
-            width: 100px;
+            width: 62px;
         }
 
         .content-wrapper {

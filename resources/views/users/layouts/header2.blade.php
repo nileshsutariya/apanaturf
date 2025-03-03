@@ -14,9 +14,11 @@
     <!-- Bootstrap JS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
     <!-- <meta http-equiv="refresh" content="3"> -->
+    <link rel="shortcut icon" href="{{asset('assets/images/favicon.ico')}}">
+
     <link
         href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-        rel="stylesheet">
+        rel="stylesheet">   
     <link href="https://fonts.googleapis.com/css2?family=Monda:wght@400;700&display=swap" rel="stylesheet">
 
     <style>
@@ -265,7 +267,7 @@
     /* border-radius: 5px; */
     text-decoration: none;
     transition: all 0.3s ease;
-    color: #000;  /* Default text color */
+    color: #000;  
 }
 
 .nav-link img {
@@ -274,17 +276,14 @@
     transition: filter 0.3s ease;
 }
 
-/* Active link styling */
 .nav-link.active {
-    background-color: #079666 !important; /* Green background */
-    color: white !important; /* White text */
-}
+    background-color: #079666 !important; 
+    color: white !important;
 
 .nav-link.active img {
-    filter: brightness(0) invert(1); /* Change icon color to white */
+    filter: brightness(0) invert(1);
 }
 
-/* Default hover effect */
 .nav-link:hover {
     background-color: rgba(29, 185, 84, 0.1);
     color: #079666;
@@ -324,17 +323,13 @@
             <div class="mr-4">
                 <img src="{{asset('assets/image/users/Image.svg')}}" alt="profile" class="rounded-circle"
                     style="width: 40px; height: 40px; border: 2px solid #ccc;">
-
                 <span class=" profilename ml-2" style="color:#10998B; font-size: 15px; font-weight:500;">Abhishek</span>
-
             </div>
         </nav>
 
         <div class="line">
             <div class="row" style="height: 60px;">
-
                 <div class="col-md-12" style="justify-items: baseline;">
-
                     <div class="d-flex flex-row bd-highlight">
                         <button class="btn mt-2 ml-2 d-block d-md-none" id="toggleSidebar" type="button"
                             data-bs-toggle="collapse" data-bs-target="#collapseCard">
@@ -358,11 +353,11 @@
             <div class="sidenav-menu sidebar" id="sidebar" style="height: auto;">
                 <div data-simplebar class="flex-grow-1">
                     <ul class="side-nav" style="padding-bottom: 200px;" id="ul">
-                        <a href="#" class="pb-3 nav-link">
+                        <a href="{{ route('users.dashboard')}}" class="pb-3 nav-link">
                             <img src="{{asset('assets/image/users/element-3.svg')}}" class="nav-icon ml-4"  alt="user">
                             <span class="menu-text ml-1">Dashboard</span>
                         </a>
-                        <a href="#" class="pb-3 nav-link">
+                        <a href="{{ route('users.booking') }}" class="pb-3 nav-link">
                             <img src="{{asset('assets/image/users/calendar.svg')}}" class="nav-icon ml-4"  alt="user">
                             <span class="menu-text ml-1">Booking</span>
                         </a>
@@ -377,11 +372,11 @@
                             <img src="{{asset('assets/image/users/wallet-remove.svg')}}" class="nav-icon ml-4"  alt="user">
                             <span class="menu-text ml-1">Wallet</span>
                         </a>
-                        <a href="#" class="pb-3 nav-link">
+                        <a href="{{ route('users.split') }}" class="pb-3 nav-link">
                             <img src="{{asset('assets/image/users/Setting.svg')}}" class="nav-icon ml-4"  alt="user">
                             <span class="menu-text ml-1">Split & Pay</span>
                         </a>
-                        <a href="#" class="pb-3 nav-link">
+                        <a href="{{ route('users.setting') }}" class="pb-3 nav-link">
                             <img src="{{asset('assets/image/users/Setting2.svg')}}" class="nav-icon ml-4"  alt="user">
                             <span class="menu-text ml-1">Settings</span>
                         </a>

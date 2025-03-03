@@ -251,7 +251,6 @@
                 View Details
             </div>
         </a></button><br><br>
-
 </div>
 <div class="action">
 <button class="btn btn-success mr-3">
@@ -268,11 +267,8 @@
             <div style="color: #FFFFFF;">
                 Bedding
             </div>
-        </a></button>uy;pihjmbgfvfcx
+        </a></button>
 </div>
-
-
-
 
 
 <div id="payment-withdraw" class="modal-demo">

@@ -11,6 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
     <meta content="Coderthemes" name="author" />
+    <!-- <link rel="shortcut icon" href="{{asset('assets/images/favicon.ico')}}"> -->
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <!-- Bootstrap CSS -->
@@ -218,15 +219,14 @@
                     <!-- <li cla'ss="side-nav-title">Navigation</li> -->
 
                     <li class="side-nav-item">
-                        <a href="#" class="side-nav-link">
+                        <a href="{{ route('client.index') }}" class="side-nav-link">
                             <span class="menu-icon"><img src="{{asset('assets/image/client/element-3.svg')}}"
                                     alt="dashboard"></span>
                             <span class="menu-text mt-2"> Dashboard </span>
-                            <!-- <span class="badge bg-success rounded-pill">5</span> -->
                         </a>
                     </li>
                     <li class="side-nav-item">
-                        <a href="{{route('admin.bookings')}}" class="side-nav-link">
+                        <a href="{{ route('client.booking') }}" class="side-nav-link">
                             <span class="menu-icon"><img src="{{asset('assets/image/client/calendar.svg')}}"
                                     alt="bookings"></span>
                             <span class="menu-text mt-2"> Bookings </span>
@@ -234,28 +234,28 @@
                     </li>
                     
                     <li class="side-nav-item">
-                        <a href="#" class="side-nav-link">
+                        <a href="{{ route('client.request') }}" class="side-nav-link">
                             <span class="menu-icon"><img src="{{asset('assets/image/client/bell.svg')}}"
                             alt="transaction"></span>
                             <span class="menu-text mt-2"> Request </span>
                         </a>
                     </li>
                     <li class="side-nav-item">
-                        <a href="#" class="side-nav-link">
+                        <a href="{{ route('client.payments') }}" class="side-nav-link">
                             <span class="menu-icon"><img src="{{asset('assets/image/client/wallet-remove.svg')}}"
                             alt="transaction"></span>
                             <span class="menu-text mt-2"> Payment </span>
                         </a>
                     </li>
                     <li class="side-nav-item">
-                        <a href="#" class="side-nav-link">
+                        <a href="{{ route('client.transaction') }}" class="side-nav-link">
                             <span class="menu-icon"><img src="{{asset('assets/image/client/Transaction.svg')}}"
                             alt="transaction"></span>
                             <span class="menu-text mt-2"> Transactions </span>
                         </a>
                     </li>
                     <li class="side-nav-item">
-                        <a href="{{route('admin.couponscode')}}" class="side-nav-link">
+                        <a href="{{ route('client.coupons') }}" class="side-nav-link">
                             <span class="menu-icon"><img src="{{asset('assets/image/client/ticket.svg')}}"
                                     alt="coupons"></span>
                             <span class="menu-text mt-2">Coupons & Offers</span>
