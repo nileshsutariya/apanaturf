@@ -268,7 +268,7 @@
             <div style="color: #FFFFFF;">
                 Bedding
             </div>
-        </a></button>uy;pihjmbgfvfcx
+        </a></button>
 </div>
 
 

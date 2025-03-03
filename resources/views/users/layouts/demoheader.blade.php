@@ -1,38 +1,42 @@
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AdminLTE 3 | Simple Tables</title>
-
-  <!-- Google Font: Source Sans Pro -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-  <!-- Font Awesome -->
-<!-- AdminLTE 3 CSS -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.2.0/css/adminlte.min.css">
-
-<!-- Font Awesome (Icons) -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-
-<!-- Bootstrap 4 -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/css/bootstrap.min.css">
-
-<!-- Overlay Scrollbars (for scrolling UI enhancements) -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/overlayscrollbars/1.13.1/css/OverlayScrollbars.min.css">
-<script data-cfasync="false" nonce="79d5a330-2021-4cc9-8204-792e3ea92dce">try{(function(w,d){!function(j,k,l,m){if(j.zaraz)console.error("zaraz is loaded twice");else{j[l]=j[l]||{};j[l].executed=[];j.zaraz={deferred:[],listeners:[]};j.zaraz._v="5850";j.zaraz._n="79d5a330-2021-4cc9-8204-792e3ea92dce";j.zaraz.q=[];j.zaraz._f=function(n){return async function(){var o=Array.prototype.slice.call(arguments);j.zaraz.q.push({m:n,a:o})}};for(const p of["track","set","debug"])j.zaraz[p]=j.zaraz._f(p);j.zaraz.init=()=>{var q=k.getElementsByTagName(m)[0],r=k.createElement(m),s=k.getElementsByTagName("title")[0];s&&(j[l].t=k.getElementsByTagName("title")[0].text);j[l].x=Math.random();j[l].w=j.screen.width;j[l].h=j.screen.height;j[l].j=j.innerHeight;j[l].e=j.innerWidth;j[l].l=j.location.href;j[l].r=k.referrer;j[l].k=j.screen.colorDepth;j[l].n=k.characterSet;j[l].o=(new Date).getTimezoneOffset();if(j.dataLayer)for(const t of Object.entries(Object.entries(dataLayer).reduce(((u,v)=>({...u[1],...v[1]})),{})))zaraz.set(t[0],t[1],{scope:"page"});j[l].q=[];for(;j.zaraz.q.length;){const w=j.zaraz.q.shift();j[l].q.push(w)}r.defer=!0;for(const x of[localStorage,sessionStorage])Object.keys(x||{}).filter((z=>z.startsWith("_zaraz_"))).forEach((y=>{try{j[l]["z_"+y.slice(7)]=JSON.parse(x.getItem(y))}catch{j[l]["z_"+y.slice(7)]=x.getItem(y)}}));r.referrerPolicy="origin";r.src="/cdn-cgi/zaraz/s.js?z="+btoa(encodeURIComponent(JSON.stringify(j[l])));q.parentNode.insertBefore(r,q)};["complete","interactive"].includes(k.readyState)?zaraz.init():j.addEventListener("DOMContentLoaded",zaraz.init)}}(w,d,"zarazData","script");window.zaraz._p=async bs=>new Promise((bt=>{if(bs){bs.e&&bs.e.forEach((bu=>{try{const bv=d.querySelector("script[nonce]"),bw=bv?.nonce||bv?.getAttribute("nonce"),bx=d.createElement("script");bw&&(bx.nonce=bw);bx.innerHTML=bu;bx.onload=()=>{d.head.removeChild(bx)};d.head.appendChild(bx)}catch(by){console.error(`Error executing script: ${bu}\n`,by)}}));Promise.allSettled((bs.f||[]).map((bz=>fetch(bz[0],bz[1]))))}bt()}));zaraz._p({"e":["(function(w,d){})(window,document)"]});})(window,document)}catch(e){throw fetch("/cdn-cgi/zaraz/t"),e;};</script></head>
-<style>
+@include('client.layouts.header')
+    <style>
+        @media (min-width: 768px) and (max-width: 1000px) {
+            .date-picker {
+                margin-left: 150px;
+            }
+        }
         .week-calendar {
-            width: 670px;
+            width: 670px !important;
         }
-      
+        /* (max-width: 376px) and  */
+        @media (max-width: 376px) {
+            .week-calendar {
+                overflow-x: auto; /* Enable scrolling */
+                white-space: nowrap;
+                scrollbar-width: thin;
+            }
+            .week-container, .calendar {
+                width: 670px; 
+            }
+        } 
+        /* (max-width: 1000px) and  */
+        @media (max-width: 1024px) { 
+            .week-calendar {
+                overflow-x: auto; /* Enable scrolling */
+                white-space: nowrap;
+                scrollbar-width: thin;
+            }
+            .week-container, .calendar {
+                width: 670px; 
+            }
+        }
         .week-container {
-            display: grid;
-            grid-template-columns: 1fr repeat(7, 1fr); /* First column blank, then 7 equal columns */
+            display: grid !important;
+            grid-template-columns: 90px repeat(7, 1fr); /* First column blank, then 7 equal columns */
             width: 100%;
-            /* gap: 20px; */
+            margin-left: -23px;
+            gap: 29px;
         }
-
         /* .week-container div:first-child {
             visibility: hidden; 
         } */
@@ -83,7 +87,7 @@
         .calendar-grid {
             display: grid;
             grid-template-columns: repeat(7, 1fr);
-            gap: 5px;
+            /* gap: 5px; */
             margin-top: 10px;
         }
 
@@ -272,133 +276,588 @@
         }
 
     </style>
-<body class="hold-transition sidebar-mini">
-<div class="wrapper">
-  <!-- Navbar -->
-  
-  <!-- /.navbar -->
-
-  <!-- Main Sidebar Container -->
-  
-
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
+    <style>
+        .actions {
+            display: flex;
+            gap: 10px;
+        }
     
+        .btn.remove {
+            padding: 10px 20px;
+            border-radius: 4px;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 16px;
+            font-weight: 700;
+        }
     
-    <!-- Main content -->
-    <div class="row">
-        <div class="col-12">
-            <div class="card">
-                <div class="card-header">
-                    <h3 class="card-title">Responsive Hover Table</h3>
-                    
-                    <div class="card-tools">
-                        <div class="input-group input-group-sm" style="width: 150px;">
-                            <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
-                            
-                            <div class="input-group-append">
-                                <button type="submit" class="btn btn-default">
-                                    <i class="fas fa-search"></i>
-                                </button>
+        .btn.save {
+            background-color: #299D91;
+            color: white;
+            font-size: 16px;
+            font-weight: 700;
+        }
+    
+        .btn.pay {
+            color: #299D91;
+            border: 2px solid #299D91;
+            font-size: 16px;
+            font-weight: 700;
+        }
+    span{
+        font-size: 12px !important;
+    }
+        .modal-demo {
+            width: 350px !important;
+            max-height: 90vh;
+            /* Ensures it doesn't exceed viewport height */
+            border-radius: 15px;
+            padding: 0px 30px 10px;
+            overflow-y: auto;
+            scrollbar-width: none;
+    
+            /* For Firefox */
+            -ms-overflow-style: none;
+            /* For Internet Explorer/Edge */
+        }
+    
+        /* Hide scrollbar for WebKit browsers (Chrome, Safari) */
+        .modal-demo::-webkit-scrollbar {
+            display: none;
+        }
+    
+        .form-control {
+            border-radius: 8px;
+            padding: 20px;
+            height: 45px;
+            font-size: 12px;
+        }
+    
+        span {
+            font-size: 16px;
+        }
+    
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+    
+            to {
+                opacity: 1;
+            }
+        }
+    
+        @keyframes slideIn {
+            from {
+                transform: translateY(-20px);
+                opacity: 0;
+            }
+    
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+      
+    
+        .table-header {
+            display: grid;
+            grid-template-columns: 1fr 2fr 1fr;
+            color: #4b5563;
+            font-weight: 600;
+            font-size: 12px;
+            margin-bottom: 0.5rem;
+            color: #7C8082;
+        }
+    
+        .list {
+            max-height: 24rem;
+            height: 380px !important;
+            overflow-y: auto;
+            scrollbar-width: none;
+        }
+    
+        .list::-webkit-scrollbar {
+            display: none;
+        }
+    
+        .list-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem;
+            border: none;
+            border-left: 1px solid #09BB71;
+            border-right: 1px solid #09BB71;
+            border-bottom: 2px solid #09BB71;
+            border-radius: 10px;
+            margin-bottom: 0.5rem;
+            /* box-shadow: 0 4px 4px #09BB71; */
+            transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    
+        .list-item:hover {
+            background-color: #FFFFFF;
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 10;
+            position: relative;
+            border: 1px solid #000000;
+        }
+    
+        .list-item img {
+            width: 2rem;
+            height: 2rem;
+            border-radius: 50%;
+        }
+    
+        .list-item .info {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+    
+        .list-item .info span {
+            font-weight: 600;
+            font-size: 16px !important;
+        }
+    
+        .list-item .info .name {
+            color: #4b5563;
+        }
+    
+        .list-item .amount {
+            color: #4b5563;
+            font-weight: 400;
+            font-size: 14px;
+        }
+    
+        .list-item .info img.opacity-50 {
+            opacity: 0.5;
+        }
+    
+        .list-item .info .name.opacity-50 {
+            opacity: 0.5;
+        }
+    
+        .list-item.light {
+                opacity: 0.5;
+            }
+        .list-item.large {
+            width: 100%;
+        }
+    
+        .list-item.medium {
+            width: 94%;
+        }
+    
+        .list-item.small {
+            width: 88%;
+        }
+    
+        .footer {
+            display: flex;
+            justify-content: space-between;
+        }
+    
+        .footer button {
+            padding: 0.5rem 0rem;
+            border-radius: 5px;
+            font-weight: 600;
+            font-size: 0.875rem;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+            width: 48%;
+        }
+    
+        .footer .back {
+            background-color: #ffffff;
+            color: #10b981;
+            border: 1px solid #10b981;
+        }
+    
+        .footer .back:hover {
+            background-color: #ffffff;
+            transform: scale(1.05);
+        }
+    
+        .footer .select {
+            background-color: #10b981;
+            color: white;
+            border: none;
+        }
+    
+        .footer .select:hover {
+            background-color: #059669;
+            transform: scale(1.05);
+        }
+    
+        @media (max-width: 640px) {
+    
+            .table-header {
+                font-size: 0.75rem;
+            }
+    
+            .list-item .info span,
+            .list-item .amount {
+                font-size: 0.75rem;
+            }
+    
+            .footer button {
+                padding: 0.5rem 1rem;
+                font-size: 0.75rem;
+            }
+        }
+    </style>
+    <div class="page-title-box">
+
+            <div class="row" style="font-family: 'Poppins', sans-serif !important;">
+                <div class="col-md-8 col-lg-4 col-sm-12 date-picker">
+                    <div class="calendar-container" id="calendar" style="font-size: 12px !important;  box-shadow: 0px 25px 30px #00000040;">
+                        <div class="calendar-header">
+                            <img class="mr-2" src="{{asset('assets/image/client/calendargreen.svg')}}" alt="dashboard" height="">
+                            <div class="month-year">
+                                <select id="monthSelector" onchange="updateCalendar()"></select>
+                                <select id="yearSelector" onchange="updateCalendar()"></select>
+                            </div>
+                        </div>
+                        <div class="weekdays">
+                            <div>Su</div>
+                            <div>Mo</div>
+                            <div>Tu</div>
+                            <div>We</div>
+                            <div>Th</div>
+                            <div>Fr</div>
+                            <div>Sa</div>
+                        </div>
+                        <div class="calendar-grid" id="calendarDays"></div>
+                    </div>
+
+                    <div class="toggle-container me-4">
+                        <div class="info-icon">i</div>
+                        <span>Set Bedding</span>
+                        <label class="toggle-switch">
+                            <input type="checkbox" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    <div class="mt-4 p-2">
+                        <div class="card tilebox-one" style="border-radius: 7px; box-shadow: 0px 17px 25px #00000040; height: 100px; padding: 20px 20px 15px 20px;">
+                            <div class="d-flex align-items-center">
+                                <div class="me-3 d-flex align-items-center">
+                                    <img src="{{asset('assets/image/client/linegreen.svg')}}" alt="dashboard" height="60px">
+                                </div>
+                                <div class="flex-grow-1">
+                                    <h6 class="mt-2 mb-1" style="font-size: 13.5px; color: #898989;">Total Booked</h6>
+                                    <h3 data-plugin="counterup" style="font-size: 23.5px; font-weight: 700;">135</h3>
+                                </div>
+                                <div class="ms-auto">
+                                    <button style="border: none; background-color: #109145; box-shadow: 0 2px 4px #00000040; border-radius: 50px; padding: 6px 7px;"> 
+                                        <img src="{{asset('assets/image/client/calendarwhite.svg')}}" alt="dashboard" style="width: 20px;">
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card tilebox-one" style="border-radius: 7px; box-shadow: 0px 17px 25px #00000040; height: 100px; padding: 20px 20px 15px 20px;">
+                            <div class="d-flex align-items-center">
+                                <div class="me-3 d-flex align-items-center">
+                                    <img src="{{asset('assets/image/client/lineblack.svg')}}" alt="dashboard" height="60px">
+                                </div>
+                                <div class="flex-grow-1">
+                                    <h6 class="mt-2 mb-1" style="font-size: 13.5px; color: #898989;">Total Available</h6>
+                                    <h3 data-plugin="counterup" style="font-size: 23.5px; font-weight: 700;">65</h3>
+                                </div>
+                                <div class="ms-auto">
+                                    <button style="border: none; background-color: #191F2F; box-shadow: 0 2px 4px #00000040; border-radius: 50px; padding: 6px 7px;"> 
+                                        <img src="{{asset('assets/image/client/calendarwhite.svg')}}" alt="dashboard" style="width: 20px;">
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card tilebox-one" style="border-radius: 7px; box-shadow: 0px 17px 25px #00000040; height: 100px; padding: 20px 20px 15px 20px;">
+                            <div class="d-flex align-items-center">
+                                <div class="me-3 d-flex align-items-center">
+                                    <img src="{{asset('assets/image/client/linegray.svg')}}" alt="dashboard" height="60px">
+                                </div>
+                                <div class="flex-grow-1">
+                                    <h6 class="mt-2 mb-1" style="font-size: 13.5px; color: #898989;">Total Slots</h6>
+                                    <h3 data-plugin="counterup" style="font-size: 23.5px; font-weight: 700;">200</h3>
+                                </div>
+                                <div class="ms-auto">
+                                    <button style="border: none; background-color: #ffffff; box-shadow: 0 2px 4px #00000040; border-radius: 50px; padding: 6px 7px;"> 
+                                        <img src="{{asset('assets/image/client/calendarblack.svg')}}" alt="dashboard" style="width: 20px;">
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
+
                 </div>
-                <!-- /.card-header -->
-                <div class="card-body table-responsive d-flex p-0">
-                  <div class="col-md-4 col-lg-4">
-                      hsyufacvbnhjayutgsh
-                    </div>
-                    <div class="col-md-8 col-lg-8 col-sm-8">
+                <div class="col-md-12 col-lg-8 col-sm-12">
                     <table class="table table-hover text-nowrap">
                
-                  <tbody>
-                    
-            <div class="row" style="font-family: 'Poppins', sans-serif !important;">
-                    <div class="container week-calendar">
-                        <div id="weekDates" class="week-container">
-                            <div class="empty"></div>
-                        </div>
+                        <tbody>
+                            
+                            <div class="row" style="font-family: 'Poppins', sans-serif !important;">
+                            <div class="container week-calendar">
+                                <div id="weekDates" class="week-container">
+                                    <div class="empty" style="padding: 12px;"></div>
+                                </div>
+                                
+                                <div class="calendar" id="schedular"></div>
+                            </div>
                         
-                        <div class="calendar" id="schedular"></div>
-                    </div>
-                
-                    <!-- Modal for Adding/Editing Events -->
-                    <div class="modal fade" id="addEventModal" tabindex="-1">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title">Add Event</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <input type="hidden" id="eventId">
-                                    <div class="mb-3">
-                                        <label class="form-label">Event Title</label>
-                                        <input type="text" class="form-control" id="eventTitle">
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button class="btn btn-primary" id="saveEvent">Save</button>
-                                    <button class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Event Modal -->
-                    <div class="modal fade" id="editEventModal" tabindex="-1">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title">Edit Event</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <input type="hidden" id="editEventId">
-                                    <div class="mb-3">
-                                        <label class="form-label">Event Title</label>
-                                        <input type="text" class="form-control" id="editEventTitle">
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button class="btn btn-danger" id="deleteEvent">Delete</button>
-                                    <button class="btn btn-primary" id="updateEvent">Save</button>
-                                    <button class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
 
-                </tbody>
-            </table>
+
+                            <div id="payment-withdraw" class="modal-demo">
+                                <div class="d-flex pr-3 pt-3 align-items-center justify-content-between mb-0" style="width: 100%; height: auto;">
+                                    <button type="button" class="btn-close ml-auto" onclick="Custombox.modal.close();">
+                                        <span class="sr-only">Close</span>
+                                    </button>
+                                </div>
+                                <div class="add-text ml-2 mt-0" style="font-size: small;">
+                                    <div class="container-fluid">
+                                        <div class="mb-2">
+                                            <div class="row">
+                                                <input type="hidden" id="userid">
+                                                <div class="col-md-12">
+                                                    <span>User Name</span>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <input type="text" id="username" class="form-control" name="name" placeholder="Abhishek Guleria">
+                                                </div>
+                                            </div>
+                                        </div>
+                            
+                                        <div class="mb-2">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <span>Venue</span>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <input type="text" class="form-control" name="venue" placeholder="Sports complex,abc,393001">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="mb-2">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <span>Time & Date</span>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <input type="text" class="form-control" name="timedate" placeholder="9AM , 17 Jan 2025">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="mb-2">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <span>Entry Time</span>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <input type="text" class="form-control" name="entrytime" placeholder="N/A">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="mb-2">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <span>Exit Time</span>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <input type="text" class="form-control" name="exittime" placeholder="N/A">
+                                                </div>
+                                            </div>
+                                        </div>
+                                
+                                        <div class="mb-2 pending-payment">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <span>Pending Payment</span>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <input type="text" class="form-control" name="pendingpayment" placeholder="00.00 ₹">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="mb-2 total-fields" style="display: none;">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <span>Total Amount</span>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <input type="text" class="form-control" id="total_amount" name="total_amount" placeholder="00.00 ₹" readonly>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="mb-2 total-fields" style="display: none;">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <span>Amount Payable</span>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <input type="text" class="form-control" id="amount_payable" name="amount_payable" placeholder="00.00 ₹" readonly>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                            
+                                        <div class="mt-4 mb-2 pay-buttons" style="border: none;">
+                                            <div class="mb-2">
+                                                <div class="row">
+                                                    <div class="col-md-12 d-flex action-buttons">
+                                                        <button class="btn save mr-2 refund-btn" style="width: 100%;">Refund</button>
+                                                        <button class="btn pay mr-3 pay-btn" style="width: 100%;">
+                                                        {{-- <button class="btn pay mr-3 pay-btn" style="width: 100%;" id="addname"> --}}
+                                                            Pay
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                       
+                                        <div class=" mt-4 mb-2 book-buttons" style="border: none; display: none;">
+                                            <div class="mb-2">
+                                                <div class="row">
+                                                    <div class="col-md-12 d-flex action-buttons">
+                                                        <button class="btn save mr-2 cancel-button" style="width: 100%;">Cancel</button>
+                                                        {{-- <button class="btn pay mr-3 book-btn" style="width: 100%;" onclick="switchToBooking();"> --}}
+                                                        <button class="btn pay mr-3 book-btn" style="width: 100%;" id="addname">
+                                                            Book
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div id="bedding" class="modal-demo">
+                                <div class="d-flex pr-3 pt-3 align-items-center justify-content-between mb-0" style="width: 100%; height: auto;">
+                                    <button type="button" class="btn-close ml-auto pl-3 pb-0" onclick="Custombox.modal.close();">
+                                        <span class="sr-only">Close</span>
+                                    </button>
+                                </div>
+                                <div class="add-text ml-2 mt-0" style="font-size: small;">
+                                    <p style="font-size:12px; color: #7C8082;" class="pt-1 mr-5">The winner has been selected automatically within sometime <span style="font-size: 12px; color:black">00:00:00</span></p>
+                                    <div class="container-fluid">
+                                        <div class="table-header">
+                                            <div>Rank</div>
+                                            <div class="ml-3">Name</div>
+                                            <div class="ml-1">Amount</div>
+                                        </div>
+                                        <div class="list">
+                                            <div class="list-item selected large">
+                                                <div class="info">
+                                                    <span>#1</span>
+                                                        <img src="{{ asset('assets/image/client/Ellipse 4.svg') }}">
+                                                    <span class="name">Devon Lane</span>
+                                                </div>
+                                                <span class="amount">600</span>
+                                            </div>
+                                            <div class="list-item medium">
+                                                <div class="info">
+                                                    <span>#2</span>
+                                                        <img src="{{ asset('assets/image/client/Ellipse 4.svg') }}">
+                                                    <span class="name">Devon Lane</span>
+                                                </div>
+                                                <span class="amount">550</span>
+                                            </div>
+                                            <div class="list-item small">
+                                                <div class="info">
+                                                    <span>#3</span>
+                                                        <img src="{{ asset('assets/image/client/Ellipse 4.svg') }}">
+                                                    <span class="name">Devon Lane</span>
+                                                </div>
+                                                <span class="amount">500</span>
+                                            </div>
+                                            <div class="list-item small">
+                                                <div class="info">
+                                                    <span>#4</span>
+                                                        <img src="{{ asset('assets/image/client/Ellipse 4.svg') }}">
+                                                    <span class="name">Devon Lane</span>
+                                                </div>
+                                                <span class="amount">3768</span>
+                                            </div>
+                                            <div class="list-item small">
+                                                <div class="info">
+                                                    <span>#5</span>
+                                                        <img src="{{ asset('assets/image/client/Ellipse 4.svg') }}">
+                                                    <span class="name">Devon Lane</span>
+                                                </div>
+                                                <span class="amount">2000</span>
+                                            </div>
+                                            <div class="list-item light small">
+                                                <div class="info">
+                                                    <span>#6</span>
+                                                        <img src="{{ asset('assets/image/client/Ellipse 4.svg') }}">
+                                                    <span class="name">Devon Lane</span>
+                                                </div>
+                                                <span class="amount">1500</span>
+                                            </div>
+                                            <div class="list-item light small">
+                                                <div class="info">
+                                                    <span>#7</span>
+                                                        <img src="{{ asset('assets/image/client/Ellipse 4.svg') }}">
+                                                    <span class="name">Devon Lane</span>
+                                                </div>
+                                                <span class="amount">4970</span>
+                                            </div>
+                                        
+                                            <div class="list-item light small">
+                                                <div class="info">
+                                                    <span>#8</span>
+                                                        <img src="{{ asset('assets/image/client/Ellipse 4.svg') }}">
+                                                    <span class="name">Devon Lane</span>
+                                                </div>
+                                                <span class="amount">700</span>
+                                            </div>
+                                        </div>
+                                        <div class="footer">
+                                            <button class="back">Back</button>
+                                            <button class="select">Select</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                           
+                        </tbody>
+                    </table>
                 </div>
             </div>
-              </div>
-              <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
-          </div>
-        </div>
-    <!-- /.content -->
-  </div>
-  <!-- /.content-wrapper -->
-  <footer class="main-footer">
-    <div class="float-right d-none d-sm-block">
-      <b>Version</b> 3.2.0
-    </div>
-    <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
-  </footer>
 
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
-  </aside>
-  <!-- /.control-sidebar -->
-</div>
-<!-- ./wrapper -->
-<!-- jQuery -->
+    </div>   
+
+
+
+
+
+    <!-- jQuery (Required for DataTables) -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 
 <!-- Bootstrap 4 JS -->
@@ -407,23 +866,59 @@
 <!-- AdminLTE 3 JS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.2.0/js/adminlte.min.js"></script>
 
-<!-- Overlay Scrollbars (for enhanced scrolling) -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/overlayscrollbars/1.13.1/js/jquery.overlayScrollbars.min.js"></script>
+<!-- DataTables JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/datatables.net/1.13.6/jquery.dataTables.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/datatables.net-bs4/1.11.5/dataTables.bootstrap4.min.js"></script>
 
-<!-- Chart.js (for graphs and analytics) -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
+<!-- DataTables Buttons (For Export, Print, Copy) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/datatables.net-buttons/2.4.2/js/dataTables.buttons.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/datatables.net-buttons/2.4.2/js/buttons.html5.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/datatables.net-buttons/2.4.2/js/buttons.print.min.js"></script>
 
-<!-- Moment.js (for handling dates) -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/custombox/4.0.3/custombox.min.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // Add click event to the Pay button
+        let payButton = document.querySelector(".pay-btn");
+        if (payButton) {
+            payButton.addEventListener("click", switchToBooking);
+        }
+    });
 
-<!-- AdminLTE Plugins (if needed) -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.2.0/js/demo.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.2.0/js/pages/dashboard.js"></script>
-    
+    function switchToBooking() {
+        // Hide Pending Payment & Pay Button
+        document.querySelector('.pending-payment').style.display = 'none';
+        document.querySelector('.refund-btn').style.display = 'none';
+        document.querySelector('.pay-btn').style.display = 'none';
+        // document.querySelector('.pay-buttons').style.display = 'none';
+
+
+        // Show Total Amount & Amount Payable
+        let totalFields = document.querySelectorAll('.total-fields');
+        totalFields.forEach(field => {
+            field.style.display = 'block';
+        });
+        
+        let bookButtons = document.querySelectorAll('.book-buttons');
+        bookButtons.forEach(field => {
+            field.style.display = 'block';
+        });
+
+   
+}
+
+
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
     <script>
         const calendarDays = document.getElementById("calendarDays");
         const monthSelector = document.getElementById("monthSelector");
         const yearSelector = document.getElementById("yearSelector");
+        
         let currentDate = new Date();
         let selectedDate = null;
 
@@ -501,7 +996,7 @@
                 });
             }
 
-            weekContainer.innerHTML = weekDates.map(date =>
+            weekContainer.innerHTML = `<div class="week-day empty"></div>` + weekDates.map(date =>
                 `<div class="week-day">
                     <strong class="${date.dayNumber === selectedDate.getDate() ? 'highlight' : ''}" style="font-size: 20px;">${date.dayNumber}</strong>
                     <div style="font-size: 12px; font-weight: bold;">${date.dayName}</div>
@@ -512,20 +1007,23 @@
         }
 
 
-        function updateSchedule(weekDates) {
-            const scheduler = document.getElementById("schedular");
-            const times = ["9AM", "10AM", "11AM", "12PM", "1PM", "2PM", "3PM", "4PM", "5PM", "6PM"];
-            let events = JSON.parse(localStorage.getItem("events")) || {};
-            // scheduler.innerHTML = `<div class='time-slot'></div>` + weekDates.map(date => `<div class='day-header'>${date.dayName} ${date.dayNumber}</div>`).join('');
+        
 
-            times.forEach(time => {
-                scheduler.innerHTML += `<div class='time-slot'>${time}</div>`;
-                weekDates.forEach(date => {
-                    const key = `${date.dayName} ${date.dayNumber}-${time}`;
-                    scheduler.innerHTML += `<div class='time-slot' data-time='${key}'>${events[key] || ''}</div>`;
-                });
-            });
-        }
+
+        // function updateSchedule(weekDates) {
+        //     const scheduler = document.getElementById("schedular");
+        //     const times = ["9AM", "10AM", "11AM", "12PM", "1PM", "2PM", "3PM", "4PM", "5PM", "6PM"];
+        //     let events = JSON.parse(localStorage.getItem("events")) || {};
+        //     scheduler.innerHTML = `<div class='time-slot'></div>` + weekDates.map(date => `<div class='day-header'>${date.dayName} ${date.dayNumber}</div>`).join('');
+
+        //     times.forEach(time => {
+        //         scheduler.innerHTML += `<div class='time-slot'>${time}</div>`;
+        //         weekDates.forEach(date => {
+        //             const key = `${date.dayName} ${date.dayNumber}-${time}`;
+        //             scheduler.innerHTML += `<div class='time-slot' data-time='${key}'>${events[key] || ''}</div>`;
+        //         });
+        //     });
+        // }
 
         monthSelector.addEventListener("change", function () {
             currentDate.setMonth(parseInt(this.value));
@@ -543,105 +1041,96 @@
     
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-            const calendar = document.getElementById("schedular");
-            const weekContainer = document.getElementById("weekDates");
-    
-            let events = {}; // Temporary storage (Clears on refresh)
-    
-            function getNext7Days() {
-                const today = new Date();
-                const next7Days = [];
+    const calendar = document.getElementById("schedular");
+    const weekContainer = document.getElementById("weekDates");
 
-                for (let i = 0; i < 7; i++) {
-                    const date = new Date();
-                    date.setDate(today.getDate() + i);
-                    const dayName = date.toLocaleString('en-US', { weekday: 'short' });
-                    const dayNumber = date.getDate();
-                    next7Days.push({ dayName, dayNumber });
-                }
-                return next7Days;
-            }
-    
-            function displayWeek() {
-                const weekDates = getNext7Days();
-                const today = new Date().getDate();
+    let events = {}; // Temporary storage (Clears on refresh)
+    let selectedTimeSlot = null; // Stores the selected grid cell
 
-                weekContainer.innerHTML = `<div class="week-day empty"></div>` + weekDates.map(date =>
-                    `<div class="week-day">
-                        <strong class="${date.dayNumber === today ? 'highlight' : ''}" style="font-size: 18px;">${date.dayNumber}</strong>
-                        <div style="font-size: 12px; font-weight: bold;">${date.dayName}</div>
-                    </div>`
-                ).join('');
-            }
-        
-            function renderCalendar() {
-                calendar.innerHTML = ""; // Clear previous content
-                const days = getNext7Days().map(date => `${date.dayName} ${date.dayNumber}`);
-                const times = ["9AM", "10AM", "11AM", "12PM", "1PM", "2PM", "3PM", "4PM", "5PM", "6PM"];
+    // Function to get the next 7 days
+    function getNext7Days() {
+        const today = new Date();
+        const next7Days = [];
 
-                times.forEach(time => {
-                    calendar.innerHTML += `<div class='time-slot'>${time}</div>`;
-                    days.forEach(day => {
-                        const key = `${day}-${time}`;
-                        calendar.innerHTML += `<div class='time-slot' data-time='${key}'>
-                            ${events[key] ? `<div class='event px-3' data-key="${key}" style="cursor:pointer; font-size: 10px;">${events[key]}</div>` : ''}
-                        </div>`;
-                    });
-                });
-            }
-            
-            // Initial rendering
-            displayWeek();
-            renderCalendar();
-    
-            // Event handler for adding/editing events
-            calendar.addEventListener("click", function (e) {
-                if (e.target.classList.contains("time-slot") && !e.target.querySelector(".event")) {
-                    const timeKey = e.target.getAttribute("data-time");
-                    if (timeKey) {
-                        document.getElementById("eventId").value = timeKey;
-                        document.getElementById("eventTitle").value = "";
-                        new bootstrap.Modal(document.getElementById("addEventModal")).show();
-                    }
-                } else if (e.target.classList.contains("event")) {
-                    const key = e.target.getAttribute("data-key");
-                    document.getElementById("editEventId").value = key;
-                    document.getElementById("editEventTitle").value = events[key];
-                    new bootstrap.Modal(document.getElementById("editEventModal")).show();
-                }
-            });
-    
-            // Save new event
-            document.getElementById("saveEvent").addEventListener("click", function () {
-                const timeKey = document.getElementById("eventId").value;
-                const title = document.getElementById("eventTitle").value;
-                if (title.trim() !== "") {
-                    events[timeKey] = title;
-                    renderCalendar();
-                }
-                bootstrap.Modal.getInstance(document.getElementById("addEventModal")).hide();
-            });
-    
-            // Update event
-            document.getElementById("updateEvent").addEventListener("click", function () {
-                const key = document.getElementById("editEventId").value;
-                const newTitle = document.getElementById("editEventTitle").value;
-                if (newTitle.trim() !== "") {
-                    events[key] = newTitle;
-                    renderCalendar();
-                }
-                bootstrap.Modal.getInstance(document.getElementById("editEventModal")).hide();
-            });
-    
-            // Delete event
-            document.getElementById("deleteEvent").addEventListener("click", function () {
-                const key = document.getElementById("editEventId").value;
-                delete events[key];
-                renderCalendar();
-                bootstrap.Modal.getInstance(document.getElementById("editEventModal")).hide();
+        for (let i = 0; i < 7; i++) {
+            const date = new Date();
+            date.setDate(today.getDate() + i);
+            const dayName = date.toLocaleString('en-US', { weekday: 'short' });
+            const dayNumber = date.getDate();
+            next7Days.push({ dayName, dayNumber });
+        }
+        return next7Days;
+    }
+
+    // Function to display week days
+    function displayWeek() {
+        const weekDates = getNext7Days();
+        const today = new Date().getDate();
+
+        weekContainer.innerHTML = `<div class="week-day empty"></div>` + weekDates.map(date =>
+            `<div class="week-day">
+                <strong class="${date.dayNumber === today ? 'highlight' : ''}" style="font-size: 18px;">${date.dayNumber}</strong>
+                <div style="font-size: 12px; font-weight: bold;">${date.dayName}</div>
+            </div>`
+        ).join('');
+    }
+
+    // Function to render the calendar grid
+    function renderCalendar() {
+        calendar.innerHTML = ""; // Clear previous content
+        const days = getNext7Days().map(date => `${date.dayName} ${date.dayNumber}`);
+        const times = ["9AM", "10AM", "11AM", "12PM", "1PM", "2PM", "3PM", "4PM", "5PM", "6PM"];
+
+        times.forEach(time => {
+            calendar.innerHTML += `<div class='time-slot time-label'>${time}</div>`; // Time column
+            days.forEach(day => {
+                const key = `${day}-${time}`;
+                calendar.innerHTML += `<div class='time-slot' data-time='${key}'>
+                    ${events[key] ? `<div class='event px-3' data-key="${key}" style="cursor:pointer; font-size: 10px;">${events[key]}</div>` : ''}
+                </div>`;
             });
         });
+
+        // Reattach event listeners to all time slots after re-rendering
+        attachTimeSlotListeners();
+    }
+
+    // Function to attach click event to all time slots
+    function attachTimeSlotListeners() {
+        document.querySelectorAll('.time-slot[data-time]').forEach(slot => {
+            slot.addEventListener("click", function () {
+                selectedTimeSlot = this.getAttribute("data-time"); // Store clicked time slot
+
+                // Open the modal using Custombox.js
+                new Custombox.modal({
+                    content: {
+                        target: "#payment-withdraw",
+                        effect: "blur"
+                    }
+                }).open();
+            });
+        });
+    }
+
+    // Save event when clicking "Book"
+    document.getElementById("addname").addEventListener("click", function () {
+        if (!selectedTimeSlot) return; // No slot selected
+
+        const username = document.getElementById("username").value.trim();
+        if (username !== "") {
+            events[selectedTimeSlot] = username; // Store event in selected slot
+            renderCalendar(); // Re-render the grid to update
+        }
+        Custombox.modal.close();
+        selectedTimeSlot = null; // Reset selection
+    });
+
+    // Initial rendering
+    displayWeek();
+    renderCalendar();
+});
+
     </script>
-<!-- jQuery -->
-</body>
-</html>
+    
+
+@include('client.layouts.footer')

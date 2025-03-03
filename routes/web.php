@@ -74,6 +74,30 @@ Route::get('/client/booking', function () {
     return view('client.booking');
 });
 
+Route::get('/client/account', function () {
+    return view('client.account');
+});
+
+Route::get('/client/coupons', function () {
+    return view('client.coupons');
+});
+
+Route::get('/client/login', function () {
+    return view('client.login');
+});
+
+Route::get('/client/payments', function () {
+    return view('client.payments');
+});
+
+Route::get('/client/request', function () {
+    return view('client.request');
+});
+
+Route::get('/client/transaction', function () {
+    return view('client.transaction');
+});
+
 
 
 Route::get('index', function() {

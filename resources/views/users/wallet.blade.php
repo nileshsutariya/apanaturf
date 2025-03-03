@@ -90,7 +90,7 @@
                         <img class="img-fluid mt-4 mx-2" src="{{asset('assets/image/users/Group13.svg')}}" alt="card" height="170px">
                         <img class="img-fluid mt-4 mx-2" src="{{asset('assets/image/users/Group13.svg')}}" alt="card" height="170px">
                         <img class="img-fluid mt-4 mx-2" src="{{asset('assets/image/users/Group13.svg')}}" alt="card" height="170px">
-                        <img class="img-fluid mt-4 mx-2" src="{{asset('assets/image/users/Group13.svg')}}" alt="card" height="170px">
+                        {{-- <img class="img-fluid mt-4 mx-2" src="{{asset('assets/image/users/Group13.svg')}}" alt="card" height="170px"> --}}
 
                         {{-- <img class="mt-4" style="margin-left: 11px;" src="{{asset('assets/image/users/Group12.svg')}}" alt="card" height="220px">
                         <img class="mt-4" style="margin-left: 11px;" src="{{asset('assets/image/users/Group13.svg')}}" alt="card" height="220px">
@@ -117,7 +117,7 @@
                         <img class="img-fluid mt-4 mx-2" src="{{asset('assets/image/users/Group13.svg')}}" alt="card" height="170px">
                         <img class="img-fluid mt-4 mx-2" src="{{asset('assets/image/users/Group13.svg')}}" alt="card" height="170px">
                         <img class="img-fluid mt-4 mx-2" src="{{asset('assets/image/users/Group13.svg')}}" alt="card" height="170px">
-                        <img class="img-fluid mt-4 mx-2" src="{{asset('assets/image/users/Group13.svg')}}" alt="card" height="170px">
+                        {{-- <img class="img-fluid mt-4 mx-2" src="{{asset('assets/image/users/Group13.svg')}}" alt="card" height="170px"> --}}
 
                         {{-- <img class="mt-4" style="margin-left: 11px;" src="{{asset('assets/image/users/Group12.svg')}}" alt="card" height="220px">
                         <img class="mt-4" style="margin-left: 11px;" src="{{asset('assets/image/users/Group13.svg')}}" alt="card" height="220px">

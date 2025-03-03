@@ -122,13 +122,6 @@ document.getElementById("currentDate").innerText = formattedDate;
             createCustomPagination();
         });
 
-
-
-
-
-
-
-
 </script>
 
 
