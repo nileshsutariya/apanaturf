@@ -81,9 +81,9 @@
         font-size: 15px;
     }
 
-    span {
+    /* span {
         font-size: 16px;
-    }
+    } */
 </style>
 <div class="page-title-box">
     <div class="d-flex align-items-sm-center flex-sm-row flex-column gap-2">

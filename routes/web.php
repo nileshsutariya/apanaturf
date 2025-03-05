@@ -110,6 +110,7 @@ Route::get('/client/account', function () {
 })->name('client.account');
 
 
+
 Route::get('/', function () {
     return view('users.bookingturf');
 });
