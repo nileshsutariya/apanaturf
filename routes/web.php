@@ -127,6 +127,10 @@ Route::get('/client/account', function () {
 
 
 
+Route::get('/demo', function () {
+    return view('users.layouts.demoheader');
+});
+
 Route::get('/', function () {
     return view('users.design');
 });
