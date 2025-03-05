@@ -6,43 +6,33 @@ use Illuminate\Support\Facades\Route;
 Route::get('admin/index', function () {
     return view('index');
 })->name('admin.index');
-
 Route::get('admin/users', function () {
     return view('users');
 })->name('admin.users');
-
 Route::get('admin/venues', function () {
     return view('venues');
 })->name('admin.venues');
-
 Route::get('admin/booking', function () {
     return view('bookings');
 })->name('admin.bookings');
-
 Route::get('admin/freeze', function () {
     return view('freeze');
 })->name('admin.freeze');
-
 Route::get('admin/transaction', function () {
     return view('transaction');
 })->name('admin.transaction');
-
 Route::get('admin/configuration', function () {
     return view('configuration');
 })->name('admin.configuration');
-
-    Route::get('admin/sports', function () {
-        return view('sports');
-    })->name('admin.sports');
-
-    Route::get('admin/amenities', function () {
-        return view('amenities');
-    })->name('admin.amenities');
-
-    Route::get('admin/financialyear', function () {
-        return view('financialyear');
-    })->name('admin.financialyear');
-
+Route::get('admin/sports', function () {
+    return view('sports');
+})->name('admin.sports');
+Route::get('admin/amenities', function () {
+    return view('amenities');
+})->name('admin.amenities');
+Route::get('admin/financialyear', function () {
+    return view('financialyear');
+})->name('admin.financialyear');
 Route::get('/couponscode', function () {
     return view('couponscode');
 })->name('admin.couponscode');
@@ -65,27 +55,21 @@ Route::get('/profile', function () {
 Route::get('index', function() {
     return view('users.index');
 })->name('users.dashboard');
-
 Route::get('users/matches', function() {
     return view('users.matches');
 })->name('users.matches');
-
 Route::get('users/split', function() {
     return view('users.split');
 })->name('users.split');
-
 Route::get('users/setting', function() {
     return view('users.setting');
 })->name('users.setting');
-
 Route::get('users/booking', function() {
     return view('users.payment');
 })->name('users.booking');
-
 Route::get('users/wallet', function() {
     return view('users.wallet');
 })->name('users.wallet');
-
 Route::get('users/refer', function() {
     return view('users.refer');
 })->name('users.refer');
@@ -126,7 +110,6 @@ Route::get('/client/account', function () {
 })->name('client.account');
 
 
-
 Route::get('/', function () {
-    return view('users.design');
+    return view('users.bookingturf');
 });

@@ -78,7 +78,7 @@
                                     <div class="row">
                                         <div class="col-9">
                                             <h6 class="text-muted mt-0" style="font-size: 11px;">Total Users</h6>
-                                            <h3 data-plugin="counterup" style="font-size: 20px;">200</h3>
+                                            <h3 data-plugin="counterup" style="font-weight:700;font-size: 20px;">200</h3>
                                         </div>
                                         <div class="col-3">
                                             <img src="{{asset('assets/image/Group1.svg')}}" alt="dashboard" style="width: 35px;">
@@ -94,7 +94,7 @@
                                     <div class="row">
                                         <div class="col-9">
                                             <h6 class="text-muted mt-0" style="font-size: 11px;">Total Vender</h6>
-                                            <h3 data-plugin="counterup" style="font-size: 20px;">200</h3>
+                                            <h3 data-plugin="counterup" style="font-weight:700;font-size: 20px;">200</h3>
                                         </div>
                                         <div class="col-3">
                                             <img src="{{asset('assets/image/Group2.svg')}}" alt="dashboard" style="width: 35px;">
@@ -110,7 +110,7 @@
                                     <div class="row">
                                         <div class="col-9">
                                             <h6 class="text-muted mt-0" style="font-size: 11px;">Total Turf</h6>
-                                            <h3 data-plugin="counterup" style="font-size: 20px;">200</h3>
+                                            <h3 data-plugin="counterup" style="font-weight:700;font-size: 20px;">200</h3>
                                         </div>
                                         <div class="col-3">
                                             <img src="{{asset('assets/image/Group3.svg')}}" alt="dashboard" style="width: 35px;">
@@ -126,7 +126,7 @@
                                     <div class="row">
                                         <div class="col-9">
                                             <h6 class="text-muted mt-0" style="font-size: 11px;">Total Venue</h6>
-                                            <h3 data-plugin="counterup" style="font-size: 20px;">200</h3>
+                                            <h3 data-plugin="counterup" style="font-weight:700;font-size: 20px;">200</h3>
                                         </div>
                                         <div class="col-3">
                                             <img src="{{asset('assets/image/Group4.svg')}}" alt="dashboard" style="width: 35px;">
@@ -142,7 +142,7 @@
                                     <div class="row">
                                         <div class="col-9">
                                             <h6 class="text-muted mt-0" style="font-size: 11px;">Total Spot</h6>
-                                            <h3 data-plugin="counterup" style="font-size: 20px;">200</h3>
+                                            <h3 data-plugin="counterup" style="font-weight:700;font-size: 20px;">200</h3>
                                         </div>
                                         <div class="col-3">
                                             <img src="{{asset('assets/image/Group5.svg')}}" alt="dashboard" style="width: 35px;">
@@ -157,8 +157,8 @@
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-9">
-                                            <h6 class="text-muted m-0" style="font-size: 11px;">Total Balance</h6>
-                                            <h3 data-plugin="counterup" style="font-size: 20px;">200</h3>
+                                            <h6 class="text-muted mt-0" style="font-size: 11px;">Total Balance</h6>
+                                            <h3 data-plugin="counterup" style="font-weight:700;font-size: 20px;">200</h3>
                                         </div>
                                         <div class="col-3">
                                             <img src="{{asset('assets/image/Group6.svg')}}" alt="dashboard" style="width: 35px;">

@@ -321,8 +321,9 @@
         .img {
             margin-left: auto;
             margin-right: auto;
-            margin-top: 10px;
-            margin-bottom: 30px;
+            /* margin-top: 10px;
+            margin-bottom: 30px; */
+            margin-bottom: 20px;
         }
 
         .content {
@@ -354,7 +355,7 @@
         }
 
         .img {
-            margin-left: 10px;
+            margin-left: 12px;
         }
 
         .content {
@@ -364,7 +365,7 @@
 
     @media (max-width: 980px) {
         .booking-time {
-            margin-right: 29px;
+            margin-right: 26px;
         }
     }
 
@@ -886,7 +887,7 @@
         let startOfWeek = new Date(today);
         startOfWeek.setDate(today.getDate() - dayOfWeek + (dayOfWeek === 0 ? -6 : 1));
 
-        for (let i = 0; i < 7; i++) {
+        for (let i = 0; i < 10; i++) {
             let date = new Date(startOfWeek);
             date.setDate(startOfWeek.getDate() + i);
 

@@ -436,7 +436,7 @@
                                                     data-dismissible="#notification-1">
                                                     <i class="mdi mdi-close font-16"></i>
                                                 </button>
-                                            </span>
+                                            </span> <
                                         </span>
                                     </div>
                                 </div>
@@ -452,7 +452,6 @@
                     </div>
 
                     <!-- Email Dropdown -->
-
                     <div class="d-none d-md-flex">
                         <form class="app-search">
                             <div class="app-search-box">
