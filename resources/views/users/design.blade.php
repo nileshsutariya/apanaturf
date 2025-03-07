@@ -1,258 +1,765 @@
-@include('client.layouts.header')
-    <style>
-        @media (min-width: 768px) and (max-width: 1000px) {
-            .date-picker {
-                margin-left: 150px;
-            }
-        }
-        .week-calendar {
-            width: 670px !important;
-        }
-        /* (max-width: 376px) and  */
-        @media (max-width: 376px) {
-            .week-calendar {
-                overflow-x: auto; /* Enable scrolling */
-                white-space: nowrap;
-                scrollbar-width: thin;
-            }
-            .week-container, .calendar {
-                width: 670px; 
-            }
-        } 
-        /* (max-width: 1000px) and  */
-        @media (max-width: 1024px) { 
-            .week-calendar {
-                overflow-x: auto; /* Enable scrolling */
-                white-space: nowrap;
-                scrollbar-width: thin;
-            }
-            .week-container, .calendar {
-                width: 670px; 
-            }
-        }
-        .week-container {
-            display: grid !important;
-            grid-template-columns: 90px repeat(7, 1fr); /* First column blank, then 7 equal columns */
-            width: 100%;
-            margin-left: -23px;
-            gap: 29px;
-        }
-        /* .week-container div:first-child {
-            visibility: hidden; 
-        } */
+@include('users.layouts.userheader')
+<link href="https://fonts.googleapis.com/css2?family=NATS&display=swap" rel="stylesheet">
 
-        .time-grid {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr); /* Match with week-container */
-            width: 100%;
+<style>
+    .body {
+        font-family: 'NATS', sans-serif !important;
+    }
+
+    .img {
+        height: 100px;
+        width: 100px;
+        border-radius: 13px;
+    }
+
+
+    .page-content {
+        background-color: #FFFFFF;
+
+    }
+
+    .img:hover {
+        border: 4px solid #279B5A;
+    }
+
+    .imagecol {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: right;
+        align-items: flex-end;
+        padding-right: 30px;
+        padding-top: 0px;
+    }
+
+    .booknow {
+        border: 2px solid #279B5A;
+        border-radius: 10px;
+        padding: 240px 15px;
+        text-align: center;
+        cursor: pointer;
+        font-weight: bold;
+        color: #279B5A;
+        justify-content: center;
+        align-items: center;
+        width: 117px;
+        margin-top: 20px;
+    }
+
+    /* .booknow:hover {
+        background: #279B5A;
+        color: white;
+    } */
+
+    .amemity {
+        display: flex;
+        gap: 10px;
+        padding: 15px;
+        border: 2px solid #D0D5DD;
+        border-radius: 100px;
+        text-align: center;
+        margin-bottom: 20px;
+        margin-right: 10px;
+        width: 130px
+    }
+
+    .star-rating {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .star {
+        color: #279B5A;
+        font-size: 20px;
+    }
+
+    .half-star {
+        position: relative;
+        display: inline-block;
+        width: 10px;
+        overflow: hidden;
+        color: #279B5A;
+    }
+
+    .turfbtn {
+        font-size: 14px;
+        width: 35%;
+        padding: 12px 25px 12px 20px;
+        border-radius: 10px;
+        border: #E0F1E8;
+        background-color: #E0F1E8;
+    }
+
+    .turfbtn:hover {
+        border: #279B5A;
+        background-color: #279B5A;
+        color: white;
+    }
+
+
+
+    .bigimage {
+        width: -webkit-fill-available;
+    }
+
+    .imgsport {
+        background-color: #E0F1E8;
+        padding: 15px 18px;
+        border-radius: 12px;
+        margin-right: 20px;
+    }
+
+    .imgsport.active {
+        background-color: #279B5A;
+    }
+
+    .booking-date {
+        padding: 18px 0;
+        height: 80px;
+        width: 80px;
+        border: 2px solid #BEBCBD;
+        text-align: center;
+        border-radius: 8px;
+        margin-top: 2px;
+        margin-left: 15px;
+        font-size: 15px;
+    }
+
+    .booking-date.active,
+    .booking-date:hover {
+        color: #FFFFFF;
+        background-color: #279B5A;
+        border: 2px solid #279B5A;
+    }
+
+    .booking-icon {
+        padding: 20px;
+        border-top: 1px solid #BEBCBD;
+        border-bottom: 1px solid #BEBCBD;
+        border-right: 1px solid #BEBCBD;
+        text-align: right;
+        border-bottom-right-radius: 8px;
+        border-top-right-radius: 8px;
+        margin: 1px;
+        background-color: #292D32;
+        height: 81px;
+        width: 200px;
+    }
+
+    .booking-time {
+        border: 2px solid #279B5A;
+        padding: 10px;
+        border-radius: 27px;
+        text-align: center;
+        width: 20%;
+        margin-right: 60px;
+        margin-bottom: 25px;
+    }
+
+    .swiper {
+        width: 100%;
+        overflow: hidden;
+    }
+
+    .swiper-wrapper {
+        display: flex;
+        /* transition-timing-function: linear !important; */
+    }
+
+    .swiper-slide {
+        flex-shrink: 0;
+        width: 400px;
+        align-items: center;
+        padding: 20px;
+        background: #fff;
+        border-radius: 10px;
+        border: 1px solid #E7F0E3;
+        margin: 10px;
+    }
+
+    .review-card {
+        display: flex;
+        align-items: center;
+        background: white;
+        border-radius: 10px;
+        max-width: 400px;
+        width: 100%;
+        gap: 15px;
+    }
+
+    .user-info {
+        flex-grow: 1;
+    }
+
+    .user-name {
+        font-size: 18px;
+        font-weight: 600;
+        color: #3C4242;
+        margin: 0;
+    }
+
+    .user-role {
+        font-size: 14px;
+        color: #5F5F5F;
+        font-weight: 400;
+    }
+
+    .rating {
+        text-align: right;
+    }
+
+    .stars {
+        padding-bottom: 9px;
+        padding-top: 0px;
+        margin-top: 0px;
+    }
+
+    .rating-score {
+        font-size: 15px;
+        font-weight: 400;
+        color: #737373;
+        margin: 0;
+        padding-bottom: 0px;
+    }
+
+    .user-img {
+        border: 1px solid #333;
+        border-radius: 100px;
+        height: 60px;
+        width: 60px;
+        padding: 5px;
+    }
+
+    .user-img img {
+        height: 48px;
+    }
+
+
+    .bid-container {
+        border: 1px solid #0b7a32;
+        border-radius: 26px;
+        padding: 20px 40px;
+        display: flex;
+        align-items: center;
+        background-color: #FFFFFF;
+        justify-content: space-between;
+        /* margin: auto; */
+    }
+
+    .bid {
+        border: 1px solid #0b7a32;
+        border-radius: 14px;
+        padding: 10px 10px;
+        display: flex;
+        text-align: center;
+
+        background-color: #FFFFFF;
+        justify-content: center;
+        margin: auto;
+    }
+
+    .profile {
+        display: flex;
+        align-items: center;
+    }
+
+    .profile img {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        margin-right: 10px;
+    }
+
+    .note-box {
+        background-color: #FF424214;
+        border-radius: 22px;
+        margin-left: 150px;
+        margin-right: 0px;
+        padding: 25px;
+        font-size: 18px;
+        width: 500px;
+    }
+
+    .address-turf,
+    .bid-turf {
+        display: none;
+    }
+
+    .details-turf,
+    .booking-date-container,
+    .booknow-turf {
+        display: block;
+    }
+
+    @media (min-width:800px) and (max-width:992px) {
+        .page-container {
+            margin-left: 30px;
+        }
+    }
+
+    @media (max-width: 992px) {
+
+        .booknow img {
+            margin-left: 10px;
         }
 
-        .week-container div, 
-        .time-grid div {
-            text-align: center;
-            /* border: 1px solid #ddd; For visibility */
+        .booknow {
+            padding: 15px 420px;
+        }
+    }
+
+    @media (max-width:892px) {
+        .booknow {
+            padding: 15px 370px;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .imagecol {
+            display: contents;
         }
 
-        .week-container {
-            display: flex;
-            width: 100%;
+        .img {
+            margin-left: auto;
+            margin-right: auto;
+            /* margin-top: 10px;
+            margin-bottom: 30px; */
+            margin-bottom: 20px;
         }
 
-        .week-container div {
-            flex: 1; /* Ensure equal width */
-            text-align: center;
+        .content {
+            margin: 10px;
         }
 
-        .calendar-container {
-            background: white;
-            border-radius: 51px;
+        .timeframe {
+            padding-left: 10px !important;
+        }
+
+        .booknow {
+            padding: 15px 320px;
+        }
+    }
+
+    @media (max-width:692px) {
+        .booknow {
+            padding: 15px 220px;
+        }
+    }
+
+    @media (max-width: 520px) {
+        .imagecol {
+            display: contents;
+        }
+
+        .booknow {
+            padding: 15px 150px 15px 120px;
+        }
+
+        .img {
+            margin-left: 12px;
+        }
+
+        .content {
+            margin: 10px;
+        }
+
+        .swiper-slide {
+            width: 200px;
+        }
+
+        .review-card {
+            display: block;
+        }
+
+        .rating {
+            text-align: left;
+        }
+    }
+
+    @media (max-width: 980px) {
+        .booking-time {
+            margin-right: 26px;
+        }
+    }
+
+    @media (max-width: 630px) {
+        .booking-time {
+            margin-right: 18px;
+        }
+    }
+
+    @media (max-width: 450px) {
+        .booking-time {
+            margin-right: 20px;
+            width: 25%;
+        }
+
+        .booking-date-container {
+            margin-left: 15px !important;
+        }
+    }
+
+    @media (min-width: 980px) and (max-width: 1220px) {
+        .imagecol {
+            justify-content: start;
             padding: 20px;
-            text-align: center;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
-        .calendar-header {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 20px;
-            font-weight: bold;
-            color: #2d472c;
+        .amemity {
+            width: 46px;
         }
 
-        .calendar-header i {
-            margin-right: 10px;
+        .turfbtn {
+            width: 46%;
         }
 
-        .calendar-grid {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            /* gap: 5px; */
-            margin-top: 10px;
-        }
-
-        .calendar-day {
-            padding: 10px;
-            text-align: center;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .calendar-day:hover {
-            background-color: #e9ecef;
-        }
-
-        .calendar-today {
-            background-color: #2d472c;
-            color: white;
-        }
-
-        .calendar-selected {
-            border: 1px solid #2d472c;
-        }
-
-        .month-year {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            margin-top: 0px;
-        }
-
-        .dropdown {
-            display: inline-block;
-        }
-
-        select {
-            border: none;
-            font-size: 18px;
-            font-weight: bold;
-            background: none;
-            color: #234723;
-            cursor: pointer;
-            outline: none;
-            overflow-y: hidden !important;
-        }
-
-        .weekdays {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            font-weight: bold;
-            margin-top: 25px;
-            color: #234723;
-        }
-
-        .toggle-container {
-            display: flex;
-            align-items: center;
-            gap: 13px;
-            font-size: 16px;
-            color: #6e6e6e;
-            margin-top: 20px;
-            justify-content: end;
-        }
-
-        .info-icon {
-            background-color: #234723;
-            color: white;
-            border-radius: 50%;
-            width: 20px;
-            height: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 12px;
-            cursor: pointer;
-        }
-
-        .toggle-switch {
-            position: relative;
-            display: inline-block;
-            width: 40px;
-            height: 20px;
-        }
-
-        .toggle-switch input {
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
-
-        .slider {
-            position: absolute;
-            cursor: pointer;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: #ccc;
-            transition: .4s;
-            border-radius: 20px;
-            height: 30px;
+        .booking-date {
             width: 50px;
         }
 
-        .slider:before {
-            position: absolute;
-            content: "";
-            height: 24px;
-            width: 24px;
-            left: 3px;
-            bottom: 3px;
-            background-color: white;
-            transition: .4s;
-            border-radius: 50%;
+        .booking-time {
+            margin-right: 36px;
+        }
+    }
+
+    @media (min-width: 1220px) and (max-width: 1500px) {
+        .imagecol {
+            justify-content: start;
+            padding: 20px;
         }
 
-        input:checked + .slider {
-            background-color: #234723;
+        .amemity {
+            width: 86px;
         }
 
-        input:checked + .slider:before {
-            transform: translateX(20px);
+        .turfbtn {
+            width: 45%;
         }
 
+        .bigimage {
+            height: 510px !important;
+        }
+
+        .booking-date {
+            width: 67px;
+        }
+
+        .booking-time {
+            width: 18%
+        }
+    }
+
+    .booking-time.selected {
+        background-color: #3F61DB !important;
+        color: white !important;
+        border-color: #3F61DB !important;
+    }
+
+    .booking-date.selected {
+        background-color: #3F61DB !important;
+        color: white !important;
+        border-color: #3F61DB !important;
+    }
+
+    #schedular {
+        display: grid;
+        grid-template-columns: auto repeat(7, 1fr);
+        /* Adjust column structure */
+        overflow-x: auto;
+        /* Enable horizontal scrolling */
+        /* white-space: nowrap; Prevent wrapping */
+        width: 100%;
+        /* Ensure it doesn't shrink */
+        max-width: 100%;
+        /* Ensure responsiveness */
+    }
+
+    .current-date {
+        font-weight: bold;
+        font-size: 16px;
+        color: black;
+    }
+
+    .selected-date {
+        font-weight: bold;
+        font-size: 16px;
+        background-color: yellow;
+        color: black;
+    }
+
+
+
+    .week-calendar {
+        width: 670px !important;
+    }
+
+    /* (max-width: 376px) and  */
+    @media (max-width: 376px) {
+        .week-calendar {
+            overflow-x: auto;
+            /* Enable scrolling */
+            white-space: nowrap;
+            scrollbar-width: thin;
+        }
+
+        .week-container,
         .calendar {
-            display: grid;
-            grid-template-columns: 80px repeat(7, 1fr); /* Time column + 7 days */
-            grid-template-rows: repeat(11, 70px); /* Adjust row height */
-            border: none;
-            font-family: 'Poppins', sans-serif !important;
-            font-size: 12px;
+            width: 670px;
+        }
+    }
+
+    /* (max-width: 1000px) and  */
+    @media (max-width: 1024px) {
+        .week-calendar {
+            overflow-x: auto;
+            /* Enable scrolling */
+            white-space: nowrap;
+            scrollbar-width: thin;
         }
 
-        .time-slot {
-            /* border: 1px solid #ddd; */
-            text-align: center;
-            padding: 5px;
-            cursor: pointer;
-            background-color: transparent;
-            font-weight: bold;
-            width: auto !important;
+        .week-container,
+        .calendar {
+            width: 670px;
         }
+    }
 
-        .event {
-            background-color: lightblue;
-            padding: 5px;
-            border-radius: 4px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 90%;
-            margin: auto;
-            font-size: 14px;
-        }
+    .week-container {
+        display: grid !important;
+        grid-template-columns: 90px repeat(7, 1fr);
+        /* First column blank, then 7 equal columns */
+        width: 100%;
+        margin-left: -23px;
+        gap: 29px;
+    }
 
-        .time-slot, .day-header {
-            /* border: 1px solid #ddd; */
-            border-bottom: 1px solid #ddd;
-            border-right: 1px solid #ddd;
-            text-align: center;
-            padding: 5px;
-            cursor: pointer;
-        }
+    /* .week-container div:first-child {
+            visibility: hidden;
+        } */
 
-        /* .week-container {
+    .time-grid {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        /* Match with week-container */
+        width: 100%;
+    }
+
+    .week-container div,
+    .time-grid div {
+        text-align: center;
+        /* border: 1px solid #ddd; For visibility */
+    }
+
+    .week-container {
+        display: none !important;
+        width: 100%;
+    }
+
+    .week-container div {
+        flex: 1;
+        /* Ensure equal width */
+        text-align: center;
+    }
+
+    .calendar-container {
+        background: white;
+        border-radius: 51px;
+        padding: 20px;
+        text-align: center;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .calendar-header {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 20px;
+        font-weight: bold;
+        color: #2d472c;
+    }
+
+    .calendar-header i {
+        margin-right: 10px;
+    }
+
+    .calendar-grid {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        /* gap: 5px; */
+        margin-top: 10px;
+    }
+
+    .calendar-day {
+        padding: 12px;
+        text-align: center;
+        border-radius: 5px;
+        cursor: pointer;
+        color: #000000;
+        font-weight: 400;
+    }
+
+    .calendar-day:hover {
+        background-color: #e9ecef;
+    }
+
+    .calendar-today {
+        background-color: #2d472c;
+        color: white;
+    }
+
+    .calendar-selected {
+        border: 1px solid #2d472c;
+        color: #000000;
+        font-weight: 700;
+    }
+
+    .month-year {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 0px;
+    }
+
+    .dropdown {
+        display: inline-block;
+    }
+
+    select {
+        border: none;
+        font-size: 18px;
+        font-weight: bold;
+        background: none;
+        color: #234723;
+        cursor: pointer;
+        outline: none;
+        overflow-y: hidden !important;
+    }
+
+    .weekdays {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        font-weight: bold;
+        margin-top: 25px;
+        color: #234723;
+    }
+
+    .toggle-container {
+        display: flex;
+        align-items: center;
+        gap: 13px;
+        font-size: 16px;
+        color: #6e6e6e;
+        margin-top: 20px;
+        justify-content: end;
+    }
+
+    .info-icon {
+        background-color: #234723;
+        color: white;
+        border-radius: 50%;
+        width: 20px;
+        height: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+        cursor: pointer;
+    }
+
+    .toggle-switch {
+        position: relative;
+        display: inline-block;
+        width: 40px;
+        height: 20px;
+    }
+
+    .toggle-switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+
+    .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        transition: .20s;
+        border-radius: 20px;
+        height: 30px;
+        width: 50px;
+    }
+
+    .slider:before {
+        position: absolute;
+        content: "";
+        height: 24px;
+        width: 24px;
+        left: 3px;
+        bottom: 3px;
+        background-color: white;
+        transition: .20s;
+        border-radius: 50%;
+    }
+
+    input:checked+.slider {
+        background-color: #234723;
+    }
+
+    input:checked+.slider:before {
+        transform: translateX(20px);
+    }
+
+    .calendar {
+        display: grid;
+        grid-template-columns: 80px repeat(7, 1fr);
+        /* Time column + 7 days */
+        grid-template-rows: repeat(11, 70px);
+        /* Adjust row height */
+        border: none;
+        font-family: 'Poppins', sans-serif !important;
+        font-size: 12px;
+    }
+
+    .time-slot {
+        /* border: 1px solid #ddd; */
+        text-align: center;
+        padding: 5px;
+        cursor: pointer;
+        background-color: transparent;
+        font-weight: bold;
+        width: auto !important;
+        height: auto !important;
+
+    }
+
+    .events {
+        background-color: lightblue;
+        padding: 5px;
+        border-radius: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 90%;
+        margin: auto;
+        font-size: 14px;
+    }
+
+    .time-slot,
+    .day-header {
+        /* border: 1px solid #ddd; */
+        border-bottom: 1px solid #ddd;
+        border-right: 1px solid #ddd;
+        text-align: center;
+        padding: 5px;
+        cursor: pointer;
+    }
+
+    /* .week-container {
             display: flex;
             justify-content: end;
             gap: 30px;
@@ -260,678 +767,615 @@
             margin-bottom: 10px;
         } */
 
-        .week-day {
-            text-align: center;
-            padding: 8px;
-            font-size: small;
-            width: 55px;
-        }
-        
-        .highlight {
-            background-color: #191919; 
-            color: white;
-            font-weight: bold;
-            border-radius: 5px;
-            padding: 3px;
-        }
-
-    </style>
-    <style>
-        .actions {
-            display: flex;
-            gap: 10px;
-        }
-    
-        .btn.remove {
-            padding: 10px 20px;
-            border-radius: 4px;
-            border: none;
-            cursor: pointer;
-            font-weight: bold;
-            font-size: 16px;
-            font-weight: 700;
-        }
-    
-        .btn.save {
-            background-color: #299D91;
-            color: white;
-            font-size: 16px;
-            font-weight: 700;
-        }
-    
-        .btn.pay {
-            color: #299D91;
-            border: 2px solid #299D91;
-            font-size: 16px;
-            font-weight: 700;
-        }
-    span{
-        font-size: 12px !important;
+    .week-day {
+        text-align: center;
+        padding: 8px;
+        font-size: small;
+        width: 55px;
     }
-        .modal-demo {
-            width: 350px !important;
-            max-height: 90vh;
-            /* Ensures it doesn't exceed viewport height */
-            border-radius: 15px;
-            padding: 0px 30px 10px;
-            overflow-y: auto;
-            scrollbar-width: none;
-    
-            /* For Firefox */
-            -ms-overflow-style: none;
-            /* For Internet Explorer/Edge */
-        }
-    
-        /* Hide scrollbar for WebKit browsers (Chrome, Safari) */
-        .modal-demo::-webkit-scrollbar {
+
+    .highlight {
+        background-color: #191919;
+        color: white;
+        font-weight: bold;
+        border-radius: 5px;
+        padding: 3px;
+    }
+
+    .date-picker {
+        display: none;
+    }
+
+    @media (max-width:991px) {
+
+        .rowdate,
+        .booking-icon {
             display: none;
         }
-    
-        .form-control {
-            border-radius: 8px;
-            padding: 20px;
-            height: 45px;
-            font-size: 12px;
-        }
-    
-        span {
-            font-size: 16px;
-        }
-    
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-    
-            to {
-                opacity: 1;
-            }
-        }
-    
-        @keyframes slideIn {
-            from {
-                transform: translateY(-20px);
-                opacity: 0;
-            }
-    
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-      
-    
-        .table-header {
-            display: grid;
-            grid-template-columns: 1fr 2fr 1fr;
-            color: #4b5563;
-            font-weight: 600;
-            font-size: 12px;
-            margin-bottom: 0.5rem;
-            color: #7C8082;
-        }
-    
-        .list {
-            max-height: 24rem;
-            height: 380px !important;
-            overflow-y: auto;
-            scrollbar-width: none;
-        }
-    
-        .list::-webkit-scrollbar {
-            display: none;
-        }
-    
-        .list-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0.5rem;
-            border: none;
-            border-left: 1px solid #09BB71;
-            border-right: 1px solid #09BB71;
-            border-bottom: 2px solid #09BB71;
-            border-radius: 10px;
-            margin-bottom: 0.5rem;
-            /* box-shadow: 0 4px 4px #09BB71; */
-            transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
-            margin-left: auto;
-            margin-right: auto;
-        }
-    
-        .list-item:hover {
-            background-color: #FFFFFF;
-            transform: scale(1.05);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            z-index: 10;
-            position: relative;
-            border: 1px solid #000000;
-        }
-    
-        .list-item img {
-            width: 2rem;
-            height: 2rem;
-            border-radius: 50%;
-        }
-    
-        .list-item .info {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-    
-        .list-item .info span {
-            font-weight: 600;
-            font-size: 16px !important;
-        }
-    
-        .list-item .info .name {
-            color: #4b5563;
-        }
-    
-        .list-item .amount {
-            color: #4b5563;
-            font-weight: 400;
-            font-size: 14px;
-        }
-    
-        .list-item .info img.opacity-50 {
-            opacity: 0.5;
-        }
-    
-        .list-item .info .name.opacity-50 {
-            opacity: 0.5;
-        }
-    
-        .list-item.light {
-                opacity: 0.5;
-            }
-        .list-item.large {
-            width: 100%;
-        }
-    
-        .list-item.medium {
-            width: 94%;
-        }
-    
-        .list-item.small {
-            width: 88%;
-        }
-    
-        .footer {
-            display: flex;
-            justify-content: space-between;
-        }
-    
-        .footer button {
-            padding: 0.5rem 0rem;
-            border-radius: 5px;
-            font-weight: 600;
-            font-size: 0.875rem;
-            cursor: pointer;
-            transition: background-color 0.3s, transform 0.3s;
-            width: 48%;
-        }
-    
-        .footer .back {
-            background-color: #ffffff;
-            color: #10b981;
-            border: 1px solid #10b981;
-        }
-    
-        .footer .back:hover {
-            background-color: #ffffff;
-            transform: scale(1.05);
-        }
-    
-        .footer .select {
-            background-color: #10b981;
-            color: white;
-            border: none;
-        }
-    
-        .footer .select:hover {
-            background-color: #059669;
-            transform: scale(1.05);
-        }
-    
-        @media (max-width: 640px) {
-    
-            .table-header {
-                font-size: 0.75rem;
-            }
-    
-            .list-item .info span,
-            .list-item .amount {
-                font-size: 0.75rem;
-            }
-    
-            .footer button {
-                padding: 0.5rem 1rem;
-                font-size: 0.75rem;
-            }
-        }
-    </style>
-    <div class="page-title-box">
 
-            <div class="row" style="font-family: 'Poppins', sans-serif !important;">
-                <div class="col-md-8 col-lg-4 col-sm-12 date-picker">
-                    <div class="calendar-container" id="calendar" style="font-size: 12px !important;  box-shadow: 0px 25px 30px #00000040;">
-                        <div class="calendar-header">
-                            <img class="mr-2" src="{{asset('assets/image/client/calendargreen.svg')}}" alt="dashboard" height="">
-                            <div class="month-year">
-                                <select id="monthSelector" onchange="updateCalendar()"></select>
-                                <select id="yearSelector" onchange="updateCalendar()"></select>
-                            </div>
-                        </div>
-                        <div class="weekdays">
-                            <div>Su</div>
-                            <div>Mo</div>
-                            <div>Tu</div>
-                            <div>We</div>
-                            <div>Th</div>
-                            <div>Fr</div>
-                            <div>Sa</div>
-                        </div>
-                        <div class="calendar-grid" id="calendarDays"></div>
-                    </div>
+        .date-picker {
+            display: block;
+        }
+    }
 
-                    <div class="toggle-container me-4">
-                        <div class="info-icon">i</div>
-                        <span>Set Bedding</span>
-                        <label class="toggle-switch">
-                            <input type="checkbox" checked>
-                            <span class="slider"></span>
-                        </label>
-                    </div>
-                    <div class="mt-4 p-2">
-                        <div class="card tilebox-one" style="border-radius: 7px; box-shadow: 0px 17px 25px #00000040; height: 100px; padding: 20px 20px 15px 20px;">
-                            <div class="d-flex align-items-center">
-                                <div class="me-3 d-flex align-items-center">
-                                    <img src="{{asset('assets/image/client/linegreen.svg')}}" alt="dashboard" height="60px">
-                                </div>
-                                <div class="flex-grow-1">
-                                    <h6 class="mt-2 mb-1" style="font-size: 13.5px; color: #898989;">Total Booked</h6>
-                                    <h3 data-plugin="counterup" style="font-size: 23.5px; font-weight: 700;">135</h3>
-                                </div>
-                                <div class="ms-auto">
-                                    <button style="border: none; background-color: #109145; box-shadow: 0 2px 4px #00000040; border-radius: 50px; padding: 6px 7px;"> 
-                                        <img src="{{asset('assets/image/client/calendarwhite.svg')}}" alt="dashboard" style="width: 20px;">
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card tilebox-one" style="border-radius: 7px; box-shadow: 0px 17px 25px #00000040; height: 100px; padding: 20px 20px 15px 20px;">
-                            <div class="d-flex align-items-center">
-                                <div class="me-3 d-flex align-items-center">
-                                    <img src="{{asset('assets/image/client/lineblack.svg')}}" alt="dashboard" height="60px">
-                                </div>
-                                <div class="flex-grow-1">
-                                    <h6 class="mt-2 mb-1" style="font-size: 13.5px; color: #898989;">Total Available</h6>
-                                    <h3 data-plugin="counterup" style="font-size: 23.5px; font-weight: 700;">65</h3>
-                                </div>
-                                <div class="ms-auto">
-                                    <button style="border: none; background-color: #191F2F; box-shadow: 0 2px 4px #00000040; border-radius: 50px; padding: 6px 7px;"> 
-                                        <img src="{{asset('assets/image/client/calendarwhite.svg')}}" alt="dashboard" style="width: 20px;">
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card tilebox-one" style="border-radius: 7px; box-shadow: 0px 17px 25px #00000040; height: 100px; padding: 20px 20px 15px 20px;">
-                            <div class="d-flex align-items-center">
-                                <div class="me-3 d-flex align-items-center">
-                                    <img src="{{asset('assets/image/client/linegray.svg')}}" alt="dashboard" height="60px">
-                                </div>
-                                <div class="flex-grow-1">
-                                    <h6 class="mt-2 mb-1" style="font-size: 13.5px; color: #898989;">Total Slots</h6>
-                                    <h3 data-plugin="counterup" style="font-size: 23.5px; font-weight: 700;">200</h3>
-                                </div>
-                                <div class="ms-auto">
-                                    <button style="border: none; background-color: #ffffff; box-shadow: 0 2px 4px #00000040; border-radius: 50px; padding: 6px 7px;"> 
-                                        <img src="{{asset('assets/image/client/calendarblack.svg')}}" alt="dashboard" style="width: 20px;">
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+    @media (max-width:450px) {
+        .date-picker {
+            padding-left: 0px;
+        }
+    }
+</style>
+<section class="content pt-0">
+    <div class="row">
+        <div class="col-md-2 imagecol">
+            <img src="{{ asset('assets/image/users/booking1.svg') }}" class="img" alt="Turf"><br>
+            <img src="{{ asset('assets/image/users/booking2.svg') }}" class="img" alt="Turf"><br>
+            <img src="{{ asset('assets/image/users/booking3.svg') }}" class="img" alt="Turf"><br>
+            <img src="{{ asset('assets/image/users/booking1.svg') }}" class="img" alt="Turf"><br>
+        </div>
+        <div class="col-xl-4 col-lg-5 col-md-7 col-sm-12">
+            <img src="{{ asset('assets/image/users/Group 95.svg') }}" alt="Turf" class="bigimage"><br>
+        </div>
 
+        <!--<div class="col-xl-1 col-lg-1 col-md-1 col-sm-1"></div>  -->
+
+        <div class="col-xl-4 col-lg-3 col-md-12 col-sm-12  p-3 mt-3 details-turf">
+            <h2>Name of the Turf</h2>
+            <div class="star-rating ">
+                <span class="star">★</span>
+                <span class="star">★</span>
+                <span class="star">★</span>
+                <span class="star">★</span>
+                <span class="half-star ">★</span>
+                <span style="font-size:13px; color: #9F9F9F; border-left: 1px solid #9F9F9F;" class="p-2">5 Customer
+                    Review</span>
+            </div>
+            <p style="color: #3F4646;" class="mt-2"><strong>Rs. 2,000</strong></p>
+            <p style="font-size: 13px; color: #807D7E;">Setting the bar as one of the loudest speakers in its class, the
+                Kilburn is a
+                compact,
+                stout-hearted hero with a well-balanced audio.</p>
+            <h6>Size</h6>
+            <div class="d-flex gap-3">
+                <button class="turfbtn"><b>Turf A : </b>600x600</button>
+                <button class="turfbtn"><b>Turf B : </b> 600x600</button>
+            </div>
+            <h6 class="mt-3">Amenities</h6>
+            <div class="row" style="margin-left: 2px;">
+                <div class="amemity"></div>
+                <div class="amemity"></div>
+                <div class="amemity"></div>
+                <div class="amemity"></div>
+            </div>
+            <h6 class="mt-3">Select Sports</h6>
+            <div class="sports d-flex">
+                <div class="imgsport"><img src="{{ asset('assets/image/users/img 7.svg') }}"></div>
+                <div class="imgsport active"><img src="{{ asset('assets/image/users/cricket-bat.svg') }}"></div>
+            </div>
+        </div>
+        <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12 align-items-center justify-items-center booknow-turf ">
+            <div class="booknow"><img src="{{ asset('assets/image/users/Groupb.svg') }}">
+                <p class="mb-0">Book <br>
+                    Now</p>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <div class="container-fluid ml-0 pl-0 mt-3 booking-date-container">
+        <div class="row mb-3" style="font-size: 22px; font-weight: 400;">
+            <div class="col-md-1"></div>
+            <div class="col-md-11">
+                Booking
+            </div>
+        </div>
+        <div class="row ml-0" style="margin-left:0px ;">
+            <div class="col-lg-2 pl-0 booking-icon">
+                <img src="{{ asset('assets/image/users/Group 1272628533.svg') }}" class="ml-auto">
+            </div>
+            <div class="col-md-9 col-lg-9 col-sm-9  rowdate">
+                <div class="row date-selection" id="dateSelection">
                 </div>
-                <div class="col-md-12 col-lg-8 col-sm-12">
-                    <table class="table table-hover text-nowrap">
-               
-                        <tbody>
-                            
-                            <div class="row" style="font-family: 'Poppins', sans-serif !important;">
-                            <div class="container week-calendar">
-                                <div id="weekDates" class="week-container">
-                                    <div class="empty" style="padding: 12px;"></div>
-                                </div>
-                                
-                                <div class="calendar" id="schedular"></div>
-                            </div>
-                        
-
-
-                            <div id="payment-withdraw" class="modal-demo">
-                                <div class="d-flex pr-3 pt-3 align-items-center justify-content-between mb-0" style="width: 100%; height: auto;">
-                                    <button type="button" class="btn-close ml-auto" onclick="Custombox.modal.close();">
-                                        <span class="sr-only">Close</span>
-                                    </button>
-                                </div>
-                                <div class="add-text ml-2 mt-0" style="font-size: small;">
-                                    <div class="container-fluid">
-                                        <div class="mb-2">
-                                            <div class="row">
-                                                <input type="hidden" id="userid">
-                                                <div class="col-md-12">
-                                                    <span>User Name</span>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <input type="text" id="username" class="form-control" name="name" placeholder="Abhishek Guleria">
-                                                </div>
-                                            </div>
-                                        </div>
-                            
-                                        <div class="mb-2">
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <span>Venue</span>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <input type="text" class="form-control" name="venue" placeholder="Sports complex,abc,393001">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="mb-2">
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <span>Time & Date</span>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <input type="text" class="form-control" name="timedate" placeholder="9AM , 17 Jan 2025">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="mb-2">
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <span>Entry Time</span>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <input type="text" class="form-control" name="entrytime" placeholder="N/A">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="mb-2">
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <span>Exit Time</span>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <input type="text" class="form-control" name="exittime" placeholder="N/A">
-                                                </div>
-                                            </div>
-                                        </div>
-                                
-                                        <div class="mb-2 pending-payment">
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <span>Pending Payment</span>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <input type="text" class="form-control" name="pendingpayment" placeholder="00.00 ₹">
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="mb-2 total-fields" style="display: none;">
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <span>Total Amount</span>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <input type="text" class="form-control" id="total_amount" name="total_amount" placeholder="00.00 ₹" readonly>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="mb-2 total-fields" style="display: none;">
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <span>Amount Payable</span>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <input type="text" class="form-control" id="amount_payable" name="amount_payable" placeholder="00.00 ₹" readonly>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        
-                            
-                                        <div class="mt-4 mb-2 pay-buttons" style="border: none;">
-                                            <div class="mb-2">
-                                                <div class="row">
-                                                    <div class="col-md-12 d-flex action-buttons">
-                                                        <button class="btn save mr-2 refund-btn" style="width: 100%;">Refund</button>
-                                                        <button class="btn pay mr-3 pay-btn" style="width: 100%;">
-                                                        {{-- <button class="btn pay mr-3 pay-btn" style="width: 100%;" id="addname"> --}}
-                                                            Pay
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                       
-                                        <div class=" mt-4 mb-2 book-buttons" style="border: none; display: none;">
-                                            <div class="mb-2">
-                                                <div class="row">
-                                                    <div class="col-md-12 d-flex action-buttons">
-                                                        <button class="btn save mr-2 cancel-button" style="width: 100%;">Cancel</button>
-                                                        {{-- <button class="btn pay mr-3 book-btn" style="width: 100%;" onclick="switchToBooking();"> --}}
-                                                        <button class="btn pay mr-3 book-btn" style="width: 100%;" id="addname">
-                                                            Book
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div id="bedding" class="modal-demo">
-                                <div class="d-flex pr-3 pt-3 align-items-center justify-content-between mb-0" style="width: 100%; height: auto;">
-                                    <button type="button" class="btn-close ml-auto pl-3 pb-0" onclick="Custombox.modal.close();">
-                                        <span class="sr-only">Close</span>
-                                    </button>
-                                </div>
-                                <div class="add-text ml-2 mt-0" style="font-size: small;">
-                                    <p style="font-size:12px; color: #7C8082;" class="pt-1 mr-5">The winner has been selected automatically within sometime <span style="font-size: 12px; color:black">00:00:00</span></p>
-                                    <div class="container-fluid">
-                                        <div class="table-header">
-                                            <div>Rank</div>
-                                            <div class="ml-3">Name</div>
-                                            <div class="ml-1">Amount</div>
-                                        </div>
-                                        <div class="list">
-                                            <div class="list-item selected large">
-                                                <div class="info">
-                                                    <span>#1</span>
-                                                        <img src="{{ asset('assets/image/client/Ellipse 4.svg') }}">
-                                                    <span class="name">Devon Lane</span>
-                                                </div>
-                                                <span class="amount">600</span>
-                                            </div>
-                                            <div class="list-item medium">
-                                                <div class="info">
-                                                    <span>#2</span>
-                                                        <img src="{{ asset('assets/image/client/Ellipse 4.svg') }}">
-                                                    <span class="name">Devon Lane</span>
-                                                </div>
-                                                <span class="amount">550</span>
-                                            </div>
-                                            <div class="list-item small">
-                                                <div class="info">
-                                                    <span>#3</span>
-                                                        <img src="{{ asset('assets/image/client/Ellipse 4.svg') }}">
-                                                    <span class="name">Devon Lane</span>
-                                                </div>
-                                                <span class="amount">500</span>
-                                            </div>
-                                            <div class="list-item small">
-                                                <div class="info">
-                                                    <span>#4</span>
-                                                        <img src="{{ asset('assets/image/client/Ellipse 4.svg') }}">
-                                                    <span class="name">Devon Lane</span>
-                                                </div>
-                                                <span class="amount">3768</span>
-                                            </div>
-                                            <div class="list-item small">
-                                                <div class="info">
-                                                    <span>#5</span>
-                                                        <img src="{{ asset('assets/image/client/Ellipse 4.svg') }}">
-                                                    <span class="name">Devon Lane</span>
-                                                </div>
-                                                <span class="amount">2000</span>
-                                            </div>
-                                            <div class="list-item light small">
-                                                <div class="info">
-                                                    <span>#6</span>
-                                                        <img src="{{ asset('assets/image/client/Ellipse 4.svg') }}">
-                                                    <span class="name">Devon Lane</span>
-                                                </div>
-                                                <span class="amount">1500</span>
-                                            </div>
-                                            <div class="list-item light small">
-                                                <div class="info">
-                                                    <span>#7</span>
-                                                        <img src="{{ asset('assets/image/client/Ellipse 4.svg') }}">
-                                                    <span class="name">Devon Lane</span>
-                                                </div>
-                                                <span class="amount">4970</span>
-                                            </div>
-                                        
-                                            <div class="list-item light small">
-                                                <div class="info">
-                                                    <span>#8</span>
-                                                        <img src="{{ asset('assets/image/client/Ellipse 4.svg') }}">
-                                                    <span class="name">Devon Lane</span>
-                                                </div>
-                                                <span class="amount">700</span>
-                                            </div>
-                                        </div>
-                                        <div class="footer">
-                                            <button class="back">Back</button>
-                                            <button class="select">Select</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                           
-                        </tbody>
-                    </table>
+            </div>
+            <div class="col-md-12 col-lg-12 col-sm-12 date-picker">
+                <div class="calendar-container" id="calendar"
+                    style="font-size: 12px !important;  box-shadow: 0px 25px 30px #00000040;">
+                    <div class="calendar-header">
+                        <img class="mr-2" src="{{ asset('assets/image/client/calendargreen.svg') }}" alt="dashboard"
+                            height="">
+                        <div class="month-year">
+                            <!-- <select id="monthSelector" onchange="updateCalendar()"></select>
+                        <select id="yearSelector" onchange="updateCalendar()"></select> -->
+                            <select id="monthSelector"></select>
+                            <select id="yearSelector"></select>
+                        </div>
+                    </div>
+                    <div class="weekdays">
+                        <div>Su</div>
+                        <div>Mo</div>
+                        <div>Tu</div>
+                        <div>We</div>
+                        <div>Th</div>
+                        <div>Fr</div>
+                        <div>Sa</div>
+                    </div>
+                    <div class="calendar-grid" id="calendarDays"></div>
                 </div>
             </div>
 
-    </div>   
+            <div class="row mt-4 ">
+                <div class="col-md-1"></div>
+                <div class="col-md-10 pl-0 timeframe">
+                    <div class="mb-3 ml-0">Time Frame
+                    </div>
+                    <div class="row ml-0">
+                        <div class="col-sm-3 booking-time" style="background-color:#279B5A;color:#FFFFFF;">
+                            09:00 am
+                        </div>
+                        <div class="col-sm-3 booking-time"
+                            style="background-color:#3F61DB;color:#FFFFFF; border: #3F61DB;">
+                            10:00 am
+                        </div>
+                        <div class="col-sm-3 booking-time">
+                            11:00 am
+                        </div>
+                        <div class="col-sm-3 booking-time" style="background-color:#279B5A;color:#FFFFFF;">
+                            12:00 am
+                        </div>
+                        <div class="col-sm-3 booking-time">
+                            01:00 pm
+                        </div>
+                        <div class="col-sm-3 booking-time">
+                            02:00 pm
+                        </div>
+                        <div class="col-sm-3 booking-time">
+                            03:00 pm
+                        </div>
+                        <div class="col-sm-3 booking-time">
+                            04:00 pm
+                        </div>
+                        <div class="col-sm-3 booking-time">
+                            05:00 pm
+                        </div>
+                        <div class="col-sm-3 booking-time">
+                            06:00 pm
+                        </div>
+                        <div class="col-sm-3 booking-time">
+                            07:00 pm
+                        </div>
+                        <div class="col-sm-3 booking-time">
+                            08:00 pm
+                        </div>
+                        <div class="col-sm-3 booking-time">
+                            09:00 pm
+                        </div>
+                        <div class="col-sm-3 booking-time">
+                            10:00 pm
+                        </div>
+                        <div class="col-sm-3 booking-time">
+                            11:00 pm
+                        </div>
+                        <div class="col-sm-3 booking-time">
+                            12:00 pm
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-1"></div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid ml-0 mt-4" style="background-color:#FFFFFF ;">
+        <div class="row ml-0">
+            <div class="col-lg-12 ml-0">
+                <h5 style="text-align: center;">— Reviews</h5>
+                <div class="swiper mySwiper mt-4 mb-3">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="review-card">
+                                <div class="user-img">
+                                    <img src="{{ asset('assets/image/users/Ellipse 2519.svg') }}">
+                                </div>
+                                <div class="user-info">
+                                    <h3 class="user-name">Viezh Robert</h3>
+                                    <span class="user-role">User</span>
+                                </div>
+                                <div class="rating">
+                                    <span class="rating-score">4.5</span>
+                                    <div class="stars">
+                                        <img src="{{ asset('assets/image/users/Star 10.svg') }}">
+                                        <img src="{{ asset('assets/image/users/Star 10.svg') }}">
+                                        <img src="{{ asset('assets/image/users/Star 10.svg') }}">
+                                        <img src="{{ asset('assets/image/users/Star 10.svg') }}">
+                                        <img src="{{ asset('assets/image/users/Star 10.svg') }}">
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="mt-2" style="font-size: 13px;color:#3C4242; padding:;10px; line-height:25px;">
+                                “Wow... I am very happy to use this VPN, it turned
+                                out to be
+                                more than my expectations and so far there have been no problems. LaslesVPN
+                                always the
+                                best”.</p>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="review-card">
+                                <div class="user-img">
+                                    <img src="{{ asset('assets/image/users/Ellipse 2519.svg') }}">
+                                </div>
+                                <div class="user-info">
+                                    <h3 class="user-name">Viezh Robert</h3>
+                                    <span class="user-role">User</span>
+                                </div>
+                                <div class="rating">
+                                    <span class="rating-score">4.5</span>
+                                    <div class="stars">
+                                        <img src="{{ asset('assets/image/users/Star 10.svg') }}">
+                                        <img src="{{ asset('assets/image/users/Star 10.svg') }}">
+                                        <img src="{{ asset('assets/image/users/Star 10.svg') }}">
+                                        <img src="{{ asset('assets/image/users/Star 10.svg') }}">
+                                        <img src="{{ asset('assets/image/users/Star 10.svg') }}">
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="mt-2" style="font-size: 13px;color:#3C4242; padding:;10px; line-height:25px;">
+                                “Wow... I am very happy to use this VPN, it turned
+                                out to be
+                                more than my expectations and so far there have been no problems. LaslesVPN
+                                always the
+                                best”.</p>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="review-card">
+                                <div class="user-img">
+                                    <img src="{{ asset('assets/image/users/Ellipse 2519.svg') }}">
+                                </div>
+                                <div class="user-info">
+                                    <h3 class="user-name">Viezh Robert</h3>
+                                    <span class="user-role">User</span>
+                                </div>
+                                <div class="rating">
+                                    <span class="rating-score">4.5</span>
+                                    <div class="stars">
+                                        <img src="{{ asset('assets/image/users/Star 10.svg') }}">
+                                        <img src="{{ asset('assets/image/users/Star 10.svg') }}">
+                                        <img src="{{ asset('assets/image/users/Star 10.svg') }}">
+                                        <img src="{{ asset('assets/image/users/Star 10.svg') }}">
+                                        <img src="{{ asset('assets/image/users/Star 10.svg') }}">
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="mt-2" style="font-size: 13px;color:#3C4242; padding:;10px; line-height:25px;">
+                                “Wow... I am very happy to use this VPN, it turned
+                                out to be
+                                more than my expectations and so far there have been no problems. LaslesVPN
+                                always the
+                                best”.</p>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="review-card">
+                                <div class="user-img">
+                                    <img src="{{ asset('assets/image/users/Ellipse 2519.svg') }}">
+                                </div>
+                                <div class="user-info">
+                                    <h3 class="user-name">Viezh Robert</h3>
+                                    <span class="user-role">User</span>
+                                </div>
+                                <div class="rating">
+                                    <span class="rating-score">4.5</span>
+                                    <div class="stars">
+                                        <img src="{{ asset('assets/image/users/Star 10.svg') }}">
+                                        <img src="{{ asset('assets/image/users/Star 10.svg') }}">
+                                        <img src="{{ asset('assets/image/users/Star 10.svg') }}">
+                                        <img src="{{ asset('assets/image/users/Star 10.svg') }}">
+                                        <img src="{{ asset('assets/image/users/Star 10.svg') }}">
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="mt-2" style="font-size: 13px;color:#3C4242; padding:;10px; line-height:25px;">
+                                “Wow... I am very happy to use this VPN, it turned
+                                out to be
+                                more than my expectations and so far there have been no problems. LaslesVPN
+                                always the
+                                best”.</p>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="review-card">
+                                <div class="user-img">
+                                    <img src="{{ asset('assets/image/users/Ellipse 2519.svg') }}">
+                                </div>
+                                <div class="user-info">
+                                    <h3 class="user-name">Viezh Robert</h3>
+                                    <span class="user-role">User</span>
+                                </div>
+                                <div class="rating">
+                                    <span class="rating-score">4.5</span>
+                                    <div class="stars">
+                                        <img src="{{ asset('assets/image/users/Star 10.svg') }}">
+                                        <img src="{{ asset('assets/image/users/Star 10.svg') }}">
+                                        <img src="{{ asset('assets/image/users/Star 10.svg') }}">
+                                        <img src="{{ asset('assets/image/users/Star 10.svg') }}">
+                                        <img src="{{ asset('assets/image/users/Star 10.svg') }}">
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="mt-2" style="font-size: 13px;color:#3C4242; padding:;10px; line-height:25px;">
+                                “Wow... I am very happy to use this VPN, it turned
+                                out to be
+                                more than my expectations and so far there have been no problems. LaslesVPN
+                                always the
+                                best”.</p>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="review-card">
+                                <div class="user-img">
+                                    <img src="{{ asset('assets/image/users/Ellipse 2519.svg') }}">
+                                </div>
+                                <div class="user-info">
+                                    <h3 class="user-name">Viezh Robert</h3>
+                                    <span class="user-role">User</span>
+                                </div>
+                                <div class="rating">
+                                    <span class="rating-score">4.5</span>
+                                    <div class="stars">
+                                        <img src="{{ asset('assets/image/users/Star 10.svg') }}">
+                                        <img src="{{ asset('assets/image/users/Star 10.svg') }}">
+                                        <img src="{{ asset('assets/image/users/Star 10.svg') }}">
+                                        <img src="{{ asset('assets/image/users/Star 10.svg') }}">
+                                        <img src="{{ asset('assets/image/users/Star 10.svg') }}">
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="mt-2" style="font-size: 13px;color:#3C4242; padding:;10px; line-height:25px;">
+                                “Wow... I am very happy to use this VPN, it turned
+                                out to be
+                                more than my expectations and so far there have been no problems. LaslesVPN
+                                always the
+                                best”.</p>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="review-card">
+                                <div class="user-img">
+                                    <img src="{{ asset('assets/image/users/Ellipse 2519.svg') }}">
+                                </div>
+                                <div class="user-info">
+                                    <h3 class="user-name">Viezh Robert</h3>
+                                    <span class="user-role">User</span>
+                                </div>
+                                <div class="rating">
+                                    <span class="rating-score">4.5</span>
+                                    <div class="stars">
+                                        <img src="{{ asset('assets/image/users/Star 10.svg') }}">
+                                        <img src="{{ asset('assets/image/users/Star 10.svg') }}">
+                                        <img src="{{ asset('assets/image/users/Star 10.svg') }}">
+                                        <img src="{{ asset('assets/image/users/Star 10.svg') }}">
+                                        <img src="{{ asset('assets/image/users/Star 10.svg') }}">
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="mt-2" style="font-size: 13px;color:#3C4242; padding:;10px; line-height:25px;">
+                                “Wow... I am very happy to use this VPN, it turned
+                                out to be
+                                more than my expectations and so far there have been no problems. LaslesVPN
+                                always the
+                                best”.</p>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="review-card">
+                                <div class="user-img">
+                                    <img src="{{ asset('assets/image/users/Ellipse 2519.svg') }}">
+                                </div>
+                                <div class="user-info">
+                                    <h3 class="user-name">Viezh Robert</h3>
+                                    <span class="user-role">User</span>
+                                </div>
+                                <div class="rating">
+                                    <span class="rating-score">4.5</span>
+                                    <div class="stars">
+                                        <img src="{{ asset('assets/image/users/Star 10.svg') }}">
+                                        <img src="{{ asset('assets/image/users/Star 10.svg') }}">
+                                        <img src="{{ asset('assets/image/users/Star 10.svg') }}">
+                                        <img src="{{ asset('assets/image/users/Star 10.svg') }}">
+                                        <img src="{{ asset('assets/image/users/Star 10.svg') }}">
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="mt-2" style="font-size: 13px;color:#3C4242; padding:;10px; line-height:25px;">
+                                “Wow... I am very happy to use this VPN, it turned
+                                out to be
+                                more than my expectations and so far there have been no problems. LaslesVPN
+                                always the
+                                best”.</p>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="review-card">
+                                <div class="user-img">
+                                    <img src="{{ asset('assets/image/users/Ellipse 2519.svg') }}">
+                                </div>
+                                <div class="user-info">
+                                    <h3 class="user-name">Viezh Robert</h3>
+                                    <span class="user-role">User</span>
+                                </div>
+                                <div class="rating">
+                                    <span class="rating-score">4.5</span>
+                                    <div class="stars">
+                                        <img src="{{ asset('assets/image/users/Star 10.svg') }}">
+                                        <img src="{{ asset('assets/image/users/Star 10.svg') }}">
+                                        <img src="{{ asset('assets/image/users/Star 10.svg') }}">
+                                        <img src="{{ asset('assets/image/users/Star 10.svg') }}">
+                                        <img src="{{ asset('assets/image/users/Star 10.svg') }}">
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="mt-2" style="font-size: 13px;color:#3C4242; padding:;10px; line-height:25px;">
+                                “Wow... I am very happy to use this VPN, it turned
+                                out to be
+                                more than my expectations and so far there have been no problems. LaslesVPN
+                                always the
+                                best”.</p>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="review-card">
+                                <div class="user-img">
+                                    <img src="{{ asset('assets/image/users/Ellipse 2519.svg') }}">
+                                </div>
+                                <div class="user-info">
+                                    <h3 class="user-name">Viezh Robert</h3>
+                                    <span class="user-role">User</span>
+                                </div>
+                                <div class="rating">
+                                    <span class="rating-score">4.5</span>
+                                    <div class="stars">
+                                        <img src="{{ asset('assets/image/users/Star 10.svg') }}">
+                                        <img src="{{ asset('assets/image/users/Star 10.svg') }}">
+                                        <img src="{{ asset('assets/image/users/Star 10.svg') }}">
+                                        <img src="{{ asset('assets/image/users/Star 10.svg') }}">
+                                        <img src="{{ asset('assets/image/users/Star 10.svg') }}">
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="mt-2" style="font-size: 13px;color:#3C4242; padding:;10px; line-height:25px;">
+                                “Wow... I am very happy to use this VPN, it turned
+                                out to be
+                                more than my expectations and so far there have been no problems. LaslesVPN
+                                always the
+                                best”.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
+</section>
+<script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
 
-
-
-    <!-- jQuery (Required for DataTables) -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-
-<!-- Bootstrap 4 JS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/js/bootstrap.bundle.min.js"></script>
-
-<!-- AdminLTE 3 JS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.2.0/js/adminlte.min.js"></script>
-
-<!-- DataTables JS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/datatables.net/1.13.6/jquery.dataTables.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/datatables.net-bs4/1.11.5/dataTables.bootstrap4.min.js"></script>
-
-<!-- DataTables Buttons (For Export, Print, Copy) -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/datatables.net-buttons/2.4.2/js/dataTables.buttons.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/datatables.net-buttons/2.4.2/js/buttons.html5.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/datatables.net-buttons/2.4.2/js/buttons.print.min.js"></script>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/custombox/4.0.3/custombox.min.js"></script>
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        // Add click event to the Pay button
-        let payButton = document.querySelector(".pay-btn");
-        if (payButton) {
-            payButton.addEventListener("click", switchToBooking);
-        }
+    var swiper = new Swiper(".mySwiper", {
+        slidesPerView: "auto",
+        spaceBetween: 0,
+        loop: true,
+        centeredSlides: true,
+        initialSlide: Math.floor(document.querySelectorAll('.swiper-slide').length / 2), // Start from center
+        speed: 5000,
+        autoplay: {
+            delay: 0,
+            disableOnInteraction: false,
+        },
+        allowTouchMove: false,
     });
+</script>
+<script>
+    function generateCurrentWeek() {
+        const dateSelection = document.getElementById("dateSelection");
+        dateSelection.innerHTML = "";
 
-    function switchToBooking() {
-        // Hide Pending Payment & Pay Button
-        document.querySelector('.pending-payment').style.display = 'none';
-        document.querySelector('.refund-btn').style.display = 'none';
-        document.querySelector('.pay-btn').style.display = 'none';
-        // document.querySelector('.pay-buttons').style.display = 'none';
+        let today = new Date();
+        let dayOfWeek = today.getDay();
+        let startOfWeek = new Date(today);
+        startOfWeek.setDate(today.getDate() - dayOfWeek + (dayOfWeek === 0 ? -6 : 1));
 
+        for (let i = 0; i < 10; i++) {
+            let date = new Date(today);
+            date.setDate(today.getDate() + i);
 
-        // Show Total Amount & Amount Payable
-        let totalFields = document.querySelectorAll('.total-fields');
-        totalFields.forEach(field => {
-            field.style.display = 'block';
-        });
-        
-        let bookButtons = document.querySelectorAll('.book-buttons');
-        bookButtons.forEach(field => {
-            field.style.display = 'block';
-        });
+            let dayName = date.toLocaleDateString("en-US", { weekday: "short" });
+            let dayNumber = date.getDate();
 
-   
-}
+            let dateDiv = document.createElement("div");
+            dateDiv.classList.add("col-sm-1", "booking-date");
+            if (i == 0) dateDiv.classList.add("active");
+
+            dateDiv.innerHTML = `<span style="font-weight: 500;">${dayName}</span><br>
+                                 <span style="font-weight:600;">${dayNumber}</span>`;
+
+            dateSelection.appendChild(dateDiv);
+        }
+    }
+
+    generateCurrentWeek();
 
 
 </script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const bookingTimes = document.querySelectorAll(".booking-time");
 
-    <script>
+        bookingTimes.forEach(time => {
+            time.addEventListener("click", function () {
+                this.classList.toggle("selected");
+            });
+        });
+    });
+    document.addEventListener("DOMContentLoaded", function () {
+        const bookingTimes = document.querySelectorAll(".booking-date");
+
+        bookingTimes.forEach(time => {
+            time.addEventListener("click", function () {
+                this.classList.toggle("selected");
+            });
+        });
+    });
+</script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
         const calendarDays = document.getElementById("calendarDays");
         const monthSelector = document.getElementById("monthSelector");
         const yearSelector = document.getElementById("yearSelector");
-        
+
         let currentDate = new Date();
         let selectedDate = null;
 
+        let selectedTimeSlot = null;
+        let events = JSON.parse(localStorage.getItem("events")) || {};
+
+        function getNext7Days() {
+            var today = new Date();
+            const next7Days = [];
+
+            for (let i = 0; i < 7; i++) {
+                const date = new Date();
+                date.setDate(today.getDate() + i);
+                const dayName = date.toLocaleString('en-US', {
+                    weekday: 'short'
+                });
+                const dayNumber = date.getDate();
+                next7Days.push({
+                    dayName,
+                    dayNumber
+                });
+            }
+            return next7Days;
+        }
+
+        // function displayWeek() {
+        //     const weekDates = getNext7Days();
+        //     const today = new Date().getDate();
+
+        //     weekContainer.innerHTML = weekDates.map(date =>
+        // `<div class="week-day">
+        //     <strong class="${date.dayNumber === today ? 'highlight' : ''}" style="font-size: 18px;">${date.dayNumber}</strong>
+        //     <div style="font-size: 12px; font-weight: bold;">${date.dayName}</div>
+        // </div>`
+        //         `
+        //     ).join('');
+        // }
+
+        const days = getNext7Days().map(date => `${date.dayName} ${date.dayNumber}`);
+        const times = ["9AM", "10AM", "11AM", "12PM", "1PM", "2PM", "3PM", "4PM", "5PM", "6PM"];
+
         function populateSelectors() {
-            const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+            const months = ["January", "February", "March", "April", "May", "June", "July", "August",
+                "September", "October", "November", "December"
+            ];
             for (let i = 0; i < 12; i++) {
                 let option = document.createElement("option");
+                option.value = i;
                 option.value = i;
                 option.textContent = months[i];
                 monthSelector.appendChild(option);
             }
             let currentYear = new Date().getFullYear();
-            for (let i = currentYear - 10; i <= currentYear + 10; i++) {
+            for (let i = currentYear - 0; i <= currentYear + 10; i++) {
                 let option = document.createElement("option");
                 option.value = i;
                 option.textContent = i;
@@ -941,11 +1385,22 @@
             yearSelector.value = currentDate.getFullYear();
         }
 
-        function renderCalendar() {
+        monthSelector.addEventListener("change", function () {
+            currentDate.setMonth(parseInt(monthSelector.value));
+            renderCalendars();
+        });
+
+        yearSelector.addEventListener("change", function () {
+            currentDate.setFullYear(parseInt(yearSelector.value));
+            renderCalendars();
+        });
+
+
+        function renderCalendars() {
             calendarDays.innerHTML = "";
             let firstDay = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1).getDay();
             let lastDate = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0).getDate();
-            
+
             let today = new Date();
             today.setHours(0, 0, 0, 0);
 
@@ -960,16 +1415,16 @@
 
                 let selectedDay = new Date(currentDate.getFullYear(), currentDate.getMonth(), day);
                 if (selectedDay < today) {
-                    dayDiv.classList.add("disabled-date"); // Disable past dates
+                    dayDiv.classList.add("disabled-date");
                 }
 
-                if (day === today.getDate() && currentDate.getMonth() === today.getMonth() && currentDate.getFullYear() === today.getFullYear()) {
+                if (day === today.getDate() && currentDate.getMonth() === today.getMonth() && currentDate
+                    .getFullYear() === today.getFullYear()) {
                     dayDiv.classList.add("calendar-today");
                 }
-
                 dayDiv.addEventListener("click", function () {
                     if (selectedDay < today) {
-                        return; // Prevent selecting past dates
+                        return;
                     }
 
                     if (selectedDate) {
@@ -983,154 +1438,51 @@
             }
         }
 
-        function updateWeekView(selectedDate) {
-            const weekContainer = document.getElementById("weekDates");
-            let weekDates = [];
-
-            for (let i = 0; i < 7; i++) {
-                let date = new Date(selectedDate);
-                date.setDate(selectedDate.getDate() + i);
-                weekDates.push({
-                    dayName: date.toLocaleString('en-US', { weekday: 'short' }),
-                    dayNumber: date.getDate()
-                });
+        function selectDate(element) {
+            if (selectedDate) {
+                selectedDate.classList.remove("calendar-selected");
             }
 
-            weekContainer.innerHTML = `<div class="week-day empty"></div>` + weekDates.map(date =>
-                `<div class="week-day">
-                    <strong class="${date.dayNumber === selectedDate.getDate() ? 'highlight' : ''}" style="font-size: 20px;">${date.dayNumber}</strong>
-                    <div style="font-size: 12px; font-weight: bold;">${date.dayName}</div>
-                </div>`
-            ).join('');
+            selectedDate = element;
+            selectedDate.classList.add("calendar-selected");
 
-            updateSchedule(weekDates);
+            let selectedDay = parseInt(selectedDate.getAttribute("data-day"));
+            let selectedMonth = currentDate.getMonth();
+            let selectedYear = currentDate.getFullYear();
+
+            let fullDate = new Date(selectedYear, selectedMonth, selectedDay);
+            updateWeekView(fullDate);
         }
 
+        function updateWeekView(startDate) {
+            let next7Days = [];
 
-        
-
-
-        // function updateSchedule(weekDates) {
-        //     const scheduler = document.getElementById("schedular");
-        //     const times = ["9AM", "10AM", "11AM", "12PM", "1PM", "2PM", "3PM", "4PM", "5PM", "6PM"];
-        //     let events = JSON.parse(localStorage.getItem("events")) || {};
-        //     scheduler.innerHTML = `<div class='time-slot'></div>` + weekDates.map(date => `<div class='day-header'>${date.dayName} ${date.dayNumber}</div>`).join('');
-
-        //     times.forEach(time => {
-        //         scheduler.innerHTML += `<div class='time-slot'>${time}</div>`;
-        //         weekDates.forEach(date => {
-        //             const key = `${date.dayName} ${date.dayNumber}-${time}`;
-        //             scheduler.innerHTML += `<div class='time-slot' data-time='${key}'>${events[key] || ''}</div>`;
-        //         });
-        //     });
-        // }
-
-        monthSelector.addEventListener("change", function () {
-            currentDate.setMonth(parseInt(this.value));
-            renderCalendar();
-        });
-
-        yearSelector.addEventListener("change", function () {
-            currentDate.setFullYear(parseInt(this.value));
-            renderCalendar();
-        });
-
+            for (let i = 0; i < 7; i++) {
+                let date = new Date(startDate);
+                date.setDate(startDate.getDate() + i);
+                let dayName = date.toLocaleString("en-US", {
+                    weekday: "short"
+                });
+                let dayNumber = date.getDate();
+                next7Days.push({
+                    dayName,
+                    dayNumber
+                });
+            }
+        }
         populateSelectors();
-        renderCalendar();
-    </script>
-    
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-    const calendar = document.getElementById("schedular");
-    const weekContainer = document.getElementById("weekDates");
-
-    let events = {}; // Temporary storage (Clears on refresh)
-    let selectedTimeSlot = null; // Stores the selected grid cell
-
-    // Function to get the next 7 days
-    function getNext7Days() {
-        const today = new Date();
-        const next7Days = [];
-
-        for (let i = 0; i < 7; i++) {
-            const date = new Date();
-            date.setDate(today.getDate() + i);
-            const dayName = date.toLocaleString('en-US', { weekday: 'short' });
-            const dayNumber = date.getDate();
-            next7Days.push({ dayName, dayNumber });
-        }
-        return next7Days;
-    }
-
-    // Function to display week days
-    function displayWeek() {
-        const weekDates = getNext7Days();
-        const today = new Date().getDate();
-
-        weekContainer.innerHTML = `<div class="week-day empty"></div>` + weekDates.map(date =>
-            `<div class="week-day">
-                <strong class="${date.dayNumber === today ? 'highlight' : ''}" style="font-size: 18px;">${date.dayNumber}</strong>
-                <div style="font-size: 12px; font-weight: bold;">${date.dayName}</div>
-            </div>`
-        ).join('');
-    }
-
-    // Function to render the calendar grid
-    function renderCalendar() {
-        calendar.innerHTML = ""; // Clear previous content
-        const days = getNext7Days().map(date => `${date.dayName} ${date.dayNumber}`);
-        const times = ["9AM", "10AM", "11AM", "12PM", "1PM", "2PM", "3PM", "4PM", "5PM", "6PM"];
-
-        times.forEach(time => {
-            calendar.innerHTML += `<div class='time-slot time-label'>${time}</div>`; // Time column
-            days.forEach(day => {
-                const key = `${day}-${time}`;
-                calendar.innerHTML += `<div class='time-slot' data-time='${key}'>
-                    ${events[key] ? `<div class='event px-3' data-key="${key}" style="cursor:pointer; font-size: 10px;">${events[key]}</div>` : ''}
-                </div>`;
-            });
-        });
-
-        // Reattach event listeners to all time slots after re-rendering
-        attachTimeSlotListeners();
-    }
-
-    // Function to attach click event to all time slots
-    function attachTimeSlotListeners() {
-        document.querySelectorAll('.time-slot[data-time]').forEach(slot => {
-            slot.addEventListener("click", function () {
-                selectedTimeSlot = this.getAttribute("data-time"); // Store clicked time slot
-
-                // Open the modal using Custombox.js
-                new Custombox.modal({
-                    content: {
-                        target: "#payment-withdraw",
-                        effect: "blur"
-                    }
-                }).open();
-            });
-        });
-    }
-
-    // Save event when clicking "Book"
-    document.getElementById("addname").addEventListener("click", function () {
-        if (!selectedTimeSlot) return; // No slot selected
-
-        const username = document.getElementById("username").value.trim();
-        if (username !== "") {
-            events[selectedTimeSlot] = username; // Store event in selected slot
-            renderCalendar(); // Re-render the grid to update
-        }
-        Custombox.modal.close();
-        selectedTimeSlot = null; // Reset selection
+        renderCalendars();
     });
 
-    // Initial rendering
-    displayWeek();
-    renderCalendar();
-});
+    document.addEventListener("DOMContentLoaded", function () {
+        const calendarDays = document.getElementById("calendarDays");
 
-    </script>
-    
+        calendarDays.addEventListener("click", function (event) {
+            if (event.target.classList.contains("calendar-day")) {
+                let element = document.querySelector(".calendar-day.calendar-selected");
+            }
+        });
+    });
+</script>
 
-@include('client.layouts.footer')
+@include('users.layouts.userfooter')

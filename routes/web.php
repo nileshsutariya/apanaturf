@@ -51,7 +51,6 @@ Route::get('/profile', function () {
 
 
 
-
 Route::get('index', function() {
     return view('users.index');
 })->name('users.dashboard');
@@ -110,7 +109,6 @@ Route::get('/client/account', function () {
 })->name('client.account');
 
 
-
 Route::get('/', function () {
-    return view('users.bookingturf');
+    return view('users.layouts.demoheader');
 });

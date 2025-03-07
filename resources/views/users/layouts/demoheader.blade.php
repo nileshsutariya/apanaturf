@@ -570,8 +570,10 @@
                     <img class="mr-2" src="{{ asset('assets/image/client/calendargreen.svg') }}" alt="dashboard"
                         height="">
                     <div class="month-year">
-                        <select id="monthSelector" onchange="updateCalendar()"></select>
-                        <select id="yearSelector" onchange="updateCalendar()"></select>
+                        <!-- <select id="monthSelector" onchange="updateCalendar()"></select>
+                        <select id="yearSelector" onchange="updateCalendar()"></select> -->
+                        <select id="monthSelector"></select>
+                        <select id="yearSelector"></select>
                     </div>
                 </div>
                 <div class="weekdays">
@@ -678,6 +680,7 @@
                                     <span class="sr-only">Close</span>
                                 </button>
                             </div>
+
                             <div class="add-text ml-2 mt-0" style="font-size: small;">
                                 <div class="container-fluid">
                                     <div class="mb-2">
@@ -689,8 +692,8 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-md-12">
-                                                <input type="text" id="username" class="form-control"
-                                                    name="name" placeholder="Abhishek Guleria">
+                                                <input type="text" id="username" class="form-control" name="name"
+                                                    placeholder="Abhishek Guleria">
                                             </div>
                                         </div>
                                     </div>
@@ -798,9 +801,10 @@
                                                     <button class="btn save mr-2 refund-btn"
                                                         style="width: 100%;">Refund</button>
                                                     <button class="btn pay mr-3 pay-btn" style="width: 100%;">
-                                                        {{-- <button class="btn pay mr-3 pay-btn" style="width: 100%;" id="addname"> --}}
-                                                        Pay
-                                                    </button>
+                                                        {{-- <button class="btn pay mr-3 pay-btn" style="width: 100%;"
+                                                            id="addname"> --}}
+                                                            Pay
+                                                        </button>
                                                 </div>
                                             </div>
                                         </div>
@@ -812,11 +816,12 @@
                                                 <div class="col-md-12 d-flex action-buttons">
                                                     <button class="btn save mr-2 cancel-button"
                                                         style="width: 100%;">Cancel</button>
-                                                    {{-- <button class="btn pay mr-3 book-btn" style="width: 100%;" onclick="switchToBooking();"> --}}
-                                                    <button class="btn pay mr-3 book-btn" style="width: 100%;"
-                                                        id="addname">
-                                                        Book
-                                                    </button>
+                                                    {{-- <button class="btn pay mr-3 book-btn" style="width: 100%;"
+                                                        onclick="switchToBooking();"> --}}
+                                                        <button class="btn pay mr-3 book-btn" style="width: 100%;"
+                                                            id="addname">
+                                                            Book
+                                                        </button>
                                                 </div>
                                             </div>
                                         </div>
@@ -947,16 +952,15 @@
 
 <!-- DataTables Buttons (For Export, Print, Copy) -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables.net-buttons/2.4.2/js/dataTables.buttons.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script> -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables.net-buttons/2.4.2/js/buttons.html5.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables.net-buttons/2.4.2/js/buttons.print.min.js"></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/custombox/4.0.3/custombox.min.js"></script>
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        // Add click event to the Pay button
+    document.addEventListener("DOMContentLoaded", function () {
         let payButton = document.querySelector(".pay-btn");
         if (payButton) {
             payButton.addEventListener("click", switchToBooking);
@@ -964,14 +968,12 @@
     });
 
     function switchToBooking() {
-        // Hide Pending Payment & Pay Button
         document.querySelector('.pending-payment').style.display = 'none';
         document.querySelector('.refund-btn').style.display = 'none';
         document.querySelector('.pay-btn').style.display = 'none';
         // document.querySelector('.pay-buttons').style.display = 'none';
 
 
-        // Show Total Amount & Amount Payable
         let totalFields = document.querySelectorAll('.total-fields');
         totalFields.forEach(field => {
             field.style.display = 'block';
@@ -988,7 +990,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
+    document.addEventListener("DOMContentLoaded", function () {
         const calendar = document.getElementById("schedular");
         const weekContainer = document.getElementById("weekDates");
         const calendarDays = document.getElementById("calendarDays");
@@ -998,11 +1000,23 @@
         let currentDate = new Date();
         let selectedDate = null;
 
-        let selectedTimeSlot = null; // Stores the selected grid cell
-        let events = JSON.parse(localStorage.getItem("events")) || {}; // Persistent storage
+        let selectedTimeSlot = null;
+        let events = JSON.parse(localStorage.getItem("events")) || {};
 
         function getNext7Days() {
-            const today = new Date();
+            let dayElements = document.getElementsByClassName('calendar-selected');
+            let dayElement = dayElements.length > 0 ? dayElements[0] : null;
+            if (dayElement != null) {
+                let month = document.getElementById('monthSelector').value;
+                let year = document.getElementById('yearSelector').value;
+                let day = dayElement.innerHTML;
+                // console.log(day);
+                let now = new Date();
+                let fulldate = new Date(year, month, day, now.getHours(), now.getMinutes(), now.getSeconds());
+                var today = fulldate;
+            } else {
+                var today = new Date();
+            }
             const next7Days = [];
 
             for (let i = 0; i < 7; i++) {
@@ -1029,7 +1043,7 @@
         //     <strong class="${date.dayNumber === today ? 'highlight' : ''}" style="font-size: 18px;">${date.dayNumber}</strong>
         //     <div style="font-size: 12px; font-weight: bold;">${date.dayName}</div>
         // </div>`
-        //         ``
+        //         `
         //     ).join('');
         // }
 
@@ -1038,21 +1052,19 @@
 
         function renderCalendar(weekDates = getNext7Days()) {
             calendar.innerHTML = "";
-            var today = new Date();
-            console.log(today);
             let dayElements = document.getElementsByClassName('calendar-selected');
             let dayElement = dayElements.length > 0 ? dayElements[0] : null;
-            let monthElement = document.getElementById('monthSelector');
-            let month = monthElement.value;
-            let yearElement = document.getElementById('yearSelector');
-            let year = yearElement.value;
-            if (dayElement) {
+            if (dayElement != null) {
+                let month = document.getElementById('monthSelector').value;
+                let year = document.getElementById('yearSelector').value;
                 let day = dayElement.innerHTML;
-                console.log(day);
-                let formater = new Date(year, month - 1, day);
-                today = formater.toLocaleDateString('en-CA'); // "YYYY-MM-DD"
+                // console.log(day);
+                let now = new Date();
+                let fulldate = new Date(year, month, day, now.getHours(), now.getMinutes(), now.getSeconds());
+                var today = fulldate;
+            } else {
+                var today = new Date();
             }
-            // let selectedDay = parseInt(selectedDate.getAttribute("data-day"));
             calendar.innerHTML += `<div class='time-slot'></div>` + weekDates.map(date =>
                 `<div class='time-slot day-header ${date.dayNumber === today.getDate() ? "current-date" : ""}' 
                         data-day="${date.dayNumber}" onclick="selectDate(this)">
@@ -1067,18 +1079,17 @@
                     const key = `${date.dayName} ${date.dayNumber}-${time}`;
                     calendar.innerHTML += `<div class='time-slot' data-time='${key}'>
                             ${events[key] ? `<div class='events px-3' data-key="${key}" 
-                            style="cursor:pointer; font-size: 10px; background-color: lightblue !important; padding: 5px; border-radius: 4px;">${events[key]}</div>` : '' }
+                            style="cursor:pointer; font-size: 10px; background-color: lightblue !important; padding: 5px; border-radius: 4px;">${events[key]}</div>` : ''}
                         </div>`;
                 });
             });
-
             attachTimeSlotListeners();
         }
 
 
         function attachTimeSlotListeners() {
             document.querySelectorAll('.time-slot[data-time]').forEach(slot => {
-                slot.addEventListener("click", function() {
+                slot.addEventListener("click", function () {
                     selectedTimeSlot = this.getAttribute("data-time");
                     new Custombox.modal({
                         content: {
@@ -1090,7 +1101,7 @@
             });
         }
 
-        document.getElementById("addname").addEventListener("click", function() {
+        document.getElementById("addname").addEventListener("click", function () {
             if (!selectedTimeSlot) return;
 
             const username = document.getElementById("username").value.trim();
@@ -1114,13 +1125,13 @@
             });
         });
 
-
         function populateSelectors() {
             const months = ["January", "February", "March", "April", "May", "June", "July", "August",
                 "September", "October", "November", "December"
             ];
             for (let i = 0; i < 12; i++) {
                 let option = document.createElement("option");
+                option.value = i;
                 option.value = i;
                 option.textContent = months[i];
                 monthSelector.appendChild(option);
@@ -1136,12 +1147,12 @@
             yearSelector.value = currentDate.getFullYear();
         }
 
-        monthSelector.addEventListener("change", function() {
+        monthSelector.addEventListener("change", function () {
             currentDate.setMonth(parseInt(monthSelector.value));
             renderCalendars();
         });
 
-        yearSelector.addEventListener("change", function() {
+        yearSelector.addEventListener("change", function () {
             currentDate.setFullYear(parseInt(yearSelector.value));
             renderCalendars();
         });
@@ -1166,14 +1177,14 @@
 
                 let selectedDay = new Date(currentDate.getFullYear(), currentDate.getMonth(), day);
                 if (selectedDay < today) {
-                    dayDiv.classList.add("disabled-date"); // Disable past dates
+                    dayDiv.classList.add("disabled-date");
                 }
 
                 if (day === today.getDate() && currentDate.getMonth() === today.getMonth() && currentDate
                     .getFullYear() === today.getFullYear()) {
                     dayDiv.classList.add("calendar-today");
                 }
-                dayDiv.addEventListener("click", function() {
+                dayDiv.addEventListener("click", function () {
                     if (selectedDay < today) {
                         return;
                     }
@@ -1190,27 +1201,23 @@
         }
 
         function selectDate(element) {
-            // Remove previous selection highlight
             if (selectedDate) {
                 selectedDate.classList.remove("calendar-selected");
             }
 
-            // Update selectedDate and highlight the new selection
             selectedDate = element;
             selectedDate.classList.add("calendar-selected");
 
-            // Get the selected day and update the week view
             let selectedDay = parseInt(selectedDate.getAttribute("data-day"));
             let selectedMonth = currentDate.getMonth();
             let selectedYear = currentDate.getFullYear();
-            // console.log(selectedYear);
 
             let fullDate = new Date(selectedYear, selectedMonth, selectedDay);
             updateWeekView(fullDate);
         }
 
         function updateWeekView(startDate) {
-            weekContainer.innerHTML = ""; // Clear previous data
+            weekContainer.innerHTML = "";
             let next7Days = [];
 
             for (let i = 0; i < 7; i++) {
@@ -1233,144 +1240,142 @@
                     </div>`
             ).join('');
 
-            renderCalendar(next7Days); // Re-render calendar with the updated week
+            renderCalendar(next7Days);
         }
 
-        // displayWeek();
         renderCalendar();
         populateSelectors();
         renderCalendars();
     });
 
-    document.addEventListener("DOMContentLoaded", function() {
+    document.addEventListener("DOMContentLoaded", function () {
         const calendarDays = document.getElementById("calendarDays");
 
-        calendarDays.addEventListener("click", function(event) {
+        calendarDays.addEventListener("click", function (event) {
             if (event.target.classList.contains("calendar-day")) {
 
                 let element = document.querySelector(".calendar-day.calendar-selected");
-                // console.log("Selected Date:", element);
-
             }
         });
     });
 </script>
 
-{{-- <script>
-        const calendarDays = document.getElementById("calendarDays");
-        const monthSelector = document.getElementById("monthSelector");
-        const yearSelector = document.getElementById("yearSelector");
-        const weekContainer = document.getElementById("weekDates");
-        const scheduler = document.getElementById("schedular");
+{{--
+<script>
+    const calendarDays = document.getElementById("calendarDays");
+    const monthSelector = document.getElementById("monthSelector");
+    const yearSelector = document.getElementById("yearSelector");
+    const weekContainer = document.getElementById("weekDates");
+    const scheduler = document.getElementById("schedular");
 
-        let currentDate = new Date();
-        let selectedDate = new Date();
-        let selectedDayElement = null;
-        let events = JSON.parse(localStorage.getItem("events")) || {};
-        // Reset selectedDate to today on refresh
-        selectedDate = new Date();
+    let currentDate = new Date();
+    let selectedDate = new Date();
+    let selectedDayElement = null;
+    let events = JSON.parse(localStorage.getItem("events")) || {};
+    // Reset selectedDate to today on refresh
+    selectedDate = new Date();
 
-        // Clear localStorage on refresh
-        localStorage.removeItem("events");
-        events = {}; 
-        
-        function populateSelectors() {
-            const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-            for (let i = 0; i < 12; i++) {
-                let option = document.createElement("option");
-                option.value = i;
-                option.textContent = months[i];
-                monthSelector.appendChild(option);
+    // Clear localStorage on refresh
+    localStorage.removeItem("events");
+    events = {};
+
+    function populateSelectors() {
+        const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+        for (let i = 0; i < 12; i++) {
+            let option = document.createElement("option");
+            option.value = i;
+            option.textContent = months[i];
+            monthSelector.appendChild(option);
+        }
+        let currentYear = new Date().getFullYear();
+        for (let i = currentYear - 10; i <= currentYear + 10; i++) {
+            let option = document.createElement("option");
+            option.value = i;
+            option.textContent = i;
+            yearSelector.appendChild(option);
+        }
+        monthSelector.value = currentDate.getMonth();
+        yearSelector.value = currentDate.getFullYear();
+    }
+
+    function renderCalendar() {
+        calendarDays.innerHTML = "";
+        let firstDay = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1).getDay();
+        let lastDate = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0).getDate();
+
+        let today = new Date();
+        today.setHours(0, 0, 0, 0);
+
+        for (let i = 0; i < firstDay; i++) {
+            let emptyDiv = document.createElement("div");
+            calendarDays.appendChild(emptyDiv);
+        }
+        for (let day = 1; day <= lastDate; day++) {
+            let dayDiv = document.createElement("div");
+            dayDiv.textContent = day;
+            dayDiv.classList.add("calendar-day");
+
+            let selectedDay = new Date(currentDate.getFullYear(), currentDate.getMonth(), day);
+            if (selectedDay < today) {
+                dayDiv.classList.add("disabled-date");
             }
-            let currentYear = new Date().getFullYear();
-            for (let i = currentYear - 10; i <= currentYear + 10; i++) {
-                let option = document.createElement("option");
-                option.value = i;
-                option.textContent = i;
-                yearSelector.appendChild(option);
+
+            if (selectedDay.getTime() === today.getTime()) {
+                dayDiv.classList.add("calendar-today");
             }
-            monthSelector.value = currentDate.getMonth();
-            yearSelector.value = currentDate.getFullYear();
+
+            if (selectedDay.getTime() === selectedDate.getTime()) {
+                dayDiv.classList.add("calendar-selected");
+                selectedDayElement = dayDiv;
+            }
+
+            dayDiv.addEventListener("click", function () {
+                if (selectedDay < today) return;
+
+                if (selectedDayElement) {
+                    selectedDayElement.classList.remove("calendar-selected");
+                }
+                selectedDayElement = dayDiv;
+                selectedDayElement.classList.add("calendar-selected");
+
+                selectedDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), day);
+                updateWeekView(selectedDate);
+            });
+            calendarDays.appendChild(dayDiv);
         }
 
-        function renderCalendar() {
-            calendarDays.innerHTML = "";
-            let firstDay = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1).getDay();
-            let lastDate = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0).getDate();
-            
-            let today = new Date();
-            today.setHours(0, 0, 0, 0);
+    }
 
-            for (let i = 0; i < firstDay; i++) {
-                let emptyDiv = document.createElement("div");
-                calendarDays.appendChild(emptyDiv);
-            }
-            for (let day = 1; day <= lastDate; day++) {
-                let dayDiv = document.createElement("div");
-                dayDiv.textContent = day;
-                dayDiv.classList.add("calendar-day");
 
-                let selectedDay = new Date(currentDate.getFullYear(), currentDate.getMonth(), day);
-                if (selectedDay < today) {
-                    dayDiv.classList.add("disabled-date");
-                }
+    function updateWeekView(selectedDate) {
+        weekContainer.innerHTML = "";
+        let weekDates = [];
 
-                if (selectedDay.getTime() === today.getTime()) {
-                    dayDiv.classList.add("calendar-today");
-                }
-
-                if (selectedDay.getTime() === selectedDate.getTime()) {
-                    dayDiv.classList.add("calendar-selected");
-                    selectedDayElement = dayDiv;
-                }
-
-                dayDiv.addEventListener("click", function () {
-                    if (selectedDay < today) return;
-                    
-                    if (selectedDayElement) {
-                        selectedDayElement.classList.remove("calendar-selected");
-                    }
-                    selectedDayElement = dayDiv;
-                    selectedDayElement.classList.add("calendar-selected");
-
-                    selectedDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), day);
-                    updateWeekView(selectedDate);
-                });
-                calendarDays.appendChild(dayDiv);
-            }
-
-        }
-            
-
-        function updateWeekView(selectedDate) {
-            weekContainer.innerHTML = "";
-            let weekDates = [];
-
-            for (let i = 0; i < 7; i++) {
-                let date = new Date(selectedDate);
-                date.setDate(selectedDate.getDate() + i);
-                weekDates.push({
-                    dateObj: date,
-                    dayName: date.toLocaleString('en-US', { weekday: 'short' }),
-                    dayNumber: date.getDate(),
-                });
-            }
-
-            // weekContainer.innerHTML = weekDates.map(date =>
-            //     `<div class="week-day ${date.dateObj.toDateString() === selectedDate.toDateString() ? 'highlight' : ''}">
-            //         <strong>${date.dayNumber}</strong>
-            //         <div>${date.dayName}</div>
-            //     </div>`
-            // ).join('');
-
-            renderScheduler(weekDates);
+        for (let i = 0; i < 7; i++) {
+            let date = new Date(selectedDate);
+            date.setDate(selectedDate.getDate() + i);
+            weekDates.push({
+                dateObj: date,
+                dayName: date.toLocaleString('en-US', { weekday: 'short' }),
+                dayNumber: date.getDate(),
+            });
         }
 
-        function renderScheduler(weekDates) {
-            scheduler.innerHTML = "";
-            const times = ["9AM", "10AM", "11AM", "12PM", "1PM", "2PM", "3PM", "4PM", "5PM", "6PM"];
+        // weekContainer.innerHTML = weekDates.map(date =>
+        //     `<div class="week-day ${date.dateObj.toDateString() === selectedDate.toDateString() ? 'highlight' : ''}">
+        //         <strong>${date.dayNumber}</strong>
+        //         <div>${date.dayName}</div>
+        //     </div>`
+        // ).join('');
 
-            scheduler.innerHTML += `<div class='time-slot'></div>` + weekDates.map(date => 
+        renderScheduler(weekDates);
+    }
+
+    function renderScheduler(weekDates) {
+        scheduler.innerHTML = "";
+        const times = ["9AM", "10AM", "11AM", "12PM", "1PM", "2PM", "3PM", "4PM", "5PM", "6PM"];
+
+        scheduler.innerHTML += `<div class='time-slot'></div>` + weekDates.map(date =>
             `<div class='time-slot day-header' 
                 style='font-weight: ${date.dateObj.toDateString() === selectedDate.toDateString() || date.dateObj.toDateString() === new Date().toDateString() ? 'bold' : 'normal'};
                     font-size: ${date.dateObj.toDateString() === selectedDate.toDateString() || date.dateObj.toDateString() === new Date().toDateString() ? '15px' : '1em'};'>
@@ -1380,35 +1385,35 @@
 
 
 
-            times.forEach(time => {
-                scheduler.innerHTML += `<div class='time-slot time-label'>${time}</div>`;
-                weekDates.forEach(date => {
-                    const key = `${date.dayName} ${date.dayNumber}-${time}`;
-                    scheduler.innerHTML += `<div class='time-slot' data-time='${key}'>
-                        ${events[key] ? `<div class='event px-3' data-key="${key}" style="cursor:pointer; font-size: 10px;">${events[key]}</div>` : '' }
+        times.forEach(time => {
+            scheduler.innerHTML += `<div class='time-slot time-label'>${time}</div>`;
+            weekDates.forEach(date => {
+                const key = `${date.dayName} ${date.dayNumber}-${time}`;
+                scheduler.innerHTML += `<div class='time-slot' data-time='${key}'>
+                        ${events[key] ? `<div class='event px-3' data-key="${key}" style="cursor:pointer; font-size: 10px;">${events[key]}</div>` : ''}
                     </div>`;
-                });
             });
-        }
-
-
-        
-
-        monthSelector.addEventListener("change", function () {
-            currentDate.setMonth(parseInt(this.value));
-            renderCalendar();
         });
+    }
 
-        yearSelector.addEventListener("change", function () {
-            currentDate.setFullYear(parseInt(this.value));
-            renderCalendar();
-        });
-        
 
-        populateSelectors();
+
+
+    monthSelector.addEventListener("change", function () {
+        currentDate.setMonth(parseInt(this.value));
         renderCalendar();
-        updateWeekView(selectedDate);
+    });
 
-    </script> --}}
+    yearSelector.addEventListener("change", function () {
+        currentDate.setFullYear(parseInt(this.value));
+        renderCalendar();
+    });
+
+
+    populateSelectors();
+    renderCalendar();
+    updateWeekView(selectedDate);
+
+</script> --}}
 
 @include('client.layouts.footer')
