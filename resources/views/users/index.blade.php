@@ -699,6 +699,7 @@
                 prevEl: '.swiper-button-prev',
             },  
             breakpoints: {
+                1024: { slidesPerView: 5, spaceBetween: 10 },  // Medium screens
                 970: { slidesPerView: 5, spaceBetween: 10 },  // Medium screens
                 768: { slidesPerView: 3, spaceBetween: 10 },  // Tablets
                 576: { slidesPerView: 1, spaceBetween: 5 },   // Mobile devices
@@ -721,11 +722,6 @@
         });
     
     </script>
-
-
-
-
-
 
 
 <footer class="footer"> 
@@ -818,8 +814,7 @@
     </div>
 </footer>
 {{-- </div> --}}
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    
+   
 <!-- Vendor js -->
 
 <!-- App js -->

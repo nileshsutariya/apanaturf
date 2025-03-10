@@ -11,9 +11,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Bootstrap JS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
-    <link href="https://fonts.googleapis.com/css2?family=NATS&display=swap" rel="stylesheet">
 
-    <link href="https://fonts.googleapis.com/css2?family=NATS&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="{{asset('assets/images/favicon.ico')}}">
 
     <title>Document</title>
@@ -35,7 +33,7 @@
         display: flex;
         flex-direction: column;
         overflow-x: hidden;
-        font-family: 'Inter', sans-serif !important;
+        font-family: 'Inter', sans-serif;
         letter-spacing: 0.9px;
         background-color: #F5F5F5;
         font-weight: 400 !important;
@@ -239,29 +237,45 @@
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
-      <ul class="navbar-nav text-center">
+      <ul class="navbar-nav text-center" id="navbarNav">
         <li class="nav-item">
-          <a class="nav-link" href="#">Home</a>
-        </li>
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Turf</a>
+            <a class="nav-link" href="{{route('users.dashboard')}}">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Terms & Conditions</a>
+            <a class="nav-link" href="{{route('users.bookingturf')}}">Turf</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">About</a>
+            <a class="nav-link" href="{{route('users.terms')}}">Terms & Conditions</a>
         </li>
         <li class="nav-item">
-          <button type="button" class="btn book-now">Book Now</button>
+            <a class="nav-link" href="{{route('users.aboutus')}}">About</a>
+        </li>
+        <li class="nav-item">
+            <button type="button" class="btn book-now">Book Now</button>
         </li>
       </ul>
+    
     </div>
   </nav>
   
       <div class="page-content">
 
         <div class="page-container" style="background-color: transparent;">
-
-
+          
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   
+        <script>
+            $(document).ready(function () {
+                var currentUrl = window.location.href; 
+            
+                $(".navbar-nav .nav-item").each(function () {
+                    var link = $(this).find("a"); 
+                    var linkUrl = link.attr("href"); 
+            
+                    if (currentUrl.includes(linkUrl)) {
+                        $(".navbar-nav .nav-item").removeClass("active"); 
+                        $(this).addClass("active"); 
+                    }
+                });
+            });
+        </script>

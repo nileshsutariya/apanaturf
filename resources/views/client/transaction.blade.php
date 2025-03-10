@@ -114,8 +114,8 @@
                         <td class="text-muted">00:00 pm - 00:00 pm</td>
                         <td class="text-muted">23 Dec.2023</td>
                         <td class="p-1">
-                            <h4><span class="badge badge-soft-primary text-center"
-                                    style="border-radius: 30px; font-size: 12px; height: 25px; width: 100px;">Paid</span>
+                            <h4><span class="badge badge-soft-primary text-center pt-2"
+                                    style="border-radius: 30px; font-size: 12px; height: 28px; width: 100px;">Paid</span>
                             </h4>
                         </td>
                         <td class="text-success fw-semibold">+400</td>
@@ -127,8 +127,8 @@
                         <td class="text-muted">00:00 pm - 00:00 pm</td>
                         <td class="text-muted">23 Dec.2023</td>
                         <td class="p-1">
-                            <h4><span class="badge badge-soft-warning text-center"
-                                    style="border-radius: 30px; font-size: 12px; height: 25px; width: 100px;">Pending</span>
+                            <h4><span class="badge badge-soft-warning text-center pt-2"
+                                    style="border-radius: 30px; font-size: 12px; height: 28px; width: 100px;">Pending</span>
                             </h4>
                         </td>
                         <td class="text-warning fw-semibold">+400</td>
@@ -140,8 +140,8 @@
                         <td class="text-muted">00:00 pm - 00:00 pm</td>
                         <td class="text-muted">23 Dec.2023</td>
                         <td class="p-1">
-                            <h4><span class="badge badge-soft-primary text-center"
-                                    style="border-radius: 30px; font-size: 12px; height: 25px; width: 100px;">Paid</span>
+                            <h4><span class="badge badge-soft-primary text-center pt-2"
+                                    style="border-radius: 30px; font-size: 12px; height: 28px; width: 100px;">Paid</span>
                             </h4>
                         </td>
                         <td class="text-success fw-semibold">+400</td>
@@ -153,8 +153,8 @@
                         <td class="text-muted">00:00 pm - 00:00 pm</td>
                         <td class="text-muted">23 Dec.2023</td>
                         <td class="p-1">
-                            <h4><span class="badge badge-soft-primary text-center"
-                                    style="border-radius: 30px; font-size: 12px; height: 25px; width: 100px;">Paid</span>
+                            <h4><span class="badge badge-soft-primary text-center pt-2"
+                                    style="border-radius: 30px; font-size: 12px; height: 28px; width: 100px;">Paid</span>
                             </h4>
                         </td>
                         <td class="text-success fw-semibold">+400</td>

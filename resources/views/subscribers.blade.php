@@ -22,11 +22,11 @@
             background-color: #F5F5F5;   
         }
         body{
-            font-size: 15px;
-            font-family: 'Inter', sans-serif;
+            /* font-size: 15px;
+            font-family: 'Inter', sans-serif; */
             font-weight: 400 !important;
-            letter-spacing: 0.9px;
-            background-color: #F5F5F5;
+            /* letter-spacing: 0.9px;
+            background-color: #F5F5F5; */
         }
         .side-nav{
             height: 30px;
@@ -433,6 +433,426 @@
                                                         <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
                                                     </td>
                                                 </tr>
+                                                <tr>
+                                                    <td> #000001 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567890</td>
+                                                    
+                                                    <td>
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000001 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567890</td>
+                                                    
+                                                    <td>
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000001 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567890</td>
+                                                    
+                                                    <td>
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000001 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567890</td>
+                                                    
+                                                    <td>
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000001 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567890</td>
+                                                    
+                                                    <td>
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000001 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567890</td>
+                                                    
+                                                    <td>
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000001 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567890</td>
+                                                    
+                                                    <td>
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000001 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567890</td>
+                                                    
+                                                    <td>
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000001 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567890</td>
+                                                    
+                                                    <td>
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000001 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567890</td>
+                                                    
+                                                    <td>
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000001 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567890</td>
+                                                    
+                                                    <td>
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000001 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567890</td>
+                                                    
+                                                    <td>
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000001 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567890</td>
+                                                    
+                                                    <td>
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000001 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567890</td>
+                                                    
+                                                    <td>
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000001 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567890</td>
+                                                    
+                                                    <td>
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000001 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567890</td>
+                                                    
+                                                    <td>
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000001 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567890</td>
+                                                    
+                                                    <td>
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000001 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567890</td>
+                                                    
+                                                    <td>
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000001 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567890</td>
+                                                    
+                                                    <td>
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000001 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567890</td>
+                                                    
+                                                    <td>
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000001 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567890</td>
+                                                    
+                                                    <td>
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000001 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567890</td>
+                                                    
+                                                    <td>
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000001 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567890</td>
+                                                    
+                                                    <td>
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000001 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567890</td>
+                                                    
+                                                    <td>
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000001 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567890</td>
+                                                    
+                                                    <td>
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000001 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567890</td>
+                                                    
+                                                    <td>
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000001 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567890</td>
+                                                    
+                                                    <td>
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000001 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567890</td>
+                                                    
+                                                    <td>
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000001 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567890</td>
+                                                    
+                                                    <td>
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000001 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567890</td>
+                                                    
+                                                    <td>
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000001 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567890</td>
+                                                    
+                                                    <td>
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000001 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567890</td>
+                                                    
+                                                    <td>
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000001 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567890</td>
+                                                    
+                                                    <td>
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000001 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567890</td>
+                                                    
+                                                    <td>
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000001 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567890</td>
+                                                    
+                                                    <td>
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000001 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567890</td>
+                                                    
+                                                    <td>
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000001 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567890</td>
+                                                    
+                                                    <td>
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000001 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567890</td>
+                                                    
+                                                    <td>
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000001 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567890</td>
+                                                    
+                                                    <td>
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000001 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567890</td>
+                                                    
+                                                    <td>
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000001 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567890</td>
+                                                    
+                                                    <td>
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000001 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567890</td>
+                                                    
+                                                    <td>
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
                                                 
                                             </tbody>
 
@@ -483,94 +903,109 @@
 
 
 
-        // $(document).ready(function () {
-        //     var table = $('#responsive-datatable').DataTable({
-        //         "ordering": false,
-        //         "paging": true,
-        //         "searching": true,
-        //         "info": false,
-        //         "pageLength": 10,  // Show 10 records per page
-        //         "lengthChange": false,
-        //         "dom": 'rt',
-        //     });
+        $(document).ready(function () {
+            var table = $('#responsive-datatable').DataTable({
+                "ordering": false,
+                "paging": true,
+                "searching": true,
+                "info": false,
+                "pageLength": 10,  // Show 10 records per page
+                "lengthChange": false,
+                "dom": 'rt',
+            });
 
-        //     function columnSearch(inputSelector, columnIndex) {
-        //         $(inputSelector).on('keyup', function () {
-        //             table.column(columnIndex).search(this.value).draw();
-        //         });
-        //     }
+            function createCustomPagination() {
+                var pageInfo = table.page.info();
+                var totalPages = pageInfo.pages;
+                var currentPage = pageInfo.page;
+                var pagination = $('.custom-pagination');
+                pagination.empty();
 
-        //     // Attach search functionality to respective input fields
-        //     columnSearch('#nameSearch', 0);
-        //     columnSearch('#emailSearch', 1);
-        //     columnSearch('#placeSearch', 2);
-        //     columnSearch('#mobileSearch', 3);
+                // Previous Button
+                pagination.append('<li class="page-item ' + (currentPage === 0 ? 'disabled' : '') + '"><a class="page-link prev-page" href="javascript:void(0);">&lt;</a></li>');
 
-        //     // Function to create custom pagination
-        //     function createCustomPagination() {
-        //         var totalPages = table.page.info().pages;  // Get total number of pages
-        //         var currentPage = table.page.info().page; // Get current page (zero-based index)
-        //         var pagination = $('.custom-pagination');
-        //         pagination.empty();  // Clear existing pagination
+                // First Page
+                if (totalPages > 0) {
+                    pagination.append('<li class="page-item ' + (currentPage === 0 ? 'active' : '') + '"><a class="page-link page-num" href="javascript:void(0);" data-page="0">1</a></li>');
+                }
 
-        //         // Create previous button (disable if on first page)
-        //         var prevDisabled = (currentPage === 0) ? 'disabled' : '';
-        //         pagination.append('<li class="page-item ' + prevDisabled + '"><a class="page-link" href="javascript:void(0);" id="prevPage">&lt;</a></li>');
+                // Show '...' before current range if needed
+                if (currentPage > 2) {
+                    pagination.append('<li class="page-item"><a class="page-link">...</a></li>');
+                }
 
-        //         // Create page numbers
-        //         for (var i = 0; i < totalPages; i++) {
-        //             var activeClass = (i === currentPage) ? 'active success' : '';
-        //             pagination.append('<li class="page-item ' + activeClass + '"><a class="page-link page-num" href="javascript:void(0);" data-page="' + i + '">' + (i + 1) + '</a></li>');
-        //         }
+                // Show two pages around the current page
+                for (var i = Math.max(1, currentPage - 1); i <= Math.min(totalPages - 2, currentPage + 1); i++) {
+                    pagination.append('<li class="page-item ' + (i === currentPage ? 'active' : '') + '"><a class="page-link page-num" href="javascript:void(0);" data-page="' + i + '">' + (i + 1) + '</a></li>');
+                }
 
-        //         // Create next button (disable if on last page)
-        //         var nextDisabled = (currentPage === totalPages - 1) ? 'disabled' : '';
-        //         pagination.append('<li class="page-item ' + nextDisabled + '"><a class="page-link" href="javascript:void(0);" id="nextPage">&gt;</a></li>');
-        //     }
+                // Show '...' before last page if needed
+                if (currentPage < totalPages - 3) {
+                    pagination.append('<li class="page-item"><a class="page-link">...</a></li>');
+                }
 
-        //     // Custom pagination button click handlers
-        //     $(document).on('click', '.page-num', function () {
-        //         var pageNum = $(this).data('page');  // Get page number from `data-page` attribute
-        //         table.page(pageNum).draw(false);
-        //         createCustomPagination();  // Update pagination
-        //     });
+                // Last Page
+                if (totalPages > 1) {
+                    pagination.append('<li class="page-item ' + (currentPage === totalPages - 1 ? 'active' : '') + '"><a class="page-link page-num" href="javascript:void(0);" data-page="' + (totalPages - 1) + '">' + totalPages + '</a></li>');
+                }
 
-        //     $(document).on('click', '#prevPage', function () {
-        //         if (!$(this).parent().hasClass('disabled')) {
-        //             table.page('previous').draw(false);
-        //             createCustomPagination();
-        //         }
-        //     });
+                // Next Button
+                pagination.append('<li class="page-item ' + (currentPage === totalPages - 1 ? 'disabled' : '') + '"><a class="page-link next-page" href="javascript:void(0);">&gt;</a></li>');
+            }
 
-        //     $(document).on('click', '#nextPage', function () {
-        //         if (!$(this).parent().hasClass('disabled')) {
-        //             table.page('next').draw(false);
-        //             createCustomPagination();
-        //         }
-        //     });
+            // Pagination Click Events
+            $(document).on('click', '.page-num', function () {
+                var pageNum = $(this).data('page');
+                table.page(pageNum).draw(false);
+                createCustomPagination();
+            });
 
-        //     // Initialize the custom pagination
-        //     createCustomPagination();
-        // });
+            $(document).on('click', '.prev-page', function () {
+                var currentPage = table.page.info().page;
+                if (currentPage > 0) {
+                    table.page(currentPage - 1).draw(false);
+                    createCustomPagination();
+                }
+            });
+
+            $(document).on('click', '.next-page', function () {
+                var currentPage = table.page.info().page;
+                var totalPages = table.page.info().pages;
+                if (currentPage < totalPages - 1) {
+                    table.page(currentPage + 1).draw(false);
+                    createCustomPagination();
+                }
+            });
+
+            // Initialize Pagination
+            createCustomPagination();
+
+            $('#nameSearch').on('keyup', function () {
+                table.column(0).search(this.value).draw();
+            });
+    
+            $('#emailSearch').on('keyup', function () {
+                table.column(1).search(this.value).draw();
+            });
+    
+            $('#placeSearch').on('keyup', function () {
+                table.column(2).search(this.value).draw();
+            });
+    
+            $('#mobileSearch').on('keyup', function () {
+                table.column(3).search(this.value).draw();
+            });
 
 
+            $('#nameSearch, #emailSearch, #placeSearch, #mobileSearch').on('keyup', function () {
+                table.draw();
+                createCustomPagination(); // Update pagination based on filtered results
+            });
 
-        $('#nameSearch').on('keyup', function () {
-            table.column(0).search(this.value).draw();
         });
 
-        $('#emailSearch').on('keyup', function () {
-            table.column(1).search(this.value).draw();
-        });
 
-        $('#placeSearch').on('keyup', function () {
-            table.column(2).search(this.value).draw();
-        });
-
-        $('#mobileSearch').on('keyup', function () {
-            table.column(3).search(this.value).draw();
-        });
-
+        
 
 
         

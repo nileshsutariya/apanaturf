@@ -11,14 +11,14 @@
     }
 
     .label {
-        font-size: 16px;
+        font-size: 14px;
         color: #9F9F9F;
         font-weight: 400;
     }
 
     .value {
-        font-size: 17px;
-        color: #878787;
+        font-size: 15px;
+        color: #000;
         font-weight: 600;
     }
 
@@ -40,16 +40,18 @@
     .btn.create {
         background-color: #299D91;
         color: white;
-        font-size: 16px;
-        font-weight: 700;
+        font-size: 15px;
+        font-weight: 500;
+        padding: 5px 42px;
     }
 
     .btn.cancel {
         background-color: white;
         color: #299D91;
         border: 1px solid #299D91;
-        font-size: 16px;
-        font-weight: 700;
+        font-size: 15px;
+        font-weight: 500;
+        padding: 5px 42px;
     }
 </style>
 <div class="page-title-box">
@@ -69,34 +71,34 @@
 
     <div class="d-flex align-items-sm-center flex-sm-row flex-column gap-2">
         <div class="flex-grow-1">
-            <h6 class="ml-3"><strong>Create Coupons</strong></h6>
+            <h6 class="ml-3">Create Coupons</h6>
         </div>
     </div>
     <div class="card">
         <div class="row ">
             <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 mb-3">
-                <div class="label">User Name</div>
-                <div class="value">Abhishek Guleria</div>
+                <div class="label">Coupons Name</div>
+                <div class="value">End of Year</div>
             </div>
             <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 mb-3">
-                <div class="label">Account Type</div>
-                <div class="value">Savings Account</div>
+                <div class="label">Valid Date</div>
+                <div class="value">23/12/2002</div>
             </div>
             <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 mb-3">
-                <div class="label">IFSC Code</div>
-                <div class="value">PYTM0123456</div>
+                <div class="label">Expire Date</div>
+                <div class="value">01/01/2003</div>
             </div>
             <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 mb-3">
-                <div class="label">Balance</div>
-                <div class="value">₹20,00,000</div>
+                <div class="label">Discount *(%)</div>
+                <div class="value">20%</div>
             </div>
             <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 mb-3">
-                <div class="label">Account Number</div>
-                <div class="value">000000000*****</div>
+                <div class="label">Discount(₹)</div>
+                <div class="value">100 ₹</div>
             </div>
             <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 mb-3">
-                <div class="label">Bank Name</div>
-                <div class="value">Ankleshwar</div>
+                <div class="label">Min. Order</div>
+                <div class="value">500 ₹</div>
             </div>
             <div class="actions mt-2">
                 <button class="btn create">Create</button>
