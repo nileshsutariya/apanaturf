@@ -17,11 +17,11 @@
         }
     
         body{
-            font-size: 15px;
-            font-family: 'Inter', sans-serif;
+            /* font-size: 15px;
+            font-family: 'Inter', sans-serif; */
             font-weight: 400 !important;
-            letter-spacing: 0.9px;
-            background-color: #F5F5F5;
+            /* letter-spacing: 0.9px;
+            background-color: #F5F5F5; */
         }
     
         .hr {
@@ -444,6 +444,558 @@
                                                     </td>
                                                 </tr>
                                                 <tr>
+                                                    <td> #000003 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567892</td>
+                                                    <td><h4><span class="badge badge-soft-info" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Full</span></h4></td>
+                                                    <td><h4><span class="badge badge-soft-danger" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Pending</span></h4></td>
+                                                    <td>
+                                                        <i class="bi bi-info-circle" style="font-size: 19px; color: blue"></i>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000003 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567892</td>
+                                                    <td><h4><span class="badge badge-soft-info" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Full</span></h4></td>
+                                                    <td><h4><span class="badge badge-soft-danger" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Pending</span></h4></td>
+                                                    <td>
+                                                        <i class="bi bi-info-circle" style="font-size: 19px; color: blue"></i>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000003 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567892</td>
+                                                    <td><h4><span class="badge badge-soft-info" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Full</span></h4></td>
+                                                    <td><h4><span class="badge badge-soft-danger" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Pending</span></h4></td>
+                                                    <td>
+                                                        <i class="bi bi-info-circle" style="font-size: 19px; color: blue"></i>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000003 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567892</td>
+                                                    <td><h4><span class="badge badge-soft-info" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Full</span></h4></td>
+                                                    <td><h4><span class="badge badge-soft-danger" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Pending</span></h4></td>
+                                                    <td>
+                                                        <i class="bi bi-info-circle" style="font-size: 19px; color: blue"></i>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000003 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567892</td>
+                                                    <td><h4><span class="badge badge-soft-info" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Full</span></h4></td>
+                                                    <td><h4><span class="badge badge-soft-danger" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Pending</span></h4></td>
+                                                    <td>
+                                                        <i class="bi bi-info-circle" style="font-size: 19px; color: blue"></i>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000003 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567892</td>
+                                                    <td><h4><span class="badge badge-soft-info" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Full</span></h4></td>
+                                                    <td><h4><span class="badge badge-soft-danger" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Pending</span></h4></td>
+                                                    <td>
+                                                        <i class="bi bi-info-circle" style="font-size: 19px; color: blue"></i>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000003 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567892</td>
+                                                    <td><h4><span class="badge badge-soft-info" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Full</span></h4></td>
+                                                    <td><h4><span class="badge badge-soft-danger" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Pending</span></h4></td>
+                                                    <td>
+                                                        <i class="bi bi-info-circle" style="font-size: 19px; color: blue"></i>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000003 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567892</td>
+                                                    <td><h4><span class="badge badge-soft-info" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Full</span></h4></td>
+                                                    <td><h4><span class="badge badge-soft-danger" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Pending</span></h4></td>
+                                                    <td>
+                                                        <i class="bi bi-info-circle" style="font-size: 19px; color: blue"></i>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000003 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567892</td>
+                                                    <td><h4><span class="badge badge-soft-info" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Full</span></h4></td>
+                                                    <td><h4><span class="badge badge-soft-danger" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Pending</span></h4></td>
+                                                    <td>
+                                                        <i class="bi bi-info-circle" style="font-size: 19px; color: blue"></i>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000003 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567892</td>
+                                                    <td><h4><span class="badge badge-soft-info" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Full</span></h4></td>
+                                                    <td><h4><span class="badge badge-soft-danger" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Pending</span></h4></td>
+                                                    <td>
+                                                        <i class="bi bi-info-circle" style="font-size: 19px; color: blue"></i>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000003 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567892</td>
+                                                    <td><h4><span class="badge badge-soft-info" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Full</span></h4></td>
+                                                    <td><h4><span class="badge badge-soft-danger" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Pending</span></h4></td>
+                                                    <td>
+                                                        <i class="bi bi-info-circle" style="font-size: 19px; color: blue"></i>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000003 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567892</td>
+                                                    <td><h4><span class="badge badge-soft-info" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Full</span></h4></td>
+                                                    <td><h4><span class="badge badge-soft-danger" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Pending</span></h4></td>
+                                                    <td>
+                                                        <i class="bi bi-info-circle" style="font-size: 19px; color: blue"></i>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000003 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567892</td>
+                                                    <td><h4><span class="badge badge-soft-info" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Full</span></h4></td>
+                                                    <td><h4><span class="badge badge-soft-danger" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Pending</span></h4></td>
+                                                    <td>
+                                                        <i class="bi bi-info-circle" style="font-size: 19px; color: blue"></i>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000003 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567892</td>
+                                                    <td><h4><span class="badge badge-soft-info" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Full</span></h4></td>
+                                                    <td><h4><span class="badge badge-soft-danger" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Pending</span></h4></td>
+                                                    <td>
+                                                        <i class="bi bi-info-circle" style="font-size: 19px; color: blue"></i>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000003 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567892</td>
+                                                    <td><h4><span class="badge badge-soft-info" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Full</span></h4></td>
+                                                    <td><h4><span class="badge badge-soft-danger" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Pending</span></h4></td>
+                                                    <td>
+                                                        <i class="bi bi-info-circle" style="font-size: 19px; color: blue"></i>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000003 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567892</td>
+                                                    <td><h4><span class="badge badge-soft-info" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Full</span></h4></td>
+                                                    <td><h4><span class="badge badge-soft-danger" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Pending</span></h4></td>
+                                                    <td>
+                                                        <i class="bi bi-info-circle" style="font-size: 19px; color: blue"></i>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000003 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567892</td>
+                                                    <td><h4><span class="badge badge-soft-info" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Full</span></h4></td>
+                                                    <td><h4><span class="badge badge-soft-danger" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Pending</span></h4></td>
+                                                    <td>
+                                                        <i class="bi bi-info-circle" style="font-size: 19px; color: blue"></i>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000003 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567892</td>
+                                                    <td><h4><span class="badge badge-soft-info" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Full</span></h4></td>
+                                                    <td><h4><span class="badge badge-soft-danger" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Pending</span></h4></td>
+                                                    <td>
+                                                        <i class="bi bi-info-circle" style="font-size: 19px; color: blue"></i>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000003 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567892</td>
+                                                    <td><h4><span class="badge badge-soft-info" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Full</span></h4></td>
+                                                    <td><h4><span class="badge badge-soft-danger" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Pending</span></h4></td>
+                                                    <td>
+                                                        <i class="bi bi-info-circle" style="font-size: 19px; color: blue"></i>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000003 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567892</td>
+                                                    <td><h4><span class="badge badge-soft-info" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Full</span></h4></td>
+                                                    <td><h4><span class="badge badge-soft-danger" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Pending</span></h4></td>
+                                                    <td>
+                                                        <i class="bi bi-info-circle" style="font-size: 19px; color: blue"></i>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000003 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567892</td>
+                                                    <td><h4><span class="badge badge-soft-info" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Full</span></h4></td>
+                                                    <td><h4><span class="badge badge-soft-danger" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Pending</span></h4></td>
+                                                    <td>
+                                                        <i class="bi bi-info-circle" style="font-size: 19px; color: blue"></i>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000003 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567892</td>
+                                                    <td><h4><span class="badge badge-soft-info" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Full</span></h4></td>
+                                                    <td><h4><span class="badge badge-soft-danger" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Pending</span></h4></td>
+                                                    <td>
+                                                        <i class="bi bi-info-circle" style="font-size: 19px; color: blue"></i>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000003 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567892</td>
+                                                    <td><h4><span class="badge badge-soft-info" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Full</span></h4></td>
+                                                    <td><h4><span class="badge badge-soft-danger" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Pending</span></h4></td>
+                                                    <td>
+                                                        <i class="bi bi-info-circle" style="font-size: 19px; color: blue"></i>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000003 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567892</td>
+                                                    <td><h4><span class="badge badge-soft-info" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Full</span></h4></td>
+                                                    <td><h4><span class="badge badge-soft-danger" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Pending</span></h4></td>
+                                                    <td>
+                                                        <i class="bi bi-info-circle" style="font-size: 19px; color: blue"></i>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000003 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567892</td>
+                                                    <td><h4><span class="badge badge-soft-info" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Full</span></h4></td>
+                                                    <td><h4><span class="badge badge-soft-danger" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Pending</span></h4></td>
+                                                    <td>
+                                                        <i class="bi bi-info-circle" style="font-size: 19px; color: blue"></i>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000003 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567892</td>
+                                                    <td><h4><span class="badge badge-soft-info" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Full</span></h4></td>
+                                                    <td><h4><span class="badge badge-soft-danger" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Pending</span></h4></td>
+                                                    <td>
+                                                        <i class="bi bi-info-circle" style="font-size: 19px; color: blue"></i>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000003 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567892</td>
+                                                    <td><h4><span class="badge badge-soft-info" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Full</span></h4></td>
+                                                    <td><h4><span class="badge badge-soft-danger" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Pending</span></h4></td>
+                                                    <td>
+                                                        <i class="bi bi-info-circle" style="font-size: 19px; color: blue"></i>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000003 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567892</td>
+                                                    <td><h4><span class="badge badge-soft-info" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Full</span></h4></td>
+                                                    <td><h4><span class="badge badge-soft-danger" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Pending</span></h4></td>
+                                                    <td>
+                                                        <i class="bi bi-info-circle" style="font-size: 19px; color: blue"></i>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000003 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567892</td>
+                                                    <td><h4><span class="badge badge-soft-info" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Full</span></h4></td>
+                                                    <td><h4><span class="badge badge-soft-danger" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Pending</span></h4></td>
+                                                    <td>
+                                                        <i class="bi bi-info-circle" style="font-size: 19px; color: blue"></i>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000003 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567892</td>
+                                                    <td><h4><span class="badge badge-soft-info" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Full</span></h4></td>
+                                                    <td><h4><span class="badge badge-soft-danger" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Pending</span></h4></td>
+                                                    <td>
+                                                        <i class="bi bi-info-circle" style="font-size: 19px; color: blue"></i>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000003 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567892</td>
+                                                    <td><h4><span class="badge badge-soft-info" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Full</span></h4></td>
+                                                    <td><h4><span class="badge badge-soft-danger" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Pending</span></h4></td>
+                                                    <td>
+                                                        <i class="bi bi-info-circle" style="font-size: 19px; color: blue"></i>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000003 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567892</td>
+                                                    <td><h4><span class="badge badge-soft-info" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Full</span></h4></td>
+                                                    <td><h4><span class="badge badge-soft-danger" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Pending</span></h4></td>
+                                                    <td>
+                                                        <i class="bi bi-info-circle" style="font-size: 19px; color: blue"></i>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000003 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567892</td>
+                                                    <td><h4><span class="badge badge-soft-info" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Full</span></h4></td>
+                                                    <td><h4><span class="badge badge-soft-danger" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Pending</span></h4></td>
+                                                    <td>
+                                                        <i class="bi bi-info-circle" style="font-size: 19px; color: blue"></i>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000003 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567892</td>
+                                                    <td><h4><span class="badge badge-soft-info" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Full</span></h4></td>
+                                                    <td><h4><span class="badge badge-soft-danger" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Pending</span></h4></td>
+                                                    <td>
+                                                        <i class="bi bi-info-circle" style="font-size: 19px; color: blue"></i>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000003 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567892</td>
+                                                    <td><h4><span class="badge badge-soft-info" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Full</span></h4></td>
+                                                    <td><h4><span class="badge badge-soft-danger" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Pending</span></h4></td>
+                                                    <td>
+                                                        <i class="bi bi-info-circle" style="font-size: 19px; color: blue"></i>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000003 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567892</td>
+                                                    <td><h4><span class="badge badge-soft-info" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Full</span></h4></td>
+                                                    <td><h4><span class="badge badge-soft-danger" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Pending</span></h4></td>
+                                                    <td>
+                                                        <i class="bi bi-info-circle" style="font-size: 19px; color: blue"></i>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000003 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567892</td>
+                                                    <td><h4><span class="badge badge-soft-info" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Full</span></h4></td>
+                                                    <td><h4><span class="badge badge-soft-danger" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Pending</span></h4></td>
+                                                    <td>
+                                                        <i class="bi bi-info-circle" style="font-size: 19px; color: blue"></i>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000003 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567892</td>
+                                                    <td><h4><span class="badge badge-soft-info" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Full</span></h4></td>
+                                                    <td><h4><span class="badge badge-soft-danger" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Pending</span></h4></td>
+                                                    <td>
+                                                        <i class="bi bi-info-circle" style="font-size: 19px; color: blue"></i>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000003 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567892</td>
+                                                    <td><h4><span class="badge badge-soft-info" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Full</span></h4></td>
+                                                    <td><h4><span class="badge badge-soft-danger" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Pending</span></h4></td>
+                                                    <td>
+                                                        <i class="bi bi-info-circle" style="font-size: 19px; color: blue"></i>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000003 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567892</td>
+                                                    <td><h4><span class="badge badge-soft-info" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Full</span></h4></td>
+                                                    <td><h4><span class="badge badge-soft-danger" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Pending</span></h4></td>
+                                                    <td>
+                                                        <i class="bi bi-info-circle" style="font-size: 19px; color: blue"></i>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000003 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567892</td>
+                                                    <td><h4><span class="badge badge-soft-info" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Full</span></h4></td>
+                                                    <td><h4><span class="badge badge-soft-danger" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Pending</span></h4></td>
+                                                    <td>
+                                                        <i class="bi bi-info-circle" style="font-size: 19px; color: blue"></i>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000003 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567892</td>
+                                                    <td><h4><span class="badge badge-soft-info" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Full</span></h4></td>
+                                                    <td><h4><span class="badge badge-soft-danger" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Pending</span></h4></td>
+                                                    <td>
+                                                        <i class="bi bi-info-circle" style="font-size: 19px; color: blue"></i>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000003 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567892</td>
+                                                    <td><h4><span class="badge badge-soft-info" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Full</span></h4></td>
+                                                    <td><h4><span class="badge badge-soft-danger" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Pending</span></h4></td>
+                                                    <td>
+                                                        <i class="bi bi-info-circle" style="font-size: 19px; color: blue"></i>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000003 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567892</td>
+                                                    <td><h4><span class="badge badge-soft-info" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Full</span></h4></td>
+                                                    <td><h4><span class="badge badge-soft-danger" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Pending</span></h4></td>
+                                                    <td>
+                                                        <i class="bi bi-info-circle" style="font-size: 19px; color: blue"></i>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000003 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567892</td>
+                                                    <td><h4><span class="badge badge-soft-info" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Full</span></h4></td>
+                                                    <td><h4><span class="badge badge-soft-danger" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Pending</span></h4></td>
+                                                    <td>
+                                                        <i class="bi bi-info-circle" style="font-size: 19px; color: blue"></i>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000003 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567892</td>
+                                                    <td><h4><span class="badge badge-soft-info" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Full</span></h4></td>
+                                                    <td><h4><span class="badge badge-soft-danger" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Vender</span></h4></td>
+                                                    <td><h4><span class="badge badge-soft-warning" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Pending</span></h4></td>
+                                                    <td>
+                                                        <i class="bi bi-info-circle" style="font-size: 19px; color: blue"></i>
+                                                    </td>
+                                                </tr>
+                                                <tr>
                                                     <td> #000001 </td>
                                                     <td>#000001</td>
                                                     <td>#000001</td>
@@ -598,107 +1150,179 @@
 
 
 
-        // $(document).ready(function () {
-        //     var table = $('#responsive-datatable').DataTable({
-        //         "ordering": false,
-        //         "paging": true,
-        //         "searching": true,
-        //         "info": false,
-        //         "pageLength": 10,  // Show 10 records per page
-        //         "lengthChange": false,
-        //         "dom": 'rt',
-        //     });
+        $(document).ready(function () {
+            var table = $('#responsive-datatable').DataTable({
+                "ordering": false,
+                "paging": true,
+                "searching": true,
+                "info": false,
+                "pageLength": 10,  // Show 10 records per page
+                "lengthChange": false,
+                "dom": 'rt',
+            });
 
-        //     function columnSearch(inputSelector, columnIndex) {
-        //         $(inputSelector).on('keyup', function () {
-        //             table.column(columnIndex).search(this.value).draw();
-        //         });
-        //     }
+            // function columnSearch(inputSelector, columnIndex) {
+            //     $(inputSelector).on('keyup', function () {
+            //         table.column(columnIndex).search(this.value).draw();
+            //     });
+            // }
 
-        //     // Attach search functionality to respective input fields
-        //     columnSearch('#nameSearch', 0);
-        //     columnSearch('#dateSearch', 1);
-        //     columnSearch('#customerSearch', 2);
-        //     columnSearch('#mobileSearch', 3);
-        //     columnSearch('#paidSearch', 4);
-        //     columnSearch('#typeSearch', 5);
-        //     columnSearch('#statusSearch', 6);
+            // // Attach search functionality to respective input fields
+            // columnSearch('#nameSearch', 0);
+            // columnSearch('#dateSearch', 1);
+            // columnSearch('#customerSearch', 2);
+            // columnSearch('#mobileSearch', 3);
+            // columnSearch('#paidSearch', 4);
+            // columnSearch('#typeSearch', 5);
+            // columnSearch('#statusSearch', 6);
 
-        //     // Function to create custom pagination
-        //     function createCustomPagination() {
-        //         var totalPages = table.page.info().pages;  // Get total number of pages
-        //         var currentPage = table.page.info().page; // Get current page (zero-based index)
-        //         var pagination = $('.custom-pagination');
-        //         pagination.empty();  // Clear existing pagination
+            // // Function to create custom pagination
+            // function createCustomPagination() {
+            //     var totalPages = table.page.info().pages;  // Get total number of pages
+            //     var currentPage = table.page.info().page; // Get current page (zero-based index)
+            //     var pagination = $('.custom-pagination');
+            //     pagination.empty();  // Clear existing pagination
 
-        //         // Create previous button (disable if on first page)
-        //         var prevDisabled = (currentPage === 0) ? 'disabled' : '';
-        //         pagination.append('<li class="page-item ' + prevDisabled + '"><a class="page-link" href="javascript:void(0);" id="prevPage">&lt;</a></li>');
+            //     // Create previous button (disable if on first page)
+            //     var prevDisabled = (currentPage === 0) ? 'disabled' : '';
+            //     pagination.append('<li class="page-item ' + prevDisabled + '"><a class="page-link" href="javascript:void(0);" id="prevPage">&lt;</a></li>');
 
-        //         // Create page numbers
-        //         for (var i = 0; i < totalPages; i++) {
-        //             var activeClass = (i === currentPage) ? 'active success' : '';
-        //             pagination.append('<li class="page-item ' + activeClass + '"><a class="page-link page-num" href="javascript:void(0);" data-page="' + i + '">' + (i + 1) + '</a></li>');
-        //         }
+            //     // Create page numbers
+            //     for (var i = 0; i < totalPages; i++) {
+            //         var activeClass = (i === currentPage) ? 'active success' : '';
+            //         pagination.append('<li class="page-item ' + activeClass + '"><a class="page-link page-num" href="javascript:void(0);" data-page="' + i + '">' + (i + 1) + '</a></li>');
+            //     }
 
-        //         // Create next button (disable if on last page)
-        //         var nextDisabled = (currentPage === totalPages - 1) ? 'disabled' : '';
-        //         pagination.append('<li class="page-item ' + nextDisabled + '"><a class="page-link" href="javascript:void(0);" id="nextPage">&gt;</a></li>');
-        //     }
+            //     // Create next button (disable if on last page)
+            //     var nextDisabled = (currentPage === totalPages - 1) ? 'disabled' : '';
+            //     pagination.append('<li class="page-item ' + nextDisabled + '"><a class="page-link" href="javascript:void(0);" id="nextPage">&gt;</a></li>');
+            // }
 
-        //     // Custom pagination button click handlers
-        //     $(document).on('click', '.page-num', function () {
-        //         var pageNum = $(this).data('page');  // Get page number from `data-page` attribute
-        //         table.page(pageNum).draw(false);
-        //         createCustomPagination();  // Update pagination
-        //     });
+            // // Custom pagination button click handlers
+            // $(document).on('click', '.page-num', function () {
+            //     var pageNum = $(this).data('page');  // Get page number from `data-page` attribute
+            //     table.page(pageNum).draw(false);
+            //     createCustomPagination();  // Update pagination
+            // });
 
-        //     $(document).on('click', '#prevPage', function () {
-        //         if (!$(this).parent().hasClass('disabled')) {
-        //             table.page('previous').draw(false);
-        //             createCustomPagination();
-        //         }
-        //     });
+            // $(document).on('click', '#prevPage', function () {
+            //     if (!$(this).parent().hasClass('disabled')) {
+            //         table.page('previous').draw(false);
+            //         createCustomPagination();
+            //     }
+            // });
 
-        //     $(document).on('click', '#nextPage', function () {
-        //         if (!$(this).parent().hasClass('disabled')) {
-        //             table.page('next').draw(false);
-        //             createCustomPagination();
-        //         }
-        //     });
+            // $(document).on('click', '#nextPage', function () {
+            //     if (!$(this).parent().hasClass('disabled')) {
+            //         table.page('next').draw(false);
+            //         createCustomPagination();
+            //     }
+            // });
 
-        //     // Initialize the custom pagination
-        //     createCustomPagination();
-        // });
+            // // Initialize the custom pagination
+            // createCustomPagination();
+            
+    
+            function createCustomPagination() {
+                var pageInfo = table.page.info();
+                var totalPages = pageInfo.pages;
+                var currentPage = pageInfo.page;
+                var pagination = $('.custom-pagination');
+                pagination.empty();
 
+                // Previous Button
+                pagination.append('<li class="page-item ' + (currentPage === 0 ? 'disabled' : '') + '"><a class="page-link prev-page" href="javascript:void(0);">&lt;</a></li>');
 
+                // First Page
+                if (totalPages > 0) {
+                    pagination.append('<li class="page-item ' + (currentPage === 0 ? 'active' : '') + '"><a class="page-link page-num" href="javascript:void(0);" data-page="0">1</a></li>');
+                }
 
-        $('#nameSearch').on('keyup', function () {
-            table.column(0).search(this.value).draw();
-        });
-        
-        $('#dateSearch').on('keyup', function () {
-            table.column(1).search(this.value).draw();
-        });
+                // Show '...' before current range if needed
+                if (currentPage > 2) {
+                    pagination.append('<li class="page-item"><a class="page-link">...</a></li>');
+                }
 
-        $('#customerSearch').on('keyup', function () {
-            table.column(2).search(this.value).draw();
-        });
+                // Show two pages around the current page
+                for (var i = Math.max(1, currentPage - 1); i <= Math.min(totalPages - 2, currentPage + 1); i++) {
+                    pagination.append('<li class="page-item ' + (i === currentPage ? 'active' : '') + '"><a class="page-link page-num" href="javascript:void(0);" data-page="' + i + '">' + (i + 1) + '</a></li>');
+                }
 
-        $('#mobileSearch').on('keyup', function () {
-            table.column(3).search(this.value).draw();
-        });
+                // Show '...' before last page if needed
+                if (currentPage < totalPages - 3) {
+                    pagination.append('<li class="page-item"><a class="page-link">...</a></li>');
+                }
 
-        $('#paidSearch').on('keyup', function () {
-            table.column(4).search(this.value).draw();
-        });
+                // Last Page
+                if (totalPages > 1) {
+                    pagination.append('<li class="page-item ' + (currentPage === totalPages - 1 ? 'active' : '') + '"><a class="page-link page-num" href="javascript:void(0);" data-page="' + (totalPages - 1) + '">' + totalPages + '</a></li>');
+                }
 
-        $('#typeSearch').on('keyup', function () {
-            table.column(5).search(this.value).draw();
-        });
+                // Next Button
+                pagination.append('<li class="page-item ' + (currentPage === totalPages - 1 ? 'disabled' : '') + '"><a class="page-link next-page" href="javascript:void(0);">&gt;</a></li>');
+            }
 
-        $('#statusSearch').on('keyup', function () {
-            table.column(6).search(this.value).draw();
+            // Pagination Click Events
+            $(document).on('click', '.page-num', function () {
+                var pageNum = $(this).data('page');
+                table.page(pageNum).draw(false);
+                createCustomPagination();
+            });
+
+            $(document).on('click', '.prev-page', function () {
+                var currentPage = table.page.info().page;
+                if (currentPage > 0) {
+                    table.page(currentPage - 1).draw(false);
+                    createCustomPagination();
+                }
+            });
+
+            $(document).on('click', '.next-page', function () {
+                var currentPage = table.page.info().page;
+                var totalPages = table.page.info().pages;
+                if (currentPage < totalPages - 1) {
+                    table.page(currentPage + 1).draw(false);
+                    createCustomPagination();
+                }
+            });
+
+            // Initialize Pagination
+            createCustomPagination();
+
+    
+            $('#nameSearch').on('keyup', function () {
+                table.column(0).search(this.value).draw();
+            });
+            
+            $('#dateSearch').on('keyup', function () {
+                table.column(1).search(this.value).draw();
+            });
+    
+            $('#customerSearch').on('keyup', function () {
+                table.column(2).search(this.value).draw();
+            });
+    
+            $('#mobileSearch').on('keyup', function () {
+                table.column(3).search(this.value).draw();
+            });
+    
+            $('#paidSearch').on('keyup', function () {
+                table.column(4).search(this.value).draw();
+            });
+    
+            $('#typeSearch').on('keyup', function () {
+                table.column(5).search(this.value).draw();
+            });
+    
+            $('#statusSearch').on('keyup', function () {
+                table.column(6).search(this.value).draw();
+            });
+
+            $('#nameSearch, #dateSearch, #customerSearch, #mobileSearch, #paidSearch, #typeSearch, #statusSearch').on('keyup', function () {
+                table.draw();
+                createCustomPagination(); // Update pagination based on filtered results
+            });
+
         });
 
 

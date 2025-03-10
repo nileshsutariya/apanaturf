@@ -3,7 +3,7 @@
     .card {
         background-color: #ffffff;
         border-radius: 0.5rem;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 11px 26px rgba(0, 0, 0, 0.1);
         padding: 25px;
     }
 
@@ -29,7 +29,7 @@
         justify-content: space-between;
         align-items: center;
         padding: 0px;
-
+        background-color: #ffffff;
     }
 
     .card-footer a {
@@ -40,7 +40,7 @@
     .card-footer button {
         background-color: #299D91;
         color: #ffffff;
-        padding: 0.5rem 1rem;
+        padding: 0.5rem 1.5rem;
         border: none;
         border-radius: 4px;
         display: flex;
@@ -49,6 +49,7 @@
     }
 
     .card-footer button i {
+        font-size: 11px;
         margin-left: 0.5rem;
     }
 
@@ -82,18 +83,18 @@
         <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
             <div class="card mr-3">
                 <div class="card-header">
-                    <span style="font-size: 16px; color:#878787; font-weight: 700;" class="nameofuser">Name Of
+                    <span style="font-size: 15px; color:#878787; font-weight: 600;" class="nameofuser">Name Of
                         User</span>
                     <span style="font-size: 12px; color:#666666; font-weight:500;">UserID:1234</span>
                 </div>
                 <hr>
                 <div>
-                    <p class="m-0" style="font-size: 20px; color:#191919; font-weight:600;">Name Of The Ground</p>
+                    <p class="m-0" style="font-size: 19px; color:#191919; font-weight:600;">Name Of The Ground</p>
                     <p style="font-size: 14px; color:#9F9F9F; font-weight:400;">Turf Name</p>
                 </div>
                 <div>
-                    <p class="m-0" style="font-size: 20px; color:#191919; font-weight:600;">May 19, 2023</p>
-                    <p class="m-0" style="font-size: 20px; color:#191919; font-weight:600;">9 Am</p>
+                    <p class="m-0" style="font-size: 19px; color:#191919; font-weight:600;">May 19, 2023</p>
+                    <p class="m-0" style="font-size: 19px; color:#191919; font-weight:600;">9 Am</p>
                     <p class="mt-1" style="font-size: 14px; color:#9F9F9F; font-weight:400;">Date/Time</p>
                 </div>
                 <div class="card-footer">
@@ -105,6 +106,81 @@
             </div>
         </div>
         <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
+            <div class="card mr-3">
+                <div class="card-header">
+                    <span style="font-size: 15px; color:#878787; font-weight: 600;" class="nameofuser">Name Of
+                        User</span>
+                    <span style="font-size: 12px; color:#666666; font-weight:500;">UserID:1234</span>
+                </div>
+                <hr>
+                <div>
+                    <p class="m-0" style="font-size: 19px; color:#191919; font-weight:600;">Name Of The Ground</p>
+                    <p style="font-size: 14px; color:#9F9F9F; font-weight:400;">Turf Name</p>
+                </div>
+                <div>
+                    <p class="m-0" style="font-size: 19px; color:#191919; font-weight:600;">May 19, 2023</p>
+                    <p class="m-0" style="font-size: 19px; color:#191919; font-weight:600;">9 Am</p>
+                    <p class="mt-1" style="font-size: 14px; color:#9F9F9F; font-weight:400;">Date/Time</p>
+                </div>
+                <div class="card-footer">
+                    <a href="#">Remove</a>
+                    <button>
+                        Accept <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
+            <div class="card mr-3">
+                <div class="card-header">
+                    <span style="font-size: 15px; color:#878787; font-weight: 600;" class="nameofuser">Name Of
+                        User</span>
+                    <span style="font-size: 12px; color:#666666; font-weight:500;">UserID:1234</span>
+                </div>
+                <hr>
+                <div>
+                    <p class="m-0" style="font-size: 19px; color:#191919; font-weight:600;">Name Of The Ground</p>
+                    <p style="font-size: 14px; color:#9F9F9F; font-weight:400;">Turf Name</p>
+                </div>
+                <div>
+                    <p class="m-0" style="font-size: 19px; color:#191919; font-weight:600;">May 19, 2023</p>
+                    <p class="m-0" style="font-size: 19px; color:#191919; font-weight:600;">9 Am</p>
+                    <p class="mt-1" style="font-size: 14px; color:#9F9F9F; font-weight:400;">Date/Time</p>
+                </div>
+                <div class="card-footer">
+                    <a href="#">Remove</a>
+                    <button>
+                        Accept <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
+            <div class="card mr-3">
+                <div class="card-header">
+                    <span style="font-size: 15px; color:#878787; font-weight: 600;" class="nameofuser">Name Of
+                        User</span>
+                    <span style="font-size: 12px; color:#666666; font-weight:500;">UserID:1234</span>
+                </div>
+                <hr>
+                <div>
+                    <p class="m-0" style="font-size: 19px; color:#191919; font-weight:600;">Name Of The Ground</p>
+                    <p style="font-size: 14px; color:#9F9F9F; font-weight:400;">Turf Name</p>
+                </div>
+                <div>
+                    <p class="m-0" style="font-size: 19px; color:#191919; font-weight:600;">May 19, 2023</p>
+                    <p class="m-0" style="font-size: 19px; color:#191919; font-weight:600;">9 Am</p>
+                    <p class="mt-1" style="font-size: 14px; color:#9F9F9F; font-weight:400;">Date/Time</p>
+                </div>
+                <div class="card-footer">
+                    <a href="#">Remove</a>
+                    <button>
+                        Accept <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        {{-- <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
             <div class="card mr-3">
                 <div class="card-header">
                     <span style="font-size: 16px; color:#878787; font-weight: 700;">Name Of User</span>
@@ -175,7 +251,7 @@
                     </button>
                 </div>
             </div>
-        </div>
+        </div> --}}
     </div>
 </div>
 

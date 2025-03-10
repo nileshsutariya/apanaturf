@@ -157,7 +157,7 @@
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-9">
-                                            <h6 class="text-muted mt-0" style="font-size: 11px;">Total Balance</h6>
+                                            <h6 class="text-muted mt-0" style="font-size: 10px;">Total Balance</h6>
                                             <h3 data-plugin="counterup" style="font-weight:700;font-size: 20px;">200</h3>
                                         </div>
                                         <div class="col-3">

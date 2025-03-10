@@ -24,7 +24,7 @@
         flex-grow: 1;
         padding: 50px;
     }
-    @media (max-width: 768px) {
+    @media (max-width: 767px) {
         .mobiles {
             display: none;
         }
@@ -32,7 +32,9 @@
             padding: 30px;
         }
     }
-    
+    /* .nav-link {
+        pointer-events: none !important;
+    } */
 </style>
 <div class="page-content" id="mainContent">
     <div class="page-container" style="background-color: transparent;">
@@ -56,19 +58,19 @@
                 <div class="d-flex flex-wrap bd-highlight mb-4" style="margin-top: 80px; font-family: 'Monda', sans-serif !important;">
                     <div class="d-inline">
                         <img src="{{asset('assets/image/users/link.svg')}}" class="img-fluid mx-5 my-2" alt="link">
-                        <a class="nav-link mx-2 text-uppercase" data-filter="complete" href="#" style="font-size: 13px; font-weight: 600 !important;">Copy Link<span class="sr-only"></span></a>
+                        <a class="nav-link mx-2 text-uppercase" data-filter="complete" href="#" style="font-size: 13px; font-weight: 600 !important; pointer-events: none !important;">Copy Link<span class="sr-only"></span></a>
                     </div>
                     <div class="d-inline">
                         <img src="{{asset('assets/image/users/whatsapp.svg')}}" class="img-fluid mx-5 my-2" alt="link">
-                        <a class="nav-link mx-2 text-uppercase" data-filter="going-on" href="#" style="font-size: 13px; font-weight: 600 !important;">Whatsapp<span class="sr-only"></span></a>
+                        <a class="nav-link mx-2 text-uppercase" data-filter="going-on" href="#" style="font-size: 13px; font-weight: 600 !important; pointer-events: none !important;">Whatsapp<span class="sr-only"></span></a>
                     </div>    
                     <div class="d-inline">
                         <img src="{{asset('assets/image/users/facebook.svg')}}" class="img-fluid mx-5 my-2" alt="link">
-                        <a class="nav-link mx-2 text-uppercase" data-filter="upcoming" href="#" style="font-size: 13px; font-weight: 600 !important;">facebook<span class="sr-only"></span></a>
+                        <a class="nav-link mx-2 text-uppercase" data-filter="upcoming" href="#" style="font-size: 13px; font-weight: 600 !important; pointer-events: none !important;">facebook<span class="sr-only"></span></a>
                     </div>
                     <div class="d-inline">
-                        <img src="{{asset('assets/image/users/moredots.svg')}}" class="img-fluid" alt="link" style="margin-left: 31px; padding-top: 15px;">
-                        <a class="nav-link mx-2 text-uppercase my-3" data-filter="bidding" href="#" style="font-size: 13px; font-weight: 600 !important;">  More  <span class="sr-only"></span></a>
+                        <img src="{{asset('assets/image/users/moredots.svg')}}" class="img-fluid" alt="link" style="margin-left: 27px; padding-top: 17px;">
+                        <a class="nav-link mx-2 text-uppercase my-3" data-filter="bidding" href="#" style="font-size: 13px; font-weight: 600 !important; pointer-events: none !important;">  More  <span class="sr-only"></span></a>
                     </div>
                 </div>
             </div>

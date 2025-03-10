@@ -7,13 +7,12 @@
         box-shadow: none !important;
     }
     .chart-container {
-        width: 96%;
+        width: 97%;
         max-width: 900px;
         background: white;
         padding: 30px;
         border-radius: 11px;
-        box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1); /* Soft shadow */
-        position: relative;
+        /* position: relative; */
         overflow: hidden;
     }
 
@@ -55,13 +54,13 @@
 </style>
 <div class="page-title-box">
     <div class="row">
-        <div class="col-md-8">
-            <span>Today bookings</span>
-            <span class="text-muted float-end mt-2" style="font-size: 11px;">
+        <div class="col-md-8 pr-3">
+            <span style="font-size: 18px; color: #878787; font-weight: 400;">Today bookings</span>
+            <span class="text-muted float-end mt-2 mx-2" style="font-size: 11px;">
                 View All <img class="ml-1" src="{{asset('assets/image/client/rightarrow.svg')}}" alt="dashboard" height="">
             </span>
             <div class="row mt-2">
-                <div class="col-12 col-sm-6 col-md-4 col-lg-4 mb-4">
+                <div class="col-12 col-sm-6 col-md-4 col-lg-4">
                     <div class="card tilebox-one" style="border-radius: 7px; box-shadow: 0px 17px 25px #00000040; height: 100px; padding: 20px 20px 15px 20px;">
                         <div class="d-flex align-items-center">
                             <div class="me-3 d-flex align-items-center">
@@ -79,7 +78,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-12 col-sm-6 col-md-4 col-lg-4 mb-4">
+                <div class="col-12 col-sm-6 col-md-4 col-lg-4">
                     <div class="card tilebox-one" style="border-radius: 7px; box-shadow: 0px 17px 25px #00000040; height: 100px; padding: 20px 20px 15px 20px;">
                         <div class="d-flex align-items-center">
                             <div class="me-3 d-flex align-items-center">
@@ -97,7 +96,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-12 col-sm-6 col-md-4 col-lg-4 mb-4">
+                <div class="col-12 col-sm-6 col-md-4 col-lg-4">
                     <div class="card tilebox-one" style="border-radius: 7px; box-shadow: 0px 17px 25px #00000040; height: 100px; padding: 20px 20px 15px 20px;">
                         <div class="d-flex align-items-center">
                             <div class="me-3 d-flex align-items-center">
@@ -116,42 +115,6 @@
                     </div>
                 </div>
                 
-                {{-- <div class="col-12 col-sm-6 col-md-4 col-lg-4 mb-4">
-                    <div class="card tilebox-one" style="border-radius: 7px; box-shadow: 0px 17px 25px #00000040; height: 100px; padding: 20px 20px 15px 20px;">
-                        <div class="row" style="">
-                            <div class="col-1">
-                            <img src="{{asset('assets/image/client/linegreen.svg')}}" alt="dashboard" height="60px">
-                        </div>
-                            <div class="col-8 pt-1">
-                                <h6 class="mt-0" style="font-size: 13.5px; color: #898989;">Total Booked</h6>
-                                <h3 data-plugin="counterup" style="font-size: 23.5px; font-weight: 700;">135</h3>
-                            </div>
-                            <div class="col-2 p-1">
-                                <button style="border: none; background-color: #109145; box-shadow: 0 2px 4px #00000040; border-radius: 50px; padding: 6px 7px;"> 
-                                    <img src="{{asset('assets/image/client/calendarwhite.svg')}}" alt="dashboard" style="width: 20px;">
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div> --}}
-                {{-- <div class="col-12 col-sm-6 col-md-4 col-lg-4 mb-4">
-                    <div class="card tilebox-one" style="border-radius: 7px; box-shadow: 0px 17px 25px #00000040; height: 100px; padding: 20px 20px 15px 20px;">
-                            <div class="row" style="">
-                                <div class="col-1">
-                                <img src="{{asset('assets/image/client/lineblack.svg')}}" alt="dashboard" height="60px">
-                            </div>
-                                <div class="col-8 pt-1">
-                                    <h6 class="mt-0" style="font-size: 13.5px; color: #898989;">Total Available</h6>
-                                    <h3 data-plugin="counterup" style="font-size: 23.5px; font-weight: 700;">65</h3>
-                                </div>
-                                <div class="col-2 p-1">
-                                    <button style="border: none; background-color: #191F2F; box-shadow: 0 2px 4px #00000040; border-radius: 50px; padding: 6px 7px;"> 
-                                        <img src="{{asset('assets/image/client/calendarwhite.svg')}}" alt="dashboard" style="width: 20px;">
-                                    </button>
-                                </div>
-                            </div>
-                    </div>
-                </div> --}}
                 <div class="chart-container mx-auto" style="box-shadow: 0px 20px 27px #00000040;">
                     <div class="mb-4 chart-title" style="font-size: 13px; font-weight: 500;">Booking Analytics</div>
                     <canvas id="myChart">
@@ -161,21 +124,21 @@
             </div>
         </div>
         <div class="col-md-4 col-sm-12 ">
-            <span>Notifications</span>
+            <span style="font-size: 18px; color: #878787; font-weight: 400;">Notifications</span>
             <span class="text-muted float-end mt-2" style="font-size: 11px;">
                 View All <img class="ml-1" src="{{asset('assets/image/client/rightarrow.svg')}}" alt="dashboard" height="">
             </span>
             <div class="row mt-2">
                 <div class="col-md-12">
-                    <div class="card" style="font-family: 'Poppins', sans-serif !important; border-radius: 7px;">
+                    <div class="card">
                         <div class="card-body">
                             <div class="d-flex flex-wrap bd-highlight" style="margin-top: 5px; margin-bottom: 12px;">
-                                <a class="nav-link mx-2" data-filter="complete" href="#" style="font-size: 15px; font-weight: 600 !important;">All <span class="sr-only">(current)</span></a>
-                                <a class="nav-link mx-2" data-filter="going-on" href="#" style="font-size: 15px; font-weight: 600 !important;">Requests <span class="sr-only">(current)</span></a>
-                                <a class="nav-link mx-2" data-filter="bidding" href="#" style="font-size: 15px; font-weight: 600 !important;">Payments <span class="sr-only">(current)</span></a>
+                                <a class="nav-link mx-1" data-filter="complete" href="#" style="font-size: 15px; font-weight: 600 !important;">All <span class="sr-only">(current)</span></a>
+                                <a class="nav-link mx-1" data-filter="going-on" href="#" style="font-size: 15px; font-weight: 600 !important;">Requests <span class="sr-only">(current)</span></a>
+                                <a class="nav-link mx-1" data-filter="bidding" href="#" style="font-size: 15px; font-weight: 600 !important;">Payments <span class="sr-only">(current)</span></a>
                             </div>
                             
-                            <div class="container mt-2">
+                            <div class="container mt-2" style="font-family: 'Poppins', sans-serif !important; border-radius: 7px;">
                                 <div class="row">
                                     <div class="card border-0 " style="border-radius: 12px; padding: 0px; box-shadow: 0 2px 4px #00000040; ">
                                         <div class="card-body">
@@ -208,7 +171,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="container mt-2">
+                            <div class="container mt-2" style="font-family: 'Poppins', sans-serif !important; border-radius: 7px;">
                                 <div class="row">
                                     <div class="card border-0 " style="border-radius: 12px; padding: 0px; box-shadow: 0 2px 4px #00000040; ">
                                         <div class="card-body">
@@ -241,7 +204,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="container mt-2">
+                            <div class="container mt-2" style="font-family: 'Poppins', sans-serif !important; border-radius: 7px;">
                                 <div class="row">
                                     <div class="card border-0 " style="border-radius: 12px; padding: 0px; box-shadow: 0 2px 4px #00000040; ">
                                         <div class="card-body">
@@ -274,75 +237,6 @@
                                     </div>
                                 </div>
                             </div>
-
-
-                            
-                            {{-- <div class="container mt-2">
-                                <div class="row">
-                                    <div class="card border-0 " style="border-radius: 12px; padding: 0px; box-shadow: 0 2px 4px #00000040; ">
-                                        <div class="card-body">
-                                            <div class="d-flex">
-                                                <div class="d-flex">
-                                                    <img class="me-2" src="{{asset('assets/image/client/rectangleimage.svg')}}" alt="dashboard" height="50px">
-                                                    <div>
-                                                        <div class="fw-bold" style="font-size: 11px;">User Name</div>
-                                                        <div style="color: #E1D68D; font-size: 11px;">Id: 12345</div>
-                                                        <div style="font-size: 11px; color: #666;">
-                                                            <img src="{{asset('assets/image/client/location.svg')}}" alt="dashboard" height="12px">
-                                                            Dumas, Surat
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="text-muted" style="font-size: 10px;">Booking Request</div>
-                                            </div>
-                                            <div class="d-flex justify-content-between align-items-center mt-3">
-
-                                                <div class="mt-2 ml-0">
-                                                    <div class="fw-semibold" style="font-size: 10px;">Date: <span class="fw-normal">23/11/23</span></div>
-                                                    <div class="fw-semibold" style="font-size: 10px;">Time: <span class="fw-normal">00:00 AM</span></div>
-                                                </div>
-                                                <div class="d-flex gap-1 mt-1 ml-4 client-btn">
-                                                    <button class="btn btn-outline-dark btn-sm px-3" style="font-size: 10px;">Deny</button>
-                                                    <button class="btn btn-dark btn-sm px-3" style="font-size: 10px;">Accept</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="container mt-2">
-                                <div class="row">
-                                    <div class="card border-0 " style="border-radius: 12px; padding: 0px; box-shadow: 0 2px 4px #00000040; ">
-                                        <div class="card-body">
-                                            <div class="d-flex">
-                                                <div class="d-flex">
-                                                    <img class="me-2" src="{{asset('assets/image/client/rectangleimage.svg')}}" alt="dashboard" height="50px">
-                                                    <div>
-                                                        <div class="fw-bold" style="font-size: 11px;">User Name</div>
-                                                        <div style="color: #E1D68D; font-size: 11px;">Id: 12345</div>
-                                                        <div style="font-size: 11px; color: #666;">
-                                                            <img src="{{asset('assets/image/client/location.svg')}}" alt="dashboard" height="12px">
-                                                            Dumas, Surat
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="text-muted" style="font-size: 10px;">Booking Request</div>
-                                            </div>
-                                            <div class="d-flex justify-content-between align-items-center mt-3">
-
-                                                <div class="mt-2 ml-0">
-                                                    <div class="fw-semibold" style="font-size: 10px;">Date: <span class="fw-normal">23/11/23</span></div>
-                                                    <div class="fw-semibold" style="font-size: 10px;">Time: <span class="fw-normal">00:00 AM</span></div>
-                                                </div>
-                                                <div class="d-flex gap-1 mt-1 ml-4">
-                                                    <button class="btn btn-outline-dark btn-sm px-3" style="font-size: 10px;">Deny</button>
-                                                    <button class="btn btn-dark btn-sm px-3" style="font-size: 10px;">Accept</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> --}}
 
                         </div>
                     </div>
@@ -353,7 +247,7 @@
     <div class="row">
         <div class="col-md-12 pl-4" style="background-color: #fff;">
             <h5 class="my-3">Recent 
-                <span class="text-muted float-end mt-2" style="font-size: 12px;">
+                <span class="text-muted float-end mt-2 mx-2" style="font-size: 12px;">
                     View All <img class="ml-1" src="{{asset('assets/image/client/rightarrow.svg')}}" alt="dashboard" height="">
                 </span>
             </h5>
@@ -376,7 +270,7 @@
                         <td class="text-muted">Abhi</td>
                         <td class="text-muted">00:00 pm - 00:00 pm</td>
                         <td class="text-muted">23 Dec.2023</td>
-                        <td><h4><span class="badge badge-soft-primary text-center" style="border-radius: 30px; font-size: 12px; height: 25px; width: 100px;">Paid</span></h4></td>
+                        <td class="p-1"><h4><span class="badge badge-soft-primary text-center pt-2" style="border-radius: 30px; font-size: 12px; height: 28px; width: 100px;">Paid</span></h4></td>
                         <td class="text-success fw-semibold">+400</td>
                     </tr>
                     <tr style="font-size: 12px;">
@@ -385,7 +279,7 @@
                         <td class="text-muted">Abhi</td>
                         <td class="text-muted">00:00 pm - 00:00 pm</td>
                         <td class="text-muted">23 Dec.2023</td>
-                        <td><h4><span class="badge badge-soft-warning text-center" style="border-radius: 30px; font-size: 12px; height: 25px; width: 100px;">Pending</span></h4></td>
+                        <td class="p-1"><h4><span class="badge badge-soft-warning text-center pt-2" style="border-radius: 30px; font-size: 12px; height: 28px; width: 100px;">Pending</span></h4></td>
                         <td class="text-warning fw-semibold">+400</td>
                     </tr>
                     <tr style="font-size: 12px;">
@@ -394,7 +288,7 @@
                         <td class="text-muted">Abhi</td>
                         <td class="text-muted">00:00 pm - 00:00 pm</td>
                         <td class="text-muted">23 Dec.2023</td>
-                        <td><h4><span class="badge badge-soft-primary text-center" style="border-radius: 30px; font-size: 12px; height: 25px; width: 100px;">Paid</span></h4></td>
+                        <td class="p-1"><h4><span class="badge badge-soft-primary text-center pt-2" style="border-radius: 30px; font-size: 12px; height: 28px; width: 100px;">Paid</span></h4></td>
                         <td class="text-success fw-semibold">+400</td>
                     </tr>
                     <tr style="font-size: 12px;">
@@ -403,7 +297,7 @@
                         <td class="text-muted">Abhi</td>
                         <td class="text-muted">00:00 pm - 00:00 pm</td>
                         <td class="text-muted">23 Dec.2023</td>
-                        <td><h4><span class="badge badge-soft-primary text-center" style="border-radius: 30px; font-size: 12px; height: 25px; width: 100px;">Paid</span></h4></td>
+                        <td class="p-1"><h4><span class="badge badge-soft-primary text-center pt-2" style="border-radius: 30px; font-size: 12px; height: 28px; width: 100px;">Paid</span></h4></td>
                         <td class="text-success fw-semibold">+400</td>
                     </tr>
                     
