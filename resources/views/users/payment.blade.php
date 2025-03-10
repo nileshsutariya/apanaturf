@@ -160,106 +160,6 @@
         margin: 10px
     }
 
-    .swiper {
-        width: 100%;
-        overflow: hidden;
-    }
-
-    .swiper-wrapper {
-        display: flex;
-        transition-timing-function: linear !important;
-    }
-
-    .swiper-slide {
-        flex-shrink: 0;
-        width: 400px;
-        align-items: center;
-        padding: 20px;
-        background: #fff;
-        border-radius: 10px;
-        border: 1px solid #E7F0E3;
-        margin: 10px;
-    }
-
-    .review-card {
-        display: flex;
-        align-items: center;
-        background: white;
-        border-radius: 10px;
-        max-width: 400px;
-        width: 100%;
-        gap: 15px;
-    }
-
-    .user-info {
-        flex-grow: 1;
-    }
-
-    .user-name {
-        font-size: 18px;
-        font-weight: 600;
-        color: #3C4242;
-        margin: 0;
-    }
-
-    .user-role {
-        font-size: 14px;
-        color: #5F5F5F;
-        font-weight: 400;
-    }
-
-    .rating {
-        text-align: right;
-    }
-
-    .stars {
-        padding-bottom: 9px;
-        padding-top: 0px;
-        margin-top: 0px;
-    }
-
-    .rating-score {
-        font-size: 15px;
-        font-weight: 400;
-        color: #737373;
-        margin: 0;
-        padding-bottom: 0px;
-    }
-
-    .user-img {
-        border: 1px solid #333;
-        border-radius: 100px;
-        height: 60px;
-        width: 60px;
-        padding: 5px;
-    }
-
-    .user-img img {
-        height: 48px;
-    }
-
-
-    .bid-container {
-        border: 1px solid #0b7a32;
-        border-radius: 26px;
-        padding: 20px 40px;
-        display: flex;
-        align-items: center;
-        background-color: #FFFFFF;
-        justify-content: space-between;
-        /* margin: auto; */
-    }
-
-    .bid {
-        border: 1px solid #0b7a32;
-        border-radius: 14px;
-        padding: 10px 10px;
-        display: flex;
-        text-align: center;
-        background-color: #FFFFFF;
-        justify-content: center;
-        margin: auto;
-    }
 
     .profile {
         display: flex;
@@ -631,6 +531,134 @@
         left: 50%;
         transform: translate(-50%, -50%);
     }
+
+    .calendar-container {
+        background: white;
+        border-radius: 51px;
+        padding: 20px;
+        text-align: center;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .calendar-header {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 20px;
+        font-weight: bold;
+        color: #2d472c;
+    }
+
+    .calendar-header i {
+        margin-right: 10px;
+    }
+
+    .calendar-grid {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        /* gap: 5px; */
+        margin-top: 10px;
+    }
+
+    .calendar-day {
+        padding: 10px;
+        text-align: center;
+        border-radius: 5px;
+        cursor: pointer;
+        color: #000000;
+        font-weight: 400;
+        font-size: 15px;
+    }
+
+    .calendar-day:hover {
+        background-color: #e9ecef;
+    }
+
+    .calendar-today {
+        background-color: #2d472c;
+        color: white;
+    }
+
+    .calendar-selected {
+        border: 1px solid #2d472c;
+        color: #000000;
+        font-weight: 700;
+    }
+
+    .month-year {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 0px;
+    }
+
+    .dropdown {
+        display: inline-block;
+    }
+
+    select {
+        border: none;
+        font-size: 18px;
+        font-weight: bold;
+        background: none;
+        color: #234723;
+        cursor: pointer;
+        outline: none;
+        overflow-y: hidden !important;
+    }
+
+    .weekdays {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        font-weight: bold;
+        margin-top: 25px;
+        color: #234723;
+    }
+
+    .highlight {
+        background-color: #191919;
+        color: white;
+        font-weight: bold;
+        border-radius: 5px;
+        padding: 3px;
+    }
+
+    .date-picker {
+        display: none;
+    }
+
+    @media (max-width:650px) {
+
+        .rowdate,
+        .booking-icon {
+            display: none;
+        }
+
+        .date-picker {
+            display: block;
+        }
+    }
+
+    @media (max-width:450px) {
+        .date-picker {
+            padding-left: 0px;
+        }
+
+        .calendar-container {
+            margin-right: 20px !important;
+        }
+    }
+
+    @media (max-width:360px) {
+        .calendar-day {
+            padding: 9px;
+        }
+    }
+
+    .booknow:hover img {
+        filter: brightness(0) invert(1);
+    }
 </style>
 </style>
 <div class="page-content" id="mainContent">
@@ -706,10 +734,36 @@
                 <div class="col-lg-2 col-md-2 col-sm-2 pl-0 booking-icon">
                     <img src="{{ asset('assets/image/users/Group 1272628533.svg') }}" class="ml-auto">
                 </div>
-                <div class="col-lg-9 col-md-9 col-sm-9">
+                <div class="col-md-9 col-lg-9 col-sm-9  rowdate">
                     <div class="row date-selection" id="dateSelection">
                     </div>
                 </div>
+                <div class="col-md-12 col-lg-12 col-sm-12 date-picker">
+                    <div class="calendar-container" id="calendar"
+                        style="font-size: 12px !important;  box-shadow: 0px 25px 30px #00000040;">
+                        <div class="calendar-header">
+                            <img class="mr-2" src="{{ asset('assets/image/client/calendargreen.svg') }}" alt="dashboard"
+                                height="">
+                            <div class="month-year">
+                                <!-- <select id="monthSelector" onchange="updateCalendar()"></select>
+                        <select id="yearSelector" onchange="updateCalendar()"></select> -->
+                                <select id="monthSelector"></select>
+                                <select id="yearSelector"></select>
+                            </div>
+                        </div>
+                        <div class="weekdays">
+                            <div>Su</div>
+                            <div>Mo</div>
+                            <div>Tu</div>
+                            <div>We</div>
+                            <div>Th</div>
+                            <div>Fr</div>
+                            <div>Sa</div>
+                        </div>
+                        <div class="calendar-grid" id="calendarDays"></div>
+                    </div>
+                </div>
+
                 <div class="row mt-3">
                     <div class="col-md-1"></div>
                     <div class="col-md-11 pl-0">
@@ -770,23 +824,19 @@
                 </div>
             </div>
         </div>
-
     </div>
 </div>
 
 
 
 
-<!-- Theme Modal for Add Banners -->
 <div id="addBanner" class="modal-demo">
 
-    <!-- Close Button (Bootstrap) -->
     <div style="display: flex; justify-content: space-between; align-items: center; mb-5">
         <h6 style="font-weight: 400; margin: 0; font-size:24px;">Order Confirmation</h6>
         <button type="button" class="btn-close close-modal" onclick="Custombox.modal.close();"></button>
     </div>
 
-    <!-- Modal Header -->
     <div class="container mt-2">
         <span style="font-size: 16px; font-weight: 500;">Details</span>
         <div class="details mt-2">
@@ -820,7 +870,6 @@
                     <span>Credit Card</span>
                     <input class="mt-1" placeholder="2540 xxxx xxxx 2648" type="text"
                         style="border:none; background-color: #F7F8FB;" />
-
                 </div>
                 <div class="col-sm-4 d-flex ml-auto" style="padding-right: 7.5rem;">
                     <img src="{{ asset('assets/image/users/visa.svg') }}" alt="Visa logo" style="width:53px;" />
@@ -834,7 +883,7 @@
             <input type="radio" name="payment-method" id="full-payment" class="ml-5 mt-1">
             <label for="full-payment" class="ml-2 mt-0">Full - Payment</label>
         </div>
-        <div class="mt-3 container">
+        <div class="mt-3 container mb-2">
             <div class="total">
                 <span>Subtotal</span>
                 <span>200.00</span>
@@ -869,18 +918,18 @@
         let today = new Date();
         let dayOfWeek = today.getDay();
         let startOfWeek = new Date(today);
-        startOfWeek.setDate(today.getDate() - dayOfWeek + (dayOfWeek === 0 ? -6 : 1)); // Adjust for Monday start
+        startOfWeek.setDate(today.getDate() - dayOfWeek + (dayOfWeek === 0 ? -6 : 1));
 
-        for (let i = 0; i < 7; i++) {
-            let date = new Date(startOfWeek);
-            date.setDate(startOfWeek.getDate() + i);
+        for (let i = 0; i < 8; i++) {
+            let date = new Date(today);
+            date.setDate(today.getDate() + i);
 
             let dayName = date.toLocaleDateString("en-US", { weekday: "short" });
             let dayNumber = date.getDate();
 
             let dateDiv = document.createElement("div");
             dateDiv.classList.add("col-sm-1", "booking-date");
-            if (i === today.getDay() - 1) dateDiv.classList.add("active");
+            if (i == 0) dateDiv.classList.add("active");
 
             dateDiv.innerHTML = `<span style="font-weight: 500;">${dayName}</span><br>
                                  <span style="font-weight:600;">${dayNumber}</span>`;
@@ -914,6 +963,173 @@
             time.addEventListener("click", function () {
                 this.classList.toggle("selected");
             });
+        });
+    });
+</script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const calendarDays = document.getElementById("calendarDays");
+        const monthSelector = document.getElementById("monthSelector");
+        const yearSelector = document.getElementById("yearSelector");
+
+        let currentDate = new Date();
+        let selectedDate = null;
+
+        let selectedTimeSlot = null;
+        let events = JSON.parse(localStorage.getItem("events")) || {};
+
+        function getNext7Days() {
+            var today = new Date();
+            const next7Days = [];
+
+            for (let i = 0; i < 7; i++) {
+                const date = new Date();
+                date.setDate(today.getDate() + i);
+                const dayName = date.toLocaleString('en-US', {
+                    weekday: 'short'
+                });
+                const dayNumber = date.getDate();
+                next7Days.push({
+                    dayName,
+                    dayNumber
+                });
+            }
+            return next7Days;
+        }
+
+        // function displayWeek() {
+        //     const weekDates = getNext7Days();
+        //     const today = new Date().getDate();
+
+        //     weekContainer.innerHTML = weekDates.map(date =>
+        // `<div class="week-day">
+        //     <strong class="${date.dayNumber === today ? 'highlight' : ''}" style="font-size: 18px;">${date.dayNumber}</strong>
+        //     <div style="font-size: 12px; font-weight: bold;">${date.dayName}</div>
+        // </div>`
+        //         `
+        //     ).join('');
+        // }
+
+        const days = getNext7Days().map(date => `${date.dayName} ${date.dayNumber}`);
+        const times = ["9AM", "10AM", "11AM", "12PM", "1PM", "2PM", "3PM", "4PM", "5PM", "6PM"];
+
+        function populateSelectors() {
+            const months = ["January", "February", "March", "April", "May", "June", "July", "August",
+                "September", "October", "November", "December"
+            ];
+            for (let i = 0; i < 12; i++) {
+                let option = document.createElement("option");
+                option.value = i;
+                option.textContent = months[i];
+                monthSelector.appendChild(option);
+            }
+            let currentYear = new Date().getFullYear();
+            for (let i = currentYear - 0; i <= currentYear + 10; i++) {
+                let option = document.createElement("option");
+                option.value = i;
+                option.textContent = i;
+                yearSelector.appendChild(option);
+            }
+            monthSelector.value = currentDate.getMonth();
+            yearSelector.value = currentDate.getFullYear();
+        }
+
+        monthSelector.addEventListener("change", function () {
+            currentDate.setMonth(parseInt(monthSelector.value));
+            renderCalendars();
+        });
+
+        yearSelector.addEventListener("change", function () {
+            currentDate.setFullYear(parseInt(yearSelector.value));
+            renderCalendars();
+        });
+
+
+        function renderCalendars() {
+            calendarDays.innerHTML = "";
+            let firstDay = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1).getDay();
+            let lastDate = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0).getDate();
+
+            let today = new Date();
+            today.setHours(0, 0, 0, 0);
+
+            for (let i = 0; i < firstDay; i++) {
+                let emptyDiv = document.createElement("div");
+                calendarDays.appendChild(emptyDiv);
+            }
+            for (let day = 1; day <= lastDate; day++) {
+                let dayDiv = document.createElement("div");
+                dayDiv.textContent = day;
+                dayDiv.classList.add("calendar-day");
+
+                let selectedDay = new Date(currentDate.getFullYear(), currentDate.getMonth(), day);
+                if (selectedDay < today) {
+                    dayDiv.classList.add("disabled-date");
+                }
+
+                if (day === today.getDate() && currentDate.getMonth() === today.getMonth() && currentDate
+                    .getFullYear() === today.getFullYear()) {
+                    dayDiv.classList.add("calendar-today");
+                }
+                dayDiv.addEventListener("click", function () {
+                    if (selectedDay < today) {
+                        return;
+                    }
+
+                    if (selectedDate) {
+                        selectedDate.classList.remove("calendar-selected");
+                    }
+                    selectedDate = dayDiv;
+                    selectedDate.classList.add("calendar-selected");
+                    updateWeekView(new Date(currentDate.getFullYear(), currentDate.getMonth(), day));
+                });
+                calendarDays.appendChild(dayDiv);
+            }
+        }
+
+        function selectDate(element) {
+            if (selectedDate) {
+                selectedDate.classList.remove("calendar-selected");
+            }
+
+            selectedDate = element;
+            selectedDate.classList.add("calendar-selected");
+
+            let selectedDay = parseInt(selectedDate.getAttribute("data-day"));
+            let selectedMonth = currentDate.getMonth();
+            let selectedYear = currentDate.getFullYear();
+
+            let fullDate = new Date(selectedYear, selectedMonth, selectedDay);
+            updateWeekView(fullDate);
+        }
+
+        function updateWeekView(startDate) {
+            let next7Days = [];
+
+            for (let i = 0; i < 7; i++) {
+                let date = new Date(startDate);
+                date.setDate(startDate.getDate() + i);
+                let dayName = date.toLocaleString("en-US", {
+                    weekday: "short"
+                });
+                let dayNumber = date.getDate();
+                next7Days.push({
+                    dayName,
+                    dayNumber
+                });
+            }
+        }
+        populateSelectors();
+        renderCalendars();
+    });
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const calendarDays = document.getElementById("calendarDays");
+
+        calendarDays.addEventListener("click", function (event) {
+            if (event.target.classList.contains("calendar-day")) {
+                let element = document.querySelector(".calendar-day.calendar-selected");
+            }
         });
     });
 </script>

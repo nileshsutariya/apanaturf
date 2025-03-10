@@ -5,6 +5,7 @@
     body {
         background-color: #FFFFFF;
         font-size: 15px;
+        font-family: 'NATS', sans-serif !important;
     }
 
     .filter-box {
@@ -36,7 +37,9 @@
     .imagebox .active {
         color: #8A33FD;
     }
-
+.imagebox{
+    color:#3F4646;
+}
     .form-control {
         border: 1px solid #ddd;
         border-radius: 10px;
@@ -104,6 +107,7 @@
     .imgcontent {
         font-size: 13.27px;
         align-self: center;
+        color: #807D7E;
         font-family: "Monda", serif !important;
     }
 
@@ -113,6 +117,7 @@
         padding: 10px;
         display: inline-block;
         border-radius: 10px;
+        color: #3E3C37;
     }
 
     .imgrate {
@@ -122,6 +127,7 @@
         padding: 10px;
         margin-left: auto;
         border-radius: 10px;
+        color: #63615D;
     }
 
     .input-with-icon {
@@ -237,6 +243,16 @@
             width:250px;
         }
     }
+    .imagname{
+        font-weight: 400px;
+        font-size:22px;
+        color: #3E3C37;
+    }
+    .header-1,.header-2{
+        font-size: 22px;
+        font-weight: 400;
+    }
+    
 </style>
 <section class="content">   
     <div class="row">
@@ -270,9 +286,9 @@
         </div>
         <!-- <div class="col-md-1"></div> -->
         <div class="col-md-9 col-sm-9 imagebox mt-1">
-            <div class="row mt-3 mb-3 ">
-                <div class=" col-lg-6 col-md-4 col-sm-6">
-                    <h6 class="pt-1"><strong> Turf Booking</strong> </h6>
+            <div class="row mt-3 mb-3 pl-2">
+                <div class="col-lg-5 col-md-4 col-sm-6">
+                    <h6 class="pt-1" style="font-size: 22px;"><strong> Turf Booking</strong> </h6>
                 </div>
                 <div class="col-lg-3 col-md-3 col-sm-6">
                     <form class="app-search">
@@ -296,7 +312,6 @@
                         <span class="ml-auto"> Recommended</span>
                     </div>
                 </div>
-
             </div>
             <div class="row">
                 <div class="col-md-4 col-sm-6 mb-3">
@@ -314,7 +329,7 @@
                             <img src="{{ asset('assets/image/users/frame 50.svg') }}">
                         </div>
                         <div class="card-body boxcontent ">
-                            <h6 class="m-0">Venue name</h6>
+                            <h6 class="m-0 imagname">Venue name</h6>
                             <div class="imgdetails">
                                 <div class="d-flex p-0 mt-1">
                                     <img src="{{ asset('assets/image/users/location.svg') }}"
@@ -342,7 +357,7 @@
                             <img src="{{ asset('assets/image/users/frame 50.svg') }}">
                         </div>
                         <div class="card-body boxcontent ">
-                            <h6 class="m-0">Venue name</h6>
+                            <h6 class="m-0 imagname">Venue name</h6>
                             <div class="imgdetails">
                                 <div class="d-flex p-0 mt-1">
                                     <img src="{{ asset('assets/image/users/location.svg') }}"
@@ -370,7 +385,7 @@
                             <img src="{{ asset('assets/image/users/frame 50.svg') }}">
                         </div>
                         <div class="card-body boxcontent ">
-                            <h6 class="m-0">Venue name</h6>
+                            <h6 class="m-0 imagname">Venue name</h6>
                             <div class="imgdetails">
                                 <div class="d-flex p-0 mt-1">
                                     <img src="{{ asset('assets/image/users/location.svg') }}"
@@ -398,7 +413,7 @@
                             <img src="{{ asset('assets/image/users/frame 50.svg') }}">
                         </div>
                         <div class="card-body boxcontent ">
-                            <h6 class="m-0">Venue name</h6>
+                            <h6 class="m-0 imagname">Venue name</h6>
                             <div class="imgdetails">
                                 <div class="d-flex p-0 mt-1">
                                     <img src="{{ asset('assets/image/users/location.svg') }}"
@@ -426,7 +441,7 @@
                             <img src="{{ asset('assets/image/users/frame 50.svg') }}">
                         </div>
                         <div class="card-body boxcontent ">
-                            <h6 class="m-0">Venue name</h6>
+                            <h6 class="m-0 imagname">Venue name</h6>
                             <div class="imgdetails">
                                 <div class="d-flex p-0 mt-1">
                                     <img src="{{ asset('assets/image/users/location.svg') }}"
@@ -455,7 +470,7 @@
                             <img src="{{ asset('assets/image/users/frame 50.svg') }}">
                         </div>
                         <div class="card-body boxcontent ">
-                            <h6 class="m-0">Venue name</h6>
+                            <h6 class="m-0 imagname">Venue name</h6>
                             <div class="imgdetails">
                                 <div class="d-flex p-0 mt-1">
                                     <img src="{{ asset('assets/image/users/location.svg') }}"

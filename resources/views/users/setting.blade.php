@@ -91,9 +91,9 @@
     <div class="page-container" style="background-color: transparent;">
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12">
-                <h4 class="mb-0 ml-3" style=" font-family: 'Poppins', serif !important; font-size: 22px;  ">Setting</h4>
+                <h4 class="mb-0 ml-3" style=" font-family: 'Poppins', serif !important; font-size: 22px;">Setting</h4>
                 <div class="ml-3 pb-2"
-                    style="font-size: 14px; color: rgb(184, 180, 180); font-family: 'Poppins', serif !important; ">
+                    style="font-size: 14px; color: rgb(184, 180, 180); font-family: 'Poppins', serif !important;">
                     Update any changes
                 </div>
                 <div class="card p-2 mt-2 ml-3"
@@ -163,18 +163,12 @@
 </div>
 </div>
 
-<!-- Add Banners Button -->
 
-<!-- Theme Modal for Add Banners -->
 <div id="addBanner" class="modal-demo">
-
-    <!-- Close Button (Bootstrap) -->
     <div style="display: flex; justify-content: space-between; align-items: center; ">
         <h6 style="font-weight: bold; margin: 0;">Code</h6>
-        <button type="button" class="btn-close close-modal"  onclick="Custombox.modal.close();"></button>
+        <button type="button" class="btn-close close-modal" onclick="Custombox.modal.close();"></button>
     </div>
-
-    <!-- Modal Header -->
     <div class="otp-container mt-3">
         <form>
             <div class="mb-3" style="font-size: 16px;">
@@ -182,7 +176,6 @@
                     style="border: 2px solid #D0D5DD;">
             </div>
             <div style="text-align: center;">
-
                 <button type="button" class="btn save ">Save</button>
             </div>
         </form>

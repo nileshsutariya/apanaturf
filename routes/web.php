@@ -99,7 +99,7 @@ Route::get('/client/payments', function () {
     return view('client.payments');
 })->name('client.payments');
 Route::get('/client/transaction', function () {
-    return view('client.transaction');
+    return view('client.transaction');      
 })->name('client.transaction');
 Route::get('/client/coupons', function () {
     return view('client.coupons');
@@ -110,5 +110,5 @@ Route::get('/client/account', function () {
 
 
 Route::get('/', function () {
-    return view('users.layouts.demoheader');
+    return view('users.design');
 });

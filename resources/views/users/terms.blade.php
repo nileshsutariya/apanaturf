@@ -9,18 +9,20 @@
         margin-left: 25%;
         margin-right: 25%;
         /* overflow-y: scroll; */
+        margin-bottom: 200px;
     }
     body{
         overflow-y: scroll;
+        font-family: 'poppins', sans-serif !important;
     }
 
 </style>
-<section class="content">
-    <div class="container">
-        <div class="row text-center">
+<section class="content mt-4">
+    <div class="container mt-5">
+        <div class="row text-center mb-3">
             <h1>Terms & Condition</h1>
         </div>
-        <div class="ml-3 text-center">By accessing and placing an order with UXTheme, you confirm that <br>you are in
+        <div class="ml-3 text-center mb-2">By accessing and placing an order with UXTheme, you confirm that <br>you are in
             agreement with and bound by the terms and conditions</div><br>
         <p class="text-left">By accessing and placing an order with UXTheme, you confirm that you are in agreement with
             and bound by the terms and conditions contained in the Terms of Use outlined below. These terms apply to the

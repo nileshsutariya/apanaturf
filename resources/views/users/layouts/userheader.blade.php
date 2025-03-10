@@ -13,7 +13,6 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
     <link href="https://fonts.googleapis.com/css2?family=NATS&display=swap" rel="stylesheet">
 
-    <link href="https://fonts.googleapis.com/css2?family=NATS&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="{{asset('assets/images/favicon.ico')}}">
 
     <title>Document</title>

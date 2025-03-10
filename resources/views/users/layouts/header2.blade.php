@@ -18,13 +18,14 @@
 
     <link
         href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-        rel="stylesheet">   
+        rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Monda:wght@400;700&display=swap" rel="stylesheet">
 
     <style>
-        html{
+        html {
             overflow: auto;
         }
+
         body {
             margin: 0;
             padding: 0;
@@ -252,47 +253,52 @@
             .navbar-toggler {
                 margin-left: 65px;
             }
+
             .navbar-brand {
                 display: block;
             }
         }
-        ol, ul {
+
+        ol,
+        ul {
             padding-left: 0px;
         }
-        
+
         .nav-link {
-    display: flex;
-    align-items: center;
-    padding: 10px;
-    /* border-radius: 5px; */
-    text-decoration: none;
-    transition: all 0.3s ease;
-    color: #000;  
-}
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            /* border-radius: 5px; */
+            text-decoration: none;
+            transition: all 0.3s ease;
+            color: #000;
+        }
 
-.nav-link img {
-    width: 20px;
-    height: 20px;
-    transition: filter 0.3s ease;
-}
+        .nav-link img {
+            width: 20px;
+            height: 20px;
+            transition: filter 0.3s ease;
+        }
 
-.nav-link.active {
-    background-color: #079666 !important; 
-    color: white !important;
+        .nav-link.active {
+            background-color: #079666 !important;
+            color: white !important;
+        }
 
-.nav-link.active img {
-    filter: brightness(0) invert(1);
-}
+        .nav-link.active img {
+            filter: brightness(0) invert(1);
+        }
 
-.nav-link:hover {
-    background-color: rgba(29, 185, 84, 0.1);
-    color: #079666;
-}
-@media (max-width: 768px) {
- .nav-btn {
-    margin: 0px !important;
- }
-}
+        .nav-link:hover {
+            background-color: rgba(29, 185, 84, 0.1);
+            color: #079666;
+        }
+
+        @media (max-width: 768px) {
+            .nav-btn {
+                margin: 0px !important;
+            }
+        }
     </style>
 </head>
 
@@ -302,7 +308,7 @@
         {{-- <nav class="d-flex navbar navbar-expand-lg navbar-light">
             <a class="navbar-brand logo" href="#">
                 <img src="{{asset('assets/image/users/logo2.svg')}}" class="d-inline-block align-top m-3" alt="logo"
-                class="logo-img">
+                    class="logo-img">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -334,26 +340,29 @@
 
         <nav class="navbar navbar-expand-lg navbar-light bg-white">
             <div class="container-fluid d-flex align-items-center">
-                
+
                 <!-- Logo -->
                 <a class="navbar-brand logo me-auto" href="#">
-                    <img src="{{asset('assets/image/users/logo2.svg')}}" class="d-inline-block align-top m-3 logo-img" alt="logo" style="max-height: 50px;">
+                    <img src="{{asset('assets/image/users/logo2.svg')}}" class="d-inline-block align-top m-3 logo-img"
+                        alt="logo" style="max-height: 50px;">
                 </a>
-               
+
                 <!-- Toggle Button for Mobile -->
-                <button class="navbar-toggler nav-btn mx-5" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler nav-btn mx-5" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+                    aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-        
+
                 <!-- Profile (Always on Right) -->
                 <div class="d-flex align-items-center order-lg-2 mx-4">
                     <img src="{{asset('assets/image/users/Image.svg')}}" alt="profile" class="rounded-circle"
                         style="width: 40px; height: 40px; border: 2px solid #ccc;">
-                    <span class="profilename ms-2" style="color:#10998B; font-size: 15px; font-weight:500;">Abhishek</span>
+                    <span class="profilename ms-2"
+                        style="color:#10998B; font-size: 15px; font-weight:500;">Abhishek</span>
                 </div>
-        
-        
+
+
                 <!-- Navbar Items -->
                 <div class="collapse navbar-collapse justify-content-center order-lg-1" id="navbarNav">
                     <ul class="navbar-nav mx-auto text-center">
@@ -363,10 +372,10 @@
                         <li class="nav-item"><a class="nav-link" href="#">About</a></li>
                     </ul>
                 </div>
-        
+
             </div>
         </nav>
-        
+
 
         <div class="line">
             <div class="row" style="height: 60px;">
@@ -395,34 +404,36 @@
                 <div data-simplebar class="flex-grow-1">
                     <ul class="side-nav" style="padding-bottom: 200px;" id="ul">
                         <a href="{{ route('users.dashboard')}}" class="pb-3 nav-link">
-                            <img src="{{asset('assets/image/users/element-3.svg')}}" class="nav-icon ml-4"  alt="user">
+                            <img src="{{asset('assets/image/users/element-3.svg')}}" class="nav-icon ml-4" alt="user">
                             <span class="menu-text ml-1">Dashboard</span>
                         </a>
                         <a href="{{ route('users.booking') }}" class="pb-3 nav-link">
-                            <img src="{{asset('assets/image/users/calendar.svg')}}" class="nav-icon ml-4"  alt="user">
+                            <img src="{{asset('assets/image/users/calendar.svg')}}" class="nav-icon ml-4" alt="user">
                             <span class="menu-text ml-1">Booking</span>
                         </a>
                         {{-- <li class="side-nav-item"> --}}
                             <a href="{{route('users.matches')}}" class="pb-3 nav-link">
-                                <img src="{{asset('assets/image/users/bell.svg')}}" class="nav-icon ml-4"  alt="user">
+                                <img src="{{asset('assets/image/users/bell.svg')}}" class="nav-icon ml-4" alt="user">
                                 <span class="menu-text ml-1">My Matches</span>
                             </a>
-                        {{-- </li> --}}
+                            {{--
+                        </li> --}}
 
                         <a href="{{route('users.wallet')}}" class="pb-3 nav-link">
-                            <img src="{{asset('assets/image/users/wallet-remove.svg')}}" class="nav-icon ml-4"  alt="user">
+                            <img src="{{asset('assets/image/users/wallet-remove.svg')}}" class="nav-icon ml-4"
+                                alt="user">
                             <span class="menu-text ml-1">Wallet</span>
                         </a>
                         <a href="{{ route('users.split') }}" class="pb-3 nav-link">
-                            <img src="{{asset('assets/image/users/Setting.svg')}}" class="nav-icon ml-4"  alt="user">
+                            <img src="{{asset('assets/image/users/Setting.svg')}}" class="nav-icon ml-4" alt="user">
                             <span class="menu-text ml-1">Split & Pay</span>
                         </a>
                         <a href="{{ route('users.setting') }}" class="pb-3 nav-link">
-                            <img src="{{asset('assets/image/users/Setting2.svg')}}" class="nav-icon ml-4"  alt="user">
+                            <img src="{{asset('assets/image/users/Setting2.svg')}}" class="nav-icon ml-4" alt="user">
                             <span class="menu-text ml-1">Settings</span>
                         </a>
                         <a href="{{route('users.refer')}}" class="pb-3 nav-link">
-                            <img src="{{asset('assets/image/users/Setting1.svg')}}" class="nav-icon ml-4"  alt="user">
+                            <img src="{{asset('assets/image/users/Setting1.svg')}}" class="nav-icon ml-4" alt="user">
                             <span class="menu-text ml-1">Refer & Earn</span>
                         </a>
                     </ul>
@@ -472,7 +483,7 @@
                     }
                 });
             </script>
-           
+
             <script>
                 document.addEventListener("DOMContentLoaded", function () {
                     let links = document.querySelectorAll(".nav-link");
@@ -500,15 +511,15 @@
             <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
             <script>
-                 $(function(){
+                $(function () {
                     var current = location.pathname;
-                    
-                    $('.side-nav a').each(function(){
+
+                    $('.side-nav a').each(function () {
                         var a = $(this);
-                        if(a.attr('href').indexOf(current) !== -1){
-                                a.addClass('active');
-                            }
-                        })
+                        if (a.attr('href').indexOf(current) !== -1) {
+                            a.addClass('active');
+                        }
                     })
+                })
 
             </script>
