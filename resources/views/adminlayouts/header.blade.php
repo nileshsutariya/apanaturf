@@ -228,13 +228,19 @@
                     <li class="side-nav-item">
                         <a href="{{route('admin.users')}}" class="side-nav-link">
                             <span class="menu-icon"><img src="{{asset('assets/image/profile.svg')}}" alt="user"></span>
-                            <span class="menu-text mt-2"> User </span>
+                            <span class="menu-text mt-2"> Customer </span>
                         </a>
                     </li>
                     <li class="side-nav-item">
                         <a href="{{route('admin.venues')}}" class="side-nav-link">
                             <span class="menu-icon"><img src="{{asset('assets/image/bank.svg')}}" alt="venues"></span>
                             <span class="menu-text mt-2"> Venues </span>
+                        </a>
+                    </li>
+                    <li class="side-nav-item">
+                        <a href="{{route('admin.enquiries')}}" class="side-nav-link">
+                            <span class="menu-icon"><i class="bi bi-info-circle"></i></span>
+                            <span class="menu-text mt-2"> Venues Approval</span>
                         </a>
                     </li>
                     <li class="side-nav-item">
@@ -312,6 +318,13 @@
                             <span class="menu-text mt-2"> Enquiries </span>
                         </a>
                     </li>
+                    <li class="side-nav-item">
+                        <a href="{{route('admin.enquiries')}}" class="side-nav-link">
+                            <span class="menu-icon"><img src="{{asset('assets/image/profile.svg')}}" alt="sms"></span>
+                            <span class="menu-text mt-2"> Users</span>
+                        </a>
+                    </li>
+                  
 
                     <li class="side-nav-item">
                         <a href="#" class="side-nav-link mt-5 mb-5">

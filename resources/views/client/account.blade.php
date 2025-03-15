@@ -110,7 +110,6 @@
         align-items: center;
         background-color: #FFFFFF;
         border: 1px solid #e5e7eb;
-
         color: #374151;
         padding: 4px 8px;
         border-radius: 9999px;
@@ -192,6 +191,58 @@
         padding-left: 50px;
         padding-right: 50px;
         border-radius: 4px;
+    }
+
+    .box {
+        padding: 5px 15px;
+        border: 1px solid #cbd5e0;
+        border-radius: 8px;
+        background-color: white;
+        font-size: 16px;
+        font-family: Arial, sans-serif;
+        color: #666;
+        width: 90px;
+    }
+
+    .multiply {
+        font-size: 20px;
+        font-weight: bold;
+        color: #666;
+    }
+
+    .hlw-container {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin-bottom: 10px;
+    }
+
+    @media (max-width: 490px) {
+        .multiply {
+            display: none;
+        }
+
+        .hlw-container {
+            display: block;
+        }
+
+        .box {
+            margin-bottom: 10px;
+        }
+    }
+
+    @media(min-width:768px) and (max-width: 870px) {
+        .multiply {
+            display: none;
+        }
+
+        .hlw-container {
+            display: block;
+        }
+
+        .box {
+            margin-bottom: 10px;
+        }
     }
 </style>
 
@@ -318,7 +369,7 @@
                                     <div class="tags" id="sportlist">
                                         <span class="sporttag">
                                             <span class="tag">
-                                            <img src="{{asset('assets/image/client/Group12.svg')}}"> Cricket
+                                                <img src="{{asset('assets/image/client/Group12.svg')}}"> Cricket
                                                 <span class="ms-2" onclick="removesport(this)">
                                                     <i class="fas fa-times remove-icon"></i></span>
                                             </span>
@@ -380,11 +431,18 @@
                                         style="cursor: pointer; height: 35px; width: 35px;">
                                 </label>
                             </div>
+                            <div class=" hlw-container">
+                                <input type="text" class="box" placeholder="Height">
+
+                                <div class="multiply">×</div>
+                                <input type="text" class="box" placeholder="Width">
+                                <div class="multiply">×</div>
+                                <input type="text" class="box" placeholder="Length">
+                            </div>
                             <div class="form-group">
                                 <div class="d-flex ">
                                     <span style="font-size: 10px; align-self: center;">Price of Booking:</span>
-                                    <input type="text" placeholder="₹00.00" style="width:260px;"
-                                        class="ml-2 turfinput">
+                                    <input type="text" placeholder="₹00.00" style="width:260px;" class="ml-2 turfinput">
                                 </div>
                             </div>
                             <div class="form-group">

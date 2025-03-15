@@ -14,7 +14,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
     <link rel="shortcut icon" href="{{asset('assets/images/favicon.ico')}}">
 
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
 
     <link
         href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
@@ -299,44 +300,47 @@
             }
         }
 
-.line-link {
-    display: flex;
-    align-items: center;
-    padding: 10px;
-    text-decoration: none !important;
-    transition: all 0.3s ease;
-    color: #000;  
-}
-.line-link.active {
-    color: black !important;
-}   
-.line-link:hover {
-    color: #079666 !important;
-}
+        .line-link {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            text-decoration: none !important;
+            transition: all 0.3s ease;
+            color: #000;
+        }
 
-.sidebar-link {
-    display: flex;
-    align-items: center;
-    padding: 10px;
-    /* border-radius: 5px; */
-    text-decoration: none;
-    transition: all 0.3s ease;
-    color: #000;  
-}
+        .line-link.active {
+            color: black !important;
+        }
 
-.sidebar-link img {
-    width: 20px;
-    height: 20px;
-    transition: filter 0.3s ease;
-}
+        .line-link:hover {
+            color: #079666 !important;
+        }
 
-.sidebar-link.active {
-    background-color: #079666 !important; 
-    color: white !important;
-}
-.sidebar-link.active img {
-    filter: brightness(0) invert(1);
-}
+        .sidebar-link {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            /* border-radius: 5px; */
+            text-decoration: none;
+            transition: all 0.3s ease;
+            color: #000;
+        }
+
+        .sidebar-link img {
+            width: 20px;
+            height: 20px;
+            transition: filter 0.3s ease;
+        }
+
+        .sidebar-link.active {
+            background-color: #079666 !important;
+            color: white !important;
+        }
+
+        .sidebar-link.active img {
+            filter: brightness(0) invert(1);
+        }
 
 .sidebar-link:hover {
     background-color: rgba(29, 185, 84, 0.1);

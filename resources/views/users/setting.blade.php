@@ -4,7 +4,7 @@
 
 <!-- App css -->
 <link href="{{asset('assets/css/app2.min.css')}}" rel="stylesheet" type="text/css" id="app-style" />
-
+<link rel="stylesheet" href="{{ asset('assets/css/app2.min.css') }}" type="text/css" id="app-style" />
 <style>
     @import url(https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap);
 

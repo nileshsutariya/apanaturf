@@ -2,7 +2,13 @@
 <link href="https://fonts.googleapis.com/css2?family=NATS&display=swap" rel="stylesheet">
 
 <style>
-    .body {
+    @font-face {
+        font-family: 'NATS'; 
+        src: url("{{ asset('assets/fonts/NATS-Regular.woff') }}") format('woff');
+        font-weight: normal;
+        font-style: normal;
+    }
+    .product {
         font-family: 'NATS', sans-serif !important;
     }
 
@@ -44,6 +50,8 @@
         align-items: center;
         width: 117px;
         margin-top: 20px;
+        font-family: 'poppins', sans-serif !important;
+
     }
 
     .booknow:hover {
@@ -259,7 +267,6 @@
     }
 
     @media (max-width: 992px) {
-
         .booknow img {
             margin-left: 10px;
         }
@@ -519,7 +526,6 @@
     }
 
     @media (max-width:991px) {
-
         .rowdate,
         .booking-icon {
             display: none;
@@ -545,12 +551,12 @@
             padding: 9px;
         }
     }
-
-    /* .booknow:hover img {
+        
+    .booknow:hover img {
         filter: brightness(0) invert(1);
-    } */
+    }
 </style>
-<section class="content pt-0">
+<section class="content pt-0 product">
     <div class="row">
         <div class="col-md-2 imagecol">
             <img src="{{ asset('assets/image/users/booking1.svg') }}" class="img" alt="Turf"><br>
@@ -1134,9 +1140,8 @@
 
         yearSelector.addEventListener("change", function () {
             currentDate.setFullYear(parseInt(yearSelector.value));
-            renderCalendars();
+            renderCalendars();  
         });
-
 
         function renderCalendars() {
             calendarDays.innerHTML = "";

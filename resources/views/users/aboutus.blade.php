@@ -1,25 +1,39 @@
 @include('users.layouts.userheader')
 <style>
-    .container {
-        font-size: x-small;
+    .aboutcontainer {
+        font-size: 17px;
         font-weight: 500 !important;
-       
     }
     .content{
         margin-left: 25%;
         margin-right: 25%;
         margin-bottom: 200px;
+        font-family: 'poppins', sans-serif !important;
+
         /* overflow-y: scroll; */
     }
-    body{
-        overflow-y: scroll;
-        font-family: 'poppins', sans-serif !important;
-        color: #161C2D;
+    @media (max-width:1025px) {
+        .content {
+            margin-left: 15%;
+            margin-right: 15%;4
+        }
     }
+
+    @media (max-width:650px) {
+        .content {
+            margin: 20px !important;
+        }
+    }
+    @media (max-width:400px){
+        .content{
+            margin:15px !important;
+        }
+    }
+
 
 </style>
 <section class="content mt-4">
-    <div class="container mt-5">
+    <div class="container mt-5 aboutcontainer">
         <div class="row text-center mb-3">
             <h1>About</h1>
         </div>
