@@ -7,7 +7,6 @@
         margin: 0;
         padding: 0;
     }
-
     .review-section {
         padding: 50px 0;
     }
@@ -105,6 +104,12 @@
         .loader {
             display: none;
         }
+        .abc {
+            display: none;
+        }
+        .xyz {
+            display: none;
+        }
         .text-section {
             margin-left: 48px !important;
         }
@@ -121,10 +126,10 @@
     .download-box {
         width: 250px;
         height: auto;
-        padding: 15px;
+        padding: 20px 30px;
         border-radius: 17px;
         background: #dfdddd;
-        text-align: center;
+        /* text-align: center; */
         position: relative;
     }
 
@@ -157,7 +162,7 @@
     .qr-card {
         width: 110px;
         border-radius: 15px;
-        margin: 0 auto;
+        margin: 0;
     }
 
     .logo-icon {
@@ -201,6 +206,11 @@
     }
 
     /* Responsive Fix */
+    @media (max-width: 767px) { 
+        .frame {
+            top: 100px !important;
+        }
+    }
     @media (max-width: 768px) {
         .desktop {
             display: none;
@@ -263,7 +273,7 @@
         top: 400px;
     } */
     .frametwo {
-        padding: 30px; 
+        padding: 30px !important; 
         border-radius: 20px;
         position: relative;
         top: 80px !important;
@@ -271,7 +281,7 @@
     }
 
     .label {
-        font-size: 1.8rem; /* Reduce title size */
+        font-size: 1.8rem;
     }
 
     .front-line {
@@ -294,7 +304,24 @@
             bottom: 0;
             width: 100%;
         }
-
+        /* @media (min-width: 1025px) and (max-width: 1199px) {
+            .frametwo {
+                top: 100px !important;
+                max-width: 75% !important;
+            }
+        }
+        @media (min-width: 1200px) and (max-width: 1400px) {
+            .frametwo {
+                top: 150px !important;
+                max-width: 75% !important;
+            }
+        }
+        @media (min-width: 1401px) and (max-width: 2100px) {
+            .frametwo {
+                top: 250px !important;
+                max-width: 75% !important;
+            }
+        } */
 
 
 </style>
@@ -312,7 +339,8 @@
                      style="top: -0px; 
                      /* right: 100px; */
                      margin-top: 30px;
-                     width: 350px;
+                     margin-left: 40px;
+                     width: 381px;
                      " 
                      alt="Mobile Mockup">
             </div>
@@ -384,8 +412,8 @@
             </div>
             <div class="col-md-6">
                 <div class="card" style="margin-top: 50px; background-color: transparent; border: none; border-left: solid #279B5A 3px; border-radius: 0px;">
-                    <div class="card-body" style="font-size: 13px; padding: 2px; padding-left: 7px;">
-                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Expedita nam tempore iste, aspernatur ad ab.
+                    <div class="card-body" style="font-size: 15px; padding: 2px; padding-left: 10px;">
+                        Subscribe to our email newsletter now and stay informed about the latest updates.                    
                     </div>
                 </div>
             </div>
@@ -401,7 +429,7 @@
                             Fast Booking
                         </div>
                         <div class="text-muted" style="font-size: 11px; line-height: 25px;">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab fugiat suscipit dolores culpa, accusantium nam.
+                            Subscribe to our email newsletter now and stay informed about the latest updates  more informations.                        
                         </div>
                     </div>
                 </div>
@@ -416,7 +444,7 @@
                             Secure Payment
                         </div>
                         <div class="text-muted" style="font-size: 11px; line-height: 25px;">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab fugiat suscipit dolores culpa, accusantium nam.
+                            Subscribe to our email newsletter now and stay informed about the latest updates  more informations.   
                         </div>
                     </div>
                 </div>
@@ -431,7 +459,7 @@
                             24x7 Support
                         </div>
                         <div class="text-muted" style="font-size: 11px; line-height: 25px;">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab fugiat suscipit dolores culpa, accusantium nam.
+                            Subscribe to our email newsletter now and stay informed about the latest updates  more informations.  
                         </div>
                     </div>
                 </div>
@@ -512,7 +540,7 @@
                     </div>
                 </div>
             </div>
-            
+
         </div>
 
     </div>
@@ -643,15 +671,16 @@
             <img style="margin-left: 50px;" class="loader" src="{{asset('assets/image/users/animation2.svg')}}" alt="user" height="120px">
         </div>
         <div class="col-md-6 text-center">
+            <img class="abc" src="{{asset('assets/image/users/abc.svg')}}" alt="user" height="120px" style="position: absolute; margin-left: -382px; margin-top: 34px;">
             <div class="fw-bold" style="font-size: 25px;">Danial Smith</div>
             <div>
                 <img src="{{asset('assets/image/users/rating.svg')}}" class="d-inline-block align-top pt-1 pb-1" alt="" style="width: 220px;">
             </div>
             <div class="mt-3" style="font-size: 25px; font-weight: 500 !important; font-size: 25px; font-family: 'NATS', sans-serif !important;">Satisfied App User</div>
             <div class="mt-3" style="font-size: 25px; font-weight: 500 !important; font-size: 14px; line-height: 30px; letter-spacing: 2px; color: gray;">
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Illum, earum ea cumque fuga, nisi fugiat deleniti accusamus perspiciatis consequuntur iusto veniam officia sed placeat rem?
-
+                Subscribe to our email newsletter now and stay informed about the latest updates Subscribe to our email newsletter now and stay informed about the latest updates
             </div>
+            <img class="xyz" src="{{asset('assets/image/users/xyz.svg')}}" alt="user" height="120px" style="position: absolute; margin-left: 252px; top: 173px;">
         </div>
         <div class="col-md-3">
 
@@ -729,26 +758,24 @@
         <div class="row mt-3">
             <div class="col-md-3 col-lg-4 col-xl-4 mx-auto mb-4">
                 <img src="{{asset('assets/image/users/Image.svg')}}" alt="profile" class="rounded-circle" style="width: 50px; height: 50px; border: 2px solid #ccc;">
-
-            <span class="ml-2" style="
-                    font-weight: 600 !important; 
-                    letter-spacing: 2px;
-                    font-family: 'Monda', sans-serif;
-                    font-style: normal;
-                    font-optical-sizing: auto;
-                ">SportsAstra</span>
-            
-            <p class="mt-3" style="font-size: 11px; color: #e0e0e0;">
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quam, expedita?
-            </p>
-            <div class="">
-                <img src="{{asset('assets/image/users/Image.svg')}}" alt="profile" class="rounded-circle m-1" style="width: 40px; height: 40px; border: 2px solid #ccc;">
-                <img src="{{asset('assets/image/users/Image.svg')}}" alt="profile" class="rounded-circle m-1" style="width: 40px; height: 40px; border: 2px solid #ccc;">
-                <img src="{{asset('assets/image/users/Image.svg')}}" alt="profile" class="rounded-circle m-1" style="width: 40px; height: 40px; border: 2px solid #ccc;">
-                <img src="{{asset('assets/image/users/Image.svg')}}" alt="profile" class="rounded-circle m-1" style="width: 40px; height: 40px; border: 2px solid #ccc;">
-                <img src="{{asset('assets/image/users/Image.svg')}}" alt="profile" class="rounded-circle m-1" style="width: 40px; height: 40px; border: 2px solid #ccc;">
-
-            </div>
+                <span class="ml-2" style="
+                        font-weight: 600 !important; 
+                        letter-spacing: 2px;
+                        font-family: 'Monda', sans-serif;
+                        font-style: normal;
+                        font-optical-sizing: auto;
+                    ">SportsAstra</span>
+                
+                <p class="mt-3" style="font-size: 11px; color: #e0e0e0;">
+                    Subscribe to our email newsletter now and stay informed about the latest updates
+                </p>
+                <div class="">
+                    <img src="{{asset('assets/image/users/Image.svg')}}" alt="profile" class="rounded-circle m-1" style="width: 40px; height: 40px; border: 2px solid #ccc;">
+                    <img src="{{asset('assets/image/users/Image.svg')}}" alt="profile" class="rounded-circle m-1" style="width: 40px; height: 40px; border: 2px solid #ccc;">
+                    <img src="{{asset('assets/image/users/Image.svg')}}" alt="profile" class="rounded-circle m-1" style="width: 40px; height: 40px; border: 2px solid #ccc;">
+                    <img src="{{asset('assets/image/users/Image.svg')}}" alt="profile" class="rounded-circle m-1" style="width: 40px; height: 40px; border: 2px solid #ccc;">
+                    <img src="{{asset('assets/image/users/Image.svg')}}" alt="profile" class="rounded-circle m-1" style="width: 40px; height: 40px; border: 2px solid #ccc;">
+                </div>
             </div>
 
             <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
@@ -776,17 +803,19 @@
                 <h6 class="mb-4">Contact</h6>
                 <div style="font-size: 11px;">
                     <p>
-                        <a href="#" class="fa fa-facebook text-decoration-none" style="color: #e0e0e0;">  00000000000  </a>
+                        <a href="#" class="text-decoration-none" style="color: #e0e0e0;">  00000000000  </a>
                     </p>
                     <p>
-                        <a href="#" class="fa fa-twitter text-decoration-none" style="color: #e0e0e0;">  Features@gmail.com  </a>
+                        <a href="#" class="text-decoration-none" style="color: #e0e0e0;">  Features@gmail.com  </a>
                     </p>
                     <p>
-                        <a href="#" class="fa fa-instagram text-decoration-none" style="color: #e0e0e0;">  abhiguleria@gmail.com  </a>
+                        <a href="#" class="text-decoration-none" style="color: #e0e0e0;">  abhiguleria@gmail.com  </a>
+                    </p>
+                    <p style="margin-bottom: 2px !important;">
+                        <a href="#" class="text-decoration-none" style="color: #e0e0e0;">  Address1  </a>
                     </p>
                     <p>
-                        <a href="#" class="fa fa-linkedin text-decoration-none" style="color: #e0e0e0;">  Address1  </a>
-                        <a href="#" class="fa fa-linkedin text-decoration-none" style="color: #e0e0e0;">  Address2  </a>
+                        <a href="#" class="text-decoration-none" style="color: #e0e0e0;">  Address2  </a>
                     </p>
                 </div>
             </div>
@@ -803,14 +832,14 @@
         </div>
         <hr>
         <div  style="font-size: 12px;">
-        <div class="row">
-            <div class="col-6 ml-auto text-right">
-                User
-                <a href="#" class="fa fa-linkedin text-decoration-none " style="color: #e0e0e0;">   Terms & Conditions |  </a>
-                <a href="#" class="fa fa-linkedin text-decoration-none" style="color: #e0e0e0;">  Privacy Policy  </a>
+            <div class="row">
+                <div class="col-6 ml-auto text-right">
+                    User
+                    <a href="#" class="text-decoration-none " style="color: #e0e0e0;">   Terms&nbsp;&&nbsp;Conditions |  </a>
+                    <a href="#" class="text-decoration-none" style="color: #e0e0e0;">  Privacy&nbsp;Policy  </a>
+                </div>
             </div>
         </div>
-    </div>
     </div>
 </footer>
 {{-- </div> --}}
@@ -818,10 +847,10 @@
 <!-- Vendor js -->
 
 <!-- App js -->
-<script src="{{asset('assets/js/app.js')}}"></script>
+{{-- <script src="{{asset('assets/js/app.js')}}"></script> --}}
 
 <!--Morris Chart-->
-<!-- <script src="{{asset('assets/libs/morris.js/morris.min.js')}}"></script> -->
+{{-- <script src="{{asset('assets/libs/morris.js/morris.min.js')}}"></script>  --}}
 <script src="{{asset('assets/libs/raphael/raphael.min.js')}}"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

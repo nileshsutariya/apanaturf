@@ -48,7 +48,7 @@
         }
         .chart-container {
             width: 96%;
-            max-width: 900px;
+            /* max-width: 900px; */
             background: white;
             padding-left: 30px;
             padding-right: 30px;
@@ -63,183 +63,183 @@
         }
     </style>
 
-                <div class="page-title-box">
-                    
-                    <div class="d-flex align-items-sm-center flex-sm-row flex-column gap-2">
-                        <div class="flex-grow-1">
-                            <h2 class="ml-3 mb-4"><strong>Dashboard</strong></h2>
-                        </div>
+    <div class="page-title-box">
+        
+        <div class="d-flex align-items-sm-center flex-sm-row flex-column gap-2">
+            <div class="flex-grow-1">
+                <h2 class="ml-3 mb-4"><strong>Dashboard</strong></h2>
+            </div>
 
-                    </div>
-                    <div class="row">
-                        <div class="col-12 col-sm-6 col-md-4 col-lg-2 mb-4">
-                            <div class="card tilebox-one" style="background-color: transparent; border-left: 5px solid #e0dddd; height: 70px; box-shadow: none;">
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-9">
-                                            <h6 class="text-muted mt-0" style="font-size: 11px;">Total Users</h6>
-                                            <h3 data-plugin="counterup" style="font-weight:700;font-size: 20px;">200</h3>
-                                        </div>
-                                        <div class="col-3">
-                                            <img src="{{asset('assets/image/Group1.svg')}}" alt="dashboard" style="width: 35px;">
-                                        </div>
-                                    </div>
-                                </div>
+        </div>
+        <div class="row">
+            <div class="col-12 col-sm-6 col-md-4 col-lg-2 mb-4">
+                <div class="card tilebox-one" style="background-color: transparent; border-left: 5px solid #e0dddd; height: 70px; box-shadow: none;">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-9">
+                                <h6 class="text-muted mt-0" style="font-size: 11px;">Total Users</h6>
+                                <h3 data-plugin="counterup" style="font-weight:700;font-size: 20px;">200</h3>
                             </div>
-                        </div>
-                    
-                        <div class="col-12 col-sm-6 col-md-4 col-lg-2 mb-4">
-                            <div class="card tilebox-one" style="background-color: transparent; border-left: 5px solid #e0dddd; height: 70px; box-shadow: none;">
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-9">
-                                            <h6 class="text-muted mt-0" style="font-size: 11px;">Total Vender</h6>
-                                            <h3 data-plugin="counterup" style="font-weight:700;font-size: 20px;">200</h3>
-                                        </div>
-                                        <div class="col-3">
-                                            <img src="{{asset('assets/image/Group2.svg')}}" alt="dashboard" style="width: 35px;">
-                                        </div>
-                                    </div>
-                                </div>
+                            <div class="col-3">
+                                <img src="{{asset('assets/image/Group1.svg')}}" alt="dashboard" style="width: 35px;">
                             </div>
-                        </div>
-                    
-                        <div class="col-12 col-sm-6 col-md-4 col-lg-2 mb-4">
-                            <div class="card tilebox-one" style="background-color: transparent; border-left: 5px solid #e0dddd; height: 70px; box-shadow: none;">
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-9">
-                                            <h6 class="text-muted mt-0" style="font-size: 11px;">Total Turf</h6>
-                                            <h3 data-plugin="counterup" style="font-weight:700;font-size: 20px;">200</h3>
-                                        </div>
-                                        <div class="col-3">
-                                            <img src="{{asset('assets/image/Group3.svg')}}" alt="dashboard" style="width: 35px;">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    
-                        <div class="col-12 col-sm-6 col-md-4 col-lg-2 mb-4">
-                            <div class="card tilebox-one" style="background-color: transparent; border-left: 5px solid #e0dddd; height: 70px; box-shadow: none;">
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-9">
-                                            <h6 class="text-muted mt-0" style="font-size: 11px;">Total Venue</h6>
-                                            <h3 data-plugin="counterup" style="font-weight:700;font-size: 20px;">200</h3>
-                                        </div>
-                                        <div class="col-3">
-                                            <img src="{{asset('assets/image/Group4.svg')}}" alt="dashboard" style="width: 35px;">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    
-                        <div class="col-12 col-sm-6 col-md-4 col-lg-2 mb-4">
-                            <div class="card tilebox-one" style="background-color: transparent; border-left: 5px solid #e0dddd; height: 70px; box-shadow: none;">
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-9">
-                                            <h6 class="text-muted mt-0" style="font-size: 11px;">Total Spot</h6>
-                                            <h3 data-plugin="counterup" style="font-weight:700;font-size: 20px;">200</h3>
-                                        </div>
-                                        <div class="col-3">
-                                            <img src="{{asset('assets/image/Group5.svg')}}" alt="dashboard" style="width: 35px;">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    
-                        <div class="col-12 col-sm-6 col-md-4 col-lg-2 mb-4">
-                            <div class="card tilebox-one" style="background-color: transparent; border-left: 5px solid #e0dddd; height: 70px; box-shadow: none;">
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-9">
-                                            <h6 class="text-muted mt-0" style="font-size: 10px;">Total Balance</h6>
-                                            <h3 data-plugin="counterup" style="font-weight:700;font-size: 20px;">200</h3>
-                                        </div>
-                                        <div class="col-3">
-                                            <img src="{{asset('assets/image/Group6.svg')}}" alt="dashboard" style="width: 35px;">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="row mt-3">
-                        <div class="col-md-8">
-                            <div class="chart-container">
-                                <div class="mb-4" style="font-size: 13px; font-weight: 500;">Total Users</div>
-                                <canvas id="myChart">
-                                    
-                                </canvas>
-                            </div>
-                        </div>
-                        <div class="col-md-4 pl-4">
-                            <h5 class="mt-3 ml-3">Top Vender</h5>
-                            <table class="table" style="border-color: black; width: 80%;">
-                                <thead>
-                                    <!-- <tr style="font-size: 12px;">
-                                        <th class="text-muted" scope="col">#1</th>
-                                        <th scope="col">Name1</th>
-                                        <th class="text-muted" scope="col">₹100110</th>
-                                    </tr> -->
-                                </thead>
-                                <tbody>
-                                    <tr style="font-size: 12px;">
-                                        <td class="text-muted" scope="row">#1</td>
-                                        <td>Name1</td>
-                                        <td class="text-muted">₹100110</td>
-                                    </tr>
-                                    <tr style="font-size: 12px;">
-                                        <td class="text-muted" scope="row">#1</td>
-                                        <td>Name1</td>
-                                        <td class="text-muted">₹100110</td>
-                                    </tr>
-                                    <tr style="font-size: 12px;">
-                                        <td class="text-muted" scope="row">#1</td>
-                                        <td>Name1</td>
-                                        <td class="text-muted">₹100110</td>
-                                    </tr>
-                                    <tr style="font-size: 12px;">
-                                        <td class="text-muted" scope="row">#1</td>
-                                        <td>Name1</td>
-                                        <td class="text-muted">₹100110</td>
-                                    </tr>
-                                    <tr style="font-size: 12px;">
-                                        <td class="text-muted" scope="row">#1</td>
-                                        <td>Name1</td>
-                                        <td class="text-muted">₹100110</td>
-                                    </tr>
-                                    <tr style="font-size: 12px;">
-                                        <td class="text-muted" scope="row">#1</td>
-                                        <td>Name1</td>
-                                        <td class="text-muted">₹100110</td>
-                                    </tr>
-                                    <tr style="font-size: 12px;">
-                                        <td class="text-muted" scope="row">#1</td>
-                                        <td>Name1</td>
-                                        <td class="text-muted">₹100110</td>
-                                    </tr>
-                                    <tr style="font-size: 12px;">
-                                        <td class="text-muted" scope="row">#1</td>
-                                        <td>Name1</td>
-                                        <td class="text-muted">₹100110</td>
-                                    </tr>
-                                    <tr style="font-size: 12px;">
-                                        <td class="text-muted" scope="row">#1</td>
-                                        <td>Name1</td>
-                                        <td class="text-muted">₹100110</td>
-                                    </tr>
-                                </tbody>
-                              </table>
                         </div>
                     </div>
                 </div>
-         
+            </div>
+        
+            <div class="col-12 col-sm-6 col-md-4 col-lg-2 mb-4">
+                <div class="card tilebox-one" style="background-color: transparent; border-left: 5px solid #e0dddd; height: 70px; box-shadow: none;">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-9">
+                                <h6 class="text-muted mt-0" style="font-size: 11px;">Total Vender</h6>
+                                <h3 data-plugin="counterup" style="font-weight:700;font-size: 20px;">200</h3>
+                            </div>
+                            <div class="col-3">
+                                <img src="{{asset('assets/image/Group2.svg')}}" alt="dashboard" style="width: 35px;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="col-12 col-sm-6 col-md-4 col-lg-2 mb-4">
+                <div class="card tilebox-one" style="background-color: transparent; border-left: 5px solid #e0dddd; height: 70px; box-shadow: none;">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-9">
+                                <h6 class="text-muted mt-0" style="font-size: 11px;">Total Turf</h6>
+                                <h3 data-plugin="counterup" style="font-weight:700;font-size: 20px;">200</h3>
+                            </div>
+                            <div class="col-3">
+                                <img src="{{asset('assets/image/Group3.svg')}}" alt="dashboard" style="width: 35px;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="col-12 col-sm-6 col-md-4 col-lg-2 mb-4">
+                <div class="card tilebox-one" style="background-color: transparent; border-left: 5px solid #e0dddd; height: 70px; box-shadow: none;">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-9">
+                                <h6 class="text-muted mt-0" style="font-size: 11px;">Total Venue</h6>
+                                <h3 data-plugin="counterup" style="font-weight:700;font-size: 20px;">200</h3>
+                            </div>
+                            <div class="col-3">
+                                <img src="{{asset('assets/image/Group4.svg')}}" alt="dashboard" style="width: 35px;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="col-12 col-sm-6 col-md-4 col-lg-2 mb-4">
+                <div class="card tilebox-one" style="background-color: transparent; border-left: 5px solid #e0dddd; height: 70px; box-shadow: none;">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-9">
+                                <h6 class="text-muted mt-0" style="font-size: 11px;">Total Spot</h6>
+                                <h3 data-plugin="counterup" style="font-weight:700;font-size: 20px;">200</h3>
+                            </div>
+                            <div class="col-3">
+                                <img src="{{asset('assets/image/Group5.svg')}}" alt="dashboard" style="width: 35px;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="col-12 col-sm-6 col-md-4 col-lg-2 mb-4">
+                <div class="card tilebox-one" style="background-color: transparent; border-left: 5px solid #e0dddd; height: 70px; box-shadow: none;">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-9">
+                                <h6 class="text-muted mt-0" style="font-size: 10px;">Total Balance</h6>
+                                <h3 data-plugin="counterup" style="font-weight:700;font-size: 20px;">200</h3>
+                            </div>
+                            <div class="col-3">
+                                <img src="{{asset('assets/image/Group6.svg')}}" alt="dashboard" style="width: 35px;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row mt-3">
+            <div class="col-md-8">
+                <div class="chart-container">
+                    <div class="mb-4" style="font-size: 13px; font-weight: 500;">Total Users</div>
+                    <canvas id="myChart">
+                        
+                    </canvas>
+                </div>
+            </div>
+            <div class="col-md-4 pl-4">
+                <h5 class="mt-3 ml-3">Top Vender</h5>
+                <table class="table" style="border-color: black; width: 80%;">
+                    <thead>
+                        <!-- <tr style="font-size: 12px;">
+                            <th class="text-muted" scope="col">#1</th>
+                            <th scope="col">Name1</th>
+                            <th class="text-muted" scope="col">₹100110</th>
+                        </tr> -->
+                    </thead>
+                    <tbody>
+                        <tr style="font-size: 12px;">
+                            <td class="text-muted" scope="row">#1</td>
+                            <td>Name1</td>
+                            <td class="text-muted">₹100110</td>
+                        </tr>
+                        <tr style="font-size: 12px;">
+                            <td class="text-muted" scope="row">#1</td>
+                            <td>Name1</td>
+                            <td class="text-muted">₹100110</td>
+                        </tr>
+                        <tr style="font-size: 12px;">
+                            <td class="text-muted" scope="row">#1</td>
+                            <td>Name1</td>
+                            <td class="text-muted">₹100110</td>
+                        </tr>
+                        <tr style="font-size: 12px;">
+                            <td class="text-muted" scope="row">#1</td>
+                            <td>Name1</td>
+                            <td class="text-muted">₹100110</td>
+                        </tr>
+                        <tr style="font-size: 12px;">
+                            <td class="text-muted" scope="row">#1</td>
+                            <td>Name1</td>
+                            <td class="text-muted">₹100110</td>
+                        </tr>
+                        <tr style="font-size: 12px;">
+                            <td class="text-muted" scope="row">#1</td>
+                            <td>Name1</td>
+                            <td class="text-muted">₹100110</td>
+                        </tr>
+                        <tr style="font-size: 12px;">
+                            <td class="text-muted" scope="row">#1</td>
+                            <td>Name1</td>
+                            <td class="text-muted">₹100110</td>
+                        </tr>
+                        <tr style="font-size: 12px;">
+                            <td class="text-muted" scope="row">#1</td>
+                            <td>Name1</td>
+                            <td class="text-muted">₹100110</td>
+                        </tr>
+                        <tr style="font-size: 12px;">
+                            <td class="text-muted" scope="row">#1</td>
+                            <td>Name1</td>
+                            <td class="text-muted">₹100110</td>
+                        </tr>
+                    </tbody>
+                    </table>
+            </div>
+        </div>
+    </div>
+    
     <!-- END wrapper -->
 
 

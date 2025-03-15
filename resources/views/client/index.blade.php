@@ -8,7 +8,7 @@
     }
     .chart-container {
         width: 97%;
-        max-width: 900px;
+        /* max-width: 900px; */
         background: white;
         padding: 30px;
         border-radius: 11px;

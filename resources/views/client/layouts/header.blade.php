@@ -131,7 +131,7 @@
         }
 
         .app-topbar .app-search .btn-icon {
-            height: 35px;
+            height: 40px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
             border-radius: 0 10px 10px 0;
             background-color: white;
