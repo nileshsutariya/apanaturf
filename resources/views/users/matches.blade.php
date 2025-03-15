@@ -80,7 +80,7 @@
                                 </div>
                 
                                 <div class="d-flex justify-content-between align-items-center mt-3">
-                                    <button class="btn btn-outline-success ml-3 pl-5 pr-5">Details</button>
+                                    <button class="btn btn-outline-success pl-5 pr-5">Details</button>
                                     <span class="text-success" data-status="complete">Successfully completed</span>
                                 </div>
                             </div>
@@ -196,17 +196,5 @@
 
         </div>
     </div>
-
-
-    <script>
-        $(document).ready(function(){
-            $(".filter-btn").click(function(e){
-                e.preventDefault();
-                var filter = $(this).data("filter");
-                $(".match-card").hide();
-                $('.match-card[data-status="' + filter + '"]').show();
-            });
-        });
-
-    </script>
+    
 @include('users.layouts.userfooter')

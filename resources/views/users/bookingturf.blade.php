@@ -294,7 +294,7 @@
                     <form class="app-search">
                         <div class="position-relative mb-2">
                             <input type="text" class="form-control search-with-icon" placeholder="Search Here">
-                            <img src="{{ asset('assets/image/users/search.svg') }}" alt="Icon" class="search-icon">
+                            <img src="{{ asset('assets/image/users/Search.svg') }}" alt="Icon" class="search-icon">
                         </div>
                     </form>
                 </div>

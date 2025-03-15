@@ -3,14 +3,8 @@
     #schedular {
         display: grid;
         grid-template-columns: auto repeat(7, 1fr);
-        /* Adjust column structure */
-        overflow-x: auto;
-        /* Enable horizontal scrolling */
-        /* white-space: nowrap; Prevent wrapping */
         width: 100%;
-        /* Ensure it doesn't shrink */
         max-width: 100%;
-        /* Ensure responsiveness */
     }
 
     .current-date {
@@ -41,7 +35,6 @@
     @media (max-width: 376px) {
         .week-calendar {
             overflow-x: auto;
-            /* Enable scrolling */
             white-space: nowrap;
             scrollbar-width: thin;
         }
@@ -56,7 +49,6 @@
     @media (max-width: 1024px) {
         .week-calendar {
             overflow-x: auto;
-            /* Enable scrolling */
             white-space: nowrap;
             scrollbar-width: thin;
         }
@@ -70,7 +62,6 @@
     .week-container {
         display: grid !important;
         grid-template-columns: 90px repeat(7, 1fr);
-        /* First column blank, then 7 equal columns */
         width: 100%;
         margin-left: -23px;
         gap: 29px;
@@ -83,7 +74,6 @@
     .time-grid {
         display: grid;
         grid-template-columns: repeat(7, 1fr);
-        /* Match with week-container */
         width: 100%;
     }
 
@@ -100,7 +90,6 @@
 
     .week-container div {
         flex: 1;
-        /* Ensure equal width */
         text-align: center;
     }
 
@@ -256,9 +245,7 @@
     .calendar {
         display: grid;
         grid-template-columns: 80px repeat(7, 1fr);
-        /* Time column + 7 days */
         grid-template-rows: repeat(11, 70px);
-        /* Adjust row height */
         border: none;
         font-family: 'Poppins', sans-serif !important;
         font-size: 12px;
@@ -320,8 +307,6 @@
         border-radius: 5px;
         padding: 3px;
     }
-</style>
-<style>
     .actions {
         display: flex;
         gap: 10px;
@@ -358,18 +343,13 @@
     .modal-demo {
         width: 350px !important;
         max-height: 90vh;
-        /* Ensures it doesn't exceed viewport height */
         border-radius: 15px;
         padding: 0px 30px 10px;
         overflow-y: auto;
         scrollbar-width: none;
-
-        /* For Firefox */
         -ms-overflow-style: none;
-        /* For Internet Explorer/Edge */
     }
 
-    /* Hide scrollbar for WebKit browsers (Chrome, Safari) */
     .modal-demo::-webkit-scrollbar {
         display: none;
     }

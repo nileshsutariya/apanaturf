@@ -69,7 +69,7 @@
                         <a class="nav-link mx-2 text-uppercase" data-filter="upcoming" href="#" style="font-size: 13px; font-weight: 600 !important; pointer-events: none !important;">facebook<span class="sr-only"></span></a>
                     </div>
                     <div class="d-inline">
-                        <img src="{{asset('assets/image/users/moredots.svg')}}" class="img-fluid" alt="link" style="margin-left: 27px; padding-top: 17px;">
+                        <img src="{{asset('assets/image/users/moredots.svg')}}" class="img-fluid" alt="link" style="margin-left: 32px; padding-top: 17px;">
                         <a class="nav-link mx-2 text-uppercase my-3" data-filter="bidding" href="#" style="font-size: 13px; font-weight: 600 !important; pointer-events: none !important;">  More  <span class="sr-only"></span></a>
                     </div>
                 </div>

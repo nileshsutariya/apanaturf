@@ -2,7 +2,7 @@
 
 
     <footer class="footer"> 
-        <div class="container text-center text-md-start mt-5" style="padding-top: 80px;">
+        <div class="container text-md-start mt-5" style="padding-top: 80px;">
             <div class="row mt-3">
                 <div class="col-md-3 col-lg-4 col-xl-4 mx-auto mb-4">
                     <img src="{{asset('assets/image/users/Image.svg')}}" alt="profile" class="rounded-circle" style="width: 50px; height: 50px; border: 2px solid #ccc;">
@@ -15,8 +15,8 @@
                         font-optical-sizing: auto;
                     ">SportsAstra</span>
                 
-                <p class="mt-3" style="font-size: 11px; color: #e0e0e0;">
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quam, expedita?
+                <p class="mt-3" style="font-size: 11px; color: #5F5F5F;">
+                    Subscribe to our email newsletter now and stay informed about the latest updates
                 </p>
                 <div class="">
                     <img src="{{asset('assets/image/users/Image.svg')}}" alt="profile" class="rounded-circle m-1" style="width: 40px; height: 40px; border: 2px solid #ccc;">
@@ -30,7 +30,7 @@
     
                 <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
                     <h6 class="mb-4">Company</h6>
-                    <div style="font-size: 11px;">
+                    <div style="font-size: 11px; font-weight: 400 !important;">
                         <p>
                             <a href="index.php" class="text-decoration-none" style="color: #e0e0e0;">Home</a>
                         </p>
@@ -51,19 +51,21 @@
     
                 <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
                     <h6 class="mb-4">Contact</h6>
-                    <div style="font-size: 11px;">
+                    <div style="font-size: 11px; font-weight: 400 !important;">
                         <p>
-                            <a href="#" class="fa fa-facebook text-decoration-none" style="color: #e0e0e0;">  00000000000  </a>
+                            <a href="#" class="text-decoration-none" style="color: #e0e0e0;">  00000000000  </a>
                         </p>
                         <p>
-                            <a href="#" class="fa fa-twitter text-decoration-none" style="color: #e0e0e0;">  Features@gmail.com  </a>
+                            <a href="#" class="text-decoration-none" style="color: #e0e0e0;">  Features@gmail.com  </a>
                         </p>
                         <p>
-                            <a href="#" class="fa fa-instagram text-decoration-none" style="color: #e0e0e0;">  abhiguleria@gmail.com  </a>
+                            <a href="#" class="text-decoration-none" style="color: #e0e0e0;">  abhiguleria@gmail.com  </a>
+                        </p>
+                        <p style="margin-bottom: 2px !important;">
+                            <a href="#" class="text-decoration-none" style="color: #e0e0e0;">  Address1  </a>
                         </p>
                         <p>
-                            <a href="#" class="fa fa-linkedin text-decoration-none" style="color: #e0e0e0;">  Address1  </a>
-                            <a href="#" class="fa fa-linkedin text-decoration-none" style="color: #e0e0e0;">  Address2  </a>
+                            <a href="#" class="text-decoration-none" style="color: #e0e0e0;">  Address2  </a>
                         </p>
                     </div>
                 </div>
@@ -83,8 +85,8 @@
             <div class="row">
                 <div class="col-6 ml-auto text-right">
                     User
-                    <a href="#" class="fa fa-linkedin text-decoration-none " style="color: #e0e0e0;">   Terms & Conditions |  </a>
-                    <a href="#" class="fa fa-linkedin text-decoration-none" style="color: #e0e0e0;">  Privacy Policy  </a>
+                    <a href="#" class="text-decoration-none " style="color: #e0e0e0;">   Terms&nbsp;&&nbsp;Conditions |  </a>
+                    <a href="#" class="text-decoration-none" style="color: #e0e0e0;">  Privacy&nbsp;Policy  </a>
                 </div>
             </div>
         </div>
@@ -96,7 +98,7 @@
     {{-- <script src="{{asset('assets/js/vendor.min.js')}}"></script> --}}
 
     <!-- App js -->
-    <!-- <script src="{{asset('assets/js/app.js')}}"></script> -->
+    {{-- <script src="{{asset('assets/js/app.js')}}"></script> --}}
 
     <!--Morris Chart-->
     <script src="{{asset('assets/libs/morris.js/morris.min.js')}}"></script> 

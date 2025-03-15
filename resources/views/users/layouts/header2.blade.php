@@ -9,11 +9,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <!-- <meta http-equiv="refresh" content="3"> -->
     <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
     <!-- Bootstrap JS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
-    <!-- <meta http-equiv="refresh" content="3"> -->
     <link rel="shortcut icon" href="{{asset('assets/images/favicon.ico')}}">
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -190,7 +188,6 @@
             align-items: flex-end;
         }
 
-        /* Sidebar transition effect */
         #sidebar {
             width: 220px;
             transition: width 0.3s ease;
@@ -266,7 +263,7 @@
             padding-left: 0px;
         }
 
-        .nav-link {
+        .side-nav-link {
             display: flex;
             align-items: center;
             padding: 10px;
@@ -276,25 +273,24 @@
             color: #000;
         }
 
-        .nav-link img {
+        .side-nav-link img {
             width: 20px;
             height: 20px;
             transition: filter 0.3s ease;
         }
 
-<<<<<<< HEAD
-        .nav-link.active {
+        .side-nav-link.active {
             background-color: #079666 !important;
             color: white !important;
         }
 
-        .nav-link.active img {
+        .side-nav-link.active img {
             filter: brightness(0) invert(1);
         }
 
-        .nav-link:hover {
+        .side-nav-link:hover {
             background-color: rgba(29, 185, 84, 0.1);
-            color: #079666;
+            color: black;
         }
 
         @media (max-width: 768px) {
@@ -302,24 +298,6 @@
                 margin: 0px !important;
             }
         }
-=======
-.nav-link.active {
-    background-color: #079666 !important; 
-    color: white !important;
-}
-.nav-link.active img {
-    filter: brightness(0) invert(1);
-}
-
-.nav-link:hover {
-    /* background-color: rgba(29, 185, 84, 0.1); */
-    color: #079666;
-}
-@media (max-width: 768px) {
-    .nav-btn {
-        margin: 0px !important;
-    }
-}
 
 .line-link {
     display: flex;
@@ -364,7 +342,6 @@
     background-color: rgba(29, 185, 84, 0.1);
     color: #079666;
 }
->>>>>>> 4a47da8873c1aff19732618633e148677e9d8299
     </style>
 </head>
 
@@ -407,20 +384,17 @@
         <nav class="navbar navbar-expand-lg navbar-light bg-white">
             <div class="container-fluid d-flex align-items-center">
 
-                <!-- Logo -->
                 <a class="navbar-brand logo me-auto" href="#">
                     <img src="{{asset('assets/image/users/logo2.svg')}}" class="d-inline-block align-top m-3 logo-img"
                         alt="logo" style="max-height: 50px;">
                 </a>
 
-                <!-- Toggle Button for Mobile -->
                 <button class="navbar-toggler nav-btn mx-5" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
                     aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
-                <!-- Profile (Always on Right) -->
                 <div class="d-flex align-items-center order-lg-2 mx-4">
                     <img src="{{asset('assets/image/users/Image.svg')}}" alt="profile" class="rounded-circle"
                         style="width: 40px; height: 40px; border: 2px solid #ccc;">
@@ -429,7 +403,6 @@
                 </div>
 
 
-                <!-- Navbar Items -->
                 <div class="collapse navbar-collapse justify-content-center order-lg-1" id="navbarNav">
                     <ul class="navbar-nav mx-auto text-center">
                         <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
@@ -469,78 +442,44 @@
             <div class="sidenav-menu sidebar" id="sidebar" style="height: auto;">
                 <div data-simplebar class="flex-grow-1">
                     <ul class="side-nav" style="padding-bottom: 200px;" id="ul">
-<<<<<<< HEAD
-                        <a href="{{ route('users.dashboard')}}" class="pb-3 nav-link">
+                        <a href="{{ route('users.dashboard')}}" class="pb-3 side-nav-link">
                             <img src="{{asset('assets/image/users/element-3.svg')}}" class="nav-icon ml-4" alt="user">
                             <span class="menu-text ml-1">Dashboard</span>
                         </a>
-                        <a href="{{ route('users.booking') }}" class="pb-3 nav-link">
+                        <a href="{{ route('users.booking') }}" class="pb-3 side-nav-link">
                             <img src="{{asset('assets/image/users/calendar.svg')}}" class="nav-icon ml-4" alt="user">
                             <span class="menu-text ml-1">Booking</span>
                         </a>
                         {{-- <li class="side-nav-item"> --}}
-                            <a href="{{route('users.matches')}}" class="pb-3 nav-link">
+                            <a href="{{route('users.matches')}}" class="pb-3 side-nav-link">
                                 <img src="{{asset('assets/image/users/bell.svg')}}" class="nav-icon ml-4" alt="user">
-=======
-                        <a href="{{ route('users.dashboard')}}" class="pb-3 sidebar-link">
-                            <img src="{{asset('assets/image/users/element-3.svg')}}" class="nav-icon ml-4"  alt="user">
-                            <span class="menu-text ml-1">Dashboard</span>
-                        </a>
-                        <a href="{{ route('users.booking') }}" class="pb-3 sidebar-link">
-                            <img src="{{asset('assets/image/users/calendar.svg')}}" class="nav-icon ml-4"  alt="user">
-                            <span class="menu-text ml-1">Booking</span>
-                        </a>
-                        {{-- <li class="side-nav-item"> --}}
-                            <a href="{{route('users.matches')}}" class="pb-3 sidebar-link">
-                                <img src="{{asset('assets/image/users/bell.svg')}}" class="nav-icon ml-4"  alt="user">
->>>>>>> 4a47da8873c1aff19732618633e148677e9d8299
+                        
                                 <span class="menu-text ml-1">My Matches</span>
                             </a>
-                            {{--
-                        </li> --}}
+                            {{-- </li> --}}
 
-<<<<<<< HEAD
-                        <a href="{{route('users.wallet')}}" class="pb-3 nav-link">
+                        <a href="{{route('users.wallet')}}" class="pb-3 side-nav-link">
                             <img src="{{asset('assets/image/users/wallet-remove.svg')}}" class="nav-icon ml-4"
                                 alt="user">
                             <span class="menu-text ml-1">Wallet</span>
                         </a>
-                        <a href="{{ route('users.split') }}" class="pb-3 nav-link">
+                        <a href="{{ route('users.split') }}" class="pb-3 side-nav-link">
                             <img src="{{asset('assets/image/users/Setting.svg')}}" class="nav-icon ml-4" alt="user">
                             <span class="menu-text ml-1">Split & Pay</span>
                         </a>
-                        <a href="{{ route('users.setting') }}" class="pb-3 nav-link">
+                        <a href="{{ route('users.setting') }}" class="pb-3 side-nav-link">
                             <img src="{{asset('assets/image/users/Setting2.svg')}}" class="nav-icon ml-4" alt="user">
                             <span class="menu-text ml-1">Settings</span>
                         </a>
-                        <a href="{{route('users.refer')}}" class="pb-3 nav-link">
+                        <a href="{{route('users.refer')}}" class="pb-3 side-nav-link">
                             <img src="{{asset('assets/image/users/Setting1.svg')}}" class="nav-icon ml-4" alt="user">
-=======
-                        <a href="{{route('users.wallet')}}" class="pb-3 sidebar-link">
-                            <img src="{{asset('assets/image/users/wallet-remove.svg')}}" class="nav-icon ml-4"  alt="user">
-                            <span class="menu-text ml-1">Wallet</span>
-                        </a>
-                        <a href="{{ route('users.split') }}" class="pb-3 sidebar-link">
-                            <img src="{{asset('assets/image/users/Setting.svg')}}" class="nav-icon ml-4"  alt="user">
-                            <span class="menu-text ml-1">Split & Pay</span>
-                        </a>
-                        <a href="{{ route('users.setting') }}" class="pb-3 sidebar-link">
-                            <img src="{{asset('assets/image/users/Setting2.svg')}}" class="nav-icon ml-4"  alt="user">
-                            <span class="menu-text ml-1">Settings</span>
-                        </a>
-                        <a href="{{route('users.refer')}}" class="pb-3 sidebar-link">
-                            <img src="{{asset('assets/image/users/Setting1.svg')}}" class="nav-icon ml-4"  alt="user">
->>>>>>> 4a47da8873c1aff19732618633e148677e9d8299
                             <span class="menu-text ml-1">Refer & Earn</span>
                         </a>
                     </ul>
                 </div>
 
                 <div class="sidebar-footer p-3" style="">
-                    {{--
-                    <hr class="hr"> --}}
                     <div class="side-nav-item d-flex align-items-center justify-content-between">
-                        <!-- Left: Profile Image -->
                         <div class="d-flex align-items-center">
                             <span class="menu-icon me-3">
                                 <img src="{{asset('assets/image/Image.svg')}}" alt="profile" class="rounded-circle"
@@ -548,7 +487,6 @@
                             </span>
                         </div>
 
-                        <!-- Right: Name, Profile Link, and Dots -->
                         <div class="footer-content d-flex flex-column flex-grow-1">
                             <span class="menu-text" style="font-size: 12px;">Abhishek Guleria</span>
                             <a href="" class="text-muted" style="font-size: 11px;">View Profile</a>
@@ -574,9 +512,9 @@
                     const sidebar = document.getElementById("sidebar");
 
                     if (window.innerWidth <= 768) {
-                        sidebar.classList.toggle("active"); // Expand sidebar on small screens
+                        sidebar.classList.toggle("active");
                     } else {
-                        sidebar.classList.toggle("collapsed"); // Normal toggle for large screens
+                        sidebar.classList.toggle("collapsed");
                     }
                 });
             </script>
