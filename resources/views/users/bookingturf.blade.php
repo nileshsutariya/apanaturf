@@ -2,10 +2,20 @@
 <link href="https://fonts.googleapis.com/css2?family=Monda:wght@400..700&display=swap" rel="stylesheet">
 
 <style>
+    @font-face {
+        font-family: 'NATS';
+        src: url("{{ asset('assets/fonts/NATS-Regular.woff') }}") format('woff');
+        font-weight: normal;
+        font-style: normal;
+    }
+
+    .product {
+        font-family: 'NATS', sans-serif !important;
+    }
+
     body {
         background-color: #FFFFFF;
         font-size: 15px;
-        font-family: 'NATS', sans-serif !important;
     }
 
     .filter-box {
@@ -37,14 +47,16 @@
     .imagebox .active {
         color: #8A33FD;
     }
-.imagebox{
-    color:#3F4646;
-}
+
+    .imagebox {
+        color: #3F4646;
+    }
+
     .form-control {
         border: 1px solid #ddd;
         border-radius: 10px;
         padding: 10px;
-        font-size: 14px;
+        font-size: 16px;
     }
 
     .form-control::placeholder {
@@ -98,8 +110,6 @@
         border-radius: 17px;
     }
 
-
-
     .content {
         padding-top: 0px;
     }
@@ -122,8 +132,8 @@
 
     .imgrate {
         background-color: #E0F1E8;
-        font-size: 10px;
-        font-weight: 600;
+        font-size: 14px;
+        font-weight: 400;
         padding: 10px;
         margin-left: auto;
         border-radius: 10px;
@@ -150,7 +160,6 @@
         border: none;
         box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
         /* Adds a shadow */
-
     }
 
     .search-icon {
@@ -173,7 +182,7 @@
         padding: 5px;
     }
 
-    @media (min-width: 575px) and (max-width: 1441px) {
+    @media (min-width: 575px) and (max-width: 1460px) {
         .imgdetails {
             display: block;
         }
@@ -220,13 +229,16 @@
         }
 
     }
+
     @media (min-width:576px) and (max-width:768px) {
         .imagebox {
             padding-left: 70px;
         }
-        .filter-box{
-            width:200px;
+
+        .filter-box {
+            width: 200px;
         }
+
         .header-1 {
             display: none;
         }
@@ -235,26 +247,34 @@
             display: flex;
         }
     }
+
     @media (min-width:992px) and (max-width:1400px) {
         .imagebox {
             padding-left: 110px;
         }
-        .filter-box{
-            width:250px;
+
+        .filter-box {
+            width: 250px;
         }
     }
-    .imagname{
+
+    .imagname {
         font-weight: 400px;
-        font-size:22px;
+        font-size: 22px;
         color: #3E3C37;
     }
-    .header-1,.header-2{
+
+    .header-1,
+    .header-2 {
         font-size: 22px;
         font-weight: 400;
     }
-    
+
+    .boxcontent {
+        padding-bottom: 0px;
+    }
 </style>
-<section class="content">   
+<section class="content product">
     <div class="row">
         <div class="col-lg-2 col-md-3 col-sm-3">
             <div class="filter-box">
@@ -271,7 +291,8 @@
                     <div class="text-center" style="font-size: 12px;">to</div>
                     <div class="position-relative mb-2">
                         <img src="{{ asset('assets/image/users/note.svg') }}" alt="Icon" class="input-icon">
-                        <input type="text" class="form-control input-with-icon" placeholder="DD/MM/YYYY" id="todateInput">
+                        <input type="text" class="form-control input-with-icon" placeholder="DD/MM/YYYY"
+                            id="todateInput">
                     </div>
                 </div>
                 <hr>
@@ -294,14 +315,14 @@
                     <form class="app-search">
                         <div class="position-relative mb-2">
                             <input type="text" class="form-control search-with-icon" placeholder="Search Here">
-                            <img src="{{ asset('assets/image/users/search.svg') }}" alt="Icon" class="search-icon">
+                            <img src="{{ asset('assets/image/users/search123.svg') }}" alt="Icon" class="search-icon">
                         </div>
                     </form>
                 </div>
                 <div class="col-sm-1 active pl-3 pt-1 header-1" style="align-self:center;">
                     <span>New</span>
                 </div>
-                <div class="col-sm-2 pl-4 pt-1 header-1" style="align-self:center;">
+                <div class="col-sm-2 pl-3 pt-1 header-1" style="align-self:center;">
                     <span class="ml-auto"> Recommended</span>
                 </div>
                 <div class="header-2 ">
@@ -325,7 +346,6 @@
                             </div>
                         </div>
                         <div class="favorite">
-                            <i class="fa fa-heart"></i>
                             <img src="{{ asset('assets/image/users/frame 50.svg') }}">
                         </div>
                         <div class="card-body boxcontent ">
@@ -353,7 +373,6 @@
                             </div>
                         </div>
                         <div class="favorite">
-                            <i class="fa fa-heart"></i>
                             <img src="{{ asset('assets/image/users/frame 50.svg') }}">
                         </div>
                         <div class="card-body boxcontent ">
@@ -381,7 +400,6 @@
                             </div>
                         </div>
                         <div class="favorite">
-                            <i class="fa fa-heart"></i>
                             <img src="{{ asset('assets/image/users/frame 50.svg') }}">
                         </div>
                         <div class="card-body boxcontent ">
@@ -409,7 +427,6 @@
                             </div>
                         </div>
                         <div class="favorite">
-                            <i class="fa fa-heart"></i>
                             <img src="{{ asset('assets/image/users/frame 50.svg') }}">
                         </div>
                         <div class="card-body boxcontent ">
@@ -419,6 +436,62 @@
                                     <img src="{{ asset('assets/image/users/location.svg') }}"
                                         style="height: 19.22px; width: 16.31px;   align-self:center;">
                                     <p class="imgcontent mb-0 ml-1 "> Vaghodia rd, Vadodara </p>
+                                </div>
+                                <p class="imgrate mb-0">⭐ 4.5 (200)</p>
+                            </div>
+                            <p class="fw-bold imgprice">$200.00/Hrs.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 col-sm-6 mb-3">
+                    <div class="card position-relative">
+                        <div class="m-1 box-image">
+                            <div class="row">
+                                <div class="col-12">
+                                    <img src="{{ asset('assets/image/users/booking1.svg') }}" class="card-img-top"
+                                        style="height: 100%;width: 100%;" alt="Turf">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="favorite">
+                            <img src="{{ asset('assets/image/users/frame 50.svg') }}">
+                        </div>
+                        <div class="card-body boxcontent ">
+                            <h6 class="m-0 imagname">Venue name</h6>
+                            <div class="imgdetails">
+                                <div class="d-flex p-0 mt-1">
+                                    <img src="{{ asset('assets/image/users/location.svg') }}"
+                                        style="height: 19.22px; width: 16.31px;   align-self:center;">
+                                    <p class="imgcontent mb-0 ml-1 "> Vaghodia rd, Vadodara </p>
+                                </div>
+                                <p class="imgrate mb-0">⭐ 4.5 (200)</p>
+                            </div>
+                            <p class="fw-bold imgprice">$200.00/Hrs.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 col-sm-6 mb-3">
+                    <div class="card position-relative">
+                        <div class="m-1 box-image">
+                            <div class="row">
+                                <div class="col-12">
+                                    <img src="{{ asset('assets/image/users/booking1.svg') }}" class="card-img-top"
+                                        style="height: 100%; width:100%;" alt="turf">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="favorite">
+                            <img src="{{ asset('assets/image/users/frame 50.svg') }}">
+                        </div>
+                        <div class="card-body boxcontent">
+                            <h6 class="m-0 imagname">Venue name</h6>
+                            <div class="imgdetails">
+                                <div class="d-flex p-0 mt-1">
+                                    <img src="{{ asset('assets/image/users/location.svg') }}"
+                                        style="height:19.22px;width:16.31px; align-self:center;">
+                                    <p class="imgcontent mb-0 ml-1">Vaghodia rd. Vadodara</p>
                                 </div>
                                 <p class="imgrate mb-0">⭐ 4.5 (200)</p>
                             </div>
@@ -430,30 +503,59 @@
                     <div class="card position-relative">
                         <div class="m-1 box-image">
                             <div class="row">
-                                <div class="col-12 ">
+                                <div class="col-12">
                                     <img src="{{ asset('assets/image/users/booking1.svg') }}" class="card-img-top"
-                                        style="height: 100%;width: 100%;" alt="Turf">
+                                        style="height:100%;width:100%;" alt="turf">
                                 </div>
                             </div>
                         </div>
                         <div class="favorite">
-                            <i class="fa fa-heart"></i>
                             <img src="{{ asset('assets/image/users/frame 50.svg') }}">
                         </div>
-                        <div class="card-body boxcontent ">
+                        <div class="card-body boxcontent">
                             <h6 class="m-0 imagname">Venue name</h6>
                             <div class="imgdetails">
                                 <div class="d-flex p-0 mt-1">
                                     <img src="{{ asset('assets/image/users/location.svg') }}"
-                                        style="height: 19.22px; width: 16.31px;   align-self:center;">
-                                    <p class="imgcontent mb-0 ml-1 "> Vaghodia rd, Vadodara </p>
+                                        style="height:19.22px;width:16.31px; align-self:center;">
+                                    <p class="imgcontent mb-0 ml-1">Vaghodia rd,Vadodara</p>
                                 </div>
-                                <p class="imgrate mb-0">⭐ 4.5 (200)</p>
+                                <p class="imgrate mb-0">⭐4.5(200)</p>
                             </div>
                             <p class="fw-bold imgprice">$200.00/Hrs.</p>
                         </div>
                     </div>
                 </div>
+
+
+                <div class="col-md-4 col-sm-6 mb-3">
+                    <div class="card position-relative">
+                        <div class="m-1 box-image">
+                            <div class="row">
+                                <div class="col-12">
+                                    <img src="{{asset('assets/image/users/booking3.svg')  }}" class="card-img-top"
+                                        style="height: 100%;width:100%;" alt="Turf">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="favorite">
+                            <img src="{{ asset('assets/image/users/frame 50.svg') }}">
+                        </div>
+                        <div class="card-body boxcontent">
+                            <h6 class="m-0 imagname">Venue name</h6>
+                            <div class="imgdetails">
+                                <div class="d-flex p-0 mt-1">
+                                    <img src="{{ asset('assets/image/users/location.svg') }}"
+                                        style="height:19.22px;width:16.33px; align-self:center;">
+                                    <p class="imgcontent mb-0 ml-1">Vaghodia rd,Vadodara</p>
+                                </div>
+                                <p class="imgrate mb-0">⭐ 4.5(200)</p>
+                            </div>
+                            <p class="fw-bold imgprice">$200.00/Hrs.</p>
+                        </div>
+                    </div>
+                </div>
+
 
                 <div class="col-md-4 col-sm-6 mb-3">
                     <div class="card position-relative">
@@ -466,7 +568,6 @@
                             </div>
                         </div>
                         <div class="favorite">
-                            <i class="fa fa-heart"></i>
                             <img src="{{ asset('assets/image/users/frame 50.svg') }}">
                         </div>
                         <div class="card-body boxcontent ">
@@ -483,7 +584,6 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
@@ -493,7 +593,7 @@
 </div>
 <script>
     document.getElementById('dateInput').addEventListener('input', function (e) {
-        let value = e.target.value.replace(/\D/g, ''); 
+        let value = e.target.value.replace(/\D/g, '');
         let formattedValue = '';
 
         if (value.length > 0) {
@@ -509,7 +609,7 @@
         e.target.value = formattedValue;
     });
     document.getElementById('todateInput').addEventListener('input', function (e) {
-        let value = e.target.value.replace(/\D/g, ''); 
+        let value = e.target.value.replace(/\D/g, '');
         let formattedValue = '';
 
         if (value.length > 0) {
@@ -529,7 +629,7 @@
     document.getElementById('timeInput').addEventListener('blur', function (e) {
         let value = e.target.value;
         let match = value.match(/^(\d{1,2}):(\d{2})$/);
-        
+
         if (match) {
             let hours = parseInt(match[1], 10);
             let minutes = match[2];

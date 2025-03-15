@@ -1,29 +1,46 @@
 @include('users.layouts.userheader')
 <style>
-    .container {
-        font-size: x-small;
+    .terms-container{
+        font-size: 17px;
         font-weight: 500 !important;
-       
     }
-    .content{
+
+    .content {
         margin-left: 25%;
         margin-right: 25%;
         /* overflow-y: scroll; */
         margin-bottom: 200px;
-    }
-    body{
-        overflow-y: scroll;
         font-family: 'poppins', sans-serif !important;
+    }
+
+    @media (max-width:1025px) {
+        .content {
+            margin-left: 15%;
+            margin-right: 15%;
+        }
+    }
+
+    @media (max-width:650px) {
+        .content {
+            margin: 20px !important;
+        }
+    }
+    @media (max-width:400px){
+        .content{
+            margin:15px !important;
+        }
     }
 
 </style>
 <section class="content mt-4">
-    <div class="container mt-5">
+    <div class="container mt-5 terms-container">
         <div class="row text-center mb-3">
             <h1>Terms & Condition</h1>
         </div>
-        <div class="ml-3 text-center mb-2">By accessing and placing an order with UXTheme, you confirm that <br>you are in
-            agreement with and bound by the terms and conditions</div><br>
+        <div class="ml-3 text-center mb-2">By accessing and placing an order with UXTheme, you confirm that <br>you are
+            in
+            agreement with and bound by the terms and conditions
+        </div><br>
         <p class="text-left">By accessing and placing an order with UXTheme, you confirm that you are in agreement with
             and bound by the terms and conditions contained in the Terms of Use outlined below. These terms apply to the
             entire website and any email or other type of communication between you and UXTheme. Under no circumstances
@@ -45,9 +62,12 @@
         <br>
         <p>
             • You have rights for royalty free use of our resources for any or all of your personal.
-    </p><p>
-            • You are not required to attribute or link to UXTheme in any of projects.</p>
-            <p> • We reserve the rights to change prices and revise the resources usage policy in any moment.
+        </p>
+        <p>
+            • You are not required to attribute or link to UXTheme in any of projects.
+        </p>
+        <p>
+            • We reserve the rights to change prices and revise the resources usage policy in any moment.
         </p>
         <br>
         <h5>Embedded content from other websites </h5>
@@ -57,9 +77,11 @@
             other websites behaves in the exact same way as if the visitor has visited the other website.
             These websites may collect data about you, use cookies, embed additional third-party tracking, and monitor
             your
-            interaction with that embedded content, including tracking</p><br>
-        <h5>
-            Changes about terms</h5><br>
+            interaction with that embedded content, including tracking
+        </p>
+        <br>
+        <h5>Changes about terms</h5>
+        <br>
         <p>
             If we change our terms of use we will post those changes on this page. Registered users will be sent an
             email

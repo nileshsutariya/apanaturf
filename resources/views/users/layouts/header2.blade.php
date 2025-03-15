@@ -16,7 +16,8 @@
     <!-- <meta http-equiv="refresh" content="3"> -->
     <link rel="shortcut icon" href="{{asset('assets/images/favicon.ico')}}">
 
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
 
     <link
         href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
@@ -282,7 +283,6 @@
             transition: filter 0.3s ease;
         }
 
-<<<<<<< HEAD
         .nav-link.active {
             background-color: #079666 !important;
             color: white !important;
@@ -293,7 +293,7 @@
         }
 
         .nav-link:hover {
-            background-color: rgba(29, 185, 84, 0.1);
+            /* background-color: rgba(29, 185, 84, 0.1); */
             color: #079666;
         }
 
@@ -302,69 +302,53 @@
                 margin: 0px !important;
             }
         }
-=======
-.nav-link.active {
-    background-color: #079666 !important; 
-    color: white !important;
-}
-.nav-link.active img {
-    filter: brightness(0) invert(1);
-}
 
-.nav-link:hover {
-    /* background-color: rgba(29, 185, 84, 0.1); */
-    color: #079666;
-}
-@media (max-width: 768px) {
-    .nav-btn {
-        margin: 0px !important;
-    }
-}
+        .line-link {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            text-decoration: none !important;
+            transition: all 0.3s ease;
+            color: #000;
+        }
 
-.line-link {
-    display: flex;
-    align-items: center;
-    padding: 10px;
-    text-decoration: none !important;
-    transition: all 0.3s ease;
-    color: #000;  
-}
-.line-link.active {
-    color: black !important;
-}   
-.line-link:hover {
-    color: #079666 !important;
-}
+        .line-link.active {
+            color: black !important;
+        }
 
-.sidebar-link {
-    display: flex;
-    align-items: center;
-    padding: 10px;
-    /* border-radius: 5px; */
-    text-decoration: none;
-    transition: all 0.3s ease;
-    color: #000;  
-}
+        .line-link:hover {
+            color: #079666 !important;
+        }
 
-.sidebar-link img {
-    width: 20px;
-    height: 20px;
-    transition: filter 0.3s ease;
-}
+        .sidebar-link {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            /* border-radius: 5px; */
+            text-decoration: none;
+            transition: all 0.3s ease;
+            color: #000;
+        }
 
-.sidebar-link.active {
-    background-color: #079666 !important; 
-    color: white !important;
-}
-.sidebar-link.active img {
-    filter: brightness(0) invert(1);
-}
+        .sidebar-link img {
+            width: 20px;
+            height: 20px;
+            transition: filter 0.3s ease;
+        }
 
-.sidebar-link:hover {
-    background-color: rgba(29, 185, 84, 0.1);
-    color: #079666;
-}
->>>>>>> 4a47da8873c1aff19732618633e148677e9d8299
+        .sidebar-link.active {
+            background-color: #079666 !important;
+            color: white !important;
+        }
+
+        .sidebar-link.active img {
+            filter: brightness(0) invert(1);
+        }
+
+        .sidebar-link:hover {
+            background-color: rgba(29, 185, 84, 0.1);
+            color: #079666;
+        }
     </style>
 </head>
 
@@ -469,7 +453,6 @@
             <div class="sidenav-menu sidebar" id="sidebar" style="height: auto;">
                 <div data-simplebar class="flex-grow-1">
                     <ul class="side-nav" style="padding-bottom: 200px;" id="ul">
-<<<<<<< HEAD
                         <a href="{{ route('users.dashboard')}}" class="pb-3 nav-link">
                             <img src="{{asset('assets/image/users/element-3.svg')}}" class="nav-icon ml-4" alt="user">
                             <span class="menu-text ml-1">Dashboard</span>
@@ -478,28 +461,10 @@
                             <img src="{{asset('assets/image/users/calendar.svg')}}" class="nav-icon ml-4" alt="user">
                             <span class="menu-text ml-1">Booking</span>
                         </a>
-                        {{-- <li class="side-nav-item"> --}}
-                            <a href="{{route('users.matches')}}" class="pb-3 nav-link">
-                                <img src="{{asset('assets/image/users/bell.svg')}}" class="nav-icon ml-4" alt="user">
-=======
-                        <a href="{{ route('users.dashboard')}}" class="pb-3 sidebar-link">
-                            <img src="{{asset('assets/image/users/element-3.svg')}}" class="nav-icon ml-4"  alt="user">
-                            <span class="menu-text ml-1">Dashboard</span>
+                        <a href="{{route('users.matches')}}" class="pb-3 sidebar-link">
+                            <img src="{{asset('assets/image/users/bell.svg')}}" class="nav-icon ml-4" alt="user">
+                            <span class="menu-text ml-1">My Matches</span>
                         </a>
-                        <a href="{{ route('users.booking') }}" class="pb-3 sidebar-link">
-                            <img src="{{asset('assets/image/users/calendar.svg')}}" class="nav-icon ml-4"  alt="user">
-                            <span class="menu-text ml-1">Booking</span>
-                        </a>
-                        {{-- <li class="side-nav-item"> --}}
-                            <a href="{{route('users.matches')}}" class="pb-3 sidebar-link">
-                                <img src="{{asset('assets/image/users/bell.svg')}}" class="nav-icon ml-4"  alt="user">
->>>>>>> 4a47da8873c1aff19732618633e148677e9d8299
-                                <span class="menu-text ml-1">My Matches</span>
-                            </a>
-                            {{--
-                        </li> --}}
-
-<<<<<<< HEAD
                         <a href="{{route('users.wallet')}}" class="pb-3 nav-link">
                             <img src="{{asset('assets/image/users/wallet-remove.svg')}}" class="nav-icon ml-4"
                                 alt="user">
@@ -513,24 +478,8 @@
                             <img src="{{asset('assets/image/users/Setting2.svg')}}" class="nav-icon ml-4" alt="user">
                             <span class="menu-text ml-1">Settings</span>
                         </a>
-                        <a href="{{route('users.refer')}}" class="pb-3 nav-link">
-                            <img src="{{asset('assets/image/users/Setting1.svg')}}" class="nav-icon ml-4" alt="user">
-=======
-                        <a href="{{route('users.wallet')}}" class="pb-3 sidebar-link">
-                            <img src="{{asset('assets/image/users/wallet-remove.svg')}}" class="nav-icon ml-4"  alt="user">
-                            <span class="menu-text ml-1">Wallet</span>
-                        </a>
-                        <a href="{{ route('users.split') }}" class="pb-3 sidebar-link">
-                            <img src="{{asset('assets/image/users/Setting.svg')}}" class="nav-icon ml-4"  alt="user">
-                            <span class="menu-text ml-1">Split & Pay</span>
-                        </a>
-                        <a href="{{ route('users.setting') }}" class="pb-3 sidebar-link">
-                            <img src="{{asset('assets/image/users/Setting2.svg')}}" class="nav-icon ml-4"  alt="user">
-                            <span class="menu-text ml-1">Settings</span>
-                        </a>
                         <a href="{{route('users.refer')}}" class="pb-3 sidebar-link">
-                            <img src="{{asset('assets/image/users/Setting1.svg')}}" class="nav-icon ml-4"  alt="user">
->>>>>>> 4a47da8873c1aff19732618633e148677e9d8299
+                            <img src="{{asset('assets/image/users/Setting1.svg')}}" class="nav-icon ml-4" alt="user">
                             <span class="menu-text ml-1">Refer & Earn</span>
                         </a>
                     </ul>

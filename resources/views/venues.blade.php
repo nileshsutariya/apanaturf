@@ -342,7 +342,7 @@
                                                     </div>
                                                 </div>
                             
-                                                <div class="row">
+                                                <!-- <div class="row">
                                                     <div class="col-md-4 col-12" style="font-size: 12px;">
                                                         <div class="mb-3">
                                                             <label class="form-label">Timing</label>
@@ -355,7 +355,7 @@
                                                             <input type="text" class="form-control text-muted" value="0123456" style="font-size: 12px; letter-spacing: 0.7px; border: none; background-color: transparent;" readonly>
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </div> -->
                             
                                                 <div class="row">
                                                     <div class="col-md-12 col-12" style="font-size: 12px;">

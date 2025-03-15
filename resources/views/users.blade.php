@@ -249,17 +249,17 @@
                     
                     <div class="d-flex align-items-sm-center flex-sm-row flex-column gap-2">
                         <div class="flex-grow-1">
-                            <h2 class="ml-3"><strong>User</strong></h2>
+                            <h2 class="ml-3"><strong>Customer</strong></h2>
                         </div>
                         <a href="#add" class="add-transaction waves-effect waves-light" data-animation="blur" data-plugin="custommodal" data-overlaySpeed="100" data-overlayColor="#36404a">
-                            <h2 class="btn btn-success" style="border-radius: 40px;">+ Add Users</h2>
+                            <h2 class="btn btn-success" style="border-radius: 40px;">+ Add Customer</h2>
                         </a>
 
                         <!-- Custom Theme Modal for Add Transaction -->
                         <div id="add" class="modal-demo" style="width: 380px !important; height: 650px; padding: 20px; box-shadow: 0 15px 15px rgba(0, 0, 0, 0.3); border-radius: 12px;">
                             <div class="d-flex p-3 align-items-center justify-content-between" style="width: 100%; height: auto;">
                                 <h4 class="add-title">
-                                    Add User
+                                    Add Customer
                                 </h4>
                                 <button type="button" class="btn-close btn-close-white" onclick="Custombox.modal.close();">
                                     <span class="sr-only">Close</span>
@@ -429,7 +429,7 @@
                                                     <td> #000001 </td>
                                                     <td>abhishguleri1555@gmail.com</td>
                                                     <td class="text-start">1234567890</td>
-                                                    <td><h4><span class="badge badge-soft-info pt-2" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">User</span></h4></td>
+                                                    <td><h4><span class="badge badge-soft-info pt-2" style="border-radius: 30px; font-size: 14px; height: 30px; width: 100px;">Customer</span></h4></td>
                                                     <td style="color: green;">₹400</td>
         
                                                     <td>
@@ -455,7 +455,7 @@
                                                                 <table class="table table-borderless text-center">
                                                                     <thead>
                                                                         <tr style="font-weight: 400; font-size: 13px; color: #9da7b1;">
-                                                                            <th class="text-start">User Name</th>
+                                                                            <th class="text-start">Customer Name</th>
                                                                             <th>Booking Date</th>
                                                                             <th>Amount</th>
                                                                         </tr>
