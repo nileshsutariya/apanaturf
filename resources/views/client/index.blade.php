@@ -346,6 +346,9 @@
                     padding: 10,
                     displayColors: false,
                     callbacks: {
+                        title: function () {
+                            return ''; // Remove default title
+                        },
                         label: function(tooltipItem) {
                             let value = tooltipItem.raw;
                             let available = 200 - value;

@@ -80,7 +80,7 @@
                                 </div>
                 
                                 <div class="d-flex justify-content-between align-items-center mt-3">
-                                    <button class="btn btn-outline-success pl-5 pr-5">Details</button>
+                                    <button class="btn btn-outline-success ml-3 pl-5 pr-5">Details</button>
                                     <span class="text-success" data-status="complete">Successfully completed</span>
                                 </div>
                             </div>

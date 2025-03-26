@@ -226,7 +226,7 @@
         z-index: 10;
     }
     .table-container {
-        max-height: 400px; /* Adjust as needed */
+        max-height: 400px; 
         overflow-y: auto;
         scrollbar-width: none; 
         position: relative;
@@ -354,7 +354,7 @@
                         <div class="card" style="background-color: transparent; box-shadow: none;">
                             <div class="card-body pt-2" style="overflow: hidden;">
                                 
-                                <div class="table-container table-responsive" style="max-height: 400px; overflow-y: auto;">
+                                <div class="table-container table-responsive" style="max-height: 350px; overflow-y: auto;">
                                     <table id="responsive-datatable" id="walletTable"  class="table dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%; font-size: 13px;">
                                         <thead>
                                             <tr class="text-uppercase">

@@ -14,12 +14,12 @@ return new class extends Migration
         Schema::create('venues', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('vendor_id');
-            $table->foreign('vendor_id')->references('id')->on('users');
+            $table->foreign('vendor_id')->references('id')->on('customer');
             $table->unsignedBigInteger('turf_id');
             $table->foreign('turf_id')->references('id')->on('turf');
             $table->string('phone');
             $table->text('balance');
-            $table->string('city');
+
             $table->string('area');
             $table->string('pincode');
             $table->string('location_link');

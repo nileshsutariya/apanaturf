@@ -308,7 +308,7 @@
                                                                     <div class="mb-3 ml-3">
                                                                         <div class="row">
                                                                             <div class="col-md-12">
-                                                                                <strong>Valid Date : </strong><span class="text-muted"> 9876 </span>
+                                                                                <strong>Valid Date : </strong>
                                                                             </div>
                                                                         </div>
                                                                     </div>

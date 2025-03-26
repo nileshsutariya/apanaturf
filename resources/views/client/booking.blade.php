@@ -642,7 +642,7 @@
 
                 <tbody>
 
-                    <div class="row" style="font-family: 'Poppins', sans-serif !important;">
+                    <div class="row" style="font-family: 'Poppins', sans-serif !important; overflow-x: auto !important;">
                         <div class="container week-calendar">
                             <div id="weekDates" class="week-container">
                                 <div class="empty" style="padding: 12px;"></div>
