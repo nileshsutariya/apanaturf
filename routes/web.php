@@ -9,6 +9,9 @@ Route::get('admin/index', function () {
 Route::get('admin/users', function () {
     return view('users');
 })->name('admin.users');
+Route::get('admin/customer', function () {
+    return view('customer');
+})->name('admin.customer');
 Route::get('admin/venues', function () {
     return view('venues');
 })->name('admin.venues');

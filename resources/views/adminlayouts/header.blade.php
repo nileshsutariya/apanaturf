@@ -226,10 +226,10 @@
                         </a>
                     </li>
                     <li class="side-nav-item">
-                        <a href="{{route('admin.users')}}" class="side-nav-link">
+                        <a href="{{route('admin.customer')}}" class="side-nav-link">
                             <span class="menu-icon"><img src="{{asset('assets/image/profile.svg')}}" alt="user"></span>
                             <span class="menu-text mt-2"> Customer </span>
-                        </a>
+                        
                     </li>
                     <li class="side-nav-item">
                         <a href="{{route('admin.venues')}}" class="side-nav-link">
@@ -319,7 +319,7 @@
                         </a>
                     </li>
                     <li class="side-nav-item">
-                        <a href="{{route('admin.enquiries')}}" class="side-nav-link">
+                        <a href="{{route('admin.users')}}" class="side-nav-link">
                             <span class="menu-icon"><img src="{{asset('assets/image/profile.svg')}}" alt="sms"></span>
                             <span class="menu-text mt-2"> Users</span>
                         </a>

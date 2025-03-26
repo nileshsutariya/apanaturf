@@ -95,9 +95,9 @@
             </div>
             <div class="float-end mr-3">
 
-                <button class="open-modal" data-id="1" style="border: none; background: none;">
+                <!-- <button class="open-modal" data-id="1" style="border: none; background: none;">
                     <h2 class="btn btn-success" style="border-radius: 40px;">+ Add Bookings</h2>
-                </button>
+                </button> -->
                 
                 <!-- Custom Modal -->
                 <div id="customModal" style="
@@ -170,8 +170,6 @@
                         <button class="btn btn-success close-modal col-5">Save</button>
                     </div>
                 </div>
-                
-
             </div>
         </div>
         <hr>
@@ -301,7 +299,7 @@
                                                 <!-- Modal Body -->
                                                 <div class="modal-body" style="padding: 10px; font-size: 12px; letter-spacing: 0.9px;">
                                                     <div class="container-fluid">
-                                                        <div class="" style="margin-bottom: 35px;">
+                                                        <div style="margin-bottom: 35px;">
                                                             <div class="row">
                                                                 <div class="col-md-4">
                                                                     <strong>Booking On: </strong><span class="text-muted">Date</span>
@@ -315,7 +313,7 @@
                                                             </div>
                                                         </div>
 
-                                                        <div class="" style="margin-bottom: 35px;">
+                                                        <div style="margin-bottom: 35px;">
                                                             <div class="row">
                                                                 <div class="col-md-4">
                                                                     <strong>Booking By: </strong><span class="text-muted">Abhishek Guleria</span>
@@ -329,7 +327,7 @@
                                                             </div>
                                                         </div>
 
-                                                        <div class="" style="margin-bottom: 35px;">
+                                                        <div style="margin-bottom: 35px;">
                                                             <div class="row">
                                                                 <div class="col-md-4">
                                                                     <strong>Coupons: </strong><span class="text-muted">-</span>
@@ -343,7 +341,7 @@
                                                             </div>
                                                         </div>
 
-                                                        <div class="" style="margin-bottom: 35px;">
+                                                        <div style="margin-bottom: 35px;">
                                                             <div class="row">
                                                                 <div class="col-md-4">
                                                                     <strong>User Id: </strong><span class="text-muted">9876</span>
@@ -357,7 +355,7 @@
                                                             </div>
                                                         </div>
 
-                                                        <div class="" style="margin-bottom: 35px;">
+                                                        <div style="margin-bottom: 35px;">
                                                             <div class="row">
                                                                 <div class="col-md-4">
                                                                     <strong>Total Amount: </strong><span class="text-muted">800</span>
@@ -371,7 +369,7 @@
                                                             </div>
                                                         </div>
 
-                                                        <div class="" style="margin-bottom: 35px;">
+                                                        <div style="margin-bottom: 35px;">
                                                             <div class="row">
                                                                 <div class="col-md-4">
                                                                     <strong>Paid: </strong><span class="text-muted">500</span>

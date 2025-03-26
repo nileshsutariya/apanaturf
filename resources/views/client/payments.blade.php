@@ -29,7 +29,7 @@
 
     .btn.remove,
     .btn.withdraw {
-        padding: 5px 35px;
+        padding: 10px 35px;
         border-radius: 4px;
         border: none;
         cursor: pointer;
@@ -42,8 +42,6 @@
     .btn.save {
         background-color: #299D91;
         color: white;
-        font-size: 16px;
-        font-weight: 700;
     }
 
     .btn.remove,
@@ -51,8 +49,6 @@
         background-color: white;
         color: #299D91;
         border: 1px solid #299D91;
-        font-size: 16px;
-        font-weight: 700;
     }
 
     .modal-demo {
@@ -84,6 +80,12 @@
     /* span {
         font-size: 16px;
     } */
+    @media (max-width:429px) {
+        .actions{
+            display: block;
+        }
+        
+    }
 </style>
 <div class="page-title-box">
     <div class="d-flex align-items-sm-center flex-sm-row flex-column gap-2">
@@ -103,39 +105,40 @@
             </a>
         </div>
         <div class="row ">
-            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-3">
+            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 mb-3">
                 <div class="label">User Name</div>
                 <div class="value">Abhishek Guleria</div>
             </div>
-            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-3">
+            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 mb-3">
                 <div class="label">Account Type</div>
                 <div class="value">Savings Account</div>
             </div>
-            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-3">
+            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 mb-3">
                 <div class="label">IFSC Code</div>
                 <div class="value">PYTM0123456</div>
             </div>
-            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-3">
+            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 mb-3">
                 <div class="label">Balance</div>
                 <div class="value">₹20,00,000</div>
             </div>
-            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-3">
+            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 mb-3">
                 <div class="label">Account Number</div>
                 <div class="value">000000000*****</div>
             </div>
-            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mb-3">
+            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 mb-3">
                 <div class="label">Bank Name</div>
                 <div class="value">Ankleshwar</div>
             </div>
             <div class="actions mt-2">
+                <a href="#payment-withdraw" class="add-banner waves-effect waves-light" data-animation="blur"
+                data-plugin="custommodal" data-overlaySpeed="100" data-overlayColor="#36404a"
+                style="text-decoration: none;">
                 <button class="btn withdraw">
-                    <a href="#payment-withdraw" class="add-banner waves-effect waves-light" data-animation="blur"
-                        data-plugin="custommodal" data-overlaySpeed="100" data-overlayColor="#36404a"
-                        style="text-decoration: none;">
                         <div style="color: #FFFFFF;">
                             Withdraw
                         </div>
-                    </a></button>
+                        </button>
+                    </a>
                 <button class="btn remove">Remove</button>
             </div>
         </div>
