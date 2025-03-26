@@ -109,6 +109,9 @@ Route::get('/client/account', function () {
 })->name('client.account');
 
 
+Route::get('/demo', function () {
+    return view('users.layouts.demoheader');
+})->name('demo');
 Route::get('/', function () {
-    return view('users.design');
+    return view('approval');
 });

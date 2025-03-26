@@ -233,7 +233,7 @@
                             </a>
 
                             <!-- Custom Theme Modal for Add Transaction -->
-                            <div id="addTransaction" class="modal-demo" style="width: 380px !important; height: 650px; padding: 20px; box-shadow: 0 15px 15px rgba(0, 0, 0, 0.3); border-radius: 12px;">
+                            <div id="addTransaction" class="modal-demo" style="width: 380px !important; padding: 20px; box-shadow: 0 15px 15px rgba(0, 0, 0, 0.3); border-radius: 12px;">
                                 <div class="d-flex p-3 align-items-center justify-content-between" style="width: 100%; height: auto;">
                                     <h4 class="add-title">
                                         Add Transaction

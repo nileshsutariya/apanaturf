@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->unsignedBigInteger('role_id')->after('balance');;
-            $table->foreign('role_id')->references('id')->on('role');
+        Schema::table('customer', function (Blueprint $table) {
+            $table->unsignedBigInteger('role_id')->after('balance');
+            $table->foreign('role_id')->references('id')->on('role_type');
             
-            $table->unsignedBigInteger('profile_image')->after('balance');;
+            $table->unsignedBigInteger('profile_image')->after('balance');
             $table->foreign('profile_image')->references('id')->on('images');
         });
     }
@@ -25,7 +25,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('users', function (Blueprint $table) {
+        Schema::table('customer', function (Blueprint $table) {
             //
         });
     }

@@ -131,7 +131,7 @@
         }
 
         .app-topbar .app-search .btn-icon {
-            height: 40px;
+            /* height: 35px; */
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
             border-radius: 0 10px 10px 0;
             background-color: white;
@@ -427,9 +427,9 @@
                                 <div class="input-group">
                                     <input type="text" class="form-control" placeholder="Search...">
                                     <div class="input-group-append"
-                                        style="box-shadow: 0 4px 5px rgba(209, 209, 209, 0.2);">
+                                        style="box-shadow: 0 4px 5px rgba(209, 209, 209, 0.2); ">
                                         <button class="btn btn-icon" type="submit">
-                                            <i class="fas fa-search"></i>
+                                            <i class="fas fa-search" style="margin-bottom: 5px !important;"></i>
                                         </button>
                                     </div>
                                 </div>

@@ -310,14 +310,23 @@
                     maintainAspectRatio: false,
                     plugins: {
                         tooltip: {
-                            backgroundColor: '#333',
+                            backgroundColor: 'rgba(0, 0, 0, 0.8)',
                             titleColor: '#fff',
                             bodyColor: '#fff',
+                            bodyFont: { family: '"Inter", sans-serif' },
+                            padding: 10,
                             displayColors: false,
                             callbacks: {
+                                title: function () {
+                                    return ''; // Remove default title
+                                },
                                 label: function (tooltipItem) {
                                     const index = tooltipItem.dataIndex;
-                                    return `Booked: ${bookedData[index]} \nAvailable: ${availableData[index]}`;
+                                    // return `Booked: ${bookedData[index]} \nAvailable: ${availableData[index]}`;
+                                    return [
+                                        `Booked: ${bookedData[index]}`,
+                                        `Available: ${availableData[index]}`
+                                    ];              
                                 }
                             }
                         },

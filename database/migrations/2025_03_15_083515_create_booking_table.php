@@ -16,8 +16,8 @@ return new class extends Migration
             $table->date('booking_on');
             $table->unsignedBigInteger('venues_id');
             $table->foreign('venues_id')->references('id')->on('venues');
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->unsignedBigInteger('customer_id');
+            $table->foreign('customer_id')->references('id')->on('customer');
             $table->json('sports_ids');
             // $table->foreign('sports_ids')->references('id')->on('sports');
             $table->json('amenities_ids');

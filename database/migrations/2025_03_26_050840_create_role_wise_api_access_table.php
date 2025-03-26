@@ -11,9 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('turf_venues', function (Blueprint $table) {
+        Schema::create('role_wise_api_access', function (Blueprint $table) {
             $table->id();
-            
+            $table->string('name');
+            $table->string('api_group');
+            $table->string('api_path');
             $table->timestamps();
         });
     }
@@ -23,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('turf_venues');
+        Schema::dropIfExists('role_wise_api_access');
     }
 };
