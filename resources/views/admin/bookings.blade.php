@@ -1,4 +1,4 @@
-@include('adminlayouts.header')   
+@include('admin.layouts.header')   
 <style>
     .modal-demo {
         width: auto !important;
@@ -1402,4 +1402,4 @@
 
     
     </script>
-@include('adminlayouts.footer')
+@include('admin.layouts.footer')

@@ -1,4 +1,4 @@
-@include('adminlayouts.header')
+@include('admin.layouts.header')
 <style>
     body {
         /* font-size: 15px;
@@ -989,4 +989,4 @@
     });
 
 </script>
-@include('adminlayouts.footer')
+@include('admin.layouts.footer')

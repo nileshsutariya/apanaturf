@@ -1,5 +1,5 @@
 
-@include('adminlayouts.header')
+@include('admin.layouts.header')
     <style> 
         html[data-sidenav-size=condensed]:not([data-layout=topnav]) .sidenav-menu .side-nav .side-nav-item .side-nav-link {
             -webkit-transition: none !important;
@@ -353,4 +353,4 @@
             });
         });
     </script>
-@include('adminlayouts.footer')
+@include('admin.layouts.footer')

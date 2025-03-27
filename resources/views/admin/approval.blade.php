@@ -1,4 +1,4 @@
-@include('adminlayouts.header')
+@include('admin.layouts.header')
 
 <div class="page-title-box">
 
@@ -46,4 +46,4 @@
 
 </div>
 
-@include('adminlayouts.footer')
+@include('admin.layouts.footer')
