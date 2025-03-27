@@ -13,9 +13,11 @@ return new class extends Migration
     {
         Schema::create('role_wise_api_access', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('api_group');
-            $table->string('api_path');
+            $table->unsignedBigInteger('group');
+            $table->foreign('group')->references('id')->on('role_type');
+            $table->unsignedBigInteger('api_list_id');
+            $table->foreign('api_list_id')->references('id')->on('role_api_list');
+            
             $table->timestamps();
         });
     }

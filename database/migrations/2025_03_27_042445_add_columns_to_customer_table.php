@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('venues', function (Blueprint $table) {
+        Schema::table('customer', function (Blueprint $table) {
             
-            $table->unsignedBigInteger('city_id')->after('balance');
-            $table->foreign('city_id')->references('id')->on('city');
-
+            $table->unsignedBigInteger('profile_image')->after('balance');
+            $table->foreign('profile_image')->references('id')->on('images');
+       
         });
     }
 
@@ -24,7 +24,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('venues', function (Blueprint $table) {
+        Schema::table('customer', function (Blueprint $table) {
             //
         });
     }
