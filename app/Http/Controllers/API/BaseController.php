@@ -10,15 +10,15 @@ class BaseController extends Controller
 {
     public function sendresponse($result, $message)
     {
-        $data = Http::get('http://localhost/apanaturf/');
+        $data = Http::get('http://localhost/apanaturf');
+        // dd($data->body());
         $status = $data->status();
-        // print_r($status); die;
         if ($data->successful()) {
             return response()->json([
                 'success' => true,
                 'status' => $status,   
                 'message' => $message,
-                'data' => $result 
+                'data' => $result  
             ], $status);
         }
         return response()->json([

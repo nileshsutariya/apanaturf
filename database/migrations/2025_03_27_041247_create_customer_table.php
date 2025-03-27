@@ -13,14 +13,14 @@ return new class extends Migration
     {
         Schema::create('customer', function (Blueprint $table) {
             $table->id();
-            $table->text('unique_id');
+            $table->text('unique_id')->nullable();
             $table->string('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('phone');
+            $table->string('phone')->unique();
             $table->string('password');
-            $table->float('balance');
-            $table->unsignedBigInteger('otp');
+            $table->float('balance')->nullable();
+            $table->unsignedBigInteger('otp')->nullable();
             $table->timestamp('otp_send_at')->nullable();
             $table->timestamp('otp_expires_at')->nullable();
           
