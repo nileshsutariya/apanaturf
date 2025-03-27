@@ -4,52 +4,52 @@ use App\Livewire\Dashboard;
 use Illuminate\Support\Facades\Route;
 
 Route::get('admin/index', function () {
-    return view('index');
+    return view('admin.index');
 })->name('admin.index');
 Route::get('admin/users', function () {
-    return view('users');
+    return view('admin.users');
 })->name('admin.users');
 Route::get('admin/customer', function () {
-    return view('customer');
+    return view('admin.customer');
 })->name('admin.customer');
 Route::get('admin/venues', function () {
-    return view('venues');
+    return view('admin.venues');
 })->name('admin.venues');
 Route::get('admin/booking', function () {
-    return view('bookings');
+    return view('admin.bookings');
 })->name('admin.bookings');
 Route::get('admin/freeze', function () {
-    return view('freeze');
+    return view('admin.freeze');
 })->name('admin.freeze');
 Route::get('admin/transaction', function () {
-    return view('transaction');
+    return view('admin.transaction');
 })->name('admin.transaction');
 Route::get('admin/configuration', function () {
-    return view('configuration');
+    return view('admin.configuration');
 })->name('admin.configuration');
 Route::get('admin/sports', function () {
-    return view('sports');
+    return view('admin.sports');
 })->name('admin.sports');
 Route::get('admin/amenities', function () {
-    return view('amenities');
+    return view('admin.amenities');
 })->name('admin.amenities');
 Route::get('admin/financialyear', function () {
-    return view('financialyear');
+    return view('admin.financialyear');
 })->name('admin.financialyear');
 Route::get('/couponscode', function () {
-    return view('couponscode');
+    return view('admin.couponscode');
 })->name('admin.couponscode');
 Route::get('/banner', function () {
-    return view('banner');
+    return view('admin.banner');
 })->name('admin.banner');
 Route::get('/subscribers', function () {
-    return view('subscribers');
+    return view('admin.subscribers');
 })->name('admin.subscribers');
 Route::get('/enquiries', function () {
-    return view('enquiries');
+    return view('admin.enquiries');
 })->name('admin.enquiries');
 Route::get('/profile', function () {
-    return view('profile');
+    return view('admin.profile');
 })->name('admin.profile');
 
 

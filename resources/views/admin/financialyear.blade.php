@@ -1,4 +1,4 @@
-@include('adminlayouts.header')
+@include('admin.layouts.header')
     <style>
         html[data-sidenav-size=condensed]:not([data-layout=topnav]) .sidenav-menu .sidebar-footer .footer-content {
             overflow: hidden;
@@ -1382,4 +1382,4 @@
         });
     </script>
 
-@include('adminlayouts.footer')
+@include('admin.layouts.footer')

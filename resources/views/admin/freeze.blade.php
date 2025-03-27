@@ -1,5 +1,4 @@
-@include('adminlayouts.header')
-
+@include('admin.layouts.header')
     <style>
         html[data-sidenav-size=condensed]:not([data-layout=topnav]) .sidenav-menu .sidebar-footer .footer-content {
             overflow: hidden;
@@ -18,6 +17,30 @@
             width: 100%;
             z-index: 10; 
         }
+        .select2-container .select2-selection--single {
+            margin-top: 5px;
+            height: 35px !important; /* Match input field height */
+            display: flex !important;
+            align-items: center !important; /* Align vertically */
+            border: 1px solid #ced4da !important; /* Match input border */
+            padding: 6px 12px !important; /* Match input padding */
+            border-radius: 5px !important; /* Match input border radius */
+        }
+        
+        .select2-container .select2-selection__arrow {
+            height: 38px !important;
+            top: 60% !important;
+            transform: translateY(-50%) !important; /* Center the arrow */
+            right: 10px !important;
+        }
+        
+        .select2-container--default .select2-selection--single .select2-selection__clear {
+            position: absolute;
+            right: 30px !important; /* Adjust clear (×) icon */
+            top: 60% !important;
+            transform: translateY(-50%) !important; /* Center the clear icon */
+        }
+        
         .app-topbar .topbar-menu {
             background-color: #F5F5F5;   
         }
@@ -41,13 +64,13 @@
             padding: 7px;
         }
         .side-nav .side-nav-item .side-nav-link .menu-icon {
-           height: 20px;
-           width: 20px;
-           font-size: 10px;
-           padding-left: 30px;
+            height: 20px;
+            width: 20px;
+            font-size: 10px;
+            padding-left: 30px;
         }
         .side-nav .side-nav-item .side-nav-link .menu-text {
-           padding-left: 20px;
+            padding-left: 20px;
         }
         .app-topbar .app-search .form-control {
             height: 35px;
@@ -71,7 +94,7 @@
         .hr {
             border-color: grey;
         }
-        
+
         .custom-pagination {
             display: flex;
             flex-wrap: nowrap;  /* Prevents vertical stacking */
@@ -138,30 +161,30 @@
         }
         .modal-content {
             border-radius: 12px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            height: 50%;
-            width: 80%;
-            line-height: 0px;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+                height: 50%;
+                width: 80%;
+                line-height: 0px;
         }
-
+    
         .table tbody tr td {
             vertical-align: middle;
             font-size: 14px;
         }
-
+    
         .text-success {
             color: #28a745 !important;
         }
-
+    
         .text-danger {
             color: #dc3545 !important;
         }
-
+    
         .pagination .page-item .page-link {
             border-radius: 5px;
             color: #6c757d;
         }
-
+    
         .pagination .page-item.active .page-link {
             background-color: #198754;
             border-color: #198754;
@@ -194,60 +217,127 @@
         .app-search .form-control {
             padding-left: 15px;
         }
+        /* .input-field {
+            width: 100%;
+            padding: 10px;
+            text-align: left; 
+        }
+
+        .input-field::placeholder {
+            text-align: center; 
+        } */
     </style>
 
                 <div class="page-title-box">
                     
                     <div class="d-flex align-items-sm-center flex-sm-row flex-column gap-2">
                         <div class="flex-grow-1">
-                            <h2 class="ml-3"><strong>Subscribers</strong></h2>
+                            <h2 class="ml-3"><strong>Freeze</strong></h2>
                         </div>
-                        <!-- <div class="float-end mr-3">
-                            <h2 class="btn btn-success" style="border-radius: 40px;" data-bs-toggle="modal" data-bs-target="#addModal" >+ Add Freeze</h2>
+                        <div class="float-end mr-3">
                             
-                            <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered">
-                                    <div class="modal-content" style="padding-left: 32px; padding-right: 32px; font-size: smaller;">
-                                    <div class="modal-header" style="border: none;">
-                                        <h4 class="modal-title mt-2" id="addModalLabel">Freeze</h4>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            <a href="#addFreezeModal" class="add-freeze waves-effect waves-light" data-animation="blur" data-plugin="custommodal" data-overlaySpeed="100" data-overlayColor="#36404a">
+                                <h2 class="btn btn-success" style="border-radius: 40px;">+ Add Freeze</h2>
+                            </a>
+                            
+                            <div id="addFreezeModal" class="modal-demo" style="width: 380px !important; height: 650px; padding: 20px; box-shadow: 0 15px 15px rgba(0, 0, 0, 0.3); border-radius: 12px;">
+                                <div class="d-flex p-3 align-items-center justify-content-between" style="width: 100%; height: auto;">
+                                    <h4 class="add-title">Freeze</h4>
+                                    <button type="button" class="btn-close btn-close-white" onclick="Custombox.modal.close();">
+                                        <span class="sr-only">Close</span>
+                                    </button>
+                                </div>
+                                <div class="add-text ml-2" style="font-size: small;">
+                                    <div class="container-fluid">
+                                        
+                                        <!-- Date Section -->
+                                        <div class="mb-4">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <strong>Date:</strong>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <input type="date" class="form-control text-muted mt-2" name="date">
+                                                </div>
+                                            </div>
+                                        </div>
+                            
+                                        <!-- Spot Section -->
+                                        <div class="mb-4">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <strong>Spot:</strong>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <select class="form-control select2 mt-2" data-toggle="select2" name="spot" id="spot">
+                                                        <option value="TurfA">TurfA</option>
+                                                        <option value="TurfB">TurfB</option>
+                                                        <option value="TurfC">TurfC</option>
+                                                        <option value="TurfD">TurfD</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                            
+                                        <!-- Email Section -->
+                                        <div class="mb-4">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <strong>Email:</strong>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <input type="email" class="form-control mt-2" name="email" placeholder="example@gmail.com">
+                                                </div>
+                                            </div>
+                                        </div>
+                            
+                                        <!-- Turf Section -->
+                                        <div class="mb-4">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <strong>Turf:</strong>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <select class="form-control select2 mt-2" data-toggle="select2" name="turf" id="turf">
+                                                        <option value="motavarachha">Mota Varachha</option>
+                                                        <option value="Jakatnaka">Jakatnaka</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                            
+                                        <!-- Timing Section -->
+                                        <div class="mb-4">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <strong>Timing:</strong>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <input type="time" class="form-control mt-2" name="timing">
+                                                </div>
+                                            </div>
+                                        </div>
+                            
                                     </div>
-                                    <div class="modal-body">
-                                        <label for="date" class="mb-2">Date</label>
-                                        <input type="date" class="form-control text-muted" name="date" placeholder="Abhishek Guleria">
-                                    </div>
-                                    <div class="modal-body">
-                                        <label for="spot">Spot</label>
-                                        <select class="form-select" name="spot" id="spot">
-                                            <option value="TurfA">TurfA</option>
-                                            <option value="TurfB">TurfB</option>
-                                            <option value="TurfC">TurfC</option>
-                                            <option value="TurfD">TurfD</option>
-                                        </select>
-                                    </div>
-                                    <div class="modal-body">
-                                        <label for="email">Email</label>
-                                        <input type="email" class="form-control" name="email" placeholder="abhishguleri1555@gmail.com">
-                                    </div>
-                                    <div class="modal-body">
-                                        <label for="turf">Turf</label>
-                                        <select class="form-select" name="turf" id="turf">
-                                            <option value="motavarachha">Mota Varachha</option>
-                                            <option value="Jakatnaka">Jakatnaka</option>
-                                        </select>
-                                    </div>
-                                    <div class="modal-body">
-                                        <label for="timing">Timing</label>
-                                        <input type="time" class="form-control" name="timing" placeholder="N/A">
-                                    </div>
+                                    <!-- Footer with Save Button -->
                                     <div class="modal-footer justify-content-start mb-3" style="border: none;">
-                                        <button type="button" class="btn btn-success col-md-5"> Save </button>
-                                    </div>
+                                        <button type="button" class="btn btn-success col-md-5 ml-3">Save</button>
                                     </div>
                                 </div>
                             </div>
+                            
 
-                        </div> -->
+                        </div>
                     </div>
                     <hr>
                     <div class="row">
@@ -258,10 +348,10 @@
                                         <table id="responsive-datatable" class="table dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%; font-size: 13px;">
                                             <thead>
                                                 <tr class="text-uppercase">
-                                                    <th>Name</th>
-                                                    <th>Email</th>
-                                                    <th>Place</th>
-                                                    <th>Mob.No.</th>
+                                                    <th>venue</th>
+                                                    <th>date</th>
+                                                    <th>spot</th>
+                                                    <th>timing</th>
                                                     <th>Action</th>
                                                 </tr>
                                                 <tr>
@@ -270,7 +360,7 @@
                                                             <form class="app-search">
                                                                 <div class="app-search-box">
                                                                     <div class="input-group">
-                                                                        <input type="text" id="nameSearch" class="form-control" placeholder="Name" style="border-radius: 10px;">
+                                                                        <input type="text" id="venueSearch" class="form-control" placeholder="Venue" style="border-radius: 10px;">
                                                                     </div>
                                                                 </div>
                                                             </form>
@@ -281,7 +371,7 @@
                                                             <form class="app-search">
                                                                 <div class="app-search-box">
                                                                     <div class="input-group">
-                                                                        <input type="text" id="emailSearch" class="form-control" placeholder="Email" style="border-radius: 10px;">
+                                                                        <input type="text" id="dateSearch" class="form-control" placeholder="Date" style="border-radius: 10px;">
                                                                     </div>
                                                                 </div>
                                                             </form>
@@ -292,7 +382,7 @@
                                                             <form class="app-search">
                                                                 <div class="app-search-box">
                                                                     <div class="input-group">
-                                                                        <input type="text" id="placeSearch" class="form-control" placeholder="Place" style="border-radius: 10px;">
+                                                                        <input type="text" id="spotSearch" class="form-control" placeholder="Spot" style="border-radius: 10px;">
                                                                     </div>
                                                                 </div>
                                                             </form>
@@ -303,7 +393,7 @@
                                                             <form class="app-search">
                                                                 <div class="app-search-box">
                                                                     <div class="input-group">
-                                                                        <input type="text" id="mobileSearch" class="form-control" placeholder="Mobile" style="border-radius: 10px;">
+                                                                        <input type="text" id="timingSearch" class="form-control" placeholder="Timing" style="border-radius: 10px;">
                                                                     </div>
                                                                 </div>
                                                             </form>
@@ -313,6 +403,76 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                                <tr>
+                                                    <td> #000001 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567890</td>
+                                                    
+                                                    <td>
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000001 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567890</td>
+                                                    
+                                                    <td>
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000001 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567890</td>
+                                                    
+                                                    <td>
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000001 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567890</td>
+                                                    
+                                                    <td>
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000001 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567890</td>
+                                                    
+                                                    <td>
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000001 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567890</td>
+                                                    
+                                                    <td>
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> #000001 </td>
+                                                    <td>#000001</td>
+                                                    <td>#000001</td>
+                                                    <td>1234567890</td>
+                                                    
+                                                    <td>
+                                                        <img src="{{asset('assets/image/trash.svg')}}" alt="dashboard">
+                                                    </td>
+                                                </tr>
                                                 <tr>
                                                     <td> #000001 </td>
                                                     <td>#000001</td>
@@ -876,14 +1036,15 @@
             </div>
         </div>
 
-
     </div>
+
+
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
 
     <script>
-        //  $(document).ready(function () {
+        // $(document).ready(function () {
         //     // Get the current page URL (excluding query params)
         //     var currentUrl = window.location.pathname.split("/").pop();
 
@@ -979,25 +1140,25 @@
 
             // Initialize Pagination
             createCustomPagination();
-
-            $('#nameSearch').on('keyup', function () {
+ 
+            
+            $('#venueSearch').on('keyup', function () {
                 table.column(0).search(this.value).draw();
             });
     
-            $('#emailSearch').on('keyup', function () {
+            $('#dateSearch').on('keyup', function () {
                 table.column(1).search(this.value).draw();
             });
     
-            $('#placeSearch').on('keyup', function () {
+            $('#spotSearch').on('keyup', function () {
                 table.column(2).search(this.value).draw();
             });
     
-            $('#mobileSearch').on('keyup', function () {
+            $('#timingSearch').on('keyup', function () {
                 table.column(3).search(this.value).draw();
             });
 
-
-            $('#nameSearch, #emailSearch, #placeSearch, #mobileSearch').on('keyup', function () {
+            $('#venueSearch, #dateSearch, #spotSearch, #timingSearch').on('keyup', function () {
                 table.draw();
                 createCustomPagination(); // Update pagination based on filtered results
             });
@@ -1005,13 +1166,45 @@
         });
 
 
-        
 
 
         
 
 
+        $(document).ready(function() {
+            $('.select2').select2({
+                width: '100%', // Match input width
+                theme: 'bootstrap-5', // Ensure it looks modern
+                placeholder: "Select an option", // Placeholder for consistency
+                allowClear: true // Add 'x' to clear selection
+            });
+        });
+
+        $(document).ready(function() {
+            // Initialize Select2 when modal opens
+            $(document).on('click', '[data-plugin="custommodal"]', function() {
+                setTimeout(function() {
+                    $('#spot').select2({
+                        placeholder: "Select Role",
+                        allowClear: true,
+                        dropdownParent: $('#addFreezeModal') // Fix Select2 inside modal
+                    });
+                }, 100);
+            });
+        });
+
+        $(document).ready(function() {
+            // Initialize Select2 when modal opens
+            $(document).on('click', '[data-plugin="custommodal"]', function() {
+                setTimeout(function() {
+                    $('#turf').select2({
+                        placeholder: "Select Role",
+                        allowClear: true,
+                        dropdownParent: $('#addFreezeModal') // Fix Select2 inside modal
+                    });
+                }, 100);
+            });
+        });
     </script>
 
-
-@include('adminlayouts.footer')
+@include('admin.layouts.footer')

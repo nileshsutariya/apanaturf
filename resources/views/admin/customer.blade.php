@@ -1,4 +1,4 @@
-@include('adminlayouts.header')
+@include('admin.layouts.header')
 
 <style>
     html[data-sidenav-size=condensed]:not([data-layout=topnav]) .sidenav-menu .sidebar-footer .footer-content {
@@ -226,7 +226,7 @@
         z-index: 10;
     }
     .table-container {
-        max-height: 400px; 
+        max-height: 400px; /* Adjust as needed */
         overflow-y: auto;
         scrollbar-width: none; 
         position: relative;
@@ -249,17 +249,17 @@
                 
                 <div class="d-flex align-items-sm-center flex-sm-row flex-column gap-2">
                     <div class="flex-grow-1">
-                        <h2 class="ml-3"><strong>User</strong></h2>
+                        <h2 class="ml-3"><strong>Customer</strong></h2>
                     </div>
                     <a href="#add" class="add-transaction waves-effect waves-light" data-animation="blur" data-plugin="custommodal" data-overlaySpeed="100" data-overlayColor="#36404a">
-                        <h2 class="btn btn-success" style="border-radius: 40px;">+ Add Users</h2>
+                        <h2 class="btn btn-success" style="border-radius: 40px;">+ Add Customer</h2>
                     </a>
 
                     <!-- Custom Theme Modal for Add Transaction -->
                     <div id="add" class="modal-demo" style="width: 380px !important; height: 650px; padding: 20px; box-shadow: 0 15px 15px rgba(0, 0, 0, 0.3); border-radius: 12px;">
                         <div class="d-flex p-3 align-items-center justify-content-between" style="width: 100%; height: auto;">
                             <h4 class="add-title">
-                                Add User
+                                Add Customer
                             </h4>
                             <button type="button" class="btn-close btn-close-white" onclick="Custombox.modal.close();">
                                 <span class="sr-only">Close</span>
@@ -354,7 +354,7 @@
                         <div class="card" style="background-color: transparent; box-shadow: none;">
                             <div class="card-body pt-2" style="overflow: hidden;">
                                 
-                                <div class="table-container table-responsive" style="max-height: 350px; overflow-y: auto;">
+                                <div class="table-container table-responsive" style="max-height: 400px; overflow-y: auto;">
                                     <table id="responsive-datatable" id="walletTable"  class="table dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%; font-size: 13px;">
                                         <thead>
                                             <tr class="text-uppercase">
@@ -525,7 +525,7 @@
                                                             <label style="display: block;">Role</label>
                                                             <select id="userRole" class="form-control select2">
                                                                 <option value="user" selected>User</option>
-                                                                <option value="admin">Admin</option>
+                                                                <option value="admin">vendor</option>
                                                             </select>
                                                         </div>
                                                     
@@ -1601,4 +1601,4 @@
 
 </script>
 
-@include('adminlayouts.footer')
+@include('admin.layouts.footer')

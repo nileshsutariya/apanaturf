@@ -1,4 +1,4 @@
-@include('adminlayouts.header')
+@include('admin.layouts.header')
 <style>
     @media (min-width: 576px) {
         .banner-container {
@@ -163,4 +163,4 @@
 
 
 </script>
-@include('adminlayouts.footer')
+@include('admin.layouts.footer')
