@@ -22,6 +22,7 @@ return new class extends Migration
             $table->float('balance');
             $table->unsignedBigInteger('otp');
             $table->timestamp('otp_send_at')->nullable();
+            $table->timestamp('otp_expires_at')->nullable();
           
             // $table->string('type');
             $table->rememberToken();
