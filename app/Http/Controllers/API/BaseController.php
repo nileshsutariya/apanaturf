@@ -15,17 +15,20 @@ class BaseController extends Controller
         if ($data->successful()) {
             return response()->json([
                 'success' => true,
-                'status' => $status,   
+                'status' => $status,
                 'message' => $message,
                 'data' => $result 
             ], $status);
         }
-        return response()->json([
-            'success' => false,
-            'status' => $status,
-            'message' => 'API request failed'
-        ], $status);
+        if ($data->failed()) {
+            return response()->json([
+                'success' => false,
+                'status' => $status,
+                'message' => 'API request failed'
+            ], $status);
+        }
     }
+
 
     public function apierror($error, $errorMessages = [],  $status = 422)
     {
