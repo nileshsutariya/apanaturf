@@ -8,17 +8,16 @@ use Illuminate\Support\Facades\Http;
 
 class BaseController extends Controller
 {
-    public function sendresponse($result, $message)
+    public function apisuccess($result, $message)
     {
-        $data = Http::get('http://localhost/apanaturf');
-        // dd($data->body());
+        $data = Http::get('http://localhost/apanaturf/');
         $status = $data->status();
         if ($data->successful()) {
             return response()->json([
                 'success' => true,
                 'status' => $status,   
                 'message' => $message,
-                'data' => $result  
+                'data' => $result 
             ], $status);
         }
         return response()->json([
@@ -28,11 +27,14 @@ class BaseController extends Controller
         ], $status);
     }
 
-    public function senderror($error, $errorMessages = [],  $status = 422)
+    public function apierror($error, $errorMessages = [],  $status = 422)
     {
         if (isset($errorMessages['id_not_found'])) {
             $status = 404; 
-        };
+        }
+        elseif (isset($errorMessages['server_error'])) {
+            $status = 500; 
+        }
 
         return response()->json([
             'success' => false,

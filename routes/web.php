@@ -116,5 +116,5 @@ Route::get('/demo', function () {
     return view('users.layouts.demoheader');
 })->name('demo');
 Route::get('/', function () {
-    return view('approval');
+    return view('users.login');
 });

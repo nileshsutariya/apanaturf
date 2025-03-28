@@ -2,26 +2,26 @@
 
 namespace App\Http\Controllers\API\User;
 
-use App\Models\User;
 use App\Models\Images;
+use App\Models\Customer;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\API\BaseController;
 
-class UserController extends BaseController
+class CustomerController extends BaseController
 {
-    public function update(Request $request)
+    public function customerupdate(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'id' => 'nullable|exists:users,id',
+            'id' => 'nullable|exists:customer,id', 
             'name' => 'required|string',
-            'email' => 'required|string|email|unique:users,email,' . $request->id,
+            'email' => 'required|string|email|unique:users,email,' . $request->id, 
             'phone' => 'required|string|max:10',
             'password' => 'required|string',
             'confirmpassword' => 'required|same:password',
-            'role_id' => 'required|exists:role_type,id',
+            // 'profile_image' => 'required|exists:images,id',
         ]);
 
         if ($validator->fails()) {
@@ -29,9 +29,9 @@ class UserController extends BaseController
         }
 
         if ($request->id) {
-            $users = User::findOrFail($request->id);
-            
-            $image_id = $users->profile_image;
+            $customers = Customer::findOrFail($request->id);
+
+            $image_id = $customers->profile_image;
 
             if ($request->hasFile('profile_image')) {
                 $file = $request->file('profile_image');
@@ -41,25 +41,26 @@ class UserController extends BaseController
                 $image = Images::create([
                     'image_name' => $filename,
                     'image_path' => $filepath,
-                    'reference_name' => 'users',
-                    'reference_id' => $users->id, 
+                    'reference_name' => 'customers',
+                    'reference_id' => $customers->id, 
                 ]);
 
                 $image_id = $image->id; 
             }
 
-            $users->update([
+            $customers->update([
                 'name' => $request->name,
                 'email' => $request->email,
                 'phone' => $request->phone,
                 'password' => Hash::make($request->password),
-                'role_id' => $request->role_id,
+                'balance' => $request->balance,
                 'profile_image' => $image_id, 
             ]);
 
-            return $this->apisuccess($users, 'User updated successfully');
+            return $this->apisuccess($customers, 'Customer updated successfully');
         } else {
             $image_id = null;
+
             if ($request->hasFile('profile_image')) {
                 $file = $request->file('profile_image');
                 $filename = time() . '_' . $file->getClientOriginalName();
@@ -68,37 +69,35 @@ class UserController extends BaseController
                 $image = Images::create([
                     'image_name' => $filename,
                     'image_path' => $filepath,
-                    'reference_name' => 'users',
+                    'reference_name' => 'customers',
                     'reference_id' => 0, 
                 ]);
 
-                $image_id = $image->id;
+                $image_id = $image->id; 
             }
 
-            $users = User::create([
+            $customers = Customer::create([
                 'unique_id' => uniqid(),
                 'name' => $request->name,
                 'email' => $request->email,
                 'phone' => $request->phone,
                 'password' => Hash::make($request->password),
-                'role_id' => $request->role_id,
+                'balance' => $request->balance,
                 'profile_image' => $image_id, 
             ]);
-
             if ($image_id) {
-                $image->update(['reference_id' => $users->id]);
+                $image->update(['reference_id' => $customers->id]);
             }
 
-            return $this->apisuccess($users, 'User registered successfully');
+            return $this->apisuccess($customers, 'Customer registered successfully');
         }
     }
-
-    public function list(Request $request) 
+    public function customerlist(Request $request) 
     {
-        $query = User::query();
+        $query = Customer::query();
 
         $validator = Validator::make($request->all(), [
-            'filter_param.id' => 'nullable|exists:users,id',
+            'filter_param.id' => 'nullable|exists:customer,id',
         ]);
         if($validator->fails()){
             return $this->apierror( ['errors' => $validator->errors()->all()]);
@@ -119,7 +118,6 @@ class UserController extends BaseController
 
         $users = $query->offset($request->start*$request->length)->limit($request->length)->get();
 
-        return $this->apisuccess($users, 'Users List');
+        return $this->apisuccess($users, 'Customer List');
     }
-
 }

@@ -23,14 +23,15 @@ class registerController extends BaseController
             'confirmpassword' => 'required|same:password',
         ]);
         if($validator->fails()){
-            return $this->senderror( ['errors' => $validator->errors()->all()]);
+            return $this->apierror( ['errors' => $validator->errors()->all()]);
         }
         $customer = new Customer();
         $customer->name = $request->name;
         $customer->email = $request->email;
         $customer->phone = $request->phone;
         $customer->password = Hash::make($request->password);
-        $customer->save();
-        return $this->sendresponse($customer, 'Register successfully.');
+        if ($customer->save()) {
+            return $this->apisuccess($customer, 'Customer registered successfully');
+        } 
     }
 }
