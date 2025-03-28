@@ -31,6 +31,10 @@ class registerController extends BaseController
         $customer->phone = $request->phone;
         $customer->password = Hash::make($request->password);
         $customer->save();
-        return $this->sendresponse($customer, 'Register successfully.');
+        // print_r($customer);die;
+        if($customer->save()){
+            return $this->sendresponse($customer, 'Register successfully.');
+        }
     }
+
 }

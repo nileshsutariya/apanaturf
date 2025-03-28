@@ -10,30 +10,33 @@ class BaseController extends Controller
 {
     public function sendresponse($result, $message)
     {
+
         $data = Http::get('http://localhost/apanaturf');
-        // dd($data->body());
         $status = $data->status();
         if ($data->successful()) {
             return response()->json([
                 'success' => true,
-                'status' => $status,   
+                'status' => $status,
                 'message' => $message,
-                'data' => $result  
+                'data' => $result
             ], $status);
         }
-        return response()->json([
-            'success' => false,
-            'status' => $status,
-            'message' => 'API request failed'
-        ], $status);
+        if ($data->failed()) {
+            return response()->json([
+                'success' => false,
+                'status' => $status,
+                'message' => 'API request failed'
+            ], $status);
+        }
     }
 
-    public function senderror($error, $errorMessages = [],  $status = 422)
+
+    public function senderror($error, $errorMessages = [], $status = 422)
     {
         if (isset($errorMessages['id_not_found'])) {
-            $status = 404; 
-        };
-
+            $status = 404;
+        }
+        
         return response()->json([
             'success' => false,
             'status' => $status,
