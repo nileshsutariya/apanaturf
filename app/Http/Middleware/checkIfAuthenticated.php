@@ -26,8 +26,7 @@ class CheckIfAuthenticated
                 ], 401);
             }
         }
-        return $next($request);   
-    }
         return $next($request);
     }
 }
+

@@ -16,19 +16,19 @@ class LoginController extends BaseController
         $credentials = request(['email', 'password']);
   
         if (!$token = Auth::attempt($credentials)) {
-            return $this->apierror('Unauthorised.', ['error'=>'Unauthorised']);
+            return $this->senderror('Unauthorised.', ['error'=>'Unauthorised']);
         }
   
         $success = $this->respondWithToken($token);
    
-        return $this->apisuccess($success, 'User login successfully.');
+        return $this->sendresponse($success, 'User login successfully.');
     
     }
 
     public function logout(Request $request)
     {
         Auth::logout();
-        return $this->apisuccess([], 'Successfully logged out.');
+        return $this->sendresponse([], 'Successfully logged out.');
         
     }
     
