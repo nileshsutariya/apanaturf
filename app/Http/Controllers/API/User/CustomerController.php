@@ -25,7 +25,7 @@ class CustomerController extends BaseController
         ]);
 
         if ($validator->fails()) {
-            return $this->apierror(['errors' => $validator->errors()->all()]);
+            return $this->senderror(['errors' => $validator->errors()->all()]);
         }
 
         if ($request->id) {
@@ -57,7 +57,7 @@ class CustomerController extends BaseController
                 'profile_image' => $image_id, 
             ]);
 
-            return $this->apisuccess($customers, 'Customer updated successfully');
+            return $this->sendresponse($customers, 'Customer updated successfully');
         } else {
             $image_id = null;
 
@@ -89,7 +89,7 @@ class CustomerController extends BaseController
                 $image->update(['reference_id' => $customers->id]);
             }
 
-            return $this->apisuccess($customers, 'Customer registered successfully');
+            return $this->sendresponse($customers, 'Customer registered successfully');
         }
     }
     public function customerlist(Request $request) 
@@ -100,7 +100,7 @@ class CustomerController extends BaseController
             'filter_param.id' => 'nullable|exists:customer,id',
         ]);
         if($validator->fails()){
-            return $this->apierror( ['errors' => $validator->errors()->all()]);
+            return $this->senderror( ['errors' => $validator->errors()->all()]);
         }
 
         if ($request->has('filter_param.id') && !empty($request->input('filter_param.id'))) {
@@ -118,6 +118,6 @@ class CustomerController extends BaseController
 
         $users = $query->offset($request->start*$request->length)->limit($request->length)->get();
 
-        return $this->apisuccess($users, 'Customer List');
+        return $this->sendresponse($users, 'Customer List');
     }
 }

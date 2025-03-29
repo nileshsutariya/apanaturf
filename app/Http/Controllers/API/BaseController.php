@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Http;
 
 class BaseController extends Controller
 {
-    public function apisuccess($result, $message)
+    public function sendresponse($result, $message)
     {
         $data = Http::get('http://localhost/apanaturf/');
         $status = $data->status();
@@ -30,7 +30,7 @@ class BaseController extends Controller
     }
 
 
-    public function apierror($error, $errorMessages = [],  $status = 422)
+    public function senderror($error, $errorMessages = [],  $status = 422)
     {
         if (isset($errorMessages['id_not_found'])) {
             $status = 404; 

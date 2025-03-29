@@ -16,18 +16,18 @@ class loginController extends BaseController
     {
         $credentials = $request->only('email', 'password');
 
-        if (! $token = JWTAuth::attempt($credentials)) {
+        if (! $token = auth()->attempt($credentials)) {
             return $this->sendError('Unauthorised.', ['error'=>'Unauthorised']);
         }
         $success= $this->respondWithToken($token);
+        // print_r(auth()->user());die;
         return $this->sendResponse($success, 'User login successfully.');
     }
     public function logout(Request $request)
     {
-        $token = $request->bearerToken();
-        JWTAuth::setToken($token)->invalidate();
-        Auth::logout();
-        return $this->sendResponse([], 'Successfully logged out.');
+        // print_r(auth()->user());die;
+            auth()->logout();
+            return $this->sendResponse([], 'Successfully logged out.');
     }
 
     
