@@ -25,7 +25,7 @@ class UserController extends BaseController
         ]);
 
         if ($validator->fails()) {
-            return $this->apierror(['errors' => $validator->errors()->all()]);
+            return $this->senderror(['errors' => $validator->errors()->all()]);
         }
 
         if ($request->id) {
@@ -57,7 +57,7 @@ class UserController extends BaseController
                 'profile_image' => $image_id, 
             ]);
 
-            return $this->apisuccess($users, 'User updated successfully');
+            return $this->sendresponse($users, 'User updated successfully');
         } else {
             $image_id = null;
             if ($request->hasFile('profile_image')) {
@@ -89,7 +89,7 @@ class UserController extends BaseController
                 $image->update(['reference_id' => $users->id]);
             }
 
-            return $this->apisuccess($users, 'User registered successfully');
+            return $this->sendresponse($users, 'User registered successfully');
         }
     }
 
@@ -103,7 +103,7 @@ class UserController extends BaseController
             'order.dir' => 'nullable|string|in:asc,desc', 
         ]);
         if($validator->fails()){
-            return $this->apierror( ['errors' => $validator->errors()->all()]);
+            return $this->senderror( ['errors' => $validator->errors()->all()]);
         }
 
         if ($request->has('filter_param.id') && !empty($request->input('filter_param.id'))) {
@@ -126,7 +126,7 @@ class UserController extends BaseController
     
         $users = $query->offset($request->start*$request->length)->limit($request->length)->get();
 
-        return $this->apisuccess($users, 'Users List');
+        return $this->sendresponse($users, 'Users List');
     }
 
 }
