@@ -98,6 +98,9 @@ class CustomerController extends BaseController
 
         $validator = Validator::make($request->all(), [
             'filter_param.id' => 'nullable|exists:customer,id',
+            'order.column' => 'nullable|string|in:name,email,phone,id', 
+            'order.dir' => 'nullable|string|in:asc,desc', 
+        
         ]);
         if($validator->fails()){
             return $this->apierror( ['errors' => $validator->errors()->all()]);
@@ -115,7 +118,11 @@ class CustomerController extends BaseController
                 ->orWhere('phone', 'LIKE', "%{$searchValue}%");
             });
         }
-
+        $sortColumn = $request->input('order.column', 'id'); 
+        $sortDirection = $request->input('order.dir', 'asc');
+    
+        $query->orderBy($sortColumn, $sortDirection);
+    
         $users = $query->offset($request->start*$request->length)->limit($request->length)->get();
 
         return $this->apisuccess($users, 'Customer List');

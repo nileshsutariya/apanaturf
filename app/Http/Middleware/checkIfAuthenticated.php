@@ -37,5 +37,5 @@ class checkIfAuthenticated
             }
         }
         return $next($request);   
-     }
+    }
 }
