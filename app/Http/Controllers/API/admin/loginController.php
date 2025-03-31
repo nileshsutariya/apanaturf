@@ -20,7 +20,6 @@ class LoginController extends BaseController
         }
   
         $success = $this->respondWithToken($token);
-   
         return $this->sendresponse($success, 'User login successfully.');
     
     }
@@ -29,8 +28,8 @@ class LoginController extends BaseController
     {
         Auth::logout();
         return $this->sendresponse([], 'Successfully logged out.');
-        
-    }
+    } 
+
     
     protected function respondWithToken($token)
     {
