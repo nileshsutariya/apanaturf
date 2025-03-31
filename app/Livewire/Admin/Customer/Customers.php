@@ -7,11 +7,11 @@ use App\Models\Customer;
 
 class Customers extends Component
 {
-    public $customer;
+    public $customers;
     public function render()
     {
-        $customers = Customer::all();
+        $this->customers = Customer::all();
 // print_r($customers);die;
-        return view('livewire.admin.customer.customer');
+        return view('livewire.admin.customer.customers')->layout('livewire.admin.component.layouts.app');
     }
 }
