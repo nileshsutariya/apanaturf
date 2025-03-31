@@ -475,7 +475,7 @@
                                 @php
                                     $i = 1;
                                 @endphp
-                                @foreach ($customers as $row)
+                                    @foreach ($customers as $row)
                                     <tr>
                                         <td>{{ $i }}</td>
                                         <td>85</td>

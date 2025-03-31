@@ -1,6 +1,7 @@
 <?php
 
 use App\Livewire\Admin\User\User;
+use App\Livewire\Admin\User\Users;
 use App\Livewire\Dashboard;
 use Illuminate\Support\Facades\Route;
 use App\Livewire\Admin\Customer\Customers;
@@ -121,4 +122,4 @@ Route::get('/', function () {
 });
 
 
-// Route::get('/users', User::class);
+Route::get('/users', Users::class);
