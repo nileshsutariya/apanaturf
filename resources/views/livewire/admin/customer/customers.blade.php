@@ -475,11 +475,10 @@
                                 @php
                                     $i = 1;
                                 @endphp
-                                @if(isset($customer))
-                                @foreach ($customer as $row)
+                                @foreach ($customers as $row)
                                     <tr>
-                                        <td> #000001 </td>
-                                        <td>abhishguleri1555@gmail.com</td>
+                                        <td>{{ $i }}</td>
+                                        <td>85</td>
                                         <td class="text-start">1234567890</td>
                                         <td>
                                             <h4><span class="badge badge-soft-info pt-2"
@@ -489,7 +488,6 @@
                                         <td style="color: green;">₹400</td>
                                          <!-- #region  # --></tr>
                                 @endforeach
-                                @endif
                                 <tr>
                                     <td> #000001 </td>
                                     <td>abhishguleri1555@gmail.com</td>
