@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
-class CheckIfAuthenticated
+class CheckIfAuthenticated  
 {
     /**
      * Handle an incoming request.
@@ -20,7 +20,7 @@ class CheckIfAuthenticated
             // print_r(auth()->user());
             // die;
             if (auth()->check()) {
-                // print_r("123456");die;
+                // print_r("123456");die;                
                 return response()->json([
                     'message' => 'Please logout first to login again.',
                 ], 401);
