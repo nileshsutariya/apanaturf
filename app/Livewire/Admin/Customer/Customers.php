@@ -11,7 +11,7 @@ class Customers extends Component
     public function render()
     {
         $customers = Customer::all();
-print_r($customers);die;
+// print_r($customers);die;
         return view('livewire.admin.customer.customer');
     }
 }

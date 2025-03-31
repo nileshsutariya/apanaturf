@@ -11,7 +11,7 @@ Route::get('admin/index', function () {
 Route::get('admin/users', function () {
     return view('admin.users');
 })->name('admin.users');
-Route::get('/admin/customer', Customer::class)->name('admin.customer');
+Route::get('/admin/customer', Customers::class)->name('admin.customer');
 
 Route::get('admin/venues', function () {
     return view('admin.venues');
