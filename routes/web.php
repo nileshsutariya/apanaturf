@@ -122,4 +122,4 @@ Route::get('/', function () {
 });
 
 
-Route::get('/users', User::class);
+// Route::get('/users', User::class);
