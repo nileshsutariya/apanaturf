@@ -3,11 +3,15 @@
 namespace App\Livewire\Admin\Customer;
 
 use Livewire\Component;
+use App\Models\Customer;
 
-class Customer extends Component
+class Customers extends Component
 {
+    public $customer;
     public function render()
     {
+        $customers = Customer::all();
+print_r($customers);die;
         return view('livewire.admin.customer.customer');
     }
 }
