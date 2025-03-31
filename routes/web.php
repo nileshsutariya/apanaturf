@@ -3,7 +3,7 @@
 use App\Livewire\Admin\User\User;
 use App\Livewire\Dashboard;
 use Illuminate\Support\Facades\Route;
-use App\Livewire\Admin\Customer\Customer;
+use App\Livewire\Admin\Customer\Customers;
 
 Route::get('admin/index', function () {
     return view('admin.index');
@@ -11,7 +11,6 @@ Route::get('admin/index', function () {
 Route::get('admin/users', function () {
     return view('admin.users');
 })->name('admin.users');
-
 Route::get('/admin/customer', Customer::class)->name('admin.customer');
 
 Route::get('admin/venues', function () {
