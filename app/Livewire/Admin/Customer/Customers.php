@@ -4,14 +4,15 @@ namespace App\Livewire\Admin\Customer;
 
 use Livewire\Component;
 use App\Models\Customer;
+use Livewire\WithPagination;
 
 class Customers extends Component
 {
-    public $customers;
+    use WithPagination; 
     public function render()
     {
-        $this->customers = Customer::all();
-// print_r($customers);die;
-        return view('livewire.admin.customer.customers')->layout('livewire.admin.component.layouts.app');
+        return view('livewire.admin.customer.customers', [
+            'customers' => Customer::paginate(2),
+        ])->layout('livewire.admin.component.layouts.app'); 
     }
 }
