@@ -56,4 +56,17 @@ class User extends Authenticatable implements JWTSubject
     {
         return [];
     }
+    public static function getdata() {
+        return self::all();
+    }
+
+    public static function adduser($users) {
+        return self::create([
+            'name' => $users['name'],
+            'email' => $users['email'],
+            'phone' => $users['phone'],
+            'role_id' => ($users['type'] == 'Vender') ? 2 : 1, 
+            'balance' => $users['balance'],
+        ]);
+    }
 }

@@ -123,3 +123,4 @@ Route::get('/', function () {
 
 
 Route::get('/users', Users::class);
+Route::post('/users/store', Users::class);
