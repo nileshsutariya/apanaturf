@@ -1,4 +1,9 @@
 <div>
+    <!-- Custombox CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/custombox@4.0.3/dist/custombox.min.css">
+
+    <!-- Custombox JS -->
+
     <style>
         /* Ensure modal is properly styled */
         .modal-demo {
@@ -66,10 +71,10 @@
 
         body {
             /* font-size: 15px;
-        font-family: 'Inter', sans-serif; */
+            font-family: 'Inter', sans-serif; */
             font-weight: 400 !important;
             /* letter-spacing: 0.9px;
-        background-color: #F5F5F5; */
+            background-color: #F5F5F5; */
         }
 
         .side-nav {
@@ -126,8 +131,8 @@
 
         .custom-pagination {
             /* position: sticky;
-        bottom: 0;
-        z-index: 2; */
+            bottom: 0;
+            z-index: 2; */
 
             display: flex;
             flex-wrap: nowrap;
@@ -257,6 +262,16 @@
         .app-search .form-control {
             padding-left: 15px !important;
         }
+
+        body.modal-open .page-title-box {
+            filter: blur(4px);
+            transition: filter 0.3s ease-in-out;
+        }
+
+        /* Optional: Prevent scrolling when modal is open */
+        body.modal-open {
+            overflow: hidden;
+        }
     </style>
 
     <div class="page-title-box">
@@ -265,109 +280,13 @@
             <div class="flex-grow-1">
                 <h2 class="ml-3"><strong>Customer</strong></h2>
             </div>
-            <a href="#add" class="add-transaction waves-effect waves-light" data-animation="blur"
-                data-plugin="custommodal" data-overlaySpeed="100" data-overlayColor="#36404a" wire:ignore.self>
+            <!-- Add Customer Button -->
+            <button type="button" class=" add-transaction waves-effect waves-light" wire:click="openModal" style="border: none; background-color: #F5F5F5;">
                 <h2 class="btn btn-success" style="border-radius: 40px;">+ Add Customer</h2>
-            </a>
-
-            <!-- Custom Theme Modal for Add Transaction -->
-            <div id="add" class="modal-demo"
-                style="width: 380px !important; height: 650px; padding: 20px; box-shadow: 0 15px 15px rgba(0, 0, 0, 0.3); border-radius: 12px;">
-                <div class="d-flex p-3 align-items-center justify-content-between" style="width: 100%; height: auto;">
-                    <h4 class="add-title">
-                        Add Customer
-                    </h4>
-                    <button type="button" class="btn-close btn-close-white" onclick="Custombox.modal.close();">
-                        <span class="sr-only">Close</span>
-                    </button>
-                </div>
-                <div class="add-text ml-2" style="font-size: small;">
-                    <div class="container-fluid">
-                        <!-- Date Section -->
-                        <div class="mb-4">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <strong>Name</strong>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <input type="text" class="form-control text-muted mt-2" name="name"
-                                        placeholder="Name" wire:model="name">
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Amount Section -->
-                        <div class="mb-4">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <strong>Email</strong>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <input type="email" class="form-control text-muted mt-2" name="email"
-                                        placeholder="email2@mail.com" wire:model="email">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="mb-4">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <strong>Mobile No.</strong>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <input type="text" class="form-control text-muted mt-2" name="mobileno"
-                                        placeholder="1234567890" wire:model="phone">
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Transaction Type Section -->
-                        <!-- <div class="mb-4">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <strong>Type</strong>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <select class="form-control select2" data-toggle="select2" name="type" id="type">
-                                    <option value="User">User</option>
-                                    <option value="Vender">Vender</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div> -->
-
-                        <div class="mb-4">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <strong>Balance</strong>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <input type="text" class="form-control text-muted mt-2" name="balance"
-                                        placeholder="400" wire:model="balance">
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                    <!-- Footer with Save Button -->
-                    <div class="modal-footer justify-content-start mb-3" style="border: none;">
-                        <button type="button" class="btn btn-success col-md-5 ml-3">Save</button>
-                    </div>
-                </div>
-
-            </div>
-
+            </button>
         </div>
-        <hr>
+        <!-- Livewire Controlled Modal -->
+
 
         <div class="row">
             <div class="col-12">
@@ -501,46 +420,46 @@
                     </div>
 
                     <div id="walletModal" class="modal-demo modal-lg"
-                    style="width: 400px !important; height: auto; padding: 20px; box-shadow: 0 15px 15px rgba(0, 0, 0, 0.3); border-radius: 12px; display: none;">
-                    <!-- Modal Header -->
-                    <div class="d-flex p-3 align-items-center justify-content-between">
-                        <h4 class="fw-bold">Wallet</h4>
-                        <button type="button" class="btn-close btn-close-white" onclick="Custombox.modal.close();">
-                            <span class="sr-only">Close</span>
-                        </button>
-                    </div>
+                        style="width: 400px !important; height: auto; padding: 20px; box-shadow: 0 15px 15px rgba(0, 0, 0, 0.3); border-radius: 12px; display: none;">
+                        <!-- Modal Header -->
+                        <div class="d-flex p-3 align-items-center justify-content-between">
+                            <h4 class="fw-bold">Wallet</h4>
+                            <button type="button" class="btn-close btn-close-white" onclick="Custombox.modal.close();">
+                                <span class="sr-only">Close</span>
+                            </button>
+                        </div>
 
-                    <!-- Available Balance -->
-                    <div class="text-muted px-3 pb-3 mb-2" style="font-size: 12px;">Available Balance: <span
-                            class="fw-bold">₹1000</span></div>
+                        <!-- Available Balance -->
+                        <div class="text-muted px-3 pb-3 mb-2" style="font-size: 12px;">Available Balance: <span
+                                class="fw-bold">₹1000</span></div>
 
-                    <!-- Transaction History Table -->
-                    <div class="modal-body">
-                        <table class="table table-borderless text-center">
-                            <thead>
-                                <tr style="font-weight: 400; font-size: 13px; color: #9da7b1;">
-                                    <th class="text-start">User Name</th>
-                                    <th>Booking Date</th>
-                                    <th>Amount</th>
-                                </tr>
-                            </thead>
-                            <tbody id="transactionTable" style="color: grey; font-weight: 400; font-size: 10px;">
-                                <!-- Data will be inserted dynamically here -->
-                            </tbody>
-                        </table>
-                    </div>
+                        <!-- Transaction History Table -->
+                        <div class="modal-body">
+                            <table class="table table-borderless text-center">
+                                <thead>
+                                    <tr style="font-weight: 400; font-size: 13px; color: #9da7b1;">
+                                        <th class="text-start">User Name</th>
+                                        <th>Booking Date</th>
+                                        <th>Amount</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="transactionTable" style="color: grey; font-weight: 400; font-size: 10px;">
+                                    <!-- Data will be inserted dynamically here -->
+                                </tbody>
+                            </table>
+                        </div>
 
-                    <!-- Pagination -->
-                    <div class="modal-footer border-0 justify-content-center">
-                        <nav>
-                            <ul class="pagination pagination-sm" id="pagination">
-                                <!-- Dynamic Pagination Buttons Here -->
-                            </ul>
-                        </nav>
-                    </div>
+                        <!-- Pagination -->
+                        <div class="modal-footer border-0 justify-content-center">
+                            <nav>
+                                <ul class="pagination pagination-sm" id="pagination">
+                                    <!-- Dynamic Pagination Buttons Here -->
+                                </ul>
+                            </nav>
+                        </div>
 
-                    <!-- Custom Modal -->
-                    <div id="customModal" style="
+                        <!-- Custom Modal -->
+                        <div id="customModal" style="
                                                     display: none;
                                                     position: fixed;
                                                     top: 50%;
@@ -555,168 +474,279 @@
                                                     font-size: 13px;
                                                     padding: 40px;
                                                     ">
-                        <!-- Modal Header -->
-                        <div style="display: flex; justify-content: space-between; align-items: center;">
-                            <h4 style="font-weight: bold; margin: 0;">Edit</h4>
-                            <button type="button" class="btn-close close-modal"></button>
+                            <!-- Modal Header -->
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <h4 style="font-weight: bold; margin: 0;">Edit</h4>
+                                <button type="button" class="btn-close close-modal"></button>
+                            </div>
+
+                            <!-- Modal Body -->
+                            <form>
+                                <div class="modal-body" style="margin-top: 15px;">
+                                    <div style="margin-bottom: 12px;">
+                                        <label style="display: block;">User Name</label>
+                                        <input type="text" class="form-control" name="username"
+                                            placeholder="Abhishek Guleria">
+                                    </div>
+
+                                    <div style="margin-bottom: 12px;">
+                                        <label style="display: block;">Mob. No.</label>
+                                        <input type="text" class="form-control" name="mobileno"
+                                            placeholder="9876543210">
+                                    </div>
+
+                                    <div style="margin-bottom: 12px;">
+                                        <label style="display: block;">Email</label>
+                                        <input type="email" class="form-control" name="email"
+                                            placeholder="abhiguleria1599@gmail.com">
+                                    </div>
+
+                                    <div style="margin-bottom: 12px;">
+                                        <label style="display: block;">Role</label>
+                                        <select id="userRole" class="form-control select2">
+                                            <option value="user" selected>User</option>
+                                            <option value="admin">vendor</option>
+                                        </select>
+                                    </div>
+
+                                    <div style="margin-bottom: 12px;">
+                                        <label style="display: block;">Balance</label>
+                                        <input type="text" class="form-control" name="balance" placeholder="N/A">
+                                    </div>
+                                </div>
+
+                                <!-- Modal Footer -->
+                                <div class="modal-footer justify-content-start mt-4"
+                                    style="margin-top: 10px; text-align: center;">
+                                    <button type="submit" class="btn btn-success close-modal col-5">Save</button>
+                                </div>
+                            </form>
                         </div>
-
-                        <!-- Modal Body -->
-                        <div class="modal-body" style="margin-top: 15px;">
-                            <div style="margin-bottom: 12px;">
-                                <label style="display: block;">User Name</label>
-                                <input type="text" class="form-control" name="username" placeholder="Abhishek Guleria">
-                            </div>
-
-                            <div style="margin-bottom: 12px;">
-                                <label style="display: block;">Mob. No.</label>
-                                <input type="text" class="form-control" name="mobileno" placeholder="9876543210">
-                            </div>
-
-                            <div style="margin-bottom: 12px;">
-                                <label style="display: block;">Email</label>
-                                <input type="email" class="form-control" name="email"
-                                    placeholder="abhiguleria1599@gmail.com">
-                            </div>
-
-                            <div style="margin-bottom: 12px;">
-                                <label style="display: block;">Role</label>
-                                <select id="userRole" class="form-control select2">
-                                    <option value="user" selected>User</option>
-                                    <option value="admin">vendor</option>
-                                </select>
-                            </div>
-
-                            <div style="margin-bottom: 12px;">
-                                <label style="display: block;">Balance</label>
-                                <input type="text" class="form-control" name="balance" placeholder="N/A">
-                            </div>
-                        </div>
-
-                        <!-- Modal Footer -->
-                        <div class="modal-footer justify-content-start mt-4"
-                            style="margin-top: 10px; text-align: center;">
-                            <button class="btn btn-success close-modal col-5">Save</button>
-                        </div>
+                        <!-- Theme Modal for Wallet -->
                     </div>
-                    <!-- Theme Modal for Wallet -->
                 </div>
             </div>
         </div>
     </div>
-</div>
-</div>
-</div>
-</div>
+        
+    <div class="modal fade @if($showModal) show @endif" id="add" tabindex="-1" aria-labelledby="addLabel"
+        @if($showModal) style="display: block;" @else style="display: none;" @endif style="margin: 20px !important;">
+        <div class="modal-dialog">
+            <div class="modal-content" style="
+                                                                        position: fixed;
+                                                                        top: 50%;
+                                                                        left: 50%;
+                                                                        transform: translate(-50%, -50%);
+                                                                        width: 350px;
+                                                                        background: #fff;
+                                                                        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+                                                                        border-radius: 13px;
+                                                                        z-index: 1000;
+                                                                        font-size: 13px;
+                                                                        height: 550px;
+                                                                        overflow-y: scroll;
+                                                                        scrollbar-width: none;
+                                                                        ">
+
+                <!-- Modal Header -->
+                <div class="d-flex p-4 align-items-center justify-content-between">
+                    <h6 class="add-title" id="addLabel">Add New Customer</h6>
+                    <button type="button" class="btn-close" wire:click="closeModal"></button>
+                </div>
+
+                <!-- Modal Body -->
+                <div class="modal-body">
+                    <div class="add-text ml-2" style="font-size: small !important; height: auto !important;">
+                        <form>
+                            <div class="container-fluid p-0" style="font-size: 12px;">
+                                <div class="mb-3">
+                                    <div class="row">
+                                        <div class="col-md-12 mb-2"><strong>Name</strong></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12 mb-2">
+                                            <input type="text" class="form-control text-muted mt-2" placeholder="Name"
+                                                wire:model="name">
+                                        </div>
+                                        @error('name') <span class="text-danger">
+                                            {{ $message }}
+                                        </span> @enderror
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <div class="row">
+                                        <div class="col-md-12 mb-2"><strong>Email</strong></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12 mb-2">
+                                            <input type="email" class="form-control text-muted mt-2"
+                                                placeholder="email2@mail.com" wire:model="email">
+                                        </div>
+                                        @error('email') <span class="text-danger">
+                                            {{ $message }}
+                                        </span> @enderror
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <div class="row">
+                                        <div class="col-md-12 mb-2"><strong>Mobile No.</strong></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12 mb-2">
+                                            <input type="text" class="form-control text-muted mt-2"
+                                                placeholder="1234567890" wire:model="phone">
+                                        </div>
+                                        @error('phone') <span class="text-danger">
+                                            {{ $message }}
+                                        </span> @enderror
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <div class="row">
+                                        <div class="col-md-12 mb-2"><strong>Balance</strong></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12 mb-2">
+                                            <input type="text" class="form-control text-muted mt-2" placeholder="400"
+                                                wire:model="balance">
+                                        </div>
+                                        @error('balance') <span class="text-danger">
+                                            {{ $message }}
+                                        </span> @enderror
+                                    </div>
+                        </form>
+                    </div>
+
+                    <!-- Modal Footer -->
+                    <div class="modal-footer justify-content-start mb-3 p-0" style="border: none;">
+                        <button type="button" class="btn btn-success col-md-5 "
+                            wire:click="storecustomerdata">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/custombox@4.0.3/dist/custombox.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            window.addEventListener('open-modal', () => {
+                document.body.classList.add('modal-open');
+            });
 
-<script>
+            window.addEventListener('close-modal', () => {
+                document.body.classList.remove('modal-open');
+            });
+        });
+    </script>
+    <script>
 
-    $(document).ready(function () {
-        var table = $('#responsive-datatable').DataTable({
-            "ordering": false,
-            "paging": true,
-            "searching": true,
-            "info": false,
-            "pageLength": 10,
-            "lengthChange": false,
-            "dom": 'rt'
+        $(document).ready(function () {
+            var table = $('#responsive-datatable').DataTable({
+                "ordering": false,
+                "paging": true,
+                "searching": true,
+                "info": false,
+                "pageLength": 10,
+                "lengthChange": false,
+                "dom": 'rt'
+            });
+            $('#nameSearch').on('keyup', function () {
+                table.column(0).search(this.value).draw();
+            });
+
+            $('#emailSearch').on('keyup', function () {
+                table.column(1).search(this.value).draw();
+            });
+
+            $('#mobileSearch').on('keyup', function () {
+                table.column(2).search(this.value).draw();
+            });
+
+            $('#typeSearch').on('keyup', function () {
+                table.column(3).search(this.value).draw();
+            });
+
+            $('#balanceSearch').on('keyup', function () {
+                table.column(4).search(this.value).draw();
+            });
+
+
         });
 
-      
-        $('#nameSearch').on('keyup', function () {
-            table.column(0).search(this.value).draw();
-        });
 
-        $('#emailSearch').on('keyup', function () {
-            table.column(1).search(this.value).draw();
-        });
+        $(document).ready(function () {
+            // Sample transaction data (Can be fetched from an API)
+            let transactions = [
+                { id: "#000001", date: "23 Dec. 2023", amount: "+400", type: "success" },
+                { id: "#000001", date: "23 Dec. 2023", amount: "-400", type: "danger" },
+                { id: "#000001", date: "23 Dec. 2023", amount: "-400", type: "danger" },
+                { id: "#000001", date: "23 Dec. 2023", amount: "-400", type: "danger" },
+                { id: "#000001", date: "23 Dec. 2023", amount: "-400", type: "danger" },
+                { id: "#000001", date: "23 Dec. 2023", amount: "-400", type: "danger" },
+                { id: "#000001", date: "23 Dec. 2023", amount: "-400", type: "danger" },
+                { id: "#000001", date: "23 Dec. 2023", amount: "-400", type: "danger" },
+                { id: "#000001", date: "23 Dec. 2023", amount: "-400", type: "danger" },
+                { id: "#000001", date: "23 Dec. 2023", amount: "-400", type: "danger" },
+                { id: "#000001", date: "23 Dec. 2023", amount: "-400", type: "danger" },
+                { id: "#000001", date: "23 Dec. 2023", amount: "-400", type: "danger" }
+            ];
 
-        $('#mobileSearch').on('keyup', function () {
-            table.column(2).search(this.value).draw();
-        });
+            let rowsPerPage = 5;  // Number of rows per page
+            let currentPage = 1;   // Current page number
 
-        $('#typeSearch').on('keyup', function () {
-            table.column(3).search(this.value).draw();
-        });
+            function displayTransactions(page) {
+                let start = (page - 1) * rowsPerPage;
+                let end = start + rowsPerPage;
+                let paginatedItems = transactions.slice(start, end);
 
-        $('#balanceSearch').on('keyup', function () {
-            table.column(4).search(this.value).draw();
-        });
-
-
-    });
-
-
-
-    $(document).ready(function () {
-        // Sample transaction data (Can be fetched from an API)
-        let transactions = [
-            { id: "#000001", date: "23 Dec. 2023", amount: "+400", type: "success" },
-            { id: "#000001", date: "23 Dec. 2023", amount: "-400", type: "danger" },
-            { id: "#000001", date: "23 Dec. 2023", amount: "-400", type: "danger" },
-            { id: "#000001", date: "23 Dec. 2023", amount: "-400", type: "danger" },
-            { id: "#000001", date: "23 Dec. 2023", amount: "-400", type: "danger" },
-            { id: "#000001", date: "23 Dec. 2023", amount: "-400", type: "danger" },
-            { id: "#000001", date: "23 Dec. 2023", amount: "-400", type: "danger" },
-            { id: "#000001", date: "23 Dec. 2023", amount: "-400", type: "danger" },
-            { id: "#000001", date: "23 Dec. 2023", amount: "-400", type: "danger" },
-            { id: "#000001", date: "23 Dec. 2023", amount: "-400", type: "danger" },
-            { id: "#000001", date: "23 Dec. 2023", amount: "-400", type: "danger" },
-            { id: "#000001", date: "23 Dec. 2023", amount: "-400", type: "danger" }
-        ];
-
-        let rowsPerPage = 5;  // Number of rows per page
-        let currentPage = 1;   // Current page number
-
-        function displayTransactions(page) {
-            let start = (page - 1) * rowsPerPage;
-            let end = start + rowsPerPage;
-            let paginatedItems = transactions.slice(start, end);
-
-            $("#transactionTable").html(""); // Clear previous data
-            $.each(paginatedItems, function (index, transaction) {
-                $("#transactionTable").append(`
+                $("#transactionTable").html(""); // Clear previous data
+                $.each(paginatedItems, function (index, transaction) {
+                    $("#transactionTable").append(`
                     <tr>
                         <td class="text-start">${transaction.id}</td>
                         <td>${transaction.date}</td>
                         <td class="text-${transaction.type} fw-bold">${transaction.amount}</td>
                     </tr>
                 `);
-            });
-        }
+                });
+            }
 
-        function setupPagination() {
-            let totalPages = Math.ceil(transactions.length / rowsPerPage);
-            $("#pagination").html(""); 
+            function setupPagination() {
+                let totalPages = Math.ceil(transactions.length / rowsPerPage);
+                $("#pagination").html("");
 
-            // Previous Button
-            $("#pagination").append(`
+                // Previous Button
+                $("#pagination").append(`
                 <li class="page-item ${currentPage === 1 ? "disabled" : ""}">
                     <a class="page-link" href="#" onclick="changePage(${currentPage - 1})">‹</a>
                 </li>
             `);
 
-            // Page Numbers
-            for (let i = 1; i <= totalPages; i++) {
-                $("#pagination").append(`
+                // Page Numbers
+                for (let i = 1; i <= totalPages; i++) {
+                    $("#pagination").append(`
                     <li class="page-item ${i === currentPage ? "active" : ""}">
                         <a class="page-link" href="#" onclick="changePage(${i})">${i}</a>
                     </li>
                 `);
-            }
+                }
 
-            // Next Button
-            $("#pagination").append(`
+                // Next Button
+                $("#pagination").append(`
                 <li class="page-item ${currentPage === totalPages ? "disabled" : ""}">
                     <a class="page-link" href="#" onclick="changePage(${currentPage + 1})">›</a>
                 </li>
             `);
-        }
+            }
 
             // window.changePage = function (page) {
             //     if (page < 1 || page > Math.ceil(transactions.length / rowsPerPage)) return;
@@ -728,89 +758,89 @@
             // Initialize the modal with the first page
             displayTransactions(currentPage);
             setupPagination();
-    });
-
-
-
-
-    $(document).ready(function () {
-        // Initialize Select2 when modal opens
-        $(document).on('click', '[data-plugin="custommodal"]', function () {
-            setTimeout(function () {
-                $('#role').select2({
-                    placeholder: "Select Role",
-                    allowClear: true,
-                    dropdownParent: $('#editModal') // Fix Select2 inside modal
-                });
-            }, 100);
         });
-    });
 
 
 
-    $(document).ready(function () {
-        $(document).on("click", ".open-wallet", function (e) {
-            e.preventDefault();
 
-            // Check if screen width is less than 768px (mobile devices)
-            if ($(window).width() < 900) {
-                // Open Modal using Custombox
+        $(document).ready(function () {
+            // Initialize Select2 when modal opens
+            $(document).on('click', '[data-plugin="custommodal"]', function () {
+                setTimeout(function () {
+                    $('#role').select2({
+                        placeholder: "Select Role",
+                        allowClear: true,
+                        dropdownParent: $('#editModal') // Fix Select2 inside modal
+                    });
+                }, 100);
+            });
+        });
+
+
+
+        $(document).ready(function () {
+            $(document).on("click", ".open-wallet", function (e) {
+                e.preventDefault();
+
+                // Check if screen width is less than 768px (mobile devices)
+                if ($(window).width() < 900) {
+                    // Open Modal using Custombox
+                    new Custombox.modal({
+                        content: {
+                            effect: "blur",
+                            target: "#walletModal"
+                        }
+                    }).open();
+                }
+            });
+
+            // Close Modal
+            $(document).on("click", ".btn-close", function () {
+                Custombox.modal.close();
+            });
+        });
+
+
+        $(document).ready(function () {
+            // Initialize Select2
+            $(".select2").select2({
+                dropdownParent: $("#customModal") // Fix for dropdown behind modal
+            });
+
+            // Open Custombox Modal
+            $(document).on("click", ".open-modal", function () {
+                var userRole = $(this).data("role");
+                $("#userRole").val(userRole).trigger("change"); // Set selected role
+
                 new Custombox.modal({
                     content: {
                         effect: "blur",
-                        target: "#walletModal"
+                        target: "#customModal"
                     }
                 }).open();
-            }
+            });
+
+            // Close Modal
+            $(document).on("click", ".close-modal", function () {
+                Custombox.modal.close();
+            });
         });
 
-        // Close Modal
-        $(document).on("click", ".btn-close", function () {
-            Custombox.modal.close();
-        });
-    });
 
 
-    $(document).ready(function () {
-        // Initialize Select2
-        $(".select2").select2({
-            dropdownParent: $("#customModal") // Fix for dropdown behind modal
-        });
-
-        // Open Custombox Modal
-        $(document).on("click", ".open-modal", function () {
-            var userRole = $(this).data("role");
-            $("#userRole").val(userRole).trigger("change"); // Set selected role
-
-            new Custombox.modal({
-                content: {
-                    effect: "blur",
-                    target: "#customModal"
-                }
-            }).open();
+        $(document).ready(function () {
+            // Initialize Select2 when modal opens
+            $(document).on('click', '[data-plugin="custommodal"]', function () {
+                setTimeout(function () {
+                    $('#type ').select2({
+                        placeholder: "Select Type",
+                        allowClear: true,
+                        dropdownParent: $('#add') // Fix Select2 inside modal
+                    });
+                }, 100);
+            });
         });
 
-        // Close Modal
-        $(document).on("click", ".close-modal", function () {
-            Custombox.modal.close();
-        });
-    });
 
-
-
-    $(document).ready(function () {
-        // Initialize Select2 when modal opens
-        $(document).on('click', '[data-plugin="custommodal"]', function () {
-            setTimeout(function () {
-                $('#type ').select2({
-                    placeholder: "Select Type",
-                    allowClear: true,
-                    dropdownParent: $('#add') // Fix Select2 inside modal
-                });
-            }, 100);
-        });
-    });
-
-
-</script>
+    </script>
 </div>
