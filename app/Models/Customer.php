@@ -12,15 +12,16 @@ class Customer extends Model
 
     protected $table = 'customer';
     protected $primaryKey = 'id';
-    protected $fillable = ['unique_id', 'name', 'email', 'phone', 'password', 'balance', 'profile_image'];
+    protected $fillable = ['name', 'email', 'phone', 'balance'];
 
-    // public function createCustomer($this)
-    // {
-    //     return self::create([
-    //         'name' => $this->name,
-    //         'email' => $this->email,
-    //         'phone' => $this->phone,
-    //         'balance' => $this->balance ?? 0,
-    //     ]);
-    // }
+    public static function createCustomer($data)
+    {
+        return self::create([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'phone' => $data['phone'],
+            'balance' => $data['balance']
+        ]);
+
+    }
 }
