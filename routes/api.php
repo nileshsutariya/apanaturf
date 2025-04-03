@@ -19,8 +19,8 @@ Route::post('admin/customer/update', [CustomerController::class, 'customerupdate
 Route::post('admin/customer/list', [CustomerController::class, 'customerlist']);
 
 Route::group([
-    'middleware' => 'login',
-], function ($router) {
+        'middleware' => 'login',
+    ], function ($router) {
 
     Route::post('customer/register', [registerController::class, 'register']);
     Route::post('customer/register', [registerController::class, 'register']);

@@ -13,7 +13,7 @@
         @endif
 
         {{-- First 2 pages --}}
-        @if ($paginator->currentPage() > 4)
+        @if ($paginator->currentPage() > 5)
             <li class="page-item"><button type="button" class="page-link" wire:click="gotoPage(1)">1</button></li>
             <li class="page-item"><button type="button" class="page-link" wire:click="gotoPage(2)">2</button></li>
             <li class="page-item disabled"><span class="page-link">...</span></li>

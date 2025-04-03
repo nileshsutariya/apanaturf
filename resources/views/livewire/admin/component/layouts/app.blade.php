@@ -4,8 +4,11 @@
     <meta charset="utf-8" />
     <title>Dashboard | Uplon - Responsive Bootstrap 5 Admin Dashboard</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{csrf_token() }}">
+
     <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
     <meta content="Coderthemes" name="author" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/custombox/dist/custombox.min.css">
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <!-- Bootstrap CSS -->
@@ -39,6 +42,7 @@
     <!-- Theme Config Js -->
     <script src="{{asset('assets/js/config.js')}}"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
     <style>
         body {
             font-size: 15px;
@@ -198,6 +202,8 @@
             }
         }
     </style>
+        @livewireStyles
+
 </head>
 
 <body>
@@ -207,13 +213,16 @@
         @include('livewire.admin.component.layouts.sidebar')
         <div class="page-content">
             <div class="page-container" style="background-color: transparent;">
-            
+                
                 {{ $slot }}
 
             </div>
         </div>
     </div>
     
+
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
     <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
@@ -245,10 +254,9 @@
 <script src="{{asset('assets/libs/datatables.net-keytable/js/dataTables.keyTable.min.js')}}"></script>
 <script src="{{asset('assets/libs/datatables.net-select/js/dataTables.select.min.js')}}"></script>
 
-<!-- Datatables init -->
-<!-- <script src="{{ assert('assets/js/pages/table-datatable.js') }}"></script> -->
+<script src="https://cdn.jsdelivr.net/npm/custombox/dist/custombox.min.js"></script>
 
+@livewireScripts
 
 </body>
-<!-- Mirrored from coderthemes.com/uplon/layouts/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 31 Jan 2025 10:56:29 GMT -->
 </html>

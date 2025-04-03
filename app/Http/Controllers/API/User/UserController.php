@@ -93,63 +93,48 @@ class UserController extends BaseController
     //     }
     // }
 
-    // public function list(Request $request) 
-    // {
-    //     $query = User::query();
+   
+    public function list(Request $request) 
+    {
+        $query = User::query();
 
-    //     $validator = Validator::make($request->all(), [
-    //         'filter_param.id' => 'nullable|exists:users,id',
-    //         'order.column' => 'nullable|string|in:name,email,phone,id',
-    //         'order.dir' => 'nullable|string|in:asc,desc', 
-    //     ]);
-    //     if($validator->fails()){
-    //         return $this->senderror( ['errors' => $validator->errors()->all()]);
-    //     }
+        $validator = Validator::make($request->all(), [
+            'filter_param.id' => 'nullable|exists:users,id',
+            'order.column' => 'nullable|string|in:name,email,phone,id',
+            'order.dir' => 'nullable|string|in:asc,desc', 
+        ]);
+        if($validator->fails()){
+            return $this->senderror( ['errors' => $validator->errors()->all()]);
+        }
 
-    //     if ($request->has('filter_param.id') && !empty($request->input('filter_param.id'))) {
-    //         $query->where('id', $request->input('filter_param.id'));
-    //     }
+        if ($request->has('filter_param.id') && !empty($request->input('filter_param.id'))) {
+            $query->where('id', $request->input('filter_param.id'));
+        }
 
-    //     if (!empty($request->input('search.value'))) {
-    //         $searchValue = $request->input('search.value');
-    //         $query->where(function($q) use ($searchValue) {
-    //             $q->where('name', 'LIKE', "%{$searchValue}%")
-    //             ->orWhere('email', 'LIKE', "%{$searchValue}%")
-    //             ->orWhere('phone', 'LIKE', "%{$searchValue}%");
-    //         });
-    //     }
+        if (!empty($request->input('search.value'))) {
+            $searchValue = $request->input('search.value');
+            $query->where(function($q) use ($searchValue) {
+                $q->where('name', 'LIKE', "%{$searchValue}%")
+                ->orWhere('email', 'LIKE', "%{$searchValue}%")
+                ->orWhere('phone', 'LIKE', "%{$searchValue}%");
+            });
+        }
 
-    //     $sortColumn = $request->input('order.column', 'id'); 
-    //     $sortDirection = $request->input('order.dir', 'asc'); 
+        $sortColumn = $request->input('order.column', 'id'); 
+        $sortDirection = $request->input('order.dir', 'asc'); 
     
-    //     $query->orderBy($sortColumn, $sortDirection);
+        $query->orderBy($sortColumn, $sortDirection);
     
-    //     $users = $query->offset($request->start*$request->length)->limit($request->length)->get();
+        $users = $query->offset($request->start*$request->length)->limit($request->length)->get();
 
+        return $this->sendresponse($users, 'Users List');
+    }
+
+    // public function list(Request $request) {
+    //     $users = User::getdata();
     //     return $this->sendresponse($users, 'Users List');
+        
     // }
 
-    public function list(Request $request) {
-        // $user = new User();
-
-        $users = User::getdata();
-        return $this->sendresponse($users, 'User registered successfully');
-
-    }
-
-    public function store(Request $request) {
-        $validatedData = $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:users,email',
-            'phone' => 'required|string|max:15',
-            'type' => 'required|in:User,Vender',
-            'balance' => 'required|numeric|min:0',
-        ]);
-
-        User::createUser($validatedData);
-
-        return redirect()->back()->with('message', 'User added successfully.');
-
-    }
 
 }

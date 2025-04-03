@@ -22,7 +22,7 @@ class User extends Authenticatable implements JWTSubject
     protected $table = 'users';
     protected $primaryKey = 'id';
     protected $fillable = [
-        'unique_id', 'name', 'email', 'phone', 'password', 'role_id', 'profile_image'
+        'name', 'email', 'phone'
     ];
 
     /**
@@ -60,13 +60,9 @@ class User extends Authenticatable implements JWTSubject
         return self::all();
     }
 
-    public static function adduser($users) {
-        return self::create([
-            'name' => $users['name'],
-            'email' => $users['email'],
-            'phone' => $users['phone'],
-            'role_id' => ($users['type'] == 'Vender') ? 2 : 1, 
-            'balance' => $users['balance'],
-        ]);
-    }
+    // public static function storeUser($data)
+    // {
+    //     return self::create($data);
+
+           // }   
 }
