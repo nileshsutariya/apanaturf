@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\User\ConfigurationController;
 use App\Http\Controllers\API\User\CustomerController;
 use App\Http\Controllers\API\User\UserController;
 use Illuminate\Http\Request;
@@ -17,6 +18,8 @@ Route::post('admin/update', [UserController::class, 'update']);
 Route::post('admin/list', [UserController::class, 'list']);
 Route::post('admin/customer/update', [CustomerController::class, 'customerupdate']);
 Route::post('admin/customer/list', [CustomerController::class, 'customerlist']);
+
+Route::post('admin/sports/add', [ConfigurationController::class, 'addsports']);
 
 Route::group([
         'middleware' => 'login',

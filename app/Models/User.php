@@ -3,6 +3,7 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Support\Str;
 use Illuminate\Notifications\Notifiable;
 use PHPOpenSourceSaver\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -22,9 +23,13 @@ class User extends Authenticatable implements JWTSubject
     protected $table = 'users';
     protected $primaryKey = 'id';
     protected $fillable = [
-        'name', 'email', 'phone'
+        'unique_id', 'name', 'email', 'phone', 'role_id'
     ];
-
+    
+    public function role()
+    {
+        return $this->belongsTo(Role_type::class, 'role_id', 'id');
+    }
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -60,9 +65,46 @@ class User extends Authenticatable implements JWTSubject
         return self::all();
     }
 
-    // public static function storeUser($data)
-    // {
-    //     return self::create($data);
+    public static function storeUser($data)
+    {
+        $role = Role_type::where('name', $data['role_id'])->first();
 
-           // }   
+        return self::create([
+            // 'unique_id' => Str::uuid(), 
+            'unique_id' => uniqid(),
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'phone' => $data['phone'],
+            'role_id' => $data['role_id'], 
+        ]);
+    }   
+
+    // public function editUser($id)
+    // {
+    //     $user = User::findOrFail($id);
+
+    //     $this->user_id = $user->id;
+    //     $this->name = $user->name;
+    //     $this->email = $user->email;
+    //     $this->phone = $user->phone;
+    //     $this->role_id = $user->role_id;
+
+    // }
+// app/Models/User.php
+    public static function editUser($id)
+    {
+        return self::findOrFail($id);
+    }
+
+    public static function updateUser($id, $data)
+    {
+        return self::where('id', $id)->update([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'phone' => $data['phone'],
+            'role_id' => $data['role_id'],
+        ]);
+    }
+    
+
 }
