@@ -1,11 +1,17 @@
 <div>
+    @if (session()->has('message'))
+    <div wire:poll.0.2m>
+            <div class="alert alert-success">
+                {{ session('message') }}
+            </div>
+    </div>
+    @endif
     <!-- Custombox CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/custombox@4.0.3/dist/custombox.min.css">
 
     <!-- Custombox JS -->
 
     <style>
-        /* Ensure modal is properly styled */
         .modal-demo {
             width: 400px !important;
             height: auto;
@@ -142,6 +148,7 @@
             list-style: none;
             padding: 10px 0;
             gap: 5px;
+            float: none;
             /* overflow-x: auto;  Enables horizontal scrolling if needed */
             white-space: nowrap;
             /* Keeps buttons in one row */
@@ -229,9 +236,14 @@
         }
 
         .pagination .page-item.active .page-link {
-            background-color: #198754;
-            border-color: #198754;
+            background-color: #229e75;
+            border-color: #229e75;
+            transition: background-color 0.3s, box-shadow 0.3s;
             color: white;
+        }
+
+        .pagination .page-item {
+            margin: 0 3px;
         }
 
         thead {
@@ -281,7 +293,8 @@
                 <h2 class="ml-3"><strong>Customer</strong></h2>
             </div>
             <!-- Add Customer Button -->
-            <button type="button" class=" add-transaction waves-effect waves-light" wire:click="openModal" style="border: none; background-color: #F5F5F5;">
+            <button type="button" class=" add-transaction waves-effect waves-light" wire:click="openModal"
+                style="border: none; background-color: #F5F5F5;">
                 <h2 class="btn btn-success" style="border-radius: 40px;">+ Add Customer</h2>
             </button>
         </div>
@@ -293,7 +306,7 @@
                 <div class="card" style="background-color: transparent; box-shadow: none;">
                     <div class="card-body pt-2" style="overflow: hidden;">
 
-                        <div class="table-container table-responsive" style="max-height: 400px; overflow-y: auto;">
+                        <div class="table-container table-responsive" style="max-height: 500px; overflow-y: auto;">
                             <table id="responsive-datatable" id="walletTable" class="table dt-responsive nowrap"
                                 style="border-collapse: collapse; border-spacing: 0; width: 100%; font-size: 13px;">
                                 <thead>
@@ -312,7 +325,7 @@
                                                     <div class="app-search-box">
                                                         <div class="input-group">
                                                             <input type="text" id="nameSearch" class="form-control"
-                                                                placeholder="Name" style="border-radius: 10px;">
+                                                                placeholder="Name" style="border-radius: 10px;" wire:model.live="nameSearch">
                                                         </div>
                                                     </div>
                                                 </form>
@@ -324,7 +337,7 @@
                                                     <div class="app-search-box">
                                                         <div class="input-group">
                                                             <input type="text" id="emailSearch" class="form-control"
-                                                                placeholder="Email" style="border-radius: 10px;">
+                                                                placeholder="Email" style="border-radius: 10px;" wire:model.live="emailSearch">
                                                         </div>
                                                     </div>
                                                 </form>
@@ -336,7 +349,7 @@
                                                     <div class="app-search-box">
                                                         <div class="input-group">
                                                             <input type="text" id="mobileSearch" class="form-control"
-                                                                placeholder="Mob. No." style="border-radius: 10px;">
+                                                                placeholder="Mob. No." style="border-radius: 10px;" wire:model.live="phoneSearch">
                                                         </div>
                                                     </div>
                                                 </form>
@@ -348,7 +361,7 @@
                                                     <div class="app-search-box">
                                                         <div class="input-group">
                                                             <input type="text" id="typeSearch" class="form-control"
-                                                                placeholder="Type" style="border-radius: 10px;">
+                                                                placeholder="Type" style="border-radius: 10px;" wire:model.live="typeSearch">
                                                         </div>
                                                     </div>
                                                 </form>
@@ -360,7 +373,7 @@
                                                     <div class="app-search-box">
                                                         <div class="input-group">
                                                             <input type="text" id="balanceSearch" class="form-control"
-                                                                placeholder="Balance" style="border-radius: 10px;">
+                                                                placeholder="Balance" style="border-radius: 10px;" wire:model.live="balanceSearch">
                                                         </div>
                                                     </div>
                                                 </form>
@@ -372,7 +385,6 @@
                                 <tbody>
                                     @if(isset($customers))
                                         @foreach ($customers as $row)
-
                                             <tr>
                                                 <td>
                                                     {{ $row->name }}
@@ -399,10 +411,16 @@
                                                         <img src="{{asset('assets/image/empty-wallet.svg')}}" alt="dashboard"
                                                             style="cursor: pointer;">
                                                     </a>
+                                                    <!-- <button type="button" class=" add-transaction waves-effect waves-light"
+                                                            wire:click="openModal('wallet')"
+                                                                style="border: none; background-color: #F5F5F5;">
+                                                                <img src="{{asset('assets/image/empty-wallet.svg')}}" alt="dashboard"
+                                                                    style="cursor: pointer;">
+                                                            </button> -->
                                                     |
-                                                    <!-- Button to Open Modal -->
-                                                    <button class="open-modal" data-id="1"
-                                                        style="border: none; background: none;">
+                                                    <button type="button" class=" add-transaction waves-effect waves-light"
+                                                        wire:click="edit({{ $row->id }})"
+                                                        style="border: none; background-color: #F5F5F5;">
                                                         <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"
                                                             style="cursor: pointer;">
                                                     </button>
@@ -413,10 +431,16 @@
                                     @endif
                                 </tbody>
                             </table>
-                            <div>
-                                {{ $customers->links('livewire.admin.component.pagination') }}
-                            </div>
                         </div>
+                    </div>
+                    <div class="pagination-container">
+                        <nav>
+                            <ul class="pagination custom-pagination mb-0">
+                                <div>
+                                    {{ $customers->links('livewire.admin.component.pagination') }}
+                                </div>
+                            </ul>
+                        </nav>
                     </div>
 
                     <div id="walletModal" class="modal-demo modal-lg"
@@ -457,107 +481,41 @@
                                 </ul>
                             </nav>
                         </div>
-
-                        <!-- Custom Modal -->
-                        <div id="customModal" style="
-                                                    display: none;
-                                                    position: fixed;
-                                                    top: 50%;
-                                                    left: 50%;
-                                                    transform: translate(-50%, -50%);
-                                                    width: 400px;
-                                                    background: #fff;
-                                                    padding: 25px;
-                                                    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-                                                    border-radius: 13px;
-                                                    z-index: 1000;
-                                                    font-size: 13px;
-                                                    padding: 40px;
-                                                    ">
-                            <!-- Modal Header -->
-                            <div style="display: flex; justify-content: space-between; align-items: center;">
-                                <h4 style="font-weight: bold; margin: 0;">Edit</h4>
-                                <button type="button" class="btn-close close-modal"></button>
-                            </div>
-
-                            <!-- Modal Body -->
-                            <form>
-                                <div class="modal-body" style="margin-top: 15px;">
-                                    <div style="margin-bottom: 12px;">
-                                        <label style="display: block;">User Name</label>
-                                        <input type="text" class="form-control" name="username"
-                                            placeholder="Abhishek Guleria">
-                                    </div>
-
-                                    <div style="margin-bottom: 12px;">
-                                        <label style="display: block;">Mob. No.</label>
-                                        <input type="text" class="form-control" name="mobileno"
-                                            placeholder="9876543210">
-                                    </div>
-
-                                    <div style="margin-bottom: 12px;">
-                                        <label style="display: block;">Email</label>
-                                        <input type="email" class="form-control" name="email"
-                                            placeholder="abhiguleria1599@gmail.com">
-                                    </div>
-
-                                    <div style="margin-bottom: 12px;">
-                                        <label style="display: block;">Role</label>
-                                        <select id="userRole" class="form-control select2">
-                                            <option value="user" selected>User</option>
-                                            <option value="admin">vendor</option>
-                                        </select>
-                                    </div>
-
-                                    <div style="margin-bottom: 12px;">
-                                        <label style="display: block;">Balance</label>
-                                        <input type="text" class="form-control" name="balance" placeholder="N/A">
-                                    </div>
-                                </div>
-
-                                <!-- Modal Footer -->
-                                <div class="modal-footer justify-content-start mt-4"
-                                    style="margin-top: 10px; text-align: center;">
-                                    <button type="submit" class="btn btn-success close-modal col-5">Save</button>
-                                </div>
-                            </form>
-                        </div>
-                        <!-- Theme Modal for Wallet -->
                     </div>
                 </div>
             </div>
         </div>
     </div>
-        
-    <div class="modal fade @if($showModal) show @endif" id="add" tabindex="-1" aria-labelledby="addLabel"
+
+    <div class="modal demo @if($showModal) show @endif" id="add" tabindex="-1" aria-labelledby="addLabel"
         @if($showModal) style="display: block;" @else style="display: none;" @endif style="margin: 20px !important;">
         <div class="modal-dialog">
-            <div class="modal-content" style="
-                                                                        position: fixed;
-                                                                        top: 50%;
-                                                                        left: 50%;
-                                                                        transform: translate(-50%, -50%);
-                                                                        width: 350px;
-                                                                        background: #fff;
-                                                                        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-                                                                        border-radius: 13px;
-                                                                        z-index: 1000;
-                                                                        font-size: 13px;
-                                                                        height: 550px;
-                                                                        overflow-y: scroll;
-                                                                        scrollbar-width: none;
-                                                                        ">
-
+            <div class="modal-content"
+                style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 350px; background: #fff; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); border-radius: 13px; z-index: 1000; font-size: 13px; height: 550px; overflow-y: scroll; scrollbar-width: none;">
                 <!-- Modal Header -->
-                <div class="d-flex p-4 align-items-center justify-content-between">
-                    <h6 class="add-title" id="addLabel">Add New Customer</h6>
+                <div class="d-flex pl-4 pr-4 pt-4 pb-1 align-items-center justify-content-between">
+                    <h6 class="add-title" id="addLabel">
+                        {{ $editmode ? 'Edit Customer' : 'Add New Customer' }}
+                    </h6>
                     <button type="button" class="btn-close" wire:click="closeModal"></button>
                 </div>
 
                 <!-- Modal Body -->
                 <div class="modal-body">
+                    @if ($errors->any())
+                        <div class="alert alert-danger pb-1" >
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li style="line-height: 17px!important;">
+                                            {{ $error }}
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                     <div class="add-text ml-2" style="font-size: small !important; height: auto !important;">
                         <form>
+                            <input type="hidden" wire:model="cid">
                             <div class="container-fluid p-0" style="font-size: 12px;">
                                 <div class="mb-3">
                                     <div class="row">
@@ -565,12 +523,9 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-md-12 mb-2">
-                                            <input type="text" class="form-control text-muted mt-2" placeholder="Name"
-                                                wire:model="name">
+                                            <input type="text" class="form-control text-muted mt-2"
+                                                placeholder="Enter Name" wire:model.live="name">
                                         </div>
-                                        @error('name') <span class="text-danger">
-                                            {{ $message }}
-                                        </span> @enderror
                                     </div>
                                 </div>
 
@@ -581,11 +536,8 @@
                                     <div class="row">
                                         <div class="col-md-12 mb-2">
                                             <input type="email" class="form-control text-muted mt-2"
-                                                placeholder="email2@mail.com" wire:model="email">
+                                                placeholder="Enter Email" wire:model.live="email">
                                         </div>
-                                        @error('email') <span class="text-danger">
-                                            {{ $message }}
-                                        </span> @enderror
                                     </div>
                                 </div>
 
@@ -596,11 +548,8 @@
                                     <div class="row">
                                         <div class="col-md-12 mb-2">
                                             <input type="text" class="form-control text-muted mt-2"
-                                                placeholder="1234567890" wire:model="phone">
+                                                placeholder="Enter Phone Number" wire:model.live="phone">
                                         </div>
-                                        @error('phone') <span class="text-danger">
-                                            {{ $message }}
-                                        </span> @enderror
                                     </div>
                                 </div>
 
@@ -610,20 +559,16 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-md-12 mb-2">
-                                            <input type="text" class="form-control text-muted mt-2" placeholder="400"
-                                                wire:model="balance">
+                                            <input type="text" class="form-control text-muted mt-2"
+                                                placeholder="Enter balance" wire:model.live="balance">
                                         </div>
-                                        @error('balance') <span class="text-danger">
-                                            {{ $message }}
-                                        </span> @enderror
                                     </div>
                         </form>
                     </div>
 
                     <!-- Modal Footer -->
                     <div class="modal-footer justify-content-start mb-3 p-0" style="border: none;">
-                        <button type="button" class="btn btn-success col-md-5 "
-                            wire:click="storecustomerdata">Save</button>
+                        <button type="button" class="btn btn-success col-md-5 " wire:click="update">Save</button>
                     </div>
                 </div>
             </div>
@@ -637,14 +582,12 @@
     <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            window.addEventListener('open-modal', () => {
-                document.body.classList.add('modal-open');
-            });
+        window.addEventListener('open-modal', () => {
+            document.body.classList.add('modal-open');
+        });
 
-            window.addEventListener('close-modal', () => {
-                document.body.classList.remove('modal-open');
-            });
+        window.addEventListener('close-modal', () => {
+            document.body.classList.remove('modal-open');
         });
     </script>
     <script>
@@ -659,32 +602,10 @@
                 "lengthChange": false,
                 "dom": 'rt'
             });
-            $('#nameSearch').on('keyup', function () {
-                table.column(0).search(this.value).draw();
-            });
-
-            $('#emailSearch').on('keyup', function () {
-                table.column(1).search(this.value).draw();
-            });
-
-            $('#mobileSearch').on('keyup', function () {
-                table.column(2).search(this.value).draw();
-            });
-
-            $('#typeSearch').on('keyup', function () {
-                table.column(3).search(this.value).draw();
-            });
-
-            $('#balanceSearch').on('keyup', function () {
-                table.column(4).search(this.value).draw();
-            });
-
-
         });
 
 
         $(document).ready(function () {
-            // Sample transaction data (Can be fetched from an API)
             let transactions = [
                 { id: "#000001", date: "23 Dec. 2023", amount: "+400", type: "success" },
                 { id: "#000001", date: "23 Dec. 2023", amount: "-400", type: "danger" },
@@ -700,15 +621,15 @@
                 { id: "#000001", date: "23 Dec. 2023", amount: "-400", type: "danger" }
             ];
 
-            let rowsPerPage = 5;  // Number of rows per page
-            let currentPage = 1;   // Current page number
+            let rowsPerPage = 5; 
+            let currentPage = 1;   
 
             function displayTransactions(page) {
                 let start = (page - 1) * rowsPerPage;
                 let end = start + rowsPerPage;
                 let paginatedItems = transactions.slice(start, end);
 
-                $("#transactionTable").html(""); // Clear previous data
+                $("#transactionTable").html("");
                 $.each(paginatedItems, function (index, transaction) {
                     $("#transactionTable").append(`
                     <tr>
@@ -747,100 +668,8 @@
                 </li>
             `);
             }
-
-            // window.changePage = function (page) {
-            //     if (page < 1 || page > Math.ceil(transactions.length / rowsPerPage)) return;
-            //     currentPage = page;
-            //     displayTransactions(currentPage);
-            //     setupPagination();
-            // };
-
-            // Initialize the modal with the first page
             displayTransactions(currentPage);
             setupPagination();
         });
-
-
-
-
-        $(document).ready(function () {
-            // Initialize Select2 when modal opens
-            $(document).on('click', '[data-plugin="custommodal"]', function () {
-                setTimeout(function () {
-                    $('#role').select2({
-                        placeholder: "Select Role",
-                        allowClear: true,
-                        dropdownParent: $('#editModal') // Fix Select2 inside modal
-                    });
-                }, 100);
-            });
-        });
-
-
-
-        $(document).ready(function () {
-            $(document).on("click", ".open-wallet", function (e) {
-                e.preventDefault();
-
-                // Check if screen width is less than 768px (mobile devices)
-                if ($(window).width() < 900) {
-                    // Open Modal using Custombox
-                    new Custombox.modal({
-                        content: {
-                            effect: "blur",
-                            target: "#walletModal"
-                        }
-                    }).open();
-                }
-            });
-
-            // Close Modal
-            $(document).on("click", ".btn-close", function () {
-                Custombox.modal.close();
-            });
-        });
-
-
-        $(document).ready(function () {
-            // Initialize Select2
-            $(".select2").select2({
-                dropdownParent: $("#customModal") // Fix for dropdown behind modal
-            });
-
-            // Open Custombox Modal
-            $(document).on("click", ".open-modal", function () {
-                var userRole = $(this).data("role");
-                $("#userRole").val(userRole).trigger("change"); // Set selected role
-
-                new Custombox.modal({
-                    content: {
-                        effect: "blur",
-                        target: "#customModal"
-                    }
-                }).open();
-            });
-
-            // Close Modal
-            $(document).on("click", ".close-modal", function () {
-                Custombox.modal.close();
-            });
-        });
-
-
-
-        $(document).ready(function () {
-            // Initialize Select2 when modal opens
-            $(document).on('click', '[data-plugin="custommodal"]', function () {
-                setTimeout(function () {
-                    $('#type ').select2({
-                        placeholder: "Select Type",
-                        allowClear: true,
-                        dropdownParent: $('#add') // Fix Select2 inside modal
-                    });
-                }, 100);
-            });
-        });
-
-
     </script>
 </div>
