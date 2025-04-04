@@ -123,7 +123,6 @@
         /* position: sticky;
         bottom: 0;
         z-index: 2; */
-
         display: flex;
         flex-wrap: nowrap;  /* Prevents vertical stacking */
         justify-content: center;
@@ -238,6 +237,8 @@
         padding: 10px 0;
         z-index: 2;
         text-align: center;
+        align-items: center;
+        justify-content: center;
         /* box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.1);  */
     }
     .app-search .form-control {
