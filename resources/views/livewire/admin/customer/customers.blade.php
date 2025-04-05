@@ -418,7 +418,7 @@
                                                                     style="cursor: pointer;">
                                                             </button> -->
                                                     |
-                                                    <button type="button" class=" add-transaction waves-effect waves-light"
+                                                    <button type="button" class="add-transaction waves-effect waves-light"
                                                         wire:click="edit({{ $row->id }})"
                                                         style="border: none; background-color: #F5F5F5;">
                                                         <img src="{{asset('assets/image/edit.svg')}}" alt="dashboard"
