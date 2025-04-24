@@ -68,7 +68,7 @@
                                             <div class="avatar avatar-md">
                                                 <span class="avatar-title bg-info rounded-circle">
                                                     <i class="mdi mdi-bell-outline font-20"></i>
-                                                </span>
+                                                </span> 
                                             </div>
                                         </span>
                                         <span class="flex-grow-1 text-muted">
@@ -81,7 +81,7 @@
                                                 data-dismissible="#notification-1">
                                                 <i class="mdi mdi-close font-16"></i>
                                             </button>
-                                        </span> <
+                                        </span>   
                                     </span>
                                 </div>
                             </div>
@@ -97,7 +97,7 @@
                 </div>
 
                 <!-- Email Dropdown -->
-                <div class="d-none d-md-flex">
+                {{-- <div class="d-none d-md-flex">
                     <form class="app-search">
                         <div class="app-search-box">
                             <div class="input-group">
@@ -111,7 +111,7 @@
                             </div>
                         </div>
                     </form>
-                </div>
+                </div> --}}
 
 
                 <!-- User Dropdown -->

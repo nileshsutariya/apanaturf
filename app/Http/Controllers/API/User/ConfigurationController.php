@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API\User;
 
 use App\Models\Images;
 use App\Models\Sports;
+use App\Models\Amenity;
 use App\Models\Amenities;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -147,7 +148,7 @@ class ConfigurationController extends BaseController
             return $this->senderror(['errors' => $validator->errors()->all()]);
         }
 
-        $query = Amenities::amenitieslist();
+        $query = Amenity::amenitieslist();
 
         if ($request->has('filter_param.id') && !empty($request->input('filter_param.id'))) {
             $query->where('amenities.id', $request->input('filter_param.id'));
@@ -236,7 +237,7 @@ class ConfigurationController extends BaseController
             $image_id = $image->id;
         }
 
-        $amenities = Amenities::storeamenities($request->name, $image_id ?? null);
+        $amenities = Amenity::storeamenities($request->name, $image_id ?? null);
 
 
         return $this->sendresponse($amenities, 'Amenities added successfully');
@@ -244,7 +245,7 @@ class ConfigurationController extends BaseController
     }
     public function amenitiesdelete(Request $request)
     {
-        $response = Amenities::deleteamenities($request->id);
+        $response = Amenity::deleteamenities($request->id);
 
         if (!$response) {
             return $this->senderror('', 'Amenities not found');
