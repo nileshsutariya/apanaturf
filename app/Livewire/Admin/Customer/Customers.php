@@ -10,7 +10,7 @@ class Customers extends Component
 {
     use WithPagination;
     public $name, $email, $phone, $balance, $cid;
-    public $nameSearch, $balanceSearch, $phoneSearch, $typeSearch, $emailSearch;
+    public $search;
     
     public $editmode = false;
 
@@ -28,20 +28,13 @@ class Customers extends Component
         // print_r($this->balanceSearch);
         // print_r($this->emailSearch);
         // die;
-        $customers= Customer::where(function ($query) {
-            if (!empty($this->phoneSearch)) {
-                $query->where('phone', 'like', '%' . $this->phoneSearch . '%');
-            }
-            if (!empty($this->nameSearch)) {
-                $query->where('name', 'like', '%' . $this->nameSearch . '%');
-            }
-            if (!empty($this->balanceSearch)) {
-                $query->where('balance', 'like', '%' . $this->balanceSearch . '%');
-            }
-            if (!empty($this->emailSearch)) {
-                $query->where('email', 'like', '%' . $this->emailSearch . '%');
-            }
-        });
+        $customers = Customer::where('name', 'like', '%' . $this->search . '%')
+        ->orWhere('phone', 'like', '%' . $this->search . '%')
+        ->orWhere('email', 'like', '%' . $this->search . '%')
+        ->orWhere('balance', 'like', '%' . $this->search . '%');
+        
+      
+        $this->dispatch('livewire:updated');
 
         return view('livewire.admin.customer.customers', [
             'customers' =>$customers->paginate(10)
@@ -68,7 +61,7 @@ class Customers extends Component
     }
     public function openModal()
     {
-        $this->resetValidation(); // Clear validation errors
+        $this->resetValidation(); 
         $this->showModal = true;
         $this->dispatch('open-modal');
     }
@@ -93,7 +86,6 @@ class Customers extends Component
     {
         // print_r($this->cid);die;
         if ($this->cid) {
-            // Validation for Update
             return [
                 'name' => 'required|string|min:3|max:255',
                 'email' => 'required|email|unique:customer,email,' . $this->cid,
@@ -101,7 +93,6 @@ class Customers extends Component
                 'balance' => 'required|numeric|min:0',
             ];
         } else {
-            // Validation for Add
             return [
                 'name' => 'required|string',
                 'email' => 'required|email|unique:customer,email',

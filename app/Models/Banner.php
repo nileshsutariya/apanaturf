@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class Banner extends Model
 {
@@ -25,6 +26,27 @@ class Banner extends Model
         }
     
         return $banner;
+    }
+
+    public static function deletebanner($id)
+    {
+        $banner = self::find($id);
+
+        if (!$banner) {
+            return null;
+        }
+    
+        $image = Images::find($banner->image_id);
+        $banner->delete();
+    
+        if ($image) {
+            if (Storage::disk('public')->exists($image->image_path)) {
+                Storage::disk('public')->delete($image->image_path);
+            }
+            $image->delete();
+        }
+        return ['message' => 'Sport deleted successfully'];
+
     }
     
 }

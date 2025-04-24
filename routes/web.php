@@ -2,17 +2,49 @@
 
 use App\Livewire\Admin\User\User;
 use App\Livewire\Admin\User\Users;
-use App\Livewire\Dashboard;
+use App\Livewire\Admin\Sports\Sports;
 use Illuminate\Support\Facades\Route;
+use App\Livewire\Admin\Banner\Banners;
 use App\Livewire\Admin\Customer\Customers;
+use App\Livewire\Admin\Dashboard\Dashboard;
+use App\Http\Controllers\admin\users\UsersController;
+use App\Http\Controllers\admin\sport\SportsController;
+use App\Http\Controllers\admin\banner\bannerController;
+use App\Http\Controllers\admin\coupons\couponsController;
+use App\Http\Controllers\admin\customer\CustomersController;
+use App\Http\Controllers\admin\amenities\AmenitiesController;
 
-Route::get('admin/index', function () {
-    return view('admin.index');
-})->name('admin.index');
+
 Route::get('admin/users', function () {
     return view('admin.users');
 })->name('admin.users');
-Route::get('/admin/customer', Customers::class)->name('admin.customer');
+Route::get('admin/customer', [CustomersController::class, 'index'])->name('customer.index');
+Route::post('admin/customer/update', [CustomersController::class, 'update'])->name('customer.update');
+
+Route::get('admin/user', [UsersController::class, 'index'])->name('user.index');
+Route::post('admin/user/update', [UsersController::class, 'update'])->name('user.update');
+
+Route::get('admin/sport', [SportsController::class, 'index'])->name('sport.index');
+Route::post('admin/sport/update', [SportsController::class, 'update'])->name('sport.update');
+Route::post('admin/sport/delete', [SportsController::class, 'delete'])->name('sport.delete');
+
+Route::get('admin/amenities', [AmenitiesController::class, 'index'])->name('amenities.index');
+Route::post('admin/amenities/update', [AmenitiesController::class, 'update'])->name('amenities.update');
+Route::post('admin/amenities/delete', [AmenitiesController::class, 'delete'])->name('amenities.delete');
+
+Route::get('admin/banner', [bannerController::class, 'index'])->name('banner.index');
+Route::post('admin/banner/update', [bannerController::class, 'update'])->name('banner.update');
+Route::post('admin/banner/delete', [bannerController::class, 'delete'])->name('banner.delete');
+
+Route::get('admin/coupons', [couponsController::class, 'index'])->name('coupons.index');
+Route::post('admin/coupons/update', [couponsController::class, 'update'])->name('coupons.update');
+
+// Route::get('/admin/customer', Customers::class)->name('admin.customer');
+Route::get('/admin/index', Dashboard::class)->name('admin.index');
+Route::get('/admin/sports', Sports::class)->name('admin.sports');
+// Route::get('/admin/banner', Banners::class)->name('admin.banner');
+
+
 
 Route::get('admin/venues', function () {
     return view('admin.venues');
@@ -29,21 +61,15 @@ Route::get('admin/transaction', function () {
 Route::get('admin/configuration', function () {
     return view('admin.configuration');
 })->name('admin.configuration');
-Route::get('admin/sports', function () {
-    return view('admin.sports');
-})->name('admin.sports');
-Route::get('admin/amenities', function () {
-    return view('admin.amenities');
-})->name('admin.amenities');
+// Route::get('admin/amenities', function () {
+//     return view('admin.amenities');
+// })->name('admin.amenities');
 Route::get('admin/financialyear', function () {
     return view('admin.financialyear');
 })->name('admin.financialyear');
 Route::get('/couponscode', function () {
     return view('admin.couponscode');
 })->name('admin.couponscode');
-Route::get('/banner', function () {
-    return view('admin.banner');
-})->name('admin.banner');
 Route::get('/subscribers', function () {
     return view('admin.subscribers');
 })->name('admin.subscribers');
@@ -56,9 +82,9 @@ Route::get('/profile', function () {
 
 
 
-Route::get('index', function() {
-    return view('users.index');
-})->name('users.dashboard');
+// Route::get('index', function() {
+//     return view('users.index');
+// })->name('users.dashboard');
 Route::get('users/matches', function() {
     return view('users.matches');
 })->name('users.matches');

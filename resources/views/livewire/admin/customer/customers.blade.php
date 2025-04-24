@@ -1,17 +1,21 @@
 <div>
     @if (session()->has('message'))
-    <div wire:poll.0.2m>
+        <div wire:poll.0.2m>
             <div class="alert alert-success">
                 {{ session('message') }}
             </div>
-    </div>
+        </div>
     @endif
     <!-- Custombox CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/custombox@4.0.3/dist/custombox.min.css">
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/custombox@4.0.3/dist/custombox.min.css"> -->
 
     <!-- Custombox JS -->
 
     <style>
+        html {
+            overflow-y: hidden;
+        }
+
         .modal-demo {
             width: 400px !important;
             height: auto;
@@ -66,7 +70,6 @@
             /* For Internet Explorer/Edge */
         }
 
-        /* Hide scrollbar for WebKit browsers (Chrome, Safari) */
         .modal-demo::-webkit-scrollbar {
             display: none;
         }
@@ -76,11 +79,7 @@
         }
 
         body {
-            /* font-size: 15px;
-            font-family: 'Inter', sans-serif; */
             font-weight: 400 !important;
-            /* letter-spacing: 0.9px;
-            background-color: #F5F5F5; */
         }
 
         .side-nav {
@@ -96,7 +95,7 @@
             letter-spacing: 0.9px;
             padding: 7px;
         }
-
+ 
         .side-nav .side-nav-item .side-nav-link .menu-icon {
             height: 20px;
             width: 20px;
@@ -146,9 +145,9 @@
             justify-content: center;
             align-items: center;
             list-style: none;
-            padding: 10px 0;
+            padding: 0px 0;
             gap: 5px;
-            float: none;
+            float: none !important;
             /* overflow-x: auto;  Enables horizontal scrolling if needed */
             white-space: nowrap;
             /* Keeps buttons in one row */
@@ -247,6 +246,7 @@
         }
 
         thead {
+            border-bottom: 2px solid #229e75 !important;
             position: sticky;
             background: #F5F5F5;
             top: 0;
@@ -254,11 +254,53 @@
         }
 
         .table-container {
-            max-height: 400px;
+            max-height: 67vh;
             /* Adjust as needed */
             overflow-y: auto;
             scrollbar-width: none;
             position: relative;
+        }
+
+        @media(max-height:600px) {
+            .table-container {
+                max-height: 63vh;
+            }
+        }
+
+        @media(min-height:640px) and (max-height:695px) {
+            .table-container {
+                max-height: 57vh;
+            }
+        }
+
+        @media(min-height:696px) and (max-height:741px) {
+            .table-container {
+                max-height: 60vh;
+            }
+        }
+
+        @media(min-height:742px) and (max-height:800px) {
+            .table-container {
+                max-height: 70vh;
+            }
+        }
+
+        @media(min-height:742px) and (max-height:800px) {
+            .table-container {
+                max-height: 70vh;
+            }
+        }
+
+        @media(min-height:950px) and (max-height:1024px) {
+            .table-container {
+                max-height: 77vh;
+            }
+        }
+
+        @media(min-height:1025px) and (max-height:1200px) {
+            .table-container {
+                max-height: 110vh;
+            }
         }
 
         .pagination-container {
@@ -284,6 +326,9 @@
         body.modal-open {
             overflow: hidden;
         }
+        .data-dt-column{
+            width: auto!important;
+        }
     </style>
 
     <div class="page-title-box">
@@ -292,21 +337,45 @@
             <div class="flex-grow-1">
                 <h2 class="ml-3"><strong>Customer</strong></h2>
             </div>
+            <!-- <div class="d-none d-sm-flex pb-1">
+                <form class="app-search">
+                    <div class="app-search-box">
+                        <div class="input-group">
+                            <input type="text" id="search" class="form-control pt-3 pb-3"
+                                placeholder="Search..." style="border-radius: 50px; width: 150px;"
+                                wire:model.live="search">
+                        </div>
+                    </div>
+                </form>
+            </div> -->
             <!-- Add Customer Button -->
             <button type="button" class=" add-transaction waves-effect waves-light" wire:click="openModal"
                 style="border: none; background-color: #F5F5F5;">
                 <h2 class="btn btn-success" style="border-radius: 40px;">+ Add Customer</h2>
             </button>
         </div>
+        <!-- <div class="row">
+            <div class="col-sm-4 ml-auto mr-2">
+
+                <div class="pb-1 ml-auto" style="width:220px;">
+                        <form class="app-search">
+                            <div class="app-search-box">
+                                <div class="input-group">
+                                    <input type="text" id="search" class="form-control pt-3 pb-3"
+                                        placeholder="Search..." style="border-radius: 50px; width: 150px;"
+                                        wire:model.live="search">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+            </div>
+        </div> -->
         <!-- Livewire Controlled Modal -->
-
-
         <div class="row">
             <div class="col-12">
                 <div class="card" style="background-color: transparent; box-shadow: none;">
                     <div class="card-body pt-2" style="overflow: hidden;">
-
-                        <div class="table-container table-responsive" style="max-height: 500px; overflow-y: auto;">
+                        <div class="table-container table-responsive" style="overflow-y: auto;">
                             <table id="responsive-datatable" id="walletTable" class="table dt-responsive nowrap"
                                 style="border-collapse: collapse; border-spacing: 0; width: 100%; font-size: 13px;">
                                 <thead>
@@ -318,14 +387,15 @@
                                         <th>Balance</th>
                                         <th>Action</th>
                                     </tr>
-                                    <tr>
+                                    <!-- <tr>
                                         <td>
                                             <div class="d-none d-sm-flex">
                                                 <form class="app-search">
                                                     <div class="app-search-box">
                                                         <div class="input-group">
                                                             <input type="text" id="nameSearch" class="form-control"
-                                                                placeholder="Name" style="border-radius: 10px;" wire:model.live="nameSearch">
+                                                                placeholder="Name" style="border-radius: 10px;"
+                                                                wire:model.live="nameSearch">
                                                         </div>
                                                     </div>
                                                 </form>
@@ -337,7 +407,8 @@
                                                     <div class="app-search-box">
                                                         <div class="input-group">
                                                             <input type="text" id="emailSearch" class="form-control"
-                                                                placeholder="Email" style="border-radius: 10px;" wire:model.live="emailSearch">
+                                                                placeholder="Email" style="border-radius: 10px;"
+                                                                wire:model.live="emailSearch">
                                                         </div>
                                                     </div>
                                                 </form>
@@ -349,7 +420,8 @@
                                                     <div class="app-search-box">
                                                         <div class="input-group">
                                                             <input type="text" id="mobileSearch" class="form-control"
-                                                                placeholder="Mob. No." style="border-radius: 10px;" wire:model.live="phoneSearch">
+                                                                placeholder="Mob. No." style="border-radius: 10px;"
+                                                                wire:model.live="phoneSearch">
                                                         </div>
                                                     </div>
                                                 </form>
@@ -361,7 +433,8 @@
                                                     <div class="app-search-box">
                                                         <div class="input-group">
                                                             <input type="text" id="typeSearch" class="form-control"
-                                                                placeholder="Type" style="border-radius: 10px;" wire:model.live="typeSearch">
+                                                                placeholder="Type" style="border-radius: 10px;"
+                                                                wire:model.live="typeSearch">
                                                         </div>
                                                     </div>
                                                 </form>
@@ -373,14 +446,15 @@
                                                     <div class="app-search-box">
                                                         <div class="input-group">
                                                             <input type="text" id="balanceSearch" class="form-control"
-                                                                placeholder="Balance" style="border-radius: 10px;" wire:model.live="balanceSearch">
+                                                                placeholder="Balance" style="border-radius: 10px;"
+                                                                wire:model.live="balanceSearch">
                                                         </div>
                                                     </div>
                                                 </form>
                                             </div>
                                         </td>
                                         <td></td>
-                                    </tr>
+                                    </tr> -->
                                 </thead>
                                 <tbody>
                                     @if(isset($customers))
@@ -412,11 +486,11 @@
                                                             style="cursor: pointer;">
                                                     </a>
                                                     <!-- <button type="button" class=" add-transaction waves-effect waves-light"
-                                                            wire:click="openModal('wallet')"
-                                                                style="border: none; background-color: #F5F5F5;">
-                                                                <img src="{{asset('assets/image/empty-wallet.svg')}}" alt="dashboard"
-                                                                    style="cursor: pointer;">
-                                                            </button> -->
+                                                                                                                            wire:click="openModal('wallet')"
+                                                                                                                                style="border: none; background-color: #F5F5F5;">
+                                                                                                                                <img src="{{asset('assets/image/empty-wallet.svg')}}" alt="dashboard"
+                                                                                                                                    style="cursor: pointer;">
+                                                                                                                            </button> -->
                                                     |
                                                     <button type="button" class="add-transaction waves-effect waves-light"
                                                         wire:click="edit({{ $row->id }})"
@@ -432,15 +506,15 @@
                                 </tbody>
                             </table>
                         </div>
-                    </div>
-                    <div class="pagination-container">
-                        <nav>
-                            <ul class="pagination custom-pagination mb-0">
-                                <div>
-                                    {{ $customers->links('livewire.admin.component.pagination') }}
-                                </div>
-                            </ul>
-                        </nav>
+                        <div class="pagination-container">
+                            <nav>
+                                <ul class="pagination custom-pagination mb-0">
+                                    <div>
+                                        {{ $customers->links('livewire.admin.component.pagination') }}
+                                    </div>
+                                </ul>
+                            </nav>
+                        </div>
                     </div>
 
                     <div id="walletModal" class="modal-demo modal-lg"
@@ -489,10 +563,13 @@
 
     <div class="modal demo @if($showModal) show @endif" id="add" tabindex="-1" aria-labelledby="addLabel"
         @if($showModal) style="display: block;" @else style="display: none;" @endif style="margin: 20px !important;">
+        <div class="modal-backdrop fade show"
+            style="position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background-color: rgba(0, 0, 0, 0.5); z-index: 999;"
+            wire:click="closeModal">
+        </div>
         <div class="modal-dialog">
             <div class="modal-content"
                 style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 350px; background: #fff; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); border-radius: 13px; z-index: 1000; font-size: 13px; height: 550px; overflow-y: scroll; scrollbar-width: none;">
-                <!-- Modal Header -->
                 <div class="d-flex pl-4 pr-4 pt-4 pb-1 align-items-center justify-content-between">
                     <h6 class="add-title" id="addLabel">
                         {{ $editmode ? 'Edit Customer' : 'Add New Customer' }}
@@ -500,14 +577,13 @@
                     <button type="button" class="btn-close" wire:click="closeModal"></button>
                 </div>
 
-                <!-- Modal Body -->
                 <div class="modal-body">
                     @if ($errors->any())
-                        <div class="alert alert-danger pb-1" >
+                        <div class="alert alert-danger pb-1">
                             <ul>
                                 @foreach ($errors->all() as $error)
                                     <li style="line-height: 17px!important;">
-                                            {{ $error }}
+                                        {{ $error }}
                                     </li>
                                 @endforeach
                             </ul>
@@ -563,10 +639,10 @@
                                                 placeholder="Enter balance" wire:model.live="balance">
                                         </div>
                                     </div>
+                                </div>
+                            </div>
                         </form>
                     </div>
-
-                    <!-- Modal Footer -->
                     <div class="modal-footer justify-content-start mb-3 p-0" style="border: none;">
                         <button type="button" class="btn btn-success col-md-5 " wire:click="update">Save</button>
                     </div>
@@ -577,10 +653,51 @@
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/custombox@4.0.3/dist/custombox.min.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/custombox@4.0.3/dist/custombox.min.js"></script> -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <script>
+        function initDataTable() {
+            const table = $('#responsive-datatable');
+    
+                // if (table.length) {
+                // const existingTable = $(table).DataTable();
 
+                // if ($.fn.DataTable.isDataTable(table)) {
+                //     // table.destroy();                      
+                //     $('#responsive-datatable').destroy();
+                //     console.log('DataTable destroyed');
+                // }
+                table.DataTable({
+                "ordering": false,
+                "paging": false,
+                "searching": true,
+                "info": false,
+                "pageLength": 10,
+                "lengthChange": false,
+                "dom": 'rt'
+                });
+                // console.log('DataTable reinitialized');
+                // } else {
+                //     console.log('Table not found');
+                // }
+        }
+        
+        // document.addEventListener('DOMContentLoaded', function () {
+        //     console.log('📄 DOMContentLoaded fired');
+        //     initDataTables();
+        // });
+
+        // document.addEventListener('livewire:navigated', () => {
+        //     console.log('🌐 Livewire navigated');
+        //     setTimeout(initDataTable, 100);
+        // });
+       
+        document.addEventListener('livewire:updated', () => {
+            // console.log('Livewire updated');
+            setTimeout(initDataTable, 100);
+        });
+
+    </script>
     <script>
         window.addEventListener('open-modal', () => {
             document.body.classList.add('modal-open');
@@ -590,20 +707,19 @@
             document.body.classList.remove('modal-open');
         });
     </script>
+    
     <script>
-
-        $(document).ready(function () {
-            var table = $('#responsive-datatable').DataTable({
-                "ordering": false,
-                "paging": true,
-                "searching": true,
-                "info": false,
-                "pageLength": 10,
-                "lengthChange": false,
-                "dom": 'rt'
-            });
-        });
-
+        // $(document).ready(function () {
+        //     var table = $('#responsive-datatable').DataTable({
+        //         "ordering": false,
+        //         "paging": true,
+        //         "searching": true,
+        //         "info": false,
+        //         "pageLength": 10,
+        //         "lengthChange": false,
+        //         "dom": 'rt'
+        //     });
+        // });
 
         $(document).ready(function () {
             let transactions = [
@@ -621,8 +737,8 @@
                 { id: "#000001", date: "23 Dec. 2023", amount: "-400", type: "danger" }
             ];
 
-            let rowsPerPage = 5; 
-            let currentPage = 1;   
+            let rowsPerPage = 5;
+            let currentPage = 1;
 
             function displayTransactions(page) {
                 let start = (page - 1) * rowsPerPage;
@@ -645,14 +761,12 @@
                 let totalPages = Math.ceil(transactions.length / rowsPerPage);
                 $("#pagination").html("");
 
-                // Previous Button
                 $("#pagination").append(`
                 <li class="page-item ${currentPage === 1 ? "disabled" : ""}">
                     <a class="page-link" href="#" onclick="changePage(${currentPage - 1})">‹</a>
                 </li>
             `);
 
-                // Page Numbers
                 for (let i = 1; i <= totalPages; i++) {
                     $("#pagination").append(`
                     <li class="page-item ${i === currentPage ? "active" : ""}">
@@ -661,7 +775,6 @@
                 `);
                 }
 
-                // Next Button
                 $("#pagination").append(`
                 <li class="page-item ${currentPage === totalPages ? "disabled" : ""}">
                     <a class="page-link" href="#" onclick="changePage(${currentPage + 1})">›</a>

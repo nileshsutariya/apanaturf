@@ -127,18 +127,13 @@ class BannersController extends BaseController
     }
     
     public function bannerdelete(Request $request){
-        $banner = Banner::find($request->id);
+        $response = Banner::deletesport($request->id);
 
-        if (!$banner) {
-            return $this->senderror([], 'Banner not found.');
+        if (!$response) {
+            return $this->senderror('', 'Sport not found');
         }
-        
-        $imageId = $banner->image_id;
-        $banner->delete();
-        
-        Images::find($imageId)?->delete();
-        
-        return $this->sendresponse([], 'Banner deleted successfully');
-    }
+
+        return $this->sendresponse([], $response['message']);    }
 
 }
+

@@ -23,7 +23,7 @@ class Users extends Component
     public $uid;
     public function updatingSearchName()
     {
-        $this->resetPage(); // Reset pagination when searching
+        $this->resetPage(); 
     }
     public function updated($field)
     {
