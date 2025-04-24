@@ -11,7 +11,7 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    {{-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> --}}
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Bootstrap JS -->
@@ -22,9 +22,10 @@
     <link rel="stylesheet"
         href="{{asset('assets/libs/datatables.net-responsive-bs5/css/responsive.bootstrap5.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/libs/datatables.net-select-bs5/css/select.bootstrap5.min.css')}}">
-
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    
     <!-- App favicon -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    {{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> --}}
 
     <link rel="shortcut icon" href="{{asset('assets/images/favicon.ico')}}">
 
@@ -41,6 +42,7 @@
     <!-- Theme Config Js -->
     <script src="{{asset('assets/js/config.js')}}"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
 
     <style>
         body {
@@ -66,13 +68,23 @@
         html[data-sidenav-size=condensed]:not([data-layout=topnav]) .sidenav-menu .sidebar-footer .footer-dot {
             overflow: hidden;
         }
-
+        
+html[data-sidenav-size=condensed]:not([data-layout=topnav]) .sidenav-menu .side-nav>.side-nav-item:hover>.side-nav-link {
+    background-color: rgb(24, 24, 24);
+    opacity: 0.9;
+    color: rgb(206, 203, 203);
+    text-decoration: none;
+}
+html[data-sidenav-size=condensed]:not([data-layout=topnav]) .sidenav-menu .side-nav .side-nav-item:hover .side-nav-link {
+    background-color: rgb(24, 24, 24);
+    opacity: 0.9;
+}
         .sidebar-footer {
             position: sticky;
             bottom: 0;
             background: rgb(24, 24, 24);
             color: white;
-            text-align: center;
+            text-align: justify;
             padding: 1px;
             width: 100%;
             z-index: 10;
@@ -139,7 +151,7 @@
             list-style: none;
             padding: 10px 0;
             gap: 5px;
-            float: left;
+            float: none;
 
             /* overflow-x: auto;  Enables horizontal scrolling if needed */
             white-space: nowrap;
@@ -201,7 +213,7 @@
             }
         }
     </style>
-        @livewireStyles
+    @livewireStyles
 
 </head>
 
@@ -212,49 +224,48 @@
         @include('livewire.admin.component.layouts.sidebar')
         <div class="page-content">
             <div class="page-container" style="background-color: transparent;">
-                
                 {{ $slot }}
-
             </div>
         </div>
+        @include('livewire.admin.component.layouts.footer')
     </div>
     
 
-
     <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-<!-- Vendor js -->
-<script src="{{asset('assets/js/vendor.min.js')}}"></script>
+    <!-- Vendor js -->
+    <script src="{{asset('assets/js/vendor.min.js')}}"></script>
 
-<!-- App js -->
-<script src="{{asset('assets/js/app.js')}}"></script>
+    <!-- App js -->
+    <script src="{{asset('assets/js/app.js')}}"></script>
 
-<!--Morris Chart-->
-<!-- <script src="{{asset('assets/libs/morris.js/morris.min.js')}}"></script> -->
-<script src="{{asset('assets/libs/raphael/raphael.min.js')}}"></script>
+    <!--Morris Chart-->
+    {{-- <!-- <script src="{{asset('assets/libs/morris.js/morris.min.js')}}"></script> --> --}}
+    {{-- <script src="{{asset('assets/libs/raphael/raphael.min.js')}}"></script> --}}
 
-<!-- Projects Analytics Dashboard App js -->
-<!-- <script src="{{asset('assets/js/pages/dashboard-sales.js')}}"></script> -->
+    <!-- Projects Analytics Dashboard App js -->
+    <!-- <script src="{{asset('assets/js/pages/dashboard-sales.js')}}"></script> -->
 
-<script src="{{asset('assets/libs/datatables.net/js/dataTables.min.js')}}"></script>
-<script src="{{asset('assets/libs/datatables.net-bs5/js/dataTables.bootstrap5.min.js')}}"></script>
+    <script src="{{asset('assets/libs/datatables.net/js/dataTables.min.js')}}"></script>
+    <script src="{{asset('assets/libs/datatables.net-bs5/js/dataTables.bootstrap5.min.js')}}"></script>
 
-<script src="{{asset('assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js')}}"></script>
-<script src="{{asset('assets/libs/datatables.net-responsive-bs5/js/responsive.bootstrap5.min.js')}}"></script>
+    <script src="{{asset('assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js')}}"></script>
+    <script src="{{asset('assets/libs/datatables.net-responsive-bs5/js/responsive.bootstrap5.min.js')}}"></script>
 
-<script src="{{asset('assets/libs/datatables.net-buttons/js/dataTables.buttons.min.js')}}"></script>
-<script src="{{asset('assets/libs/datatables.net-buttons-bs5/js/buttons.bootstrap5.min.js')}}"></script>
+    <script src="{{asset('assets/libs/datatables.net-buttons/js/dataTables.buttons.min.js')}}"></script>
+    <script src="{{asset('assets/libs/datatables.net-buttons-bs5/js/buttons.bootstrap5.min.js')}}"></script>
 
-<script src="{{asset('assets/libs/datatables.net-buttons/js/buttons.html5.min.js')}}"></script>
-<script src="{{asset('assets/libs/datatables.net-buttons/js/buttons.print.min.js')}}"></script>
+    <script src="{{asset('assets/libs/datatables.net-buttons/js/buttons.html5.min.js')}}"></script>
+    <script src="{{asset('assets/libs/datatables.net-buttons/js/buttons.print.min.js')}}"></script>
 
-<script src="{{asset('assets/libs/datatables.net-keytable/js/dataTables.keyTable.min.js')}}"></script>
-<script src="{{asset('assets/libs/datatables.net-select/js/dataTables.select.min.js')}}"></script>
+    <script src="{{asset('assets/libs/datatables.net-keytable/js/dataTables.keyTable.min.js')}}"></script>
+    <script src="{{asset('assets/libs/datatables.net-select/js/dataTables.select.min.js')}}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
-<script src="https://cdn.jsdelivr.net/npm/custombox/dist/custombox.min.js"></script>
+    {{-- <script src="https://cdn.jsdelivr.net/npm/custombox/dist/custombox.min.js"></script> --}}
 
-@livewireScripts
+    @livewireScripts
 
 </body>
 </html>

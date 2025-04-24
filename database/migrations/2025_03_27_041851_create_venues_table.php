@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('area');
             $table->string('pincode');
             $table->string('location_link');
+            $table->string('location_text');
             $table->string('vendor_image');
             $table->json('turf_image');
             

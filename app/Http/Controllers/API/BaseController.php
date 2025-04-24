@@ -10,7 +10,7 @@ class BaseController extends Controller
 {
     public function sendresponse($result, $message)
     {
-        $data = Http::get('http://localhost/apanaturf/');
+        $data = Http::get('http://192.168.1.169/apanaturf/');
         $status = $data->status();
         if ($data->successful()) {
             return response()->json([

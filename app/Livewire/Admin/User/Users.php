@@ -61,18 +61,22 @@ class Users extends Component
         if (!empty($this->searchType)) {
             $users->where('role_id', 'like', '%' . $this->searchType . '%');
         }
-    
+
+        $this->dispatch('livewire:updated');
+
+        // $this->dispatch('refreshDatatable');
         return view('livewire.admin.user.users', [
-            'users' => $users->paginate(5),
+            'users' => $users->paginate(10),
+
         ])->layout('livewire.admin.component.layouts.app');
     }
-    
-
 
     public function mount()
     {
         $this->resetPage();
-        $this->users = User::getdata(); 
+        // $this->users = User::getdata();
+        // $this->dispatch('livewire:updated');
+
         $this->roles = Role_type::all(); 
 
         $this->reset(['name', 'email', 'phone', 'role_id']);
@@ -84,7 +88,8 @@ class Users extends Component
         // $this->resetInputFields();
         $this->showModal = true;
         $this->dispatch('open-modal');
-
+        // $this->dispatch('refreshDatatable');
+        // $this->dispatch('livewire:updated');
     }
 
     public function closeModal()
@@ -92,6 +97,8 @@ class Users extends Component
         $this->resetInputFields();
         $this->showModal = false;
         $this->dispatch('close-modal');
+        // $this->dispatch('refreshDatatable');
+        // $this->dispatch('livewire:updated');
 
     }
     private function resetInputFields()
@@ -154,6 +161,4 @@ class Users extends Component
         $this->closeModal();
     }
    
-   
-
 }

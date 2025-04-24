@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('otp', function (Blueprint $table) {
+        Schema::create('location_history', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('otp')->nullable();
-            $table->timestamp('otp_send_at')->nullable();
-            $table->timestamp('otp_verified_at')->nullable();
-            $table->timestamp('otp_expires_at')->nullable();
+            $table->string('latitude');
+            $table->string('longitude');
+            $table->unsignedBigInteger('customer_id');
+            $table->foreign('customer_id')->references('id')->on('customer');
             $table->timestamps();
         });
     }
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('otp');
+        Schema::dropIfExists('location_history');
     }
 };

@@ -11,9 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('venues', function (Blueprint $table) {
-            $table->unsignedBigInteger('city_id')->after('balance');
-            $table->foreign('city_id')->references('id')->on('city');
+        Schema::table('customer', function (Blueprint $table) {
+            $table->boolean('otp_verified_at')->after('otp_send_at');
+            $table->unsignedBigInteger('location_history')->after('otp_verify');
+            $table->foreign('location_history')->references('id')->on('location_history');
         });
     }
 
@@ -22,7 +23,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('venues', function (Blueprint $table) {
+        Schema::table('customer', function (Blueprint $table) {
             //
         });
     }
