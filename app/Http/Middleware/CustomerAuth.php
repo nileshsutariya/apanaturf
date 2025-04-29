@@ -16,16 +16,15 @@ class CustomerAuth
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if ($request->is('api/customer/login')) {
-            $customer = Auth::guard('customer')->user();
-
-            if ($customer) {
-                // print_r("123456");die;                
-                return response()->json([
-                    'message' => 'Please logout first to login again.',
-                ], 401);
-            }
+        if (!Auth::guard('customer')->check()) {
+            return response()->json([
+                'success' => false,
+                'status' => 401,
+                'message' => ['error' => 'Unauthorized'],
+                'data' => 'Unauthenticated',
+            ], 401);
         }
-        return $next($request);    
+
+        return $next($request);  
     }
 }
