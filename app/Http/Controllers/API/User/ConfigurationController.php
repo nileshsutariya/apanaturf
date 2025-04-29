@@ -16,7 +16,7 @@ use App\Http\Controllers\API\BaseController;
 
 class ConfigurationController extends BaseController
 {
-    public function sportlist(Request $request)
+    public function SportsList(Request $request)
     {
 
         $validator = Validator::make($request->all(), [
@@ -57,7 +57,7 @@ class ConfigurationController extends BaseController
         return $this->sendresponse($data, 'Sports list');
     }
 
-    public function addsports(Request $request) 
+    public function SportsStore(Request $request) 
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
@@ -124,7 +124,7 @@ class ConfigurationController extends BaseController
         return $this->sendresponse($sports, 'Sports added successfully');
     
     }
-    public function sportdelete(Request $request)
+    public function SportsDelete(Request $request)
     {
         $response = Sports::deletesport($request->id);
 
@@ -135,7 +135,7 @@ class ConfigurationController extends BaseController
         return $this->sendresponse([], $response['message']);
     }
 
-    public function amenitieslist(Request $request)
+    public function AmenitiesList(Request $request)
     {
 
         $validator = Validator::make($request->all(), [
@@ -176,7 +176,7 @@ class ConfigurationController extends BaseController
         return $this->sendresponse($data, 'Amenities list');
     }
 
-    public function addamenities(Request $request) 
+    public function AmenitiesStore(Request $request) 
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
@@ -243,7 +243,7 @@ class ConfigurationController extends BaseController
         return $this->sendresponse($amenities, 'Amenities added successfully');
     
     }
-    public function amenitiesdelete(Request $request)
+    public function AmenitiesDelete(Request $request)
     {
         $response = Amenity::deleteamenities($request->id);
 

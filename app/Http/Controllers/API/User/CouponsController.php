@@ -10,7 +10,7 @@ use App\Http\Controllers\API\BaseController;
 
 class CouponsController extends BaseController
 {
-    public function addcoupons(Request $request) 
+    public function store(Request $request) 
     {
         
         $data = $request->only([
@@ -28,7 +28,7 @@ class CouponsController extends BaseController
         return $this->sendresponse($coupons, 'Coupons added successfully.');
 
     }
-    public function deletecoupons(Request $request)
+    public function delete(Request $request)
     {
         $response = Coupons::couponsdelete($request->id);
 
@@ -38,7 +38,7 @@ class CouponsController extends BaseController
 
         return $this->sendresponse([], $response['message']);
     }
-    public function listcoupons(Request $request)
+    public function list(Request $request)
     {
         $today = now();
         $startOfMonth = $today->copy()->startOfMonth();

@@ -52,7 +52,7 @@ Route::post('admin/banner/list', [BannersController::class, 'bannerlist']);
 // Route::group([
     //     'middleware' => 'customer.login',
     // ], function () {
-        Route::prefix('customer')->group(function () {
+    Route::prefix('customer')->group(function () {
         
         
         Route::post('/register', [RegisterController::class, 'register']);
