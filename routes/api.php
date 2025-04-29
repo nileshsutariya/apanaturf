@@ -19,7 +19,13 @@ use App\Http\Controllers\API\User\ConfigurationController;
 // })->middleware('auth:api');
 
 // Route::post('admin/login', [UserController::class, 'login']);
+// Route::group([
+//         'middleware' => 'login',
+//     ], function ($router) {
 
+Route::post('admin/login', [loginController::class, 'login']);
+Route::post('admin/logout', [loginController::class, 'logout']);
+// });
 Route::post('admin/update', [UserController::class, 'update']);
 Route::post('admin/list', [UserController::class, 'list']);
 
@@ -42,36 +48,33 @@ Route::post('admin/banner/add', [BannersController::class, 'addbanner']);
 Route::post('admin/banner/delete', [BannersController::class, 'bannerdelete']);
 Route::post('admin/banner/list', [BannersController::class, 'bannerlist']);
 
+
+
 Route::post('customer/register', [registerController::class, 'register']);
 Route::post('customer/profile', [registerController::class, 'profile']);
 
-Route::group([
-    'middleware' => 'customer.login',
-], function ($router) {
-    
-    Route::post('customer/login', [\App\Http\Controllers\API\customer\LoginController::class, 'login']);
-    Route::post('customer/otp/verify', [\App\Http\Controllers\API\customer\LoginController::class, 'verifyotp']);
-    Route::post('customer/otp/resend', [\App\Http\Controllers\API\customer\LoginController::class, 'resendotp']);
+Route::post('customer/login', [\App\Http\Controllers\API\customer\LoginController::class, 'login']);
+
+Route::post('customer/otp/verify', [\App\Http\Controllers\API\customer\LoginController::class, 'verifyotp']);
+Route::post('customer/otp/resend', [\App\Http\Controllers\API\customer\LoginController::class, 'resendotp']);
+
+// Route::group([
+//     'middleware' => 'customer.login',
+// ], function () {
+
+Route::middleware('customer.login')->group(function () {
+
     Route::post('customer/logout', [\App\Http\Controllers\API\customer\LoginController::class, 'logout']);
-    
-    Route::post('customer/banner', [BannerController::class, 'banners']);
-    
-    Route::post('customer/turf', [TurfController::class, 'turf']);
-    Route::post('customer/turf/details', [TurfController::class, 'details']);
-
-    Route::post('customer/coupons', [CouponController::class, 'coupons']);
-    
-    Route::post('customer/venues', [VenuesController::class, 'venues']);
-    
+   
 });
 
+Route::post('customer/banner', [BannerController::class, 'banners']);
+// Route::post('customer/banner/store', [BannerController::class, 'storebanners']);
 
+Route::post('customer/turf', [TurfController::class, 'turf']);
+Route::post('customer/turf/details', [TurfController::class, 'details']);
 
+Route::post('customer/coupons', [CouponController::class, 'coupons']);
 
-Route::group([
-        'middleware' => 'login',
-    ], function ($router) {
+Route::post('customer/venues', [VenuesController::class, 'venues']);
 
-    Route::post('admin/login', [loginController::class, 'login']);
-    Route::post('admin/logout', [loginController::class, 'logout']);
-});

@@ -36,7 +36,7 @@ class CouponController extends BaseController
         if($validator->fails()){
             return $this->senderror( ['errors' => $validator->errors()->all()]);
         }
-
+ 
         if ($request->has('filter_param.id') && !empty($request->input('filter_param.id'))) {
             $query->where('id', $request->input('filter_param.id'));
         }
@@ -54,9 +54,17 @@ class CouponController extends BaseController
         $sortDirection = $request->input('order.dir', 'asc'); 
     
         $query->orderBy($sortColumn, $sortDirection);
-    
+        
         $coupons = $query->offset($request->start*$request->length)->limit($request->length)->get();
+        $coupons = Coupons::with('creaters') 
+                    ->where('start_date', '<=', now())
+                    ->where('end_date', '>=', now())
+                    ->get();
 
+        $coupons->each(function ($coupon) {
+            $coupon->created_by = $coupon->creaters ? $coupon->creaters->name : null;
+            unset($coupon->creaters);
+        });
         return $this->sendresponse($coupons, 'Coupons List');
 
     }

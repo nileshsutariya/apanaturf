@@ -70,6 +70,7 @@ class registerController extends BaseController
         $file = $request->file('profile_image');
         $filename = time() . '_' . $file->getClientOriginalName();
         $filepath = $file->storeAs('customer_image', $filename, 'public');
+        // $filepath = $file->move(public_path('admin_image'), $filename);
 
         $image = Images::create([
             'image_name' => $filename,
@@ -80,7 +81,9 @@ class registerController extends BaseController
 
         $customer->profile_image = $image->id;
         $customer->save();
-
+        $customer->makeHidden(['password', 'otp', 'otp_verified_at', 'location_history', 'email_verified_at', 'remember_token']);
+        $customer = $customer->toArray();
+        $customer['profile_image'] = $image->image_name;
         return $this->sendresponse($customer, 'Profile image uploaded successfully');
     }
 

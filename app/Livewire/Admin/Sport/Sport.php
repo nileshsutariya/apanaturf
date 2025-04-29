@@ -2,7 +2,6 @@
 
 namespace App\Livewire\Admin\Sport;
 
-use App\Models\Sports;
 use Livewire\Component;
 
 class Sport extends Component
@@ -10,7 +9,7 @@ class Sport extends Component
     public $sports;
     public function mount()
     {
-        $this->sports = Sports::fetchSportsData();
+        $this->sports = Sport::fetchSportsData();
         // print_r($this->sports); die;
     }
 

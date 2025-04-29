@@ -4,7 +4,7 @@ namespace App\Http\Controllers\API\customer;
 
 use Carbon\Carbon;
 use App\Models\Turf;
-use App\Models\Sports;
+use App\Models\Sport;
 use App\Models\Amenity;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -85,7 +85,7 @@ class TurfController extends BaseController
                 $sportsIds = is_array($sportsIds) ? $sportsIds : (is_numeric($sportsIds) ? [$sportsIds] : []);
                 $amenityIds = is_array($amenityIds) ? $amenityIds : (is_numeric($amenityIds) ? [$amenityIds] : []);
         
-                $item->sports = Sports::whereIn('id', $sportsIds)->pluck('name')->toArray();
+                $item->sports = Sport::whereIn('id', $sportsIds)->pluck('name')->toArray();
                 $item->amenities = Amenity::whereIn('id', $amenityIds)->pluck('name')->toArray();
                 unset($item->sports_ids, $item->amenities_ids);
         
@@ -102,8 +102,7 @@ class TurfController extends BaseController
                     ];
                 })->toArray();
 
-                unset($item->images); 
-                unset($item->turf_image);
+                unset($item->images, $item->turf_image);
 
                 $item->time_slots = collect($item->timings)->flatMap(function ($timing) {
                     $slots = [];

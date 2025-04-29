@@ -8,29 +8,17 @@ use Illuminate\Support\Facades\Http;
 
 class BaseController extends Controller
 {
-    public function sendresponse($result, $message)
+    public function sendresponse($data, $message = "", $status = 200)
     {
-        $data = Http::get('http://192.168.1.169/apanaturf/');
-        $status = $data->status();
-        if ($data->successful()) {
-            return response()->json([
-                'success' => true,
-                'status' => $status,
-                'message' => $message,
-                'data' => $result 
-            ], $status);
-        }
-        if ($data->failed()) {
-            return response()->json([
-                'success' => false,
-                'status' => $status,
-                'message' => 'API request failed'
-            ], $status);
-        }
+        return response()->json([
+            'success' => true,
+            'status' => $status,
+            'message' => $message,
+            'data' => $data 
+        ], $status);
     }
 
-
-    public function senderror($error, $errorMessages = [],  $status = 422)
+    public function senderror($data, $message = "", $status = 400)
     {
         if (isset($errorMessages['id_not_found'])) {
             $status = 404; 
@@ -42,8 +30,8 @@ class BaseController extends Controller
         return response()->json([
             'success' => false,
             'status' => $status,
-            'message' => $errorMessages,
-            'data' => $error
+            'message' => $message,
+            'data' => $data
         ], $status);
     }
 
