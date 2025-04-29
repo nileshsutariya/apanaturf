@@ -2,11 +2,12 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Role_type extends Model
-{    use HasFactory;
+class Role_Type extends Model
+{
+    use HasFactory;
 
     protected $fillable = ['name', 'code'];
 

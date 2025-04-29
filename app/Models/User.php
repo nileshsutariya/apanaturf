@@ -79,18 +79,6 @@ class User extends Authenticatable implements JWTSubject
         ]);
     }   
 
-    // public function editUser($id)
-    // {
-    //     $user = User::findOrFail($id);
-
-    //     $this->user_id = $user->id;
-    //     $this->name = $user->name;
-    //     $this->email = $user->email;
-    //     $this->phone = $user->phone;
-    //     $this->role_id = $user->role_id;
-
-    // }
-// app/Models/User.php
     public static function editUser($id)
     {
         return self::findOrFail($id);

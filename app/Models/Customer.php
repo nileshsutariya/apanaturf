@@ -40,6 +40,5 @@ class Customer extends Authenticatable implements JWTSubject
             'phone' => $data['phone'],
             'balance' => $data['balance']
         ]);
-
     }
 }

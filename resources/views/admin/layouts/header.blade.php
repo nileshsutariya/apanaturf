@@ -1,547 +1,1268 @@
 <!DOCTYPE html>
 <html lang="en">
-<!-- <html lang="en" data-layout="topnav"> -->
 
 
-<!-- Mirrored from coderthemes.com/uplon/layouts/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 31 Jan 2025 10:56:29 GMT -->
-
+<!-- Mirrored from techzaa.in/venton/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 16 Apr 2025 10:32:15 GMT -->
 <head>
-    <meta charset="utf-8" />
-    <title>Dashboard | Uplon - Responsive Bootstrap 5 Admin Dashboard</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
-    <meta content="Coderthemes" name="author" />
+     <!-- Title Meta -->
+     <meta charset="utf-8" />
+     <title>Dashboard | Venton - Responsive Admin Dashboard Template</title>
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <meta name="description" content="A fully responsive premium admin dashboard template" />
+     <meta name="author" content="Techzaa" />
+     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+     <!-- App favicon -->
+     <link rel="shortcut icon" href="{{ asset('asset/images/favicon.ico')}}">
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Bootstrap JS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+     <!-- Vendor css (Require in all Page) -->
+     <link href="{{ asset('asset/css/vendor.min.css')}}" type="text/css" />
 
-    <link rel="stylesheet" href="{{asset('assets/libs/datatables.net-bs5/css/dataTables.bootstrap5.min.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/libs/datatables.net-buttons-bs5/css/buttons.bootstrap5.min.css')}}">
-    <link rel="stylesheet"
-        href="{{asset('assets/libs/datatables.net-responsive-bs5/css/responsive.bootstrap5.min.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/libs/datatables.net-select-bs5/css/select.bootstrap5.min.css')}}">
+     <!-- Icons css (Require in all Page) -->
+     <link href="{{ asset('asset/css/icons.min.css')}}" rel="stylesheet" type="text/css" />
 
-    <!-- App favicon -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+     <!-- App css (Require in all Page) -->
+     <link href="{{ asset('asset/css/app.min.css')}}" rel="stylesheet" type="text/css" />
 
-    <link rel="shortcut icon" href="{{asset('assets/images/favicon.ico')}}">
+     <!-- Theme Config js (Require in all Page) -->
+     <script src="{{ asset('asset/js/config.js')}}"></script>
 
-    <!-- Vendor css -->
-    <link href="{{asset('assets/css/vendor.min.css')}}" rel="stylesheet" type="text/css" />
-
-    <!-- App css -->
-    <link href="{{asset('assets/css/app.min.css')}}" rel="stylesheet" type="text/css" id="app-style" />
-    <link href="{{asset('assets/css/style.css')}}" rel="stylesheet" type="text/css" />
-
-    <!-- Icons css -->
-    <link href="{{asset('assets/css/icons.min.css')}}" rel="stylesheet" type="text/css" />
-
-    <!-- Theme Config Js -->
-    <script src="{{asset('assets/js/config.js')}}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <style>
-        body {
-            font-size: 15px;
-            font-family: 'Inter', sans-serif;
-            font-weight: 500 !important;
-            letter-spacing: 0.9px;
-            background-color: #F5F5F5;
-        }
-        .content {
-            margin-left: 0;
-            transition: 0.3s;
-        }
-
-        .content.active {
-            margin-left: 250px;
-        }
-        html[data-sidenav-size=condensed]:not([data-layout=topnav]) .sidenav-menu .sidebar-footer .footer-content {
-            overflow: hidden;
-            white-space: nowrap;
-        }
-
-        html[data-sidenav-size=condensed]:not([data-layout=topnav]) .sidenav-menu .sidebar-footer .footer-dot {
-            overflow: hidden;
-        }
-
-        .sidebar-footer {
-            position: sticky;
-            bottom: 0;
-            background: rgb(24, 24, 24);
-            color: white;
-            text-align: center;
-            padding: 1px;
-            width: 100%;
-            z-index: 10;
-        }
-
-        .app-topbar .topbar-menu {
-            background-color: #F5F5F5;
-        }
-
-        .side-nav {
-            height: 30px;
-            padding-top: 70px;
-        }
-
-        .side-nav .side-nav-item .side-nav-link {
-            font-size: 12px;
-            font-family: 'Inter', sans-serif;
-            font-weight: 400 !important;
-            color: rgb(197, 193, 193);
-            letter-spacing: 0.9px;
-            padding: 7px;
-        }
-
-        .side-nav .side-nav-item .side-nav-link .menu-icon {
-            height: 20px;
-            width: 20px;
-            font-size: 10px;
-            padding-left: 30px;
-        }
-
-        .side-nav .side-nav-item .side-nav-link .menu-text {
-            padding-left: 20px;
-        }
-
-        .app-topbar .app-search .form-control {
-            height: 35px;
-            /* width: 200px; */
-            border-radius: 10px 0 0 10px;
-            background-color: white;
-            box-shadow: 0 4px 5px rgba(209, 209, 209, 0.2);
-        }
-
-        .app-topbar .app-search .btn-icon {
-            height: 35px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-            border-radius: 0 10px 10px 0;
-            background-color: white;
-        }
-
-        .notification-icon {
-            height: 20px;
-        }
-
-        .page-title-box {
-            background-color: #F5F5F5;
-        }
-
-        .custom-pagination {
-            display: flex;
-            flex-wrap: nowrap;
-            /* Prevents vertical stacking */
-            justify-content: center;
-            align-items: center;
-            list-style: none;
-            padding: 10px 0;
-            gap: 5px;
-            float: left;
-
-            /* overflow-x: auto;  Enables horizontal scrolling if needed */
-            white-space: nowrap;
-            /* Keeps buttons in one row */
-        }
-
-        .custom-pagination .page-item {
-            display: inline-block;
-        }
-
-        .custom-pagination .page-link {
-            padding: 6px 10px;
-            border: 1px solid #ccc;
-            background-color: #fff;
-            color: #333;
-            text-decoration: none;
-            font-size: 14px;
-            border-radius: 5px;
-            transition: all 0.3s ease-in-out;
-        }
-
-        .custom-pagination .page-item.active .page-link {
-            background-color: rgb(0, 128, 96);
-            color: white;
-            font-weight: bold;
-        }
-
-        .custom-pagination .page-link:hover {
-            background-color: #f8f9fa;
-            border-color: #bbb;
-        }
-
-        /* POS Terminal & Small Mobile Screens (Fix Vertical Issue) */
-        @media (max-width: 480px) {
-            .custom-pagination {
-                flex-wrap: nowrap;
-                /* Prevents stacking */
-                overflow-x: auto;
-                /* Adds horizontal scrolling if needed */
-                padding: 5px 0;
-            }
-
-            .custom-pagination .page-link {
-                padding: 4px 6px;
-                font-size: 10px;
-            }
-        }
-
-        /* Mobile Phones (Fix Vertical Issue) */
-        @media (max-width: 767px) {
-            .custom-pagination {
-                flex-wrap: nowrap;
-                overflow-x: auto;
-            }
-
-            .custom-pagination .page-link {
-                padding: 5px 8px;
-                font-size: 12px;
-            }
-        }
-    </style>
 </head>
 
 <body>
-    <!-- Begin page -->
-    <div class="wrapper">
 
-        <!-- Sidenav Menu Start -->
-        <div class="sidenav-menu" id="sidebar" style="background-color: rgb(24, 24, 24);">
-            <div data-simplebar>
+     <!-- START Wrapper -->
+     <div class="wrapper">
 
-                <!--- Sidenav Menu -->
-                <ul class="side-nav">
-                    <!-- <li cla'ss="side-nav-title">Navigation</li> -->
+          <!-- ========== Topbar Start ========== -->
+          <header class="topbar">
+               <div class="container-fluid">
+                    <div class="navbar-header">
+                         <div class="d-flex align-items-center">
+                              <!-- Menu Toggle Button -->
+                              <div class="topbar-item">
+                                   <button type="button" class="button-toggle-menu me-2">
+                                        <iconify-icon icon="solar:hamburger-menu-broken" class="fs-24 align-middle"></iconify-icon>
+                                   </button>
+                              </div>
 
-                    <li class="side-nav-item">
-                        <a href="{{route('admin.index')}}" class="side-nav-link">
-                            <span class="menu-icon"><img src="{{asset('assets/image/element-3.svg')}}"
-                                    alt="dashboard"></span>
-                            <span class="menu-text mt-2"> Dashboard </span>
-                            <!-- <span class="badge bg-success rounded-pill">5</span> -->
-                        </a>
-                    </li>
-                    <li class="side-nav-item">
-                        <a href="{{route('admin.customer')}}" class="side-nav-link">
-                            <span class="menu-icon"><img src="{{asset('assets/image/profile.svg')}}" alt="user"></span>
-                            <span class="menu-text mt-2"> Customer </span>
-                        </a>
-                    </li>
-                    <li class="side-nav-item">
-                        <a href="{{route('admin.venues')}}" class="side-nav-link">
-                            <span class="menu-icon"><img src="{{asset('assets/image/bank.svg')}}" alt="venues"></span>
-                            <span class="menu-text mt-2"> Venues </span>
-                        </a>
-                    </li>
-                    <li class="side-nav-item">
-                        <a href="{{route('admin.enquiries')}}" class="side-nav-link">
-                            <span class="menu-icon"><i class="bi bi-info-circle"></i></span>
-                            <span class="menu-text mt-2"> Venues Approval</span>
-                        </a>
-                    </li>
-                    <li class="side-nav-item">
-                        <a href="{{route('admin.bookings')}}" class="side-nav-link">
-                            <span class="menu-icon"><img src="{{asset('assets/image/shopping-cart.svg')}}"
-                                    alt="bookings"></span>
-                            <span class="menu-text mt-2"> Bookings </span>
-                        </a>
-                    </li>
-                    <li class="side-nav-item">
-                        <a href="{{route('admin.freeze')}}" class="side-nav-link">
-                            <span class="menu-icon"><img src="{{asset('assets/image/sun.svg')}}" alt="freeze"></span>
-                            <span class="menu-text mt-2"> Freeze </span>
-                        </a>
-                    </li>
-                    <li class="side-nav-item">
-                        <a href="{{route('admin.transaction')}}" class="side-nav-link">
-                            <span class="menu-icon"><img src="{{asset('assets/image/Transaction.svg')}}"
-                                    alt="transaction"></span>
-                            <span class="menu-text mt-2"> Transactions </span>
-                        </a>
-                    </li>
-                    <li class="side-nav-item">
-                        <a href="#sidebarPagesAuth" data-bs-toggle="collapse" aria-expanded="false"
-                            aria-controls="sidebarPagesAuth" class="side-nav-link">
-                            <span class="menu-icon">
-                                <img src="{{asset('assets/image/clipboard-tick.svg')}}" alt="configuration">
-                            </span>
-                            <span class="menu-text mt-2"> Configurations </span>
-                            <img src="{{asset('assets/image/Polygon 1.svg')}}" alt="" class="dropdown-icon">
-                        </a>
-                        <div class="collapse" id="sidebarPagesAuth">
-                            <ul class="sub-menu">
-                                <li class="side-nav-item">
-                                    <a href="{{route('admin.sports')}}" class="side-nav-link">
-                                        <span class="menu-text"> Sports </span>
-                                    </a>
-                                </li>
-                                <li class="side-nav-item">
-                                    <a href="{{route('admin.amenities')}}" class="side-nav-link">
-                                        <span class="menu-text"> Amenities </span>
-                                    </a>
-                                </li>
-                                <li class="side-nav-item">
-                                    <a href="{{route('admin.financialyear')}}" class="side-nav-link">
-                                        <span class="menu-text"> Financial Year </span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
+                              <!-- App Search-->
+                              <form class="app-search d-none d-md-block ms-2">
+                                   <div class="position-relative">
+                                        <input type="search" class="form-control" placeholder="Search..." autocomplete="off" value="">
+                                        <iconify-icon icon="solar:magnifer-linear" class="search-widget-icon"></iconify-icon>
+                                   </div>
+                              </form>
+                         </div>
 
-                    <li class="side-nav-item">
-                        <a href="{{route('admin.couponscode')}}" class="side-nav-link">
-                            <span class="menu-icon"><img src="{{asset('assets/image/ticket.svg')}}"
-                                    alt="coupons"></span>
-                            <span class="menu-text mt-2"> Coupons Code </span>
-                        </a>
-                    </li>
-                    <li class="side-nav-item">
-                        <a href="{{route('admin.banner')}}" class="side-nav-link">
-                            <span class="menu-icon"><img src="{{asset('assets/image/money-4.svg')}}" alt="money"></span>
-                            <span class="menu-text mt-2"> Banners </span>
-                        </a>
-                    </li>
-                    <li class="side-nav-item">
-                        <a href="{{route('admin.subscribers')}}" class="side-nav-link">
-                            <span class="menu-icon"><img src="{{asset('assets/image/sms.svg')}}" alt="sms"></span>
-                            <span class="menu-text mt-2"> Subscribers </span>
-                        </a>
-                    </li>
-                    <li class="side-nav-item">
-                        <a href="{{route('admin.enquiries')}}" class="side-nav-link">
-                            <span class="menu-icon"><i class="bi bi-info-circle"></i></span>
-                            <span class="menu-text mt-2"> Enquiries </span>
-                        </a>
-                    </li>
-                    <li class="side-nav-item">
-                        <a href="{{route('admin.users')}}" class="side-nav-link">
-                            <span class="menu-icon"><img src="{{asset('assets/image/profile.svg')}}" alt="sms"></span>
-                            <span class="menu-text mt-2"> Users</span>
-                        </a>
-                    </li>
-                  
+                         <div class="d-flex align-items-center gap-1">
 
-                    <li class="side-nav-item">
-                        <a href="#" class="side-nav-link mt-5 mb-5">
-                            <span class="menu-icon"><img src="{{asset('assets/image/Logout.svg')}}" alt="logout"></span>
-                            <span class="menu-text"> Logout </span>
-                        </a>
-                    </li>
+                              <div class="topbar-item">
+                                   <button type="button" class="topbar-button" id="light-dark-mode">
+                                        <i class='bx bx-moon fs-24 align-middle'></i>
+                                   </button>
+                              </div>
 
-                </ul>
+                              <div class="dropdown topbar-item">
+                                   <button type="button" class="topbar-button position-relative" id="page-header-notifications-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class='bx bx-bell fs-24 align-middle' ></i>
+                                        <span class="position-absolute topbar-badge fs-10 translate-middle badge bg-danger rounded-pill">3<span class="visually-hidden">unread messages</span></span>
+                                   </button>
+                                   <div class="dropdown-menu py-0 dropdown-lg dropdown-menu-end" aria-labelledby="page-header-notifications-dropdown">
+                                        <div class="p-3 border-top-0 border-start-0 border-end-0 border-dashed border">
+                                             <div class="row align-items-center">
+                                                  <div class="col">
+                                                       <h6 class="m-0 fs-16 fw-semibold"> Notifications</h6>
+                                                  </div>
+                                                  <div class="col-auto">
+                                                       <a href="javascript: void(0);" class="text-dark text-decoration-underline">
+                                                            <small>Clear All</small>
+                                                       </a>
+                                                  </div>
+                                             </div>
+                                        </div>
+                                        <div data-simplebar style="max-height: 280px;">
+                                             <!-- Item -->
+                                             <a href="javascript:void(0);" class="dropdown-item p-2 border-bottom text-wrap">
+                                                  <div class="d-flex">
+                                                       <div class="flex-shrink-0">
+                                                            <img src="{{ asset('asset/images/users/avatar-1.jpg') }}" class="img-fluid me-2 avatar-sm rounded-circle" alt="avatar-1" />
+                                                       </div>
+                                                       <div class="flex-grow-1">
+                                                            <p class="mb-0"><span class="fw-semibold">Josephine Thompson </span>commented on admin panel <span>" Wow 😍! this admin looks good and awesome design"</span></p>
+                                                       </div>
+                                                  </div>
+                                             </a>
+                                             <!-- Item -->
+                                             <a href="javascript:void(0);" class="dropdown-item p-2 border-bottom">
+                                                  <div class="d-flex">
+                                                       <div class="flex-shrink-0">
+                                                            <div class="avatar-sm me-2">
+                                                                 <span class="avatar-title bg-soft-info text-info fs-20 rounded-circle">
+                                                                      D
+                                                                 </span>
+                                                            </div>
+                                                       </div>
+                                                       <div class="flex-grow-1">
+                                                            <p class="mb-0 fw-semibold">Donoghue Susan</p>
+                                                            <p class="mb-0 text-wrap">
+                                                                 Hi, How are you? What about our next meeting
+                                                            </p>
+                                                       </div>
+                                                  </div>
+                                             </a>
+                                             <!-- Item -->
+                                             <a href="javascript:void(0);" class="dropdown-item p-2 border-bottom">
+                                                  <div class="d-flex">
+                                                       <div class="flex-shrink-0">
+                                                            <img src="{{ asset('asset/images/users/avatar-3.jpg') }}" class="img-fluid me-2 avatar-sm rounded-circle" alt="avatar-3" />
+                                                       </div>
+                                                       <div class="flex-grow-1">
+                                                            <p class="mb-0 fw-semibold">Jacob Gines</p>
+                                                            <p class="mb-0 text-wrap">Answered to your comment on the cash flow forecast's graph 🔔.</p>
+                                                       </div>
+                                                  </div>
+                                             </a>
+                                             <!-- Item -->
+                                             <a href="javascript:void(0);" class="dropdown-item p-2 border-bottom">
+                                                  <div class="d-flex">
+                                                       <div class="flex-shrink-0">
+                                                            <div class="avatar-sm me-2">
+                                                                 <span class="avatar-title bg-soft-warning text-warning fs-20 rounded-circle">
+                                                                      <iconify-icon icon="iconamoon:comment-dots-duotone"></iconify-icon>
+                                                                 </span>
+                                                            </div>
+                                                       </div>
+                                                       <div class="flex-grow-1">
+                                                            <p class="mb-0 fw-semibold text-wrap">You have received <b>20</b> new messages in the
+                                                                 conversation</p>
+                                                       </div>
+                                                  </div>
+                                             </a>
+                                             <!-- Item -->
+                                             <a href="javascript:void(0);" class="dropdown-item p-2 border-bottom">
+                                                  <div class="d-flex">
+                                                       <div class="flex-shrink-0">
+                                                            <img src="{{ asset('asset/images/users/avatar-5.jpg') }}" class="img-fluid me-2 avatar-sm rounded-circle" alt="avatar-5" />
+                                                       </div>
+                                                       <div class="flex-grow-1">
+                                                            <p class="mb-0 fw-semibold">Shawn Bunch</p>
+                                                            <p class="mb-0 text-wrap">
+                                                                 Commented on Admin
+                                                            </p>
+                                                       </div>
+                                                  </div>
+                                             </a>
+                                        </div>
+                                        <div class="text-center py-3">
+                                             <a href="javascript:void(0);" class="btn btn-primary btn-sm">View All Notification <i class="bx bx-right-arrow-alt ms-1"></i></a>
+                                        </div>
+                                   </div>
+                              </div>
 
+                              <!-- Theme Setting -->
+                              <div class="topbar-item d-none d-md-flex">
+                                   <button type="button" class="topbar-button" id="theme-settings-btn" data-bs-toggle="offcanvas" data-bs-target="#theme-settings-offcanvas" aria-controls="theme-settings-offcanvas">
+                                        <i class='bx bx-cog fs-24 align-middle' ></i>
+                                   </button>
+                              </div>
 
-                <div class="clearfix"></div>
+                              <!-- Activity -->
+                              <div class="topbar-item d-none d-md-flex">
+                                   <button type="button" class="topbar-button" id="theme-settings-btn" data-bs-toggle="offcanvas" data-bs-target="#theme-activity-offcanvas" aria-controls="theme-settings-offcanvas">
+                                        <i class='bx bx-time fs-24 align-middle'></i>
+                                   </button>
+                              </div>
 
-            </div>
-            <!-- <div class="sidebar"> -->
-            <div class="sidebar-footer p-3">
-                <hr class="hr">
-                <div class="side-nav-item d-flex align-items-center justify-content-between">
-                    <!-- Left: Profile Image -->
-                    <div class="d-flex align-items-center">
-                        <span class="menu-icon me-2">
-                            <img src="{{asset('assets/image/Image.svg')}}" alt="profile" class="rounded-circle"
-                                style="width: 35px; height: 35px; border: 2px solid #ccc;">
-                        </span>
-                    </div>
-
-                    <!-- Right: Name, Profile Link, and Dots -->
-                    <div class="footer-content d-flex flex-column flex-grow-1">
-                        <span class="menu-text text-white" style="font-size: 14px;">Abhishek Guleria</span>
-                        <a href="{{route('admin.profile')}}" class="text-muted" style="font-size: 11px;">View Profile</a>
-                    </div>
-                    <div class="footer-dot text-white" style="font-size: 20px;">
-                        <i class="bi bi-three-dots-vertical"></i>
-                    </div>
-
-                </div>
-            </div>
-
-            <!-- </div>  -->
-        </div>
-        <!-- Sidenav Menu End -->
-
-        <!-- Topbar Start -->
-        <header class="app-topbar">
-            <div class="topbar-menu">
-                <div class="d-flex align-items-center gap-2">
-
-                    <!-- Brand Logo -->
-                    <!-- <a href="index.html" class="logo">
-                        <span class="logo-light">
-                            <span class="logo-lg"><img src="assets/images/logo-light.png" alt="logo"></span>
-                            <span class="logo-sm"><img src="assets/images/logo-sm-light.png" alt="small logo"></span>
-                        </span>
-
-                        <span class="logo-dark">
-                            <span class="logo-lg"><img src="assets/images/logo-dark.png" alt="dark logo"></span>
-                            <span class="logo-sm"><img src="assets/images/logo-sm.png" alt="small logo"></span>
-                        </span>
-                    </a> -->
-
-
-                    <!-- Sidebar Menu Toggle Button -->
-                    <button class="sidenav-toggle-button px-2" id="toggleBtn">
-                        <i class="mdi mdi-menu font-24"></i>
-                    </button>
-
-                    <!-- Horizontal Menu Toggle Button -->
-                    <!-- <button class="topnav-toggle-button px-2" data-bs-toggle="collapse" data-bs-target="#topnav-menu-content">
-                        <i class="mdi mdi-menu font-22"></i>
-                    </button> -->
-
-
-                    <h5 class="m-3">Hello, Abhi</h5>
-                    <img src="{{ asset('assets/image/chevrons-right.svg') }}" alt="image">
-                    <h6 id="currentDate" class="mt-2" style="color: #99a1a8;"></h6>
-                    <!-- Mega Menu Dropdown -->
-                    <div class="topbar-item d-none d-md-flex">
-                        <div class="dropdown">
-                            <!-- <a href="#" class="topbar-link btn btn-link px-2 dropdown-toggle drop-arrow-none fw-medium" data-bs-toggle="dropdown" data-bs-offset="0,17" aria-haspopup="false" aria-expanded="false">
-                                Pages <i class="mdi mdi-chevron-down ms-1"></i>
-                            </a> -->
-
-                        </div>
-                    </div> 
-                </div>
-
-                <div class="d-flex align-items-center gap-2">
-                    <div class="topbar-item">
-                        <div class="dropdown position-relative">
-                            <button class="topbar-link dropdown-toggle drop-arrow-none notification"
-                                data-bs-toggle="dropdown" data-bs-offset="0,25" type="button"
-                                data-bs-auto-close="outside" aria-haspopup="false" aria-expanded="false">
-                                <img src="{{asset('assets/image/Group 2.svg')}}" alt="dashboard"
-                                    class="notification-icon">
-                                <!-- <span class="noti-icon-badge"></span> -->
-                            </button>
-
-                            <div class="dropdown-menu p-0 dropdown-menu-end dropdown-menu-lg"
-                                style="min-height: 300px;">
-
-                                <div class="position-relative z-2" style="max-height: 300px;" data-simplebar>
-
-
-                                    <!-- item-->
-                                    <div class="dropdown-item notification-item py-2 text-wrap mb-5"
-                                        id="notification-5">
+                              <!-- User -->
+                              <div class="dropdown topbar-item">
+                                   <a type="button" class="topbar-button" id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         <span class="d-flex align-items-center">
-                                            <span class="me-3 position-relative flex-shrink-0">
-                                                <div class="avatar avatar-md">
-                                                    <span class="avatar-title bg-info rounded-circle">
-                                                        <i class="mdi mdi-bell-outline font-20"></i>
-                                                    </span>
-                                                </div>
-                                            </span>
-                                            <span class="flex-grow-1 text-muted">
-                                                <p class="fw-medium mb-0 text-dark">Updates</p>
-                                                <span class="font-12">There are 2 new updates available</span>
-                                            </span>
-                                            <span class="notification-item-close">
-                                                <button type="button"
-                                                    class="btn btn-ghost-danger rounded-circle btn-sm btn-icon"
-                                                    data-dismissible="#notification-1">
-                                                    <i class="mdi mdi-close font-16"></i>
-                                                </button>
-                                            </span> <
+                                             <img class="rounded-circle" width="32" src="{{ asset('asset/images/users/avatar-1.jpg') }}" alt="avatar-3">
                                         </span>
-                                    </div>
-                                </div>
+                                   </a>
+                                   <div class="dropdown-menu dropdown-menu-end">
+                                        <!-- item-->
+                                        <h6 class="dropdown-header">Welcome Gaston!</h6>
+                                        <a class="dropdown-item" href="pages-profile.html">
+                                             <i class="bx bx-user-circle text-muted fs-18 align-middle me-1"></i><span class="align-middle">Profile</span>
+                                        </a>
+                                        <a class="dropdown-item" href="apps-chat.html">
+                                             <i class="bx bx-message-dots text-muted fs-18 align-middle me-1"></i><span class="align-middle">Messages</span>
+                                        </a>
 
+                                        <a class="dropdown-item" href="pages-pricing.html">
+                                             <i class="bx bx-wallet text-muted fs-18 align-middle me-1"></i><span class="align-middle">Pricing</span>
+                                        </a>
+                                        <a class="dropdown-item" href="pages-faqs.html">
+                                             <i class="bx bx-help-circle text-muted fs-18 align-middle me-1"></i><span class="align-middle">Help</span>
+                                        </a>
+                                        <a class="dropdown-item" href="auth-lock-screen.html">
+                                             <i class="bx bx-lock text-muted fs-18 align-middle me-1"></i><span class="align-middle">Lock screen</span>
+                                        </a>
 
-                                <!-- All-->
-                                <a href="javascript:void(0);"
-                                    class="dropdown-item notification-item position-fixed z-2 bottom-0 text-center text-reset text-decoration-underline link-offset-2 fw-bold notify-item border-top border-light py-2">
-                                    View All
-                                </a>
-                            </div>
-                        </div>
+                                        <div class="dropdown-divider my-1"></div>
+
+                                        <a class="dropdown-item text-danger" href="auth-signin.html">
+                                             <i class="bx bx-log-out fs-18 align-middle me-1"></i><span class="align-middle">Logout</span>
+                                        </a>
+                                   </div>
+                              </div>
+                         </div>
+                    </div>
+               </div>
+          </header>
+
+          <!-- Activity Timeline -->
+          <div>
+               <div class="offcanvas offcanvas-end border-0" tabindex="-1" id="theme-activity-offcanvas" style="max-width: 450px; width: 100%;">
+                    <div class="d-flex align-items-center bg-dark p-3 offcanvas-header">
+                         <h5 class="text-white m-0 fw-semibold">Activity Stream</h5>
+                         <button type="button" class="btn-close btn-close-white ms-auto" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                     </div>
 
-                    <!-- Email Dropdown -->
-                    <div class="d-none d-md-flex">
-                        <form class="app-search">
-                            <div class="app-search-box">
-                                <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Search...">
-                                    <div class="input-group-append"
-                                        style="box-shadow: 0 4px 5px rgba(209, 209, 209, 0.2);">
-                                        <button class="btn btn-icon" type="submit">
-                                            <i class="fas fa-search"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
+                    <div class="offcanvas-body p-0">
+                         <div data-simplebar class="h-100 p-4">
+                              <div class="position-relative ms-2">
+                                   <span class="position-absolute start-0  top-0 border border-dashed h-100"></span>
+                                   <div class="position-relative ps-4">
+                                        <div class="mb-4">
+                                             <span class="position-absolute start-0 avatar-sm translate-middle-x bg-danger d-inline-flex align-items-center justify-content-center rounded-circle text-light fs-20"><iconify-icon icon="iconamoon:folder-check-duotone"></iconify-icon></span>
+                                             <div class="ms-2">
+                                                  <h5 class="mb-1 text-dark fw-semibold fs-15 lh-base">Report-Fix / Update </h5>
+                                                  <p class="d-flex align-items-center">Add 3 files to <span class=" d-flex align-items-center text-primary ms-1"><iconify-icon icon="iconamoon:file-light"></iconify-icon> Tasks</span></p>
+                                                  <div class="bg-light bg-opacity-50 rounded-2 p-2">
+                                                       <div class="row">
+                                                            <div class="col-lg-6 border-end border-light">
+                                                                 <div class="d-flex align-items-center gap-2">
+                                                                      <i class="bx bxl-figma fs-20 text-red"></i>
+                                                                      <a href="#!" class="text-dark fw-medium">Concept.fig</a>
+                                                                 </div>
+                                                            </div>
+                                                            <div class="col-lg-6">
+                                                                 <div class="d-flex align-items-center gap-2">
+                                                                      <i class="bx bxl-file-doc fs-20 text-success"></i>
+                                                                      <a href="#!" class="text-dark fw-medium">venton.docs</a>
+                                                                 </div>
+                                                            </div>
+                                                       </div>
+                                                  </div>
+                                                  <h6 class="mt-2 text-muted">Monday , 4:24 PM</h6>
+                                             </div>
+                                        </div>
+                                   </div>
+                                   <div class="position-relative ps-4">
+                                        <div class="mb-4">
+                                             <span class="position-absolute start-0 avatar-sm translate-middle-x bg-success d-inline-flex align-items-center justify-content-center rounded-circle text-light fs-20"><iconify-icon icon="iconamoon:check-circle-1-duotone"></iconify-icon></span>
+                                             <div class="ms-2">
+                                                  <h5 class="mb-1 text-dark fw-semibold fs-15 lh-base">Project Status
+                                                  </h5>
+                                                  <p class="d-flex align-items-center mb-0">Marked<span class=" d-flex align-items-center text-primary mx-1"><iconify-icon icon="iconamoon:file-light"></iconify-icon> Design </span> as <span class="badge bg-success-subtle text-success px-2 py-1 ms-1"> Completed</span></p>
+                                                  <div class="d-flex align-items-center gap-3 mt-1 bg-light bg-opacity-50 p-2 rounded-2">
+                                                       <a href="#!" class="fw-medium text-dark">UI/UX Figma Design</a>
+                                                       <div class="ms-auto">
+                                                            <a href="#!" class="fw-medium text-primary fs-18" data-bs-toggle="tooltip" data-bs-title="Download" data-bs-placement="bottom"><iconify-icon icon="iconamoon:cloud-download-duotone"></iconify-icon></a>
+                                                       </div>
+                                                  </div>
+                                                  <h6 class="mt-3 text-muted">Monday , 3:00 PM</h6>
+                                             </div>
+                                        </div>
+                                   </div>
+                                   <div class="position-relative ps-4">
+                                        <div class="mb-4">
+                                             <span class="position-absolute start-0 avatar-sm translate-middle-x bg-primary d-inline-flex align-items-center justify-content-center rounded-circle text-light fs-16">UI</span>
+                                             <div class="ms-2">
+                                                  <h5 class="mb-1 text-dark fw-semibold fs-15">Venton Application UI v2.0.0 <span class="badge bg-primary-subtle text-primary px-2 py-1 ms-1"> Latest</span>
+                                                  </h5>
+                                                  <p>Get access to over 20+ pages including a dashboard layout, charts, kanban board, calendar, and pre-order E-commerce & Marketing pages.</p>
+                                                  <div class="mt-2">
+                                                       <a href="#!" class="btn btn-light btn-sm">Download Zip</a>
+                                                  </div>
+                                                  <h6 class="mt-3 text-muted">Monday , 2:10 PM</h6>
+                                             </div>
+                                        </div>
+                                   </div>
+                                   <div class="position-relative ps-4">
+                                        <div class="mb-4">
+                                             <span class="position-absolute start-0 translate-middle-x bg-success bg-gradient d-inline-flex align-items-center justify-content-center rounded-circle text-light fs-20"><img src="{{ asset('asset/images/users/avatar-7.jpg') }}" alt="avatar-5" class="avatar-sm rounded-circle"></span>
+                                             <div class="ms-2">
+                                                  <h5 class="mb-0 text-dark fw-semibold fs-15 lh-base">Alex Smith Attached Photos
+                                                  </h5>
+                                                  <div class="row g-2 mt-2">
+                                                       <div class="col-lg-4">
+                                                            <a href="#!">
+                                                                 <img src="{{ asset('asset/images/small/img-6.jpg') }}" alt="" class="img-fluid rounded">
+                                                            </a>
+                                                       </div>
+                                                       <div class="col-lg-4">
+                                                            <a href="#!">
+                                                                 <img src="{{ asset('asset/images/small/img-3.jpg') }}" alt="" class="img-fluid rounded">
+                                                            </a>
+                                                       </div>
+                                                       <div class="col-lg-4">
+                                                            <a href="#!">
+                                                                 <img src="{{ asset('asset/images/small/img-4.jpg') }}" alt="" class="img-fluid rounded">
+                                                            </a>
+                                                       </div>
+                                                  </div>
+                                                  <h6 class="mt-3 text-muted">Monday 1:00 PM</h6>
+                                             </div>
+                                        </div>
+                                   </div>
+                                   <div class="position-relative ps-4">
+                                        <div class="mb-4">
+                                             <span class="position-absolute start-0 translate-middle-x bg-success bg-gradient d-inline-flex align-items-center justify-content-center rounded-circle text-light fs-20"><img src="{{ asset('asset/images/users/avatar-6.jpg') }}" alt="avatar-5" class="avatar-sm rounded-circle"></span>
+                                             <div class="ms-2">
+                                                  <h5 class="mb-0 text-dark fw-semibold fs-15 lh-base">Rebecca J. added a new team member
+                                                  </h5>
+                                                  <p class="d-flex align-items-center gap-1"><iconify-icon icon="iconamoon:check-circle-1-duotone" class="text-success"></iconify-icon> Added a new member to Front Dashboard</p>
+                                                  <h6 class="mt-3 text-muted">Monday 10:00 AM</h6>
+                                             </div>
+                                        </div>
+                                   </div>
+                                   <div class="position-relative ps-4">
+                                        <div class="mb-4">
+                                             <span class="position-absolute start-0 avatar-sm translate-middle-x bg-warning d-inline-flex align-items-center justify-content-center rounded-circle text-light fs-20"><iconify-icon icon="iconamoon:certificate-badge-duotone"></iconify-icon></span>
+                                             <div class="ms-2">
+                                                  <h5 class="mb-0 text-dark fw-semibold fs-15 lh-base">Achievements
+                                                  </h5>
+                                                  <p class="d-flex align-items-center gap-1 mt-1">Earned a <iconify-icon icon="iconamoon:certificate-badge-duotone" class="text-danger fs-20"></iconify-icon>" Best Product Award"</p>
+                                                  <h6 class="mt-3 text-muted">Monday 9:30 AM</h6>
+                                             </div>
+                                        </div>
+                                   </div>
+                              </div>
+                              <a href="#!" class="btn btn-outline-dark w-100">View All</a>
+                         </div>
+                    </div>
+               </div>
+          </div>
+
+          <!-- Right Sidebar (Theme Settings) -->
+          <div>
+               <div class="offcanvas offcanvas-end border-0" tabindex="-1" id="theme-settings-offcanvas">
+                    <div class="d-flex align-items-center bg-secondary p-3 offcanvas-header">
+                         <h5 class="text-white m-0">Theme Settings</h5>
+                         <button type="button" class="btn-close btn-close-white ms-auto" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                     </div>
 
+                    <div class="offcanvas-body p-0">
+                         <div data-simplebar class="h-100">
+                              <div class="p-3 settings-bar">
 
-                    <!-- User Dropdown -->
-                    <div class="topbar-item nav-user">
-                        <div class="dropdown">
-                            <!-- <a class="topbar-link dropdown-toggle drop-arrow-none px-2" data-bs-toggle="dropdown" data-bs-offset="0,25" type="button" aria-haspopup="false" aria-expanded="false">
-                                <img src="assets/images/users/avatar-1.jpg" width="32" class="rounded-circle me-lg-2 d-flex" alt="user-image">
-                                <span class="d-lg-flex flex-column gap-1 d-none">
-                                    <h6 class="my-0">Alex M.</h6>
-                                </span>
-                                <i class="mdi mdi-chevron-down d-none d-lg-block align-middle ms-2"></i>
-                            </a> -->
-                            <div class="dropdown-menu dropdown-menu-end">
-                                <!-- item-->
-                                <div class="dropdown-header bg-primary mt-n3 rounded-top-2">
-                                    <h6 class="text-overflow text-white m-0">Welcome !</h6>
-                                </div>
+                                   <div>
+                                        <h5 class="mb-3 font-16 fw-semibold">Color Scheme</h5>
 
-                                <!-- item-->
-                                <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                    <i class="mdi mdi-account-outline"></i>
-                                    <span>Profile</span>
-                                </a>
+                                        <div class="form-check mb-2">
+                                             <input class="form-check-input" type="radio" name="data-bs-theme" id="layout-color-light" value="light">
+                                             <label class="form-check-label" for="layout-color-light">Light</label>
+                                        </div>
 
-                                <!-- item-->
-                                <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                    <i class="mdi mdi-cog"></i>
-                                    <span>Settings</span>
-                                </a>
+                                        <div class="form-check mb-2">
+                                             <input class="form-check-input" type="radio" name="data-bs-theme" id="layout-color-dark" value="dark">
+                                             <label class="form-check-label" for="layout-color-dark">Dark</label>
+                                        </div>
+                                   </div>
 
-                                <!-- item-->
-                                <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                    <i class="mdi mdi-lock-outline"></i>
-                                    <span>Lock Screen</span>
-                                </a>
+                                   <div>
+                                        <h5 class="my-3 font-16 fw-semibold">Topbar Color</h5>
 
-                                <div class="dropdown-divider"></div>
+                                        <div class="form-check mb-2">
+                                             <input class="form-check-input" type="radio" name="data-topbar-color" id="topbar-color-light" value="light">
+                                             <label class="form-check-label" for="topbar-color-light">Light</label>
+                                        </div>
+                                        <div class="form-check mb-2">
+                                             <input class="form-check-input" type="radio" name="data-topbar-color" id="topbar-color-dark" value="dark">
+                                             <label class="form-check-label" for="topbar-color-dark">Dark</label>
+                                        </div>
+                                   </div>
 
-                                <!-- item-->
-                                <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                    <i class="mdi mdi-logout-variant"></i>
-                                    <span>Logout</span>
-                                </a>
 
-                            </div>
-                        </div>
+                                   <div>
+                                        <h5 class="my-3 font-16 fw-semibold">Menu Color</h5>
+
+                                        <div class="form-check mb-2">
+                                             <input class="form-check-input" type="radio" name="data-menu-color" id="leftbar-color-light" value="light">
+                                             <label class="form-check-label" for="leftbar-color-light">
+                                                  Light
+                                             </label>
+                                        </div>
+
+                                        <div class="form-check mb-2">
+                                             <input class="form-check-input" type="radio" name="data-menu-color" id="leftbar-color-dark" value="dark">
+                                             <label class="form-check-label" for="leftbar-color-dark">
+                                                  Dark
+                                             </label>
+                                        </div>
+                                   </div>
+
+                                   <div>
+                                        <h5 class="my-3 font-16 fw-semibold">Sidebar Size</h5>
+
+                                        <div class="form-check mb-2">
+                                             <input class="form-check-input" type="radio" name="data-menu-size" id="leftbar-size-default" value="default">
+                                             <label class="form-check-label" for="leftbar-size-default">
+                                                  Default
+                                             </label>
+                                        </div>
+
+                                        <div class="form-check mb-2">
+                                             <input class="form-check-input" type="radio" name="data-menu-size" id="leftbar-size-small" value="condensed">
+                                             <label class="form-check-label" for="leftbar-size-small">
+                                                  Condensed
+                                             </label>
+                                        </div>
+
+                                        <div class="form-check mb-2">
+                                             <input class="form-check-input" type="radio" name="data-menu-size" id="leftbar-hidden" value="hidden">
+                                             <label class="form-check-label" for="leftbar-hidden">
+                                                  Hidden
+                                             </label>
+                                        </div>
+
+                                        <div class="form-check mb-2">
+                                             <input class="form-check-input" type="radio" name="data-menu-size" id="leftbar-size-small-hover-active" value="sm-hover-active">
+                                             <label class="form-check-label" for="leftbar-size-small-hover-active">
+                                                  Small Hover Active
+                                             </label>
+                                        </div>
+
+                                        <div class="form-check mb-2">
+                                             <input class="form-check-input" type="radio" name="data-menu-size" id="leftbar-size-small-hover" value="sm-hover">
+                                             <label class="form-check-label" for="leftbar-size-small-hover">
+                                                  Small Hover
+                                             </label>
+                                        </div>
+                                   </div>
+
+                              </div>
+                         </div>
                     </div>
+                    <div class="offcanvas-footer border-top p-3 text-center">
+                         <div class="row">
+                              <div class="col">
+                                   <button type="button" class="btn btn-danger w-100" id="reset-layout">Reset</button>
+                              </div>
+                         </div>
+                    </div>
+               </div>
+          </div>
+          <!-- ========== Topbar End ========== -->
 
-                    <!-- Button Trigger Customizer Offcanvas -->
-                    <!-- <div class="topbar-item d-none d-sm-flex">
-                        <button class="topbar-link" data-bs-toggle="offcanvas" data-bs-target="#theme-settings-offcanvas" type="button">
-                            <i class="mdi mdi-cog-outline font-22"></i>
-                        </button>
-                    </div> -->
-                </div>
-            </div>
-        </header>
+          <!-- ========== App Menu Start ========== -->
+          <div class="main-nav">
+               <!-- Sidebar Logo -->
+               <div class="logo-box">
+                    <a href="index.html" class="logo-dark">
+                         <img src="{{ asset('asset/images/logo-sm.png') }}" class="logo-sm" alt="logo sm">
+                         <img src="{{ asset('asset/images/logo-dark.png') }}" class="logo-lg" alt="logo dark">
+                    </a>
 
+                    <a href="index.html" class="logo-light">
+                         <img src="{{ asset('asset/images/logo-sm.png') }}" class="logo-sm" alt="logo sm">
+                         <img src="{{ asset('asset/images/logo-light.png') }}" class="logo-lg" alt="logo light">
+                    </a>
+               </div>
 
-        <!-- ============================================================== -->
-        <!-- Start Page Content here -->
-        <!-- ============================================================== -->
-        <div class="page-content">
+               <!-- Menu Toggle Button (sm-hover) -->
+               <button type="button" class="button-sm-hover" aria-label="Show Full Sidebar">
+                    <i class='bx bx-menu button-sm-hover-icon'></i>
+               </button>
 
-            <div class="page-container" style="background-color: transparent;">
+               <div class="scrollbar" data-simplebar>
+                    <ul class="navbar-nav" id="navbar-nav">
+
+                         <li class="menu-title">General</li>
+
+                         <li class="nav-item">
+                              <a class="nav-link" href="index.html">
+                                   <span class="nav-icon">
+                                        <iconify-icon icon="solar:widget-5-broken"></iconify-icon>
+                                   </span>
+                                   <span class="nav-text"> Dashboard </span>
+                              </a>
+                         </li>
+
+                         <!-- <li class="nav-item">
+                              <a class="nav-link menu-arrow" href="#sidebarProducts" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarProducts">
+                                   <span class="nav-icon">
+                                        <iconify-icon icon="solar:t-shirt-broken"></iconify-icon>
+                                   </span>
+                                   <span class="nav-text"> Products </span>
+                              </a>
+                              <div class="collapse" id="sidebarProducts">
+                                   <ul class="nav sub-navbar-nav">
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="product-list.html">List</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="product-grid.html">Grid</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="product-details.html">Details</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="product-edit.html">Edit</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="product-add.html">Create</a>
+                                        </li>
+                                   </ul>
+                              </div>
+                         </li>
+
+                         <li class="nav-item">
+                              <a class="nav-link menu-arrow" href="#sidebarCategory" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarCategory">
+                                   <span class="nav-icon">
+                                        <iconify-icon icon="solar:clipboard-list-broken"></iconify-icon>
+                                   </span>
+                                   <span class="nav-text"> Category </span>
+                              </a>
+                              <div class="collapse" id="sidebarCategory">
+                                   <ul class="nav sub-navbar-nav">
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="category-list.html">List</a>
+                                        </li>                         
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="category-edit.html">Edit</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="category-add.html">Create</a>
+                                        </li>
+                                   </ul>
+                              </div>
+                         </li>
+
+                         <li class="nav-item">
+                              <a class="nav-link menu-arrow" href="#sidebarInventory" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarInventory">
+                                   <span class="nav-icon">
+                                        <iconify-icon icon="solar:box-broken"></iconify-icon>
+                                   </span>
+                                   <span class="nav-text"> Inventory </span>
+                              </a>
+                              <div class="collapse" id="sidebarInventory">
+                                   <ul class="nav sub-navbar-nav">
+
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="inventory-warehouse.html">Warehouse</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="inventory-received-orders.html">Received Orders</a>
+                                        </li>
+                                   </ul>
+                              </div>
+                         </li>
+
+                         <li class="nav-item">
+                              <a class="nav-link menu-arrow" href="#sidebarOrders" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarOrders">
+                                   <span class="nav-icon">
+                                        <iconify-icon icon="solar:bag-smile-broken"></iconify-icon>
+                                   </span>
+                                   <span class="nav-text"> Orders </span>
+                              </a>
+                              <div class="collapse" id="sidebarOrders">
+                                   <ul class="nav sub-navbar-nav">
+
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="orders-list.html">List</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="order-detail.html">Details</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="order-cart.html">Cart</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="order-checkout.html">Check Out</a>
+                                        </li>
+                                   </ul>
+                              </div>
+                         </li>
+
+                         <li class="nav-item">
+                              <a class="nav-link menu-arrow" href="#sidebarPurchases" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarPurchases">
+                                   <span class="nav-icon">
+                                        <iconify-icon icon="solar:card-send-broken"></iconify-icon>
+                                   </span>
+                                   <span class="nav-text"> Purchases </span>
+                              </a>
+                              <div class="collapse" id="sidebarPurchases">
+                                   <ul class="nav sub-navbar-nav">
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="purchase-list.html">List</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="purchase-order.html">Order</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="purchase-returns.html">Return</a>
+                                        </li>
+                                   </ul>
+                              </div>
+                         </li>
+
+                         <li class="nav-item">
+                              <a class="nav-link menu-arrow" href="#sidebarAttributes" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarAttributes">
+                                   <span class="nav-icon">
+                                        <iconify-icon icon="solar:confetti-minimalistic-broken"></iconify-icon>
+                                   </span>
+                                   <span class="nav-text"> Attributes </span>
+                              </a>
+                              <div class="collapse" id="sidebarAttributes">
+                                   <ul class="nav sub-navbar-nav">
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="attributes-list.html">List</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="attributes-edit.html">Edit</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="attributes-add.html">Create</a>
+                                        </li>
+                                   </ul>
+                              </div>
+                         </li>
+
+                         <li class="nav-item">
+                              <a class="nav-link menu-arrow" href="#sidebarInvoice" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarInvoice">
+                                   <span class="nav-icon">
+                                        <iconify-icon icon="solar:bill-list-broken"></iconify-icon>
+                                   </span>
+                                   <span class="nav-text"> Invoices </span>
+                              </a>
+                              <div class="collapse" id="sidebarInvoice">
+                                   <ul class="nav sub-navbar-nav">
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="invoice-list.html">List</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="invoice-details.html">Details</a>
+                                        </li>                            
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="invoice-add.html">Create</a>
+                                        </li>
+                                   </ul>
+                              </div>
+                         </li>
+
+                         <li class="nav-item">
+                              <a class="nav-link" href="settings.html">
+                                   <span class="nav-icon">
+                                        <iconify-icon icon="solar:settings-broken"></iconify-icon>
+                                   </span>
+                                   <span class="nav-text"> Settings </span>
+                              </a>
+                         </li> -->
+
+                         <li class="menu-title mt-2">Users</li>
+
+                         <!-- <li class="nav-item">
+                              <a class="nav-link" href="pages-profile.html">
+                                   <span class="nav-icon">
+                                        <iconify-icon icon="solar:chat-square-like-broken"></iconify-icon>
+                                   </span>
+                                   <span class="nav-text"> Profile </span>
+                              </a>
+                         </li> -->
+
+                         <!-- <li class="nav-item">
+                              <a class="nav-link menu-arrow" href="#sidebarRoles" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarRoles">
+                                   <span class="nav-icon">
+                                        <iconify-icon icon="solar:user-speak-rounded-broken"></iconify-icon>
+                                   </span>
+                                   <span class="nav-text"> Roles </span>
+                              </a>
+                              <div class="collapse" id="sidebarRoles">
+                                   <ul class="nav sub-navbar-nav">
+                                        <ul class="nav sub-navbar-nav">
+                                             <li class="sub-nav-item">
+                                                  <a class="sub-nav-link" href="role-list.html">List</a>
+                                             </li>
+                                             <li class="sub-nav-item">
+                                                  <a class="sub-nav-link" href="role-edit.html">Edit</a>
+                                             </li>
+                                             <li class="sub-nav-item">
+                                                  <a class="sub-nav-link" href="role-add.html">Create</a>
+                                             </li>
+                                        </ul>
+                                   </ul>
+                              </div>
+                         </li> -->
+
+                         <li class="nav-item">
+                              <a class="nav-link" href="pages-permissions.html">
+                                   <span class="nav-icon">
+                                        <iconify-icon icon="solar:checklist-minimalistic-broken"></iconify-icon>
+                                   </span>
+                                   <span class="nav-text"> Permissions </span>
+                              </a>
+                         </li>
+                         <li class="nav-item">
+                              <a class="nav-link" href="{{ route('customer.index')}}">
+                                   <span class="nav-icon">
+                                   <iconify-icon icon="solar:users-group-two-rounded-broken"></iconify-icon>
+                                   </span>
+                                   <span class="nav-text"> Customer </span>
+                              </a>
+                         </li>
+                         <li class="nav-item">
+                              <a class="nav-link" href="{{ route('users.index')}}">
+                                   <span class="nav-icon">
+                                   <iconify-icon icon="solar:users-group-two-rounded-broken"></iconify-icon>
+                                   </span>
+                                   <span class="nav-text"> Users </span>
+                              </a>
+                         </li>
+
+                         <!-- <li class="nav-item">
+                              <a class="nav-link menu-arrow" href="#sidebarCustomers" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarCustomers">
+                                   <span class="nav-icon">
+                                        <iconify-icon icon="solar:users-group-two-rounded-broken"></iconify-icon>
+                                   </span>
+                                   <span class="nav-text"> Customers </span>
+                              </a>
+                              <div class="collapse" id="sidebarCustomers">
+                                   <ul class="nav sub-navbar-nav">
+
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="customer-list.html">List</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="customer-detail.html">Details</a>
+                                        </li>
+                                   </ul>
+                              </div>
+                         </li> -->
+<!-- 
+                         <li class="nav-item">
+                              <a class="nav-link menu-arrow" href="#sidebarSellers" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarSellers">
+                                   <span class="nav-icon">
+                                        <iconify-icon icon="solar:shop-broken"></iconify-icon>
+                                   </span>
+                                   <span class="nav-text"> Sellers </span>
+                              </a>
+                              <div class="collapse" id="sidebarSellers">
+                                   <ul class="nav sub-navbar-nav">
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="seller-list.html">List</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="seller-details.html">Details</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="seller-edit.html">Edit</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="seller-add.html">Create</a>
+                                        </li>
+                                   </ul>
+                              </div>
+                         </li> -->
+
+                         <li class="menu-title mt-2">Other</li>
+                         <li class="nav-item">
+                              <a class="nav-link" href="{{ route('coupons.index')}}">
+                                   <span class="nav-icon">
+                                   <iconify-icon icon="solar:leaf-broken"></iconify-icon>
+                                   </span>
+                                   <span class="nav-text"> Coupons</span>
+                              </a>
+                         </li>
+                         <li class="nav-item">
+                              <a class="nav-link" href="{{ route('banners.index')}}">
+                                   <span class="nav-icon">
+                                   <iconify-icon icon="solar:widget-5-broken"></iconify-icon>
+                                   </span>
+                                   <span class="nav-text"> Banner</span>
+                              </a>
+                         </li>
+                         <li class="nav-item">
+                              <a class="nav-link menu-arrow" href="#sidebarCoupons" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarCoupons">
+                                   <span class="nav-icon">
+                                        <iconify-icon icon="solar:leaf-broken"></iconify-icon>
+                                   </span>
+                                   <span class="nav-text"> Configurations </span>
+                              </a>
+                              <div class="collapse" id="sidebarCoupons">
+                                   <ul class="nav sub-navbar-nav">
+                                   <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="{{ route('sports.index')}}">Sports</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="{{ route('amenities.index')}}">Amenities</a>
+                                        </li>
+                                   </ul>
+                              </div>
+                         </li>
+<!-- 
+                         <li class="nav-item">
+                              <a class="nav-link" href="pages-review.html">
+                                   <span class="nav-icon">
+                                        <iconify-icon icon="solar:chat-square-like-broken"></iconify-icon>
+                                   </span>
+                                   <span class="nav-text"> Reviews </span>
+                              </a>
+                         </li> -->
+
+                         <!-- <li class="menu-title mt-2">Other Apps</li>
+
+                         <li class="nav-item">
+                              <a class="nav-link" href="apps-chat.html">
+                                   <span class="nav-icon">
+                                        <iconify-icon icon="solar:chat-round-broken"></iconify-icon>
+                                   </span>
+                                   <span class="nav-text"> Chat </span>
+                              </a>
+                         </li>
+
+                         <li class="nav-item">
+                              <a class="nav-link" href="apps-email.html">
+                                   <span class="nav-icon">
+                                        <iconify-icon icon="solar:mailbox-broken"></iconify-icon>
+                                   </span>
+                                   <span class="nav-text"> Email </span>
+                              </a>
+                         </li>
+
+                         <li class="nav-item">
+                              <a class="nav-link" href="apps-calendar.html">
+                                   <span class="nav-icon">
+                                        <iconify-icon icon="solar:calendar-broken"></iconify-icon>
+                                   </span>
+                                   <span class="nav-text"> Calendar </span>
+                              </a>
+                         </li>
+
+                         <li class="nav-item">
+                              <a class="nav-link" href="apps-todo.html">
+                                   <span class="nav-icon">
+                                        <iconify-icon icon="solar:checklist-broken"></iconify-icon>
+                                   </span>
+                                   <span class="nav-text"> Todo </span>
+                              </a>
+                         </li>
+
+                         <li class="menu-title mt-2">Support</li>
+
+                         <li class="nav-item">
+                              <a class="nav-link" href="help-center.html">
+                                   <span class="nav-icon">
+                                        <iconify-icon icon="solar:help-broken"></iconify-icon>
+                                   </span>
+                                   <span class="nav-text"> Help Center </span>
+                              </a>
+                         </li>
+
+                         <li class="nav-item">
+                              <a class="nav-link" href="pages-faqs.html">
+                                   <span class="nav-icon">
+                                        <iconify-icon icon="solar:question-circle-broken"></iconify-icon>
+                                   </span>
+                                   <span class="nav-text"> FAQs </span>
+                              </a>
+                         </li>
+
+                         <li class="nav-item">
+                              <a class="nav-link" href="privacy-policy.html">
+                                   <span class="nav-icon">
+                                        <iconify-icon icon="solar:document-text-broken"></iconify-icon>
+                                   </span>
+                                   <span class="nav-text"> Privacy Policy </span>
+                              </a>
+                         </li>
+
+                         <li class="menu-title mt-2">Custom</li>
+
+                         <li class="nav-item">
+                              <a class="nav-link menu-arrow" href="#sidebarPages" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarPages">
+                                   <span class="nav-icon">
+                                        <iconify-icon icon="solar:gift-broken"></iconify-icon>
+                                   </span>
+                                   <span class="nav-text"> Pages </span>
+                              </a>
+                              <div class="collapse" id="sidebarPages">
+                                   <ul class="nav sub-navbar-nav">
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="pages-starter.html">Welcome</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="pages-comingsoon.html">Coming Soon</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="pages-timeline.html">Timeline</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="pages-pricing.html">Pricing</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="pages-maintenance.html">Maintenance</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="pages-404.html">404 Error</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="pages-404-alt.html">404 Error (alt)</a>
+                                        </li>
+                                   </ul>
+                              </div>
+                         </li>
+
+                         <li class="nav-item">
+                              <a class="nav-link menu-arrow" href="#sidebarAuthentication" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarAuthentication">
+                                   <span class="nav-icon">
+                                        <iconify-icon icon="solar:lock-keyhole-broken"></iconify-icon>
+                                   </span>
+                                   <span class="nav-text"> Authentication </span>
+                              </a>
+                              <div class="collapse" id="sidebarAuthentication">
+                                   <ul class="nav sub-navbar-nav">
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="auth-signin.html">Sign In</a>
+                                        </li>                              
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="auth-signup.html">Sign Up</a>
+                                        </li>                           
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="auth-password.html">Reset Password</a>
+                                        </li>                              
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="auth-lock-screen.html">Lock Screen</a>
+                                        </li>                          
+                                   </ul>
+                              </div>
+                         </li>
+
+                         <li class="menu-title mt-2">Components</li>
+
+                         <li class="nav-item">
+                              <a class="nav-link menu-arrow" href="#sidebarBaseUI" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarBaseUI">
+                                   <span class="nav-icon">
+                                        <iconify-icon icon="solar:bookmark-square-broken"></iconify-icon>
+                                   </span>
+                                   <span class="nav-text"> Base UI </span>
+                              </a>
+                              <div class="collapse" id="sidebarBaseUI">
+                                   <ul class="nav sub-navbar-nav">
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="ui-accordion.html">Accordion</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="ui-alerts.html">Alerts</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="ui-avatar.html">Avatar</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="ui-badge.html">Badge</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="ui-breadcrumb.html">Breadcrumb</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="ui-buttons.html">Buttons</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="ui-card.html">Card</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="ui-carousel.html">Carousel</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="ui-collapse.html">Collapse</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="ui-dropdown.html">Dropdown</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="ui-list-group.html">List Group</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="ui-modal.html">Modal</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="ui-tabs.html">Tabs</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="ui-offcanvas.html">Offcanvas</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="ui-pagination.html">Pagination</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="ui-placeholders.html">Placeholders</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="ui-popovers.html">Popovers</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="ui-progress.html">Progress</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="ui-scrollspy.html">Scrollspy</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="ui-spinners.html">Spinners</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="ui-toasts.html">Toasts</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="ui-tooltips.html">Tooltips</a>
+                                        </li>
+                                   </ul>
+                              </div>
+                         </li>
+
+                         <li class="nav-item">
+                              <a class="nav-link menu-arrow" href="#sidebarExtendedUI" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarExtendedUI">
+                                   <span class="nav-icon">
+                                        <iconify-icon icon="solar:case-round-broken"></iconify-icon>
+                                   </span>
+                                   <span class="nav-text"> Advanced UI </span>
+                              </a>
+                              <div class="collapse" id="sidebarExtendedUI">
+                                   <ul class="nav sub-navbar-nav">
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="extended-ratings.html">Ratings</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="extended-sweetalert.html">Sweet Alert</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="extended-swiper-silder.html">Swiper Slider</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="extended-scrollbar.html">Scrollbar</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="extended-toastify.html">Toastify</a>
+                                        </li>
+                                   </ul>
+                              </div>
+                         </li>
+
+                         <li class="nav-item">
+                              <a class="nav-link menu-arrow" href="#sidebarCharts" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarCharts">
+                                   <span class="nav-icon">
+                                        <iconify-icon icon="solar:pie-chart-2-broken"></iconify-icon>
+                                   </span>
+                                   <span class="nav-text"> Charts </span>
+                              </a>
+                              <div class="collapse" id="sidebarCharts">
+                                   <ul class="nav sub-navbar-nav">
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="charts-apex-area.html">Area</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="charts-apex-bar.html">Bar</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="charts-apex-bubble.html">Bubble</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="charts-apex-candlestick.html">Candlestick</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="charts-apex-column.html">Column</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="charts-apex-heatmap.html">Heatmap</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="charts-apex-line.html">Line</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="charts-apex-mixed.html">Mixed</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="charts-apex-timeline.html">Timeline</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="charts-apex-boxplot.html">Boxplot</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="charts-apex-treemap.html">Treemap</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="charts-apex-pie.html">Pie</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="charts-apex-radar.html">Radar</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="charts-apex-radialbar.html">RadialBar</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="charts-apex-scatter.html">Scatter</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="charts-apex-polar-area.html">Polar Area</a>
+                                        </li>
+                                   </ul>
+                              </div>
+                         </li>
+
+                         <li class="nav-item">
+                              <a class="nav-link menu-arrow" href="#sidebarForms" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarForms">
+                                   <span class="nav-icon">
+                                        <iconify-icon icon="solar:book-bookmark-broken"></iconify-icon>
+                                   </span>
+                                   <span class="nav-text"> Forms </span>
+                              </a>
+                              <div class="collapse" id="sidebarForms">
+                                   <ul class="nav sub-navbar-nav">
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="forms-basic.html">Basic Elements</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="forms-checkbox-radio.html">Checkbox &amp; Radio</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="forms-choices.html">Choice Select</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="forms-clipboard.html">Clipboard</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="forms-flatepicker.html">Flatepicker</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="forms-validation.html">Validation</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="forms-wizard.html">Wizard</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="forms-fileuploads.html">File Upload</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="forms-editors.html">Editors</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="forms-input-mask.html">Input Mask</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="forms-range-slider.html">Slider</a>
+                                        </li>
+                                   </ul>
+                              </div>
+                         </li>
+
+                         <li class="nav-item">
+                              <a class="nav-link menu-arrow" href="#sidebarTables" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarTables">
+                                   <span class="nav-icon">
+                                        <iconify-icon icon="solar:tuning-2-broken"></iconify-icon>
+                                   </span>
+                                   <span class="nav-text"> Tables </span>
+                              </a>
+                              <div class="collapse" id="sidebarTables">
+                                   <ul class="nav sub-navbar-nav">
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="tables-basic.html">Basic Tables</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="tables-gridjs.html">Grid Js</a>
+                                        </li>
+                                   </ul>
+                              </div>
+                         </li>
+
+                         <li class="nav-item">
+                              <a class="nav-link menu-arrow" href="#sidebarIcons" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarIcons">
+                                   <span class="nav-icon">
+                                        <iconify-icon icon="solar:ufo-2-broken"></iconify-icon>
+                                   </span>
+                                   <span class="nav-text"> Icons </span>
+                              </a>
+                              <div class="collapse" id="sidebarIcons">
+                                   <ul class="nav sub-navbar-nav">
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="icons-boxicons.html">Boxicons</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="icons-solar.html">Solar Icons</a>
+                                        </li>
+                                   </ul>
+                              </div>
+                         </li>
+
+                         <li class="nav-item">
+                              <a class="nav-link menu-arrow" href="#sidebarMaps" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarMaps">
+                                   <span class="nav-icon">
+                                        <iconify-icon icon="solar:streets-map-point-broken"></iconify-icon>
+                                   </span>
+                                   <span class="nav-text"> Maps </span>
+                              </a>
+                              <div class="collapse" id="sidebarMaps">
+                                   <ul class="nav sub-navbar-nav">
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="maps-google.html">Google Maps</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="maps-vector.html">Vector Maps</a>
+                                        </li>
+                                   </ul>
+                              </div>
+                         </li>
+
+                         <li class="nav-item">
+                              <a class="nav-link" href="javascript:void(0);">
+                                   <span class="nav-icon">
+                                        <iconify-icon icon="solar:volleyball-broken"></iconify-icon>
+                                   </span>
+                                   <span class="nav-text">Badge Menu</span>
+                                   <span class="badge bg-danger badge-pill text-end">1</span>
+                              </a>
+                         </li>
+
+                         <li class="nav-item">
+                              <a class="nav-link menu-arrow" href="#sidebarMultiLevelDemo" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarMultiLevelDemo">
+                                   <span class="nav-icon">
+                                        <iconify-icon icon="solar:share-circle-broken"></iconify-icon>
+                                   </span>
+                                   <span class="nav-text"> Menu Item </span>
+                              </a>
+                              <div class="collapse" id="sidebarMultiLevelDemo">
+                                   <ul class="nav sub-navbar-nav">
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="javascript:void(0);">Menu Item 1</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link  menu-arrow" href="#sidebarItemDemoSubItem" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarItemDemoSubItem">
+                                                  <span> Menu Item 2 </span>
+                                             </a>
+                                             <div class="collapse" id="sidebarItemDemoSubItem">
+                                                  <ul class="nav sub-navbar-nav">
+                                                       <li class="sub-nav-item">
+                                                            <a class="sub-nav-link" href="javascript:void(0);">Menu Sub item</a>
+                                                       </li>
+                                                  </ul>
+                                             </div>
+                                        </li>
+                                   </ul>
+                              </div>
+                         </li>
+
+                         <li class="nav-item">
+                              <a class="nav-link disabled" href="javascript:void(0);">
+                                   <span class="nav-icon">
+                                        <iconify-icon icon="solar:user-block-rounded-broken"></iconify-icon>
+                                   </span>
+                                   <span class="nav-text"> Disable Item </span>
+                              </a>
+                         </li> -->
+                    </ul>
+               </div>
+          </div>
+          <!-- ========== App Menu End ========== -->
+
+          <!-- ==================================================== -->
+          <!-- Start right Content here -->
+          <!-- ==================================================== -->
+          <div class="page-content">
+
+         
+
+               <!-- ========== Footer Start ========== -->
+             
