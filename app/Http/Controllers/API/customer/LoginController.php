@@ -78,7 +78,6 @@ class LoginController extends BaseController
     
         return $this->sendresponse([], 'Successfully logged out.');
     }
-    
 
     // public function logout(Request $request)
     // {
@@ -114,7 +113,7 @@ class LoginController extends BaseController
 
         $validator = Validator::make($data, [
             'id' => 'required|exists:customer,id',
-            'otp'     => 'required',
+            'otp' => 'required',
         ]);
 
         if ($validator->fails()) {

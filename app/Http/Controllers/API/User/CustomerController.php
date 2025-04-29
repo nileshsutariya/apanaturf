@@ -12,7 +12,7 @@ use App\Http\Controllers\API\BaseController;
 
 class CustomerController extends BaseController
 {
-    public function customerupdate(Request $request)
+    public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
             'id' => 'nullable|exists:customer,id', 
@@ -92,7 +92,7 @@ class CustomerController extends BaseController
             return $this->sendresponse($customers, 'Customer registered successfully');
         }
     }
-    public function customerlist(Request $request) 
+    public function list(Request $request) 
     {
         $query = Customer::query();
 

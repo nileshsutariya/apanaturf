@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 
-class Sport extends Model
+class Sports extends Model
 {
     protected $table = "sports";
     protected $primaryKey = "id";

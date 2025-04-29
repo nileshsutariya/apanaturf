@@ -11,7 +11,7 @@ use App\Http\Controllers\API\BaseController;
 
 class BannersController extends BaseController
 {
-    public function bannerlist(Request $request)
+    public function list(Request $request)
     {
             $query =Banner::join('images', 'banner.image_id', '=', 'images.id')
                 ->select('banner.id', 'images.image_name');
@@ -51,7 +51,7 @@ class BannersController extends BaseController
     }
     
  
-    public function addbanner(Request $request)
+    public function store(Request $request)
     {
         // Validate dimensions and file type
         $validator = Validator::make($request->all(), [
@@ -126,14 +126,15 @@ class BannersController extends BaseController
         return $this->sendresponse($banner, 'Banner added successfully');
     }
     
-    public function bannerdelete(Request $request){
+    public function delete(Request $request){
         $response = Banner::deletesport($request->id);
 
         if (!$response) {
             return $this->senderror('', 'Sport not found');
         }
 
-        return $this->sendresponse([], $response['message']);    }
+        return $this->sendresponse([], $response['message']);    
+    }
 
 }
 
