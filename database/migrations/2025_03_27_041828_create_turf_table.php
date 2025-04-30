@@ -15,9 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->json('sports_ids');
-            // $table->foreign('sports_ids')->references('id')->on('sports');
             $table->json('amenities_ids');
-            // $table->foreign('amenities_ids')->references('id')->on('amenities');
             $table->string('location_link');
             $table->string('location_text');
             $table->unsignedBigInteger('turf_image');

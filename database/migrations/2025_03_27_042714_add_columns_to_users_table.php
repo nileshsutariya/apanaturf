@@ -15,7 +15,7 @@ return new class extends Migration
             $table->unsignedBigInteger('role_id')->after('password');
             $table->foreign('role_id')->references('id')->on('role_type');
             
-            $table->unsignedBigInteger('profile_image')->after('role_id');
+            $table->unsignedBigInteger('profile_image')->after('role_id')->nullable();
             $table->foreign('profile_image')->references('id')->on('images');
        
         });

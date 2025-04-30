@@ -19,9 +19,7 @@ return new class extends Migration
             $table->unsignedBigInteger('customer_id');
             $table->foreign('customer_id')->references('id')->on('customer');
             $table->json('sports_ids');
-            // $table->foreign('sports_ids')->references('id')->on('sports');
             $table->json('amenities_ids');
-            // $table->foreign('amenities_ids')->references('id')->on('amenities');
             $table->unsignedBigInteger('coupons_id');
             $table->foreign('coupons_id')->references('id')->on('coupons_and_offers');
             $table->unsignedBigInteger('transaction_id');
