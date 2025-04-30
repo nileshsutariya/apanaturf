@@ -18,13 +18,12 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('phone')->unique();
-            $table->string('password');
+            $table->string('password')->nullable();
             $table->float('balance')->nullable();
-            // $table->unsignedBigInteger('otp')->nullable();
-            // $table->timestamp('otp_send_at')->nullable();
-            // $table->timestamp('otp_expires_at')->nullable();
-          
-            // $table->string('type');
+            $table->unsignedBigInteger('otp')->nullable();
+            $table->timestamp('otp_send_at')->nullable();
+            $table->timestamp('otp_verified_at')->nullable();
+            $table->timestamp('location_history')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

@@ -12,8 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('customer', function (Blueprint $table) {
-            $table->boolean('otp_verified_at')->after('otp_send_at');
-            $table->unsignedBigInteger('location_history')->after('otp_verify');
+            $table->unsignedBigInteger('location_history')->after('otp_verified_at');
             $table->foreign('location_history')->references('id')->on('location_history');
         });
     }

@@ -25,8 +25,6 @@ use App\Http\Controllers\API\User\ConfigurationController;
 //     ], function ($router) {
 
 Route::prefix('admin')->group(function () {
-
-
     Route::post('/login', [loginController::class, 'login']);
     Route::post('/logout', [loginController::class, 'logout']);
 
@@ -74,11 +72,11 @@ Route::prefix('admin')->group(function () {
     // Route::post('/banner/delete', [BannersController::class, 'bannerdelete']);
     // Route::post('/banner/list', [BannersController::class, 'bannerlist']);
 });
+
 // Route::group([
 //     'middleware' => 'customer.login',
 // ], function () {
 Route::prefix('customer')->group(function () {
-
 
     Route::post('/register', [RegisterController::class, 'register']);
     Route::post('/profile', [RegisterController::class, 'profile']);
@@ -87,21 +85,21 @@ Route::prefix('customer')->group(function () {
     Route::post('/coupons', [CouponController::class, 'coupons']);
     Route::post('/venues', [VenuesController::class, 'venues']);
 
-
     Route::prefix('/turf')->controller(TurfController::class)->group(function () {
         Route::post('/', 'index');
         Route::post('/details', 'details');
     });
 
-    Route::prefix('/login')->controller(CustomerLoginContoller::class)->group(function () {
-        Route::post('/', 'login');
-        Route::post('/otpverify', 'otpverify');
-        Route::post('/otpresend', 'otpresend');
+    Route::controller(CustomerLoginContoller::class)->group(function () {
+        Route::post('/login', 'login');
+        Route::post('/otpverify', 'verifyotp');
+        Route::post('/otpresend', 'resendotp');
     });
 
     Route::middleware('customer.login')->group(function () {
         Route::post('/logout', [CustomerLoginContoller::class, 'logout']);
     });
+    
 });
 
 

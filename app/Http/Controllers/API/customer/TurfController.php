@@ -155,7 +155,7 @@ class TurfController extends BaseController
         ], 'Turf list');
     }
  
-    public function turf(Request $request)
+    public function index(Request $request)
     {
         // $user = auth('customer')->user();
     
