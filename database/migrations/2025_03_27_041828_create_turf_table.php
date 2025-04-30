@@ -18,8 +18,7 @@ return new class extends Migration
             $table->json('amenities_ids');
             $table->string('location_link');
             $table->string('location_text');
-            $table->unsignedBigInteger('turf_image');
-            $table->foreign('turf_image')->references('id')->on('images');
+            $table->json('turf_image');
             $table->float('height')->nullable();
             $table->float('width');
             $table->float('length');
