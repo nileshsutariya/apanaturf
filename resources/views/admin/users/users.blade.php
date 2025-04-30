@@ -255,14 +255,12 @@
                     const html = $(response);
                     $('#example tbody').html(html.find('#example tbody').html());
                     $('#userWrapper').html(html.find('#userWrapper').html());
-                    $('#roletypes').html(html.find('#roletypes').html());
                     initDataTable();
                     $('#user').modal('hide');
                     $('#userWrapper').html($(response).find('#userWrapper').html());
                     $('#userForm').find('input[name="id"], input[name="name"], input[name="phone"], input[name="email"]').val('');
                     roleChoices.setChoiceByValue('');
                     $('#formErrors').addClass('d-none').find('ul').html('');
-
                 }, error: function (xhr) {
                     if (xhr.status === 422) {
                         let errors = xhr.responseJSON.errors;
@@ -320,27 +318,17 @@
 
 <script>
 
-
     $(document).on('click', '.edituser', function () {
         let user = $(this).data('user');
-        console.log(user.role_id);
+        // console.log(user.role_id);
         $('#userForm input[name="id"]').val(user.id);
         $('#userForm input[name="name"]').val(user.name);
         $('#userForm input[name="email"]').val(user.email);
         $('#userForm input[name="phone"]').val(user.phone);
 
         roleChoices.setChoiceByValue(user.role_id.toString());
-
-        // $('.roletypes option')
-        //     .prop('selected', false)                         
-        //     .filter(`[value="${user.role_id}"]`)                
-        //     .prop('selected', true);                           
-        // $('.roletypes').trigger('change');
-
         $('#formErrors ul').html('');
         $('#formErrors').addClass('d-none');
-
-        // $('#user').modal('show');
     });
 </script>
 

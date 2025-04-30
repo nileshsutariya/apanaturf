@@ -29,7 +29,6 @@ class CustomerController extends Controller
             'balance' => 'required',
             'email' => 'required|email|unique:users,email' . ($request->id ? ',' . $request->id : ''),
         ])->validate();
-        $customer = Customer::find($request->id);
         $customer = $request->id ? Customer::find($request->id) : new Customer();
         $customer->name = $request->name;
         $customer->email = $request->email;

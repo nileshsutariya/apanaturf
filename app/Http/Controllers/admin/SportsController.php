@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\admin;
 
-use App\Models\Sport;
 use App\Models\Images;
+use App\Models\Sports;
 use Illuminate\Http\Request;
+use App\Livewire\Admin\Sport\Sport;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
@@ -14,7 +15,7 @@ class SportsController extends Controller
 {
     public function index(Request $request)
     {
-        $sport = Sport::leftJoin('images', 'sports.image_id', '=', 'images.id')
+        $sport = Sports::leftJoin('images', 'sports.image_id', '=', 'images.id')
             ->select('sports.*', 'images.image_path')->get();
         if ($request->ajax()) {
             return view('admin.sports.sports', compact('sport'))->render();
@@ -90,7 +91,7 @@ class SportsController extends Controller
         $i->reference_id = 0;
         $i->save();
 
-        $sport = new Sport();
+        $sport = new Sports();
         $sport->name = $request->name;
         $sport->image_id = $i->id;
         $sport->save();
@@ -106,7 +107,7 @@ class SportsController extends Controller
 
     public function delete(Request $request){
         // print_r($request->id);die;
-        $sport = Sport::find($request->id);
+        $sport = Sports::find($request->id);
         $image = Images::find($sport->image_id);
         $sport->delete();
     
