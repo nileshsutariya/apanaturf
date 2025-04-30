@@ -13,7 +13,7 @@ class roletypeSeeder extends Seeder
      */
     public function run(): void
     {
-        $roles = ['admin', 'subadmin', 'user', 'customer', 'vendor'];
+        $roles = ['Admin', 'Sub admin', 'User', 'Customer', 'Vendor'];
 
         foreach ($roles as $role) {
             Role_type::create([

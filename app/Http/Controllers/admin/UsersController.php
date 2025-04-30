@@ -27,7 +27,7 @@ class UsersController extends Controller
         }
 
     }
-    public function update(Request $request)
+    public function store(Request $request)
     {
         // print_r($request->all());die;
         $validator = Validator::make($request->all(), [
@@ -43,7 +43,7 @@ class UsersController extends Controller
         $users->phone = $request->phone;
         $users->role_id = $request->role;
         $users->save();
-        return redirect()->route('user.index');
+        return redirect()->route('users.index');
     }
 
 }

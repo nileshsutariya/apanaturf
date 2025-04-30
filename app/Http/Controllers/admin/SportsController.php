@@ -101,7 +101,7 @@ class SportsController extends Controller
         $i->reference_id = $sport->id;
         $i->save();
 
-        return redirect()->route('sport.index');
+        return redirect()->route('sports.index');
 
     }
 
@@ -117,6 +117,6 @@ class SportsController extends Controller
             }
             $image->delete();
         }
-        return redirect()->route('sport.index');
+        return redirect()->route('sports.index');
     }
 }

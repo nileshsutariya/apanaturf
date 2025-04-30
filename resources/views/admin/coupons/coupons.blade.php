@@ -435,7 +435,7 @@
             let form = $(this);
             let formData = form.serialize();
             $.ajax({
-                url: '{{ route("coupons.update") }}',
+                url: '{{ route("coupons.store") }}',
                 type: 'POST',
                 data: formData,
                 success: function (response) {

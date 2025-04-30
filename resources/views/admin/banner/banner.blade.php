@@ -81,7 +81,7 @@
                     <div id="formErrors" class="alert alert-danger d-none">
                         <ul class="mb-0"></ul>
                     </div>
-                    <form action="{{  route('banner.update') }}" id="bannerForm" method="POST"
+                    <form  id="bannerForm" method="POST"
                         enctype="multipart/form-data">
                         @csrf
                         <div id="file-container" class="dropzone">
