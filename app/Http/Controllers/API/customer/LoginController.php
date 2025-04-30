@@ -46,7 +46,6 @@ class LoginController extends BaseController
         }
     
         $customer = Auth::guard('customer')->user();
-
        
         $location = LocationHistory::create([
             'latitude' => $latitude,

@@ -29,8 +29,6 @@ class CouponsController extends Controller
     }
     public function store(Request $request)
     {
-        // print_r($request->all());
-        // die;
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
             'turf' => 'required',
