@@ -18,7 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('turf_id');
             $table->foreign('turf_id')->references('id')->on('turf');
             $table->string('phone');
-            $table->text('balance');
+            $table->string('balance');
 
             $table->string('area');
             $table->string('pincode');

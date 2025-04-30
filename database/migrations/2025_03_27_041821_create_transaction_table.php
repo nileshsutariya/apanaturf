@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreign('transfer_by_customer_id')->references('id')->on('customer');
             $table->text('transaction_id');
             $table->date('date');
-            $table->text('amount');
+            $table->string('amount');
             $table->string('transaction_type')->comment('withdraw or deposit');
             $table->string('method');
             $table->enum('status', ['0', '1', '2'])

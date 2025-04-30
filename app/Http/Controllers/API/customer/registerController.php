@@ -15,9 +15,20 @@ class RegisterController extends BaseController
 {
     public function register(Request $request)
     {
-        $data = $re
-        quest->all();
-        
+        $data = $request->all();
+
+        // $validator = Validator::make($data, [
+        //     'name' => 'required',
+        //     'email' => 'required|email|unique:customer,email',
+        //     'phone' => 'required|unique:customer,phone',
+        //     'password' => 'required',
+        // ]);
+
+        // if ($validator->fails()) {
+        //     return $this->senderror(['errors' => $validator->errors()->all()]);
+        // }
+
+
         $request->validate([
             'name' => 'required',
             'email' => 'email|unique:customer,email',
