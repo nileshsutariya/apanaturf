@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\admin;
 
 use App\Models\User;
-use App\Models\Role_Type;
+use App\Models\RoleType;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
@@ -19,7 +19,7 @@ class UsersController extends Controller
             ->orWhere('users.phone', 'like', '%' . $request->search . '%')
             ->orWhere('users.email', 'like', '%' . $request->search . '%')
             ->orWhere('role_type.name', 'like', $request->search . '%')->paginate(10);
-        $role = Role_Type::all();
+        $role = RoleType::all();
         if ($request->ajax()) {
             return view('admin.users.users', compact('user', 'role'))->render();
         } else {

@@ -31,6 +31,7 @@ class CustomerController extends Controller
         ])->validate();
         $customer = $request->id ? Customer::find($request->id) : new Customer();
         $customer->name = $request->name;
+        $customer->unique_id = uniqid();
         $customer->email = $request->email;
         $customer->phone = $request->phone;
         $customer->balance = $request->balance;
