@@ -17,6 +17,15 @@
         display: none;
     }
 
+    .dz-image-preview {
+        justify-items: center;
+    }
+
+    .dz-details {
+        margin-bottom: 10px;
+        text-align: center;
+    }
+
     .dz-remove {
         margin-top: 10px;
         color: red;

@@ -21,6 +21,13 @@
             margin-top: 20px;
         }
     }
+    .dz-image-preview{
+        justify-items: center;
+    }
+    .dz-details{
+        margin-bottom: 10px;
+        text-align: center;
+    }
 </style>
 <div class="container-fluid">
     <div class="row">

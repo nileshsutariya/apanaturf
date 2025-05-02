@@ -224,10 +224,14 @@
         $(document).on('click', '.pagination a', function (e) {
             e.preventDefault();
             var page = $(this).attr('href').split('page=')[1];
-
+            var search = $('#search').val();
             $.ajax({
-                url: '{{ route("customer.index") }}?page=' + page,
+                url: '{{ route("customer.index") }}' ,
                 type: 'GET',
+                data: {
+                    page: page,
+                    search: search
+                },
                 success: function (data) {
                     $('#example').DataTable().destroy();
                     $('#example').html($(data).find('#example').html());

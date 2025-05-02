@@ -23,6 +23,15 @@
         color: red;
     }
 
+    .dz-image-preview {
+        justify-items: center;
+    }
+
+    .dz-details {
+        margin-bottom: 10px;
+        text-align: center;
+    }
+
     #example {
         gap: 1.0rem;
         /* or gap: 5%; etc. */
