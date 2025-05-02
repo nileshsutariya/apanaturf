@@ -25,12 +25,8 @@ class CouponController extends BaseController
             'filter_param.id' => 'nullable|exists:coupons_and_offers,id',
             'order.column' => 'nullable|string|in:coupons_name,start_date,end_date,min_order,id',
             'order.dir' => 'nullable|string|in:asc,desc', 
-        ]);
-        
-        if($validator->fails()){
-            return $this->senderror( ['errors' => $validator->errors()->all()]);
-        }
- 
+        ])->validate();
+
         if ($request->has('filter_param.id') && !empty($request->input('filter_param.id'))) {
             $query->where('id', $request->input('filter_param.id'));
         }

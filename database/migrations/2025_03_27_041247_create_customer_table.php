@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->text('unique_id')->nullable();
             $table->string('name');
-            $table->string('email')->unique();
+            $table->string('email')->unique()->nullable();
             $table->string('phone')->unique();
             $table->string('password')->nullable();
             $table->float('balance')->nullable();
