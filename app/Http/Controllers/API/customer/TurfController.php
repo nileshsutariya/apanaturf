@@ -51,7 +51,6 @@ class TurfController extends BaseController
             $isToday = $date === $now->toDateString();
             $requestedTime = Carbon::createFromFormat('H:i', $time);
         
-            // If date is today and time is in the past, skip applying filters (no available turfs)
             if ($isToday && $requestedTime->lessThanOrEqualTo($now)) {
                 return $this->sendresponse([], 'Cannot search for past time.');
             }
