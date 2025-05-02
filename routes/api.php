@@ -8,12 +8,12 @@ use App\Http\Controllers\API\User\BannersController;
 use App\Http\Controllers\API\User\CouponsController;
 use App\Http\Controllers\API\customer\TurfController;
 use App\Http\Controllers\API\User\CustomerController;
-use App\Http\Controllers\API\customer\LoginController as CustomerLoginContoller;
 use App\Http\Controllers\API\customer\BannerController;
 use App\Http\Controllers\API\customer\CouponController;
 use App\Http\Controllers\API\customer\VenuesController;
-use App\Http\Controllers\API\customer\RegisterController;
 use App\Http\Controllers\API\User\ConfigurationController;
+use App\Http\Controllers\API\customer\CustomerRegisterController;
+use App\Http\Controllers\API\customer\LoginController as CustomerLoginContoller;
 
 // Route::get('/user', function (Request $request) {
 //     return $request->user();
@@ -30,7 +30,7 @@ Route::prefix('admin')->group(function () {
 
     Route::post('/update', [UserController::class, 'update']);
     Route::post('/list', [UserController::class, 'list']);
-    
+
     Route::prefix('/customer')->controller(CustomerController::class)->group(function () {
         Route::post('/store', 'store');
         Route::post('/list', 'list');
@@ -56,30 +56,12 @@ Route::prefix('admin')->group(function () {
         Route::post('/delete', 'delete');
     });
 
-    // Route::post('/sports/add', [ConfigurationController::class, 'addsports']);
-    // Route::post('/sports/list', [ConfigurationController::class, 'sportlist']);
-    // Route::post('/sports/delete', [ConfigurationController::class, 'sportdelete']);
-
-    // Route::post('/amenities/add', [ConfigurationController::class, 'addamenities']);
-    // Route::post('/amenities/list', [ConfigurationController::class, 'amenitieslist']);
-    // Route::post('/amenities/delete', [ConfigurationController::class, 'amenitiesdelete']);
-
-    // Route::post('/coupons/add', [CouponsController::class, 'addcoupons']);
-    // Route::post('/coupons/delete', [CouponsController::class, 'deletecoupons']);
-    // Route::post('/coupons/list', [CouponsController::class, 'listcoupons']);
-
-    // Route::post('/banner/add', [BannersController::class, 'addbanner']);
-    // Route::post('/banner/delete', [BannersController::class, 'bannerdelete']);
-    // Route::post('/banner/list', [BannersController::class, 'bannerlist']);
 });
 
-// Route::group([
-//     'middleware' => 'customer.login',
-// ], function () {
 Route::prefix('customer')->group(function () {
 
-    Route::post('/register', [RegisterController::class, 'register']);
-    Route::post('/profile', [RegisterController::class, 'profile']);
+    Route::post('/register', [CustomerRegisterController::class, 'register']);
+    Route::post('/profile', [CustomerRegisterController::class, 'profile']);
 
     Route::post('/banner', [BannerController::class, 'banners']);
     Route::post('/coupons', [CouponController::class, 'coupons']);
@@ -99,7 +81,7 @@ Route::prefix('customer')->group(function () {
     Route::middleware('customer.login')->group(function () {
         Route::post('/logout', [CustomerLoginContoller::class, 'logout']);
     });
-    
+
 });
 
 

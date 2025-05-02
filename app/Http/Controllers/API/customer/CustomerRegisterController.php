@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\API\BaseController;
 
-class RegisterController extends BaseController
+class CustomerRegisterController extends BaseController
 {
     public function register(Request $request)
     {
@@ -58,6 +58,5 @@ class RegisterController extends BaseController
         $customer['profile_image'] = $image->image_name;
         return $this->sendresponse($customer->makeHidden(['password', 'otp', 'otp_send_at', 'otp_verified_at', 'location_history', 'email_verified_at', 'remember_token']), 'Profile image uploaded successfully');
     }
-
 
 }
