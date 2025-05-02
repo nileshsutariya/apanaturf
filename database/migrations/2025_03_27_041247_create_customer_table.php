@@ -23,7 +23,6 @@ return new class extends Migration
             $table->unsignedBigInteger('otp')->nullable();
             $table->timestamp('otp_send_at')->nullable();
             $table->timestamp('otp_verified_at')->nullable();
-            $table->timestamp('location_history')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

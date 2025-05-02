@@ -17,10 +17,7 @@ use App\Http\Controllers\API\BaseController as BaseController;
 class registerController extends BaseController
 {
     public function register(Request $request)
-    {
-        $data = $re
-        quest->all();
-        
+    {        
         $request->validate([
             'name' => 'required',
             'email' => 'email|unique:customer,email',
@@ -30,36 +27,28 @@ class registerController extends BaseController
 
         $customer = new Customer();
         $customer->unique_id = uniqid();
-        $customer->name = $data['name'];
-        $customer->email = $data['email'] ?? NULL;
-        $customer->phone = $data['phone'];
-        $customer->password = Hash::make($data['password']);
-        $customer->balance = $data['balance'] ?? 0;
+        $customer->name = $request['name'];
+        $customer->email = $request['email'] ?? NULL;
+        $customer->phone = $request['phone'];
+        $customer->password = Hash::make($request['password']);
+        $customer->balance = $request['balance'] ?? 0;
         $customer->otp = 1234;
         $customer->otp_send_at = Carbon::now();
         $customer->save();
         
-        $customer->makeHidden(['password', 'otp']);
-
-        return $this->sendresponse($customer, 'Customer registered successfully');
+        return $this->sendresponse($customer->makeHidden(['password', 'otp']), 'Customer registered successfully');
     }
 
     public function profile(Request $request)
     {
         $customer = Auth::guard('customer')->user();
 
-        if (!$customer) {
-            return $this->senderror('Unauthorized', ['error' => 'User not authenticated']);
-        }
-
-        if (!$request->hasFile('profile_image')) {
-            return $this->senderror('No image uploaded', ['error' => 'Please upload a profile image']);
-        }
+        if (!$customer) return $this->senderror('Unauthorized', ['error' => 'User not authenticated']);
+        if (!$request->hasFile('profile_image')) return $this->senderror('No image uploaded', ['error' => 'Please upload a profile image']);
 
         $file = $request->file('profile_image');
         $filename = time() . '_' . $file->getClientOriginalName();
         $filepath = $file->storeAs('customer_image', $filename, 'public');
-        // $filepath = $file->move(public_path('admin_image'), $filename);
 
         $image = Images::create([
             'image_name' => $filename,
@@ -68,12 +57,9 @@ class registerController extends BaseController
             'reference_id' => $customer->id,
         ]);
 
-        $customer->profile_image = $image->id;
-        $customer->save();
-        $customer->makeHidden(['password', 'otp', 'otp_verified_at', 'location_history', 'email_verified_at', 'remember_token']);
-        $customer = $customer->toArray();
+        $customer->update(['profile_image' => $image->id]);
         $customer['profile_image'] = $image->image_name;
-        return $this->sendresponse($customer, 'Profile image uploaded successfully');
+        return $this->sendresponse($customer->makeHidden(['password', 'otp', 'otp_send_at', 'otp_verified_at', 'location_history', 'email_verified_at', 'remember_token']), 'Profile image uploaded successfully');
     }
 
 }

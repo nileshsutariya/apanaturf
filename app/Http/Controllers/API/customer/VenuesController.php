@@ -128,7 +128,5 @@ class VenuesController extends BaseController
     //     $data = $venues->offset($start)->limit($length)->get();
 
     //     return $this->sendresponse($data, 'venues list');
-    }
- 
-
+    } 
 }

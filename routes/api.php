@@ -92,8 +92,8 @@ Route::prefix('customer')->group(function () {
 
     Route::controller(CustomerLoginContoller::class)->group(function () {
         Route::post('/login', 'login');
-        Route::post('/otpverify', 'verifyotp');
-        Route::post('/otpresend', 'resendotp');
+        Route::post('/otpverify', 'VerifyOtp');
+        Route::post('/otpresend', 'ResendOtp');
     });
 
     Route::middleware('customer.login')->group(function () {

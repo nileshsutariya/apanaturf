@@ -16,29 +16,21 @@ use PHPOpenSourceSaver\JWTAuth\Facades\JWTAuth;
 
 class LoginController extends BaseController
 {
-
     public function login(Request $request)
-    {
-        $data = $request->all();
-    
-        $loginInput = $data['login_as'] ?? null;
-        $password = $data['password'] ?? null;
-        $latitude = $data['latitude'] ?? null;
-        $longitude = $data['longitude'] ?? null;
-        $fcm_token = $data['fcm_token'] ?? null;
+    {    
+        $loginInput = $request['login_as'] ?? null;
+        $password = $request['password'] ?? null;
+        $latitude = $request['latitude'] ?? null;
+        $longitude = $request['longitude'] ?? null;
+        $fcm_token = $request['fcm_token'] ?? null;
     
         if (!$loginInput || !$password) {
             return $this->senderror('Invalid request.', ['error' => 'Login credentials are required.']);
         }
 
-        // $existingUser = Auth::guard('customer')->user();
-        // if ($existingUser) {
-        //     return $this->senderror('Already logged in.', ['error' => 'User is already logged in.']);
-        // }
-
         $credentials = [
             'phone' => $loginInput, 
-            'password' => $password, 
+            'password' => $password
         ];
 
         if (!$token = Auth::guard('customer')->attempt($credentials)) {
@@ -47,7 +39,6 @@ class LoginController extends BaseController
     
         $customer = Auth::guard('customer')->user();
 
-       
         $location = LocationHistory::create([
             'latitude' => $latitude,
             'longitude' => $longitude,
@@ -61,12 +52,12 @@ class LoginController extends BaseController
             'fcm_token' => $fcm_token, 
         ]);
         
-        $otp = 1234;
-        $customer->otp = $otp;
-        $customer->otp_send_at = now();
-        $customer->otp_verified_at = null;
-        $customer->location_history = $location->id;
-        $customer->save();
+        $customer->update([
+            'otp' => 1234,
+            'otp_send_at' => now(),
+            'otp_verified_at' => null,
+            'location_history' => $location->id
+        ]);
     
         $success = $this->respondWithToken($token); 
         return $this->sendresponse($success, 'User logged in successfully.');
@@ -75,29 +66,9 @@ class LoginController extends BaseController
     public function logout(Request $request)
     {
         JWTAuth::invalidate(JWTAuth::getToken());
-    
         return $this->sendresponse([], 'Successfully logged out.');
     }
 
-    // public function logout(Request $request)
-    // {
-    //     $token = $request->bearerToken();
-
-    //     if (!$token) {
-    //         return $this->senderror('Unauthorized', ['error' => 'Token not found.']);
-    //     }
-
-    //     $user = $request->user();
-
-    //     if ($user && $user->token()) {
-    //         $user->token()->revoke(); // Revoke current token
-    //         return $this->sendresponse([], 'Successfully logged out.');
-    //     }
-
-    //     return $this->senderror('Unauthorized', ['error' => 'User not authenticated.']);
-    // }
-
-    
     protected function respondWithToken($token)
     {
         return [
@@ -107,11 +78,9 @@ class LoginController extends BaseController
         ];
     }
 
-    public function verifyotp(Request $request)
+    public function VerifyOtp(Request $request)
     {
-        $data = $request->all();
-
-        $validator = Validator::make($data, [
+        $validator = Validator::make($request->all(), [
             'id' => 'required|exists:customer,id',
             'otp' => 'required',
         ]);
@@ -120,39 +89,32 @@ class LoginController extends BaseController
             return $this->senderror(['errors' => $validator->errors()->all()]);
         }
 
-        $customer = Customer::find($data['id']);
+        $customer = Customer::find($request['id']);
 
         if (!$customer) {
-            return $this->senderror('User not found.');
+            return $this->senderror([],'User not found.');
         }
 
         if (!$customer->otp_send_at) {
-            return $this->senderror('OTP not found. Please request again.');
+            return $this->senderror([],'OTP not found. Please request again.');
         }
 
         if (now()->diffInSeconds(Carbon::parse($customer->otp_send_at)) > 300) {
-            return $this->senderror('OTP expired. Please request a new one.');
+            return $this->senderror([],'OTP expired. Please request a new one.');
         }
 
-        if ((string) $customer->otp !== (string) $data['otp']) {
-            return $this->senderror('Invalid OTP. Please try again.');
+        if ((string) $customer->otp !== (string) $request['otp']) {
+            return $this->senderror([],'Invalid OTP. Please try again.');
         }
 
-        $customer->otp_verified_at = now();
-        $customer->otp = null;
-        $customer->save();
+        $customer->update(['otp_verified_at' => now(), 'otp' => null]);
 
-        return $this->sendresponse([
-            'verified' => true,
-            'id' => $customer->id
-        ], 'OTP verified successfully.');
+        return $this->sendresponse(['verified' => true,'id' => $customer->id], 'OTP verified successfully.');
     }
 
-    public function resendotp(Request $request)
+    public function ResendOtp(Request $request)
     {
-        $data = $request->all();
-
-        $validator = Validator::make($data, [
+        $validator = Validator::make($request->all(), [
             'id' => 'required|exists:customer,id',
         ]);
 
@@ -160,7 +122,7 @@ class LoginController extends BaseController
             return $this->senderror(['errors' => $validator->errors()->all()]);
         }
 
-        $customer = Customer::find($data['id']);
+        $customer = Customer::find($request['id']);
 
         if (!$customer) {
             return $this->senderror('Customer not found.');
@@ -170,12 +132,7 @@ class LoginController extends BaseController
         $customer->otp_send_at = now();
         $customer->save();
 
-    
-        return $this->sendresponse([
-            'id' => $customer->id
-        ], 'OTP resent successfully.');
+        return $this->sendresponse(['id' => $customer->id], 'OTP resent successfully.');
     }
-
-
 
 }

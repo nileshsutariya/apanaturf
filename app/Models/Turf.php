@@ -31,5 +31,12 @@ class Turf extends Model
     {
         return $this->hasMany(Coupons::class, 'turf_id'); 
     }
-
+    public function featureImage()
+    {
+        return $this->belongsTo(Images::class, 'feature_image');
+    }
+    public function turfImage()
+    {
+        return $this->hasMany(Images::class, 'id', 'turf_image'); 
+    }
 }

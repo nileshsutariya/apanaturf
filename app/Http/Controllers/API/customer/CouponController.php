@@ -12,13 +12,6 @@ class CouponController extends BaseController
 {
     public function coupons(Request $request)
     {
-        // $customer = auth('customer')->user();
-        // print_r($customer);die;
-
-        // if (!$customer || !$customer->otp_verified_at) {
-        //     return response()->json(['message' => 'OTP verification required.'], 403);
-        // }
-
         $today = now();
         $startOfMonth = $today->copy()->startOfMonth();
         $endOfMonth = $today->copy()->endOfMonth();
@@ -57,16 +50,12 @@ class CouponController extends BaseController
         $query->orderBy($sortColumn, $sortDirection);
         
         $coupons = $query->offset($request->start*$request->length)->limit($request->length)->get();
-        $coupons = Coupons::with('creaters') 
-                    ->where('start_date', '<=', now())
-                    ->where('end_date', '>=', now())
-                    ->get();
 
         $coupons->each(function ($coupon) {
             $coupon->created_by = $coupon->creaters ? $coupon->creaters->name : null;
             unset($coupon->creaters);
         });
+        
         return $this->sendresponse($coupons, 'Coupons List');
-
     }
 }
