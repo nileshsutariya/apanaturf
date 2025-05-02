@@ -17,10 +17,7 @@ class BannerController extends BaseController
             'order.column' => 'nullable|string|in:id,event_id',
             'order.dir' => 'nullable|string|in:asc,desc', 
             'limit' => 'nullable|integer|min:1', 
-        ]);
-        if ($validator->fails()) {
-            return $this->senderror(['errors' => $validator->errors()->all()]);
-        }
+        ])->validate();
         $query = Banner::join('images', 'banner.image_id', '=', 'images.id')
                     ->select('banner.id', 'images.image_name', 'images.image_path');
 
