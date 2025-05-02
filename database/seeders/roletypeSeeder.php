@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Role_type;
+use App\Models\RoleType;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
@@ -13,10 +13,10 @@ class roletypeSeeder extends Seeder
      */
     public function run(): void
     {
-        $roles = ['admin', 'subadmin', 'user', 'customer', 'vendor'];
+        $roles = ['Admin', 'Sub admin', 'User', 'Customer', 'Vendor'];
 
         foreach ($roles as $role) {
-            Role_type::create([
+            RoleType::create([
                 'name' => $role,
                 'code' => rand(1000, 9999),
             ]);

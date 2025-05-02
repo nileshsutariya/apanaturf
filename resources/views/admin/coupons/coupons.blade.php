@@ -299,7 +299,7 @@
                     </div>
                 </div>
             </div>
-            <div class="modal-body mt-3 pl-5 pt-0"style="scrollbar-width: none;">
+            <div class="modal-body mt-3 pl-5 pt-0" style="scrollbar-width: none;">
                 <div style="color: #333; padding-left:5px!important;" class="info_view">
                     <div>
                         <strong>Created By :</strong>
@@ -414,10 +414,14 @@
         $(document).on('click', '.pagination a', function (e) {
             e.preventDefault();
             var page = $(this).attr('href').split('page=')[1];
-
+            var search = $('#search').val();
             $.ajax({
-                url: '{{ route("coupons.index") }}?page=' + page,
+                url: '{{ route("coupons.index") }}' ,
                 type: 'GET',
+                data: {
+                    page: page,
+                    search: search
+                },
                 success: function (data) {
                     $('#example').DataTable().destroy();
                     $('#example').html($(data).find('#example').html());
@@ -435,7 +439,7 @@
             let form = $(this);
             let formData = form.serialize();
             $.ajax({
-                url: '{{ route("coupons.update") }}',
+                url: '{{ route("coupons.store") }}',
                 type: 'POST',
                 data: formData,
                 success: function (response) {

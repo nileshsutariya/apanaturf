@@ -12,7 +12,7 @@ use App\Http\Controllers\API\customer\LoginController as CustomerLoginContoller;
 use App\Http\Controllers\API\customer\BannerController;
 use App\Http\Controllers\API\customer\CouponController;
 use App\Http\Controllers\API\customer\VenuesController;
-use App\Http\Controllers\API\customer\registerController;
+use App\Http\Controllers\API\customer\RegisterController;
 use App\Http\Controllers\API\User\ConfigurationController;
 
 // Route::get('/user', function (Request $request) {

@@ -11,9 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('customer', function (Blueprint $table) {
-            $table->unsignedBigInteger('location_history')->after('otp_verified_at')->nullable();
-            $table->foreign('location_history')->references('id')->on('location_history');
+        Schema::create('unit', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->timestamps();
         });
     }
 
@@ -22,8 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('customer', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('unit');
     }
 };

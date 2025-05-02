@@ -2,22 +2,19 @@
 
 namespace App\Http\Controllers\API\customer;
 
-use Carbon\Carbon;
 use App\Models\Images;
 use App\Models\Customer;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Carbon;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
-use App\Http\Controllers\API\BaseController as BaseController;
+use App\Http\Controllers\API\BaseController;
 
-
-class registerController extends BaseController
+class RegisterController extends BaseController
 {
     public function register(Request $request)
-    {        
+    {
         $request->validate([
             'name' => 'required',
             'email' => 'email|unique:customer,email',
@@ -61,5 +58,6 @@ class registerController extends BaseController
         $customer['profile_image'] = $image->image_name;
         return $this->sendresponse($customer->makeHidden(['password', 'otp', 'otp_send_at', 'otp_verified_at', 'location_history', 'email_verified_at', 'remember_token']), 'Profile image uploaded successfully');
     }
+
 
 }

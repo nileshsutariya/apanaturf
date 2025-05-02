@@ -11,9 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('customer', function (Blueprint $table) {
-            $table->unsignedBigInteger('location_history')->after('otp_verified_at')->nullable();
-            $table->foreign('location_history')->references('id')->on('location_history');
+        Schema::table('turf', function (Blueprint $table) {
+            $table->string('unit')->after('booking_price')->nullable();
         });
     }
 
@@ -22,7 +21,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('customer', function (Blueprint $table) {
+        Schema::table('turf', function (Blueprint $table) {
             //
         });
     }

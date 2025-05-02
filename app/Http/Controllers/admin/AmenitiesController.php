@@ -41,7 +41,6 @@ class AmenitiesController extends Controller
 
         $hasTransparency = false;
 
-        //backgroud check mate
         if (in_array($mime, ['image/png', 'image/jpg', 'image/webp', 'image/jpeg', 'image/svg'])) {
             $image = null;
 

@@ -21,7 +21,7 @@ class BannerController extends Controller
             return view('admin.banner.banner', ['banner' => $banner]);
         }
     }
-    public function update(Request $request)
+    public function store(Request $request)
     {
 
         // print_r($request->all());die;
@@ -52,7 +52,7 @@ class BannerController extends Controller
         $i->reference_id = $banner->id;
         $i->save();
 
-        return redirect()->route('banner.index');
+        return redirect()->route('banners.index');
 
     }
 
@@ -68,7 +68,7 @@ class BannerController extends Controller
             }
             $image->delete();
         }
-        return redirect()->route('banner.index');
+        return redirect()->route('banners.index');
     }
 
 }

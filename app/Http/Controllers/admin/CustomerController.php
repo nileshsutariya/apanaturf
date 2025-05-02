@@ -27,11 +27,11 @@ class CustomerController extends Controller
             'name' => 'required',
             'phone' => 'required',
             'balance' => 'required',
-            'email' => 'required|email|unique:users,email' . ($request->id ? ',' . $request->id : ''),
+            'email' => 'required|email|unique:customer,email' . ($request->id ? ',' . $request->id : ''),
         ])->validate();
-        $customer = Customer::find($request->id);
         $customer = $request->id ? Customer::find($request->id) : new Customer();
         $customer->name = $request->name;
+        $customer->unique_id = uniqid();
         $customer->email = $request->email;
         $customer->phone = $request->phone;
         $customer->balance = $request->balance;

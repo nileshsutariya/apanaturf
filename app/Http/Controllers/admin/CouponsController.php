@@ -29,8 +29,6 @@ class CouponsController extends Controller
     }
     public function store(Request $request)
     {
-        // print_r($request->all());
-        // die;
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
             'turf' => 'required',
@@ -48,7 +46,7 @@ class CouponsController extends Controller
             $coupon->end_date = $request->expire_date;
             $coupon->discount_in_per = $request->dis_per;
             $coupon->discount_in_ruppee = $request->dis_rupees;
-            $coupon->created_by = 9;
+            $coupon->created_by = 1;
             $coupon->min_order = $request->min_order;
             $coupon->save();
 
