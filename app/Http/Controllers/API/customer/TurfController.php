@@ -29,19 +29,16 @@ class TurfController extends BaseController
             'filter_param.time' => 'nullable|date_format:H:i|after:' . now()->format('H:i'),
         ])->validate();
 
-        // if ($validator->fails()) {
-        //     return $this->senderror(['errors' => $validator->errors()->all()]);
-        // }
 
         $turfQuery = Turf::query()->with('featureImage');
 
-        $staticLocationName = $request->input('location_text');
+        // $staticLocationName = $request->input('location_text');
         $date = $filterParams['date'] ?? null;
         $time = $filterParams['time'] ?? null;
 
-        if (!empty($staticLocationName)) {
-            $turfQuery->where('location_text', 'like', '%' . $staticLocationName . '%');
-        }
+        // if (!empty($staticLocationName)) {
+        //     $turfQuery->where('location_text', 'like', '%' . $staticLocationName . '%');
+        // }
 
         if (isset($filterParams['id']) && !empty($filterParams['id'])) {
             $turfQuery->where('turf.id', $filterParams['id']);
@@ -120,269 +117,232 @@ class TurfController extends BaseController
 
         return $this->sendresponse($formatted, 'Turf list');
     }
+    
     // public function details(Request $request)
     // {
     //     $staticLocationName = $request->input('location_text');
 
-    //     $validator = Validator::make($request->all(), [ 
-    //         'filter_param.id' => 'required|exists:turf,id',
-    //         'order.column' => 'nullable|string|in:name,id',
-    //         'order.dir' => 'nullable|string|in:asc,desc',
-    //         'date' => 'nullable|date|after_or_equal:today',
-    //         'time' => 'nullable|date_format:H:i'
-    //     ]);
+    //     $validator = Validator::make($request->all(), [
+    //         'filter_param.id' => 'required|numeric|exists:turf,id',
+    //         // 'order.column' => 'nullable|string|in:name,id',
+    //         // 'order.dir' => 'nullable|string|in:asc,desc',
+    //         // 'date' => 'nullable|date|after_or_equal:today',
+    //         // 'time' => 'nullable|date_format:H:i'
+    //     ], [
+    //         'filter_param.id.required' => 'Turf ID is required.',
+    //         'filter_param.id.exists' => 'Selected Turf ID is invalid.',
+    //     ])->validate();
 
-    //     if ($validator->fails()) {
-    //         return $this->senderror(['errors' => $validator->errors()->all()]);
-    //     }
 
-    //     $turfQuery = Turf::query()->with(['timings', 'coupons']); // Removed 'images' relationship
+    //     $data = Turf::with(['timings', 'coupons'])
+    //             ->when(!empty($staticLocationName), fn($q) => $q->where('location_text', 'like', '%' . $staticLocationName . '%'))
+    //             ->when($request->filled('filter_param.id'), fn($q) => $q->where('turf.id', $request->input('filter_param.id')))
+    //             ->first();
 
-    //     if (!empty($staticLocationName)) {
-    //         $turfQuery->where('location_text', 'like', '%' . $staticLocationName . '%');
-    //     }
+    //     if ($data) {
+    //         $timing = $data->timings->first();
+    //         $data->timing = (new DateTime($timing->from))->format('h:i A') . ' - ' . (new DateTime($timing->to))->format('h:i A');
 
-    //     if ($request->has('filter_param.id') && !empty($request->input('filter_param.id'))) {
-    //         $turfQuery->where('turf.id', $request->input('filter_param.id'));
-    //     }
+    //         $sportsIds = json_decode($data->sports_ids, true);
+    //         $amenityIds = json_decode($data->amenities_ids, true);
 
-    //     if (!empty($request->input('search.value'))) {
-    //         $searchValue = $request->input('search.value');
-    //         $turfQuery->where(function($q) use ($searchValue) {
-    //             $q->where('name', 'LIKE', "%{$searchValue}%")
-    //             ->orWhere('location_text', 'LIKE', "%{$searchValue}%")
-    //             ->orWhere('booking_price', 'LIKE', "%{$searchValue}%");
+    //         $sportsIds = is_array($sportsIds) ? $sportsIds : (is_numeric($sportsIds) ? [$sportsIds] : []);
+    //         $amenityIds = is_array($amenityIds) ? $amenityIds : (is_numeric($amenityIds) ? [$amenityIds] : []);
+
+    //         $data->sports = Sports::whereIn('id', $sportsIds)->pluck('name')->toArray();
+    //         $data->amenities = Amenity::whereIn('id', $amenityIds)->pluck('name')->toArray();
+    //         unset($data->sports_ids, $data->amenities_ids);
+
+
+    //         $turfImageIds = json_decode($data->turf_image, true);
+    //         $turfImageIds = is_array($turfImageIds) ? $turfImageIds : [];
+
+    //         $data->turf_images = Images::whereIn('id', $turfImageIds)->get()->map(function ($img) {
+    //             return [
+    //                 'image_name' => $img->image_name,
+    //                 'image_url' => asset(Storage::url($img->image_path)),
+    //             ];
     //         });
-    //     }
+    //         if ($data->feature_image) {
+    //             $featureImg = Images::find($data->feature_image);
+    //             $data->feature_image = $featureImg ? [
+    //                 'image_name' => $featureImg->image_name,
+    //                 'image_url' => asset(Storage::url($featureImg->image_path)),
+    //             ] : null;
+    //         } else {
+    //             $data->feature_image = null;
+    //         }
 
-    //     $sortColumn = $request->input('order.column', 'turf.id'); 
-    //     $sortDirection = $request->input('order.dir', 'asc');
-    //     $turfQuery->orderBy($sortColumn, $sortDirection);
+    //         unset($data->images, $data->turf_image);
 
-    //     $start = $request->input('start');
-    //     $length = $request->input('length');
-    //     $data = $turfQuery->offset($start)->limit($length)->get();
+    //         $data->coupons = $data->coupons->map(function ($coupon) {
+    //             return [
+    //                 'coupon_code' => $coupon->coupon_code,
+    //                 'discount' => $coupon->discount,
+    //                 'valid_until' => $coupon->valid_until,
+    //             ];
+    //         });
 
-    //     if ($data->isNotEmpty()) {
-    //         $data->map(function ($item) {
+    //         $data->time_slots = collect($data->timings)->flatMap(function ($timing) {
+    //             $slots = [];
+    //             $start = Carbon::parse($timing->from);
+    //             $end = Carbon::parse($timing->to);
 
-    //             $item->timing = collect($item->timings)->map(function ($timing) {
-    //                 $start = Carbon::parse($timing->from);
-    //                 $end = Carbon::parse($timing->to);
-                
-    //                 return $start->format('h:i A') . ' - ' . $end->format('h:i A');
-    //             })->first();
-
-    //             $sportsIds = json_decode($item->sports_ids, true);
-    //             $amenityIds = json_decode($item->amenities_ids, true);
-                
-    //             $sportsIds = is_array($sportsIds) ? $sportsIds : (is_numeric($sportsIds) ? [$sportsIds] : []);
-    //             $amenityIds = is_array( $amenityIds) ? $amenityIds : (is_numeric($amenityIds) ? [$amenityIds] : []);
-        
-    //             $item->sports = Sports::whereIn('id', $sportsIds)->pluck('name')->toArray();
-    //             $item->amenities = Amenity::whereIn('id', $amenityIds)->pluck('name')->toArray();
-    //             unset($item->sports_ids, $item->amenities_ids);
-        
-
-    //             $turfImageIds = json_decode($item->turf_image, true);
-    //             $turfImageIds = is_array($turfImageIds) ? $turfImageIds : [];
-
-    //             $item->turf_images = Images::whereIn('id', $turfImageIds)->get()->map(function ($img) {
-    //                 return [
-    //                     'image_name' => $img->image_name,
-    //                     'image_url' => asset(Storage::url($img->image_path)),
-    //                 ];
-    //             });
-    //             if ($item->feature_image) {
-    //                 $featureImg = Images::find($item->feature_image);
-    //                 $item->feature_image = $featureImg ? [
-    //                     'image_name' => $featureImg->image_name,
-    //                     'image_url' => asset(Storage::url($featureImg->image_path)),
-    //                 ] : null;
-    //             } else {
-    //                 $item->feature_image = null;
+    //             while ($start->lt($end)) {
+    //                 $slots[] = $start->format('ga');
+    //                 $start->addHour();
     //             }
 
-    //             unset($item->images, $item->turf_image);
+    //             return $slots;
+    //         })->unique()->values();
 
-    //             $item->coupons = $item->coupons->map(function($coupon) {
-    //                 return [
-    //                     'coupon_code' => $coupon->coupon_code,
-    //                     'discount' => $coupon->discount,
-    //                     'valid_until' => $coupon->valid_until,
-    //                 ];
-    //             });
-                 
-    //             $item->time_slots = collect($item->timings)->flatMap(function ($timing) {
-    //                 $slots = [];
-    //                 $start = Carbon::parse($timing->from);
-    //                 $end = Carbon::parse($timing->to);
-        
-    //                 while ($start->lt($end)) {
-    //                     $slots[] = $start->format('ga');
-    //                     $start->addHour();
-    //                 }
-        
-    //                 return $slots;
-    //             })->unique()->values();
+    //         unset($data->timings);
 
-    //             unset($item->timings);
-        
-    //             return $item;
-    //         });
+    //         $dates = collect();
+    //         $today = now();
+    //         for ($i = 0; $i <= 30; $i++) {
+    //             $date = $today->copy()->addDays($i);
+    //             $dates->push([
+    //                 'date' => $date->toDateString(),
+    //                 'day' => $date->format('D'),
+    //                 // 'day_num' => $date->format('d'),
+    //                 'month' => $date->format('M'),
+    //             ]);
+    //         }
+
+    //         $data->dates = $dates;
     //     } else {
     //         return $this->senderror('No turfs found.');
     //     }
 
-    //     $dates = collect();
-    //     $today = now();
+    //     // $dates = collect();
+    //     // $today = now();
 
-    //     for ($i = 0; $i <= 30; $i++) {
-    //         $date = $today->copy()->addDays($i);
-    //         $dates->push([
-    //             'date' => $date->toDateString(),
-    //             'day'  => $date->format('D'),
-    //             // 'day_num' => $date->format('d'),
-    //             'month' => $date->format('M'),
-    //         ]);
-    //     }
-    //     return $this->sendresponse([
-    //         'turfs' => $data,
-    //         'dates' => $dates,
-    //     ], 'Turf list');
+    //     // for ($i = 0; $i <= 30; $i++) {
+    //     //     $date = $today->copy()->addDays($i);
+    //     //     $dates->push([
+    //     //         'date' => $date->toDateString(),
+    //     //         'day' => $date->format('D'),
+    //     //         // 'day_num' => $date->format('d'),
+    //     //         'month' => $date->format('M'),
+    //     //     ]);
+    //     // }
+    //     // print_r($data);die;
+
+    //     return $this->sendresponse($data, 'Turf Details');
     // }
-    
+
+
+
     public function details(Request $request)
     {
-        $staticLocationName = $request->input('location_text');
+        $this->validateRequest($request);
 
-        $validator = Validator::make($request->all(), [
+        $data = $this->getTurfData($request);
+
+        if (!$data) {
+            return $this->senderror('No turfs found.');
+        }
+
+        $this->formatTurfData($data);
+        $data->dates = $this->generateDateRange();
+
+        return $this->sendresponse($data, 'Turf Details');
+    }
+
+    private function validateRequest(Request $request)
+    {
+        Validator::make($request->all(), [
             'filter_param.id' => 'required|numeric|exists:turf,id',
-            'order.column' => 'nullable|string|in:name,id',
-            'order.dir' => 'nullable|string|in:asc,desc',
-            'date' => 'nullable|date|after_or_equal:today',
-            'time' => 'nullable|date_format:H:i'
         ], [
             'filter_param.id.required' => 'Turf ID is required.',
             'filter_param.id.exists' => 'Selected Turf ID is invalid.',
         ])->validate();
+    }
 
+    private function getTurfData(Request $request)
+    {
+        return Turf::with(['timings', 'coupons'])
+            ->when($request->filled('location_text'), fn($q) =>
+                $q->where('location_text', 'like', '%' . $request->input('location_text') . '%'))
+            ->when($request->filled('filter_param.id'), fn($q) =>
+                $q->where('turf.id', $request->input('filter_param.id')))
+            ->first();
+    }
 
-        $turfQuery = Turf::query()->with([
-            'timings',
-            'coupons',
-            'images' => function ($query) {
-                $query->where('reference_name', 'turf');
-            }
+    private function formatTurfData($data)
+    {
+        $timing = $data->timings->first();
+        $data->timing = (new DateTime($timing->from))->format('h:i A') . ' - ' . (new DateTime($timing->to))->format('h:i A');
+
+        $data->sports = $this->getNamesFromIds(Sports::class, $data->sports_ids);
+        $data->amenities = $this->getNamesFromIds(Amenity::class, $data->amenities_ids);
+
+        $data->turf_images = $this->getImageDetails($data->turf_image);
+        $data->feature_image = $this->getFeatureImage($data->feature_image);
+
+        unset($data->sports_ids, $data->amenities_ids, $data->images, $data->turf_image);
+
+        $data->coupons = $data->coupons->map(fn($coupon) => [
+            'coupon_code' => $coupon->coupon_code,
+            'discount' => $coupon->discount,
+            'valid_until' => $coupon->valid_until,
         ]);
 
-        if (!empty($staticLocationName)) {
-            $turfQuery->where('location_text', 'like', '%' . $staticLocationName . '%');
-        }
-
-        if ($request->has('filter_param.id') && !empty($request->input('filter_param.id'))) {
-            $turfQuery->where('turf.id', $request->input('filter_param.id'));
-        }
-
-        if (!empty($request->input('search.value'))) {
-            $searchValue = $request->input('search.value');
-            $turfQuery->where(function ($q) use ($searchValue) {
-                $q->where('name', 'LIKE', "%{$searchValue}%")
-                    ->orWhere('location_text', 'LIKE', "%{$searchValue}%")
-                    ->orWhere('booking_price', 'LIKE', "%{$searchValue}%");
-            });
-        }
-
-        $sortColumn = $request->input('order.column', 'turf.id');
-        $sortDirection = $request->input('order.dir', 'asc');
-        $turfQuery->orderBy($sortColumn, $sortDirection);
-
-        $start = $request->input('start');
-        $length = $request->input('length');
-        $data = $turfQuery->offset($start)->limit($length)->get();
-
-        if ($data->isNotEmpty()) {
-            $data->map(function ($item) {
-                $timing = $item->timings->first();
-                $item->timing = (new DateTime($timing->from))->format('h:i A') . ' - ' . (new DateTime($timing->to))->format('h:i A');
-
-                $sportsIds = json_decode($item->sports_ids, true);
-                $amenityIds = json_decode($item->amenities_ids, true);
-
-                $sportsIds = is_array($sportsIds) ? $sportsIds : (is_numeric($sportsIds) ? [$sportsIds] : []);
-                $amenityIds = is_array($amenityIds) ? $amenityIds : (is_numeric($amenityIds) ? [$amenityIds] : []);
-
-                $item->sports = Sports::whereIn('id', $sportsIds)->pluck('name')->toArray();
-                $item->amenities = Amenity::whereIn('id', $amenityIds)->pluck('name')->toArray();
-                unset($item->sports_ids, $item->amenities_ids);
-
-
-                $turfImageIds = json_decode($item->turf_image, true);
-                $turfImageIds = is_array($turfImageIds) ? $turfImageIds : [];
-
-            $data->turf_images = Images::whereIn('id', $turfImageIds)->get()->map(function ($img) {
-                return [
-                    'image_name' => $img->image_name,
-                    'image_url' => asset(Storage::url($img->image_path)),
-                ];
-            });
-            if ($data->feature_image) {
-                $featureImg = Images::find($data->feature_image);
-                $data->feature_image = $featureImg ? [
-                    'image_name' => $featureImg->image_name,
-                    'image_url' => asset(Storage::url($featureImg->image_path)),
-                ] : null;
-            } else {
-                $data->feature_image = null;
+        $data->time_slots = collect($data->timings)->flatMap(function ($timing) {
+            $slots = [];
+            $start = Carbon::parse($timing->from);
+            $end = Carbon::parse($timing->to);
+            while ($start->lt($end)) {
+                $slots[] = $start->format('ga');
+                $start->addHour();
             }
+            return $slots;
+        })->unique()->values();
 
-            unset($data->images, $data->turf_image);
+        unset($data->timings);
+    }
 
-                $item->coupons = $item->coupons->map(function ($coupon) {
-                    return [
-                        'coupon_code' => $coupon->coupon_code,
-                        'discount' => $coupon->discount,
-                        'valid_until' => $coupon->valid_until,
-                    ];
-                });
+    private function getNamesFromIds($model, $ids)
+    {
+        $ids = json_decode($ids, true);
+        $ids = is_array($ids) ? $ids : (is_numeric($ids) ? [$ids] : []);
+        return $model::whereIn('id', $ids)->pluck('name')->toArray();
+    }
 
-                $item->time_slots = collect($item->timings)->flatMap(function ($timing) {
-                    $slots = [];
-                    $start = Carbon::parse($timing->from);
-                    $end = Carbon::parse($timing->to);
+    private function getImageDetails($imageIds)
+    {
+        $ids = json_decode($imageIds, true) ?? [];
+        return Images::whereIn('id', $ids)->get()->map(fn($img) => [
+            'image_name' => $img->image_name,
+            'image_url' => asset(Storage::url($img->image_path)),
+        ]);
+    }
 
-                    while ($start->lt($end)) {
-                        $slots[] = $start->format('ga');
-                        $start->addHour();
-                    }
+    private function getFeatureImage($id)
+    {
+        if (!$id) return null;
+        $img = Images::find($id);
+        return $img ? [
+            'image_name' => $img->image_name,
+            'image_url' => asset(Storage::url($img->image_path)),
+        ] : null;
+    }
 
-                    return $slots;
-                })->unique()->values();
-
-                unset($item->timings);
-
-                return $item;
-            });
-        } else {
-            return $this->senderror('No turfs found.');
-        }
-
+    private function generateDateRange()
+    {
         $dates = collect();
         $today = now();
-
         for ($i = 0; $i <= 30; $i++) {
             $date = $today->copy()->addDays($i);
             $dates->push([
                 'date' => $date->toDateString(),
                 'day' => $date->format('D'),
-                // 'day_num' => $date->format('d'),
                 'month' => $date->format('M'),
             ]);
         }
-        return $this->sendresponse([
-            'turfs' => $data,
-            'dates' => $dates,
-        ], 'Turf list');
+        return $dates;
     }
 
 }
+

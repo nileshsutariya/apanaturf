@@ -11,10 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
+        if (!Schema::hasTable('customer')) {
+
         Schema::table('customer', function (Blueprint $table) {
             $table->unsignedBigInteger('location_history')->after('otp_verified_at')->nullable();
             $table->foreign('location_history')->references('id')->on('location_history');
         });
+    }
     }
 
     /**

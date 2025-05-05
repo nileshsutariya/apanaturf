@@ -10,10 +10,13 @@ return new class extends Migration {
      */
     public function up(): void
     {
+        if (!Schema::hasTable('turf')) {
+
         Schema::table('turf', function (Blueprint $table) {
             $table->unsignedBigInteger('feature_image')->after('location_text')->nullable();
             $table->foreign('feature_image')->references('id')->on('images');
         });
+    }
     }
 
     /**

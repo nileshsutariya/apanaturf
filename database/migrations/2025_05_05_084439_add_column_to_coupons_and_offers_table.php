@@ -11,14 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        if (!Schema::hasTable('unit')) {
-
-        Schema::create('unit', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->timestamps();
+        Schema::table('coupons_and_offers', function (Blueprint $table) {
+            $table->string('type')->after('discount');
         });
-    }
     }
 
     /**
@@ -26,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('unit');
+        Schema::table('coupons_and_offers', function (Blueprint $table) {
+            //
+        });
     }
 };
