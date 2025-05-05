@@ -11,14 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        if (!Schema::hasTable('unit')) {
+        Schema::table('coupons_and_offers', function (Blueprint $table) {
+            $table->dropColumn('discount_in_ruppee');
 
-        Schema::create('unit', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->timestamps();
         });
-    }
     }
 
     /**
@@ -26,6 +22,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('unit');
+        Schema::table('coupons_and_offers', function (Blueprint $table) {
+            $table->string('discount_in_ruppee'); 
+        });
     }
 };

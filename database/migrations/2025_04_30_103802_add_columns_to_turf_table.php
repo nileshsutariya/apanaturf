@@ -11,9 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
+        if (!Schema::hasTable('turf')) {
+
         Schema::table('turf', function (Blueprint $table) {
             $table->string('unit')->after('booking_price')->nullable();
         });
+    }
     }
 
     /**

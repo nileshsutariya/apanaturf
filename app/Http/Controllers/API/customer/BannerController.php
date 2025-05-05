@@ -16,10 +16,10 @@ class BannerController extends BaseController
             'filter_param.id' => 'nullable|exists:banner,id',
             'order.column' => 'nullable|string|in:id,event_id',
             'order.dir' => 'nullable|string|in:asc,desc', 
-            'limit' => 'nullable|integer|min:1', 
+            // 'limit' => 'nullable|integer|min:1', 
         ])->validate();
         $query = Banner::join('images', 'banner.image_id', '=', 'images.id')
-                    ->select('banner.id', 'images.image_name', 'images.image_path');
+                    ->select('banner.id', 'banner.event_id', 'images.image_name', 'images.image_path');
 
         if ($request->has('filter_param.id') && !empty($request->input('filter_param.id'))) {
             $query->where('banner.id', $request->input('filter_param.id'));
@@ -35,7 +35,7 @@ class BannerController extends BaseController
 
         $sortColumn = $request->input('order.column', 'banner.id'); 
         $sortDirection = $request->input('order.dir', 'asc');
-
+        
         $query->orderBy($sortColumn, $sortDirection);
 
         $start = $request->input('start', 0);
