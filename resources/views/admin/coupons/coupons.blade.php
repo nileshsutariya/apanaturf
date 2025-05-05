@@ -160,11 +160,10 @@
                                         <div class="d-flex gap-2">
                                             <a class="btn btn-soft-primary btn-sm viewcoupon" data-bs-toggle="modal"
                                                 data-bs-target="#couponsview" data-coupons='@json($value)'>
-                                                <iconify-icon icon="solar:eye-broken" class="align-middle fs-18"></iconify-icon>
+                                                <i class='bx bxs-message-square-detail bx-xs'></i>
                                             </a>
                                             <a href="#!" class="btn btn-soft-danger btn-sm">
-                                                <iconify-icon icon="solar:trash-bin-minimalistic-2-broken"
-                                                    class="align-middle fs-18"></iconify-icon>
+                                            <i class='bx bxs-trash bx-xs'></i>
                                             </a>
                                         </div>
                                     </td>
@@ -239,8 +238,8 @@
                     </div>
                     <div>
                         <label class="mb-1">Turf</label>
-                        <select class="form-control turf" data-choices name="turf" id="choices-single-default"
-                            style="height: 30px;">
+                        <select class="form-control turf turfselect" data-choices name="turf"
+                            id="choices-single-default" style="height: 30px;">
                             <option value="">This is a placeholder</option>
                             @if (isset($turf))
                                 @foreach ($turf as $t)
@@ -391,8 +390,22 @@
     });
 
 </script>
+<script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
 
-
+<script>
+    let roleChoices;
+    if (!document.querySelector('.turfselect').classList.contains('choices__input')) {
+        roleChoices = new Choices('.turfselect', {
+            placeholder: true,
+            shouldSort: false,
+            allowHTML: false,
+        });
+    } else {
+        roleChoices = Choices.instances.find(
+            (instance) => instance.config.callbackOnInit.element.id === 'choices-single-default'
+        );
+    }
+</script>
 <script>
     function initDataTable() {
         $('#example').DataTable({
@@ -405,7 +418,11 @@
 
     $('#coupons').on('hidden.bs.modal', function () {
         $('#couponsForm').find('input[name="expire_date"],input[name="dis_per"],input[name="dis_rupees"], input[name="valid_date"], input[name="name"], input[name="min_order"]').val('');
-        $('.roletypes').val('');
+        roleChoices.setChoiceByValue('');
+        let code = generateCouponCode();
+        $('.code').text(code);
+        $('#c_code').val(code);
+        $('.percentage, .c_name, .c_rup, .max, .c_date').text('');
         $('#formErrors').addClass('d-none').find('ul').html('');
     });
 
@@ -416,7 +433,7 @@
             var page = $(this).attr('href').split('page=')[1];
             var search = $('#search').val();
             $.ajax({
-                url: '{{ route("coupons.index") }}' ,
+                url: '{{ route("coupons.index") }}',
                 type: 'GET',
                 data: {
                     page: page,

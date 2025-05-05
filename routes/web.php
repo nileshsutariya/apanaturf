@@ -7,38 +7,47 @@ use App\Http\Controllers\admin\SportsController;
 use App\Http\Controllers\admin\CouponsController;
 use App\Http\Controllers\admin\CustomerController;
 use App\Http\Controllers\admin\AmenitiesController;
+use App\Http\Controllers\admin\loginController;
 
 
 
 Route::prefix('admin')->group(function () {
-    
 
-    Route::prefix('/customer')->controller(CustomerController::class)->name('customer.')->group(function () {
-        Route::get('/', 'index')->name('index');
-        Route::post('/store', 'store')->name('store');
-    });
-    Route::prefix('/users')->controller(UsersController::class)->name('users.')->group(function () {
-        Route::get('/', 'index')->name('index');
-        Route::post('/store', 'store')->name('store');
-    });
-    Route::prefix('/sports')->controller(SportsController::class)->name('sports.')->group(function () {
-        Route::get('/', 'index')->name('index');
-        Route::post('/store', 'store')->name('store');
-        Route::post('/delete', 'delete')->name('delete');
-    });
-    Route::prefix('/amenities')->controller(AmenitiesController::class)->name('amenities.')->group(function () {
-        Route::get('/', 'index')->name('index');
-        Route::post('/store', 'store')->name('store');
-        Route::post('/delete', 'delete')->name('delete');
-    });
-    Route::prefix('/banners')->controller(BannerController::class)->name('banners.')->group(function () {
-        Route::get('/', 'index')->name('index');
-        Route::post('/store', 'store')->name('store');
-        Route::post('/delete', 'delete')->name('delete');
-    });
-    Route::prefix('/coupons')->controller(CouponsController::class)->name('coupons.')->group(function () {
-        Route::get('/', 'index')->name('index');
-        Route::post('/store', 'store')->name('store');
+    Route::get('/login', [loginController::class, 'login'])->name('admin.login');
+    Route::post('/login', [loginController::class, 'logincheck'])->name('logincheck');
+
+    Route::middleware('admin.login')->group(function () {
+
+        Route::get('/logout', [loginController::class, 'logout'])->name('logout');
+        Route::get('/dashboard', [loginController::class, 'dashboard'])->name('admin.dashboard');
+
+        Route::prefix('/customer')->controller(CustomerController::class)->name('customer.')->group(function () {
+            Route::get('/', 'index')->name('index');
+            Route::post('/store', 'store')->name('store');
+        });
+        Route::prefix('/users')->controller(UsersController::class)->name('users.')->group(function () {
+            Route::get('/', 'index')->name('index');
+            Route::post('/store', 'store')->name('store');
+        });
+        Route::prefix('/sports')->controller(SportsController::class)->name('sports.')->group(function () {
+            Route::get('/', 'index')->name('index');
+            Route::post('/store', 'store')->name('store');
+            Route::post('/delete', 'delete')->name('delete');
+        });
+        Route::prefix('/amenities')->controller(AmenitiesController::class)->name('amenities.')->group(function () {
+            Route::get('/', 'index')->name('index');
+            Route::post('/store', 'store')->name('store');
+            Route::post('/delete', 'delete')->name('delete');
+        });
+        Route::prefix('/banners')->controller(BannerController::class)->name('banners.')->group(function () {
+            Route::get('/', 'index')->name('index');
+            Route::post('/store', 'store')->name('store');
+            Route::post('/delete', 'delete')->name('delete');
+        });
+        Route::prefix('/coupons')->controller(CouponsController::class)->name('coupons.')->group(function () {
+            Route::get('/', 'index')->name('index');
+            Route::post('/store', 'store')->name('store');
+        });
     });
 });
 

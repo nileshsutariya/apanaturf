@@ -16,6 +16,7 @@ return Application::configure(basePath: dirname(__DIR__))
             $middleware->alias([
                 'login' => \App\Http\Middleware\CheckIfAuthenticated::class,
                 'customer.login' => \App\Http\Middleware\CustomerAuth::class,
+                'admin.login' => \App\Http\Middleware\Adminlogin::class,
             ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
@@ -24,6 +25,8 @@ return Application::configure(basePath: dirname(__DIR__))
                 return response()->json([
                     'message' => $e->getMessage(),
                 ], 401);
+            }else{
+                
             }
         });
     })->create();

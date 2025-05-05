@@ -135,12 +135,10 @@
                                     <div class="d-flex gap-2">
                                         <a class="btn btn-soft-primary btn-sm editcustomer" data-bs-toggle="modal"
                                             data-bs-target="#customer" data-customer='@json($value)'>
-                                            <iconify-icon icon="solar:pen-2-broken" class="align-middle fs-18">
-                                            </iconify-icon>
+                                            <i class='bx bxs-pencil bx-xs'></i>
                                         </a>
                                         <a href="#!" class="btn btn-soft-danger btn-sm">
-                                            <iconify-icon icon="solar:trash-bin-minimalistic-2-broken"
-                                                class="align-middle fs-18"></iconify-icon>
+                                        <i class='bx bxs-trash bx-xs'></i>
                                         </a>
                                     </div>
                                 </td>
@@ -187,7 +185,7 @@
                         <input type="email" class="form-control" name="email" placeholder="Enter The Email Address">
                     </div>
 
-                    <div style="margin-bottom: 12px;">
+                    <div style="margin-bottom: 12px;" class="balancefield">
                         <label class="mb-1">Balance</label>
                         <input type="text" class="form-control" name="balance" placeholder="Enter The Balance">
                     </div>
@@ -217,6 +215,9 @@
     $(document).on('click', '.addcustomer', function () {
         $('#customerForm')[0].reset();
         $('input[name="id"]').val('');
+        $('#customerForm input[name="balance"]')
+            .val(customer.balance)
+            .prop('readonly', false);
         $('#formErrors').addClass('d-none').find('ul').html('');
     });
     $(document).ready(function () {
@@ -226,7 +227,7 @@
             var page = $(this).attr('href').split('page=')[1];
             var search = $('#search').val();
             $.ajax({
-                url: '{{ route("customer.index") }}' ,
+                url: '{{ route("customer.index") }}',
                 type: 'GET',
                 data: {
                     page: page,
@@ -259,6 +260,9 @@
                     initDataTable();
                     $('#customerWrapper').html($(response).find('#customerWrapper').html());
                     $('#customer').modal('hide');
+                    $('#customerForm input[name="balance"]')
+                        .val(customer.balance)
+                        .prop('readonly', false);
                     $('#customerForm')[0].reset();
                     document.activeElement.blur();
                     $('#formErrors').addClass('d-none').find('ul').html('');
@@ -310,7 +314,9 @@
         $('#customerForm input[name="email"]').val(customer.email);
         $('#customerForm input[name="phone"]').val(customer.phone);
         $('#customerForm input[name="balance"]').val(customer.balance);
-
+        $('#customerForm input[name="balance"]')
+            .val(customer.balance)
+            .prop('readonly', true);
         $('#formErrors ul').html('');
         $('#formErrors').addClass('d-none');
 

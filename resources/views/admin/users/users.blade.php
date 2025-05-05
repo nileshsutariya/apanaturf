@@ -72,6 +72,18 @@
         }
     }
 </style>
+<style>
+    #balanceWrapper .small {
+        display: none !important;
+    }
+
+    #balanceWrapper {
+        margin-right: 100px;
+    }
+    .pagination {
+        margin-bottom: 0px;
+    }
+</style>
 <div class="container-fluid">
     <div class="row">
         <div class="col-12">
@@ -123,14 +135,16 @@
                                 </td>
                                 <td>
                                     <div class="d-flex gap-2">
+                                        <a class="btn btn-soft-success btn-sm" data-bs-toggle="modal" data-bs-target="#wallet"
+                                            data-user='@json($value)'>
+                                            <i class='bx bx-wallet bx-xs'></i>
+                                        </a>
                                         <a class="btn btn-soft-primary btn-sm edituser" data-bs-toggle="modal"
                                             data-bs-target="#user" data-user='@json($value)'>
-                                            <iconify-icon icon="solar:pen-2-broken" class="align-middle fs-18">
-                                            </iconify-icon>
+                                            <i class='bx bxs-pencil bx-xs'></i>
                                         </a>
                                         <a href="#!" class="btn btn-soft-danger btn-sm">
-                                            <iconify-icon icon="solar:trash-bin-minimalistic-2-broken"
-                                                class="align-middle fs-18"></iconify-icon>
+                                        <i class='bx bxs-trash bx-xs'></i>
                                         </a>
                                     </div>
                                 </td>
@@ -201,6 +215,63 @@
     </div>
 </div>
 
+
+<div class="modal fade" id="wallet" tabindex="-1" aria-labelledby="userTitle" aria>
+    <div class="modal-dialog modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div>
+                    <h4 class="modal-title" id="userTitle">Wallet</h4>
+                    <p class="modal-title mt-" id="userTitle" style="font-weight: 400;">Available balance :</p>
+                </div>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div id="formErrors" class="alert alert-danger d-none">
+                    <ul class="mb-0"></ul>
+                </div>
+                <form method="POST">
+                    @csrf
+                    <table id="example2" class="display responsive nowrap 2" style="width:100%">
+                        <thead class="p-2">
+                            <tr>
+                                <th class="gridjs-th">User Name</th>
+                                <th class="gridjs-th">Booking Date</th>
+                                <th class="gridjs-th">Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody id="userdata">
+                            @foreach ($user as $value)
+                                <tr class="p-3">
+                                    <td>
+                                        {{ $value->name }}
+                                    </td>
+                                    <td>
+                                        02-02-2025
+                                    </td>
+                                    <td class="text-success">
+                                        <span class="text-success">+400</span>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </form>
+            </div>
+
+            <div class="modal-footer p-2">
+                <div id="balanceWrapper">
+                    <div>
+                        {{ $user->onEachSide(0)->links('pagination::bootstrap-5') }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/responsive/2.5.0/js/dataTables.responsive.min.js"></script>
@@ -214,6 +285,21 @@
             responsive: true,
         });
     }
+    function initDataTable2() {
+        $('#wallet').on('shown.bs.modal', function () {
+            if ($.fn.DataTable.isDataTable('#example2')) {
+                $('#example2').DataTable().destroy();
+            }
+            if (!$.fn.DataTable.isDataTable('#example2')) {
+                $('#example2').DataTable({
+                    paging: false,
+                    info: false,
+                    searching: false,
+                    responsive: true,
+                });
+            }
+        });
+    }
 
     $('#user').on('hidden.bs.modal', function () {
         $('#userForm').find('input[name="id"], input[name="name"], input[name="phone"], input[name="email"]').val('');
@@ -223,6 +309,8 @@
 
     $(document).ready(function () {
         initDataTable();
+        initDataTable2();
+
         $(document).on('click', '.pagination a', function (e) {
             e.preventDefault();
             var page = $(this).attr('href').split('page=')[1];
