@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('coupons_and_offers', function (Blueprint $table) {
-            $table->integer('transaction_limit')->after('created_by');
-            $table->boolean('status')->default(1)->after('transaction_limit');  
-        });
+        // Schema::table('coupons_and_offers', function (Blueprint $table) {
+        //     $table->integer('transaction_limit')->after('created_by');
+        //     $table->boolean('status')->default(1)->after('transaction_limit');  
+        // });
     }
 
     /**

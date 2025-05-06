@@ -15,6 +15,7 @@ class Customer extends Authenticatable implements JWTSubject
     protected $table = 'customer';
     protected $primaryKey = 'id';
     protected $fillable = ['name', 'email', 'phone', 'balance'];
+    
     public function getJWTIdentifier()
     {
         return $this->getKey();

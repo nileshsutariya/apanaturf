@@ -479,30 +479,30 @@
     });
 </script>
 <script>
-    // $(document).on('click', '.viewcoupon', function () {
-    //     let coupons = $(this).data('coupons');
-    //     const endDate = new Date(coupons.end_date);
-    //     const month = (endDate.getMonth() + 1).toString().padStart(2, '0');
-    //     const day = endDate.getDate().toString().padStart(2, '0');
-    //     const createdDate = new Date(coupons.created_at);
-    //     const formattedDate = createdDate.toLocaleDateString('en-GB');
-    //     const screatedDate = new Date(coupons.start_date);
-    //     const sformattedDate = screatedDate.toLocaleDateString('en-GB');
-    //     const ecreatedDate = new Date(coupons.end_date);
-    //     const eformattedDate = ecreatedDate.toLocaleDateString('en-GB');
-    //     $('.i_percentage').text(coupons.discount_in_per + '% OFF');
-    //     $('.i_max').text('MAX ₹ ' + coupons.discount_in_ruppee);
-    //     $('.i_code').text(coupons.coupons_code);
-    //     $('.i_date').text(`Coupon Expires ${month}/${day}`);
-    //     $('.i_name').text(coupons.coupons_name);
-    //     $('.i_user').text(coupons.users_name);
-    //     $('.i_turf').text(coupons.turf_name);
-    //     $('.i_created').text(formattedDate);
-    //     $('.i_start_date').text(sformattedDate);
-    //     $('.i_end_date').text(eformattedDate);
-    //     $('.i_min_order').text(coupons.min_order + '₹');
-    //     $('.i_discount').text(coupons.discount_in_per + '% or    ' + coupons.discount_in_ruppee + '₹');
-    // });
+    $(document).on('click', '.viewcoupon', function () {
+        let coupons = $(this).data('coupons');
+        const endDate = new Date(coupons.end_date);
+        const month = (endDate.getMonth() + 1).toString().padStart(2, '0');
+        const day = endDate.getDate().toString().padStart(2, '0');
+        const createdDate = new Date(coupons.created_at);
+        const formattedDate = createdDate.toLocaleDateString('en-GB');
+        const screatedDate = new Date(coupons.start_date);
+        const sformattedDate = screatedDate.toLocaleDateString('en-GB');
+        const ecreatedDate = new Date(coupons.end_date);
+        const eformattedDate = ecreatedDate.toLocaleDateString('en-GB');
+        $('.i_percentage').text(coupons.discount_in_per + '% OFF');
+        $('.i_max').text('MAX ₹ ' + coupons.discount_in_ruppee);
+        $('.i_code').text(coupons.coupons_code);
+        $('.i_date').text(`Coupon Expires ${month}/${day}`);
+        $('.i_name').text(coupons.coupons_name);
+        $('.i_user').text(coupons.users_name);
+        $('.i_turf').text(coupons.turf_name);
+        $('.i_created').text(formattedDate);
+        $('.i_start_date').text(sformattedDate);
+        $('.i_end_date').text(eformattedDate);
+        $('.i_min_order').text(coupons.min_order + '₹');
+        $('.i_discount').text(coupons.discount_in_per + '% or    ' + coupons.discount_in_ruppee + '₹');
+    });
     $(document).on('click', '.editcoupon', function () {
         let coupon = $(this).data('coupons');
 
