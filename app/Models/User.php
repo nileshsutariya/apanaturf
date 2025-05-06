@@ -25,10 +25,19 @@ class User extends Authenticatable implements JWTSubject
     protected $fillable = [
         'unique_id', 'name', 'email', 'phone', 'role_id'
     ];
-    
+    public function permissions()
+    {
+        return $this->hasMany(Permission::class, 'user_id');
+    }
+
+    // Custom method to check if user has a certain permission
+    public function hasPermissionTo($permissionName)
+    {
+        return $this->permissions()->where('name', $permissionName)->where('status', 1)->exists();
+    }
     public function role()
     {
-        return $this->belongsTo(Role_type::class, 'role_id', 'id');
+        return $this->belongsTo(RoleType::class, 'role_id', 'id');
     }
     /**
      * The attributes that should be hidden for serialization.
@@ -67,7 +76,7 @@ class User extends Authenticatable implements JWTSubject
 
     public static function storeUser($data)
     {
-        $role = Role_type::where('name', $data['role_id'])->first();
+        $role = RoleType::where('name', $data['role_id'])->first();
 
         return self::create([
             // 'unique_id' => Str::uuid(), 

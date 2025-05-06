@@ -26,12 +26,11 @@ class Permissioncheck
             ->exists();
 
         if (!$hasPermission) {
-            if($request->ajax()){
-                
-            }else{
-                return redirect()->route('unauthorized');
-            }
+
+            return redirect()->route('unauthorized');
+
         }
 
-        return $next($request);    }
+        return $next($request);
+    }
 }

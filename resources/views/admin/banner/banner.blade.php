@@ -1,4 +1,5 @@
 @include('admin.layouts.header')
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <style>
     .dz-success-mark {
@@ -46,7 +47,7 @@
     <div class="card">
         <div class="card-header d-flex flex-wrap justify-content-between align-items-center">
             <h4 class="card-title flex-grow-1">All Banners List</h4>
-            <a class="btn btn-sm btn-primary addbanner" data-bs-toggle="modal" data-bs-target="#banner">
+            <a class="btn btn-sm btn-primary addbanner" data-bs-target="#banner">
                 Add Banner
             </a>
         </div>
@@ -146,6 +147,28 @@
     </script>
 
     <script>
+
+$(document).on('click', '.addbanner', function () {
+    var hasPermission = @json(Auth::user() && Auth::user()->hasPermissionTo('banners.store'));
+
+    if (hasPermission) {
+        $('#bannerForm')[0].reset();
+        $('#bannerForm').find('input[name="id"], input[name="title"], input[name="image"]').val('');
+        $('#formErrors').addClass('d-none').find('ul').html('');
+        $('#banner').modal('show');
+    } else {
+        Swal.fire({
+            title: "403 Unauthorized",
+            text: "You do not have permission to add a banner.",
+            icon: "error",
+            timer: 3000,
+            timerProgressBar: true,
+            confirmButtonText: "Close"
+        });
+    }
+});
+
+
         $('#banner').on('hidden.bs.modal', function () {
             $('#bannerForm').find('input[name="event_id"]').val('');
             $('#formErrors').addClass('d-none').find('ul').html('');
@@ -199,6 +222,19 @@
             $(document).on('click', '#deletebanner', function (e) {
                 e.preventDefault();
                 var id = $(this).attr('value');
+                var hasPermission = @json(Auth::user() && Auth::user()->hasPermissionTo('banners.delete'));
+
+                if (!hasPermission) {
+                    Swal.fire({
+                        title: "403 Unauthorized",
+                        text: "You do not have permission to delete a banner.",
+                        icon: "error",
+                        timer: 3000,
+                        timerProgressBar: true,
+                        confirmButtonText: "Close"
+                    });
+                    return; 
+                }
                 $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

@@ -6,6 +6,7 @@
 <!-- Responsive Extension -->
 <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.5.0/css/responsive.dataTables.min.css">
 <script src="https://cdn.datatables.net/responsive/2.5.0/js/dataTables.responsive.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <style>
     #example {
@@ -85,9 +86,11 @@
     <div class="card">
         <div class="card-header d-flex flex-wrap justify-content-between align-items-center">
             <h4 class="card-title flex-grow-1">All Customers List</h4>
-            <a class="btn btn-sm btn-primary addcustomer" data-bs-toggle="modal" data-bs-target="#customer">
-                Add Customer
-            </a>
+            {{-- @if(Auth::user() && Auth::user()->hasPermissionTo('customer.store'))  <!-- Check if user has permission --> --}}
+                <a class="btn btn-sm btn-primary addcustomer" data-bs-target="#customer">
+                    Add Customer
+                </a>
+            {{-- @endif --}}
         </div>
         <div class="card-body pt-0">
             <!-- <p class="text-muted">The most basic list group is an unordered list with list items and
@@ -133,7 +136,7 @@
                                 </td>
                                 <td>
                                     <div class="d-flex gap-2">
-                                        <a class="btn btn-soft-primary btn-sm editcustomer" data-bs-toggle="modal"
+                                        <a class="btn btn-soft-primary btn-sm editcustomer"
                                             data-bs-target="#customer" data-customer='@json($value)'>
                                             <i class='bx bxs-pencil bx-xs'></i>
                                         </a>
@@ -156,7 +159,7 @@
     </div>
 </div>
 
-<div class="modal fade" id="customer" tabindex="-1" aria-labelledby="customerTitle" aria-hidden="false">
+<div class="modal fade" id="customer" tabindex="-1" aria-labelledby="customerTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable">
         <div class="modal-content">
             <div class="modal-header">
@@ -212,14 +215,39 @@
         });
     }
 
-    $(document).on('click', '.addcustomer', function () {
+$(document).on('click', '.addcustomer', function () {
+    var hasPermission = @json(Auth::user() && Auth::user()->hasPermissionTo('customer.store'));
+
+    if (hasPermission) {
         $('#customerForm')[0].reset();
         $('input[name="id"]').val('');
         $('#customerForm input[name="balance"]')
             .val(customer.balance)
             .prop('readonly', false);
         $('#formErrors').addClass('d-none').find('ul').html('');
-    });
+        $('#customer').modal('show');
+    } else {
+        Swal.fire({
+            title: "403 Unauthorized",
+            text: "You do not have permission to add a customer.",
+            icon: "error",
+            timer: 3000,
+            timerProgressBar: true,
+            confirmButtonText: "Close"
+        });
+    }
+});
+
+
+
+    // $(document).on('click', '.addcustomer', function () {
+    //     $('#customerForm')[0].reset();
+    //     $('input[name="id"]').val('');
+    //     $('#customerForm input[name="balance"]')
+    //         .val(customer.balance)
+    //         .prop('readonly', false);
+    //     $('#formErrors').addClass('d-none').find('ul').html('');
+    // });
     $(document).ready(function () {
         initDataTable();
         $(document).on('click', '.pagination a', function (e) {
@@ -306,22 +334,36 @@
     });
 </script>
 <script>
+    
     $(document).on('click', '.editcustomer', function () {
-        let customer = $(this).data('customer');
-        $('#customerTitle').text('Edit Customer'); // Corrected line
+            var hasPermission = @json(Auth::user() && Auth::user()->hasPermissionTo('customer.edit'));
 
-        $('#customerForm input[name="id"]').val(customer.id);
-        $('#customerForm input[name="name"]').val(customer.name);
-        $('#customerForm input[name="email"]').val(customer.email);
-        $('#customerForm input[name="phone"]').val(customer.phone);
-        $('#customerForm input[name="balance"]').val(customer.balance);
-        $('#customerForm input[name="balance"]')
-            .val(customer.balance)
-            .prop('readonly', true);
-        $('#formErrors ul').html('');
-        $('#formErrors').addClass('d-none');
+            if (hasPermission) {
+                let customer = $(this).data('customer');
+                $('#customerTitle').text('Edit Customer'); // Corrected line
 
-        $('#customer').modal('show');
+                $('#customerForm input[name="id"]').val(customer.id);
+                $('#customerForm input[name="name"]').val(customer.name);
+                $('#customerForm input[name="email"]').val(customer.email);
+                $('#customerForm input[name="phone"]').val(customer.phone);
+                $('#customerForm input[name="balance"]').val(customer.balance);
+                $('#customerForm input[name="balance"]')
+                    .val(customer.balance)
+                    .prop('readonly', true);
+                $('#formErrors ul').html('');
+                $('#formErrors').addClass('d-none');
+
+                $('#customer').modal('show');
+            } else {
+                Swal.fire({
+                    title: "403 Unauthorized",
+                    text: "You do not have permission to edit a customer.",
+                    icon: "error",
+                    timer: 3000,
+                    timerProgressBar: true,
+                    confirmButtonText: "Close"
+                });
+            }
     });
 </script>
 

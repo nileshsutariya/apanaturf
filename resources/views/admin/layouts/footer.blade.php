@@ -25,13 +25,13 @@
 <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
 
 <!-- Vector Map Js -->
-<!-- <script src="{{ asset('asset/vendor/jsvectormap/js/jsvectormap.min.js') }}"></script>
+{{-- <!-- <script src="{{ asset('asset/vendor/jsvectormap/js/jsvectormap.min.js') }}"></script>
      <script src="{{ asset('asset/vendor/jsvectormap/maps/world-merc.js') }}"></script>
-     <script src="{{ asset('asset/vendor/jsvectormap/maps/world.js') }}"></script> -->
+     <script src="{{ asset('asset/vendor/jsvectormap/maps/world.js') }}"></script> --> --}}
 
 <!-- Dashboard Js -->
-<!-- <script src="{{ asset('asset/js/pages/dashboard.js') }}"></script> -->
-<!-- <script src="{{ asset('asset/js/components/form-fileupload.js') }}"></script> -->
+{{-- <!-- <script src="{{ asset('asset/js/pages/dashboard.js') }}"></script> --> --}}
+{{-- <!-- <script src="{{ asset('asset/js/components/form-fileupload.js') }}"></script> --> --}}
 
 </body>
 
