@@ -19,7 +19,8 @@ class PermissionSeeder extends Seeder
             'sports.index', 'sports.store', 'sports.delete',
             'amenities.index', 'amenities.store', 'amenities.delete',
             'banners.index', 'banners.store', 'banners.delete',
-            'coupons.index', 'coupons.store','coupons.edit'
+            'coupons.index', 'coupons.store','coupons.edit',
+            'area.index', 'area.store','area.edit',
         ];
         
         foreach ($admin as $permission) {
@@ -35,6 +36,8 @@ class PermissionSeeder extends Seeder
                 $group_id = 5;
             } elseif (str_starts_with($permission, 'coupons.')) {
                 $group_id = 6;
+            } elseif (str_starts_with($permission, 'area.')) {
+                $group_id = 7;
             } else {
                 $group_id = 0;
             }

@@ -13,7 +13,7 @@ class PermissionGroupSeeder extends Seeder
      */
     public function run(): void
     {
-        $route = ['customer', 'users', 'sports', 'amenities','banners', 'coupons',];
+        $route = ['customer', 'users', 'sports', 'amenities','banners', 'coupons','area'];
         foreach ($route as $permission) {
             PermissionGroup::create([
                 'name' => $permission,

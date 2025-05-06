@@ -167,20 +167,36 @@
                               </a>
                          </li>
                          <li class="nav-item">
-                              <a class="nav-link menu-arrow" href="#sidebarCoupons" data-bs-toggle="collapse"
-                                   role="button" aria-expanded="false" aria-controls="sidebarCoupons">
+                              <a class="nav-link menu-arrow" href="#sidebarConfiguration" data-bs-toggle="collapse"
+                                   role="button" aria-expanded="false" aria-controls="sidebarConfiguration">
                                    <span class="nav-icon">
                                         <iconify-icon icon="solar:leaf-broken"></iconify-icon>
                                    </span>
                                    <span class="nav-text"> Configurations </span>
                               </a>
-                              <div class="collapse" id="sidebarCoupons">
+                              <div class="collapse" id="sidebarConfiguration">
                                    <ul class="nav sub-navbar-nav">
                                         <li class="sub-nav-item">
                                              <a class="sub-nav-link" href="{{ route('sports.index')}}">Sports</a>
                                         </li>
                                         <li class="sub-nav-item">
                                              <a class="sub-nav-link" href="{{ route('amenities.index')}}">Amenities</a>
+                                        </li>
+                                   </ul>
+                              </div>
+                         </li>
+                         <li class="nav-item">
+                              <a class="nav-link menu-arrow" href="#sidebarlocation" data-bs-toggle="collapse"
+                                   role="button" aria-expanded="false" aria-controls="sidebarlocation">
+                                   <span class="nav-icon">
+                                        <iconify-icon icon="solar:streets-map-point-broken"></iconify-icon>
+                                   </span>
+                                   <span class="nav-text"> Location </span>
+                              </a>
+                              <div class="collapse" id="sidebarlocation">
+                                   <ul class="nav sub-navbar-nav">
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="{{ route('area.index')}}">Area</a>
                                         </li>
                                    </ul>
                               </div>
