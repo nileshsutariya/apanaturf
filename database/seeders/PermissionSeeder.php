@@ -14,12 +14,12 @@ class PermissionSeeder extends Seeder
     public function run(): void
     {
         $admin = [
-            'customer.index', 'customer.store',
-            'users.index', 'users.store',
+            'customer.index', 'customer.store','customer.edit',
+            'users.index', 'users.store','users.edit',
             'sports.index', 'sports.store', 'sports.delete',
             'amenities.index', 'amenities.store', 'amenities.delete',
             'banners.index', 'banners.store', 'banners.delete',
-            'coupons.index', 'coupons.store'
+            'coupons.index', 'coupons.store','coupons.edit'
         ];
         
         foreach ($admin as $permission) {
@@ -47,11 +47,12 @@ class PermissionSeeder extends Seeder
             ]);
         }
         $subadmin = [
-            'customer.index', 'customer.store',
-            'users.index', 'users.store',
-            'sports.index', 'sports.store', 'sports.delete',
-            'banners.index',
-            'coupons.index', 
+            'customer.index', 
+            'users.index', 'users.store','users.edit',
+            'sports.index',
+            'amenities.index', 
+            'banners.index', 'banners.store', 'banners.delete',
+            'coupons.index', 'coupons.store',
         ];
         
         foreach ($subadmin as $subpermission) {
@@ -79,8 +80,8 @@ class PermissionSeeder extends Seeder
             ]);
         }
         $user = [
-            'customer.index',
-            'coupons.index', 'coupons.store'
+            'customer.index', 'customer.store','customer.edit',
+            'coupons.index', 'coupons.store',
         ];
         
         foreach ($user as $userpermission) {
