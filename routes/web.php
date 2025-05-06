@@ -18,9 +18,12 @@ Route::prefix('admin')->group(function () {
 
     Route::middleware('admin.login')->group(function () {
 
-        Route::get('/logout', [loginController::class, 'logout'])->name('logout');
+        Route::get('/unauthorized', [loginController::class, 'unauthorized'])->name('unauthorized');
         Route::get('/dashboard', [loginController::class, 'dashboard'])->name('admin.dashboard');
+        Route::get('/logout', [loginController::class, 'logout'])->name('logout');
+        Route::middleware('check.permission')->group(function () {
 
+        
         Route::prefix('/customer')->controller(CustomerController::class)->name('customer.')->group(function () {
             Route::get('/', 'index')->name('index');
             Route::post('/store', 'store')->name('store');
@@ -48,6 +51,7 @@ Route::prefix('admin')->group(function () {
             Route::get('/', 'index')->name('index');
             Route::post('/store', 'store')->name('store');
         });
+    });
     });
 });
 

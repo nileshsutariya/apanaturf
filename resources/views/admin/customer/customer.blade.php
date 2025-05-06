@@ -308,6 +308,7 @@
 <script>
     $(document).on('click', '.editcustomer', function () {
         let customer = $(this).data('customer');
+        $('#customerTitle').text('Edit Customer'); // Corrected line
 
         $('#customerForm input[name="id"]').val(customer.id);
         $('#customerForm input[name="name"]').val(customer.name);

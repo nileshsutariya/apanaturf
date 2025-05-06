@@ -75,7 +75,7 @@
                                                   </div>
                                                   <div class="mb-3">
                                                        <label class="form-label" for="example-password">Password</label>
-                                                       <input type="text" id="example-password" class="form-control"
+                                                       <input type="password" id="example-password" class="form-control"
                                                             name="password" placeholder="Enter your password">
                                                   </div>
                                                   <div class="mb-1 text-center d-grid">
