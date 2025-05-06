@@ -17,6 +17,7 @@ return Application::configure(basePath: dirname(__DIR__))
                 'login' => \App\Http\Middleware\CheckIfAuthenticated::class,
                 'customer.login' => \App\Http\Middleware\CustomerAuth::class,
                 'admin.login' => \App\Http\Middleware\Adminlogin::class,
+                'check.permission' => \App\Http\Middleware\Permissioncheck::class,
             ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {

@@ -30,20 +30,12 @@
         scrollbar-width: none;
     }
 
-    .modal-content {
-        width: 450px;
-        height: auto;
-    }
 
     .modal-dialog-scrollable .modal-body {
         scrollbar-width: none !important;
     }
 
-    @media (max-width:575px) {
-        .modal-content {
-            width: auto;
-        }
-    }
+
 
     .coupon-card,
     #formErrors {
@@ -88,7 +80,12 @@
             justify-items: start;
         }
     }
+
+    .choices__list[aria-expanded] .choices__item--selectable[data-select-text] {
+        padding-right: 10px !important;
+    }
 </style>
+
 <div class="container-fluid">
 
     <!-- ========== Page Title Start ========== -->
@@ -154,17 +151,20 @@
                                         {{ date('d/m', strtotime($value->end_date)) }}
                                     </td>
                                     <td>
-                                        {{ $value->discount_in_ruppee }}
+                                        {{ $value->discount}}
                                     </td>
                                     <td>
                                         <div class="d-flex gap-2">
-                                            <a class="btn btn-soft-primary btn-sm viewcoupon" data-bs-toggle="modal"
+                                            <a class="btn btn-soft-success btn-sm viewcoupon" data-bs-toggle="modal"
                                                 data-bs-target="#couponsview" data-coupons='@json($value)'>
                                                 <i class='bx bxs-message-square-detail bx-xs'></i>
                                             </a>
-                                            <a href="#!" class="btn btn-soft-danger btn-sm">
-                                            <i class='bx bxs-trash bx-xs'></i>
-                                            </a>
+                                            <a class="btn btn-soft-primary btn-sm editcoupon" data-bs-toggle="modal"
+                                                data-bs-target="#coupons" data-coupons='@json($value)'>
+                                                <i class='bx bxs-pencil bx-xs'></i>
+                                                <a href="#!" class="btn btn-soft-danger btn-sm">
+                                                    <i class='bx bxs-trash bx-xs'></i>
+                                                </a>
                                         </div>
                                     </td>
                                 </tr>
@@ -189,48 +189,28 @@
                 <h5 class="modal-title" id="couponsTitle">Add New coupons</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="row">
-                <div class="col-sm-12">
-                    <div id="formErrors" class="alert alert-danger d-none">
-                        <ul class="mb-0"></ul>
-                    </div>
-                    <div class="card bg-dark coupon-card">
-                        <div class="card-body pb-0 ">
-                            <div class="d-flex justify-content-between">
-                                <div>
-                                    <h4 class=" mb-1 text-success percentage"></h4>
-                                    <p class="max"></p>
-                                </div>
-                                <div style="justify-items: end;">
-                                    <h4 class=" mb-1 text-info code "></h4>
-                                    <p class="c_date" style="text-align: right;"></p>
-                                </div>
-                            </div>
-                            <div class="pb-2">
-                                <h5 class="text-info c_name "></h5>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
             <div class="modal-body mt-3 pt-0 add_coupon" style="scrollbar-width: none;">
                 <form id="couponsForm" method="POST">
                     @csrf
+                    <input type="hidden" class="form-control" name="id">
                     <input type="hidden" class="form-control" id="c_code" name="code" placeholder="Enter The Name">
                     <div style="margin-bottom: 12px;">
                         <label class="mb-1">Coupon Name</label>
                         <input type="text" class="form-control" id="couponName" name="name"
                             placeholder="Enter The Name">
                     </div>
-                    <div style="margin-bottom: 12px;">
-                        <label class="mb-1">Valid Date</label>
-                        <input type="text" id="basic-datepicker" name="valid_date" class="form-control"
-                            placeholder="Select Valid date">
-                    </div>
-                    <div style="margin-bottom: 12px;">
-                        <label class="mb-1">Expire Date</label>
-                        <input type="text" id="basic-datepicker" name="expire_date" class="form-control expire_date"
-                            placeholder="Select Expire date">
+                    <div class="row" style="margin-bottom: 12px;">
+                        <div class="col-md-6 col-sm-12">
+                            <label class="mb-1">Valid Date</label>
+                            <input type="text" id="valid-datepicker" name="valid_date" class="form-control"
+                                placeholder="Select Valid date">
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <label class="mb-1">Expire Date</label>
+                            <input type="text" id="expire-datepicker" name="expire_date"
+                                class="form-control expire_date" placeholder="Pick Expire date">
+                        </div>
                     </div>
                     <div style="margin-bottom: 12px;">
                         <label class="mb-1">Min. Order</label>
@@ -250,15 +230,24 @@
                             @endif
                         </select>
                     </div>
-                    <div style="margin-bottom: 12px;margin-top: 12px;">
-                        <label class="mb-1">Discount(%)</label>
-                        <input type="text" class="form-control" id="c_per" name="dis_per"
-                            placeholder="Enter Discount(%)">
-                    </div>
-                    <div style="margin-bottom: 12px;">
-                        <label class="mb-1">Discount(₹)</label>
-                        <input type="text" class="form-control" id="c_rup" name="dis_rupees"
-                            placeholder="Enter Discount(₹)">
+
+                    <div style="margin-bottom: 12px; margin-top: 12px;" class="d-flex">
+                        <div class="row" style="width: -webkit-fill-available;">
+                            <div class="col-md-6 col-sm-12">
+                                <label class="mb-1">Discount Type</label>
+                                <select class="form-control typeselect" name="discount_type" id="discount_type"
+                                    placeholder="Select discount Type" style="height: 30px;">
+                                    <option value="">Select discount Type</option>
+                                    <option value="Flat">Flat</option>
+                                    <option value="Percentage">Percentage</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <label class="mb-1">Discount</label>
+                                <input type="text" class="form-control" id="c_per" name="discount"
+                                    placeholder="Enter Discount">
+                            </div>
+                        </div>
                     </div>
                 </form>
             </div>
@@ -344,8 +333,12 @@
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
 <script>
-    flatpickr("#basic-datepicker", {
-        dateFormat: "Y-m-d",
+    flatpickr("#valid-datepicker", {
+        dateFormat: "d-m-Y",
+        allowInput: true
+    });
+    flatpickr("#expire-datepicker", {
+        dateFormat: "d-m-Y",
         allowInput: true
     });
 
@@ -355,40 +348,6 @@
             .padStart(2, '0');
         return 'END' + randomNum;
     }
-
-    $(document).ready(function () {
-        $('.code').text(generateCouponCode());
-        $('#c_code').val(generateCouponCode());
-    });
-
-    $(document).on('input', '#couponName', function () {
-        let value = $(this).val();
-        $('.c_name').text(value);
-    });
-
-    $(document).on('input', '#c_per', function () {
-        let value = $(this).val().replace(/\D/g, '');
-        $('.percentage').text(value ? value + '% OFF' : '');
-    });
-
-    $(document).on('input', '#c_rup', function () {
-        let value = $(this).val().replace(/\D/g, '');
-        $('.max').text(value ? 'MAX ₹' + value : '');
-    });
-
-    flatpickr(".expire_date", {
-        dateFormat: "Y-m-d",
-        allowInput: true,
-        onChange: function (selectedDates, dateStr, instance) {
-            if (selectedDates.length > 0) {
-                const date = selectedDates[0];
-                const month = date.getMonth() + 1;
-                const day = date.getDate();
-                $('.c_date').text(`Coupon Expires ${month}/${day}`);
-            }
-        }
-    });
-
 </script>
 <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
 
@@ -402,6 +361,18 @@
         });
     } else {
         roleChoices = Choices.instances.find(
+            (instance) => instance.config.callbackOnInit.element.id === 'choices-single-default'
+        );
+    }
+    let typeChoices;
+    if (!document.querySelector('.typeselect').classList.contains('choices__input')) {
+        typeChoices = new Choices('.typeselect', {
+            placeholder: true,
+            shouldSort: false,
+            allowHTML: false,
+        });
+    } else {
+        typeChoices = Choices.instances.find(
             (instance) => instance.config.callbackOnInit.element.id === 'choices-single-default'
         );
     }
@@ -419,10 +390,10 @@
     $('#coupons').on('hidden.bs.modal', function () {
         $('#couponsForm').find('input[name="expire_date"],input[name="dis_per"],input[name="dis_rupees"], input[name="valid_date"], input[name="name"], input[name="min_order"]').val('');
         roleChoices.setChoiceByValue('');
+        typeChoices.setChoiceByValue('');
         let code = generateCouponCode();
-        $('.code').text(code);
         $('#c_code').val(code);
-        $('.percentage, .c_name, .c_rup, .max, .c_date').text('');
+        // $('.percentage, .c_name, .c_rup, .max, .c_date').text('');
         $('#formErrors').addClass('d-none').find('ul').html('');
     });
 
@@ -455,6 +426,7 @@
 
             let form = $(this);
             let formData = form.serialize();
+            console.log(formData);
             $.ajax({
                 url: '{{ route("coupons.store") }}',
                 type: 'POST',
@@ -507,33 +479,59 @@
     });
 </script>
 <script>
-    $(document).on('click', '.viewcoupon', function () {
-        let coupons = $(this).data('coupons');
-        const endDate = new Date(coupons.end_date);
-        const month = (endDate.getMonth() + 1).toString().padStart(2, '0');
-        const day = endDate.getDate().toString().padStart(2, '0');
-        const createdDate = new Date(coupons.created_at);
-        const formattedDate = createdDate.toLocaleDateString('en-GB');
-        const screatedDate = new Date(coupons.start_date);
-        const sformattedDate = screatedDate.toLocaleDateString('en-GB');
-        const ecreatedDate = new Date(coupons.end_date);
-        const eformattedDate = ecreatedDate.toLocaleDateString('en-GB');
-        $('.i_percentage').text(coupons.discount_in_per + '% OFF');
-        $('.i_max').text('MAX ₹ ' + coupons.discount_in_ruppee);
-        $('.i_code').text(coupons.coupons_code);
-        $('.i_date').text(`Coupon Expires ${month}/${day}`);
-        $('.i_name').text(coupons.coupons_name);
-        $('.i_user').text(coupons.users_name);
-        $('.i_turf').text(coupons.turf_name);
-        $('.i_created').text(formattedDate);
-        $('.i_start_date').text(sformattedDate);
-        $('.i_end_date').text(eformattedDate);
-        $('.i_min_order').text(coupons.min_order + '₹');
-        $('.i_discount').text(coupons.discount_in_per + '% or    ' + coupons.discount_in_ruppee + '₹');
+    // $(document).on('click', '.viewcoupon', function () {
+    //     let coupons = $(this).data('coupons');
+    //     const endDate = new Date(coupons.end_date);
+    //     const month = (endDate.getMonth() + 1).toString().padStart(2, '0');
+    //     const day = endDate.getDate().toString().padStart(2, '0');
+    //     const createdDate = new Date(coupons.created_at);
+    //     const formattedDate = createdDate.toLocaleDateString('en-GB');
+    //     const screatedDate = new Date(coupons.start_date);
+    //     const sformattedDate = screatedDate.toLocaleDateString('en-GB');
+    //     const ecreatedDate = new Date(coupons.end_date);
+    //     const eformattedDate = ecreatedDate.toLocaleDateString('en-GB');
+    //     $('.i_percentage').text(coupons.discount_in_per + '% OFF');
+    //     $('.i_max').text('MAX ₹ ' + coupons.discount_in_ruppee);
+    //     $('.i_code').text(coupons.coupons_code);
+    //     $('.i_date').text(`Coupon Expires ${month}/${day}`);
+    //     $('.i_name').text(coupons.coupons_name);
+    //     $('.i_user').text(coupons.users_name);
+    //     $('.i_turf').text(coupons.turf_name);
+    //     $('.i_created').text(formattedDate);
+    //     $('.i_start_date').text(sformattedDate);
+    //     $('.i_end_date').text(eformattedDate);
+    //     $('.i_min_order').text(coupons.min_order + '₹');
+    //     $('.i_discount').text(coupons.discount_in_per + '% or    ' + coupons.discount_in_ruppee + '₹');
+    // });
+    $(document).on('click', '.editcoupon', function () {
+        let coupon = $(this).data('coupons');
 
+        $('#couponsTitle').text('Edit Coupon');
+
+        $('#couponsForm input[name="id"]').val(coupon.id);
+        $('#couponsForm input[name="name"]').val(coupon.coupons_name);
+        $('#couponsForm input[name="code"]').val(coupon.coupons_code);
+        $('#couponsForm input[name="min_order"]').val(coupon.min_order);
+        $('#couponsForm input[name="discount"]').val(coupon.discount);
+        $('#couponsForm select[name="discount_type"]').val(coupon.discount_type).trigger('change');
+        const formatDateToDMY = (d) => d ? new Date(d).toLocaleDateString('en-GB').replace(/\//g, '-') : null;
+        var valid_date = formatDateToDMY(coupon.start_date);
+        var expire_date = formatDateToDMY(coupon.end_date);
+        roleChoices.setChoiceByValue(coupon.turf_id.toString());
+        typeChoices.setChoiceByValue(coupon.type);
+        flatpickr("#valid-datepicker", {
+            dateFormat: "d-m-Y",
+            defaultDate: valid_date,
+            allowInput: true
+        });
+        flatpickr("#expire-datepicker", {
+            dateFormat: "d-m-Y",
+            defaultDate: expire_date,
+            allowInput: true
+        });
+        $('#coupons').modal('show');
     });
 </script>
-<!-- ========== Page Title End ========== -->
 <!-- 
     <div class="row">
         <div class="col-md-6 col-xl-4">

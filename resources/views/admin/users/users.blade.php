@@ -413,6 +413,8 @@
     $(document).on('click', '.edituser', function () {
         let user = $(this).data('user');
         // console.log(user.role_id);
+        $('#userTitle').text('Edit User'); // Corrected line
+
         $('#userForm input[name="id"]').val(user.id);
         $('#userForm input[name="name"]').val(user.name);
         $('#userForm input[name="email"]').val(user.email);

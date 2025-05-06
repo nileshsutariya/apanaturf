@@ -29,23 +29,32 @@ class CouponsController extends Controller
     }
     public function store(Request $request)
     {
+        // print_r($request->all());die;
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
             'turf' => 'required',
+            'discount_type' => 'required',
             'valid_date' => 'required|date',
             'expire_date' => 'required|date|after_or_equal:valid_date',
-            'dis_per' => 'required|numeric|min:0|max:100',
-            'dis_rupees' => 'required|numeric|min:0',
+            'discount' => 'required|numeric|min:0|',
             'min_order' => 'required|numeric|min:0',
-            ])->validate();
-            $coupon = new Coupons();
+            ]);
+            $validator->sometimes('discount', 'max:100', function ($input) {
+                return $input->discount_type === 'Percentage';
+            });
+            $validator->validate();
+            $start_date = date('Y-m-d', strtotime(str_replace('-', '/', $request->valid_date)));
+            $end_date = date('Y-m-d', strtotime(str_replace('-', '/', $request->expire_date)));
+
+            $coupon = $request->id ? Coupons::find($request->id) : new Coupons();
             $coupon->coupons_name = $request->name;
-            $coupon->coupons_code = $request->code;
+            $request->id ?  $coupon->coupons_code = $request->code :'';
+            // $coupon->coupons_code = $request->code;
             $coupon->turf_id = $request->turf;
-            $coupon->start_date = $request->valid_date;
-            $coupon->end_date = $request->expire_date;
-            $coupon->discount_in_per = $request->dis_per;
-            $coupon->discount_in_ruppee = $request->dis_rupees;
+            $coupon->start_date =$start_date;
+            $coupon->end_date = $end_date;
+            $coupon->discount = $request->discount;
+            $coupon->type= $request->discount_type;
             $coupon->created_by = 1;
             $coupon->min_order = $request->min_order;
             $coupon->save();

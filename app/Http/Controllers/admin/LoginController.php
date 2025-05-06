@@ -8,6 +8,9 @@ use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
+    public function unauthorized(){
+        return view('admin.unauthorized');
+    }
     public function login(){
         if(Auth::check()){ 
             return redirect()->route('admin.dashboard');
