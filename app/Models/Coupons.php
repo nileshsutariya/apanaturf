@@ -9,7 +9,7 @@ class Coupons extends Model
 {
     protected $table = 'coupons_and_offers';
     protected $id = 'id';
-    protected $fillable = ['coupons_name', 'coupons_code', 'start_date', 'end_date', 'min_order', 'discount_in_per', 'discount_in_ruppee', 'created_by'];
+    protected $fillable = ['coupons_name', 'transactionlimit', 'status', 'coupons_code', 'start_date', 'end_date', 'min_order', 'discount_in_per', 'discount_in_ruppee', 'created_by'];
     public function creaters()
     {
         return $this->belongsTo(User::class, 'created_by');
