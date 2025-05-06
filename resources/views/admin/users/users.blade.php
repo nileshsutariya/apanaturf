@@ -4,6 +4,7 @@
 <!-- Responsive Extension -->
 <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.5.0/css/responsive.dataTables.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css" />
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <style>
     #example {
@@ -99,7 +100,7 @@
     <div class="card">
         <div class="card-header d-flex flex-wrap justify-content-between align-items-center">
             <h4 class="card-title flex-grow-1">All Users List</h4>
-            <a class="btn btn-sm btn-primary adduser" data-bs-toggle="modal" data-bs-target="#user">
+            <a class="btn btn-sm btn-primary adduser" data-bs-target="#user">
                 Add User
             </a>
         </div>
@@ -139,7 +140,7 @@
                                             data-user='@json($value)'>
                                             <i class='bx bx-wallet bx-xs'></i>
                                         </a>
-                                        <a class="btn btn-soft-primary btn-sm edituser" data-bs-toggle="modal"
+                                        <a class="btn btn-soft-primary btn-sm edituser"
                                             data-bs-target="#user" data-user='@json($value)'>
                                             <i class='bx bxs-pencil bx-xs'></i>
                                         </a>
@@ -162,7 +163,7 @@
     </div>
 </div>
 
-<div class="modal fade" id="user" tabindex="-1" aria-labelledby="userTitle" aria>
+<div class="modal fade" id="user" tabindex="-1" aria-labelledby="userTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable">
         <div class="modal-content">
             <div class="modal-header">
@@ -306,6 +307,27 @@
         roleChoices.setChoiceByValue('');
         $('#formErrors').addClass('d-none').find('ul').html('');
     });
+$(document).on('click', '.adduser', function () {
+    var hasPermission = @json(Auth::user() && Auth::user()->hasPermissionTo('users.store'));
+
+    if (hasPermission) {
+        $('#userForm')[0].reset();
+        $('input[name="id"]').val('');
+        $('#formErrors').addClass('d-none').find('ul').html('');
+        roleChoices.setChoiceByValue('');
+        $('#user').modal('show');
+    } else {
+        Swal.fire({
+            title: "403 Unauthorized",
+            text: "You do not have permission to add users.",
+            icon: "error",
+            timer: 3000,
+            timerProgressBar: true,
+            confirmButtonText: "Close"
+        });
+    }
+});
+
 
     $(document).ready(function () {
         initDataTable();
@@ -411,18 +433,33 @@
 <script>
 
     $(document).on('click', '.edituser', function () {
-        let user = $(this).data('user');
-        // console.log(user.role_id);
-        $('#userTitle').text('Edit User'); // Corrected line
+        var hasPermission = @json(Auth::user() && Auth::user()->hasPermissionTo('users.edit'));
 
-        $('#userForm input[name="id"]').val(user.id);
-        $('#userForm input[name="name"]').val(user.name);
-        $('#userForm input[name="email"]').val(user.email);
-        $('#userForm input[name="phone"]').val(user.phone);
+        if (hasPermission) {
+            let user = $(this).data('user');
+            // console.log(user.role_id);
+            $('#userTitle').text('Edit User'); // Corrected line
 
-        roleChoices.setChoiceByValue(user.role_id.toString());
-        $('#formErrors ul').html('');
-        $('#formErrors').addClass('d-none');
+            $('#userForm input[name="id"]').val(user.id);
+            $('#userForm input[name="name"]').val(user.name);
+            $('#userForm input[name="email"]').val(user.email);
+            $('#userForm input[name="phone"]').val(user.phone);
+
+            roleChoices.setChoiceByValue(user.role_id.toString());
+            $('#formErrors ul').html('');
+            $('#formErrors').addClass('d-none');
+            $('#user').modal('show');
+
+        } else {
+            Swal.fire({
+                title: "403 Unauthorized",
+                text: "You do not have permission to edit a users.",
+                icon: "error",
+                timer: 3000,
+                timerProgressBar: true,
+                confirmButtonText: "Close"
+            });
+        }
     });
 </script>
 

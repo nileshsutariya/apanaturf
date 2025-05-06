@@ -336,7 +336,7 @@ $(document).on('click', '.addcustomer', function () {
 <script>
     
     $(document).on('click', '.editcustomer', function () {
-            var hasPermission = @json(Auth::user() && Auth::user()->hasPermissionTo('customer.update'));
+            var hasPermission = @json(Auth::user() && Auth::user()->hasPermissionTo('customer.edit'));
 
             if (hasPermission) {
                 let customer = $(this).data('customer');
@@ -357,7 +357,7 @@ $(document).on('click', '.addcustomer', function () {
             } else {
                 Swal.fire({
                     title: "403 Unauthorized",
-                    text: "You do not have permission to add a customer.",
+                    text: "You do not have permission to edit a customer.",
                     icon: "error",
                     timer: 3000,
                     timerProgressBar: true,

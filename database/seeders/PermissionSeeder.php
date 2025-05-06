@@ -77,7 +77,7 @@ class PermissionSeeder extends Seeder
                 'status' => '1',
                 'user_id' => '2',
                 'permission_group_id' => $group_id,
-            ]);
+          a  ]);
         }
         $user = [
             'customer.index', 'customer.store','customer.edit',

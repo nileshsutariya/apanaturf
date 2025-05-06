@@ -5,6 +5,7 @@
 <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.5.0/css/responsive.dataTables.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css" />
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <style>
     #example {
@@ -103,7 +104,7 @@
     <div class="card">
         <div class="card-header d-flex flex-wrap justify-content-between align-items-center">
             <h4 class="card-title flex-grow-1">All Coupons List</h4>
-            <a class="btn btn-sm btn-primary addcoupons" data-bs-toggle="modal" data-bs-target="#coupons">
+            <a class="btn btn-sm btn-primary addcoupons" data-bs-target="#coupons">
                 Add Coupons
             </a>
         </div>
@@ -159,7 +160,7 @@
                                                 data-bs-target="#couponsview" data-coupons='@json($value)'>
                                                 <i class='bx bxs-message-square-detail bx-xs'></i>
                                             </a>
-                                            <a class="btn btn-soft-primary btn-sm editcoupon" data-bs-toggle="modal"
+                                            <a class="btn btn-soft-primary btn-sm editcoupon" 
                                                 data-bs-target="#coupons" data-coupons='@json($value)'>
                                                 <i class='bx bxs-pencil bx-xs'></i>
                                                 <a href="#!" class="btn btn-soft-danger btn-sm">
@@ -387,6 +388,31 @@
         });
     }
 
+$(document).on('click', '.addcoupons', function () {
+    var hasPermission = @json(Auth::user() && Auth::user()->hasPermissionTo('coupons.store'));
+
+    if (hasPermission) {
+        $('#couponsForm')[0].reset();
+        $('#couponsForm').find('input[name="expire_date"],input[name="dis_per"],input[name="dis_rupees"], input[name="valid_date"], input[name="name"], input[name="min_order"]').val('');
+        roleChoices.setChoiceByValue('');
+        typeChoices.setChoiceByValue('');
+        let code = generateCouponCode();
+        $('#c_code').val(code);
+        $('#formErrors').addClass('d-none').find('ul').html('');
+        $('#coupons').modal('show');
+    } else {
+        Swal.fire({
+            title: "403 Unauthorized",
+            text: "You do not have permission to add coupons.",
+            icon: "error",
+            timer: 3000,
+            timerProgressBar: true,
+            confirmButtonText: "Close"
+        });
+    }
+});
+
+
     $('#coupons').on('hidden.bs.modal', function () {
         $('#couponsForm').find('input[name="expire_date"],input[name="dis_per"],input[name="dis_rupees"], input[name="valid_date"], input[name="name"], input[name="min_order"]').val('');
         roleChoices.setChoiceByValue('');
@@ -504,6 +530,9 @@
         $('.i_discount').text(coupons.discount_in_per + '% or    ' + coupons.discount_in_ruppee + '₹');
     });
     $(document).on('click', '.editcoupon', function () {
+    var hasPermission = @json(Auth::user() && Auth::user()->hasPermissionTo('coupons.edit'));
+
+    if (hasPermission) {
         let coupon = $(this).data('coupons');
 
         $('#couponsTitle').text('Edit Coupon');
@@ -514,23 +543,39 @@
         $('#couponsForm input[name="min_order"]').val(coupon.min_order);
         $('#couponsForm input[name="discount"]').val(coupon.discount);
         $('#couponsForm select[name="discount_type"]').val(coupon.discount_type).trigger('change');
+
         const formatDateToDMY = (d) => d ? new Date(d).toLocaleDateString('en-GB').replace(/\//g, '-') : null;
         var valid_date = formatDateToDMY(coupon.start_date);
         var expire_date = formatDateToDMY(coupon.end_date);
+
         roleChoices.setChoiceByValue(coupon.turf_id.toString());
         typeChoices.setChoiceByValue(coupon.type);
+
         flatpickr("#valid-datepicker", {
             dateFormat: "d-m-Y",
             defaultDate: valid_date,
             allowInput: true
         });
+
         flatpickr("#expire-datepicker", {
             dateFormat: "d-m-Y",
             defaultDate: expire_date,
             allowInput: true
         });
+
         $('#coupons').modal('show');
-    });
+    } else {
+        Swal.fire({
+            title: "403 Unauthorized",
+            text: "You do not have permission to edit coupons.",
+            icon: "error",
+            timer: 3000,
+            timerProgressBar: true,
+            confirmButtonText: "Close"
+        });
+    }
+});
+
 </script>
 <!-- 
     <div class="row">

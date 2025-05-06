@@ -1,4 +1,5 @@
 @include('admin.layouts.header')
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <style>
     .icon-body {
@@ -67,7 +68,7 @@
                 </div>
             @endforeach
         @endif
-        <div class="card icon-box" data-bs-toggle="modal" data-bs-target="#amenities">
+        <div class="card icon-box addamenities" data-bs-target="#amenities">
             <div class="card-body d-flex flex-column align-items-center justify-content-center icon-body">
                 <img class="m-1" src="{{asset('asset/images/add.png')}}" alt="football" style="height: 105px;">
                 <!-- <h5 class="mt-2 mb-0">Add amenities</h5> -->
@@ -149,6 +150,23 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script>
+    $(document).on('click', '.addamenities', function () {
+        var hasPermission = @json(Auth::user() && Auth::user()->hasPermissionTo('amenities.store'));
+
+        if (hasPermission) {
+            $('#amenities').modal('show');
+        } else {
+            Swal.fire({
+                icon: 'error',
+                title: '403 Unauthorized',
+                text: 'You do not have permission to add a amenities.',
+                timer: 3000,
+                timerProgressBar: true,
+                confirmButtonText: 'OK'
+            });
+        }
+    });
+
     $('#amenities').on('hidden.bs.modal', function () {
         $('#amenitiesForm').find('input[name="name"]').val('');
         $('#formErrors').addClass('d-none').find('ul').html('');
@@ -206,6 +224,19 @@
         $(document).on('click', '.deleteamenities', function (e) {
             e.preventDefault();
             var id = $(this).val();
+            var hasPermission = @json(Auth::user() && Auth::user()->hasPermissionTo('amenities.delete'));
+
+            if (!hasPermission) {
+                Swal.fire({
+                    title: "403 Unauthorized",
+                    text: "You do not have permission to delete a amenities.",
+                    icon: "error",
+                    timer: 3000,
+                    timerProgressBar: true,
+                    confirmButtonText: "Close"
+                });
+                return; 
+            }
             $.ajax({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
