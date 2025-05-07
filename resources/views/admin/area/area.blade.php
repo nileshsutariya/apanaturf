@@ -189,7 +189,7 @@
 
                     <div style="margin-bottom: 12px;">
                         <label class="mb-1">Pincode</label>
-                        <input type="text" class="form-control" name="pincode" placeholder="Enter The Pincode">
+                        <input type="text" class="form-control" name="pincode" placeholder="Enter The Pincode" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
                     </div>
 
                 </form>

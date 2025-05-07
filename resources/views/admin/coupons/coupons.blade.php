@@ -215,7 +215,7 @@
                     </div>
                     <div style="margin-bottom: 12px;">
                         <label class="mb-1">Min. Order</label>
-                        <input type="text" class="form-control" name="min_order" placeholder="Enter Min. Order">
+                        <input type="text" class="form-control" name="min_order" placeholder="Enter Min. Order" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
                     </div>
                     <div>
                         <label class="mb-1">Turf</label>
@@ -246,7 +246,7 @@
                             <div class="col-md-6 col-sm-12">
                                 <label class="mb-1">Discount</label>
                                 <input type="text" class="form-control" id="c_per" name="discount"
-                                    placeholder="Enter Discount">
+                                    placeholder="Enter Discount" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1')">
                             </div>
                         </div>
                     </div>

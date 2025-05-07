@@ -184,7 +184,7 @@
 
                     <div style="margin-bottom: 12px;">
                         <label class="mb-1">Mob. No.</label>
-                        <input type="text" class="form-control" name="phone" placeholder="Enter The Phone Number">
+                        <input type="text" class="form-control" name="phone" placeholder="Enter The Phone Number" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
                     </div>
 
                     <div style="margin-bottom: 12px;">
