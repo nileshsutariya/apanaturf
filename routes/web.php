@@ -9,6 +9,7 @@ use App\Http\Controllers\admin\SportsController;
 use App\Http\Controllers\admin\CouponsController;
 use App\Http\Controllers\admin\CustomerController;
 use App\Http\Controllers\admin\AmenitiesController;
+use App\Http\Controllers\admin\PermissionsController;
 
 
 
@@ -25,6 +26,10 @@ Route::prefix('admin')->group(function () {
         Route::middleware('check.permission')->group(function () {
 
             Route::prefix('/customer')->controller(CustomerController::class)->name('customer.')->group(function () {
+                Route::get('/', 'index')->name('index');
+                Route::post('/store', 'store')->name('store');
+            });
+            Route::prefix('/permission')->controller(PermissionsController::class)->name('permission.')->group(function () {
                 Route::get('/', 'index')->name('index');
                 Route::post('/store', 'store')->name('store');
             });

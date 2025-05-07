@@ -21,6 +21,8 @@ class PermissionSeeder extends Seeder
             'banners.index', 'banners.store', 'banners.delete',
             'coupons.index', 'coupons.store','coupons.edit',
             'area.index', 'area.store','area.edit',
+            'permission.index', 'permission.store','permission.edit',
+            'permissiongroup.index', 'permissiongroup.store','permissiongroup.edit',
         ];
         
         foreach ($admin as $permission) {
@@ -38,6 +40,8 @@ class PermissionSeeder extends Seeder
                 $group_id = 6;
             } elseif (str_starts_with($permission, 'area.')) {
                 $group_id = 7;
+            } elseif (str_starts_with($permission, 'permission.')) {
+                $group_id = 8;
             } else {
                 $group_id = 0;
             }
@@ -80,7 +84,7 @@ class PermissionSeeder extends Seeder
                 'status' => '1',
                 'user_id' => '2',
                 'permission_group_id' => $group_id,
-          a  ]);
+            ]);
         }
         $user = [
             'customer.index', 'customer.store','customer.edit',
