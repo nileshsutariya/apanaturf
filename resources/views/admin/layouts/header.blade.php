@@ -201,6 +201,22 @@
                                    </ul>
                               </div>
                          </li>
+                         <li class="nav-item">
+                              <a class="nav-link menu-arrow" href="#sidebarpermission" data-bs-toggle="collapse"
+                                   role="button" aria-expanded="false" aria-controls="sidebarpermission">
+                                   <span class="nav-icon">
+                                        <iconify-icon icon="solar:checklist-minimalistic-broken"></iconify-icon>
+                                   </span>
+                                   <span class="nav-text"> Permissions </span>
+                              </a>
+                              <div class="collapse" id="sidebarpermission">
+                                   <ul class="nav sub-navbar-nav">
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="{{ route('permission.index')}}">Permission Group</a>
+                                        </li>
+                                   </ul>
+                              </div>
+                         </li>
                     </ul>
                </div>
           </div>

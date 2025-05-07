@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\admin\PermissionGroupController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\admin\AreaController;
 use App\Http\Controllers\admin\loginController;
@@ -30,6 +31,10 @@ Route::prefix('admin')->group(function () {
                 Route::post('/store', 'store')->name('store');
             });
             Route::prefix('/area')->controller(AreaController::class)->name('area.')->group(function () {
+                Route::get('/', 'index')->name('index');
+                Route::post('/store', 'store')->name('store');
+            });
+            Route::prefix('/permissiongroup')->controller(PermissionGroupController::class)->name('permission.')->group(function () {
                 Route::get('/', 'index')->name('index');
                 Route::post('/store', 'store')->name('store');
             });
