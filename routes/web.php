@@ -9,6 +9,7 @@ use App\Http\Controllers\admin\SportsController;
 use App\Http\Controllers\admin\CouponsController;
 use App\Http\Controllers\admin\CustomerController;
 use App\Http\Controllers\admin\AmenitiesController;
+use App\Http\Controllers\admin\PermissionController;
 
 
 
