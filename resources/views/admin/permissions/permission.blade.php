@@ -30,10 +30,7 @@
         scrollbar-width: none;
     }
 
-    .modal-content {
-        width: 450px;
-        height: auto;
-    }
+
 
     .modal-dialog-scrollable .modal-body {
         scrollbar-width: none !important;
@@ -47,11 +44,7 @@
         width: 20%;
     }
 
-    @media (max-width:575px) {
-        .modal-content {
-            width: auto;
-        }
-    }
+
 
     .choices__list {
         padding-left: 10px;
@@ -114,9 +107,8 @@
                     <thead class="p-2">
                         <tr>
                             <th class="gridjs-th">Name</th>
-                            <th class="gridjs-th">Email</th>
-                            <th class="gridjs-th">Phone</th>
-                            <th class="gridjs-th">Type</th>
+                            <th class="gridjs-th">User name</th>
+                            <th class="gridjs-th">Group name</th>
                             <th class="gridjs-th">Action</th>
                         </tr>
                     </thead>
@@ -128,27 +120,22 @@
                                         {{ $value->name }}
                                     </td>
                                     <td>
-                                        {{ $value->email }}
+                                        {{ $value->user_name }}
                                     </td>
                                     <td>
-                                        {{ $value->phone }}
+                                        {{ $value->group_name }}
                                     </td>
-                                    <td>
-                                        {{ $value->routes_name }}
-                                    </td>
+
                                     <td>
                                         <div class="d-flex gap-2">
-                                            <!-- <a class="btn btn-soft-success btn-sm" data-bs-toggle="modal" data-bs-target="#wallet"
-                                                    data-permission='@json($value)'>
-                                                    <i class='bx bx-wallet bx-xs'></i>
-                                                </a> -->
                                             <a class="btn btn-soft-primary btn-sm editpermission" data-bs-target="#permission"
                                                 data-permission='@json($value)'>
                                                 <i class='bx bxs-pencil bx-xs'></i>
                                             </a>
-                                            <a href="#!" class="btn btn-soft-danger btn-sm">
+                                            <button class="btn btn-soft-danger btn-sm deletepermission" id="deletepermission"
+                                                value="{{ $value->id }}">
                                                 <i class='bx bxs-trash bx-xs'></i>
-                                            </a>
+                                                </>
                                         </div>
                                     </td>
                                 </tr>
@@ -179,36 +166,56 @@
                 </div>
                 <form id="permissionForm" method="POST">
                     @csrf
-                    <input type="hidden" class="form-control" name="id">
+                    <input type="hidden" class="form-control" name="id" readonly>
                     <div style="margin-bottom: 12px;">
-                        <label class="mb-1">Name</label>
-                        <input type="text" class="form-control" name="name" placeholder="Enter The Name">
+                        <label class="mb-1">Modules Group</label>
+                        <select class="form-control groupselect" data-choices name="group" id="choices-single-default">
+                            <option value=""> Select Module</option>
+                            @if (isset($group))
+                                @foreach ($group as $r)
+                                    <option value="{{ $r->id }}" data-name="{{ $r->name }}">
+                                        {{ $r->name }}
+                                    </option>
+                                @endforeach
+                            @endif
+                        </select>
                     </div>
 
-                    <div style="margin-bottom: 12px;">
-                        <label class="mb-1">Mob. No.</label>
-                        <input type="text" class="form-control" name="phone" placeholder="Enter The Phone Number"
-                            oninput="this.value = this.value.replace(/[^0-9]/g, '')">
-                    </div>
-
-                    <div style="margin-bottom: 12px;">
-                        <label class="mb-1">Email</label>
-                        <input type="email" class="form-control" name="email" placeholder="Enter The Email Address">
-                    </div>
-
-                    <div style="margin-bottom: 12px;">
-                        <label class="mb-1">routes</label>
+                    <div style="margin-bottom: 12px;" class="routelist">
+                        <label class="mb-1">Routes</label>
                         <select class="form-control routestypes" data-choices name="routes" id="choices-single-default">
-                            <option value="">This is a placeholder</option>
+                            <option value="">Select Permission</option>
                             @if (isset($routes))
                                 @foreach ($routes as $r)
-                                    <option>
+                                    <option value="{{ $r }}">
                                         {{ $r }}
                                     </option>
                                 @endforeach
                             @endif
                         </select>
                     </div>
+
+                    <div style="margin-bottom: 12px;">
+                        <label class="mb-1">User Name</label>
+                        <select class="form-control userselect" data-choices name="user" id="choices-single-default">
+                            <option value="">Select User</option>
+                            @if (isset($users))
+                                @foreach ($users as $r)
+                                    <option value="{{ $r->id }}">
+                                        {{ $r->name }}
+                                    </option>
+                                @endforeach
+                            @endif
+                        </select>
+                    </div>
+
+                    <div style="margin-bottom: 12px;" class="mt-3">
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="customCheck1" checked name="status">
+                            <label class="form-check-label" for="customCheck1"> Is Active ? </label>
+                        </div>
+                    </div>
+
                 </form>
             </div>
 
@@ -220,14 +227,36 @@
     </div>
 </div>
 
-
-
-
-
-
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/responsive/2.5.0/js/dataTables.responsive.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
+
+
+<script>
+    function initChoices(selector) {
+        const element = document.querySelector(selector);
+        if (!element) return null;
+
+        if (!element.classList.contains('choices__input')) {
+            return new Choices(selector, {
+                placeholder: true,
+                shouldSort: false,
+                allowHTML: false,
+            });
+        } else {
+            return Choices.instances.find(
+                (instance) => instance.config?.callbackOnInit?.element?.id === 'choices-single-default'
+            );
+        }
+    }
+    const routesChoices = initChoices('.routestypes');
+    const userChoices = initChoices('.userselect');
+    const groupChoices = initChoices('.groupselect');
+
+
+</script>
+
 
 <script>
     function initDataTable() {
@@ -238,36 +267,28 @@
             responsive: true,
         });
     }
-    function initDataTable2() {
-        $('#wallet').on('shown.bs.modal', function () {
-            if ($.fn.DataTable.isDataTable('#example2')) {
-                $('#example2').DataTable().destroy();
-            }
-            if (!$.fn.DataTable.isDataTable('#example2')) {
-                $('#example2').DataTable({
-                    paging: false,
-                    info: false,
-                    searching: false,
-                    responsive: true,
-                });
-            }
-        });
-    }
-
-    $('#permission').on('hidden.bs.modal', function () {
-        $('#permissionForm').find('input[name="id"], input[name="name"], input[name="phone"], input[name="email"]').val('');
-        routesChoices.setChoiceByValue('');
-        $('#formErrors').addClass('d-none').find('ul').html('');
-    });
     $(document).on('click', '.addpermission', function () {
 
         var hasPermission = @json(Auth::user() && Auth::user()->hasPermissionTo('permission.store'));
 
         if (hasPermission) {
-            $('#permissionForm')[0].reset();
-            $('input[name="id"]').val('');
+            
+            $.ajax({
+                url: '{{route('permission.index')}}',
+                type: 'GET',
+                success: function (response) {
+                    const html = $(response);
+                    $('.routelist').html($(response).find('.routelist').html());
+                    initChoices('.routestypes');
+                    initChoices('.userselect');
+                    initChoices('.groupselect');
+                },
+                error: function (xhr) {
+                    console.error('Error:', xhr);
+                }
+            });
             $('#formErrors').addClass('d-none').find('ul').html('');
-            routesChoices.setChoiceByValue('');
+            $('#permissionForm')[0].reset();
             $('#permission').modal('show');
         } else {
             Swal.fire({
@@ -284,8 +305,6 @@
 
     $(document).ready(function () {
         initDataTable();
-        initDataTable2();
-
         $(document).on('click', '.pagination a', function (e) {
             e.preventDefault();
             var page = $(this).attr('href').split('page=')[1];
@@ -308,6 +327,8 @@
                 }
             });
         });
+
+
         $(document).on('submit', '#permissionForm', function (e) {
             e.preventDefault();
 
@@ -324,9 +345,6 @@
                     $('#permissionWrapper').html(html.find('#permissionWrapper').html());
                     initDataTable();
                     $('#permission').modal('hide');
-                    $('#permissionWrapper').html($(response).find('#permissionWrapper').html());
-                    $('#permissionForm').find('input[name="id"], input[name="name"], input[name="phone"], input[name="email"]').val('');
-                    routesChoices.setChoiceByValue('');
                     $('#formErrors').addClass('d-none').find('ul').html('');
                 }, error: function (xhr) {
                     if (xhr.status === 422) {
@@ -345,6 +363,8 @@
                 }
             });
         });
+
+
         $(document).on("input", "#search", function () {
             var search = $(this).val();
             $.ajax({
@@ -364,45 +384,90 @@
                 }
             });
         });
+
+        $(document).on('click', '#deletepermission', function (e) {
+            e.preventDefault();
+            var id = $(this).val();
+            var search = $('#search').val();
+            var hasPermission = @json(Auth::user() && Auth::user()->hasPermissionTo('permission.delete'));
+
+            if (!hasPermission) {
+                Swal.fire({
+                    title: "403 Unauthorized",
+                    text: "You do not have permission to delete a permission.",
+                    icon: "error",
+                    timer: 3000,
+                    timerProgressBar: true,
+                    confirmButtonText: "Close"
+                });
+                return;
+            }
+
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                url: '{{  route('permission.delete') }}',
+                type: 'POST',
+                data: {
+                    id: id,
+                    search: search
+                }, success: function (response) {
+                    $('#example').html($(response).find('#example').html());
+                },
+                error: function (xhr) {
+                    if (xhr.status === 422) {
+                        console('all done')
+                    } else {
+                        alert("Something went wrong.");
+                    }
+                }
+            });
+        });
+
+
+        $('.groupselect').on('change', function () {
+            var group = $(this).find('option:selected').attr('data-name');
+            fetchroute(group);
+        });
     });
+    fetch
+
 </script>
 <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
+
 <script>
-    let routesChoices;
-    if (!document.querySelector('.routestypes').classList.contains('choices__input')) {
-        routesChoices = new Choices('.routestypes', {
-            placeholder: true,
-            shouldSort: false,
-            allowHTML: false,
+    function fetchroute(group) {
+        $.ajax({
+            url: '{{route('permission.index')}}',
+            type: 'GET',
+            data: {
+                group: group
+            },
+            success: function (response) {
+                const html = $(response);
+                $('.routelist').html($(response).find('.routelist').html());
+                initChoices('.routestypes');
+            },
+            error: function (xhr) {
+                console.error('Error:', xhr);
+            }
         });
-    } else {
-        routesChoices = Choices.instances.find(
-            (instance) => instance.config.callbackOnInit.element.id === 'choices-single-default'
-        );
     }
-</script>
-
-
-<script>
-
     $(document).on('click', '.editpermission', function () {
-        var hasPermission = @json(Auth::user() && Auth::user()->hasPermissionTo('permissions.edit'));
-
+        var hasPermission = @json(Auth::user() && Auth::user()->hasPermissionTo('permission.edit'));
         if (hasPermission) {
             let permission = $(this).data('permission');
-            // console.log(permission.routes_id);
-            $('#permissionTitle').text('Edit permission'); // Corrected line
-
+            $('#permissionTitle').text('Edit permission');
             $('#permissionForm input[name="id"]').val(permission.id);
-            $('#permissionForm input[name="name"]').val(permission.name);
-            $('#permissionForm input[name="email"]').val(permission.email);
-            $('#permissionForm input[name="phone"]').val(permission.phone);
-
-            routesChoices.setChoiceByValue(permission.routes_id.toString());
+            var group = $('.groupselect option[value="' + permission.permission_group_id + '"]').attr('data-name');
+            fetchroute(group);
+            userChoices.setChoiceByValue(permission.user_id.toString());
+            routesChoices.setChoiceByValue(permission.name.toString());
+            groupChoices.setChoiceByValue(permission.permission_group_id.toString());
             $('#formErrors ul').html('');
             $('#formErrors').addClass('d-none');
             $('#permission').modal('show');
-
         } else {
             Swal.fire({
                 title: "403 Unauthorized",

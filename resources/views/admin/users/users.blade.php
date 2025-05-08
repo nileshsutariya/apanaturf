@@ -371,10 +371,6 @@ $(document).on('click', '.adduser', function () {
                     $('#userWrapper').html(html.find('#userWrapper').html());
                     initDataTable();
                     $('#user').modal('hide');
-                    $('#userWrapper').html($(response).find('#userWrapper').html());
-                    $('#userForm').find('input[name="id"], input[name="name"], input[name="phone"], input[name="email"]').val('');
-                    roleChoices.setChoiceByValue('');
-                    $('#formErrors').addClass('d-none').find('ul').html('');
                 }, error: function (xhr) {
                     if (xhr.status === 422) {
                         let errors = xhr.responseJSON.errors;

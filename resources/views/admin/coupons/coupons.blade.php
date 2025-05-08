@@ -160,8 +160,8 @@
                                                 data-bs-target="#couponsview" data-coupons='@json($value)'>
                                                 <i class='bx bxs-message-square-detail bx-xs'></i>
                                             </a>
-                                            <a class="btn btn-soft-primary btn-sm editcoupon" 
-                                                data-bs-target="#coupons" data-coupons='@json($value)'>
+                                            <a class="btn btn-soft-primary btn-sm editcoupon" data-bs-target="#coupons"
+                                                data-coupons='@json($value)'>
                                                 <i class='bx bxs-pencil bx-xs'></i>
                                                 <a href="#!" class="btn btn-soft-danger btn-sm">
                                                     <i class='bx bxs-trash bx-xs'></i>
@@ -192,6 +192,9 @@
             </div>
 
             <div class="modal-body mt-3 pt-0 add_coupon" style="scrollbar-width: none;">
+                <div id="formErrors" class="alert alert-danger d-none">
+                    <ul class="mb-0"></ul>
+                </div>
                 <form id="couponsForm" method="POST">
                     @csrf
                     <input type="hidden" class="form-control" name="id">
@@ -215,7 +218,8 @@
                     </div>
                     <div style="margin-bottom: 12px;">
                         <label class="mb-1">Min. Order</label>
-                        <input type="text" class="form-control" name="min_order" placeholder="Enter Min. Order" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                        <input type="text" class="form-control" name="min_order" placeholder="Enter Min. Order"
+                            oninput="this.value = this.value.replace(/[^0-9]/g, '')">
                     </div>
                     <div>
                         <label class="mb-1">Turf</label>
@@ -246,7 +250,8 @@
                             <div class="col-md-6 col-sm-12">
                                 <label class="mb-1">Discount</label>
                                 <input type="text" class="form-control" id="c_per" name="discount"
-                                    placeholder="Enter Discount" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1')">
+                                    placeholder="Enter Discount"
+                                    oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1')">
                             </div>
                         </div>
                     </div>
@@ -388,29 +393,29 @@
         });
     }
 
-$(document).on('click', '.addcoupons', function () {
-    var hasPermission = @json(Auth::user() && Auth::user()->hasPermissionTo('coupons.store'));
+    $(document).on('click', '.addcoupons', function () {
+        var hasPermission = @json(Auth::user() && Auth::user()->hasPermissionTo('coupons.store'));
 
-    if (hasPermission) {
-        $('#couponsForm')[0].reset();
-        $('#couponsForm').find('input[name="expire_date"],input[name="dis_per"],input[name="dis_rupees"], input[name="valid_date"], input[name="name"], input[name="min_order"]').val('');
-        roleChoices.setChoiceByValue('');
-        typeChoices.setChoiceByValue('');
-        let code = generateCouponCode();
-        $('#c_code').val(code);
-        $('#formErrors').addClass('d-none').find('ul').html('');
-        $('#coupons').modal('show');
-    } else {
-        Swal.fire({
-            title: "403 Unauthorized",
-            text: "You do not have permission to add coupons.",
-            icon: "error",
-            timer: 3000,
-            timerProgressBar: true,
-            confirmButtonText: "Close"
-        });
-    }
-});
+        if (hasPermission) {
+            $('#couponsForm')[0].reset();
+            $('#couponsForm').find('input[name="expire_date"],input[name="dis_per"],input[name="dis_rupees"], input[name="valid_date"], input[name="name"], input[name="min_order"]').val('');
+            roleChoices.setChoiceByValue('');
+            typeChoices.setChoiceByValue('');
+            let code = generateCouponCode();
+            $('#c_code').val(code);
+            $('#formErrors').addClass('d-none').find('ul').html('');
+            $('#coupons').modal('show');
+        } else {
+            Swal.fire({
+                title: "403 Unauthorized",
+                text: "You do not have permission to add coupons.",
+                icon: "error",
+                timer: 3000,
+                timerProgressBar: true,
+                confirmButtonText: "Close"
+            });
+        }
+    });
 
 
     $('#coupons').on('hidden.bs.modal', function () {
@@ -463,9 +468,7 @@ $(document).on('click', '.addcoupons', function () {
                     $('#example tbody').html(html.find('#example tbody').html());
                     $('#couponsWrapper').html(html.find('#couponsWrapper').html());
                     initDataTable();
-                    $('#couponsWrapper').html($(response).find('#couponsWrapper').html());
                     $('#coupons').modal('hide');
-                    document.activeElement.blur();
                 }, error: function (xhr) {
                     if (xhr.status === 422) {
                         let errors = xhr.responseJSON.errors;
@@ -530,51 +533,51 @@ $(document).on('click', '.addcoupons', function () {
         $('.i_discount').text(coupons.discount_in_per + '% or    ' + coupons.discount_in_ruppee + '₹');
     });
     $(document).on('click', '.editcoupon', function () {
-    var hasPermission = @json(Auth::user() && Auth::user()->hasPermissionTo('coupons.edit'));
+        var hasPermission = @json(Auth::user() && Auth::user()->hasPermissionTo('coupons.edit'));
 
-    if (hasPermission) {
-        let coupon = $(this).data('coupons');
+        if (hasPermission) {
+            let coupon = $(this).data('coupons');
 
-        $('#couponsTitle').text('Edit Coupon');
+            $('#couponsTitle').text('Edit Coupon');
 
-        $('#couponsForm input[name="id"]').val(coupon.id);
-        $('#couponsForm input[name="name"]').val(coupon.coupons_name);
-        $('#couponsForm input[name="code"]').val(coupon.coupons_code);
-        $('#couponsForm input[name="min_order"]').val(coupon.min_order);
-        $('#couponsForm input[name="discount"]').val(coupon.discount);
-        $('#couponsForm select[name="discount_type"]').val(coupon.discount_type).trigger('change');
+            $('#couponsForm input[name="id"]').val(coupon.id);
+            $('#couponsForm input[name="name"]').val(coupon.coupons_name);
+            $('#couponsForm input[name="code"]').val(coupon.coupons_code);
+            $('#couponsForm input[name="min_order"]').val(coupon.min_order);
+            $('#couponsForm input[name="discount"]').val(coupon.discount);
+            $('#couponsForm select[name="discount_type"]').val(coupon.discount_type).trigger('change');
 
-        const formatDateToDMY = (d) => d ? new Date(d).toLocaleDateString('en-GB').replace(/\//g, '-') : null;
-        var valid_date = formatDateToDMY(coupon.start_date);
-        var expire_date = formatDateToDMY(coupon.end_date);
+            const formatDateToDMY = (d) => d ? new Date(d).toLocaleDateString('en-GB').replace(/\//g, '-') : null;
+            var valid_date = formatDateToDMY(coupon.start_date);
+            var expire_date = formatDateToDMY(coupon.end_date);
 
-        roleChoices.setChoiceByValue(coupon.turf_id.toString());
-        typeChoices.setChoiceByValue(coupon.type);
+            roleChoices.setChoiceByValue(coupon.turf_id.toString());
+            typeChoices.setChoiceByValue(coupon.type);
 
-        flatpickr("#valid-datepicker", {
-            dateFormat: "d-m-Y",
-            defaultDate: valid_date,
-            allowInput: true
-        });
+            flatpickr("#valid-datepicker", {
+                dateFormat: "d-m-Y",
+                defaultDate: valid_date,
+                allowInput: true
+            });
 
-        flatpickr("#expire-datepicker", {
-            dateFormat: "d-m-Y",
-            defaultDate: expire_date,
-            allowInput: true
-        });
+            flatpickr("#expire-datepicker", {
+                dateFormat: "d-m-Y",
+                defaultDate: expire_date,
+                allowInput: true
+            });
 
-        $('#coupons').modal('show');
-    } else {
-        Swal.fire({
-            title: "403 Unauthorized",
-            text: "You do not have permission to edit coupons.",
-            icon: "error",
-            timer: 3000,
-            timerProgressBar: true,
-            confirmButtonText: "Close"
-        });
-    }
-});
+            $('#coupons').modal('show');
+        } else {
+            Swal.fire({
+                title: "403 Unauthorized",
+                text: "You do not have permission to edit coupons.",
+                icon: "error",
+                timer: 3000,
+                timerProgressBar: true,
+                confirmButtonText: "Close"
+            });
+        }
+    });
 
 </script>
 <!-- 
