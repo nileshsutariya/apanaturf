@@ -8,6 +8,7 @@
 <script src="https://cdn.datatables.net/responsive/2.5.0/js/dataTables.responsive.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css" />
 
 <style>
     .swal2-title {
@@ -52,6 +53,10 @@
 
     #search {
         width: 20%;
+    }
+
+    .choices__list {
+        padding-left: 10px;
     }
 
     @media (max-width:575px) {
@@ -197,6 +202,32 @@
                         <label class="mb-1">Balance</label>
                         <input type="text" class="form-control" name="balance" placeholder="Enter The Balance" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
                     </div>
+                    <div style="margin-bottom: 12px;">
+                        <label class="mb-1">City</label>
+                        <select class="form-control city" data-choices name="city" id="choices-single-default">
+                            <option value="">This is a placeholder</option>
+                            @if (isset($city))
+                                @foreach ($city as $c)
+                                    <option value="{{ $c->id }}">
+                                        {{ $c->city_name }}
+                                    </option>
+                                @endforeach
+                            @endif
+                        </select>
+                    </div>
+                    <div style="margin-bottom: 12px;">
+                        <label class="mb-1">Area</label>
+                        <select class="form-control area" data-choices name="area" id="choices-single-default">
+                            <option value="">This is a placeholder</option>
+                            @if (isset($area))
+                                @foreach ($area as $a)
+                                    <option value="{{ $a->id }}">
+                                        {{ $a->area }}
+                                    </option>
+                                @endforeach
+                            @endif
+                        </select>
+                    </div>
                 </form>
             </div>
 
@@ -209,6 +240,7 @@
     </div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
 
 <script>
 
@@ -220,32 +252,38 @@
             responsive: true,
         });
     }
+    // $('#customer').on('hidden.bs.modal', function () {
+    //     $('#customerForm').find('input[name="id"], input[name="name"], input[name="phone"], input[name="email"]').val('');
+    //     cityChoices.setChoiceByValue('');
+    //     areaChoices.setChoiceByValue('');
+    //     $('#formErrors').addClass('d-none').find('ul').html('');
+    // });
 
-$(document).on('click', '.addcustomer', function () {
-    var hasPermission = @json(Auth::user() && Auth::user()->hasPermissionTo('customer.store'));
+    $(document).on('click', '.addcustomer', function () {
+        var hasPermission = @json(Auth::user() && Auth::user()->hasPermissionTo('customer.store'));
 
-    if (hasPermission) {
-        $('#customerForm')[0].reset();
-        $('input[name="id"]').val('');
-        $('#customerForm input[name="balance"]')
-            .val(customer.balance)
-            .prop('readonly', false);
-        $('#formErrors').addClass('d-none').find('ul').html('');
-        $('#customer').modal('show');
-    } else {
-        Swal.fire({
-            title: "403 Unauthorized",
-            text: "You do not have permission to add a customer.",
-            icon: "error",
-            timer: 3000,
-            timerProgressBar: true,
-            confirmButtonText: "Close"
-        });
-    }
-});
+        if (hasPermission) {
+            $('#customerForm')[0].reset();
+            $('input[name="id"]').val('');
+            $('#customerForm input[name="balance"]')
+                .val(customer.balance)
+                .prop('readonly', false);
+            $('#formErrors').addClass('d-none').find('ul').html('');
+            cityChoices.setChoiceByValue('');
+            areaChoices.setChoiceByValue('');
 
-
-
+            $('#customer').modal('show');
+        } else {
+            Swal.fire({
+                title: "403 Unauthorized",
+                text: "You do not have permission to add a customer.",
+                icon: "error",
+                timer: 3000,
+                timerProgressBar: true,
+                confirmButtonText: "Close"
+            });
+        }
+    });
     // $(document).on('click', '.addcustomer', function () {
     //     $('#customerForm')[0].reset();
     //     $('input[name="id"]').val('');
@@ -349,38 +387,77 @@ $(document).on('click', '.addcustomer', function () {
     });
 </script>
 <script>
-    
     $(document).on('click', '.editcustomer', function () {
-            var hasPermission = @json(Auth::user() && Auth::user()->hasPermissionTo('customer.edit'));
+        const allAreas = @json($areas); 
 
-            if (hasPermission) {
-                let customer = $(this).data('customer');
-                $('#customerTitle').text('Edit Customer'); // Corrected line
+        var hasPermission = @json(Auth::user() && Auth::user()->hasPermissionTo('customer.edit'));
 
-                $('#customerForm input[name="id"]').val(customer.id);
-                $('#customerForm input[name="name"]').val(customer.name);
-                $('#customerForm input[name="email"]').val(customer.email);
-                $('#customerForm input[name="phone"]').val(customer.phone);
-                $('#customerForm input[name="balance"]').val(customer.balance);
-                $('#customerForm input[name="balance"]')
-                    .val(customer.balance)
-                    .prop('readonly', true);
-                $('#formErrors ul').html('');
-                $('#formErrors').addClass('d-none');
+        if (hasPermission) {
+            let customer = $(this).data('customer');
+            $('#customerTitle').text('Edit Customer'); // Corrected line
 
-                $('#customer').modal('show');
+            $('#customerForm input[name="id"]').val(customer.id);
+            $('#customerForm input[name="name"]').val(customer.name);
+            $('#customerForm input[name="email"]').val(customer.email);
+            $('#customerForm input[name="phone"]').val(customer.phone);
+            $('#customerForm input[name="balance"]').val(customer.balance);
+            $('#customerForm input[name="balance"]').val(customer.balance).prop('readonly', true);
+            if (customer.city_id) {
+                cityChoices.setChoiceByValue(customer.city_id.toString());
             } else {
-                Swal.fire({
-                    title: "403 Unauthorized",
-                    text: "You do not have permission to edit a customer.",
-                    icon: "error",
-                    timer: 3000,
-                    timerProgressBar: true,
-                    confirmButtonText: "Close"
-                });
+                cityChoices.removeActiveItems();
             }
+
+            const filteredAreas = allAreas.filter(area => area.city_id == customer.city_id);
+
+            areaChoices.clearChoices();
+            areaChoices.setChoices(
+                filteredAreas.map(area => ({
+                    value: area.id,
+                    label: area.area,
+                    selected: area.id == customer.area_id
+                })),
+                'value',
+                'label',
+                true
+            );
+
+            $('#formErrors ul').html('');
+            $('#formErrors').addClass('d-none');
+
+            $('#customer').modal('show');
+        } else {
+            Swal.fire({
+                title: "403 Unauthorized",
+                text: "You do not have permission to edit a customer.",
+                icon: "error",
+                timer: 3000,
+                timerProgressBar: true,
+                confirmButtonText: "Close"
+            });
+        }
     });
 </script>
 
+<script>
+    let areaElement = document.querySelector('.area');
+    if (!areaElement.classList.contains('choices__input')) {
+        areaChoices = new Choices(areaElement, {
+            placeholder: true,
+            shouldSort: false,
+            allowHTML: false,
+        });
+    }
+</script>
+<script>
+    let cityElement = document.querySelector('.city');
+    if (!cityElement.classList.contains('choices__input')) {
+        cityChoices = new Choices(cityElement, {
+            placeholder: true,
+            shouldSort: false,
+            allowHTML: false,
+        });
+    }
+</script>
 
 @include('admin.layouts.footer')
