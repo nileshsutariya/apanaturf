@@ -31,11 +31,11 @@ class CouponsController extends Controller
             ->paginate(10);
 
         $turf = Turf::all();
-        if ($request->ajax()) {
-            return view('admin.coupons.coupons', compact('coupons', 'turf'))->render();
-        } else {
+        // if ($request->ajax()) {
+        //     return view('admin.coupons.coupons', compact('coupons', 'turf'))->render();
+        // } else {
             return view('admin.coupons.coupons', compact('coupons', 'turf'));
-        }
+        // }
     }
     public function store(Request $request)
     {

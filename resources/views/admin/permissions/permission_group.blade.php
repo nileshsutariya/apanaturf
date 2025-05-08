@@ -1,10 +1,19 @@
 @include('admin.layouts.header')
 <!-- DataTables -->
+
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
 <!-- Responsive Extension -->
 <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.5.0/css/responsive.dataTables.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+{{-- @if(session('success'))
+    <p>{{ session('success') }}</p>
+@endif --}}
 <style>
+    .swal2-title {
+        font-size: 14px !important; /* Adjust as needed */
+        font-weight: 500;
+    }
     #example {
         width: 100%;
     }
@@ -98,7 +107,7 @@
     <div class="card">
         <div class="card-header d-flex flex-wrap justify-content-between align-items-center">
             <h4 class="card-title flex-grow-1">All Permission Group List</h4>
-            <a class="btn btn-sm btn-primary addpermission" data-bs-toggle="modal" data-bs-target="#permission">
+            <a class="btn btn-sm btn-primary addpermissiongroup" data-bs-target="#permissiongroup">
                 Add Permission Group
             </a>
         </div>
@@ -115,8 +124,8 @@
                             <th class="gridjs-th">Action</th>
                         </tr>
                     </thead>
-                    <tbody id="permissiondata">
-                        @foreach ($permission as $value)
+                    <tbody id="permissiongroupdata">
+                        @foreach ($permissiongroup as $value)
                             <tr class="p-3">
                                 <td>
                                     {{ $value->name }}
@@ -130,13 +139,14 @@
                                 </td>
                                 <td>
                                     <div class="d-flex gap-2">
-                                        <a class="btn btn-soft-primary btn-sm editpermissions" data-bs-toggle="modal"
-                                            data-bs-target="#permission" data-permission='@json($value)'>
+                                        <button type="button" class="btn btn-soft-primary btn-sm editpermissiongroup" 
+                                            data-bs-target="#permissiongroup" data-permissiongroup='@json($value)'>
                                             <i class='bx bxs-pencil bx-xs'></i>
-                                        </a>
-                                        <a href="" class="btn btn-soft-danger btn-sm">
+                                    </button>
+                                    <button type="button" class="btn btn-soft-danger btn-sm deletepermission"
+                                            data-id="{{ $value->id }}">
                                             <i class='bx bxs-trash bx-xs'></i>
-                                        </a>
+                                    </button>
                                     </div>
                                 </td>
                             </tr>
@@ -144,32 +154,38 @@
                     </tbody>
                 </table>
             </div>
-            <div id="permissionWrapper">
+            <div id="permissiongroupWrapper">
                 <div class="mt-2">
-                    {{ $permission->onEachSide(1)->links('pagination::bootstrap-5') }}
+                    {{ $permissiongroup->onEachSide(1)->links('pagination::bootstrap-5') }}
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-<div class="modal fade" id="permission" tabindex="-1" aria-labelledby="permissionTitle" aria>
+<div class="modal fade" id="permissiongroup" tabindex="-1" aria-labelledby="permissiongroupTitle" aria>
     <div class="modal-dialog modal-dialog-scrollable">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="permissionTitle">Add New Permission Group</h5>
+                <h5 class="modal-title" id="permissiongroupTitle">Add New Permission Group</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <div id="formErrors" class="alert alert-danger d-none">
                     <ul class="mb-0"></ul>
                 </div>
-                <form id="permissionForm" method="POST">
+                <form id="permissiongroupForm" method="POST">
                     @csrf
                     <input type="hidden" class="form-control" name="id">
                     <div style="margin-bottom: 12px;">
                         <label class="mb-1">Name</label>
                         <input type="text" class="form-control" name="name" placeholder="Enter The Name">
+                    </div>
+                    <div style="margin-bottom: 12px;">
+                        <input class="form-check-input" type="checkbox" name="status" id="statusCheckbox" value="1" checked>
+                        <label class="form-check-label" for="statusCheckbox">
+                            Is Active?
+                        </label>
                     </div>
 
                 </form>
@@ -177,16 +193,40 @@
 
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                <button type="submit" form="permissionForm" class="btn btn-primary permissionsave">Save</button>
+                <button type="submit" form="permissiongroupForm" class="btn btn-primary permissiongroupsave">Save</button>
             </div>
         </div>
     </div>
 </div>
 
-
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 <script src="https://cdn.datatables.net/responsive/2.5.0/js/dataTables.responsive.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.js"></script>
+{{-- @if(session('success'))
+<script>
+    const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+    });
+
+    Toast.fire({
+        icon: 'success',
+        title: "{{ session('success') }}"
+    });
+</script>
+@endif --}}
+
+
 
 <script>
     function initDataTable() {
@@ -197,10 +237,26 @@
             responsive: true,
         });
     }
+    $(document).on('click', '.addpermissiongroup', function () {
 
-    $('#permission').on('hidden.bs.modal', function () {
-        $('#permissionForm').find('input[name="id"], input[name="name"]').val('');
-        roleChoices.setChoiceByValue('');
+        var hasPermission = @json(Auth::user() && Auth::user()->hasPermissionTo('permissiongroup.store'));
+
+        if (hasPermission) {
+            $('#permissiongroup').modal('show');
+        } else {
+            Swal.fire({
+                icon: 'error',
+                title: '403 Unauthorized',
+                text: 'You do not have permission to add a permissions group.',
+                timer: 3000,
+                timerProgressBar: true,
+                confirmButtonText: 'OK'
+            });
+        }
+    });
+
+    $('#permissiongroup').on('hidden.bs.modal', function () {
+        $('#permissiongroupForm').find('input[name="id"], input[name="name"]').val('');
         $('#formErrors').addClass('d-none').find('ul').html('');
     });
 
@@ -211,7 +267,7 @@
             var page = $(this).attr('href').split('page=')[1];
             var search = $('#search').val();
             $.ajax({
-                url: '{{ route(name: "permission.index") }}',
+                url: '{{ route(name: "permissiongroup.index") }}',
                 type: 'GET',
                 data: {
                     page: page,
@@ -221,30 +277,39 @@
                     $('#example').DataTable().destroy();
                     $('#example').html($(data).find('#example').html());
                     initDataTable();
-                    $('#permissionWrapper').html($(data).find('#permissionWrapper').html());
+                    $('#permissiongroupWrapper').html($(data).find('#permissiongroupWrapper').html());
                 },
                 error: function (xhr, status, error) {
                     console.error("AJAX Error: " + status + " - " + error);
                 }
             });
         });
-        $(document).on('submit', '#permissionForm', function (e) {
+        $(document).on('submit', '#permissiongroupForm', function (e) {
             e.preventDefault();
 
             let form = $(this);
             let formData = form.serialize();
             $.ajax({
-                url: '{{ route("permission.store") }}',
+                url: '{{ route("permissiongroup.store") }}',
                 type: 'POST',
                 data: formData,
                 success: function (response) {
                     $('#example').DataTable().destroy();
                     const html = $(response);
-                    $('#example tbody').html(html.find('#example tbody').html());
-                    $('#permissionWrapper').html(html.find('#permissionWrapper').html());
+                    $('#example').replaceWith(html.find('#example')); 
+                    $('#permissiongroupWrapper').html(html.find('#permissiongroupWrapper').html());
                     initDataTable();
-                    $('#permission').modal('hide');
+                    $('#permissiongroup').modal('hide');
                     $('#formErrors').addClass('d-none').find('ul').html('');
+                    Swal.fire({
+                        toast: true,
+                        position: 'top-end',
+                        icon: 'success',
+                        title: 'Permission Group Saved Successfully!',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
+                    });
                 }, error: function (xhr) {
                     if (xhr.status === 422) {
                         let errors = xhr.responseJSON.errors;
@@ -268,7 +333,7 @@
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
-                url: "{{route('permission.index')}}",
+                url: "{{route('permissiongroup.index')}}",
                 data: {
                     'search': search,
                 },
@@ -277,7 +342,7 @@
                     $('#example').DataTable().destroy();
                     $('#example').html($(data).find('#example').html());
                     initDataTable();
-                    $('#permissionWrapper').html($(data).find('#permissionWrapper').html());
+                    $('#permissiongroupWrapper').html($(data).find('#permissiongroupWrapper').html());
                 }
             });
         });
@@ -285,18 +350,62 @@
 </script>
 
 <script>
+    $(document).on('click', '.editpermissiongroup', function () {
+        var hasPermission = @json(Auth::user() && Auth::user()->hasPermissionTo('permissiongroup.edit'));
 
-    $(document).on('click', '.editpermissions', function () {
-        let permission = $(this).data('permission');
-        $('#areaTitle').text('Edit permission'); // Corrected line
+        if (!hasPermission) {
+            Swal.fire({
+                title: "403 Unauthorized",
+                text: "You do not have permission to edit a permission group.",
+                icon: "error",
+                timer: 3000,
+                timerProgressBar: true,
+                confirmButtonText: "Close"
+            });
+            return; 
+        }
 
-        $('#permissionForm input[name="id"]').val(permission.id);
-        $('#permissionForm input[name="name"]').val(permission.name);
+        let permissiongroup = $(this).data('permissiongroup');
+        $('#permissiongroupTitle').text('Edit Permission Group'); // Corrected line
+
+        $('#permissiongroupForm input[name="id"]').val(permissiongroup.id);
+        $('#permissiongroupForm input[name="name"]').val(permissiongroup.name);
+        $('#permissiongroupForm input[name="status"]').prop('checked', permissiongroup.status == 1);
 
         $('#formErrors ul').html('');
         $('#formErrors').addClass('d-none');
+        $('#permissiongroup').modal('show');
+        
     });
-</script>
 
+$(document).on('click', '.deletepermission', function (e) {
+    e.preventDefault();
+    let button = $(this); 
+    let id = button.data('id');
+
+    $.ajax({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        url: '{{ route('permissiongroup.delete') }}',
+        type: 'POST',
+        data: { id: id },
+        success: function (response) {
+            if (response.success) {
+                button.closest('tr').remove();
+
+            } else {
+                console.log('Error:', response.error);
+            }
+        },
+        error: function (xhr) {
+            alert("Something went wrong.");
+            console.log(xhr.responseText);
+        }
+    });
+});
+
+
+</script>
 
 @include('admin.layouts.footer')

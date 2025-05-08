@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\admin\PermissionGroupController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\admin\AreaController;
 use App\Http\Controllers\admin\loginController;
@@ -10,10 +9,13 @@ use App\Http\Controllers\admin\SportsController;
 use App\Http\Controllers\admin\CouponsController;
 use App\Http\Controllers\admin\CustomerController;
 use App\Http\Controllers\admin\AmenitiesController;
+use App\Http\Controllers\admin\PermissionsController;
+use App\Http\Controllers\admin\PermissionGroupController;
 
 
 
 Route::prefix('admin')->group(function () {
+    // Route::post('admin/permissiongroup/delete', [PermissionGroupController::class, 'delete'])->name('permissiongroup.delete');
 
     Route::get('/login', [loginController::class, 'login'])->name('admin.login');
     Route::post('/login', [loginController::class, 'logincheck'])->name('logincheck');
@@ -36,10 +38,12 @@ Route::prefix('admin')->group(function () {
             Route::prefix('/area')->controller(AreaController::class)->name('area.')->group(function () {
                 Route::get('/', 'index')->name('index');
                 Route::post('/store', 'store')->name('store');
+                Route::post('/delete/{id}', 'delete')->name('delete');
             });
-            Route::prefix('/permissiongroup')->controller(PermissionGroupController::class)->name('permission.')->group(function () {
+            Route::prefix('/permissiongroup')->controller(PermissionGroupController::class)->name('permissiongroup.')->group(function () {
                 Route::get('/', 'index')->name('index');
                 Route::post('/store', 'store')->name('store');
+                Route::post('/delete', 'delete')->name('delete');
             });
 
             Route::prefix('/users')->controller(UsersController::class)->name('users.')->group(function () {

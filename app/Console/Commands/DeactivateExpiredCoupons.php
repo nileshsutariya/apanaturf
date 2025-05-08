@@ -37,52 +37,36 @@ class DeactivateExpiredCoupons extends Command
             ->get();
 
         foreach ($expiredCoupons as $coupon) {
-            $coupon->status = 0;
-            $coupon->save();
+            $coupon->update(['status' => 0]);
         }
 
         $this->info(count($expiredCoupons) . ' coupons deactivated.');
-
 
         $bookings = Booking::with(['coupon', 'transaction'])
                             ->where('status', "1") 
                             ->get();
 
-        Log::info('Found ' . $bookings->count() . ' bookings');
-
         foreach ($bookings as $booking) {
             $coupon = $booking->coupon; 
             $transaction = $booking->transaction;
     
-            Log::info('Checking Booking ID ' . $booking->id . ' - Coupon ID: ' . ($coupon->id ?? 'None'));
-            Log::info('Transaction Status: ' . ($transaction->status ?? 'None'));
-
-            if ($transaction && $transaction->status == 2) {
-                Log::info("Transaction status is 2");
-
-                if ($coupon && $coupon->transaction_limit) {
-                    Log::info("Coupon has a transaction limit: " . $coupon->transaction_limit);
+            if ($transaction?->status == 2 && $coupon?->transaction_limit) {
                     
-                    $bookingCount = Booking::where('coupons_id', $coupon->id)
-                                ->where('status', '1')  
-                                ->whereHas('transaction', function ($query) {
-                                    $query->where('status', '2'); 
-                                })
-                                ->count();
+                $bookingCount = Booking::where('coupons_id', $coupon->id)
+                            ->where('status', '1')  
+                            ->whereHas('transaction', function ($query) {
+                                $query->where('status', '2'); 
+                            })
+                            ->count();
 
-                    Log::info('Booking Count for Coupon ' . $coupon->id . ': ' . $bookingCount);
-                    if ($bookingCount >= $coupon->transaction_limit) {
-                        $coupon->status = 0;
-                        $coupon->save();
-    
-                        $message = "Coupon ID {$coupon->id} deactivated (used {$bookingCount} times).";
-                        $this->info($message);
-                        Log::info($message);
-                    }
-                }    
+                if ($bookingCount >= $coupon->transaction_limit) {
+                    $coupon->update(['status' => 0]);
+
+                    $message = "Coupon ID {$coupon->id} deactivated (used {$bookingCount} times).";
+                    $this->info($message);
+                    Log::info($message);
+                }   
             }
-
         }
     }
-
 }
