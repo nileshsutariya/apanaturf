@@ -39,4 +39,11 @@ class AreaController extends Controller
         $area->save();
         return redirect()->route('area.index');
     }
+    public function delete($id)
+    {
+        $area = Area::find($id);
+        $area->delete();
+
+        return redirect()->route('area.index');
+    }
 }

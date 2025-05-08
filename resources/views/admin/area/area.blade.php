@@ -4,6 +4,7 @@
 <!-- Responsive Extension -->
 <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.5.0/css/responsive.dataTables.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css" />
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <style>
     #example {
@@ -99,7 +100,7 @@
     <div class="card">
         <div class="card-header d-flex flex-wrap justify-content-between align-items-center">
             <h4 class="card-title flex-grow-1">All Area List</h4>
-            <a class="btn btn-sm btn-primary addarea" data-bs-toggle="modal" data-bs-target="#area">
+            <a class="btn btn-sm btn-primary addarea" data-bs-target="#area">
                 Add Area
             </a>
         </div>
@@ -131,13 +132,14 @@
                                 </td>
                                 <td>
                                     <div class="d-flex gap-2">
-                                        <a class="btn btn-soft-primary btn-sm editarea" data-bs-toggle="modal"
+                                        <a class="btn btn-soft-primary btn-sm editarea" 
                                             data-bs-target="#area" data-area='@json($value)'>
                                             <i class='bx bxs-pencil bx-xs'></i>
                                         </a>
-                                        <!-- <a href="#!" class="btn btn-soft-danger btn-sm">
-                                        <i class='bx bxs-trash bx-xs'></i>
-                                        </a> -->
+                                        <a href="#" class="btn btn-soft-danger btn-sm deletearea" 
+                                            data-id="{{ $value->id }}">
+                                            <i class='bx bxs-trash bx-xs'></i>
+                                        </a>
                                     </div>
                                 </td>
                             </tr>
@@ -203,7 +205,6 @@
     </div>
 </div>
 
-
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/responsive/2.5.0/js/dataTables.responsive.min.js"></script>
@@ -217,6 +218,23 @@
             responsive: true,
         });
     }
+
+    $(document).on('click', '.addarea', function () {
+        var hasPermission = @json(Auth::user() && Auth::user()->hasPermissionTo('area.store'));
+
+        if (hasPermission) {
+            $('#area').modal('show');
+        } else {
+            Swal.fire({
+                icon: 'error',
+                title: '403 Unauthorized',
+                text: 'You do not have permission to add a area.',
+                timer: 3000,
+                timerProgressBar: true,
+                confirmButtonText: 'OK'
+            });
+        }
+    });
 
     $('#area').on('hidden.bs.modal', function () {
         $('#areaForm').find('input[name="id"], input[name="name"], input[name="pincode"]').val('');
@@ -302,6 +320,26 @@
             });
         });
     });
+
+    // $(document).on('click', '.deletearea', function () {
+    //     let id = $(this).data('id');
+    //     console.log(id);
+    //     $.ajax({
+    //         url: "{{ route('area.delete', ':id') }}".replace(':id', id), // Replace :id with the actual ID
+    //         type: 'POST',
+    //         headers: {
+    //             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    //         },
+    //         success: function (response) {
+    //             Swal.fire('Deleted!', response.message, 'success');
+    //             $('#example').DataTable().row($(`a[data-id="${id}"]`).parents('tr')).remove().draw();
+    //         },
+    //         error: function () {
+    //             Swal.fire('Error!', 'Unable to delete area.', 'error');
+    //         }
+    //     });
+    // });
+
 </script>
 <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
 <script>
@@ -320,8 +358,21 @@
 </script>
 
 <script>
-
     $(document).on('click', '.editarea', function () {
+        var hasPermission = @json(Auth::user() && Auth::user()->hasPermissionTo('area.edit'));
+
+        if (!hasPermission) {
+            Swal.fire({
+                title: "403 Unauthorized",
+                text: "You do not have permission to edit a area.",
+                icon: "error",
+                timer: 3000,
+                timerProgressBar: true,
+                confirmButtonText: "Close"
+            });
+            return; 
+        }
+        
         let area = $(this).data('area');
         // console.log(area.role_id);
         $('#areaTitle').text('Edit area'); // Corrected line
@@ -333,8 +384,9 @@
         roleChoices.setChoiceByValue(area.city_id.toString());
         $('#formErrors ul').html('');
         $('#formErrors').addClass('d-none');
+
+        $('#area').modal('show');
     });
 </script>
-
 
 @include('admin.layouts.footer')

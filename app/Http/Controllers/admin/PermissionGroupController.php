@@ -11,8 +11,8 @@ class PermissionGroupController extends Controller
 {
     public function index()
     {
-        $permission = PermissionGroup::paginate(10);
-        return view('admin.permissions.permission_group', compact('permission'));
+        $permissiongroup = PermissionGroup::paginate(10);
+        return view('admin.permissions.permission_group', compact('permissiongroup'));
     }
     public function store(Request $request)
     {
@@ -20,9 +20,30 @@ class PermissionGroupController extends Controller
             'name' => 'required'
         ])->validate();
 
-        $permission = $request->id ? PermissionGroup::find($request->id) : new PermissionGroup();
-        $permission->name = $request->name;
-        $permission->save();
-        return redirect()->route('permission.index');
+        $permissiongroup = $request->id ? PermissionGroup::find($request->id) : new PermissionGroup();
+        $permissiongroup->name = $request->name;
+        $permissiongroup->status = $request->has('status') ? 1 : 0;
+
+        $permissiongroup->save();
+        
+        return redirect()->back()->with('success', 'Permission Group Created Successfully!');
     }
+    public function delete(Request $request)
+    {
+        $id = $request->id;
+        if (!$id) {
+            return response()->json(['error' => 'ID is required.'], 400);
+        }
+        $permissionGroup = PermissionGroup::find($id);
+
+        if (!$permissionGroup) {
+            return response()->json(['error' => 'Permission group not found.'], 404);
+        }
+
+        $permissionGroup->delete();
+
+        // Optional: return updated view
+        return response()->json(['success' => true]);
+    }
+
 }

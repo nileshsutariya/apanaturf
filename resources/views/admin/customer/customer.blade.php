@@ -7,8 +7,13 @@
 <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.5.0/css/responsive.dataTables.min.css">
 <script src="https://cdn.datatables.net/responsive/2.5.0/js/dataTables.responsive.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 <style>
+    .swal2-title {
+        font-size: 14px !important; /* Adjust as needed */
+        font-weight: 500;
+    }
     #example {
         width: 100%;
     }
@@ -203,6 +208,7 @@
         </div>
     </div>
 </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.js"></script>
 
 <script>
 
@@ -294,6 +300,15 @@ $(document).on('click', '.addcustomer', function () {
                     $('#customerForm')[0].reset();
                     document.activeElement.blur();
                     $('#formErrors').addClass('d-none').find('ul').html('');
+                    Swal.fire({
+                        toast: true,
+                        position: 'top-end',
+                        icon: 'success',
+                        title: 'Customer Saved Successfully!',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
+                    });
 
                 }, error: function (xhr) {
                     if (xhr.status === 422) {

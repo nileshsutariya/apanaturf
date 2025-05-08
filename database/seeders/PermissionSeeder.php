@@ -42,6 +42,8 @@ class PermissionSeeder extends Seeder
                 $group_id = 7;
             } elseif (str_starts_with($permission, 'permission.')) {
                 $group_id = 8;
+            } elseif (str_starts_with($permission, 'permissiongroup.')) {
+                $group_id = 9;
             } else {
                 $group_id = 0;
             }
