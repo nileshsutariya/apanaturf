@@ -254,6 +254,7 @@
     const userChoices = initChoices('.userselect');
     const groupChoices = initChoices('.groupselect');
 
+    const allroutes = @json($routes);
 
 </script>
 
@@ -272,21 +273,17 @@
         var hasPermission = @json(Auth::user() && Auth::user()->hasPermissionTo('permission.store'));
 
         if (hasPermission) {
-            
-            $.ajax({
-                url: '{{route('permission.index')}}',
-                type: 'GET',
-                success: function (response) {
-                    const html = $(response);
-                    $('.routelist').html($(response).find('.routelist').html());
-                    initChoices('.routestypes');
-                    initChoices('.userselect');
-                    initChoices('.groupselect');
-                },
-                error: function (xhr) {
-                    console.error('Error:', xhr);
-                }
-            });
+            const filteredroutes = allroutes;
+            routesChoices.clearStore();
+            routesChoices.setChoices(
+                filteredroutes.map(route => ({
+                    value: route,
+                    label: route
+                })),
+                'value',
+                'label',
+                true
+            );
             $('#formErrors').addClass('d-none').find('ul').html('');
             $('#permissionForm')[0].reset();
             $('#permission').modal('show');
@@ -425,43 +422,33 @@
             });
         });
 
-
-        $('.groupselect').on('change', function () {
-            var group = $(this).find('option:selected').attr('data-name');
-            fetchroute(group);
-        });
     });
-    fetch
 
 </script>
 <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
 
 <script>
-    function fetchroute(group) {
-        $.ajax({
-            url: '{{route('permission.index')}}',
-            type: 'GET',
-            data: {
-                group: group
-            },
-            success: function (response) {
-                const html = $(response);
-                $('.routelist').html($(response).find('.routelist').html());
-                initChoices('.routestypes');
-            },
-            error: function (xhr) {
-                console.error('Error:', xhr);
-            }
-        });
-    }
+
     $(document).on('click', '.editpermission', function () {
         var hasPermission = @json(Auth::user() && Auth::user()->hasPermissionTo('permission.edit'));
         if (hasPermission) {
             let permission = $(this).data('permission');
+            var group = $('.groupselect option[value="' + permission.permission_group_id + '"]').attr('data-name');
+            const filteredroutes = allroutes.filter(route => route.startsWith(group));
+
+            routesChoices.clearChoices();
+            routesChoices.setChoices(
+                filteredroutes.map(route => ({
+                    value: route,
+                    label: route,
+                    selected: route === permission.name
+                })),
+                'value',
+                'label',
+                true
+            );
             $('#permissionTitle').text('Edit permission');
             $('#permissionForm input[name="id"]').val(permission.id);
-            var group = $('.groupselect option[value="' + permission.permission_group_id + '"]').attr('data-name');
-            fetchroute(group);
             userChoices.setChoiceByValue(permission.user_id.toString());
             routesChoices.setChoiceByValue(permission.name.toString());
             groupChoices.setChoiceByValue(permission.permission_group_id.toString());
@@ -479,6 +466,23 @@
             });
         }
     });
+    
+    $('.groupselect').on('change', function () {
+            var group = $(this).find('option:selected').attr('data-name');
+            routesChoices.clearChoices();
+            routesChoices.clearStore(); 
+            const filteredroutes = allroutes.filter(route => route.startsWith(group));
+            routesChoices.setChoices(
+                filteredroutes.map(route => ({
+                    value: route,
+                    label: route,
+                })),
+                'value',
+                'label',
+                true
+            );
+        });
+
 </script>
 
 

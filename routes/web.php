@@ -33,6 +33,7 @@ Route::prefix('admin')->group(function () {
             });
             Route::prefix('/permission')->controller(PermissionsController::class)->name('permission.')->group(function () {
                 Route::get('/', 'index')->name('index');
+                Route::post('/delete', 'delete')->name('delete');
                 Route::post('/store', 'store')->name('store');
                 Route::post('/delete', 'delete')->name('delete');
             });

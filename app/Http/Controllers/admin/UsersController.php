@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\admin;
 
+use App\Models\Area;
 use App\Models\User;
 use App\Models\RoleType;
 use Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 
@@ -37,10 +39,12 @@ class UsersController extends Controller
         //     ->orWhere('users.email', 'like', '%' . $request->search . '%')
         //     ->orWhere('role_type.name', 'like', $request->search . '%')->paginate(10);
         $role = RoleType::all();
+        $city = DB::table('city')->get();
+        $area = $request->city ? Area::where('city_id', $request->city)->get() : Area::all();
         if ($request->ajax()) {
-            return view('admin.users.users', compact('user', 'role'))->render();
+            return view('admin.users.users', compact('user', 'role', 'city', 'area'))->render();
         } else {
-            return view('admin.users.users', compact('user', 'role'));
+            return view('admin.users.users', compact('user', 'role', 'city', 'area'));
         }
 
     }
@@ -51,7 +55,7 @@ class UsersController extends Controller
             'name' => 'required',
             'phone' => 'required',
             'role' => 'required',
-            'email' => 'required|email|unique:users,email' . ($request->id ? ','.$request->id : ''),
+            'email' => 'required|email|unique:users,email' . ($request->id ? ',' . $request->id : ''),
         ])->validate();
         $users = $request->id ? User::find($request->id) : new User();
         $users->name = $request->name;
@@ -59,6 +63,8 @@ class UsersController extends Controller
         $users->email = $request->email;
         $users->phone = $request->phone;
         $users->role_id = $request->role;
+        $users->city_id = $request->city;
+        $users->area_id = $request->area;
         $users->save();
         return redirect()->route('users.index');
     }

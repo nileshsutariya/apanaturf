@@ -81,6 +81,7 @@
     #balanceWrapper {
         margin-right: 100px;
     }
+
     .pagination {
         margin-bottom: 0px;
     }
@@ -136,16 +137,16 @@
                                 </td>
                                 <td>
                                     <div class="d-flex gap-2">
-                                        <a class="btn btn-soft-success btn-sm" data-bs-toggle="modal" data-bs-target="#wallet"
-                                            data-user='@json($value)'>
+                                        <a class="btn btn-soft-success btn-sm" data-bs-toggle="modal"
+                                            data-bs-target="#wallet" data-user='@json($value)'>
                                             <i class='bx bx-wallet bx-xs'></i>
                                         </a>
-                                        <a class="btn btn-soft-primary btn-sm edituser"
-                                            data-bs-target="#user" data-user='@json($value)'>
+                                        <a class="btn btn-soft-primary btn-sm edituser" data-bs-target="#user"
+                                            data-user='@json($value)'>
                                             <i class='bx bxs-pencil bx-xs'></i>
                                         </a>
                                         <a href="#!" class="btn btn-soft-danger btn-sm">
-                                        <i class='bx bxs-trash bx-xs'></i>
+                                            <i class='bx bxs-trash bx-xs'></i>
                                         </a>
                                     </div>
                                 </td>
@@ -184,7 +185,8 @@
 
                     <div style="margin-bottom: 12px;">
                         <label class="mb-1">Mob. No.</label>
-                        <input type="text" class="form-control" name="phone" placeholder="Enter The Phone Number" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                        <input type="text" class="form-control" name="phone" placeholder="Enter The Phone Number"
+                            oninput="this.value = this.value.replace(/[^0-9]/g, '')">
                     </div>
 
                     <div style="margin-bottom: 12px;">
@@ -200,6 +202,32 @@
                                 @foreach ($role as $r)
                                     <option value="{{ $r->id }}">
                                         {{ $r->name }}
+                                    </option>
+                                @endforeach
+                            @endif
+                        </select>
+                    </div>
+                    <div style="margin-bottom: 12px;">
+                        <label class="mb-1">City</label>
+                        <select class="form-control cityselect" data-choices name="city" id="choices-single-default">
+                            <option value="">This is a placeholder</option>
+                            @if (isset($city))
+                                @foreach ($city as $c)
+                                    <option value="{{ $c->id }}">
+                                        {{ $c->city_name }}
+                                    </option>
+                                @endforeach
+                            @endif
+                        </select>
+                    </div>
+                    <div style="margin-bottom: 12px;" class="arealist">
+                        <label class="mb-1">Area</label>
+                        <select class="form-control areaselect" data-choices name="area" id="choices-single-default">
+                            <option value="">This is a placeholder</option>
+                            @if (isset($area))
+                                @foreach ($area as $a)
+                                    <option value="{{ $a->id }}">
+                                        {{ $a->area }}
                                     </option>
                                 @endforeach
                             @endif
@@ -277,6 +305,31 @@
 <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/responsive/2.5.0/js/dataTables.responsive.min.js"></script>
 
+<script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
+<script>
+    function initChoices(selector) {
+        const element = document.querySelector(selector);
+        if (!element) return null;
+
+        if (!element.classList.contains('choices__input')) {
+            return new Choices(selector, {
+                placeholder: true,
+                shouldSort: false,
+                allowHTML: false,
+            });
+        } else {
+            return Choices.instances.find(
+                (instance) => instance.config?.callbackOnInit?.element?.id == 'choices-single-default'
+            );
+        }
+    }
+    const roleChoices = initChoices('.roletypes');
+    const cityChoices = initChoices('.cityselect');
+    const areaChoices = initChoices('.areaselect');
+
+    const allAreas = @json($area);
+
+</script>
 <script>
     function initDataTable() {
         $('#example').DataTable({
@@ -302,31 +355,35 @@
         });
     }
 
-    $('#user').on('hidden.bs.modal', function () {
-        $('#userForm').find('input[name="id"], input[name="name"], input[name="phone"], input[name="email"]').val('');
-        roleChoices.setChoiceByValue('');
-        $('#formErrors').addClass('d-none').find('ul').html('');
-    });
-$(document).on('click', '.adduser', function () {
-    var hasPermission = @json(Auth::user() && Auth::user()->hasPermissionTo('users.store'));
+    $(document).on('click', '.adduser', function () {
+        var hasPermission = @json(Auth::user() && Auth::user()->hasPermissionTo('users.store'));
 
-    if (hasPermission) {
-        $('#userForm')[0].reset();
-        $('input[name="id"]').val('');
-        $('#formErrors').addClass('d-none').find('ul').html('');
-        roleChoices.setChoiceByValue('');
-        $('#user').modal('show');
-    } else {
-        Swal.fire({
-            title: "403 Unauthorized",
-            text: "You do not have permission to add users.",
-            icon: "error",
-            timer: 3000,
-            timerProgressBar: true,
-            confirmButtonText: "Close"
-        });
-    }
-});
+        if (hasPermission) {
+            $('#userForm')[0].reset();
+            $('#formErrors').addClass('d-none').find('ul').html('');
+            const filteredAreas = allAreas;
+            areaChoices.clearStore();
+            areaChoices.setChoices(
+                filteredAreas.map(area => ({
+                    value: area.id,
+                    label: area.area
+                })),
+                'value',
+                'label',
+                true
+            );
+            $('#user').modal('show');
+        } else {
+            Swal.fire({
+                title: "403 Unauthorized",
+                text: "You do not have permission to add users.",
+                icon: "error",
+                timer: 3000,
+                timerProgressBar: true,
+                confirmButtonText: "Close"
+            });
+        }
+    });
 
 
     $(document).ready(function () {
@@ -407,41 +464,53 @@ $(document).on('click', '.adduser', function () {
                 }
             });
         });
+
+        $('.cityselect').on('change', function () {
+            var selectedCityId = $(this).val();
+            const filteredAreas = allAreas.filter(area => area.city_id == selectedCityId);
+
+            areaChoices.clearStore();
+            areaChoices.setChoices(
+                filteredAreas.map(area => ({
+                    value: area.id,
+                    label: area.area
+                })),
+                'value',
+                'label',
+                true
+            );
+        });
     });
 </script>
-<script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
-<script>
-    let roleChoices;
-    if (!document.querySelector('.roletypes').classList.contains('choices__input')) {
-        roleChoices = new Choices('.roletypes', {
-            placeholder: true,
-            shouldSort: false,
-            allowHTML: false,
-        });
-    } else {
-        roleChoices = Choices.instances.find(
-            (instance) => instance.config.callbackOnInit.element.id === 'choices-single-default'
-        );
-    }
-</script>
-
 
 <script>
 
     $(document).on('click', '.edituser', function () {
+
         var hasPermission = @json(Auth::user() && Auth::user()->hasPermissionTo('users.edit'));
 
         if (hasPermission) {
             let user = $(this).data('user');
-            // console.log(user.role_id);
-            $('#userTitle').text('Edit User'); // Corrected line
-
+            let city = user.city_id;
+            const filteredAreas = allAreas.filter(area => area.city_id == user.city_id);
+            areaChoices.clearChoices();
+            areaChoices.setChoices(
+                filteredAreas.map(area => ({
+                    value: area.id,
+                    label: area.area,
+                    selected: area.id == user.area_id
+                })),
+                'value',
+                'label',
+                true
+            );
+            $('#userTitle').text('Edit User');
             $('#userForm input[name="id"]').val(user.id);
             $('#userForm input[name="name"]').val(user.name);
             $('#userForm input[name="email"]').val(user.email);
             $('#userForm input[name="phone"]').val(user.phone);
-
             roleChoices.setChoiceByValue(user.role_id.toString());
+            cityChoices.setChoiceByValue(user.city_id.toString());
             $('#formErrors ul').html('');
             $('#formErrors').addClass('d-none');
             $('#user').modal('show');

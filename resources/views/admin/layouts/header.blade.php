@@ -140,6 +140,7 @@
                                    <span class="nav-text"> Customer </span>
                               </a>
                          </li>
+                         @if (Auth::user()->role_id != 3)
                          <li class="nav-item">
                               <a class="nav-link" href="{{ route('users.index')}}">
                                    <span class="nav-icon">
@@ -148,6 +149,8 @@
                                    <span class="nav-text"> Users </span>
                               </a>
                          </li>
+                         @endif
+                         @if (Auth::user()->role_id == 1)
                          <li class="nav-item">
                               <a class="nav-link menu-arrow" href="#sidebarpermission" data-bs-toggle="collapse"
                                    role="button" aria-expanded="false" aria-controls="sidebarpermission">
@@ -166,8 +169,8 @@
                                         </li>
                                    </ul>
                               </div>
-                             
                          </li>
+                         @endif
                          <li class="menu-title mt-2">Other</li>
                          <li class="nav-item">
                               <a class="nav-link" href="{{ route('coupons.index')}}">
