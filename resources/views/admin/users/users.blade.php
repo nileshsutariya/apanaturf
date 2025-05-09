@@ -306,7 +306,7 @@
 <script src="https://cdn.datatables.net/responsive/2.5.0/js/dataTables.responsive.min.js"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
-<!-- <script>
+<script>
     function initChoices(selector) {
         const element = document.querySelector(selector);
         if (!element) return null;
@@ -319,7 +319,7 @@
             });
         } else {
             return Choices.instances.find(
-                (instance) => instance.config?.callbackOnInit?.element?.id === 'choices-single-default'
+                (instance) => instance.config?.callbackOnInit?.element?.id == 'choices-single-default'
             );
         }
     }
@@ -327,37 +327,8 @@
     const cityChoices = initChoices('.cityselect');
     const areaChoices = initChoices('.areaselect');
 
-</script> -->
-<script>
-    function
-    let areaElement = document.querySelector('.areaselect');
-    if (!areaElement.classList.contains('choices__input')) {
-        areaChoices = new Choices(areaElement, {
-            placeholder: true,
-            shouldSort: false,
-            allowHTML: false,
-        });
-    }
-</script>
-<script>
-    let cityElement = document.querySelector('.cityselect');
-    if (!cityElement.classList.contains('choices__input')) {
-        cityChoices = new Choices(cityElement, {
-            placeholder: true,
-            shouldSort: false,
-            allowHTML: false,
-        });
-    }
-</script>
-<script>
-    let roleElement = document.querySelector('.roletypes');
-    if (!roleElement.classList.contains('choices__input')) {
-        roleChoices = new Choices(roleElement, {
-            placeholder: true,
-            shouldSort: false,
-            allowHTML: false,
-        });
-    }
+    const allAreas = @json($area);
+
 </script>
 <script>
     function initDataTable() {
@@ -384,24 +355,23 @@
         });
     }
 
-
-
-
-
-
-    $('#user').on('hidden.bs.modal', function () {
-        $('#userForm').find('input[name="id"], input[name="name"], input[name="phone"], input[name="email"]').val('');
-        roleChoices.setChoiceByValue('');
-        $('#formErrors').addClass('d-none').find('ul').html('');
-    });
     $(document).on('click', '.adduser', function () {
         var hasPermission = @json(Auth::user() && Auth::user()->hasPermissionTo('users.store'));
 
         if (hasPermission) {
             $('#userForm')[0].reset();
-            $('input[name="id"]').val('');
             $('#formErrors').addClass('d-none').find('ul').html('');
-            roleChoices.setChoiceByValue('');
+            const filteredAreas = allAreas;
+            areaChoices.clearStore();
+            areaChoices.setChoices(
+                filteredAreas.map(area => ({
+                    value: area.id,
+                    label: area.area
+                })),
+                'value',
+                'label',
+                true
+            );
             $('#user').modal('show');
         } else {
             Swal.fire({
@@ -494,48 +464,53 @@
                 }
             });
         });
+
         $('.cityselect').on('change', function () {
-            var city = $(this).val();
-            fetchroute(city);
+            var selectedCityId = $(this).val();
+            const filteredAreas = allAreas.filter(area => area.city_id == selectedCityId);
+
+            areaChoices.clearStore();
+            areaChoices.setChoices(
+                filteredAreas.map(area => ({
+                    value: area.id,
+                    label: area.area
+                })),
+                'value',
+                'label',
+                true
+            );
         });
     });
 </script>
 
 <script>
-    function fetchroute(city) {
-        $.ajax({
-            url: '{{route('users.index')}}',
-            type: 'GET',
-            data: {
-                city: city
-            },
-            success: function (response) {
-                const html = $(response);
-                // initChoices('.areaselect');
-                $('.arealist').html($(response).find('.arealist').html());
-            },
-            error: function (xhr) {
-                console.error('Error:', xhr);
-            }
-        });
-    }
 
     $(document).on('click', '.edituser', function () {
+
         var hasPermission = @json(Auth::user() && Auth::user()->hasPermissionTo('users.edit'));
 
         if (hasPermission) {
             let user = $(this).data('user');
             let city = user.city_id;
+            const filteredAreas = allAreas.filter(area => area.city_id == user.city_id);
+            areaChoices.clearChoices();
+            areaChoices.setChoices(
+                filteredAreas.map(area => ({
+                    value: area.id,
+                    label: area.area,
+                    selected: area.id == user.area_id
+                })),
+                'value',
+                'label',
+                true
+            );
             $('#userTitle').text('Edit User');
             $('#userForm input[name="id"]').val(user.id);
             $('#userForm input[name="name"]').val(user.name);
             $('#userForm input[name="email"]').val(user.email);
             $('#userForm input[name="phone"]').val(user.phone);
-            fetchroute(city);
-
             roleChoices.setChoiceByValue(user.role_id.toString());
             cityChoices.setChoiceByValue(user.city_id.toString());
-            areaChoices.setChoiceByValue(user.area_id.toString());
             $('#formErrors ul').html('');
             $('#formErrors').addClass('d-none');
             $('#user').modal('show');

@@ -221,6 +221,11 @@
                         <input type="text" class="form-control" name="min_order" placeholder="Enter Min. Order"
                             oninput="this.value = this.value.replace(/[^0-9]/g, '')">
                     </div>
+                    <div style="margin-bottom: 12px;">
+                        <label class="mb-1">User Limit</label>
+                        <input type="text" class="form-control" name="user_limit" placeholder="Enter User Limit"
+                            oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                    </div>
                     <div>
                         <label class="mb-1">Turf</label>
                         <select class="form-control turf turfselect" data-choices name="turf"
@@ -230,6 +235,20 @@
                                 @foreach ($turf as $t)
                                     <option value="{{ $t->id }}">
                                         {{ $t->name }}
+                                    </option>
+                                @endforeach
+                            @endif
+                        </select>
+                    </div>
+                    <div>
+                        <label class="mb-1 mt-2">City</label>
+                        <select class="form-control turf cityselect" data-choices name="city"
+                            id="choices-single-default" style="height: 30px;">
+                            <option value="">This is a placeholder</option>
+                            @if (isset($city))
+                                @foreach ($city as $c)
+                                    <option value="{{ $c->id }}">
+                                        {{ $c->city_name }}
                                     </option>
                                 @endforeach
                             @endif
@@ -304,6 +323,10 @@
                         <span style="color: gray;" class="i_turf"></span>
                     </div>
                     <div>
+                        <strong>City Name &nbsp;&nbsp;:</strong>
+                        <span style="color: gray;" class="i_city"></span>
+                    </div>
+                    <div>
                         <strong>Created On :</strong>
                         <span style="color: gray;" class="i_created"></span>
                     </div>
@@ -358,30 +381,23 @@
 <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
 
 <script>
-    let roleChoices;
-    if (!document.querySelector('.turfselect').classList.contains('choices__input')) {
-        roleChoices = new Choices('.turfselect', {
-            placeholder: true,
-            shouldSort: false,
-            allowHTML: false,
-        });
-    } else {
-        roleChoices = Choices.instances.find(
-            (instance) => instance.config.callbackOnInit.element.id === 'choices-single-default'
+    function initChoices(selector) {
+        const element = document.querySelector(selector);
+        if (!element.classList.contains('choices__input')) {
+            return new Choices(selector, {
+                placeholder: true,
+                shouldSort: false,
+                allowHTML: false,
+            });
+        }
+        return Choices.instances.find(
+            (instance) => instance.passedElement.element === element
         );
     }
-    let typeChoices;
-    if (!document.querySelector('.typeselect').classList.contains('choices__input')) {
-        typeChoices = new Choices('.typeselect', {
-            placeholder: true,
-            shouldSort: false,
-            allowHTML: false,
-        });
-    } else {
-        typeChoices = Choices.instances.find(
-            (instance) => instance.config.callbackOnInit.element.id === 'choices-single-default'
-        );
-    }
+
+    let roleChoices = initChoices('.turfselect');
+    let typeChoices = initChoices('.typeselect');
+    let cityChoices = initChoices('.cityselect');
 </script>
 <script>
     function initDataTable() {
@@ -419,12 +435,11 @@
 
 
     $('#coupons').on('hidden.bs.modal', function () {
-        $('#couponsForm').find('input[name="expire_date"],input[name="dis_per"],input[name="dis_rupees"], input[name="valid_date"], input[name="name"], input[name="min_order"]').val('');
+        $('#couponsForm')[0].reset();
         roleChoices.setChoiceByValue('');
         typeChoices.setChoiceByValue('');
         let code = generateCouponCode();
         $('#c_code').val(code);
-        // $('.percentage, .c_name, .c_rup, .max, .c_date').text('');
         $('#formErrors').addClass('d-none').find('ul').html('');
     });
 
@@ -519,18 +534,26 @@
         const sformattedDate = screatedDate.toLocaleDateString('en-GB');
         const ecreatedDate = new Date(coupons.end_date);
         const eformattedDate = ecreatedDate.toLocaleDateString('en-GB');
-        $('.i_percentage').text(coupons.discount_in_per + '% OFF');
-        $('.i_max').text('MAX ₹ ' + coupons.discount_in_ruppee);
+        if (coupons.type === 'Flat') {
+            $('.i_percentage').text('₹' +coupons.discount + ' OFF');
+        } else {
+            $('.i_percentage').text(coupons.discount + '% OFF');
+        }
         $('.i_code').text(coupons.coupons_code);
         $('.i_date').text(`Coupon Expires ${month}/${day}`);
         $('.i_name').text(coupons.coupons_name);
         $('.i_user').text(coupons.users_name);
         $('.i_turf').text(coupons.turf_name);
+        $('.i_city').text(coupons.city_name);
         $('.i_created').text(formattedDate);
         $('.i_start_date').text(sformattedDate);
         $('.i_end_date').text(eformattedDate);
         $('.i_min_order').text(coupons.min_order + '₹');
-        $('.i_discount').text(coupons.discount_in_per + '% or    ' + coupons.discount_in_ruppee + '₹');
+        if (coupons.type === 'Flat') {
+            $('.i_discount').text('₹ ' + coupons.discount);
+        } else {
+            $('.i_discount').text(coupons.discount+' %');
+        }
     });
     $(document).on('click', '.editcoupon', function () {
         var hasPermission = @json(Auth::user() && Auth::user()->hasPermissionTo('coupons.edit'));
@@ -543,6 +566,7 @@
             $('#couponsForm input[name="id"]').val(coupon.id);
             $('#couponsForm input[name="name"]').val(coupon.coupons_name);
             $('#couponsForm input[name="code"]').val(coupon.coupons_code);
+            $('#couponsForm input[name="user_limit"]').val(coupon.user_limit);
             $('#couponsForm input[name="min_order"]').val(coupon.min_order);
             $('#couponsForm input[name="discount"]').val(coupon.discount);
             $('#couponsForm select[name="discount_type"]').val(coupon.discount_type).trigger('change');
@@ -552,6 +576,7 @@
             var expire_date = formatDateToDMY(coupon.end_date);
 
             roleChoices.setChoiceByValue(coupon.turf_id.toString());
+            cityChoices.setChoiceByValue(coupon.city_id.toString());
             typeChoices.setChoiceByValue(coupon.type);
 
             flatpickr("#valid-datepicker", {
