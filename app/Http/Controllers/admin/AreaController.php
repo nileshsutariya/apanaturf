@@ -39,11 +39,21 @@ class AreaController extends Controller
         $area->save();
         return redirect()->route('area.index');
     }
-    public function delete($id)
+    public function delete(Request $request)
     {
+        $id = $request->id;
+        if (!$id) {
+            return response()->json(['error' => 'ID is required.'], 400);
+        }
         $area = Area::find($id);
+
+        if (!$area) {
+            return response()->json(['error' => 'Permission group not found.'], 404);
+        }
+
         $area->delete();
 
-        return redirect()->route('area.index');
+        // Optional: return updated view
+        return response()->json(['success' => true]);
     }
 }

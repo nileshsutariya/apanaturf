@@ -13,25 +13,45 @@ class CustomerController extends Controller
 {
     public function index(Request $request)
     {
-        $customer = customer::leftJoin('city', 'customer.city_id', '=', 'city.id')
-            ->leftJoin('area_code', 'customer.area_id', '=', 'area_code.id')
-            ->select('customer.*', 'city.city_name', 'city.id as city_id', 'area_code.area as area_name', 'area_code.id as area_id')
-            ->where('name', 'like', '%' . $request->search . '%')
-            ->orWhere('phone', 'like', '%' . $request->search . '%')
-            ->orWhere('email', 'like', '%' . $request->search . '%')
-            ->orWhere('balance', 'like', '%' . $request->search . '%')
-            ->paginate(10);
+        // $customer = customer::leftJoin('city', 'customer.city_id', '=', 'city.id')
+        //     ->leftJoin('area_code', 'customer.area_id', '=', 'area_code.id')
+        //     ->select('customer.*', 'city.city_name', 'city.id as city_id', 'area_code.area as area_name', 'area_code.id as area_id')
+        //     ->where('name', 'like', '%' . $request->search . '%')
+        //     ->orWhere('phone', 'like', '%' . $request->search . '%')
+        //     ->orWhere('email', 'like', '%' . $request->search . '%')
+        //     ->orWhere('balance', 'like', '%' . $request->search . '%')
+        //     ->paginate(10);
+        $customerQuery = customer::leftJoin('city', 'customer.city_id', '=', 'city.id')
+        ->leftJoin('area_code', 'customer.area_id', '=', 'area_code.id')
+        ->select(
+            'customer.*',
+            'city.city_name',
+            'city.id as city_id',
+            'area_code.area as area_name',
+            'area_code.id as area_id'
+        )
+        ->where(function ($q) use ($request) {
+            $q->where('customer.name', 'like', '%' . $request->search . '%')
+              ->orWhere('customer.phone', 'like', '%' . $request->search . '%')
+              ->orWhere('customer.email', 'like', '%' . $request->search . '%')
+              ->orWhere('customer.balance', 'like', '%' . $request->search . '%');
+        });
     
+    $user = auth()->user();
+    
+    if ($user->role_id == 2) {
+        $customerQuery->where('customer.city_id', $user->city_id);
+    } elseif ($user->role_id == 3) {
+        $customerQuery->where('customer.area_id', $user->area_id);
+    }
+    
+    $customer = $customerQuery->paginate(10);
         $city = City::all();
     
         if ($request->city_id) {
             $areas = Area::where('city_id', $request->city_id)->get();
         } else {
             $areas = Area::all();
-        }
-    
-        if ($request->ajax() && $request->city_id) {
-            return response()->json($areas); // only for dynamic area fetch
         }
     
         if ($request->ajax()) {

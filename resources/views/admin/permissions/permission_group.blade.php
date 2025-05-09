@@ -289,6 +289,8 @@
 
             let form = $(this);
             let formData = form.serialize();
+            let permissiongroupId = $('#permissiongroupForm input[name="id"]').val(); 
+
             $.ajax({
                 url: '{{ route("permissiongroup.store") }}',
                 type: 'POST',
@@ -305,7 +307,7 @@
                         toast: true,
                         position: 'top-end',
                         icon: 'success',
-                        title: 'Permission Group Saved Successfully!',
+                        title: permissiongroupId ? 'Permissiongroup Updated Successfully!' : 'Permissiongroup Saved Successfully!',
                         showConfirmButton: false,
                         timer: 3000,
                         timerProgressBar: true,
@@ -393,7 +395,15 @@ $(document).on('click', '.deletepermission', function (e) {
         success: function (response) {
             if (response.success) {
                 button.closest('tr').remove();
-
+                Swal.fire({
+                    toast: true,
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Permissiongroup Deleted Successfully!',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                });
             } else {
                 console.log('Error:', response.error);
             }

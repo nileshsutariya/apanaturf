@@ -136,10 +136,10 @@
                                             data-bs-target="#area" data-area='@json($value)'>
                                             <i class='bx bxs-pencil bx-xs'></i>
                                         </a>
-                                        <a href="#" class="btn btn-soft-danger btn-sm deletearea" 
+                                        <button type="button" class="btn btn-soft-danger btn-sm deletearea"
                                             data-id="{{ $value->id }}">
                                             <i class='bx bxs-trash bx-xs'></i>
-                                        </a>
+                                        </button>
                                     </div>
                                 </td>
                             </tr>
@@ -321,24 +321,40 @@
         });
     });
 
-    // $(document).on('click', '.deletearea', function () {
-    //     let id = $(this).data('id');
-    //     console.log(id);
-    //     $.ajax({
-    //         url: "{{ route('area.delete', ':id') }}".replace(':id', id), // Replace :id with the actual ID
-    //         type: 'POST',
-    //         headers: {
-    //             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    //         },
-    //         success: function (response) {
-    //             Swal.fire('Deleted!', response.message, 'success');
-    //             $('#example').DataTable().row($(`a[data-id="${id}"]`).parents('tr')).remove().draw();
-    //         },
-    //         error: function () {
-    //             Swal.fire('Error!', 'Unable to delete area.', 'error');
-    //         }
-    //     });
-    // });
+    $(document).on('click', '.deletearea', function (e) {
+    e.preventDefault();
+    let button = $(this); 
+    let id = button.data('id');
+
+    $.ajax({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        url: '{{ route('area.delete') }}',
+        type: 'POST',
+        data: { id: id },
+        success: function (response) {
+            if (response.success) {
+                button.closest('tr').remove();
+                Swal.fire({
+                    toast: true,
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Permissiongroup Deleted Successfully!',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                });
+            } else {
+                console.log('Error:', response.error);
+            }
+        },
+        error: function (xhr) {
+            alert("Something went wrong.");
+            console.log(xhr.responseText);
+        }
+    });
+});
 
 </script>
 <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>

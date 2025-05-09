@@ -34,11 +34,12 @@ Route::prefix('admin')->group(function () {
             Route::prefix('/permission')->controller(PermissionsController::class)->name('permission.')->group(function () {
                 Route::get('/', 'index')->name('index');
                 Route::post('/store', 'store')->name('store');
+                Route::post('/delete', 'delete')->name('delete');
             });
             Route::prefix('/area')->controller(AreaController::class)->name('area.')->group(function () {
                 Route::get('/', 'index')->name('index');
                 Route::post('/store', 'store')->name('store');
-                Route::post('/delete/{id}', 'delete')->name('delete');
+                Route::post('/delete', 'delete')->name('delete');
             });
             Route::prefix('/permissiongroup')->controller(PermissionGroupController::class)->name('permissiongroup.')->group(function () {
                 Route::get('/', 'index')->name('index');

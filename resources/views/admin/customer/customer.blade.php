@@ -243,7 +243,7 @@
 <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
 
 <script>
-
+    const allAreas = @json($areas); 
     function initDataTable() {
         $('#example').DataTable({
             paging: false,
@@ -252,12 +252,6 @@
             responsive: true,
         });
     }
-    // $('#customer').on('hidden.bs.modal', function () {
-    //     $('#customerForm').find('input[name="id"], input[name="name"], input[name="phone"], input[name="email"]').val('');
-    //     cityChoices.setChoiceByValue('');
-    //     areaChoices.setChoiceByValue('');
-    //     $('#formErrors').addClass('d-none').find('ul').html('');
-    // });
 
     $(document).on('click', '.addcustomer', function () {
         var hasPermission = @json(Auth::user() && Auth::user()->hasPermissionTo('customer.store'));
@@ -269,8 +263,17 @@
                 .val(customer.balance)
                 .prop('readonly', false);
             $('#formErrors').addClass('d-none').find('ul').html('');
-            cityChoices.setChoiceByValue('');
-            areaChoices.setChoiceByValue('');
+            const filteredAreas = allAreas;
+            areaChoices.clearStore();
+            areaChoices.setChoices(
+                filteredAreas.map(area => ({
+                    value: area.id,
+                    label: area.area
+                })),
+                'value',
+                'label',
+                true
+            );
 
             $('#customer').modal('show');
         } else {
@@ -284,14 +287,7 @@
             });
         }
     });
-    // $(document).on('click', '.addcustomer', function () {
-    //     $('#customerForm')[0].reset();
-    //     $('input[name="id"]').val('');
-    //     $('#customerForm input[name="balance"]')
-    //         .val(customer.balance)
-    //         .prop('readonly', false);
-    //     $('#formErrors').addClass('d-none').find('ul').html('');
-    // });
+    
     $(document).ready(function () {
         initDataTable();
         $(document).on('click', '.pagination a', function (e) {
@@ -322,6 +318,8 @@
             let form = $(this);
             let formData = form.serialize();
             console.log(formData);
+            let customerId = $('#customerForm input[name="id"]').val(); 
+
             $.ajax({
                 url: '{{ route("customer.store") }}',
                 type: 'POST',
@@ -342,7 +340,7 @@
                         toast: true,
                         position: 'top-end',
                         icon: 'success',
-                        title: 'Customer Saved Successfully!',
+                        title: customerId ? 'Customer Updated Successfully!' : 'Customer Saved Successfully!',
                         showConfirmButton: false,
                         timer: 3000,
                         timerProgressBar: true,
@@ -385,16 +383,12 @@
             });
         });
     });
-</script>
-<script>
     $(document).on('click', '.editcustomer', function () {
-        const allAreas = @json($areas); 
-
         var hasPermission = @json(Auth::user() && Auth::user()->hasPermissionTo('customer.edit'));
 
         if (hasPermission) {
             let customer = $(this).data('customer');
-            $('#customerTitle').text('Edit Customer'); // Corrected line
+            $('#customerTitle').text('Edit Customer'); 
 
             $('#customerForm input[name="id"]').val(customer.id);
             $('#customerForm input[name="name"]').val(customer.name);
@@ -408,7 +402,10 @@
                 cityChoices.removeActiveItems();
             }
 
-            const filteredAreas = allAreas.filter(area => area.city_id == customer.city_id);
+            // const filteredAreas = allAreas.filter(area => area.city_id == customer.city_id);
+            const filteredAreas = customer.city_id 
+                ? allAreas.filter(area => area.city_id == customer.city_id)
+                : allAreas;
 
             areaChoices.clearChoices();
             areaChoices.setChoices(
@@ -436,6 +433,21 @@
                 confirmButtonText: "Close"
             });
         }
+    });
+    $('.city').on('change', function () {
+        const selectedCityId = $(this).val();
+        const filteredAreas = allAreas.filter(area => area.city_id == selectedCityId);
+
+        areaChoices.clearStore(); 
+        areaChoices.setChoices(
+            filteredAreas.map(area => ({
+                value: area.id,
+                label: area.area
+            })),
+            'value',
+            'label',
+            true
+        );
     });
 </script>
 
