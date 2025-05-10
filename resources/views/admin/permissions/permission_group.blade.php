@@ -170,10 +170,10 @@
                 <h5 class="modal-title" id="permissiongroupTitle">Add New Permission Group</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
+            <div id="formErrors" class="alert alert-danger d-none m-3">
+                <ul class="mb-0"></ul>
+            </div>
             <div class="modal-body">
-                <div id="formErrors" class="alert alert-danger d-none">
-                    <ul class="mb-0"></ul>
-                </div>
                 <form id="permissiongroupForm" method="POST">
                     @csrf
                     <input type="hidden" class="form-control" name="id">
@@ -205,28 +205,6 @@
 
 <script src="https://cdn.datatables.net/responsive/2.5.0/js/dataTables.responsive.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.js"></script>
-{{-- @if(session('success'))
-<script>
-    const Toast = Swal.mixin({
-        toast: true,
-        position: 'top-end',
-        showConfirmButton: false,
-        timer: 3000,
-        timerProgressBar: true,
-        didOpen: (toast) => {
-            toast.addEventListener('mouseenter', Swal.stopTimer)
-            toast.addEventListener('mouseleave', Swal.resumeTimer)
-        }
-    });
-
-    Toast.fire({
-        icon: 'success',
-        title: "{{ session('success') }}"
-    });
-</script>
-@endif --}}
-
-
 
 <script>
     function initDataTable() {
@@ -414,7 +392,6 @@ $(document).on('click', '.deletepermission', function (e) {
         }
     });
 });
-
 
 </script>
 

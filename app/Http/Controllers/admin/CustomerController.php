@@ -13,52 +13,33 @@ class CustomerController extends Controller
 {
     public function index(Request $request)
     {
-        // $customer = customer::leftJoin('city', 'customer.city_id', '=', 'city.id')
-        //     ->leftJoin('area_code', 'customer.area_id', '=', 'area_code.id')
-        //     ->select('customer.*', 'city.city_name', 'city.id as city_id', 'area_code.area as area_name', 'area_code.id as area_id')
-        //     ->where('name', 'like', '%' . $request->search . '%')
-        //     ->orWhere('phone', 'like', '%' . $request->search . '%')
-        //     ->orWhere('email', 'like', '%' . $request->search . '%')
-        //     ->orWhere('balance', 'like', '%' . $request->search . '%')
-        //     ->paginate(10);
         $customerQuery = customer::leftJoin('city', 'customer.city_id', '=', 'city.id')
-        ->leftJoin('area_code', 'customer.area_id', '=', 'area_code.id')
-        ->select(
-            'customer.*',
-            'city.city_name',
-            'city.id as city_id',
-            'area_code.area as area_name',
-            'area_code.id as area_id'
-        )
-        ->where(function ($q) use ($request) {
-            $q->where('customer.name', 'like', '%' . $request->search . '%')
-              ->orWhere('customer.phone', 'like', '%' . $request->search . '%')
-              ->orWhere('customer.email', 'like', '%' . $request->search . '%')
-              ->orWhere('customer.balance', 'like', '%' . $request->search . '%');
-        });
+                        ->leftJoin('area_code', 'customer.area_id', '=', 'area_code.id')
+                        ->select(
+                            'customer.*',
+                            'city.city_name',
+                            'city.id as city_id',
+                            'area_code.area as area_name',
+                            'area_code.id as area_id'
+                        )
+                        ->where(function ($q) use ($request) {
+                            $q->where('customer.name', 'like', '%' . $request->search . '%')
+                            ->orWhere('customer.phone', 'like', '%' . $request->search . '%')
+                            ->orWhere('customer.email', 'like', '%' . $request->search . '%')
+                            ->orWhere('customer.balance', 'like', '%' . $request->search . '%');
+                        });
     
-    $user = auth()->user();
-    
-    if ($user->role_id == 2) {
-        $customerQuery->where('customer.city_id', $user->city_id);
-    } elseif ($user->role_id == 3) {
-        $customerQuery->where('customer.area_id', $user->area_id);
-    }
-    
-    $customer = $customerQuery->paginate(10);
+        $user = auth()->user();
+        
+        $user->role_id == 2 ? $customerQuery->where('customer.city_id', $user->city_id) : ($user->role_id == 3 ? $customerQuery->where('customer.area_id', $user->area_id) : null);
+
+        $customer = $customerQuery->paginate(10);
         $city = City::all();
     
-        if ($request->city_id) {
-            $areas = Area::where('city_id', $request->city_id)->get();
-        } else {
-            $areas = Area::all();
-        }
+        $areas = $request->city_id ? Area::where('city_id', $request->city_id)->get() : Area::all();
     
-        if ($request->ajax()) {
-            return view('admin.customer.customer', compact('customer', 'city', 'areas'))->render();
-        } else {
-            return view('admin.customer.customer', compact('customer', 'city', 'areas'));
-        }
+        return $request->ajax() ? view('admin.customer.customer', compact('customer', 'city', 'areas'))->render() : view('admin.customer.customer', compact('customer', 'city', 'areas'));
+
     }
     
     public function store(Request $request)

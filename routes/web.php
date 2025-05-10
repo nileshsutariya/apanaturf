@@ -15,7 +15,6 @@ use App\Http\Controllers\admin\PermissionGroupController;
 
 
 Route::prefix('admin')->group(function () {
-    // Route::post('admin/permissiongroup/delete', [PermissionGroupController::class, 'delete'])->name('permissiongroup.delete');
 
     Route::get('/login', [loginController::class, 'login'])->name('admin.login');
     Route::post('/login', [loginController::class, 'logincheck'])->name('logincheck');

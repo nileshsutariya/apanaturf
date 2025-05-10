@@ -5,8 +5,13 @@
 <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.5.0/css/responsive.dataTables.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css" />
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 <style>
+    .swal2-title {
+        font-size: 14px !important; /* Adjust as needed */
+        font-weight: 500;
+    }
     #example {
         width: 100%;
     }
@@ -163,10 +168,10 @@
                 <h5 class="modal-title" id="areaTitle">Add New area</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
+            <div id="formErrors" class="alert alert-danger d-none m-3">
+                <ul class="mb-0"></ul>
+            </div>
             <div class="modal-body">
-                <div id="formErrors" class="alert alert-danger d-none">
-                    <ul class="mb-0"></ul>
-                </div>
                 <form id="areaForm" method="POST">
                     @csrf
                     <input type="hidden" class="form-control" name="id">
@@ -178,7 +183,7 @@
                     <div style="margin-bottom: 12px;">
                         <label class="mb-1">City</label>
                         <select class="form-control citytypes" data-choices name="city" id="choices-single-default">
-                            <option value="">This is a placeholder</option>
+                            <option value="">Select City</option>
                             @if (isset($city))
                                 @foreach ($city as $c)
                                     <option value="{{ $c->id }}">
@@ -208,6 +213,7 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/responsive/2.5.0/js/dataTables.responsive.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.js"></script>
 
 <script>
     function initDataTable() {
@@ -271,6 +277,8 @@
 
             let form = $(this);
             let formData = form.serialize();
+            let areaId = $('#areaForm input[name="id"]').val(); 
+
             $.ajax({
                 url: '{{ route("area.store") }}',
                 type: 'POST',
@@ -283,6 +291,15 @@
                     initDataTable();
                     $('#area').modal('hide');
                     $('#formErrors').addClass('d-none').find('ul').html('');
+                    Swal.fire({
+                        toast: true,
+                        position: 'top-end',
+                        icon: 'success',
+                        title: areaId ? 'Area Updated Successfully!' : 'Area Saved Successfully!',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
+                    });
                 }, error: function (xhr) {
                     if (xhr.status === 422) {
                         let errors = xhr.responseJSON.errors;
@@ -322,39 +339,39 @@
     });
 
     $(document).on('click', '.deletearea', function (e) {
-    e.preventDefault();
-    let button = $(this); 
-    let id = button.data('id');
+        e.preventDefault();
+        let button = $(this); 
+        let id = button.data('id');
 
-    $.ajax({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        },
-        url: '{{ route('area.delete') }}',
-        type: 'POST',
-        data: { id: id },
-        success: function (response) {
-            if (response.success) {
-                button.closest('tr').remove();
-                Swal.fire({
-                    toast: true,
-                    position: 'top-end',
-                    icon: 'success',
-                    title: 'Permissiongroup Deleted Successfully!',
-                    showConfirmButton: false,
-                    timer: 3000,
-                    timerProgressBar: true,
-                });
-            } else {
-                console.log('Error:', response.error);
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            url: '{{ route('area.delete') }}',
+            type: 'POST',
+            data: { id: id },
+            success: function (response) {
+                if (response.success) {
+                    button.closest('tr').remove();
+                    Swal.fire({
+                        toast: true,
+                        position: 'top-end',
+                        icon: 'success',
+                        title: 'Permissiongroup Deleted Successfully!',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
+                    });
+                } else {
+                    console.log('Error:', response.error);
+                }
+            },
+            error: function (xhr) {
+                alert("Something went wrong.");
+                console.log(xhr.responseText);
             }
-        },
-        error: function (xhr) {
-            alert("Something went wrong.");
-            console.log(xhr.responseText);
-        }
+        });
     });
-});
 
 </script>
 <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>

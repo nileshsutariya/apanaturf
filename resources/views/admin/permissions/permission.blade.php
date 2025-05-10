@@ -5,8 +5,13 @@
 <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.5.0/css/responsive.dataTables.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css" />
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 <style>
+    .swal2-title {
+        font-size: 14px !important; /* Adjust as needed */
+        font-weight: 500;
+    }
     #example {
         width: 100%;
     }
@@ -160,10 +165,10 @@
                 <h5 class="modal-title" id="permissionTitle">Add New permission</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
+            <div id="formErrors" class="alert alert-danger d-none m-3">
+                <ul class="mb-0"></ul>
+            </div>
             <div class="modal-body">
-                <div id="formErrors" class="alert alert-danger d-none">
-                    <ul class="mb-0"></ul>
-                </div>
                 <form id="permissionForm" method="POST">
                     @csrf
                     <input type="hidden" class="form-control" name="id" readonly>
@@ -231,7 +236,7 @@
 <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/responsive/2.5.0/js/dataTables.responsive.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.js"></script>
 
 <script>
     function initChoices(selector) {
@@ -331,6 +336,8 @@
 
             let form = $(this);
             let formData = form.serialize();
+            let permissionId = $('#permissionForm input[name="id"]').val(); 
+
             $.ajax({
                 url: '{{ route("permission.store") }}',
                 type: 'POST',
@@ -343,6 +350,16 @@
                     initDataTable();
                     $('#permission').modal('hide');
                     $('#formErrors').addClass('d-none').find('ul').html('');
+                    Swal.fire({
+                        toast: true,
+                        position: 'top-end',
+                        icon: 'success',
+                        title: permissionId ? 'Permission Updated Successfully!' : 'Permission Saved Successfully!',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
+                    });
+
                 }, error: function (xhr) {
                     if (xhr.status === 422) {
                         let errors = xhr.responseJSON.errors;
@@ -411,6 +428,15 @@
                     search: search
                 }, success: function (response) {
                     $('#example').html($(response).find('#example').html());
+                    Swal.fire({
+                        toast: true,
+                        position: 'top-end',
+                        icon: 'success',
+                        title: 'Permission Deleted Successfully!',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
+                    });
                 },
                 error: function (xhr) {
                     if (xhr.status === 422) {
@@ -425,7 +451,6 @@
     });
 
 </script>
-<script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
 
 <script>
 
