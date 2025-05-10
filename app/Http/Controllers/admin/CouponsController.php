@@ -60,7 +60,6 @@ class CouponsController extends Controller
         $coupon = $request->id ? Coupons::find($request->id) : new Coupons();
         $coupon->coupons_name = $request->name;
         $request->id ? $coupon->coupons_code = $request->code : '';
-        // $coupon->coupons_code = $request->code;
         $coupon->turf_id = $request->turf;
         $coupon->city_id = $request->city;
         $coupon->start_date = $start_date;

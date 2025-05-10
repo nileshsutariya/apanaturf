@@ -36,14 +36,9 @@
         scrollbar-width: none !important;
     }
 
-
-
     .coupon-card,
     #formErrors {
-        margin-left: 28px;
-        margin-right: 30px;
-        margin-top: 10px;
-        margin-bottom: 0px;
+        margin: 10px 30px 0 28px;
     }
 
     .choices__list {
@@ -163,9 +158,10 @@
                                             <a class="btn btn-soft-primary btn-sm editcoupon" data-bs-target="#coupons"
                                                 data-coupons='@json($value)'>
                                                 <i class='bx bxs-pencil bx-xs'></i>
-                                                <a href="#!" class="btn btn-soft-danger btn-sm">
-                                                    <i class='bx bxs-trash bx-xs'></i>
-                                                </a>
+                                            </a>
+                                            <a href="#!" class="btn btn-soft-danger btn-sm">
+                                                <i class='bx bxs-trash bx-xs'></i>
+                                            </a>
                                         </div>
                                     </td>
                                 </tr>
@@ -230,7 +226,7 @@
                         <label class="mb-1">Turf</label>
                         <select class="form-control turf turfselect" data-choices name="turf"
                             id="choices-single-default" style="height: 30px;">
-                            <option value="">This is a placeholder</option>
+                            <option value="">Select Turf</option>
                             @if (isset($turf))
                                 @foreach ($turf as $t)
                                     <option value="{{ $t->id }}">
@@ -244,7 +240,7 @@
                         <label class="mb-1 mt-2">City</label>
                         <select class="form-control turf cityselect" data-choices name="city"
                             id="choices-single-default" style="height: 30px;">
-                            <option value="">This is a placeholder</option>
+                            <option value="">Select City</option>
                             @if (isset($city))
                                 @foreach ($city as $c)
                                     <option value="{{ $c->id }}">
@@ -433,7 +429,6 @@
         }
     });
 
-
     $('#coupons').on('hidden.bs.modal', function () {
         $('#couponsForm')[0].reset();
         roleChoices.setChoiceByValue('');
@@ -469,7 +464,7 @@
         });
         $(document).on('submit', '#couponsForm', function (e) {
             e.preventDefault();
-
+            e.preventDefault();
             let form = $(this);
             let formData = form.serialize();
             console.log(formData);
@@ -535,7 +530,7 @@
         const ecreatedDate = new Date(coupons.end_date);
         const eformattedDate = ecreatedDate.toLocaleDateString('en-GB');
         if (coupons.type === 'Flat') {
-            $('.i_percentage').text('₹' +coupons.discount + ' OFF');
+            $('.i_percentage').text('₹ ' + coupons.discount + ' OFF');
         } else {
             $('.i_percentage').text(coupons.discount + '% OFF');
         }
@@ -552,7 +547,7 @@
         if (coupons.type === 'Flat') {
             $('.i_discount').text('₹ ' + coupons.discount);
         } else {
-            $('.i_discount').text(coupons.discount+' %');
+            $('.i_discount').text(coupons.discount + ' %');
         }
     });
     $(document).on('click', '.editcoupon', function () {
@@ -562,7 +557,6 @@
             let coupon = $(this).data('coupons');
 
             $('#couponsTitle').text('Edit Coupon');
-
             $('#couponsForm input[name="id"]').val(coupon.id);
             $('#couponsForm input[name="name"]').val(coupon.coupons_name);
             $('#couponsForm input[name="code"]').val(coupon.coupons_code);

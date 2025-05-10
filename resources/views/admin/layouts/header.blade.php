@@ -69,7 +69,7 @@
                                    </a>
                                    <div class="dropdown-menu dropdown-menu-end">
                                         <h6 class="dropdown-header">Welcome Gaston!</h6>
-                                        <a class="dropdown-item" href="pages-profile.html">
+                                        <a class="dropdown-item" href="#">
                                              <i class="bx bx-user-circle text-muted fs-18 align-middle me-1"></i><span
                                                   class="align-middle">Profile</span>
                                         </a>
@@ -91,12 +91,12 @@
           <div class="main-nav">
                <!-- Sidebar Logo -->
                <div class="logo-box">
-                    <a href="index.html" class="logo-dark">
+                    <a href="#" class="logo-dark">
                          <img src="{{ asset('asset/images/logo-sm.png') }}" class="logo-sm" alt="logo sm">
                          <img src="{{ asset('asset/images/logo-dark.png') }}" class="logo-lg" alt="logo dark">
                     </a>
 
-                    <a href="index.html" class="logo-light">
+                    <a href="#" class="logo-light">
                          <img src="{{ asset('asset/images/logo-sm.png') }}" class="logo-sm" alt="logo sm">
                          <img src="{{ asset('asset/images/logo-light.png') }}" class="logo-lg" alt="logo light">
                     </a>
