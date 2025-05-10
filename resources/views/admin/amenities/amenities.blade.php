@@ -1,7 +1,12 @@
 @include('admin.layouts.header')
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 <style>
+    .swal2-title {
+        font-size: 14px !important; /* Adjust as needed */
+        font-weight: 500;
+    }
     .icon-body {
         padding-top: 10px;
         padding-left: 10px;
@@ -84,10 +89,10 @@
                 <h5 class="modal-title" id="amenitiesTitle">Add New amenities</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
+            <div id="formErrors" class="alert alert-danger d-none m-3">
+                <ul class="mb-0"></ul>
+            </div>
             <div class="modal-body" style="scrollbar-width: none;">
-                <div id="formErrors" class="alert alert-danger d-none">
-                    <ul class="mb-0"></ul>
-                </div>
                 <form id="amenitiesForm" method="post" enctype="multipart/form-data">
                     @csrf
                     <input type="file" hidden name="amenities_image" class="form-control">
@@ -119,11 +124,11 @@
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/min/dropzone.min.js"></script>
 <!-- <script src="{{ asset('asset/js/components/form-fileupload.js') }}"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.js"></script>
 
 <script>
     Dropzone.autoDiscover = false;
 </script>
-
 
 <script>
     document.addEventListener("DOMContentLoaded", function () {
@@ -199,6 +204,16 @@
                     dzAllocationFiles.removeAllFiles(true);
                     $('#amenitiesForm input[type="file"]').val(null);
                     $('#formErrors').addClass('d-none').find('ul').html('');
+                    Swal.fire({
+                        toast: true,
+                        position: 'top-end',
+                        icon: 'success',
+                        title: 'Amenity Saved Successfully!',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
+                    });
+
                 },
                 error: function (xhr) {
                     if (xhr.status === 422) {
@@ -212,14 +227,19 @@
                         $('#formErrors ul').html(errorHtml);
                         $('#formErrors').removeClass('d-none');
                     } else {
-                        alert("Something went wrong.");
+                        Swal.fire({
+                            toast: true,
+                            position: 'top-end',
+                            icon: 'error',
+                            title: 'Failed to Save Amenity!',
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true,
+                        });
                     }
                 }
             });
         });
-
-
-
 
         $(document).on('click', '.deleteamenities', function (e) {
             e.preventDefault();
@@ -247,12 +267,29 @@
                     id: id
                 }, success: function (response) {
                     $('#example').html($(response).find('#example').html());
+                    Swal.fire({
+                        toast: true,
+                        position: 'top-end',
+                        icon: 'success',
+                        title: 'Amenity Deleted Successfully!',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
+                    });
                 },
                 error: function (xhr) {
                     if (xhr.status === 422) {
                         console('all done')
                     } else {
-                        alert("Something went wrong.");
+                        Swal.fire({
+                            toast: true,
+                            position: 'top-end',
+                            icon: 'error',
+                            title: 'Failed to Delete Aminity!',
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true,
+                        }); 
                     }
                 }
             });

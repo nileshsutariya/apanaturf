@@ -1,7 +1,12 @@
 @include('admin.layouts.header')
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 <style>
+    .swal2-title {
+        font-size: 14px !important; /* Adjust as needed */
+        font-weight: 500;
+    }
     .dz-success-mark {
         display: none;
     }
@@ -85,10 +90,10 @@
                     <h5 class="modal-title" id="bannerTitle">Add New banner</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
+                <div id="formErrors" class="alert alert-danger d-none m-3">
+                    <ul class="mb-0"></ul>
+                </div>
                 <div class="modal-body" style="scrollbar-width: none;">
-                    <div id="formErrors" class="alert alert-danger d-none">
-                        <ul class="mb-0"></ul>
-                    </div>
                     <form  id="bannerForm" method="POST"
                         enctype="multipart/form-data">
                         @csrf
@@ -122,6 +127,7 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/min/dropzone.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.js"></script>
 
     <script>
         Dropzone.autoDiscover = false;
@@ -200,6 +206,16 @@ $(document).on('click', '.addbanner', function () {
                         dzAllocationFiles.removeAllFiles(true);
                         $('#bannerForm input[type="file"]').val(null);
                         $('#formErrors').addClass('d-none').find('ul').html('');
+                        Swal.fire({
+                            toast: true,
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'Banner Saved Successfully!',
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true,
+                        });
+
                     },
                     error: function (xhr) {
                         if (xhr.status === 422) {
@@ -245,6 +261,16 @@ $(document).on('click', '.addbanner', function () {
                         id: id
                     }, success: function (response) {
                         $('#example').html($(response).find('#example').html());
+                        Swal.fire({
+                            toast: true,
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'Banner Deleted Successfully!',
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true,
+                        });
+
                     },
                     error: function (xhr) {
                         if (xhr.status === 422) {

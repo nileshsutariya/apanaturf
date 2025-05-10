@@ -53,6 +53,7 @@ class DeactivateExpiredCoupons extends Command
             if ($transaction?->status == 2 && $coupon?->transaction_limit) {
                     
                 $bookingCount = Booking::where('coupons_id', $coupon->id)
+                            // ->whereNull('canceled_on')
                             ->where('status', '1')  
                             ->whereHas('transaction', function ($query) {
                                 $query->where('status', '2'); 

@@ -5,8 +5,13 @@
 <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.5.0/css/responsive.dataTables.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css" />
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 <style>
+    .swal2-title {
+        font-size: 14px !important; /* Adjust as needed */
+        font-weight: 500;
+    }
     #example {
         width: 100%;
     }
@@ -171,10 +176,10 @@
                 <h5 class="modal-title" id="userTitle">Add New user</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
+            <div id="formErrors" class="alert alert-danger d-none m-3">
+                <ul class="mb-0"></ul>
+            </div>
             <div class="modal-body">
-                <div id="formErrors" class="alert alert-danger d-none">
-                    <ul class="mb-0"></ul>
-                </div>
                 <form id="userForm" method="POST">
                     @csrf
                     <input type="hidden" class="form-control" name="id">
@@ -197,7 +202,7 @@
                     <div style="margin-bottom: 12px;">
                         <label class="mb-1">Role</label>
                         <select class="form-control roletypes" data-choices name="role" id="choices-single-default">
-                            <option value="">This is a placeholder</option>
+                            <option value="">Select Role</option>
                             @if (isset($role))
                                 @foreach ($role as $r)
                                     <option value="{{ $r->id }}">
@@ -210,7 +215,7 @@
                     <div style="margin-bottom: 12px;">
                         <label class="mb-1">City</label>
                         <select class="form-control cityselect" data-choices name="city" id="choices-single-default">
-                            <option value="">This is a placeholder</option>
+                            <option value="">Select City</option>
                             @if (isset($city))
                                 @foreach ($city as $c)
                                     <option value="{{ $c->id }}">
@@ -223,7 +228,7 @@
                     <div style="margin-bottom: 12px;" class="arealist">
                         <label class="mb-1">Area</label>
                         <select class="form-control areaselect" data-choices name="area" id="choices-single-default">
-                            <option value="">This is a placeholder</option>
+                            <option value="">Select Area</option>
                             @if (isset($area))
                                 @foreach ($area as $a)
                                     <option value="{{ $a->id }}">
@@ -255,10 +260,10 @@
                 </div>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
+            <div id="formErrors" class="alert alert-danger d-none m-3">
+                <ul class="mb-0"></ul>
+            </div>
             <div class="modal-body">
-                <div id="formErrors" class="alert alert-danger d-none">
-                    <ul class="mb-0"></ul>
-                </div>
                 <form method="POST">
                     @csrf
                     <table id="example2" class="display responsive nowrap 2" style="width:100%">
@@ -304,6 +309,7 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/responsive/2.5.0/js/dataTables.responsive.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.js"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
 <script>
@@ -417,6 +423,8 @@
 
             let form = $(this);
             let formData = form.serialize();
+            let userId = $('#userForm input[name="id"]').val(); 
+
             $.ajax({
                 url: '{{ route("users.store") }}',
                 type: 'POST',
@@ -428,6 +436,16 @@
                     $('#userWrapper').html(html.find('#userWrapper').html());
                     initDataTable();
                     $('#user').modal('hide');
+                    Swal.fire({
+                        toast: true,
+                        position: 'top-end',
+                        icon: 'success',
+                        title: userId ? 'User Updated Successfully!' : 'User Saved Successfully!',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
+                    });
+
                 }, error: function (xhr) {
                     if (xhr.status === 422) {
                         let errors = xhr.responseJSON.errors;

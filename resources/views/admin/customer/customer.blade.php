@@ -150,7 +150,7 @@
                                             data-bs-target="#customer" data-customer='@json($value)'>
                                             <i class='bx bxs-pencil bx-xs'></i>
                                         </a>
-                                        <a href="#!" class="btn btn-soft-danger btn-sm">
+                                        <a href="#" class="btn btn-soft-danger btn-sm">
                                         <i class='bx bxs-trash bx-xs'></i>
                                         </a>
                                     </div>
@@ -176,10 +176,10 @@
                 <h5 class="modal-title" id="customerTitle">Add New Customer</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
+            <div id="formErrors" class="alert alert-danger d-none m-3">
+                <ul class="mb-0"></ul>
+            </div>
             <div class="modal-body">
-                <div id="formErrors" class="alert alert-danger d-none">
-                    <ul class="mb-0"></ul>
-                </div>
                 <form id="customerForm" method="POST">
                     @csrf
                     <input type="hidden" class="form-control" name="id">
@@ -205,7 +205,7 @@
                     <div style="margin-bottom: 12px;">
                         <label class="mb-1">City</label>
                         <select class="form-control city" data-choices name="city" id="choices-single-default">
-                            <option value="">This is a placeholder</option>
+                            <option value="">Select City</option>
                             @if (isset($city))
                                 @foreach ($city as $c)
                                     <option value="{{ $c->id }}">
@@ -218,7 +218,7 @@
                     <div style="margin-bottom: 12px;">
                         <label class="mb-1">Area</label>
                         <select class="form-control area" data-choices name="area" id="choices-single-default">
-                            <option value="">This is a placeholder</option>
+                            <option value="">Select Area</option>
                             @if (isset($area))
                                 @foreach ($area as $a)
                                     <option value="{{ $a->id }}">

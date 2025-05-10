@@ -19,11 +19,8 @@ class AreaController extends Controller
             ->select('area_code.*', 'city.city_name as city_name', 'city.id as city_id')
             ->where('area', 'like', '%' . $request->search . '%')
             ->orWhere('pincode', 'like', '%' . $request->search . '%')->paginate(10);
-        if ($request->ajax()) {
-            return view('admin.area.area', compact('area', 'city'))->render();
-        } else {
-            return view('admin.area.area', compact('area', 'city'));
-        }
+
+        return $request->ajax() ? view('admin.area.area', compact('area', 'city'))->render() : view('admin.area.area', compact('area', 'city'));
     }
     public function store(Request $request)
     {
@@ -53,7 +50,6 @@ class AreaController extends Controller
 
         $area->delete();
 
-        // Optional: return updated view
         return response()->json(['success' => true]);
     }
 }
