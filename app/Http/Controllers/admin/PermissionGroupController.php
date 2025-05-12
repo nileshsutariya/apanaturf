@@ -24,7 +24,7 @@ class PermissionGroupController extends Controller
         $permissiongroup->name = $request->name;
         $permissiongroup->status = $request->has('status') ? 1 : 0;
 
-        // $permissiongroup->save();
+        $permissiongroup->save();
         
         return redirect()->back()->with('success', 'Permission Group Created Successfully!');
     }

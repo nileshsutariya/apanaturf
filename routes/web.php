@@ -2,10 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\admin\AreaController;
-use App\Http\Controllers\admin\loginController;
+use App\Http\Controllers\admin\LoginController;
 use App\Http\Controllers\admin\UsersController;
 use App\Http\Controllers\admin\BannerController;
 use App\Http\Controllers\admin\SportsController;
+use App\Http\Controllers\admin\VenuesController;
 use App\Http\Controllers\admin\CouponsController;
 use App\Http\Controllers\admin\CustomerController;
 use App\Http\Controllers\admin\AmenitiesController;
@@ -16,8 +17,8 @@ use App\Http\Controllers\admin\PermissionGroupController;
 
 Route::prefix('admin')->group(function () {
 
-    Route::get('/login', [loginController::class, 'login'])->name('admin.login');
-    Route::post('/login', [loginController::class, 'logincheck'])->name('logincheck');
+    Route::get('/login', [LoginController::class, 'login'])->name('admin.login');
+    Route::post('/login', [LoginController::class, 'logincheck'])->name('logincheck');
 
     Route::middleware('admin.login')->group(function () {
 
@@ -37,6 +38,11 @@ Route::prefix('admin')->group(function () {
                 Route::post('/delete', 'delete')->name('delete');
             });
             Route::prefix('/area')->controller(AreaController::class)->name('area.')->group(function () {
+                Route::get('/', 'index')->name('index');
+                Route::post('/store', 'store')->name('store');
+                Route::post('/delete', 'delete')->name('delete');
+            });
+            Route::prefix('/venues')->controller(VenuesController::class)->name('venues.')->group(function () {
                 Route::get('/', 'index')->name('index');
                 Route::post('/store', 'store')->name('store');
                 Route::post('/delete', 'delete')->name('delete');

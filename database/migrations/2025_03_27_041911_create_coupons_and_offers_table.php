@@ -20,8 +20,7 @@ return new class extends Migration
             $table->date('start_date');
             $table->date('end_date');
             $table->decimal('min_order');
-            $table->float('discount_in_per');
-            $table->decimal('discount_in_ruppee');
+            $table->float('discount');
             $table->unsignedBigInteger('created_by');
             $table->foreign('created_by')->references('id')->on('users');
             $table->timestamps();

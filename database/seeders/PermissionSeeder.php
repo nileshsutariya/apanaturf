@@ -55,67 +55,67 @@ class PermissionSeeder extends Seeder
                 'permission_group_id' => $group_id,
             ]);
         }
-        $subadmin = [
-            'customer.index', 
-            'users.index', 'users.store','users.edit',
-            'sports.index',
-            'amenities.index', 
-            'banners.index', 'banners.store', 'banners.delete',
-            'coupons.index', 'coupons.store',
-        ];
+        // $subadmin = [
+        //     'customer.index', 
+        //     'users.index', 'users.store','users.edit',
+        //     'sports.index',
+        //     'amenities.index', 
+        //     'banners.index', 'banners.store', 'banners.delete',
+        //     'coupons.index', 'coupons.store',
+        // ];
         
-        foreach ($subadmin as $subpermission) {
-            if (str_starts_with($subpermission, 'customer.')) {
-                $group_id = 1;
-            } elseif (str_starts_with($subpermission, 'users.')) {
-                $group_id = 2;
-            } elseif (str_starts_with($subpermission, 'sports.')) {
-                $group_id = 3;
-            } elseif (str_starts_with($subpermission, 'amenities.')) {
-                $group_id = 4;
-            } elseif (str_starts_with($subpermission, 'banners.')) {
-                $group_id = 5;
-            } elseif (str_starts_with($subpermission, 'coupons.')) {
-                $group_id = 6;
-            } else {
-                $group_id = 0;
-            }
+        // foreach ($subadmin as $subpermission) {
+        //     if (str_starts_with($subpermission, 'customer.')) {
+        //         $group_id = 1;
+        //     } elseif (str_starts_with($subpermission, 'users.')) {
+        //         $group_id = 2;
+        //     } elseif (str_starts_with($subpermission, 'sports.')) {
+        //         $group_id = 3;
+        //     } elseif (str_starts_with($subpermission, 'amenities.')) {
+        //         $group_id = 4;
+        //     } elseif (str_starts_with($subpermission, 'banners.')) {
+        //         $group_id = 5;
+        //     } elseif (str_starts_with($subpermission, 'coupons.')) {
+        //         $group_id = 6;
+        //     } else {
+        //         $group_id = 0;
+        //     }
         
-            Permission::create([
-                'name' => $subpermission,
-                'status' => '1',
-                'user_id' => '2',
-                'permission_group_id' => $group_id,
-            ]);
-        }
-        $user = [
-            'customer.index', 'customer.store','customer.edit',
-            'coupons.index', 'coupons.store',
-        ];
+        //     Permission::create([
+        //         'name' => $subpermission,
+        //         'status' => '1',
+        //         'user_id' => '2',
+        //         'permission_group_id' => $group_id,
+        //     ]);
+        // }
+        // $user = [
+        //     'customer.index', 'customer.store','customer.edit',
+        //     'coupons.index', 'coupons.store',
+        // ];
         
-        foreach ($user as $userpermission) {
-            if (str_starts_with($userpermission, 'customer.')) {
-                $group_id = 1;
-            } elseif (str_starts_with($userpermission, 'users.')) {
-                $group_id = 2;
-            } elseif (str_starts_with($userpermission, 'sports.')) {
-                $group_id = 3;
-            } elseif (str_starts_with($userpermission, 'amenities.')) {
-                $group_id = 4;
-            } elseif (str_starts_with($userpermission, 'banners.')) {
-                $group_id = 5;
-            } elseif (str_starts_with($userpermission, 'coupons.')) {
-                $group_id = 6;
-            } else {
-                $group_id = 0;
-            }
+        // foreach ($user as $userpermission) {
+        //     if (str_starts_with($userpermission, 'customer.')) {
+        //         $group_id = 1;
+        //     } elseif (str_starts_with($userpermission, 'users.')) {
+        //         $group_id = 2;
+        //     } elseif (str_starts_with($userpermission, 'sports.')) {
+        //         $group_id = 3;
+        //     } elseif (str_starts_with($userpermission, 'amenities.')) {
+        //         $group_id = 4;
+        //     } elseif (str_starts_with($userpermission, 'banners.')) {
+        //         $group_id = 5;
+        //     } elseif (str_starts_with($userpermission, 'coupons.')) {
+        //         $group_id = 6;
+        //     } else {
+        //         $group_id = 0;
+        //     }
         
-            Permission::create([
-                'name' => $userpermission,
-                'status' => '1',
-                'user_id' => '3',
-                'permission_group_id' => $group_id,
-            ]);
-        }
+        //     Permission::create([
+        //         'name' => $userpermission,
+        //         'status' => '1',
+        //         'user_id' => '3',
+        //         'permission_group_id' => $group_id,
+        //     ]);
+        // }
     }
 }

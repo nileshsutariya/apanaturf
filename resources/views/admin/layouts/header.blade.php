@@ -189,6 +189,14 @@
                               </a>
                          </li>
                          <li class="nav-item">
+                              <a class="nav-link" href="{{ route('venues.index')}}">
+                                   <span class="nav-icon">
+                                        <iconify-icon icon="solar:shop-broken"></iconify-icon>
+                                   </span>
+                                   <span class="nav-text"> Venues</span>
+                              </a>
+                         </li>
+                         <li class="nav-item">
                               <a class="nav-link menu-arrow" href="#sidebarConfiguration" data-bs-toggle="collapse"
                                    role="button" aria-expanded="false" aria-controls="sidebarConfiguration">
                                    <span class="nav-icon">

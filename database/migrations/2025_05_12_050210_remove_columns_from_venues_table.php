@@ -11,9 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('coupons_and_offers', function (Blueprint $table) {
-            $table->dropColumn('discount_in_ruppee');
+        Schema::table('venues', function (Blueprint $table) {
+            $table->dropForeign(['vendor_id']);
+            $table->dropForeign(['turf_id']);
 
+            $table->dropColumn(['pincode','vendor_id', 'turf_image','area','vendor_image','email','phone','turf_id']);
         });
     }
 
@@ -22,8 +24,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('coupons_and_offers', function (Blueprint $table) {
-            $table->string('discount_in_ruppee'); 
+        Schema::table('venues', function (Blueprint $table) {
+            //
         });
     }
 };
