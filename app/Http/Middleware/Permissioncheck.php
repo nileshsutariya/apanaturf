@@ -18,7 +18,7 @@ class Permissioncheck
     public function handle(Request $request, Closure $next): Response
     {
         $user = Auth::user();
-        $currentRoute = $request->route()->getName(); // e.g. customer.index
+        $currentRoute = $request->route()->getName(); 
 
         $hasPermission = Permission::where('user_id', $user->id)
             ->where('name', $currentRoute)
@@ -26,9 +26,7 @@ class Permissioncheck
             ->exists();
 
         if (!$hasPermission) {
-
             return redirect()->route('unauthorized');
-
         }
 
         return $next($request);
