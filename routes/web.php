@@ -10,9 +10,25 @@ use App\Http\Controllers\admin\CouponsController;
 use App\Http\Controllers\admin\CustomerController;
 use App\Http\Controllers\admin\AmenitiesController;
 use App\Http\Controllers\admin\PermissionsController;
+use App\Http\Controllers\Vendor\VendorLoginController;
 use App\Http\Controllers\admin\PermissionGroupController;
 
 
+
+Route::prefix('vendor')->group(function () {
+
+    Route::get('/login', [VendorLoginController::class, 'login'])->name('vendor.login');
+    Route::post('/login', [VendorLoginController::class, 'logincheck'])->name('vendor.logincheck');
+    Route::post('/otpverify', [VendorLoginController::class, 'VerifyOtp'])->name('vendor.otp.verify');
+    Route::post('/setpassword', [VendorLoginController::class, 'SetPassword'])->name('vendor.set.password');
+    Route::post('/forgotpassword', [VendorLoginController::class, 'ForgotPassword'])->name('vendor.forgot.password');
+    Route::post('/resetpassword', [VendorLoginController::class, 'ResetPassword'])->name('vendor.reset.password');
+    
+    Route::middleware('vendor.login')->group(function () {
+        Route::post('/logout', [VendorLoginController::class, 'logout'])->name('vendor.logout');
+        Route::get('/dashboard', [VendorLoginController::class, 'dashboard'])->name('vendor.dashboard');
+    });
+});
 
 Route::prefix('admin')->group(function () {
 
@@ -155,9 +171,9 @@ Route::prefix('admin')->group(function () {
 // })->name('users.terms');
 
 
-// Route::get('/client/index', function () {
-//     return view('client.index');
-// })->name('client.index');
+Route::get('/client/index', function () {
+    return view('client.index');
+})->name('client.index');
 // Route::get('/client/booking', function () {
 //     return view('client.booking');
 // })->name('client.booking');
