@@ -354,7 +354,7 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/responsive/2.5.0/js/dataTables.responsive.min.js"></script>
-<!-- Flatpickr JS -->
+<script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
 <script>
@@ -374,7 +374,6 @@
         return 'END' + randomNum;
     }
 </script>
-<script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
 
 <script>
     function initChoices(selector) {
@@ -395,6 +394,7 @@
     let typeChoices = initChoices('.typeselect');
     let cityChoices = initChoices('.cityselect');
 </script>
+
 <script>
     function initDataTable() {
         $('#example').DataTable({
@@ -490,6 +490,11 @@
 
                         $('#formErrors ul').html(errorHtml);
                         $('#formErrors').removeClass('d-none');
+                        $('#formErrors').fadeIn('slow');
+
+                        setTimeout(function () {
+                            $('#formErrors').fadeOut('slow');
+                        }, 7000);
                     } else {
                         alert("Something went wrong.");
                     }
@@ -517,6 +522,7 @@
         });
     });
 </script>
+
 <script>
     $(document).on('click', '.viewcoupon', function () {
         let coupons = $(this).data('coupons');

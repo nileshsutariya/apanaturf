@@ -23,6 +23,7 @@ class PermissionSeeder extends Seeder
             'area.index', 'area.store','area.edit',
             'permission.index', 'permission.store','permission.edit',
             'permissiongroup.index', 'permissiongroup.store','permissiongroup.edit',
+            'venues.index', 'venues.store','venues.edit',
         ];
         
         foreach ($admin as $permission) {

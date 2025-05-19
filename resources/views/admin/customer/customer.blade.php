@@ -7,14 +7,17 @@
 <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.5.0/css/responsive.dataTables.min.css">
 <script src="https://cdn.datatables.net/responsive/2.5.0/js/dataTables.responsive.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.css"
+    integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css" />
 
 <style>
     .swal2-title {
-        font-size: 14px !important; /* Adjust as needed */
+        font-size: 14px !important;
+        /* Adjust as needed */
         font-weight: 500;
     }
+
     #example {
         width: 100%;
     }
@@ -96,10 +99,11 @@
     <div class="card">
         <div class="card-header d-flex flex-wrap justify-content-between align-items-center">
             <h4 class="card-title flex-grow-1">All Customers List</h4>
-            {{-- @if(Auth::user() && Auth::user()->hasPermissionTo('customer.store'))  <!-- Check if user has permission --> --}}
-                <a class="btn btn-sm btn-primary addcustomer" data-bs-target="#customer">
-                    Add Customer
-                </a>
+            {{-- @if(Auth::user() && Auth::user()->hasPermissionTo('customer.store'))
+            <!-- Check if user has permission --> --}}
+            <a class="btn btn-sm btn-primary addcustomer" data-bs-target="#customer">
+                Add Customer
+            </a>
             {{-- @endif --}}
         </div>
         <div class="card-body pt-0">
@@ -146,12 +150,12 @@
                                 </td>
                                 <td>
                                     <div class="d-flex gap-2">
-                                        <a class="btn btn-soft-primary btn-sm editcustomer"
-                                            data-bs-target="#customer" data-customer='@json($value)'>
+                                        <a class="btn btn-soft-primary btn-sm editcustomer" data-bs-target="#customer"
+                                            data-customer='@json($value)'>
                                             <i class='bx bxs-pencil bx-xs'></i>
                                         </a>
                                         <a href="#" class="btn btn-soft-danger btn-sm">
-                                        <i class='bx bxs-trash bx-xs'></i>
+                                            <i class='bx bxs-trash bx-xs'></i>
                                         </a>
                                     </div>
                                 </td>
@@ -190,7 +194,8 @@
 
                     <div style="margin-bottom: 12px;">
                         <label class="mb-1">Mob. No.</label>
-                        <input type="text" class="form-control" name="phone" placeholder="Enter The Phone Number" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                        <input type="text" class="form-control" name="phone" placeholder="Enter The Phone Number"
+                            oninput="this.value = this.value.replace(/[^0-9]/g, '')">
                     </div>
 
                     <div style="margin-bottom: 12px;">
@@ -200,7 +205,8 @@
 
                     <div style="margin-bottom: 12px;" class="balancefield">
                         <label class="mb-1">Balance</label>
-                        <input type="text" class="form-control" name="balance" placeholder="Enter The Balance" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                        <input type="text" class="form-control" name="balance" placeholder="Enter The Balance"
+                            oninput="this.value = this.value.replace(/[^0-9]/g, '')">
                     </div>
                     <div style="margin-bottom: 12px;">
                         <label class="mb-1">City</label>
@@ -243,7 +249,7 @@
 <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
 
 <script>
-    const allAreas = @json($areas); 
+    const allAreas = @json($areas);
     function initDataTable() {
         $('#example').DataTable({
             paging: false,
@@ -287,7 +293,7 @@
             });
         }
     });
-    
+
     $(document).ready(function () {
         initDataTable();
         $(document).on('click', '.pagination a', function (e) {
@@ -318,7 +324,7 @@
             let form = $(this);
             let formData = form.serialize();
             console.log(formData);
-            let customerId = $('#customerForm input[name="id"]').val(); 
+            let customerId = $('#customerForm input[name="id"]').val();
 
             $.ajax({
                 url: '{{ route("customer.store") }}',
@@ -357,6 +363,11 @@
 
                         $('#formErrors ul').html(errorHtml);
                         $('#formErrors').removeClass('d-none');
+                        $('#formErrors').fadeIn('slow');
+
+                        setTimeout(function () {
+                            $('#formErrors').fadeOut('slow');
+                        }, 7000);
                     } else {
                         alert("Something went wrong.");
                     }
@@ -388,7 +399,7 @@
 
         if (hasPermission) {
             let customer = $(this).data('customer');
-            $('#customerTitle').text('Edit Customer'); 
+            $('#customerTitle').text('Edit Customer');
 
             $('#customerForm input[name="id"]').val(customer.id);
             $('#customerForm input[name="name"]').val(customer.name);
@@ -403,7 +414,7 @@
             }
 
             // const filteredAreas = allAreas.filter(area => area.city_id == customer.city_id);
-            const filteredAreas = customer.city_id 
+            const filteredAreas = customer.city_id
                 ? allAreas.filter(area => area.city_id == customer.city_id)
                 : allAreas;
 
@@ -438,7 +449,7 @@
         const selectedCityId = $(this).val();
         const filteredAreas = allAreas.filter(area => area.city_id == selectedCityId);
 
-        areaChoices.clearStore(); 
+        areaChoices.clearStore();
         areaChoices.setChoices(
             filteredAreas.map(area => ({
                 value: area.id,

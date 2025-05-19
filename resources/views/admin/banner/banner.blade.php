@@ -1,12 +1,15 @@
 @include('admin.layouts.header')
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.css"
+    integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 <style>
     .swal2-title {
-        font-size: 14px !important; /* Adjust as needed */
+        font-size: 14px !important;
+        /* Adjust as needed */
         font-weight: 500;
     }
+
     .dz-success-mark {
         display: none;
     }
@@ -27,10 +30,12 @@
             margin-top: 20px;
         }
     }
-    .dz-image-preview{
+
+    .dz-image-preview {
         justify-items: center;
     }
-    .dz-details{
+
+    .dz-details {
         margin-bottom: 10px;
         text-align: center;
     }
@@ -61,13 +66,13 @@
                 <div class="row" id="example">
                     @if(isset($banner))
                         <!-- <div class="col-sm-3">
-                                        <div class="card " data-bs-toggle="modal" data-bs-target="#banner">
-                                            <div class="card-body d-flex flex-column align-items-center justify-content-center p-0">
-                                                <img class="m-1" src="{{asset('asset/images/add.png')}}" alt="football"
-                                                    style="width: 100%; height: 200px; object-fit: cover;">
-                                            </div>
-                                        </div>
-                                    </div> -->
+                                                    <div class="card " data-bs-toggle="modal" data-bs-target="#banner">
+                                                        <div class="card-body d-flex flex-column align-items-center justify-content-center p-0">
+                                                            <img class="m-1" src="{{asset('asset/images/add.png')}}" alt="football"
+                                                                style="width: 100%; height: 200px; object-fit: cover;">
+                                                        </div>
+                                                    </div>
+                                                </div> -->
                         @foreach ($banner as $value)
                             <div class="col-lg-3 col-md-3 col-sm-6">
                                 <img src="{{ asset('storage/' . $value->image_path) }}" alt="football" width="100%"
@@ -94,8 +99,7 @@
                     <ul class="mb-0"></ul>
                 </div>
                 <div class="modal-body" style="scrollbar-width: none;">
-                    <form  id="bannerForm" method="POST"
-                        enctype="multipart/form-data">
+                    <form id="bannerForm" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div id="file-container" class="dropzone">
                             <div class="fallback">
@@ -154,25 +158,25 @@
 
     <script>
 
-$(document).on('click', '.addbanner', function () {
-    var hasPermission = @json(Auth::user() && Auth::user()->hasPermissionTo('banners.store'));
+        $(document).on('click', '.addbanner', function () {
+            var hasPermission = @json(Auth::user() && Auth::user()->hasPermissionTo('banners.store'));
 
-    if (hasPermission) {
-        $('#bannerForm')[0].reset();
-        $('#bannerForm').find('input[name="id"], input[name="title"], input[name="image"]').val('');
-        $('#formErrors').addClass('d-none').find('ul').html('');
-        $('#banner').modal('show');
-    } else {
-        Swal.fire({
-            title: "403 Unauthorized",
-            text: "You do not have permission to add a banner.",
-            icon: "error",
-            timer: 3000,
-            timerProgressBar: true,
-            confirmButtonText: "Close"
+            if (hasPermission) {
+                $('#bannerForm')[0].reset();
+                $('#bannerForm').find('input[name="id"], input[name="title"], input[name="image"]').val('');
+                $('#formErrors').addClass('d-none').find('ul').html('');
+                $('#banner').modal('show');
+            } else {
+                Swal.fire({
+                    title: "403 Unauthorized",
+                    text: "You do not have permission to add a banner.",
+                    icon: "error",
+                    timer: 3000,
+                    timerProgressBar: true,
+                    confirmButtonText: "Close"
+                });
+            }
         });
-    }
-});
 
 
         $('#banner').on('hidden.bs.modal', function () {
@@ -228,6 +232,11 @@ $(document).on('click', '.addbanner', function () {
 
                             $('#formErrors ul').html(errorHtml);
                             $('#formErrors').removeClass('d-none');
+                            $('#formErrors').fadeIn('slow');
+
+                            setTimeout(function () {
+                                $('#formErrors').fadeOut('slow');
+                            }, 7000);
                         } else {
                             alert("Something went wrong.");
                         }
@@ -249,7 +258,7 @@ $(document).on('click', '.addbanner', function () {
                         timerProgressBar: true,
                         confirmButtonText: "Close"
                     });
-                    return; 
+                    return;
                 }
                 $.ajax({
                     headers: {

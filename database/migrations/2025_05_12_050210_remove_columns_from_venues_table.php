@@ -15,7 +15,7 @@ return new class extends Migration
             $table->dropForeign(['vendor_id']);
             $table->dropForeign(['turf_id']);
 
-            $table->dropColumn(['pincode','vendor_id', 'turf_image','area','vendor_image','email','phone','turf_id']);
+            $table->dropColumn(['pincode','vendor_id', 'turf_image','area','vendor_image','email','phone','turf_id','balance']);
         });
     }
 

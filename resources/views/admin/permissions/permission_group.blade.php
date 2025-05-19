@@ -4,16 +4,19 @@
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
 <!-- Responsive Extension -->
 <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.5.0/css/responsive.dataTables.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.css"
+    integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 {{-- @if(session('success'))
-    <p>{{ session('success') }}</p>
+<p>{{ session('success') }}</p>
 @endif --}}
 <style>
     .swal2-title {
-        font-size: 14px !important; /* Adjust as needed */
+        font-size: 14px !important;
+        /* Adjust as needed */
         font-weight: 500;
     }
+
     #example {
         width: 100%;
     }
@@ -87,6 +90,7 @@
     #balanceWrapper {
         margin-right: 100px;
     }
+
     .pagination {
         margin-bottom: 0px;
     }
@@ -132,21 +136,21 @@
                                 </td>
                                 <td>
                                     @if ($value->status == 1)
-                                        <span class="badge bg-success-subtle text-success py-1 px-2 fs-11">Active</span>                                    
+                                        <span class="badge bg-success-subtle text-success py-1 px-2 fs-11">Active</span>
                                     @else
-                                        <span class="badge bg-danger-subtle text-danger py-1 px-2 fs-11">Inactive</span>                                    
+                                        <span class="badge bg-danger-subtle text-danger py-1 px-2 fs-11">Inactive</span>
                                     @endif
                                 </td>
                                 <td>
                                     <div class="d-flex gap-2">
-                                        <button type="button" class="btn btn-soft-primary btn-sm editpermissiongroup" 
+                                        <button type="button" class="btn btn-soft-primary btn-sm editpermissiongroup"
                                             data-bs-target="#permissiongroup" data-permissiongroup='@json($value)'>
                                             <i class='bx bxs-pencil bx-xs'></i>
-                                    </button>
-                                    <button type="button" class="btn btn-soft-danger btn-sm deletepermission"
+                                        </button>
+                                        <button type="button" class="btn btn-soft-danger btn-sm deletepermission"
                                             data-id="{{ $value->id }}">
                                             <i class='bx bxs-trash bx-xs'></i>
-                                    </button>
+                                        </button>
                                     </div>
                                 </td>
                             </tr>
@@ -182,7 +186,8 @@
                         <input type="text" class="form-control" name="name" placeholder="Enter The Name">
                     </div>
                     <div style="margin-bottom: 12px;">
-                        <input class="form-check-input" type="checkbox" name="status" id="statusCheckbox" value="1" checked>
+                        <input class="form-check-input" type="checkbox" name="status" id="statusCheckbox" value="1"
+                            checked>
                         <label class="form-check-label" for="statusCheckbox">
                             Is Active?
                         </label>
@@ -193,7 +198,8 @@
 
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                <button type="submit" form="permissiongroupForm" class="btn btn-primary permissiongroupsave">Save</button>
+                <button type="submit" form="permissiongroupForm"
+                    class="btn btn-primary permissiongroupsave">Save</button>
             </div>
         </div>
     </div>
@@ -267,7 +273,7 @@
 
             let form = $(this);
             let formData = form.serialize();
-            let permissiongroupId = $('#permissiongroupForm input[name="id"]').val(); 
+            let permissiongroupId = $('#permissiongroupForm input[name="id"]').val();
 
             $.ajax({
                 url: '{{ route("permissiongroup.store") }}',
@@ -276,7 +282,7 @@
                 success: function (response) {
                     $('#example').DataTable().destroy();
                     const html = $(response);
-                    $('#example').replaceWith(html.find('#example')); 
+                    $('#example').replaceWith(html.find('#example'));
                     $('#permissiongroupWrapper').html(html.find('#permissiongroupWrapper').html());
                     initDataTable();
                     $('#permissiongroup').modal('hide');
@@ -301,6 +307,11 @@
 
                         $('#formErrors ul').html(errorHtml);
                         $('#formErrors').removeClass('d-none');
+                        $('#formErrors').fadeIn('slow');
+
+                        setTimeout(function () {
+                            $('#formErrors').fadeOut('slow');
+                        }, 7000);
                     } else {
                         alert("Something went wrong.");
                     }
@@ -342,7 +353,7 @@
                 timerProgressBar: true,
                 confirmButtonText: "Close"
             });
-            return; 
+            return;
         }
 
         let permissiongroup = $(this).data('permissiongroup');
@@ -355,43 +366,43 @@
         $('#formErrors ul').html('');
         $('#formErrors').addClass('d-none');
         $('#permissiongroup').modal('show');
-        
+
     });
 
-$(document).on('click', '.deletepermission', function (e) {
-    e.preventDefault();
-    let button = $(this); 
-    let id = button.data('id');
+    $(document).on('click', '.deletepermission', function (e) {
+        e.preventDefault();
+        let button = $(this);
+        let id = button.data('id');
 
-    $.ajax({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        },
-        url: '{{ route('permissiongroup.delete') }}',
-        type: 'POST',
-        data: { id: id },
-        success: function (response) {
-            if (response.success) {
-                button.closest('tr').remove();
-                Swal.fire({
-                    toast: true,
-                    position: 'top-end',
-                    icon: 'success',
-                    title: 'Permissiongroup Deleted Successfully!',
-                    showConfirmButton: false,
-                    timer: 3000,
-                    timerProgressBar: true,
-                });
-            } else {
-                console.log('Error:', response.error);
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            url: '{{ route('permissiongroup.delete') }}',
+            type: 'POST',
+            data: { id: id },
+            success: function (response) {
+                if (response.success) {
+                    button.closest('tr').remove();
+                    Swal.fire({
+                        toast: true,
+                        position: 'top-end',
+                        icon: 'success',
+                        title: 'Permissiongroup Deleted Successfully!',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
+                    });
+                } else {
+                    console.log('Error:', response.error);
+                }
+            },
+            error: function (xhr) {
+                alert("Something went wrong.");
+                console.log(xhr.responseText);
             }
-        },
-        error: function (xhr) {
-            alert("Something went wrong.");
-            console.log(xhr.responseText);
-        }
+        });
     });
-});
 
 </script>
 

@@ -1,12 +1,15 @@
 @include('admin.layouts.header')
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.css"
+    integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 <style>
     .swal2-title {
-        font-size: 14px !important; /* Adjust as needed */
+        font-size: 14px !important;
+        /* Adjust as needed */
         font-weight: 500;
     }
+
     .icon-body {
         padding-top: 10px;
         padding-left: 10px;
@@ -73,7 +76,7 @@
                 </div>
             @endforeach
         @endif
-        {{-- @can('sports.store')  --}}
+        {{-- @can('sports.store') --}}
         <div class="card icon-box addsport" data-bs-target="#sport">
             <div class="card-body d-flex flex-column align-items-center justify-content-center icon-body">
                 <img class="m-1" src="{{asset('asset/images/add.png')}}" alt="football" style="height: 105px;">
@@ -226,6 +229,11 @@
 
                         $('#formErrors ul').html(errorHtml);
                         $('#formErrors').removeClass('d-none');
+                        $('#formErrors').fadeIn('slow');
+
+                        setTimeout(function () {
+                            $('#formErrors').fadeOut('slow');
+                        }, 7000);
                     } else {
                         alert("Something went wrong.");
                     }
@@ -247,7 +255,7 @@
                     timerProgressBar: true,
                     confirmButtonText: "Close"
                 });
-                return; 
+                return;
             }
 
             $.ajax({

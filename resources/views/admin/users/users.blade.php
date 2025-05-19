@@ -5,13 +5,16 @@
 <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.5.0/css/responsive.dataTables.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css" />
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.css"
+    integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 <style>
     .swal2-title {
-        font-size: 14px !important; /* Adjust as needed */
+        font-size: 14px !important;
+        /* Adjust as needed */
         font-weight: 500;
     }
+
     #example {
         width: 100%;
     }
@@ -423,7 +426,7 @@
 
             let form = $(this);
             let formData = form.serialize();
-            let userId = $('#userForm input[name="id"]').val(); 
+            let userId = $('#userForm input[name="id"]').val();
 
             $.ajax({
                 url: '{{ route("users.store") }}',
@@ -457,6 +460,11 @@
 
                         $('#formErrors ul').html(errorHtml);
                         $('#formErrors').removeClass('d-none');
+                        $('#formErrors').fadeIn('slow');
+
+                        setTimeout(function () {
+                            $('#formErrors').fadeOut('slow');
+                        }, 7000);
                     } else {
                         alert("Something went wrong.");
                     }

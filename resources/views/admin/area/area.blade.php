@@ -5,13 +5,16 @@
 <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.5.0/css/responsive.dataTables.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css" />
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.css"
+    integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 <style>
     .swal2-title {
-        font-size: 14px !important; /* Adjust as needed */
+        font-size: 14px !important;
+        /* Adjust as needed */
         font-weight: 500;
     }
+
     #example {
         width: 100%;
     }
@@ -85,6 +88,7 @@
     #balanceWrapper {
         margin-right: 100px;
     }
+
     .pagination {
         margin-bottom: 0px;
     }
@@ -137,8 +141,8 @@
                                 </td>
                                 <td>
                                     <div class="d-flex gap-2">
-                                        <a class="btn btn-soft-primary btn-sm editarea" 
-                                            data-bs-target="#area" data-area='@json($value)'>
+                                        <a class="btn btn-soft-primary btn-sm editarea" data-bs-target="#area"
+                                            data-area='@json($value)'>
                                             <i class='bx bxs-pencil bx-xs'></i>
                                         </a>
                                         <button type="button" class="btn btn-soft-danger btn-sm deletearea"
@@ -196,7 +200,8 @@
 
                     <div style="margin-bottom: 12px;">
                         <label class="mb-1">Pincode</label>
-                        <input type="text" class="form-control" name="pincode" placeholder="Enter The Pincode" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                        <input type="text" class="form-control" name="pincode" placeholder="Enter The Pincode"
+                            oninput="this.value = this.value.replace(/[^0-9]/g, '')">
                     </div>
 
                 </form>
@@ -277,7 +282,7 @@
 
             let form = $(this);
             let formData = form.serialize();
-            let areaId = $('#areaForm input[name="id"]').val(); 
+            let areaId = $('#areaForm input[name="id"]').val();
 
             $.ajax({
                 url: '{{ route("area.store") }}',
@@ -311,6 +316,11 @@
 
                         $('#formErrors ul').html(errorHtml);
                         $('#formErrors').removeClass('d-none');
+                        $('#formErrors').fadeIn('slow');
+
+                        setTimeout(function () {
+                            $('#formErrors').fadeOut('slow');
+                        }, 7000);
                     } else {
                         alert("Something went wrong.");
                     }
@@ -340,7 +350,7 @@
 
     $(document).on('click', '.deletearea', function (e) {
         e.preventDefault();
-        let button = $(this); 
+        let button = $(this);
         let id = button.data('id');
 
         $.ajax({
@@ -403,9 +413,9 @@
                 timerProgressBar: true,
                 confirmButtonText: "Close"
             });
-            return; 
+            return;
         }
-        
+
         let area = $(this).data('area');
         // console.log(area.role_id);
         $('#areaTitle').text('Edit area'); // Corrected line

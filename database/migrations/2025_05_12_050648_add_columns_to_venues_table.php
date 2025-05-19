@@ -12,10 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('venues', function (Blueprint $table) {
-            $table->string('owner_name')->after('turf_id');
-            $table->string('owner_email')->after('turf_id');
-            $table->string('owner_phone')->after('turf_id');
-            $table->string('vendor_ID')->after('turf_id');
+            $table->string('password')->after('id');
+            $table->string('owner_name')->after('id');
+            $table->string('owner_email')->after('id');
+            $table->string('owner_phone')->after('id');
+            $table->string('vendor_ID')->after('id');
             $table->unsignedBigInteger('pancard')->after('location_text')->nullable();
             $table->unsignedBigInteger('Aadhaar_card')->after('location_text')->nullable();
             $table->unsignedBigInteger('vendor_image')->after('location_text')->nullable();
