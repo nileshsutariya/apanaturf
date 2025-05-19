@@ -13,12 +13,15 @@ class CouponController extends BaseController
     public function coupons(Request $request)
     {
         $today = now();
-        $startOfMonth = $today->copy()->startOfMonth();
-        $endOfMonth = $today->copy()->endOfMonth();
+        // $startOfMonth = $today->copy()->startOfMonth();
+        // $endOfMonth = $today->copy()->endOfMonth();
     
-        $query = Coupons::where(function($q) use ($endOfMonth) {
-                        $q->where('start_date', '<=', $endOfMonth)
-                          ->where('end_date', '>=', now());
+        $query = Coupons::where(function($q) use ($today) {
+                        $q->where('start_date', '<=', $today)
+                          ->where('end_date', '>=', $today);
+                    })
+                    ->whereHas('creaters', function($q) {
+                        $q->where('role_id', 1);
                     });
     
         $validator = Validator::make($request->all(), [
@@ -46,11 +49,6 @@ class CouponController extends BaseController
         $query->orderBy($sortColumn, $sortDirection);
         
         $coupons = $query->offset($request->start*$request->length)->limit($request->length)->get();
-
-        $coupons->each(function ($coupon) {
-            $coupon->created_by = $coupon->creaters ? $coupon->creaters->name : null;
-            unset($coupon->creaters);
-        });
         
         return $this->sendresponse($coupons, 'Coupons List');
     }

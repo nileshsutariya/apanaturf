@@ -12,10 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('venues', function (Blueprint $table) {
-            // $table->dropForeign(['vendor_id']);
-            // $table->dropForeign(['turf_id']);
-
-            $table->dropColumn(['pincode','vendor_id', 'turf_image','area','vendor_image','email','phone','turf_id','balance']);
+            $table->string('password')->after('phone')->nullable();            
+            $table->unsignedBigInteger('otp')->after('password')->nullable();
+            $table->timestamp('otp_send_at')->after('otp')->nullable();
+            $table->timestamp('otp_verified_at')->after('otp_send_at')->nullable();
         });
     }
 

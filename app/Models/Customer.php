@@ -2,16 +2,17 @@
 
 namespace App\Models;
 
-use Laravel\Passport\HasApiTokens;
 use Livewire\WithPagination;
+use Laravel\Passport\HasApiTokens;
 use Livewire\WithoutUrlPagination;
 use PHPOpenSourceSaver\JWTAuth\Contracts\JWTSubject;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class Customer extends Authenticatable implements JWTSubject
 {
+    // use HasFactory;
     use HasApiTokens, WithPagination, WithoutUrlPagination; 
-
     protected $table = 'customer';
     protected $primaryKey = 'id';
     protected $fillable = ['name', 'email', 'phone', 'balance'];

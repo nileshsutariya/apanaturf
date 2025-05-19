@@ -146,8 +146,15 @@ class TurfController extends BaseController
 
     private function getTurfData(Request $request)
     {
-        return Turf::with(['timings', 'coupons'])
-            ->when($request->filled('location_text'), fn($q) =>
+        return Turf::with([
+            'timings',
+            'coupons' => function ($query) {
+                $today = now();
+                $query->where('status', 1)
+                    ->whereDate('start_date', '<=', $today)
+                    ->whereDate('end_date', '>=', $today);
+            }
+        ])->when($request->filled('location_text'), fn($q) =>
                 $q->where('location_text', 'like', '%' . $request->input('location_text') . '%'))
             ->when($request->filled('filter_param.id'), fn($q) =>
                 $q->where('turf.id', $request->input('filter_param.id')))
@@ -205,7 +212,8 @@ class TurfController extends BaseController
 
     private function getFeatureImage($id)
     {
-        if (!$id) return null;
+        if (!$id)
+            return null;
         $img = Images::find($id);
         return $img ? [
             'image_name' => $img->image_name,

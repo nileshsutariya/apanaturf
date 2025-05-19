@@ -18,13 +18,14 @@ return new class extends Migration
             $table->string('owner_phone')->after('id');
             $table->string('vendor_ID')->after('id');
             $table->unsignedBigInteger('pancard')->after('location_text')->nullable();
-            $table->unsignedBigInteger('Aadhaar_card')->after('location_text')->nullable();
-            $table->unsignedBigInteger('vendor_image')->after('location_text')->nullable();
+            $table->unsignedBigInteger('Aadhaar_card')->after('pancard')->nullable();
+            $table->unsignedBigInteger('vendor_image')->after('Aadhaar_card')->nullable();
             $table->unsignedBigInteger('area_id')->after('city_id')->nullable();
             $table->foreign('pancard')->references('id')->on('images');
             $table->foreign('Aadhaar_card')->references('id')->on('images');
             $table->foreign('vendor_image')->references('id')->on('images');
-            $table->foreign('area_id')->references('id')->on('area');
+            $table->foreign('area_id')->references('id')->on('area_code');
+            $table->timestamp('password_update')->after('password')->nullable();
         });
     }
 
