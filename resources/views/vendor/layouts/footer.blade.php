@@ -1,45 +1,55 @@
-</div>
+            </div>
         </div>
-
     </div>
 
-    <script>
-    // Get current date
-   
-const currentDate = new Date();
+<script>        
+    const currentDate = new Date();
 
-// Format the date as "MMM DD, YYYY" (e.g., Feb 27, 2025)
-const options = { month: 'short', day: '2-digit', year: 'numeric' };
-let formattedDate = currentDate.toLocaleDateString('en-US', options);
+    const options = { month: 'short', day: '2-digit', year: 'numeric' };
+    let formattedDate = currentDate.toLocaleDateString('en-US', options);
 
-// Insert a comma after the day
-formattedDate = formattedDate.replace(/(\d{2}) /, '$1, ');
+    formattedDate = formattedDate.replace(/(\d{2}) /, '$1, ');
 
-// Set the formatted date inside the <h6> tag
-document.getElementById("currentDate").innerText = formattedDate;
+    document.getElementById("currentDate").innerText = formattedDate;
 </script>
 <script>
-
     
-    $(document).ready(function () {
-        // Get the current page URL (excluding query params)
-        var currentUrl = window.location.pathname.split("/").pop();
+    // $(document).ready(function () {
+    //     var currentUrl = window.location.pathname.split("/").pop();
 
-        // Loop through sidebar links
+    //     $(".side-nav-link").each(function () {
+    //         var linkUrl = $(this).attr("href");
+
+    //         if (linkUrl === currentUrl) {
+    //             $(this).addClass("active");
+
+    //             $(this).closest(".side-nav-item").addClass("active");
+    //         }
+    //     });
+    // });
+
+    $(document).ready(function () {
+        var currentUrl = window.location.pathname;
+
         $(".side-nav-link").each(function () {
             var linkUrl = $(this).attr("href");
 
-            // If the href matches the current page, add 'active' class
-            if (linkUrl === currentUrl) {
-                $(this).addClass("active");
+            if (!linkUrl) return; 
 
-                // Optional: Add active class to the parent <li> for better styling
+            var normalizedCurrent = currentUrl.replace(/\/$/, "");
+            var normalizedLink = new URL(linkUrl, window.location.origin).pathname.replace(/\/$/, "");
+
+            if (normalizedCurrent === normalizedLink) {
+                $(".side-nav-link").removeClass("active");
+                $(".side-nav-item").removeClass("active");
+
+                $(this).addClass("active");
                 $(this).closest(".side-nav-item").addClass("active");
+
+                return false;
             }
         });
     });
-
-
 
 
     $(document).ready(function () {
@@ -120,30 +130,18 @@ document.getElementById("currentDate").innerText = formattedDate;
             createCustomPagination();
         });
 
-
-
-
-
-
-
-
 </script>
 
-
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-<!-- Vendor js -->
 <script src="{{asset('assets/js/vendor.min.js')}}"></script>
 
-<!-- App js -->
 <script src="{{asset('assets/js/app.js')}}"></script>
 
-<!--Morris Chart-->
 <!-- <script src="{{asset('assets/libs/morris.js/morris.min.js')}}"></script> -->
 <script src="{{asset('assets/libs/raphael/raphael.min.js')}}"></script>
 
-<!-- Projects Analytics Dashboard App js -->
 <!-- <script src="{{asset('assets/js/pages/dashboard-sales.js')}}"></script> -->
 
 <script src="{{asset('assets/libs/datatables.net/js/dataTables.min.js')}}"></script>
@@ -161,10 +159,7 @@ document.getElementById("currentDate").innerText = formattedDate;
 <script src="{{asset('assets/libs/datatables.net-keytable/js/dataTables.keyTable.min.js')}}"></script>
 <script src="{{asset('assets/libs/datatables.net-select/js/dataTables.select.min.js')}}"></script>
 
-<!-- Datatables init -->
 <!-- <script src="{{ assert('assets/js/pages/table-datatable.js') }}"></script> -->
 
-
 </body>
-<!-- Mirrored from coderthemes.com/uplon/layouts/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 31 Jan 2025 10:56:29 GMT -->
 </html>

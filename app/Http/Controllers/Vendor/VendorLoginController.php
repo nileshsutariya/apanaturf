@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Vendor;
 
 use Carbon\Carbon;
 use App\Models\Venues;
+use App\Models\Customer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -17,27 +19,44 @@ class VendorLoginController extends Controller
     }
     public function login()
     {
+        if (Auth::guard('vendor')->check()) {
+            return redirect()->route('vendor.dashboard'); 
+        }
         return view('vendor.login');
     }
 
     public function loginCheck(Request $request)
     {
-        $user = Venues::where('phone', $request->phone)->first();
+        if (Auth::guard('vendor')->check()) {
+            return redirect()->route('vendor.dashboard');
+        }
+        $request->validate([
+            'phone' => 'required',
+            'password' => 'required|min:8',
+        ]);
+        
+        $vendor = Venues::where(function ($query) use ($request) {
+                    $query->where('owner_phone', $request->phone)
+                        ->orWhere('vendor_id', $request->phone);
+                })
+                ->where('status', 1)
+                ->first();
 
-        if ($user && Hash::check($request->password, $user->password)) {
+        if ($vendor && Hash::check($request->password, $vendor->password)) {
 
-            if ($user->password_update) {
-                Auth::guard('vendor')->login($user);
+            if ($vendor->password_update) {
+                Auth::guard('vendor')->login($vendor);
 
                 return response()->json([
                     'success' => true,
+                    'message' => 'Sign in Successfully!',
                     'redirect' => route('vendor.dashboard') 
                 ]);
             } else {
                 $otp = 1234;
-                $user->otp = $otp;
-                $user->otp_send_at = now();
-                $user->save();
+                $vendor->otp = $otp;
+                $vendor->otp_send_at = now();
+                $vendor->save();
 
                 return response()->json([
                     'success' => true,
@@ -51,12 +70,17 @@ class VendorLoginController extends Controller
 
     public function VerifyOtp(Request $request)
     {
-        $user = Venues::where('phone', $request->phone)->where('otp', $request->otp)->first();
+        // $vendor = Venues::where('phone', $request->phone)->where('otp', $request->otp)->first();
+        $vendor = Venues::where(function ($query) use ($request) {
+        $query->where('owner_phone', $request->phone)
+              ->orWhere('vendor_id', $request->phone);
+            })->where('otp', $request->otp)->first();     
 
-        if ($user) {
-            $user->otp = null;
-            $user->otp_send_at = null;
-            $user->save();
+        if ($vendor) {
+            $vendor->otp = null;
+            $vendor->otp_send_at = null;
+            $vendor->otp_verified_at = now();
+            $vendor->save();
 
             return response()->json(['success' => true]);
         }
@@ -71,26 +95,37 @@ class VendorLoginController extends Controller
             'newpassword' => 'required|min:8',
         ]);
 
-        $vendor = Venues::where('phone', $request->phone)->first();
+        $vendor = Venues::where(function ($query) use ($request) {
+                    $query->where('owner_phone', $request->phone)
+                        ->orWhere('vendor_id', $request->phone);
+                })
+                ->where('status', 1)
+                ->first();
 
         if (!$vendor) {
-            return back()->withErrors(['phone' => 'Vendor not found.']);
+            return response()->json([
+                'success' => false,
+                'message' => 'Vendor not found.'
+            ]);
         }
 
         if (!Hash::check($request->oldpassword, $vendor->password)) {
-            return back()->withErrors(['oldpassword' => 'Old password is incorrect.']);
+            return response()->json([
+                'success' => false,
+                'message' => 'Old password is incorrect.'
+            ]);
         }
 
         $vendor->password = Hash::make($request->newpassword);
         $vendor->password_update = now();
         $vendor->save();
 
-        return redirect()->route('vendor.login')->with('success', 'Password updated successfully.');
+        return response()->json(['success' => true, 'message' => 'Password updated successfully.']);
     }
     public function logout(Request $request)
     {
         Auth::guard('vendor')->logout();
-        return redirect()->route('vendor.login');        
+        return redirect()->route('vendor.login')->with('success', 'Logout Successfully.');
     }
 
     public function ForgotPassword(Request $request)
@@ -99,14 +134,21 @@ class VendorLoginController extends Controller
             'vendorid' => 'required|string', 
         ]);
 
-        $vendor = Venues::where('phone', $request->vendorid)
-                    // ->orWhere('email', $request->vendorid)
-                    ->orWhere('vendor_id', $request->vendorid)
-                    ->first();
+        // $vendor = Venues::where('phone', $request->vendorid)
+        //             // ->orWhere('email', $request->vendorid)
+        //             ->orWhere('vendor_id', $request->vendorid)
+        //             ->first();
+        $vendor = Venues::where(function ($query) use ($request) {
+                    $query->where('owner_phone', $request->vendorid)
+                        ->orWhere('vendor_id', $request->vendorid);
+                })
+                ->where('status', 1)
+                ->first();
 
         if ($vendor) {
             $otp = 1234;
             $vendor->otp = $otp;
+            $vendor->otp_send_at = now();
             $vendor->save();
             return response()->json([
                 'success' => true,
@@ -115,7 +157,7 @@ class VendorLoginController extends Controller
         } else {
             return response()->json([
                 'success' => false,
-                'message' => 'No matching account found.'
+                'message' => 'No matching record found.'
             ]);
         }
     }
@@ -123,31 +165,31 @@ class VendorLoginController extends Controller
     public function ResetPassword(Request $request)
     {
         $request->validate([
-            'phone' => 'required|string',
-            'newpass' => 'required|min:8|confirmed', 
+            'vendorid' => 'required',
+            'newpass' => 'required|confirmed|min:6',
         ]);
 
-        $vendor = Venues::where('phone', $request->phone)
-                        ->orWhere('vendor_id', $request->phone) 
-                        ->first();
-                        
+        // $vendor = Venues::where(column: 'phone', $request->vendorid)->first();
+        $vendor = Venues::where(function ($query) use ($request) {
+                $query->where('owner_phone', $request->vendorid)
+                    ->orWhere('vendor_id', $request->vendorid);
+            })
+            ->where('status', 1)
+            ->first();  
+
         if (!$vendor) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Vendor not found.',
-            ]);
+            return response()->json(['success' => false, 'message' => 'Vendor not found.']);
         }
 
         $vendor->password = Hash::make($request->newpass);
-
+        $vendor->password_update = now();
         $vendor->save();
 
         return response()->json([
             'success' => true,
-            'message' => 'Password updated successfully.',
-            'redirect' => route('vendor.login') 
+            'message' => 'Password reset successfully.',
+            'redirect' => route('vendor.login')
         ]);
     }
-
 
 }   
