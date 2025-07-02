@@ -23,7 +23,8 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('venues', function (Blueprint $table) {
-            //
+            // Drop the columns that were added
+            $table->dropColumn(['password_update', 'status']);
         });
-    }
+    }    
 };

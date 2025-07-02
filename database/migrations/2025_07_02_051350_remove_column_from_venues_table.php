@@ -23,7 +23,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('venues', function (Blueprint $table) {
-            //
+            $table->boolean('status')->default(1)->comment('0 is Disapprove, 1 is Pending, 2 is Approve')->after('balance');
         });
-    }
+    }    
 };

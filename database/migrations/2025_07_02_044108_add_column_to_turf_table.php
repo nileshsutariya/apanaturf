@@ -25,7 +25,9 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('turf', function (Blueprint $table) {
-            //
+            $table->dropForeign(['vendor_id']);
+    
+            $table->dropColumn(['created_by', 'vendor_id', 'status']);
         });
-    }
+    }    
 };

@@ -13,10 +13,10 @@ return new class extends Migration
     {
         if (!Schema::hasTable('turf')) {
 
-        Schema::table('turf', function (Blueprint $table) {
-            $table->string('unit')->after('booking_price')->nullable();
-        });
-    }
+            Schema::table('turf', function (Blueprint $table) {
+                $table->string('unit')->after('booking_price')->nullable();
+            });
+        }
     }
 
     /**
@@ -25,7 +25,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('turf', function (Blueprint $table) {
-            //
+            $table->dropColumn('unit'); // Drops the unit column
         });
-    }
+    }    
 };

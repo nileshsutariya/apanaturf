@@ -12,11 +12,11 @@ return new class extends Migration {
     {
         if (!Schema::hasTable('turf')) {
 
-        Schema::table('turf', function (Blueprint $table) {
-            $table->unsignedBigInteger('feature_image')->after('location_text')->nullable();
-            $table->foreign('feature_image')->references('id')->on('images');
-        });
-    }
+            Schema::table('turf', function (Blueprint $table) {
+                $table->unsignedBigInteger('feature_image')->after('location_text')->nullable();
+                $table->foreign('feature_image')->references('id')->on('images');
+            });
+        }
     }
 
     /**
@@ -25,7 +25,8 @@ return new class extends Migration {
     public function down(): void
     {
         Schema::table('turf', function (Blueprint $table) {
-            //
+            $table->dropForeign(['feature_image']);  // Drops the foreign key constraint
+            $table->dropColumn('feature_image');     // Drops the feature_image column
         });
-    }
+    }    
 };

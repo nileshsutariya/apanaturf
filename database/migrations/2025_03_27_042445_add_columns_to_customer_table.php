@@ -22,10 +22,12 @@ return new class extends Migration
     /**
      * Reverse the migrations.
      */
-    public function down(): void
+    public function down()
     {
         Schema::table('customer', function (Blueprint $table) {
-            //
+            $table->dropForeign(['profile_image']); // Drops the foreign key
+            $table->dropColumn('profile_image');   // Drops the profile_image column
         });
     }
+
 };

@@ -25,7 +25,10 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('venues', function (Blueprint $table) {
-            //
+            $table->dropColumn('password');           // Drops the password column
+            $table->dropColumn('otp');               // Drops the otp column
+            $table->dropColumn('otp_send_at');       // Drops the otp_send_at column
+            $table->dropColumn('otp_verified_at');   // Drops the otp_verified_at column
         });
-    }
+    }    
 };

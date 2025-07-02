@@ -35,7 +35,15 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('venues', function (Blueprint $table) {
-            //
+            // Drop foreign key constraints
+            $table->dropForeign(['pancard']);         // Drop foreign key for pancard
+            $table->dropForeign(['Aadhaar_card']);    // Drop foreign key for Aadhaar_card
+            $table->dropForeign(['vendor_image']);    // Drop foreign key for vendor_image
+            $table->dropForeign(['area_id']);         // Drop foreign key for area_id
+    
+            // Drop the columns that were added
+            $table->dropColumn(['password', 'owner_name', 'owner_email', 'owner_phone', 'vendor_id', 
+                                'pancard', 'Aadhaar_card', 'vendor_image', 'area_id', 'password_update']);
         });
-    }
+    }    
 };

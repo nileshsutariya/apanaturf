@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-         Schema::table('venues', function (Blueprint $table) {
+        Schema::table('venues', function (Blueprint $table) {
             // Drop the existing column
             $table->dropColumn('turf_image');
         });
@@ -30,9 +30,10 @@ return new class extends Migration
         Schema::table('venues', function (Blueprint $table) {
             $table->dropColumn('turf_image');
         });
-
+    
         Schema::table('venues', function (Blueprint $table) {
-            $table->longText('turf_image')->nullable()->after('vendor_image');
+            $table->string('turf_image')->nullable()->after('vendor_image');
         });
     }
+    
 };

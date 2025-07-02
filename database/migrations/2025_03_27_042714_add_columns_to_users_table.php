@@ -27,7 +27,11 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            //
+            $table->dropForeign(['role_id']);       // Drop the foreign key on role_id
+            $table->dropColumn('role_id');          // Drop the role_id column
+            
+            $table->dropForeign(['profile_image']); // Drop the foreign key on profile_image
+            $table->dropColumn('profile_image');    // Drop the profile_image column
         });
-    }
+    }    
 };

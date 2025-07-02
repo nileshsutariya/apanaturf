@@ -20,10 +20,12 @@ return new class extends Migration
     /**
      * Reverse the migrations.
      */
-    public function down(): void
+    public function down()
     {
         Schema::table('venues', function (Blueprint $table) {
-            //
+            $table->dropForeign(['city_id']);  // Drops the foreign key constraint
+            $table->dropColumn('city_id');    // Drops the city_id column
         });
     }
+
 };

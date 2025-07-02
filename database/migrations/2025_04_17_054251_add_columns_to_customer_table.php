@@ -13,11 +13,11 @@ return new class extends Migration
     {
         if (!Schema::hasTable('customer')) {
 
-        Schema::table('customer', function (Blueprint $table) {
-            $table->unsignedBigInteger('location_history')->after('otp_verified_at')->nullable();
-            $table->foreign('location_history')->references('id')->on('location_history');
-        });
-    }
+            Schema::table('customer', function (Blueprint $table) {
+                $table->unsignedBigInteger('location_history')->after('otp_verified_at')->nullable();
+                $table->foreign('location_history')->references('id')->on('location_history');
+            });
+        }
     }
 
     /**
@@ -26,7 +26,8 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('customer', function (Blueprint $table) {
-            //
+            $table->dropForeign(['location_history']);  // Drop the foreign key constraint
+            $table->dropColumn('location_history');     // Drop the location_history column
         });
-    }
+    }    
 };

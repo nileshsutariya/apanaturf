@@ -23,7 +23,8 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            //
+            // Recreate the phone column (assuming it was a string and nullable)
+            $table->string('phone')->nullable()->after('email'); // Adjust the position with `after()` as needed
         });
-    }
+    }    
 };
