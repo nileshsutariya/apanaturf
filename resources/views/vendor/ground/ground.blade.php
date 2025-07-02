@@ -243,22 +243,22 @@
                                 <div class="card-body p-3 pt-0" style="font-size: 12px;">
                                     <div class="header d-flex flex-wrap align-items-center justify-content-between gap-2 mb-3">
                                         <div id="tab-buttons" class="d-flex flex-wrap gap-2">
-                                            {{-- @if($turfs->isEmpty()) --}}
+                                            @if($turfs->isEmpty())
                                                 {{-- Initial state, optional placeholder --}}
-                                            {{-- @else --}}
+                                            @else
                                                 @foreach($turfs as $index => $turf)
                                                     <button type="button" class="turf-button turf-tab {{ $index === 0 ? 'active' : '' }}" data-tab="{{ $index }}">
                                                         {{ 'Turf-' . chr(65 + $index) }}
                                                     </button>
                                                 @endforeach
-                                            {{-- @endif --}}
+                                            @endif
                                         </div>
                                         <button type="button" class="add-button add-tab"><i class="fas fa-plus" style="font-size: 14px;"></i></button>
                                     </div>
                                     <div id="tab-contents">
-                                        {{-- @if($turfs->isEmpty()) --}}
+                                        @if($turfs->isEmpty())
                                             {{-- Empty initially, new content will be added dynamically --}}
-                                        {{-- @else --}}
+                                        @else
                                         @foreach($turfs as $index => $turf)
                                         @php
                                             $imageUrls = $turf->turf_images->map(fn($img) => asset('storage/' . $img->image_path))->toArray();
@@ -447,7 +447,7 @@
                                                 </div>
                                             </div>
                                         @endforeach
-                                        {{-- @endif --}}
+                                        @endif
                                     </div>
                                     
                                     <div class="modal fade" id="imageModal" tabindex="-1" role="dialog">
@@ -535,7 +535,7 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="{{ asset('venton/libs/choices.js/public/assets/scripts/choices.min.js') }}"></script>
 
-{{-- <script>
+<script>
     let turfIndex = {{ $turfs->count() }};
 
     $('.add-tab').on('click', function () { 
@@ -729,7 +729,7 @@
         turfIndex++;
     });
 
-</script> --}}
+</script>
 
 <script>
     function showTurfErrors(errors) {
