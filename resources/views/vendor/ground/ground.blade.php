@@ -1,15 +1,7 @@
 @include('vendor.layouts.header')
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css">
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <style>
-    .choices__list{
-        padding-left: 8px; 
-    }
-    .swal2-title {
-        font-size: 15px !important;
-        font-weight: 500;
-    }
     input, textarea {
         color: #706d6d;
         background: #f4f6f8;
@@ -243,31 +235,20 @@
                                 <div class="card-body p-3 pt-0" style="font-size: 12px;">
                                     <div class="header d-flex flex-wrap align-items-center justify-content-between gap-2 mb-3">
                                         <div id="tab-buttons" class="d-flex flex-wrap gap-2">
-                                            @if($turfs->isEmpty())
-                                                {{-- Initial state, optional placeholder --}}
-                                            @else
-                                                @foreach($turfs as $index => $turf)
-                                                    <button type="button" class="turf-button turf-tab {{ $index === 0 ? 'active' : '' }}" data-tab="{{ $index }}">
-                                                        {{ 'Turf-' . chr(65 + $index) }}
-                                                    </button>
-                                                @endforeach
-                                            @endif
+                                            @foreach($turfs as $index => $turf)
+                                                <button type="button" class="turf-button turf-tab {{ $index === 0 ? 'active' : '' }}" data-tab="{{ $index }}">
+                                                    {{ 'Turf-' . chr(65 + $index) }}
+                                                </button>
+                                            @endforeach
                                         </div>
                                         <button type="button" class="add-button add-tab"><i class="fas fa-plus" style="font-size: 14px;"></i></button>
                                     </div>
                                     <div id="tab-contents">
-                                        @if($turfs->isEmpty())
-                                            {{-- Empty initially, new content will be added dynamically --}}
-                                        @else
                                         @foreach($turfs as $index => $turf)
                                         @php
                                             $imageUrls = $turf->turf_images->map(fn($img) => asset('storage/' . $img->image_path))->toArray();
                                         @endphp
                                             <div class="turf-content" data-tab="{{ $index }}" style="{{ $index === 0 ? '' : 'display:none;' }}">
-                                                <div class="alert alert-danger turf-alert d-none" role="alert"
-                                                    style="background-color: rgb(240, 201, 201); opacity: 0.9; border:none; color: rgb(99, 4, 4);">
-                                                    <ul class="turf-error-list mb-0"></ul>
-                                                </div>
                                                 <input type="hidden" name="turfs[{{ $index }}][id]" value="{{ $turf->id }}">
                                                 <div class="row">
                                                     <div class="col-md-5 p-3">
@@ -275,6 +256,7 @@
                                                             <div class="form-group">
                                                                 <label>Turf Name</label>
                                                                 <input name="turfs[{{ $index }}][name]" value="{{ $turf->name }}" placeholder="Turf Name" multiple>
+                                                                <div class="invalid-feedback d-block turf-error" data-name="turfs[{{ $index }}][name]"></div>
                                                             </div>
                                                             <div class="form-group">
                                                                 <div class="section-header d-flex align-items-center justify-content-between flex-wrap mb-2">
@@ -447,7 +429,6 @@
                                                 </div>
                                             </div>
                                         @endforeach
-                                        @endif
                                     </div>
                                     
                                     <div class="modal fade" id="imageModal" tabindex="-1" role="dialog">
@@ -534,260 +515,17 @@
 </div>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="{{ asset('venton/libs/choices.js/public/assets/scripts/choices.min.js') }}"></script>
-
-<script>
-    let turfIndex = {{ $turfs->count() }};
-
-    $('.add-tab').on('click', function () { 
-        const tabLabel = 'Turf-' + String.fromCharCode(65 + turfIndex);
-
-        $('#tab-buttons').append(`
-            <button type="button" class="turf-button turf-tab" data-tab="${turfIndex}">${tabLabel}</button>
-        `);
-
-        $('#tab-contents').append(`
-            <div class="turf-content" data-tab="${turfIndex}">
-                <div class="alert alert-danger turf-alert d-none" style="background-color: rgb(240, 201, 201); opacity: 0.9; border:none; color: rgb(99, 4, 4);">
-                    <ul class="turf-error-list mb-0"></ul>
-                </div>
-                <input type="text" name="turfs[${turfIndex}][id]" value="">
-                <div class="row">
-                    <div class="col-md-5 p-3">
-                        <!-- Minimal example fields -->
-                        <div class="form-group">
-                            <label>Turf Name</label>
-                            <input name="turfs[${turfIndex}][name]" placeholder="Turf Name">
-                        </div>
-                        <div class="form-group">
-                            <div class="section-header d-flex align-items-center justify-content-between flex-wrap mb-2">
-                                <label>Sports</label>
-                                <button type="button" class="btn btn-sm" data-toggle="modal" data-target="#addSportModal">
-                                    <i class="fas fa-plus"></i>
-                                </button>
-                            </div>
-                            <div class="tags sportlist d-flex flex-wrap gap-1">
-                                <!-- Dynamic sports tags will be added here -->
-                            </div>
-                        </div>
-                        <div class="form-group">
-                                    <div class="section-header d-flex align-items-center justify-content-between flex-wrap mb-2">
-                                        <label>Amenities</label>
-                                        <button type="button" class="btn btn-sm" data-toggle="modal" data-target="#addAmenityModal">
-                                            <i class="fas fa-plus"></i>
-                                        </button>
-                                    </div>
-                                    <div class="tags amenitylist d-flex flex-wrap gap-1">
-                                        <!-- Dynamic amenities tags will be added here -->
-                                    </div>
-                                </div>
-                                <div class="form-group mt-4">
-                                    <label><i class="fas fa-map-marker-alt"></i> Locations (link)</label>
-                                    <input type="text" name="turfs[${turfIndex}][location_link]" placeholder="Location Link">
-                                </div>
-                                <div class="form-group mt-3">
-                                    <label><i class="fas fa-map-marker-alt"></i> Locations (text)</label>
-                                    <input name="turfs[${turfIndex}][location_text]" placeholder="Location Text">
-                                </div>
-                            </div>
-                        
-                        <div class="col-md-7 p-3">
-                            <div>Your Turf Images</div>
-                            <div class="d-flex mt-3 mb-4 upload imagePreviewContainer" id="imagePreviewContainer-${turfIndex}">
-                                <label class="uploadinput"
-                                    for="uploadInput-${turfIndex}"
-                                    style="width: 100px; height: 90px; border: 2px dashed #706d6d; border-radius: 10px; display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer;">
-                                    <img src="{{ asset('assets/image/client/gallery-add.svg') }}" alt="dashboard"
-                                        style="cursor: pointer; height: 25px; width: 25px;">
-                                    <span style="font-size: 7px; color: #cac9c9; margin-top: 7px;">Upload image</span>
-                                    <input type="file"
-                                        id="uploadInput-${turfIndex}"
-                                        style="display: none;"
-                                        name="turfs[${turfIndex}][turf_images][]"
-                                        multiple
-                                        onchange="onTurfImageChange(${turfIndex})">
-                                </label>
-                                <div class="d-flex flex-wrap turfimages" id="turfImagesContainer-${turfIndex}">
-                                    <!-- Image Preview Container -->
-                                </div>
-                            </div>
-                            <div class="hlw-container">
-                                <input type="text" class="box" name="turfs[${turfIndex}][height]" placeholder="Height">
-                                <div class="multiply">×</div>
-                                <input type="text" class="box" name="turfs[${turfIndex}][width]" placeholder="Width">
-                                <div class="multiply">×</div>
-                                <input type="text" class="box" name="turfs[${turfIndex}][length]" placeholder="Length">
-                            </div>
-                            <div class="form-group mt-4">
-                                <div class="row align-items-center g-2">
-                                    <div class="col-12 col-sm-auto">
-                                        <span style="font-size: 13px;">Price of Booking:</span>
-                                    </div>
-                                    <div class="col-12 col-sm">
-                                        <div class="input-group">
-                                            <input type="text"
-                                                name="turfs[${turfIndex}][booking_price]"
-                                                placeholder="₹00.00"
-                                                class="form-control turfinput"
-                                                style="color: #706d6d; background: #f4f6f8; border: none !important;">
-                                            <select name="turfs[${turfIndex}][unit]" class="form-select" style="max-width: 120px;">
-                                                <option value="Hour" selected>Hour</option>
-                                                <option value="Day">Day</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group mt-4">
-                                <label class="label">Descriptions</label>
-                                <textarea name="turfs[${turfIndex}][description]" placeholder="Description"></textarea>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="modal fade" id="imageModal" tabindex="-1" role="dialog">
-                    <div class="modal-dialog modal-dialog-centered" role="document">
-                        <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title">Uploaded Images</h5>
-                            <button type="button" class="close" data-dismiss="modal">
-                            <span>&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body d-flex flex-wrap" id="modalImageList"></div>
-                        <input type="hidden" name="removed_existing_images[]">
-
-                        </div>
-                    </div>
-                </div>
-
-                <div class="modal fade" id="addSportModal" tabindex="-1" role="dialog" aria-labelledby="addSportModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title">Add Sport</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span>&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <select id="sportsDropdown" class="form-select" multiple
-                                        data-choices data-choices-removeItem data-placeholder="Select Sports">
-                                    @foreach($allSports as $sport)
-                                        <option value="{{ $sport->id }}"
-                                                data-image="{{ asset('storage/' . $sport->image->image_path) }}"
-                                                data-name="{{ $sport->name }}">
-                                            {{ $sport->name }}
-                                        </option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-sm btn-success" onclick="addSport()">Add Sport</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="modal fade" id="addAmenityModal" tabindex="-1" role="dialog" aria-labelledby="addAmenityModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title">Add Amenity</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span>&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <select id="amenityDropdown" class="form-select" multiple
-                                        data-choices data-choices-removeItem data-placeholder="Select Amenities">
-                                    @foreach($allAmenities as $amenity)
-                                        <option value="{{ $amenity->id }}"
-                                                data-image="{{ asset('storage/' . $amenity->image->image_path) }}"
-                                                data-name="{{ $amenity->name }}">
-                                            {{ $amenity->name }}
-                                        </option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-sm btn-success" onclick="addAmenity()">Add Amenity</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-        `);
-
-        // Switch to new tab
-        $('.turf-tab').removeClass('active');
-        $(`.turf-tab[data-tab="${turfIndex}"]`).addClass('active');
-
-        $('.turf-content').hide();
-        $(`.turf-content[data-tab="${turfIndex}"]`).show();
-
-        turfIndex++;
-    });
-
-</script>
-
 <script>
     function showTurfErrors(errors) {
         $('.turf-error').html('');
 
-        Object.entries(errors).forEach(([key, messages]) => {
-            const fieldDiv = $(`.turf-error[data-name="${key}"]`);
-            if (fieldDiv.length) {
-                fieldDiv.html(messages[0]);
-            }
-        });
-    }
-
-    $('#turfForm').on('submit', function(e) {
-        e.preventDefault();
-
-        const form = $(this);
-        const formData = new FormData(this);
-
-        $('.turf-error').text('');
-        $('.turf-alert').addClass('d-none');
-        $('.turf-error-list').empty();
-
-        $.ajax({
-            type: "POST",
-            url: form.attr('action'),
-            data: formData,
-            contentType: false,
-            processData: false,
-            success: function(response) {
-                // alert('saved');
-            },
-            error: function(xhr) {
-                if (xhr.status === 422) {
-                    const errors = xhr.responseJSON.errors;
-
-                    $.each(errors, function(key, messages) {
-                        const match = key.match(/^turfs\.(\d+)\./);
-                        const turfIndex = match ? match[1] : null;
-
-                        if (turfIndex !== null) {
-                            const alertBox = $(`.turf-content[data-tab="${turfIndex}"] .turf-alert`);
-                            const errorList = alertBox.find('.turf-error-list');
-
-                            messages.forEach(msg => {
-                                errorList.append(`<li>${msg}</li>`);
-                            });
-
-                            alertBox.removeClass('d-none');
-                        }
-
-                        const safeKey = key.replace(/\.(\d+)\./g, '[$1][').replace(/\./g, ']') + ']';
-                        $(`.turf-error[data-name="${safeKey}"]`).text(messages[0]);
-                    });
+            Object.entries(errors).forEach(([key, messages]) => {
+                const fieldDiv = $(`.turf-error[data-name="${key}"]`);
+                if (fieldDiv.length) {
+                    fieldDiv.html(messages[0]);
                 }
-            }
-        });
-    });
+            });
+        }
 
     $(document).ready(function () {
         $.ajaxSetup({
@@ -799,6 +537,7 @@
 
             let formData = new FormData(this);
 
+            // Append turf image files if managed separately
             if (typeof turfImageFiles !== 'undefined') {
                 Object.entries(turfImageFiles).forEach(([tabIndex, files]) => {
                     files.forEach((file, i) => {
@@ -807,15 +546,16 @@
                 });
             }
 
+            // Sanitize removed_existing_images
             let removedImageIds = formData.getAll('removed_existing_images[]');
             formData.delete('removed_existing_images[]');
             removedImageIds.forEach(id => {
-                const integerId = parseInt(id, 10); 
-                if (!isNaN(integerId)) {
-                    formData.append('removed_existing_images[]', integerId);
+                if (!isNaN(id) && Number.isInteger(+id)) {
+                    formData.append('removed_existing_images[]', id);
                 }
             });
 
+            // Clear old errors
             $('.turf-error').text('');
 
             $.ajax({
@@ -825,50 +565,42 @@
                 processData: false,
                 contentType: false,
                 success(res) {
-                    Swal.fire({
-                        toast: true,
-                        position: 'top-end',
-                        icon: 'success',
-                        title: 'Turf Saved Successfully!',
-                        showConfirmButton: false,
-                        timer: 3000,
-                        timerProgressBar: true,
-                    }).then(() => {
-                        location.reload(); 
-                    });
+                    alert('Turfs saved successfully!');
+                    location.reload(); // Or redirect
                 },
                 error(xhr) {
                     if (xhr.status === 422) {
                         const errors = xhr.responseJSON.errors;
-                        // console.log(errors);
+                        console.log("RAW Errors:", errors);
 
-                        Object.entries(errors).forEach(([field, messages]) => {
-                            const errorText = messages.join(', ');
-                            const bracketField = field.replace(/\.(\d+)\./g, '[$1][').replace(/\.(\w+)$/, '][$1]');
-                            const selector = `.turf-error[data-name="${bracketField}"]`;
-                            $(selector).text(errorText);
-                        });
 
-                        const firstError = Object.keys(errors)[0];
-                        if (firstError) {
-                            const bracketField = firstError.replace(/\.(\d+)\./g, '[$1][').replace(/\.(\w+)$/, '][$1]');
-                            const $field = $(`[name="${bracketField}"]`);
-                            if ($field.length) {
-                                $('html, body').animate({
-                                    scrollTop: $field.offset().top - 120
-                                }, 400);
-                            }
-                        }
-                    } else {
-                        alert('An unexpected error occurred.');
-                        console.error(xhr);
-                    }
-                }
+        Object.entries(errors).forEach(([field, messages]) => {
+            const errorText = messages.join(', ');
+            const bracketField = field.replace(/\.(\d+)\./g, '[$1][').replace(/\.(\w+)$/, '][$1]');
+            const selector = `.turf-error[data-name="${bracketField}"]`;
+            $(selector).text(errorText);
+        });
+
+        const firstError = Object.keys(errors)[0];
+        if (firstError) {
+            const bracketField = firstError.replace(/\.(\d+)\./g, '[$1][').replace(/\.(\w+)$/, '][$1]');
+            const $field = $(`[name="${bracketField}"]`);
+            if ($field.length) {
+                $('html, body').animate({
+                    scrollTop: $field.offset().top - 120
+                }, 400);
+            }
+        }
+    } else {
+        alert('An unexpected error occurred.');
+        console.error(xhr);
+    }
+}
+
             });
         });
     });
 </script>
-
 
 
 <script>
@@ -1317,7 +1049,6 @@
     
     }
 </script>
-
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
