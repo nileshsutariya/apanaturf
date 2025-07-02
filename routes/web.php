@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\admin\CityController;
+use App\Http\Controllers\admin\TurfController;
+use App\Http\Controllers\Vendor\BookingController;
+use App\Http\Controllers\Vendor\GroundController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\admin\AreaController;
 use App\Http\Controllers\admin\LoginController;
@@ -13,8 +17,7 @@ use App\Http\Controllers\admin\AmenitiesController;
 use App\Http\Controllers\admin\PermissionsController;
 use App\Http\Controllers\Vendor\VendorLoginController;
 use App\Http\Controllers\admin\PermissionGroupController;
-
-
+    
 
 Route::prefix('vendor')->group(function () {
 
@@ -28,6 +31,17 @@ Route::prefix('vendor')->group(function () {
     Route::middleware('vendor.login')->group(function () {
         Route::post('/logout', [VendorLoginController::class, 'logout'])->name('vendor.logout');
         Route::get('/dashboard', [VendorLoginController::class, 'dashboard'])->name('vendor.dashboard');
+    
+        Route::prefix('/ground')->controller(GroundController::class)->name('ground.')->group(function () {
+            Route::get('/', 'index')->name('index');
+            Route::post('/store', 'store')->name('store');
+        });
+        
+        Route::prefix('/booking')->controller(BookingController::class)->name('booking.')->group(function () {
+            Route::get('/', 'index')->name('index');
+            Route::post('/store', 'store')->name('store');
+        });
+
     });
 });
 
@@ -41,6 +55,20 @@ Route::prefix('admin')->group(function () {
         Route::get('/unauthorized', [loginController::class, 'unauthorized'])->name('unauthorized');
         Route::get('/dashboard', [loginController::class, 'dashboard'])->name('admin.dashboard');
         Route::get('/logout', [loginController::class, 'logout'])->name('logout');
+
+        Route::prefix('/vendor')->controller(VenuesController::class)->name('vendor.')->group(function () {
+            Route::post('/approve', 'approve')->name('approve');
+            Route::post('/disapprove', 'disapprove')->name('disapprove');
+            Route::get('/view/{venue:uuid}', 'view')->name('view');
+        });
+
+        Route::prefix('/turf')->controller(TurfController::class)->name('turf.')->group(function () {
+            Route::get('/', 'index')->name('index');
+            Route::get('/view/{id}', 'view')->name('view');
+            Route::post('/approve', 'approve')->name('approve');
+            Route::post('/disapprove', 'disapprove')->name('disapprove');
+        });
+
         Route::middleware('check.permission')->group(function () {
 
             Route::prefix('/customer')->controller(CustomerController::class)->name('customer.')->group(function () {
@@ -49,7 +77,6 @@ Route::prefix('admin')->group(function () {
             });
             Route::prefix('/permission')->controller(PermissionsController::class)->name('permission.')->group(function () {
                 Route::get('/', 'index')->name('index');
-                Route::post('/delete', 'delete')->name('delete');
                 Route::post('/store', 'store')->name('store');
                 Route::post('/delete', 'delete')->name('delete');
             });
@@ -58,10 +85,17 @@ Route::prefix('admin')->group(function () {
                 Route::post('/store', 'store')->name('store');
                 Route::post('/delete', 'delete')->name('delete');
             });
-            Route::prefix('/venues')->controller(VenuesController::class)->name('venues.')->group(function () {
+            Route::prefix('/city')->controller(CityController::class)->name('city.')->group(function () {
                 Route::get('/', 'index')->name('index');
                 Route::post('/store', 'store')->name('store');
                 Route::post('/delete', 'delete')->name('delete');
+            });
+            Route::prefix('/vendor')->controller(VenuesController::class)->name('vendor.')->group(function () {
+                Route::get('/', 'index')->name('index');
+                Route::post('/store', 'store')->name('store');
+                Route::post('/delete', 'delete')->name('delete');
+                Route::post('/approve', 'approve')->name('approve');
+                Route::post('/disapprove', 'disapprove')->name('disapprove');
             });
             Route::prefix('/permissiongroup')->controller(PermissionGroupController::class)->name('permissiongroup.')->group(function () {
                 Route::get('/', 'index')->name('index');

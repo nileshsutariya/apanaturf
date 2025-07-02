@@ -93,6 +93,9 @@
     .pagination {
         margin-bottom: 0px;
     }
+    .choices__inner {
+        min-height: 0px;
+    }
 </style>
 <div class="container-fluid">
     <div class="row">
@@ -180,7 +183,8 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div id="formErrors" class="alert alert-danger d-none m-3">
-                <ul class="mb-0"></ul>
+                <ul clas
+                s="mb-0"></ul>
             </div>
             <div class="modal-body">
                 <form id="userForm" method="POST">
@@ -507,9 +511,6 @@
             );
         });
     });
-</script>
-
-<script>
 
     $(document).on('click', '.edituser', function () {
 

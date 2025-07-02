@@ -14,10 +14,20 @@ class Sports extends Model
     protected $fillable = [
         'name', 'image_id'
     ];
+    public function turf()
+    {
+        return $this->belongsTo(Turf::class);
+    }
     public function image()
     {
         return $this->belongsTo(Images::class, 'image_id');
     }
+
+
+
+
+
+    
     public static function sportslist()
     {
         return self::join('images', 'sports.image_id', '=', 'images.id')

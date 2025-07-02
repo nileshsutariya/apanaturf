@@ -7,25 +7,46 @@ use Illuminate\Database\Eloquent\Model;
 
 class Turf extends Model
 {
-
     protected $table = 'turf';
     protected $primaryKey = 'id';
+
+     protected $fillable = [
+        'name',
+        'sports_ids',
+        'amenities_ids',
+        'location_link',
+        'location_text',
+        // 'feature_image',
+        'turf_image',
+        'height',
+        'width',
+        'length',
+        // 'sessions',
+        'booking_price',
+        'unit',
+        'description',
+        'venue_id', 
+        'created_by'
+    ];
+    public function venue()
+    {
+        return $this->belongsTo(Venues::class, 'vendor_id', 'id');
+    }
     public function timings()
     {
         return $this->hasMany(TurfTiming::class, 'turf_id'); 
     }
     public function sports()
     {
-        return $this->belongsToMany(Sports::class, 'sports_ids'); 
+        return $this->hasMany(Sports::class); 
     }
-
     public function amenities()
     {
-        return $this->belongsToMany(Amenity::class, 'amenities_ids'); 
+        return $this->hasMany(Amenity::class); 
     }
     public function images()
     {
-        return $this->hasMany(Images::class, 'reference_id'); 
+        return $this->hasMany(Images::class); 
     }
     public function coupons()
     {

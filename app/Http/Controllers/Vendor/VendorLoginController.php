@@ -39,7 +39,7 @@ class VendorLoginController extends Controller
                     $query->where('owner_phone', $request->phone)
                         ->orWhere('vendor_id', $request->phone);
                 })
-                ->where('status', 1)
+                ->where('status', 2)
                 ->first();
 
         if ($vendor && Hash::check($request->password, $vendor->password)) {
@@ -99,7 +99,7 @@ class VendorLoginController extends Controller
                     $query->where('owner_phone', $request->phone)
                         ->orWhere('vendor_id', $request->phone);
                 })
-                ->where('status', 1)
+                ->where('status', 2)
                 ->first();
 
         if (!$vendor) {
@@ -142,7 +142,7 @@ class VendorLoginController extends Controller
                     $query->where('owner_phone', $request->vendorid)
                         ->orWhere('vendor_id', $request->vendorid);
                 })
-                ->where('status', 1)
+                ->where('status', 2)
                 ->first();
 
         if ($vendor) {
@@ -174,7 +174,7 @@ class VendorLoginController extends Controller
                 $query->where('owner_phone', $request->vendorid)
                     ->orWhere('vendor_id', $request->vendorid);
             })
-            ->where('status', 1)
+            ->where('status', 2)
             ->first();  
 
         if (!$vendor) {

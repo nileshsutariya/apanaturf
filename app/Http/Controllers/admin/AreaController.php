@@ -16,9 +16,9 @@ class AreaController extends Controller
         $city = DB::table('city')->get();
 
         $area = Area::leftJoin('city', 'area_code.city_id', '=', 'city.id')
-            ->select('area_code.*', 'city.city_name as city_name', 'city.id as city_id')
-            ->where('area', 'like', '%' . $request->search . '%')
-            ->orWhere('pincode', 'like', '%' . $request->search . '%')->paginate(10);
+                ->select('area_code.*', 'city.city_name as city_name', 'city.id as city_id')
+                ->where('area', 'like', '%' . $request->search . '%')
+                ->orWhere('pincode', 'like', '%' . $request->search . '%')->paginate(10);
 
         return $request->ajax() ? view('admin.area.area', compact('area', 'city'))->render() : view('admin.area.area', compact('area', 'city'));
     }
@@ -38,18 +38,10 @@ class AreaController extends Controller
     }
     public function delete(Request $request)
     {
-        $id = $request->id;
-        if (!$id) {
-            return response()->json(['error' => 'ID is required.'], 400);
+        $area = Area::find($request->id);
+
+        return !$request->id ? response()->json(['error' => 'ID is required.'], 400) :
+                (!$area ? response()->json(['error' => 'Area not found.'], 404) :
+                ($area->delete() && response()->json(['success' => true])));
         }
-        $area = Area::find($id);
-
-        if (!$area) {
-            return response()->json(['error' => 'Permission group not found.'], 404);
-        }
-
-        $area->delete();
-
-        return response()->json(['success' => true]);
-    }
 }

@@ -1,16 +1,17 @@
 @include('admin.layouts.header')
 
-
-<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
-<!-- Responsive Extension -->
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
 <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.5.0/css/responsive.dataTables.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css" />
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
 <style>
+    #modalImage {
+        height: 300px;
+        width: 400px;
+    }
     .swal2-title {
         font-size: 14px !important;
-        /* Adjust as needed */
         font-weight: 500;
     }
 
@@ -112,27 +113,25 @@
         }
     }
 </style>
+
 <div class="container-fluid">
     <div class="row">
         <div class="col-12">
             <div class="page-title-box">
-                <h4 class="mb-0 fw-semibold">Venues List</h4>
+                <h4 class="mb-0 fw-semibold">Vendor List</h4>
                 <ol class="breadcrumb mb-0">
-                    <li class="breadcrumb-item"><a href="javascript: void(0);">Venues</a></li>
-                    <li class="breadcrumb-item active">Venues List</li>
+                    <li class="breadcrumb-item"><a href="javascript: void(0);">Vendor</a></li>
+                    <li class="breadcrumb-item active">Vendor List</li>
                 </ol>
             </div>
         </div>
     </div>
-    <div class="card">
+    <div class="card" id="vendorTableWrapper">
         <div class="card-header d-flex flex-wrap justify-content-between align-items-center">
-            <h4 class="card-title flex-grow-1">All Venues List</h4>
-            {{-- @if(Auth::user() && Auth::user()->hasPermissionTo('venues.store'))
-            <!-- Check if user has permission --> --}}
+            <h4 class="card-title flex-grow-1">All Vendor List</h4>
             <a class="btn btn-sm btn-primary addvenues" data-bs-target="#venues">
-                Add venues
+                Add vendor
             </a>
-            {{-- @endif --}}
         </div>
         <div class="card-body pt-0">
             <div class="search">
@@ -141,64 +140,69 @@
             <div>
                 <table id="example" class="display responsive nowrap 2" style="width:100%">
                     <thead class="p-2">
+                        @php
+                            $users = Auth::user()->role_id;
+                        @endphp
                         <tr>
                             <th class="gridjs-th">Name</th>
                             <th class="gridjs-th">City</th>
                             <th class="gridjs-th">Place</th>
                             <th class="gridjs-th">Mobile No.</th>
                             <th class="gridjs-th">Type</th>
-                            <!-- <th class="gridjs-th">Balance</th> -->
+                            @if ($users != 3)
                             <th class="gridjs-th">Action</th>
+                            @endif
                         </tr>
                     </thead>
                     <tbody id="venuesdata">
                         @if(isset($venues))
                             @foreach ($venues as $value)
-                                                    <tr class="p-3">
-                                                        <td>
-                                                            {{ $value->owner_name }}
-                                                        </td>
-                                                        <td>
-                                                            {{ $value->city_name }}
-                                                        </td>
-                                                        <td>
-                                                            {{ $value->area_name }}
-                                                        </td>
-                                                        <td>
-                                                            {{ $value->owner_phone   }}
-                                                        </td>
-                                                        <td>
-                                                            <h4>
-                                                                @if ($value->status == 1)
-                                                                    <span class="badge badge-soft-info pt-1"
-                                                                        style="border-radius: 5px; font-size: 14px; height: 30px; width: 100px;">Active</span>
-                                                                @else
-                                                                    <span class="badge badge-soft-danger pt-1"
-                                                                        style="border-radius: 5px; font-size: 14px; height: 30px; width: 100px;">Deactive</span>
-                                                                @endif
-                                                            </h4>
-                                                        </td>
-                                                        <!-- <td>
-                                                                    {{ $value->balance }}
-                                                                </td> -->
-                                                        <td>
-                                                            <div class="d-flex gap-2">
-                                                                <a class="btn btn-soft-primary btn-sm editvenues" data-bs-target="#venues"
-                                                                    data-venues='@json($value)'>
-                                                                    <i class='bx bxs-pencil bx-xs'></i>
-                                                                </a>
-                                                                <button class="btn btn-soft-danger btn-sm" id="deletevenues"
-                                                                    value="{{ $value->id }}">
-                                                                    <i class='bx bxs-trash bx-xs'></i>
-                                                                </button>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
+                                <tr class="p-3">
+                                    <td>
+                                        {{ $value->owner_name }}
+                                    </td>
+                                    <td>
+                                        {{ $value->city_name }}
+                                    </td>
+                                    <td>
+                                        {{ $value->area_name }}
+                                    </td>
+                                    <td>
+                                        {{ $value->owner_phone }}
+                                    </td>
+                                    <td>
+                                        <h4>
+                                            @if ($value->status == 1)
+                                                <span class="badge badge-soft-warning pt-1"
+                                                    style="border-radius: 5px; font-size: 14px; height: 30px; width: 100px;">Pending</span>
+                                            @elseif ($value->status == 2)
+                                                <span class="badge badge-soft-info pt-1"
+                                                    style="border-radius: 5px; font-size: 14px; height: 30px; width: 100px;">Active</span>
+                                            @else
+                                                <span class="badge badge-soft-danger pt-1"
+                                                    style="border-radius: 5px; font-size: 14px; height: 30px; width: 100px;">Deactive</span>
+                                            @endif
+                                        </h4>
+                                    </td>
+                                    @if ($users != 3)
+                                    <td>
+                                        <div class="d-flex gap-2">
+                                            @php
+                                                $turfImagesJson = htmlspecialchars(json_encode($value->turf_images), ENT_QUOTES, 'UTF-8');
+                                            @endphp
+                                            <a class="btn btn-soft-secondary btn-sm viewVendor" href="{{route('vendor.view', encrypt($value->id))}}">
+                                                <i class="bi bi-eye-fill" style="font-size: medium"></i> 
+                                            </a>
+                                        </div>
+                                    </td>
+                                    @endif
+                                </tr>
                             @endforeach
                         @endif
                     </tbody>
                 </table>
             </div>
+            
             <div id="venuesWrapper">
                 <div class="mt-2">
                     {{ $venues->onEachSide(1)->links('pagination::bootstrap-5') }}
@@ -206,246 +210,265 @@
             </div>
         </div>
     </div>
-</div>
-<div class="modal fade" id="venues" tabindex="-1" aria-labelledby="venuesTitle" aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-scrollable">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title h4 " id="venuesTitle">Add New Venues</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div id="horizontalwizard" style="padding-left: 1.5rem;padding-right: 1.5rem;" class="mt-1">
-                <ul class="nav nav-pills nav-justified icon-wizard form-wizard-header bg-light p-1" role="tablist">
-                    <li class="nav-item" role="presentation" class="tab1">
-                        <a href="#basictab1" data-bs-toggle="tab" data-toggle="tab"
-                            class="nav-link rounded-0 py-2 active" aria-selected="true" role="tab">
-                            <iconify-icon icon="iconamoon:profile-circle-duotone" class="fs-26"></iconify-icon>
-                            Venues
-                        </a>
-                    </li>
-                    <li class="nav-item" role="presentation" class="tab2">
-                        <a href="#basictab2" data-bs-toggle="tab" data-toggle="tab" class="nav-link rounded-0 py-2"
-                            aria-selected="false" role="tab" tabindex="-1">
-                            <iconify-icon icon="iconamoon:profile-duotone" class="fs-26"></iconify-icon>
-                            Profile
-                        </a>
-                    </li>
-                </ul>
-            </div>
-            <div id="formErrors" class="alert alert-danger d-none m-3">
-                <ul class="mb-0"></ul>
-            </div>
-            <div class="modal-body pt-0">
-                <form id="venuesForm" method="POST">
-                    @csrf
-                    <input type="hidden" class="form-control" name="id" readonly>
-                    <div>
-                        <div class="tab-content mb-0">
-                            <div class="tab-pane active show" id="basictab1" role="tabpanel">
-                                <div class="d-flex topinfo">
-                                    <div>
-                                        <h4 class="fs-16 fw-semibold mb-1">Venues Information</h4>
-                                        <p class="text-muted">Setup your Venues information</p>
-                                    </div>
-                                    <div style="margin-left: auto;">
-                                        <p class="text-right " style="font-size: 18px;">Venues ID : <span
-                                                class="vendor_id_show" style="font-weight: 600;"></span> </p>
-                                        <input id="basicUser" type="hidden" class="form-control "
-                                            placeholder="Enter location in text" name="vendor_id">
-                                    </div>
-                                </div>
-                                <!-- <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="mb-3">
-                                            <label class="form-label" for="basicFname">Venues ID</label>
-                                            <input type="text" id="turfname" class="form-control" readonly>
-                                        </div>
-                                    </div>
-                                </div> -->
-                                <div class="row">
-                                    <div class="col-lg-6">
-                                        <div class="mb-3">
-                                            <label>City</label>
-                                            <select class="form-control cityselect" data-choices name="city"
-                                                id="choices-single-default">
-                                                <option value="">Select City</option>
-                                                @if (isset($city))
-                                                    @foreach ($city as $c)
-                                                        <option value="{{ $c->id }}">
-                                                            {{ $c->city_name }}
-                                                        </option>
-                                                    @endforeach
-                                                @endif
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6 arealist">
-                                        <div class="mb-3">
-                                            <label>Area</label>
-                                            <select class="form-control areaselect" data-choices name="area"
-                                                id="choices-single-default">
-                                                <option value="">Select Area</option>
-                                                @if (isset($area))
-                                                    @foreach ($area as $a)
-                                                        <option value="{{ $a->id }}">
-                                                            {{ $a->area }}
-                                                        </option>
-                                                    @endforeach
-                                                @endif
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <div class="mb-3">
-                                            <label for="basicUser" class="form-label">Location text</label>
-                                            <input id="basicUser" type="text" class="form-control"
-                                                placeholder="Enter location in text" name="location_text">
-                                        </div>
-                                    </div>
+    
+    <div class="modal fade" id="venues" tabindex="-1" aria-labelledby="venuesTitle" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title h4 " id="venuesTitle">Add New Venues</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div id="horizontalwizard" style="padding-left: 1.5rem;padding-right: 1.5rem;" class="mt-1">
+                    <ul class="nav nav-pills nav-justified icon-wizard form-wizard-header bg-light p-1" role="tablist">
+                        <li class="nav-item" role="presentation" class="tab1">
+                            <a href="#basictab1" data-bs-toggle="tab" data-toggle="tab"
+                                class="nav-link rounded-0 py-2 active" aria-selected="true" role="tab">
+                                <iconify-icon icon="iconamoon:profile-circle-duotone" class="fs-26"></iconify-icon>
+                                Venues
+                            </a>
+                        </li>
+                        <li class="nav-item" role="presentation" class="tab2">
+                            <a href="#basictab2" data-bs-toggle="tab" data-toggle="tab" class="nav-link rounded-0 py-2"
+                                aria-selected="false" role="tab" tabindex="-1">
+                                <iconify-icon icon="iconamoon:profile-duotone" class="fs-26"></iconify-icon>
+                                Profile
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div id="formErrors" class="alert alert-danger d-none m-3">
+                    <ul class="mb-0"></ul>
+                </div>
+                <div class="modal-body pt-0">
+                    <div id="formErrors" class="alert alert-danger d-none m-3">
+                        <ul class="mb-0"></ul>
+                    </div>
+                    <form id="venuesForm" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <input type="hidden" class="form-control" name="id" readonly>
+                        <div id="error-container"></div>
 
-                                    <div class="col-lg-6">
-                                        <div class="mb-3">
-                                            <label for="basicUser" class="form-label me-2">Map Location</label>
-                                            <div class="input-group">
-                                                <input id="clipboard_example" type="text" class="form-control copy"
-                                                    name="location_link"
-                                                    placeholder="https://maps.app.goo.gl/8pibjs1BtBRH5dLh7"
-                                                    style="height: 47.5px;" />
-                                                <button type="button" class="btn btn-light btn-copy-clipboard"
-                                                    onclick="copylink()"
-                                                    style="border: none; font-size: 20px; padding-bottom: 0px; padding-top: 0px; z-index: auto;"
-                                                    data-bs-toggle="tooltip" data-bs-placement="top" title="Copy"
-                                                    data-clipboard-target="#clipboard_example"> <i
-                                                        class="bi bi-link-45deg"></i>
-                                                </button>
+                        <div>
+                            <div class="tab-content mb-0">
+                                <div class="tab-pane active show" id="basictab1" role="tabpanel">
+                                    <div class="d-flex topinfo">
+                                        <div>
+                                            <h4 class="fs-16 fw-semibold mb-1">Venues Information</h4>
+                                            <p class="text-muted">Setup your Venues information</p>
+                                        </div>
+                                        <div style="margin-left: auto;">
+                                            <p class="text-right " style="font-size: 18px;">Venues ID : <span
+                                                    class="vendor_id_show" style="font-weight: 600;"></span> </p>
+                                            <input id="basicUser" type="hidden" class="form-control "
+                                                placeholder="Enter location in text" name="vendor_id">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <div class="mb-3">
+                                                <label>City</label>
+                                                <select class="form-control cityselect" data-choices name="city"
+                                                    id="choices-single-default">
+                                                    <option value="">Select City</option>
+                                                    @if (isset($city))
+                                                        @foreach ($city as $c)
+                                                            <option value="{{ $c->id }}">
+                                                                {{ $c->city_name }}
+                                                            </option>
+                                                        @endforeach
+                                                    @endif
+                                                </select>
+                                                @error('city')
+                                                    <small class="text-danger">{{ $message }}</small>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 arealist">
+                                            <div class="mb-3">
+                                                <label>Area</label>
+                                                <select class="form-control areaselect" data-choices name="area"
+                                                    id="choices-single-default">
+                                                    <option value="">Select Area</option>
+                                                    @if (isset($area))
+                                                        @foreach ($area as $a)
+                                                            <option value="{{ $a->id }}">
+                                                                {{ $a->area }}
+                                                            </option>
+                                                        @endforeach
+                                                    @endif
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="mb-3">
+                                                <label for="basicUser" class="form-label">Location text</label>
+                                                <input id="basicUser" type="text" class="form-control"
+                                                    placeholder="Enter location in text" name="location_text">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-6">
+                                            <div class="mb-3">
+                                                <label for="basicUser" class="form-label me-2">Map Location</label>
+                                                <div class="input-group">
+                                                    <input id="clipboard_example" type="text" class="form-control copy"
+                                                        name="location_link"
+                                                        placeholder="https://maps.app.goo.gl/8pibjs1BtBRH5dLh7"
+                                                        style="height: 47.5px;" />
+                                                    <button type="button" class="btn btn-light btn-copy-clipboard"
+                                                        onclick="copylink()"
+                                                        style="border: none; font-size: 20px; padding-bottom: 0px; padding-top: 0px; z-index: auto;"
+                                                        data-bs-toggle="tooltip" data-bs-placement="top" title="Copy"
+                                                        data-clipboard-target="#clipboard_example"> <i
+                                                            class="bi bi-link-45deg"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-12 col-sm-12" style="justify-items: center;">
+                                            <span style="font-weight: 500;">Turf Image</span><br>
+                                            <div id="turf-dropzone" class="dropzone p-0 mt-1">
+                                                <div class="fallback">
+                                                    <input type="file" name="turf_images[]" class="form-control" multiple>
+                                                </div>
+                                                <div class="dz-message needsclick">
+                                                    <i class="h1 bx bx-cloud-upload"></i>
+                                                    <h6>Drop files here or click to upload.</h6>
+                                                    <span class="text-muted fs-13">
+                                                        ( Kindly upload proper image formats such as .png, .jpg, .jpeg,
+                                                        .webp, or .svg.)
+                                                    </span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div><!-- end tab-pane -->
-                            <div class="tab-pane " id="basictab2" role="tabpanel">
-                                <div class="d-flex topinfo">
-                                    <div>
-                                        <h4 class="fs-16 fw-semibold mb-1">Profile Information</h4>
-                                        <p class="text-muted">Setup your profile information</p>
+                                <div class="tab-pane " id="basictab2" role="tabpanel">
+                                    <div class="d-flex topinfo">
+                                        <div>
+                                            <h4 class="fs-16 fw-semibold mb-1">Profile Information</h4>
+                                            <p class="text-muted">Setup your profile information</p>
+                                        </div>
+                                        <div style="margin-left: auto;">
+                                            <div class="form-check form-switch">
+                                                <label class="form-check-label" for="flexSwitchCheckChecked">Account
+                                                    Activate</label>
+                                                <input class="form-check-input" name="status" type="checkbox" role="switch"
+                                                    id="flexSwitchCheckChecked" checked>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div style="margin-left: auto;">
-                                        <div class="form-check form-switch">
-                                            <label class="form-check-label" for="flexSwitchCheckChecked">Account
-                                                Activate</label>
-                                            <input class="form-check-input" name="status" type="checkbox" role="switch"
-                                                id="flexSwitchCheckChecked" checked>
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <div class="mb-3">
+                                                <label class="form-label" for="basicFname">Name</label>
+                                                <input type="text" id="turfname" name="name" class="form-control"
+                                                    placeholder="Enter Your Name">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="mb-3">
+                                                <label for="basicEmail" class="form-label">Email</label>
+                                                <input id="basicEmail" name="email" type="email" class="form-control"
+                                                    placeholder="Enter your email">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="mb-2">
+                                                <label class="form-label" for="basicLname">Moblie Number</label>
+                                                <input type="text" id="basicLname" name="mobileno" class="form-control"
+                                                    placeholder="Enter Moblie No."
+                                                    oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                                            </div>
+                                        </div><!-- end col -->
+                                    </div>
+                                    <div class="uploadfiles">
+                                        <hr>
+                                        <p style="text-align:center; font-size: larger;">
+                                            <strong> Upload Documents </strong>
+                                        </p>
+                                        <hr>
+                                    </div><!-- end row -->
+                                    <div class="row uploadfiles">
+                                        <div class="col-lg-4 col-md-12 col-sm-12 " style="justify-items: center;">
+                                            <span style="font-weight: 500;">Profile Image</span><br>
+                                            <div id="your-dropzone" class="dropzone p-0 mt-1">
+                                                <div class="fallback">
+                                                    <input type="file" name="profile_image" class="form-control">
+                                                </div>
+                                                <div class="dz-message needsclick">
+                                                    <i class="h1 bx bx-cloud-upload"></i>
+                                                    <h6>Drop files here or click to upload.</h6>
+                                                    <span class="text-muted fs-13">
+                                                        ( Kindly upload proper image formats such as .png, .jpg, .jpeg,
+                                                        .webp, or .svg.)
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-12 col-sm-12 " style="justify-items: center;">
+                                            <span style="font-weight: 500;">Pancard Card Image</span><br>
+                                            <div id="pancard-dropzone" class="dropzone p-0 mt-1">
+                                                <div class="fallback">
+                                                    <input type="file" name="pancard_image" class="form-control">
+                                                </div>
+                                                <div class="dz-message needsclick">
+                                                    <i class="h1 bx bx-cloud-upload"></i>
+                                                    <h6>Drop files here or click to upload.</h6>
+                                                    <span class="text-muted fs-13">
+                                                        ( Kindly upload proper image formats such as .png, .jpg, .jpeg,
+                                                        .webp, or .svg.)
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-12 col-sm-12" style="justify-items: center;">
+                                            <span style="font-weight: 500;">Aadhaar Card Image</span><br>
+                                            <div id="aadhaar-dropzone" class="dropzone p-0 mt-1">
+                                                <div class="fallback">
+                                                    <input type="file" name="aadhaar_image" class="form-control">
+                                                </div>
+                                                <div class="dz-message needsclick">
+                                                    <i class="h1 bx bx-cloud-upload"></i>
+                                                    <h6>Drop files here or click to upload.</h6>
+                                                    <span class="text-muted fs-13">
+                                                        ( Kindly upload proper image formats such as .png, .jpg, .jpeg,
+                                                        .webp, or .svg.)
+                                                    </span>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-lg-6">
-                                        <div class="mb-3">
-                                            <label class="form-label" for="basicFname">Name</label>
-                                            <input type="text" id="turfname" name="name" class="form-control"
-                                                placeholder="Enter Your Name">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <div class="mb-3">
-                                            <label for="basicEmail" class="form-label">Email</label>
-                                            <input id="basicEmail" name="email" type="email" class="form-control"
-                                                placeholder="Enter your email">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <div class="mb-2">
-                                            <label class="form-label" for="basicLname">Moblie Number</label>
-                                            <input type="text" id="basicLname" name="mobileno" class="form-control"
-                                                placeholder="Enter Moblie No."
-                                                oninput="this.value = this.value.replace(/[^0-9]/g, '')">
-                                        </div>
-                                    </div><!-- end col -->
-                                </div>
-                                <div class="uploadfiles">
-                                    <hr>
-                                    <p style="text-align:center; font-size: larger;"><strong> Upload Documents </strong>
-                                    </p>
-                                    <hr>
-                                </div><!-- end row -->
-                                <div class="row uploadfiles">
-                                    <div class="col-lg-4 col-md-12 col-sm-12 " style="justify-items: center;">
-                                        <span style="font-weight: 500;">Profile Image</span><br>
-                                        <div id="your-dropzone" class="dropzone p-0 mt-1">
-                                            <div class="fallback">
-                                                <input type="file" name="profile_image" class="form-control">
-                                            </div>
-                                            <div class="dz-message needsclick">
-                                                <i class="h1 bx bx-cloud-upload"></i>
-                                                <h6>Drop files here or click to upload.</h6>
-                                                <span class="text-muted fs-13">
-                                                    ( Kindly upload proper image formats such as .png, .jpg, .jpeg,
-                                                    .webp, or .svg.)
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4 col-md-12 col-sm-12 " style="justify-items: center;">
-                                        <span style="font-weight: 500;">Pancard Card Image</span><br>
-                                        <div id="pancard-dropzone" class="dropzone p-0 mt-1">
-                                            <div class="fallback">
-                                                <input type="file" name="pancard_image" class="form-control">
-                                            </div>
-                                            <div class="dz-message needsclick">
-                                                <i class="h1 bx bx-cloud-upload"></i>
-                                                <h6>Drop files here or click to upload.</h6>
-                                                <span class="text-muted fs-13">
-                                                    ( Kindly upload proper image formats such as .png, .jpg, .jpeg,
-                                                    .webp, or .svg.)
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4 col-md-12 col-sm-12" style="justify-items: center;">
-                                        <span style="font-weight: 500;">Aadhaar Card Image</span><br>
-                                        <div id="aadhaar-dropzone" class="dropzone p-0 mt-1">
-                                            <div class="fallback">
-                                                <input type="file" name="aadhaar_image" class="form-control">
-                                            </div>
-                                            <div class="dz-message needsclick">
-                                                <i class="h1 bx bx-cloud-upload"></i>
-                                                <h6>Drop files here or click to upload.</h6>
-                                                <span class="text-muted fs-13">
-                                                    ( Kindly upload proper image formats such as .png, .jpg, .jpeg,
-                                                    .webp, or .svg.)
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> <!-- end row -->
-                    </div><!-- end tab-pane -->
-                </form>
-            </div>
-            <div class="model-footer p-2">
-                <div class="d-flex flex-wrap align-items-center wizard justify-content-between gap-3">
-                    <div class="back" id="back">
-                        <a href="javascript:void(0);" class="btn btn-soft-primary">
-                            Back
-                        </a>
-                    </div>
-                    <div class="last" id="next" style="margin-left:auto;">
-                        <a href="javascript:void(0);" class="btn btn-soft-primary">
-                            Next
-                        </a>
-                    </div>
-                    <div class="last" id="finish">
-                        <button class="btn btn-soft-primary savevenues">
-                            Finish
-                        </button>
+                            </div> <!-- end row -->
+                        </div>
+                    </form>
+                </div>
+                <div class="model-footer p-2">
+                    <div class="d-flex flex-wrap align-items-center wizard justify-content-between gap-3">
+                        <div class="back" id="back">
+                            <a href="javascript:void(0);" class="btn btn-soft-primary">
+                                Back
+                            </a>
+                        </div>
+                        <div class="last" id="next" style="margin-left:auto;">
+                            <a href="javascript:void(0);" class="btn btn-soft-primary">
+                                Next
+                            </a>
+                        </div>
+                        <div class="last" id="finish">
+                            <button class="btn btn-soft-primary savevenues">
+                                Finish
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
+
+</div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
@@ -456,8 +479,17 @@
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         Dropzone.autoDiscover = false;
-
         Dropzone.instances.forEach(dz => dz.destroy());
+
+        turfDZ = new Dropzone("#turf-dropzone", {
+            url: "#", 
+            maxFiles: 10,
+            autoProcessQueue: false,
+            clickable: true,
+            addRemoveLinks: true,
+            acceptedFiles: "image/*",
+            parallelUploads: 10
+        });
 
         imageDZ = new Dropzone("#your-dropzone", {
             url: "#",
@@ -489,6 +521,7 @@
         $('#venues').on('show.bs.modal', function () {
             $('#venuesForm input[type="file"]').val(null);
             imageDZ.removeAllFiles(true);
+            turfDZ.removeAllFiles(true);
             pancardDZ.removeAllFiles(true);
             aadhaarDZ.removeAllFiles(true);
         });
@@ -496,8 +529,63 @@
 </script>
 
 <script>
+    $(document).ready(function () {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $(document).on('click', '.approveVendor', function () {
+            // console.log("dcfvgbhnj");
+
+            var vendorId = $(this).val();
+
+            $.ajax({
+                url: '{{ route("vendor.approve") }}',
+                method: 'POST',
+                data: { id: vendorId },
+                success: function (response) {
+                    alert(response.message);
+                    location.reload(); 
+                },
+                error: function (xhr) {
+                    alert(xhr.responseJSON?.message || 'An error occurred.');
+                }
+            });
+        });
+    });
+    $(document).on('click', '.disapproveVendor', function () {
+        var vendorId = $(this).data('id');
+        console.log("Disapprove clicked:", vendorId);
+
+        if (!vendorId) {
+            alert("Vendor ID not found.");
+            return;
+        }
+
+        $.ajax({
+            url: '{{ route("vendor.disapprove") }}',
+            method: 'POST',
+            data: {
+                id: vendorId,
+                _token: '{{ csrf_token() }}'
+            },
+            success: function (response) {
+                alert(response.message);
+                location.reload();
+            },
+            error: function (xhr) {
+                alert(xhr.responseJSON?.message || 'An error occurred.');
+            }
+        });
+    });
+
+</script>
+
+<script>
     $(document).on('click', '.addvenues', function () {
-        var hasPermission = @json(Auth::user() && Auth::user()->hasPermissionTo('venues.store'));
+        var hasPermission = @json(Auth::user() && Auth::user()->hasPermissionTo('vendor.store'));
         if (hasPermission) {
             $('#venuesForm')[0].reset();
             $('#formErrors').addClass('d-none').find('ul').html('');
@@ -539,7 +627,7 @@
             var page = $(this).attr('href').split('page=')[1];
             var search = $('#search').val();
             $.ajax({
-                url: '{{ route(name: "venues.index") }}',
+                url: '{{ route(name: "vendor.index") }}',
                 type: 'GET',
                 data: {
                     page: page,
@@ -556,12 +644,16 @@
                 }
             });
         });
+
         $(document).on('click', '.savevenues', function (e) {
             e.preventDefault();
-
+            
             let form = $('#venuesForm')[0];
             let formData = new FormData(form);
 
+            turfDZ.getAcceptedFiles().forEach((file, index) => {
+                formData.append('turf_images[]', file);
+            });
             imageDZ.getAcceptedFiles().forEach((file) => {
                 formData.append('profile_image', file);
             });
@@ -575,7 +667,10 @@
             let venuesId = $('#venuesForm input[name="id"]').val();
 
             $.ajax({
-                url: '{{ route("venues.store") }}',
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                url: '{{ route("vendor.store") }}',
                 type: 'POST',
                 data: formData,
                 processData: false,
@@ -591,7 +686,7 @@
                         toast: true,
                         position: 'top-end',
                         icon: 'success',
-                        title: venuesId ? 'Venues Updated Successfully!' : 'Venues Saved Successfully!',
+                        title: venuesId ? 'Vendor Updated Successfully!' : 'Vendor Saved Successfully!',
                         showConfirmButton: false,
                         timer: 3000,
                         timerProgressBar: true,
@@ -613,18 +708,23 @@
                             $('#formErrors').fadeOut('slow');
                         }, 7000);
                     } else {
-                        alert("Something went wrong.");
+                         $('#error-container').html(`
+                            <div class="alert alert-danger">
+                                ${response.error} <br> Line: ${response.line}
+                            </div>
+                        `);
                     }
                 }
             });
         });
+
         $(document).on("input", "#search", function () {
             var search = $(this).val();
             $.ajax({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
-                url: "{{route('venues.index')}}",
+                url: "{{route('vendor.index')}}",
                 data: {
                     'search': search,
                 },
@@ -637,12 +737,13 @@
                 }
             });
         });
+
         $(document).on('click', '#deletevenues', function (e) {
             e.preventDefault();
             var id = $(this).val();
             // console.log(id);
             var search = $('#search').val();
-            var hasPermission = @json(Auth::user() && Auth::user()->hasPermissionTo('venues.delete'));
+            var hasPermission = @json(Auth::user() && Auth::user()->hasPermissionTo('vendor.delete'));
 
             if (!hasPermission) {
                 Swal.fire({
@@ -660,7 +761,7 @@
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
-                url: '{{  route('venues.delete') }}',
+                url: '{{  route('vendor.delete') }}',
                 type: 'POST',
                 data: {
                     id: id,
@@ -681,12 +782,11 @@
                     if (xhr.status === 422) {
                         console('all done')
                     } else {
-                        alert("Something went wrong.");
+                        // alert("Something went wrong.");
                     }
                 }
             });
         });
-
     });
 </script>
 
@@ -775,7 +875,6 @@
 
         $tabs.forEach((tab, index) => {
             tab.addEventListener("click", function () {
-                // Activate tab-pane
                 $('.tab-pane').removeClass('active show');
                 const targetId = this.getAttribute('href');
                 $(targetId).addClass('active show');

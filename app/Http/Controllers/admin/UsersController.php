@@ -15,32 +15,31 @@ class UsersController extends Controller
 {
     public function index(Request $request)
     {
-        $userQuery = User::leftJoin('role_type', 'users.role_id', '=', 'role_type.id')
+        $auth = auth()->user();
+        $query = User::leftJoin('role_type', 'users.role_id', '=', 'role_type.id')
             ->leftJoin('city', 'users.city_id', '=', 'city.id')
             ->select('users.*', 'role_type.name as role_name', 'role_type.id as role_id', 'city.id as city_id')
-            ->where(function ($q) use ($request) {
-                $q->where('users.name', 'like', '%' . $request->search . '%')
-                ->orWhere('users.phone', 'like', '%' . $request->search . '%')
-                ->orWhere('users.email', 'like', '%' . $request->search . '%')
-                ->orWhere('role_type.name', 'like', $request->search . '%');
+            ->where(function ($query) use ($request) {
+                $s = $request->search;
+                $query->where('users.name', 'like', "%$s%")
+                ->orWhere('users.phone', 'like', "%$s%")
+                ->orWhere('users.email', 'like', "%$s%")
+                ->orWhere('role_type.name', 'like', "$s%");
             });
 
-        if (auth()->user()->role_id == 2) {
-            $userQuery->where('users.city_id', auth()->user()->city_id)->where('users.role_id','3');
-        }
-        
-        $user = $userQuery->paginate(10);
+        if ($auth->role_id == 2) $query->where('users.created_by', $auth->id);
+        if ($auth->role_id == 3) $query->where('users.id', $auth->id);
 
+        $user = $query->paginate(10);
         $role = RoleType::all();
         $city = DB::table('city')->get();
         $area = $request->city ? Area::where('city_id', $request->city)->get() : Area::all();
-        if ($request->ajax()) {
-            return view('admin.users.users', compact('user', 'role', 'city', 'area'))->render();
-        } else {
-            return view('admin.users.users', compact('user', 'role', 'city', 'area'));
-        }
 
+        return $request->ajax()
+            ? view('admin.users.users', compact('user', 'role', 'city', 'area'))->render()
+            : view('admin.users.users', compact('user', 'role', 'city', 'area'));
     }
+
     public function store(Request $request)
     {
         // print_r($request->all());die;
@@ -58,6 +57,9 @@ class UsersController extends Controller
         $users->role_id = $request->role;
         $users->city_id = $request->city;
         $users->area_id = $request->area;
+        if (!$request->id) {
+            $users->created_by = Auth::id();
+        }
         $users->save();
         return redirect()->route('users.index');
     }

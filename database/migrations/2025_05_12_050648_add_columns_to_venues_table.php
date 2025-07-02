@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('owner_name')->after('id');
             $table->string('owner_email')->after('id');
             $table->string('owner_phone')->after('id');
-            $table->string('vendor_ID')->after('id');
+            $table->string('vendor_id')->after('id');
             $table->unsignedBigInteger('pancard')->after('location_text')->nullable();
             $table->unsignedBigInteger('Aadhaar_card')->after('pancard')->nullable();
             $table->unsignedBigInteger('vendor_image')->after('Aadhaar_card')->nullable();

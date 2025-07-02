@@ -29,25 +29,14 @@
      <script src="{{ asset('asset/js/config.js')}}"></script>
 </head>
 
-<body class="h-100 bg-auth">
+<body class="h-100 bg-auth" style="overflow-y: hidden;">
      <div class="d-flex flex-column h-100 p-3">
           <div class="d-flex flex-column flex-grow-1">
                <div class="row h-100 justify-content-center">
                     <div class="col-xxl-7">
                          <div class="row justify-content-center h-100">
                               <div class="col-lg-6 py-lg-5">
-                                   <div class="card mb-0 p-4 d-flex flex-column h-100 justify-content-center">
-                                        <div class="auth-logo mb-4">
-                                             <a href="index.html" class="logo-dark">
-                                                  <img src="{{ asset('asset/images/logo-dark.png')}}" height="24"
-                                                       alt="logo dark">
-                                             </a>
-
-                                             <a href="index.html" class="logo-light">
-                                                  <img src="{{ asset('asset/images/logo-light.png')}}" height="24"
-                                                       alt="logo light">
-                                             </a>
-                                        </div>
+                                   <div class="card mb-0 p-4 d-flex flex-column h-100 justify-content-center" style="max-width: 440px; margin: auto;">
 
                                         <h2 class="fw-bold fs-24">Sign In</h2>
 
@@ -55,14 +44,14 @@
                                              admin panel.</p>
 
                                         @if ($errors->any())
-                                                       <div class="alert alert-danger">
-                                                             @foreach ($errors->all() as $error)
-                                                                                 <div>
-                                                                                        {{ $error }}
-                                                                                 </div>
-                                                                           @endforeach
+                                             <div class="alert alert-danger">
+                                                  @foreach ($errors->all() as $error)
+                                                       <div>
+                                                            {{ $error }}
                                                        </div>
-                                                  @endif
+                                                  @endforeach
+                                             </div>
+                                        @endif
 
                                         <div class="mb-2">
                                              <form action="{{ route('logincheck') }}" class="authentication-form"

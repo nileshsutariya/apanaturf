@@ -14,7 +14,7 @@ class TurfSeeder extends Seeder
     public function run(): void
     {
         Turf::create([
-            'name'           => ' Hare Krishna',
+            'name'           => 'Hare Krishna',
             'sports_ids'     => json_encode([1]),
             'amenities_ids'  => json_encode([1]),
             'location_link'  => 'https://maps.app.goo.gl/LTh4tGYew8vY9W2b8',
@@ -27,6 +27,7 @@ class TurfSeeder extends Seeder
             'booking_price'  => '500.00',
             'unit'           => null,
             'description'    => 'abc',
+            'created_by'     => 1
         ]);
     }
 }

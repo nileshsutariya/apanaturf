@@ -108,7 +108,7 @@
                 <label for="phone" class="form-label">Phone No./ Vendor Id</label>
                 <input type="text" class="form-control" id="phone" name="phone" placeholder="Phone No. / Vendor ID" style="border: 2px solid #4B5768;">
             </div>
-            <div class="position-relative mb-3" id="passwordDiv">
+            <div class="position-relative" id="passwordDiv">
                 <label for="password" class="form-label d-flex">
                     Password
                     <small style="margin-left: auto;">
@@ -116,6 +116,7 @@
                     </small>
                 </label>
                 <div class="input-wrapper">
+                    
                     <i class="bi bi-eye-slash" id="toggle"></i>
                     <input type="password" class="form-control" id="password" name="password">
                 </div>
@@ -124,6 +125,9 @@
                 <input type="checkbox" class="form-check-input" name="rememberMe" id="rememberMe">
                 <label for="rememberMe" class="form-check-label">Keep me signed in</label>
             </div>
+            {{-- <small style="float: right; margin-bottom: 20px;">
+                <a href="#" id="forgotPasswordLink" style="color: #299D91; text-decoration: none; ">Forgot Password?</a>
+            </small> --}}
             <button type="button" class="btn btn-custom next-btn w-100" id="loginBtn">Login</button>
         </form>
     </div>

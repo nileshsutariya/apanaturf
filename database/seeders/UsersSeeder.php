@@ -12,12 +12,14 @@ class UsersSeeder extends Seeder
     public function run(): void
     {
         User::create([
-            'name'           => 'admin',
             'unique_id'     =>uniqid(),
+            'name'           => 'admin',
             'email'  => 'admin@mail.com',
             'phone'  => '7845127777',
-            'role_id'  => '1',
             'password'  => Hash::make('123456'),
+            'role_id'  => '1',
+            'city_id' => 2,
+            'area_id' => 3
         ]);
     }
 }

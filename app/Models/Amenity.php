@@ -12,6 +12,10 @@ class Amenity extends Model
     protected $fillable = [
         'name', 'image_id'
     ];
+    public function turf()
+    {
+        return $this->belongsTo(Turf::class);
+    }
     public function image()
     {
         return $this->belongsTo(Images::class, 'image_id');

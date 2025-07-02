@@ -12,7 +12,12 @@ class Venues extends Authenticatable
     protected $table = 'venues';
     protected $primaryKey = 'id';
     protected $fillable = [
-        'phone', 'password', 
+        'turf_image', 'owner_name', 'owner_phone', 'owner_email',
+        'vendor_image', 'vendor_id', 'city_id', 'area_id',
+        'location_link', 'location_text', 'status', 'created_by'
+    ];
+    protected $casts = [
+        'turf_image' => 'array',
     ];
     protected $hidden = [
         'password', 'remember_token',
@@ -20,5 +25,9 @@ class Venues extends Authenticatable
     public function coupons()
     {
         return $this->hasOne(Coupons::class, 'turf_id', 'turf_id');
+    }
+    public function turfImages()
+    {
+        return $this->hasMany(Images::class);
     }
 }

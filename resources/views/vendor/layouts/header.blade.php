@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
     <meta content="Coderthemes" name="author" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -15,8 +17,7 @@
 
     <link rel="stylesheet" href="{{asset('assets/libs/datatables.net-bs5/css/dataTables.bootstrap5.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/libs/datatables.net-buttons-bs5/css/buttons.bootstrap5.min.css')}}">
-    <link rel="stylesheet"
-        href="{{asset('assets/libs/datatables.net-responsive-bs5/css/responsive.bootstrap5.min.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/libs/datatables.net-responsive-bs5/css/responsive.bootstrap5.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/libs/datatables.net-select-bs5/css/select.bootstrap5.min.css')}}">
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -55,7 +56,6 @@
             margin-left: 0;
             transition: 0.3s;
         }
-
         .content.active {
             margin-left: 250px;
         }
@@ -63,11 +63,9 @@
             overflow: hidden;
             white-space: nowrap;
         }
-
         html[data-sidenav-size=condensed]:not([data-layout=topnav]) .sidenav-menu .sidebar-footer .footer-dot {
             overflow: hidden;
         }
-
         .sidebar-footer {
             position: sticky;
             bottom: 0;
@@ -185,7 +183,6 @@
                 flex-wrap: nowrap;
                 overflow-x: auto;
             }
-
             .custom-pagination .page-link {
                 padding: 5px 8px;
                 font-size: 12px;
@@ -196,10 +193,8 @@
 
 <body>
     <div class="wrapper">
-
         <div class="sidenav-menu" id="sidebar" style="background-color: rgb(24, 24, 24);">
             <div data-simplebar>
-
                 <ul class="side-nav">
                     <li class="side-nav-item">
                         <a href="{{route('vendor.dashboard')}}" class="side-nav-link">
@@ -209,7 +204,7 @@
                         </a>
                     </li>
                     <li class="side-nav-item">
-                        <a href="" class="side-nav-link">
+                        <a href="{{route('booking.index')}}" class="side-nav-link">
                             <span class="menu-icon"><img src="{{asset('assets/image/client/calendar.svg')}}"
                                     alt="bookings"></span>
                             <span class="menu-text mt-2"> Bookings </span>
@@ -244,6 +239,13 @@
                             <span class="menu-text mt-2">Coupons & Offers</span>
                         </a>
                     </li>
+                    <li class="side-nav-item">
+                        <a href="{{route('ground.index')}}" class="side-nav-link">
+                            <span class="menu-icon"><img src="{{asset('assets/image/client/ticket.svg')}}"
+                                    alt="coupons"></span>
+                            <span class="menu-text mt-2">Ground</span>
+                        </a>
+                    </li>
 
                     <li class="side-nav-item">
                         <form action="{{ route('vendor.logout') }}" method="POST" id="logoutForm" style="display: inline;">
@@ -272,8 +274,9 @@
                         </span>
                     </div>
 
-                    <div class="footer-content d-flex flex-column flex-grow-1">
-                        <span class="menu-text text-white" style="font-size: 14px;">Abhishek Guleria</span>
+                    <div class="footer-content d-flex flex-column flex-grow-1 ml-2" style="text-align: left !important;">
+                        <span class="menu-text text-white" style="font-size: 14px;">{{ ucfirst(auth('vendor')->user()->owner_name)}}</span>
+
                         <a href="" class="text-muted" style="font-size: 11px;">View Profile</a>
                     </div>
                     <div class="footer-dot text-white" style="font-size: 20px;">
@@ -292,7 +295,7 @@
                         <i class="mdi mdi-menu font-24"></i>
                     </button>
 
-                    <h5 class="m-3">Hello, Abhi</h5>
+                    <h5 class="m-3">Hello, {{ ucfirst(auth('vendor')->user()->owner_name) }}</h5>
                     <img src="{{ asset('assets/image/client/chevrons-right.svg') }}" alt="image">
                     <h6 id="currentDate" class="mt-2" style="color: #99a1a8;"></h6>
                     <div class="topbar-item d-none d-md-flex">
