@@ -30,14 +30,14 @@ class PermissionsController extends Controller
         });
 
         $routes = $routes->pluck('action.as')->all();
-        $permission = Permission::leftJoin('permissions_group', 'permissions.permission_group_id', '=', 'permissions_group.id')
+        $permission = Permission::leftJoin('permission_group', 'permissions.permission_group_id', '=', 'permission_group.id')
             ->leftJoin('users', 'permissions.user_id', '=', 'users.id')
-            ->select('permissions.*', 'permissions_group.name as group_name', 'users.name as user_name')
+            ->select('permissions.*', 'permission_group.name as group_name', 'users.name as user_name')
             ->where('users.role_id', '!=', 1)
             ->where(function ($query) use ($request) {
                 $query->where('permissions.name', 'like', '%' . $request->search . '%')
                     ->orWhere('users.name', 'like', '%' . $request->search . '%')
-                    ->orWhere('permissions_group.name', 'like', $request->search . '%');
+                    ->orWhere('permission_group.name', 'like', $request->search . '%');
             })->paginate(10);
         $users = User::all();
         $group = PermissionGroup::all();

@@ -52,8 +52,8 @@ class GroundController extends Controller
             'turfs.*.sports' => 'array',
             'turfs.*.amenities' => 'array',
             'turfs.*.turf_images.*' => 'image|mimes:jpeg,png,jpg,webp',
-            'removed_existing_images' => 'array',
-            'removed_existing_images.*' => 'integer|exists:images,id',
+            // 'removed_existing_images' => 'array',
+            // 'removed_existing_images.*' => 'integer|exists:images,id',
         ], [
             'turfs.*.name.required' => 'The turf name field is required.',
             'turfs.*.name.string' => 'The turf name must be a valid string.',

@@ -11,11 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('customer', function (Blueprint $table) {
-            
-            $table->unsignedBigInteger('profile_image')->after('balance')->nullable();
-            $table->foreign('profile_image')->references('id')->on('images');
-       
+        Schema::create('unit', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->timestamps();
         });
     }
 
@@ -24,8 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('customer', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('unit');
     }
 };

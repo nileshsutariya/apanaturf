@@ -14,13 +14,13 @@ class CustomerController extends Controller
     public function index(Request $request)
     {
         $customerQuery = customer::leftJoin('city', 'customer.city_id', '=', 'city.id')
-                        ->leftJoin('area_code', 'customer.area_id', '=', 'area_code.id')
+                        ->leftJoin('area', 'customer.area_id', '=', 'area.id')
                         ->select(
                             'customer.*',
                             'city.city_name',
                             'city.id as city_id',
-                            'area_code.area as area_name',
-                            'area_code.id as area_id'
+                            'area.area as area_name',
+                            'area.id as area_id'
                         )
                         ->where(function ($q) use ($request) {
                             $q->where('customer.name', 'like', '%' . $request->search . '%')

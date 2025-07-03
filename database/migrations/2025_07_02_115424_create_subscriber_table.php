@@ -11,8 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('coupons_and_offers', function (Blueprint $table) {
-            $table->string('type')->after('discount');
+        Schema::create('subscriber', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('customer_id');
+            $table->foreign('customer_id')->references('id')->on('customer');
+            $table->timestamps();
         });
     }
 
@@ -21,8 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('coupons_and_offers', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('subscriber');
     }
 };

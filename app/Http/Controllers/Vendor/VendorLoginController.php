@@ -32,7 +32,7 @@ class VendorLoginController extends Controller
         }
         $request->validate([
             'phone' => 'required',
-            'password' => 'required|min:8',
+            'password' => 'required|min:6',
         ]);
         
         $vendor = Venues::where(function ($query) use ($request) {

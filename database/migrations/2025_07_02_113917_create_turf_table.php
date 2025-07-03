@@ -18,13 +18,18 @@ return new class extends Migration
             $table->json('amenities_ids');
             $table->string('location_link');
             $table->string('location_text');
-            $table->json('turf_image');
+            $table->unsignedBigInteger('feature_image')->nullable();
+            $table->json('turf_image')->nullable();
             $table->float('height')->nullable();
             $table->float('width');
             $table->float('length');
-            $table->json('sessions');
+            $table->json('sessions')->nullable();
             $table->decimal('booking_price');  
-            $table->text('description');  
+            $table->string('unit')->nullable();  
+            $table->text('description')->nullable();  
+            $table->unsignedBigInteger('created_by')->nullable();
+            $table->unsignedBigInteger('vendor_id')->nullable();
+            $table->boolean('status')->comment('0 is Disapprove, 1 is Pending, 2 is Approve')->default(1);
             $table->timestamps();
         });
     }

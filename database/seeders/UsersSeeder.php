@@ -14,12 +14,10 @@ class UsersSeeder extends Seeder
         User::create([
             'unique_id'     =>uniqid(),
             'name'           => 'admin',
-            'email'  => 'admin@mail.com',
-            'phone'  => '7845127777',
+            'email'  => 'admin@gmail.com',
+            'phone'  => '1234567890',
             'password'  => Hash::make('123456'),
-            'role_id'  => '1',
-            'city_id' => 2,
-            'area_id' => 3
+            'role_id'  => 1,
         ]);
     }
 }

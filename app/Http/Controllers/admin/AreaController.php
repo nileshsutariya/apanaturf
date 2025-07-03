@@ -15,8 +15,8 @@ class AreaController extends Controller
     {
         $city = DB::table('city')->get();
 
-        $area = Area::leftJoin('city', 'area_code.city_id', '=', 'city.id')
-                ->select('area_code.*', 'city.city_name as city_name', 'city.id as city_id')
+        $area = Area::leftJoin('city', 'area.city_id', '=', 'city.id')
+                ->select('area.*', 'city.city_name as city_name', 'city.id as city_id')
                 ->where('area', 'like', '%' . $request->search . '%')
                 ->orWhere('pincode', 'like', '%' . $request->search . '%')->paginate(10);
 

@@ -11,9 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('city', function (Blueprint $table) {
+        Schema::create('customer_info', function (Blueprint $table) {
             $table->id();
-            $table->string('city_name');
+            $table->string('latitude');
+            $table->string('longitude');
+            $table->unsignedBigInteger('customer_id')->nullable();
+            $table->foreign('customer_id')->references('id')->on('customer');
+            $table->longText('fcm_token');
+            
             $table->timestamps();
         });
     }
@@ -23,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('city');
+        Schema::dropIfExists('customer_info');
     }
 };

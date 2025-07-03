@@ -2,6 +2,10 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css">
 
 <style>
+    .swal2-title {
+        font-size: 15px !important;
+        font-weight: 500;
+    }
     input, textarea {
         color: #706d6d;
         background: #f4f6f8;
@@ -226,6 +230,26 @@
 <div class="container py-4">
     <form action="{{ route('ground.store') }}" method="POST" enctype="multipart/form-data" id="turfForm">
         @csrf
+        @php
+            $turfs = $turfs ?? [];
+            if (count($turfs) === 0) {
+                $turfs[] = (object)[
+                    'id' => null,
+                    'name' => '',
+                    'sports_data' => [],
+                    'amenity_data' => [],
+                    'location_link' => '',
+                    'location_text' => '',
+                    'description' => '',
+                    'height' => '',
+                    'width' => '',
+                    'length' => '',
+                    'booking_price' => '',
+                    'unit' => '',
+                    'turf_images' => collect([]),
+                ];
+            }
+        @endphp
         <div id="turf-wrapper">
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12">
@@ -248,7 +272,11 @@
                                         @php
                                             $imageUrls = $turf->turf_images->map(fn($img) => asset('storage/' . $img->image_path))->toArray();
                                         @endphp
+
                                             <div class="turf-content" data-tab="{{ $index }}" style="{{ $index === 0 ? '' : 'display:none;' }}">
+                                                <div id="ajaxErrorAlert" class="alert alert-danger d-none" style="background-color: rgb(246, 193, 193); border: none; opacity: 0.9; color: rgb(83, 9, 9);">
+                                                    <ul id="ajaxErrorList" class="mb-0"></ul>
+                                                </div>
                                                 <input type="hidden" name="turfs[{{ $index }}][id]" value="{{ $turf->id }}">
                                                 <div class="row">
                                                     <div class="col-md-5 p-3">
@@ -517,15 +545,27 @@
 <script src="{{ asset('venton/libs/choices.js/public/assets/scripts/choices.min.js') }}"></script>
 <script>
     function showTurfErrors(errors) {
-        $('.turf-error').html('');
+        $('.turf-error').html(''); // Clear all previous
 
-            Object.entries(errors).forEach(([key, messages]) => {
-                const fieldDiv = $(`.turf-error[data-name="${key}"]`);
-                if (fieldDiv.length) {
-                    fieldDiv.html(messages[0]);
-                }
-            });
-        }
+        Object.entries(errors).forEach(([key, messages]) => {
+            // Extract field name and turf index
+            const matches = key.match(/^turfs\[(\d+)]\[(.+)]$/);
+            if (!matches) return;
+
+            const tabIndex = matches[1];
+            const fieldName = matches[2];
+
+            // Show message in the correct field
+            const fieldDiv = $(`.turf-content[data-tab="${tabIndex}"] .turf-error[data-name="turfs[${tabIndex}][${fieldName}]"]`);
+            if (fieldDiv.length) {
+                fieldDiv.html(messages[0]);
+            }
+
+            // Optionally switch to that tab (if you want)
+            $(`.turf-button[data-tab="${tabIndex}"]`).trigger('click');
+        });
+    }
+
 
     $(document).ready(function () {
         $.ajaxSetup({
@@ -537,7 +577,6 @@
 
             let formData = new FormData(this);
 
-            // Append turf image files if managed separately
             if (typeof turfImageFiles !== 'undefined') {
                 Object.entries(turfImageFiles).forEach(([tabIndex, files]) => {
                     files.forEach((file, i) => {
@@ -546,7 +585,6 @@
                 });
             }
 
-            // Sanitize removed_existing_images
             let removedImageIds = formData.getAll('removed_existing_images[]');
             formData.delete('removed_existing_images[]');
             removedImageIds.forEach(id => {
@@ -555,7 +593,6 @@
                 }
             });
 
-            // Clear old errors
             $('.turf-error').text('');
 
             $.ajax({
@@ -565,43 +602,51 @@
                 processData: false,
                 contentType: false,
                 success(res) {
-                    alert('Turfs saved successfully!');
-                    location.reload(); // Or redirect
+                    Swal.fire({
+                        toast: true,
+                        position: 'top-end',
+                        icon: 'success',
+                        title: 'Turf Saved Successfully!',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
+                    }).then(() => {
+                        location.reload(); 
+                    });
                 },
                 error(xhr) {
                     if (xhr.status === 422) {
                         const errors = xhr.responseJSON.errors;
                         console.log("RAW Errors:", errors);
 
+                        $('#ajaxErrorList').empty();
+                        $('#ajaxErrorAlert').removeClass('d-none');
 
-        Object.entries(errors).forEach(([field, messages]) => {
-            const errorText = messages.join(', ');
-            const bracketField = field.replace(/\.(\d+)\./g, '[$1][').replace(/\.(\w+)$/, '][$1]');
-            const selector = `.turf-error[data-name="${bracketField}"]`;
-            $(selector).text(errorText);
-        });
+                        Object.entries(errors).forEach(([field, messages]) => {
+                            messages.forEach(message => {
+                                $('#ajaxErrorList').append(`<li>${message}</li>`);
+                            });
 
-        const firstError = Object.keys(errors)[0];
-        if (firstError) {
-            const bracketField = firstError.replace(/\.(\d+)\./g, '[$1][').replace(/\.(\w+)$/, '][$1]');
-            const $field = $(`[name="${bracketField}"]`);
-            if ($field.length) {
-                $('html, body').animate({
-                    scrollTop: $field.offset().top - 120
-                }, 400);
-            }
-        }
-    } else {
-        alert('An unexpected error occurred.');
-        console.error(xhr);
-    }
-}
+                            const bracketField = field
+                                .replace(/\.(\d+)\./g, '[$1][')
+                                .replace(/\.(\w+)$/, '][$1]');
+                            const selector = `.turf-error[data-name="${bracketField}"]`;
+                            $(selector).text(messages[0]);
+                        });
+
+                        $('html, body').animate({
+                            scrollTop: $('#ajaxErrorAlert').offset().top - 100
+                        }, 400);
+                    } else {
+                        alert('Something went wrong. Try again.');
+                        console.error(xhr);
+                    }
+                }
 
             });
         });
     });
 </script>
-
 
 <script>
     new Choices('#sportsDropdown', {
@@ -618,13 +663,16 @@
     });
 </script>
 
+@if(isset($turfs[0]))
 <script>
-    const existingImages = @json(
-        isset($turf->turf_images) ? $turf->turf_images->map(function($img) {
+    let existingImages = @json(
+        $turfs[0]->turf_images->map(function($img) {
             return asset('storage/' . $img->image_path);
-        }) : []
+        })
     );
 </script>
+@endif
+
 
 <script>
     document.querySelectorAll('.turf-tab').forEach(button => {
@@ -648,6 +696,8 @@
     $(document).ready(function () {
         $('.turf-content').hide();
         $('.turf-content[data-tab="0"]').show();
+            $('.turf-tab[data-tab="0"]').addClass('active');
+
 
         $(document).on('click', '.turf-tab', function () {
             let tabId = $(this).data('tab');
@@ -881,37 +931,49 @@
         if (!container) return;
 
         container.querySelectorAll('.uploaded-image-box').forEach(el => el.remove());
-        
-        const existing = container.querySelectorAll('.image-box:not(.uploaded-image-box)');
-        const existingCount = existing.length;
 
-        const newCount = turfImageFiles[tabIndex]?.length || 0;
-        const totalCount = existingCount + newCount;
+        const existingImages = Array.from(container.querySelectorAll('.image-box:not(.uploaded-image-box)'));
+        const previewImages = turfImageFiles[tabIndex] || [];
+        const total = existingImages.length + previewImages.length;
 
-        if (newCount > 0) {
-            const imgURL = URL.createObjectURL(turfImageFiles[tabIndex][0]);
-            const plusDiv = document.createElement('div');
-            plusDiv.className = 'image-box uploaded-image-box position-relative mb-2 me-2';
-            plusDiv.style.width = '100px';
-            plusDiv.style.height = '90px';
-            plusDiv.style.cursor = 'pointer';
-            plusDiv.innerHTML = `
-                <img src="${imgURL}" class="rounded" style="width: 100%; height: 100%; object-fit: cover; filter: brightness(0.5);" />
+        if (previewImages.length > 0) {
+            const firstFile = previewImages[0];
+            const firstImgURL = URL.createObjectURL(firstFile);
+
+            const imgBox = document.createElement('div');
+            imgBox.className = 'image-box uploaded-image-box position-relative mb-2 me-2';
+            imgBox.style = 'width: 100px; height: 90px;';
+            imgBox.innerHTML = `
+                <img src="${firstImgURL}" class="rounded" style="width: 100%; height: 100%; object-fit: cover;" />
+                <span class="remove-btn" onclick="removeUploadedTurfImage(${tabIndex}, 0)">&times;</span>
+            `;
+            container.appendChild(imgBox);
+        }
+
+        if (previewImages.length > 1) {
+            const secondFile = previewImages[1];
+            const secondImgURL = URL.createObjectURL(secondFile);
+
+            const plusBox = document.createElement('div');
+            plusBox.className = 'image-box uploaded-image-box position-relative mb-2 me-2';
+            plusBox.style = 'width: 100px; height: 90px; cursor: pointer;';
+            plusBox.onclick = () => {
+                const previewList = [
+                    ...existingImages.map(el => ({ url: el.querySelector('img').src })),
+                    ...previewImages.map(f => ({ url: URL.createObjectURL(f) }))
+                ];
+                showInModal(previewList);
+            };
+
+            plusBox.innerHTML = `
+                <img src="${secondImgURL}" class="rounded" style="width: 100%; height: 100%; object-fit: cover; filter: brightness(0.5);" />
                 <div class="position-absolute top-50 start-50 translate-middle text-white fw-bold" style="font-size: 18px;">
-                    +${totalCount - 2}
+                    +${total - 1}
                 </div>
             `;
-            plusDiv.onclick = () => {
-                const previewImages = [
-                    ...existingImages.map(url => ({ url })), 
-                    ...turfImageFiles[tabIndex].map(file => ({ url: URL.createObjectURL(file) }))
-                ];
-                showInModal(previewImages);
-            };
-            container.appendChild(plusDiv);
+            container.appendChild(plusBox);
         }
     }
-
 
     function removeUploadedTurfImage(tabIndex, index) {
         if (turfImageFiles[tabIndex]) {

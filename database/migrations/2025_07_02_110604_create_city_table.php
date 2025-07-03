@@ -9,14 +9,13 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+   public function up(): void
     {
-        if (!Schema::hasTable('turf')) {
-
-        Schema::table('turf', function (Blueprint $table) {
-            $table->string('unit')->after('booking_price')->nullable();
+        Schema::create('city', function (Blueprint $table) {
+            $table->id();
+            $table->string('city_name');
+            $table->timestamps();
         });
-    }
     }
 
     /**
@@ -24,8 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('turf', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('city');
     }
 };

@@ -19,13 +19,12 @@ class TurfSeeder extends Seeder
             'amenities_ids'  => json_encode([1]),
             'location_link'  => 'https://maps.app.goo.gl/LTh4tGYew8vY9W2b8',
             'location_text'  => 'surat gujarat',
-            'turf_image'     => '',
             'height'         => null,
             'width'          => '800',
             'length'         => '800',
             'sessions'       => json_encode([30]),
             'booking_price'  => '500.00',
-            'unit'           => null,
+            'unit'           => 'Hour',
             'description'    => 'abc',
             'created_by'     => 1
         ]);

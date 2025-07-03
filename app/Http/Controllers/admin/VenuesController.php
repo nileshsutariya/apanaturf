@@ -22,8 +22,8 @@ class VenuesController extends Controller
     {
         $user = auth()->user();
         $query = Venues::leftJoin('city', 'venues.city_id', '=', 'city.id')
-            ->leftJoin('area_code', 'venues.area_id', '=', 'area_code.id')
-            ->select('venues.*', 'city.city_name as city_name', 'city.id as city_id', 'area_code.area as area_name', 'area_code.id as area_id');
+            ->leftJoin('area', 'venues.area_id', '=', 'area.id')
+            ->select('venues.*', 'city.city_name as city_name', 'city.id as city_id', 'area.area as area_name', 'area.id as area_id');
 
         if ($user->role_id == 1) $query->where('venues.status', 2);
         elseif ($user->role_id == 2)
@@ -34,7 +34,7 @@ class VenuesController extends Controller
         if ($request->search) {
             $s = $request->search;
             $query->where(fn($query) => $query->where('city.city_name', 'like', "%$s%")
-                ->orWhere('area_code.area', 'like', "%$s%")
+                ->orWhere('area.area', 'like', "%$s%")
                 ->orWhere('owner_phone', 'like', "%$s%"));
         }
 
@@ -71,13 +71,13 @@ class VenuesController extends Controller
                 'area'           => 'required',
                 'location_text'  => 'required|string',
                 'location_link'  => 'required|url',
-                'turf_images.*'  => 'image|mimes:jpeg,png,jpg,webp,svg|max:2048',
+                'turf_images.*'  => 'image|mimes:jpeg,png,jpg,webp,svg',
                 'name'           => 'required|string|max:255',
                 'email'          => 'required|email',
                 'mobileno'       => 'required|digits:10',
-                'profile_image'  => 'image|mimes:jpeg,png,jpg,webp,svg|max:2048',
-                'pancard_image'  => 'image|mimes:jpeg,png,jpg,webp,svg|max:2048',
-                'aadhaar_image'  => 'image|mimes:jpeg,png,jpg,webp,svg|max:2048',
+                'profile_image'  => 'required|image|mimes:jpeg,png,jpg,webp,svg',
+                'pancard_image'  => 'required|image|mimes:jpeg,png,jpg,webp,svg',
+                'aadhaar_image'  => 'required|image|mimes:jpeg,png,jpg,webp,svg',
             ]);
 
             $duplicateVenue = Venues::where('area_id', $request->area)
@@ -234,8 +234,8 @@ class VenuesController extends Controller
 
         $user = auth()->user();
         $vendor = Venues::leftJoin('city', 'venues.city_id', '=', 'city.id')
-            ->leftJoin('area_code', 'venues.area_id', '=', 'area_code.id')
-            ->select('venues.*', 'city.city_name as city_name', 'city.id as city_id', 'area_code.area as area_name', 'area_code.id as area_id')
+            ->leftJoin('area', 'venues.area_id', '=', 'area.id')
+            ->select('venues.*', 'city.city_name as city_name', 'city.id as city_id', 'area.area as area_name', 'area.id as area_id')
             ->where('venues.id', $id)->firstOrFail();
 
         if ($user->role_id == 2 && !DB::table('users')->where('role_id', 3)->where('created_by', $user->id)->pluck('id')->contains($vendor->created_by))

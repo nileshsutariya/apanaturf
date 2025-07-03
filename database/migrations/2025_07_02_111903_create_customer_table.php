@@ -16,14 +16,21 @@ return new class extends Migration
             $table->text('unique_id')->nullable();
             $table->string('name');
             $table->string('email')->unique()->nullable();
+            $table->timestamp('email_verified_at')->nullable();
             $table->string('phone')->unique();
             $table->string('password')->nullable();
             $table->float('balance')->nullable();
             $table->unsignedBigInteger('otp')->nullable();
             $table->timestamp('otp_send_at')->nullable();
             $table->timestamp('otp_verified_at')->nullable();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->rememberToken();
+            $table->unsignedBigInteger('profile_image')->nullable();
+            $table->foreign('profile_image')->references('id')->on('images');
+            $table->unsignedBigInteger('location_history')->nullable();
+            $table->foreign('location_history')->references('id')->on('location_history');
+            $table->unsignedBigInteger('city_id')->nullable();
+            $table->foreign('city_id')->references('id')->on('city');
+            $table->unsignedBigInteger('area_id')->nullable();
+            $table->foreign('area_id')->references('id')->on('area');
             $table->timestamps();
         });
     }

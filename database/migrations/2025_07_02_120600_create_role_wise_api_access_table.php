@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('area_code', function (Blueprint $table) {
+        Schema::create('role_wise_api_access', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('city_id')->nullable();
-            $table->foreign('city_id')->references('id')->on('city');
-            $table->string('area');
-            $table->string('pincode');
+            $table->unsignedBigInteger('group');
+            $table->foreign('group')->references('id')->on('role_type');
+            $table->unsignedBigInteger('api_list_id');
+            $table->foreign('api_list_id')->references('id')->on('role_api_list');
             $table->timestamps();
         });
     }
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('area_code');
+        Schema::dropIfExists('role_wise_api_access');
     }
 };

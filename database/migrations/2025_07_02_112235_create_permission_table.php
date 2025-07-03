@@ -11,10 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('permissions_group', function (Blueprint $table) {
+        Schema::create('permission', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->boolean('status')->default(1);
+            $table->boolean('status');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->unsignedBigInteger('permission_group_id');
+            $table->foreign('permission_group_id')->references('id')->on('permission_group');
             $table->timestamps();
         });
     }
@@ -24,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('permissions_group');
+        Schema::dropIfExists('permission');
     }
 };

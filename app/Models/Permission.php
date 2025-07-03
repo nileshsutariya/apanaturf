@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Permission extends Model
 {
-    protected $table = 'permissions';
+    protected $table = 'permission';
     protected $primaryKey = 'id';
     public function user()
     {

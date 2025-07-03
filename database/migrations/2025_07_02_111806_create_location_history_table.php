@@ -11,14 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        if (!Schema::hasTable('unit')) {
-
-        Schema::create('unit', function (Blueprint $table) {
+        Schema::create('location_history', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('latitude');
+            $table->string('longitude');
+            $table->unsignedBigInteger('customer_id');
             $table->timestamps();
         });
-    }
     }
 
     /**
@@ -26,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('unit');
+        Schema::dropIfExists('location_history');
     }
 };
