@@ -10,7 +10,7 @@ class CustomerInfo extends Model
     // protected $primaryKey = 'id';
     public $timestamps = false; 
 
-    protected $fillable = [
+    protected $fillable = [   
         'latitude',
         'longitude',
         'customer_id',

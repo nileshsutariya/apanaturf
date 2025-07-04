@@ -9,7 +9,6 @@
      <meta name="description" content="A fully responsive premium admin dashboard template" />
      <meta name="author" content="Techzaa" />
      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-     <meta name="csrf-token" content="{{ csrf_token() }}">
 
      <link rel="shortcut icon" href="{{ asset('asset/images/favicon.ico')}}">
      <link href="{{ asset('asset/css/vendor.min.css')}}" type="text/css" />

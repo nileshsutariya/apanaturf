@@ -243,8 +243,8 @@
                     showErrorMessages(["Phone Number field is required."]);
                 if (!password) {
                     showErrorMessages(["Password field is required."]);
-                } else if (password.length < 8) {
-                    showErrorMessages(["Password must be at least 8 characters."]);
+                } else if (password.length < 6) {
+                    showErrorMessages(["Password must be at least 6 characters."]);
                 }
             }   
 

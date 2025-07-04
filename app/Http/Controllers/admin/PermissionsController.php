@@ -16,36 +16,27 @@ class PermissionsController extends Controller
 {
     public function index(Request $request)
     {
-        $group = $request->group;
-
-        $routes = collect(Route::getRoutes())->filter(function ($route) use ($group) {
-            $hasRequiredMiddleware = in_array('web', $route->middleware()) &&
+        $routes = collect(Route::getRoutes())->filter(function ($route) {
+            return in_array('web', $route->middleware()) &&
                 in_array('check.permission', $route->middleware()) &&
                 $route->getName();
-
-            if (!$hasRequiredMiddleware) {
-                return false;
-            }
-            return $group ? Str::startsWith($route->getName(), $group) : true;
         });
 
         $routes = $routes->pluck('action.as')->all();
-        $permission = Permission::leftJoin('permission_group', 'permissions.permission_group_id', '=', 'permission_group.id')
-            ->leftJoin('users', 'permissions.user_id', '=', 'users.id')
-            ->select('permissions.*', 'permission_group.name as group_name', 'users.name as user_name')
-            ->where('users.role_id', '!=', 1)
-            ->where(function ($query) use ($request) {
-                $query->where('permissions.name', 'like', '%' . $request->search . '%')
-                    ->orWhere('users.name', 'like', '%' . $request->search . '%')
-                    ->orWhere('permission_group.name', 'like', $request->search . '%');
-            })->paginate(10);
-        $users = User::all();
-        $group = PermissionGroup::all();
+
+        $permission = Permission::leftJoin('permission_group', 'permission.permission_group_id', '=', 'permission_group.id')
+            ->leftJoin('users', 'permission.user_id', '=', 'users.id')
+            ->select('permission.*', 'permission_group.name as group_name', 'users.name as user_name')
+            ->where('permission.name', 'like', '%' . $request->search . '%')
+            ->orWhere('users.name', 'like', '%' . $request->search . '%')
+            ->orWhere('permission_group.name', 'like', $request->search . '%')->paginate(10);
+            
         if ($request->ajax()) {
-            return view('admin.permissions.permission', compact('permission', 'routes', 'users', 'group'))->render();
+            return view('admin.permissions.permission', compact('permission', 'routes'))->render();
         } else {
-            return view('admin.permissions.permission', compact('permission', 'routes', 'users', 'group'));
+            return view('admin.permissions.permission', compact('permission', 'routes'));
         }
+
     }
 
 

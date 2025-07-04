@@ -148,7 +148,7 @@ class VenuesController extends Controller
         } catch (\Illuminate\Validation\ValidationException $ex) {
             return response()->json(['errors' => $ex->errors()], 422);
         } catch (\Exception $e) {
-            \Log::error('Vendor store error: ' . $e->getMessage());
+            // \Log::error('Vendor store error: ' . $e->getMessage());
             return response()->json([
                 'error' => $e->getMessage(),
                 'line' => $e->getLine(),

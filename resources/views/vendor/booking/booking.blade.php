@@ -508,7 +508,7 @@
                 <div class="card tilebox-one" style="border-radius: 7px; box-shadow: 0px 17px 25px #00000040; height: 100px; padding: 20px 20px 15px 20px;">
                     <div class="d-flex align-items-center">
                         <div class="me-3 d-flex align-items-center">
-                            <img src="{{ asset('assets/image/client/linegreen.svg') }}" alt="dashboard" height="60px">
+                            <img src="{{ asset('assets/image/client/Linegreen.svg') }}" alt="dashboard" height="60px">
                         </div>
                         <div class="flex-grow-1">
                             <h6 class="mt-2 mb-1" style="font-size: 13.5px; color: #898989;">Total Booked</h6>
@@ -524,7 +524,7 @@
                 <div class="card tilebox-one" style="border-radius: 7px; box-shadow: 0px 17px 25px #00000040; height: 100px; padding: 20px 20px 15px 20px;">
                     <div class="d-flex align-items-center">
                         <div class="me-3 d-flex align-items-center">
-                            <img src="{{ asset('assets/image/client/lineblack.svg') }}" alt="dashboard" height="60px">
+                            <img src="{{ asset('assets/image/client/Lineblack.svg') }}" alt="dashboard" height="60px">
                         </div>
                         <div class="flex-grow-1">
                             <h6 class="mt-2 mb-1" style="font-size: 13.5px; color: #898989;">Total Available</h6>
@@ -540,7 +540,7 @@
                 <div class="card tilebox-one" style="border-radius: 7px; box-shadow: 0px 17px 25px #00000040; height: 100px; padding: 20px 20px 15px 20px;">
                     <div class="d-flex align-items-center">
                         <div class="me-3 d-flex align-items-center">
-                            <img src="{{ asset('assets/image/client/linegray.svg') }}" alt="dashboard" height="60px">
+                            <img src="{{ asset('assets/image/client/Linegray.svg') }}" alt="dashboard" height="60px">
                         </div>
                         <div class="flex-grow-1">
                             <h6 class="mt-2 mb-1" style="font-size: 13.5px; color: #898989;">Total Slots</h6>

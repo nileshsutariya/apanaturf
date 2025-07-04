@@ -1,7 +1,27 @@
 @include('vendor.layouts.header')
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css">
+<script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <style>
+    .choices__list{
+        padding-left: 8px; 
+    }
+    .header .turf-button {
+        height: 35px;
+    }
+    .header .turf-button:hover {
+        background-color: #134b45;
+        color: #fff;
+    }
+    .header .turf-button.active {
+        color: #fff;
+        background-color: #1e726a;
+    }
+    .header .turf-button.active:hover {
+        background-color: #134b45;
+        color: #fff;
+    }
     .swal2-title {
         font-size: 15px !important;
         font-weight: 500;
@@ -257,7 +277,7 @@
                         <div id="turf" class="content pt-1">
                             <div id="turf-template" class="turf-section">
                                 <div class="card-body p-3 pt-0" style="font-size: 12px;">
-                                    <div class="header d-flex flex-wrap align-items-center justify-content-between gap-2 mb-3">
+                                    <div class="header d-flex flex-wrap align-items-center gap-2 mb-3">
                                         <div id="tab-buttons" class="d-flex flex-wrap gap-2">
                                             @foreach($turfs as $index => $turf)
                                                 <button type="button" class="turf-button turf-tab {{ $index === 0 ? 'active' : '' }}" data-tab="{{ $index }}">
@@ -272,19 +292,18 @@
                                         @php
                                             $imageUrls = $turf->turf_images->map(fn($img) => asset('storage/' . $img->image_path))->toArray();
                                         @endphp
-
                                             <div class="turf-content" data-tab="{{ $index }}" style="{{ $index === 0 ? '' : 'display:none;' }}">
-                                                <div id="ajaxErrorAlert" class="alert alert-danger d-none" style="background-color: rgb(246, 193, 193); border: none; opacity: 0.9; color: rgb(83, 9, 9);">
-                                                    <ul id="ajaxErrorList" class="mb-0"></ul>
-                                                </div>
                                                 <input type="hidden" name="turfs[{{ $index }}][id]" value="{{ $turf->id }}">
+                                                <div id="ajaxErrorAlert-{{ $index }}" class="alert alert-danger ajax-error-alert d-none" style="background-color: rgb(246, 193, 193); border: none; opacity: 0.9; color: rgb(83, 9, 9);">
+                                                    <ul id="ajaxErrorList-{{ $index }}" class="ajax-error-list mb-0"></ul>
+                                                </div>
                                                 <div class="row">
                                                     <div class="col-md-5 p-3">
                                                         <div class="container">
                                                             <div class="form-group">
                                                                 <label>Turf Name</label>
                                                                 <input name="turfs[{{ $index }}][name]" value="{{ $turf->name }}" placeholder="Turf Name" multiple>
-                                                                <div class="invalid-feedback d-block turf-error" data-name="turfs[{{ $index }}][name]"></div>
+                                                                {{-- <small class="text-danger turf-error" data-name="turfs[{{ $index }}][name]"></small> --}}
                                                             </div>
                                                             <div class="form-group">
                                                                 <div class="section-header d-flex align-items-center justify-content-between flex-wrap mb-2">
@@ -380,12 +399,15 @@
                                                                 <img src="{{ asset('assets/image/client/gallery-add.svg') }}" alt="dashboard"
                                                                     style="cursor: pointer; height: 25px; width: 25px;">
                                                                 <span style="font-size: 7px; color: #cac9c9; margin-top: 7px;">Upload image</span>
-                                                                <input type="file"
+                                                               <input type="file"
                                                                     id="uploadInput-{{ $index }}"
                                                                     style="display: none;"
                                                                     name="turfs[{{ $index }}][turf_images][]"
                                                                     multiple
-                                                                    onchange="onTurfImageChange({{ $index }})">
+                                                                    data-tab-index="{{ $index }}"
+                                                                    {{-- onchange="onTurfImageChange({{ $index }})"> --}}
+                                                                >
+
                                                             </label>
 
                                                             <div class="d-flex flex-wrap turfimages" id="turfImagesContainer-{{ $index }}">
@@ -531,6 +553,20 @@
                                         </div>
                                     </div>
 
+                                    <div class="modal fade" id="imagePreviewModal" tabindex="-1">
+                                        <div class="modal-dialog modal-dialog-centered">
+                                            <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title">Image Previews</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                            </div>
+                                            <div class="modal-body d-flex flex-wrap" id="modal-body">
+                                                <!-- Images will be appended here -->
+                                            </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                     <button type="submit" class="btn save"> Save </button>
                                 </div>
                             </div>
@@ -542,31 +578,23 @@
     </form>
 </div>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="{{ asset('venton/libs/choices.js/public/assets/scripts/choices.min.js') }}"></script>
+
 <script>
-    function showTurfErrors(errors) {
-        $('.turf-error').html(''); // Clear all previous
+    new Choices('#sportsDropdown', {
+        removeItemButton: true,
+        placeholder: true,
+        maxItemCount: -1,
+        searchEnabled: true,
+    });
+    new Choices('#amenityDropdown', {
+        removeItemButton: true,
+        placeholder: true,
+        maxItemCount: -1,
+        searchEnabled: true,
+    });
+</script>
 
-        Object.entries(errors).forEach(([key, messages]) => {
-            // Extract field name and turf index
-            const matches = key.match(/^turfs\[(\d+)]\[(.+)]$/);
-            if (!matches) return;
-
-            const tabIndex = matches[1];
-            const fieldName = matches[2];
-
-            // Show message in the correct field
-            const fieldDiv = $(`.turf-content[data-tab="${tabIndex}"] .turf-error[data-name="turfs[${tabIndex}][${fieldName}]"]`);
-            if (fieldDiv.length) {
-                fieldDiv.html(messages[0]);
-            }
-
-            // Optionally switch to that tab (if you want)
-            $(`.turf-button[data-tab="${tabIndex}"]`).trigger('click');
-        });
-    }
-
-
+<script>
     $(document).ready(function () {
         $.ajaxSetup({
             headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }
@@ -576,6 +604,9 @@
             e.preventDefault();
 
             let formData = new FormData(this);
+            for (let [key, value] of formData.entries()) {
+                console.log(key, value);
+            }
 
             if (typeof turfImageFiles !== 'undefined') {
                 Object.entries(turfImageFiles).forEach(([tabIndex, files]) => {
@@ -594,6 +625,7 @@
             });
 
             $('.turf-error').text('');
+            console.log([...formData]); 
 
             $.ajax({
                 url: "{{ route('ground.store') }}",
@@ -617,67 +649,60 @@
                 error(xhr) {
                     if (xhr.status === 422) {
                         const errors = xhr.responseJSON.errors;
-                        console.log("RAW Errors:", errors);
 
-                        $('#ajaxErrorList').empty();
-                        $('#ajaxErrorAlert').removeClass('d-none');
+                        $('.ajax-error-alert').addClass('d-none');
+                        $('.ajax-error-list').empty();
+                        $('.turf-error').text('');
+
+                        let firstErrorTabIndex = null;
 
                         Object.entries(errors).forEach(([field, messages]) => {
-                            messages.forEach(message => {
-                                $('#ajaxErrorList').append(`<li>${message}</li>`);
-                            });
+                            const match = field.match(/^turfs\.(\d+)\.(.+)$/);
+                            if (match) {
+                                const index = match[1];
+                                const fieldName = match[2];
+                                const bracketField = `turfs[${index}][${fieldName}]`;
 
-                            const bracketField = field
-                                .replace(/\.(\d+)\./g, '[$1][')
-                                .replace(/\.(\w+)$/, '][$1]');
-                            const selector = `.turf-error[data-name="${bracketField}"]`;
-                            $(selector).text(messages[0]);
+                                if (firstErrorTabIndex === null) {
+                                    firstErrorTabIndex = index;
+                                }
+
+                                $(`#ajaxErrorAlert-${index}`).removeClass('d-none');
+                                messages.forEach(msg => {
+                                    $(`#ajaxErrorList-${index}`).append(`<li>${msg}</li>`);
+                                });
+
+                                $(`.turf-error[data-name="${bracketField}"]`).text(messages[0]);
+                            }
                         });
 
-                        $('html, body').animate({
-                            scrollTop: $('#ajaxErrorAlert').offset().top - 100
-                        }, 400);
-                    } else {
-                        alert('Something went wrong. Try again.');
-                        console.error(xhr);
+                        if (firstErrorTabIndex !== null) {
+                            $('.turf-tab').removeClass('active');
+                            $(`.turf-tab[data-tab="${firstErrorTabIndex}"]`).addClass('active');
+
+                            $('.turf-content').hide();
+                            $(`.turf-content[data-tab="${firstErrorTabIndex}"]`).show();
+                        }
+
+                        const firstAlert = $('.ajax-error-alert:visible').first();
+                        if (firstAlert.length) {
+                            $('html, body').animate({
+                                scrollTop: firstAlert.offset().top - 100
+                            }, 400);
+                        }
                     }
                 }
-
             });
         });
     });
 </script>
-
-<script>
-    new Choices('#sportsDropdown', {
-        removeItemButton: true,
-        placeholder: true,
-        maxItemCount: -1,
-        searchEnabled: true,
-    });
-    new Choices('#amenityDropdown', {
-        removeItemButton: true,
-        placeholder: true,
-        maxItemCount: -1,
-        searchEnabled: true,
-    });
-</script>
-
-@if(isset($turfs[0]))
-<script>
-    let existingImages = @json(
-        $turfs[0]->turf_images->map(function($img) {
-            return asset('storage/' . $img->image_path);
-        })
-    );
-</script>
-@endif
 
 
 <script>
     document.querySelectorAll('.turf-tab').forEach(button => {
         button.addEventListener('click', () => {
             let tab = button.getAttribute('data-tab');
+            console.log(tab);
 
             document.querySelectorAll('.turf-content').forEach(content => {
                 content.style.display = content.getAttribute('data-tab') === tab ? 'block' : 'none';
@@ -689,6 +714,25 @@
     });
 </script>
 
+
+@if(isset($turfs[0]))
+<script>
+    let existingImages = @json(
+        $turfs[0]->turf_images->map(function($img) {
+            return asset('storage/' . $img->image_path);
+        })
+    );
+</script>
+@endif
+
+<script>
+    window.turfExistingImages = window.turfExistingImages || {};
+    turfExistingImages[{{ $index }}] = @json(
+        $turf->turf_images->map(fn($img) => ['id' => $img->id, 'url' => asset('storage/' . $img->image_path)])->toArray()
+    );
+</script>
+
+
 <script>
     let turfIndex = {{ count($turfs) }};
     // let turfImageFiles = {};
@@ -696,11 +740,12 @@
     $(document).ready(function () {
         $('.turf-content').hide();
         $('.turf-content[data-tab="0"]').show();
-            $('.turf-tab[data-tab="0"]').addClass('active');
+        $('.turf-tab[data-tab="0"]').addClass('active');
 
 
         $(document).on('click', '.turf-tab', function () {
             let tabId = $(this).data('tab');
+            console.log(tabId);
             $('.turf-tab').removeClass('active');
             $('.turf-content').hide();
             $(this).addClass('active');
@@ -709,6 +754,7 @@
 
         $('.add-tab').on('click', function () {
             const newTabId = turfIndex;
+            console.log('new tab', newTabId);
             const newLabel = String.fromCharCode(65 + turfIndex);
 
             $('#tab-buttons').append(
@@ -716,24 +762,60 @@
             );
 
             let $newContent = $('.turf-content[data-tab="0"]').first().clone();
+
+            $newContent.find('[id^="ajaxErrorAlert-"]').attr('id', `ajaxErrorAlert-${newTabId}`);
+            $newContent.find('[id^="ajaxErrorList-"]').attr('id', `ajaxErrorList-${newTabId}`);
+            $newContent.find('.turf-error').each(function () {
+                const oldDataName = $(this).attr('data-name');
+                if (oldDataName) {
+                    const newDataName = oldDataName.replace(/\[\d+\]/, `[${newTabId}]`);
+                    $(this).attr('data-name', newDataName);
+                }
+            });
+
             $newContent.attr('data-tab', newTabId).hide();
 
             $newContent.find('input, textarea').each(function () {
-                $(this).val('');
-                let name = $(this).attr('name');
+                const name = $(this).attr('name');
                 if (name) {
-                    let updated = name.replace(/\[\d+\]/, `[${newTabId}]`);
-                    $(this).attr('name', updated);
+                    const updatedName = name.replace(/\[\d+\]/, `[${newTabId}]`);
+                    $(this).attr('name', updatedName);
                 }
+                $(this).val('');
             });
 
             $newContent.find('.imagePreviewContainer').attr('id', `imagePreviewContainer-${newTabId}`);
             $newContent.find('.turfimages').attr('id', `turfImagesContainer-${newTabId}`);
 
-            let fileInput = $newContent.find('input[type="file"]');
-            fileInput.attr('id', `uploadInput-${newTabId}`);
-            fileInput.attr('name', `turfs[${newTabId}][turf_images][]`);
-            fileInput.attr('onchange', `onTurfImageChange(${newTabId})`);
+            const uploadLabel = $(`
+                <label class="uploadinput" 
+                    for="uploadInput-${newTabId}" 
+                    style="width: 100px; height: 90px; border: 2px dashed #706d6d; border-radius: 10px; display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer;">
+                    <img src="${window.uploadIconURL || '{{ asset('assets/image/client/gallery-add.svg') }}'}" style="height: 25px; width: 25px;">
+                    <span style="font-size: 7px; color: #cac9c9; margin-top: 7px;">Upload image</span>
+                </label>
+            `);
+
+            const newFileInput = $(`
+                <input 
+                    type="file" 
+                    id="uploadInput-${newTabId}" 
+                    name="turfs[${newTabId}][turf_images][]" 
+                    multiple 
+                    data-tab-index="${newTabId}" 
+                    style="display: none;"
+                >
+            `);
+
+            newFileInput.on('change', function () {
+                const tabIndex = parseInt($(this).data('tab-index'));
+                // console.log("jhgfcdfyhgfcdfgh:", tabIndex);
+                onTurfImageChange(tabIndex);
+            });
+
+            uploadLabel.append(newFileInput);
+
+            $newContent.find('.uploadinput').replaceWith(uploadLabel);
 
             $newContent.find('.sportlist').html('');
             $newContent.find('.amenitylist').html('');
@@ -749,45 +831,11 @@
 </script>
 
 <script>
-    let removedSportIds = [];
-    let removedAmenityIds = [];
-
-    function removeSport(el, sportId = null) {
-        $(el).closest('.sporttag').remove();
-        if (sportId) removedSportIds.push(sportId);
-    }
-
-    function removeAmenity(el, amenityId = null) {
-        $(el).closest('.amenitytag').remove();
-        if (amenityId) removedAmenityIds.push(amenityId);
-    }
-
-    $('#turfForm').on('submit', function () {
-        if (removedSportIds.length > 0) {
-            $('<input>').attr({
-                type: 'hidden',
-                name: 'removed_sport_ids',
-                value: JSON.stringify(removedSportIds)
-            }).appendTo(this);
-        }
-
-        if (removedAmenityIds.length > 0) {
-            $('<input>').attr({
-                type: 'hidden',
-                name: 'removed_amenity_ids',
-                value: JSON.stringify(removedAmenityIds)
-            }).appendTo(this);
-        }
-    });
-
-</script>
-
-<script>
     let imageFiles = [];
 
     $('#uploadInput').off('change').on('change', function (event) {
         const newFiles = Array.from(event.target.files);
-        console.log(newFiles)
+        console.log("new file", newFiles)
 
         newFiles.forEach(file => {
             const isDuplicate = imageFiles.some(f =>
@@ -810,6 +858,7 @@
 
     function renderImagePreviews() {
         const container = $('#imagePreviewContainer-' + getActiveTabIndex());
+        console.log("imagepreview container", container);
         container.find('.image-box.counter').remove(); 
         container.find('.uploaded-image-box').remove();
 
@@ -857,6 +906,23 @@
 
         $('#imageModal').modal('show');
     }
+
+    function showModal(images) {
+        const modalBody = document.getElementById('modal-body');
+        modalBody.innerHTML = '';
+
+        images.forEach(image => {
+            const img = document.createElement('img');
+            img.src = image.url;
+            img.className = 'rounded m-2';
+            img.style = 'width: 100px; height: 90px;';
+            modalBody.appendChild(img);
+        });
+
+        const modal = new bootstrap.Modal(document.getElementById('imagePreviewModal'));
+        modal.show();
+    }
+
     function removeExistingImageById(el, imageId) {
         const imageBox = el.closest('div');
         if (imageBox) {
@@ -874,12 +940,12 @@
             if (imgBox) imgBox.remove();
         });
     }
-
 </script>
 
 <script>
     $('#uploadInput').on('change', function (event) {
         let files = Array.from(event.target.files);
+        console.log(files);
         imageFiles = imageFiles.concat(files);
 
         if (imageFiles.length > 0) {
@@ -902,8 +968,18 @@
 
 <script>
     let turfImageFiles = {};
+    document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('input[type="file"][data-tab-index]').forEach(input => {
+            input.addEventListener('change', function () {
+                const tabIndex = parseInt(this.getAttribute('data-tab-index'));
+                onTurfImageChange(tabIndex);
+            });
+        });
+    });
 
     function onTurfImageChange(tabIndex) {
+        console.log("Uploading images for tab:", tabIndex); 
+
         const input = document.getElementById(`uploadInput-${tabIndex}`);
         const container = document.getElementById(`turfImagesContainer-${tabIndex}`);
         if (!input || !container) return;
@@ -934,11 +1010,12 @@
 
         const existingImages = Array.from(container.querySelectorAll('.image-box:not(.uploaded-image-box)'));
         const previewImages = turfImageFiles[tabIndex] || [];
-        const total = existingImages.length + previewImages.length;
+        const hasExisting = existingImages.length > 0;
 
-        if (previewImages.length > 0) {
-            const firstFile = previewImages[0];
-            const firstImgURL = URL.createObjectURL(firstFile);
+        if (previewImages.length === 0) return;
+
+        if (!hasExisting) {
+            const firstImgURL = URL.createObjectURL(previewImages[0]);
 
             const imgBox = document.createElement('div');
             imgBox.className = 'image-box uploaded-image-box position-relative mb-2 me-2';
@@ -948,27 +1025,31 @@
                 <span class="remove-btn" onclick="removeUploadedTurfImage(${tabIndex}, 0)">&times;</span>
             `;
             container.appendChild(imgBox);
-        }
 
-        if (previewImages.length > 1) {
-            const secondFile = previewImages[1];
-            const secondImgURL = URL.createObjectURL(secondFile);
+            if (previewImages.length > 1) {
+                const plusBox = document.createElement('div');
+                plusBox.className = 'image-box uploaded-image-box position-relative mb-2 me-2';
+                plusBox.style = 'width: 100px; height: 90px; cursor: pointer;';
+                plusBox.onclick = () => showInModal(previewImages.map(f => ({ url: URL.createObjectURL(f) })));
 
+                plusBox.innerHTML = `
+                    <img src="${URL.createObjectURL(previewImages[1])}" class="rounded" style="width: 100%; height: 100%; object-fit: cover; filter: brightness(0.5);" />
+                    <div class="position-absolute top-50 start-50 translate-middle text-white fw-bold" style="font-size: 18px;">
+                        +${previewImages.length - 1}
+                    </div>
+                `;
+                container.appendChild(plusBox);
+            }
+        } else {
             const plusBox = document.createElement('div');
             plusBox.className = 'image-box uploaded-image-box position-relative mb-2 me-2';
             plusBox.style = 'width: 100px; height: 90px; cursor: pointer;';
-            plusBox.onclick = () => {
-                const previewList = [
-                    ...existingImages.map(el => ({ url: el.querySelector('img').src })),
-                    ...previewImages.map(f => ({ url: URL.createObjectURL(f) }))
-                ];
-                showInModal(previewList);
-            };
+            plusBox.onclick = () => showModal(previewImages.map(f => ({ url: URL.createObjectURL(f) })));
 
             plusBox.innerHTML = `
-                <img src="${secondImgURL}" class="rounded" style="width: 100%; height: 100%; object-fit: cover; filter: brightness(0.5);" />
+                <img src="${URL.createObjectURL(previewImages[0])}" class="rounded" style="width: 100%; height: 100%; object-fit: cover; filter: brightness(0.5);" />
                 <div class="position-absolute top-50 start-50 translate-middle text-white fw-bold" style="font-size: 18px;">
-                    +${total - 1}
+                    +${previewImages.length}
                 </div>
             `;
             container.appendChild(plusBox);
@@ -994,6 +1075,41 @@
             document.getElementById('turfForm').appendChild(hiddenInput);
         }
     }
+</script>
+
+
+<script>
+    let removedSportIds = [];
+    let removedAmenityIds = [];
+
+    function removeSport(el, sportId = null) {
+        $(el).closest('.sporttag').remove();
+        if (sportId) removedSportIds.push(sportId);
+    }
+
+    function removeAmenity(el, amenityId = null) {
+        $(el).closest('.amenitytag').remove();
+        if (amenityId) removedAmenityIds.push(amenityId);
+    }
+
+    $('#turfForm').on('submit', function () {
+        if (removedSportIds.length > 0) {
+            $('<input>').attr({
+                type: 'hidden',
+                name: 'removed_sport_ids',
+                value: JSON.stringify(removedSportIds)
+            }).appendTo(this);
+        }
+
+        if (removedAmenityIds.length > 0) {
+            $('<input>').attr({
+                type: 'hidden',
+                name: 'removed_amenity_ids',
+                value: JSON.stringify(removedAmenityIds)
+            }).appendTo(this);
+        }
+    });
+
 </script>
 
 <script>
@@ -1107,7 +1223,7 @@
 
         $(`<input type="hidden" name="turfs[${tabIndex}][removed_amenities][]" value="${amenityId}">`).appendTo('#turfForm');
 
-        $(el).closest('.amenitiestag').remove();
+        $(el).closest('.amenitiestag    ').remove();
     
     }
 </script>

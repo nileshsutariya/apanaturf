@@ -246,7 +246,6 @@
                     <form id="venuesForm" method="POST" enctype="multipart/form-data">
                         @csrf
                         <input type="hidden" class="form-control" name="id" readonly>
-                        <div id="error-container"></div>
 
                         <div>
                             <div class="tab-content mb-0">
@@ -278,9 +277,6 @@
                                                         @endforeach
                                                     @endif
                                                 </select>
-                                                @error('city')
-                                                    <small class="text-danger">{{ $message }}</small>
-                                                @enderror
                                             </div>
                                         </div>
                                         <div class="col-lg-6 arealist">
@@ -482,10 +478,12 @@
         Dropzone.instances.forEach(dz => dz.destroy());
 
         turfDZ = new Dropzone("#turf-dropzone", {
-            url: "#", 
+            url: "{{route('vendor.store')}}", 
+            paramName: "turf_images[]",
             maxFiles: 10,
             autoProcessQueue: false,
             clickable: true,
+            uploadMultiple: false,
             addRemoveLinks: true,
             acceptedFiles: "image/*",
             parallelUploads: 10
@@ -795,7 +793,7 @@
     $(document).on('click', '.editvenues', function () {
 
         var hasPermission = @json(Auth::user() && Auth::user()->hasPermissionTo('venues.edit'));
-
+        
         if (hasPermission) {
             let venues = $(this).data('venues');
             let city = venues.city_id;

@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Permission;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class PermissionSeeder extends Seeder
@@ -13,6 +14,10 @@ class PermissionSeeder extends Seeder
      */
     public function run(): void
     {
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+
+        DB::table('permission')->truncate(); 
+
         $admin = [
             'customer.index', 'customer.store','customer.edit',
             'users.index', 'users.store','users.edit',
@@ -23,7 +28,8 @@ class PermissionSeeder extends Seeder
             'area.index', 'area.store','area.edit',
             'permission.index', 'permission.store','permission.edit',
             'permissiongroup.index', 'permissiongroup.store','permissiongroup.edit',
-            'venues.index', 'venues.store','venues.edit',
+            'vendor.index', 'vendor.store','vendor.edit',
+            'city.index', 'city.store','city.edit',
         ];
         
         foreach ($admin as $permission) {
@@ -45,6 +51,10 @@ class PermissionSeeder extends Seeder
                 $group_id = 8;
             } elseif (str_starts_with($permission, 'permissiongroup.')) {
                 $group_id = 9;
+            } elseif (str_starts_with($permission, 'vendor.')) {
+                $group_id = 10;
+            } elseif (str_starts_with($permission, 'city.')) {
+                $group_id = 11;
             } else {
                 $group_id = 1;
             }
