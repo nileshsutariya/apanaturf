@@ -18,41 +18,9 @@ class Coupons extends Model
     {
         return $this->belongsTo(Turf::class, 'turf_id');
     }
-    public static function generateCouponCode()
+    public function creator()
     {
-        $characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-        return 'END' . substr(str_shuffle($characters), 0, 2);
+        return $this->morphTo();
     }
-    public static function storeCoupon($data)
-    {
-        $data['coupons_code'] = self::generateCouponCode(); // Always generate new code
-
-        return self::create($data);
-
-    }  
-    public static function couponsdelete($id)
-    {
-        $coupons = self::find($id);
-        if (!$coupons) {
-            return null;
-        }
-    
-        $coupons->delete();
-
-        return ['message' => 'Coupon deleted successfully'];
-    }
-    public static function getcoupons() 
-    {
-        $today = now();
-        $startOfMonth = $today->copy()->startOfMonth();
-        $endOfMonth = $today->copy()->endOfMonth();
-    
-        return self::whereDate('start_date', '<=', $endOfMonth)
-                   ->whereDate('end_date', '>=', $startOfMonth)
-                   ->get();
-    }
-    // public static function getcoupon() {
-    //     return self::all();
-    // }
     
 }

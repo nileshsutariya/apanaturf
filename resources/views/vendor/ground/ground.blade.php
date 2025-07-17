@@ -280,7 +280,7 @@
                                     <div class="header d-flex flex-wrap align-items-center gap-2 mb-3">
                                         <div id="tab-buttons" class="d-flex flex-wrap gap-2">
                                             @foreach($turfs as $index => $turf)
-                                                <button type="button" class="turf-button turf-tab {{ $index === 0 ? 'active' : '' }}" data-tab="{{ $index }}">
+                                                <button type="button" class="turf-button turf-tab {{ $index === 0 ? 'active' : '' }} save-turf-btn" data-tab="{{ $index }}">
                                                     {{ 'Turf-' . chr(65 + $index) }}
                                                 </button>
                                             @endforeach
@@ -297,6 +297,22 @@
                                                 <div id="ajaxErrorAlert-{{ $index }}" class="alert alert-danger ajax-error-alert d-none" style="background-color: rgb(246, 193, 193); border: none; opacity: 0.9; color: rgb(83, 9, 9);">
                                                     <ul id="ajaxErrorList-{{ $index }}" class="ajax-error-list mb-0"></ul>
                                                 </div>
+                                                {{-- @if ($turf->status == 1 || $turf->status == 0)
+                                                    <div id="ajaxErrorAlert-{{ $index }}"
+                                                        class="alert alert-danger ajax-error-alert"
+                                                        style="background-color: rgb(246, 193, 193); border: none; opacity: 0.9; color: rgb(83, 9, 9);">
+                                                        <ul id="ajaxErrorList-{{ $index }}" class="ajax-error-list mb-0">
+                                                            <li>
+                                                                @if ($turf->status == 1)
+                                                                    Your turf is not approved yet!!
+                                                                @elseif ($turf->status == 0)
+                                                                    Your turf is not approved!!
+                                                                @endif
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                @endif --}}
+
                                                 <div class="row">
                                                     <div class="col-md-5 p-3">
                                                         <div class="container">
@@ -477,6 +493,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <button type="submit" class="btn save"> Save </button>
                                             </div>
                                         @endforeach
                                     </div>
@@ -567,7 +584,7 @@
                                         </div>
                                     </div>
 
-                                    <button type="submit" class="btn save"> Save </button>
+                                    {{-- <button type="submit" class="btn save"> Save </button> --}}
                                 </div>
                             </div>
                         </div>
@@ -731,6 +748,55 @@
         $turf->turf_images->map(fn($img) => ['id' => $img->id, 'url' => asset('storage/' . $img->image_path)])->toArray()
     );
 </script>
+
+
+
+{{-- <script>
+    let isCurrentTurfSaved = true;
+
+    // Example: Call this function when user saves current turf content
+    function markTurfAsSaved() {
+        isCurrentTurfSaved = true;
+    }
+
+    // Call this when any field is modified (optional)
+    function markTurfAsUnsaved() {
+        isCurrentTurfSaved = false;
+    }
+
+    // Add Turf Tab
+    document.querySelector('.add-tab').addEventListener('click', function () {
+        if (!isCurrentTurfSaved) {
+            alert("Please save current Turf tab before adding a new one.");
+            return;
+        }
+
+        // If saved, proceed to add new tab
+        addNewTurfTab();
+        isCurrentTurfSaved = false; // Mark new tab as unsaved until saved
+    });
+
+    function addNewTurfTab() {
+        // Generate next tab name
+        const tabButtons = document.querySelectorAll('.turf-tab');
+        const newIndex = tabButtons.length;
+        const newTab = document.createElement('button');
+        newTab.type = 'button';
+        newTab.className = 'turf-button turf-tab save-turf-btn active';
+        newTab.dataset.tab = newIndex;
+        newTab.innerText = 'Turf-' + String.fromCharCode(65 + newIndex);
+
+        // Remove 'active' from all buttons
+        tabButtons.forEach(btn => btn.classList.remove('active'));
+
+        document.getElementById('tab-buttons').appendChild(newTab);
+
+        // Add corresponding content box if needed
+        // Example: addTurfContent(newIndex);
+    }
+</script> --}}
+
+
 
 
 <script>
@@ -1223,7 +1289,7 @@
 
         $(`<input type="hidden" name="turfs[${tabIndex}][removed_amenities][]" value="${amenityId}">`).appendTo('#turfForm');
 
-        $(el).closest('.amenitiestag    ').remove();
+        $(el).closest('.amenitiestag').remove();
     
     }
 </script>

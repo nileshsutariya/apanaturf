@@ -9,6 +9,9 @@
      <meta name="description" content="A fully responsive premium admin dashboard template" />
      <meta name="author" content="Techzaa" />
      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+     <meta name="csrf-token" content="{{ csrf_token() }}">
+
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
      <link rel="shortcut icon" href="{{ asset('asset/images/favicon.ico')}}">
      <link href="{{ asset('asset/css/vendor.min.css')}}" type="text/css" />
@@ -38,21 +41,31 @@
                                    <a type="button" class="topbar-button" id="page-header-user-dropdown"
                                         data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         <span class="d-flex align-items-center">
-                                             <a class="dropdown-item text-danger" href="{{ route('logout')}}">
-                                                  <i class="bx bx-log-out fs-18 align-middle me-1"></i>
-                                                  <span class="align-middle">Logout</span>
-                                             </a>
+                                             @php
+                                                  $image = \App\Models\Images::find(Auth::user()->profile_image);
+                                             @endphp
+
+                                             @if ($image)
+                                                  <img class="rounded-circle" width="35" height="35" src="{{ asset('storage/' . $image->image_path) }}" alt="avatar">
+                                             @else
+                                                  {!! Avatar::create(Str::upper(Str::substr(Auth::user()->name, 0, 1)))->setDimension(35, 35)->setFontSize(15)->toSvg() !!}
+                                             @endif
+
                                              {{-- <img class="rounded-circle" width="32"
-                                                  src="{{ asset('asset/images/users/avatar-1.jpg') }}" alt="avatar-3"> --}}
+                                             src="{{ asset('asset/images/users/avatar-1.jpg') }}" alt="avatar-3"> --}}
                                         </span>
                                    </a>
                                    <div class="dropdown-menu dropdown-menu-end">
-                                        <h6 class="dropdown-header">Welcome Gaston!</h6>
-                                        <a class="dropdown-item" href="#">
+                                        <h6 class="dropdown-header">Welcome {{Auth::user()->name}}!</h6>
+                                        <a class="dropdown-item" href="{{route('profile.index')}}">
                                              <i class="bx bx-user-circle text-muted fs-18 align-middle me-1"></i><span
-                                                  class="align-middle">Profile</span>
+                                             class="align-middle">Profile</span>
                                         </a>
                                         <div class="dropdown-divider my-1"></div>
+                                        <a class="dropdown-item text-danger" href="{{ route('logout')}}">
+                                             <i class="bx bx-log-out fs-18 align-middle me-1"></i>
+                                             <span class="align-middle">Logout</span>
+                                        </a>
                                    </div>
                               </div>
                          </div>
@@ -88,7 +101,7 @@
                          <li class="menu-title">General</li>
 
                          <li class="nav-item">
-                              <a class="nav-link" href="#">
+                              <a class="nav-link" href="{{route('admin.dashboard')}}">
                                    <span class="nav-icon">
                                         <iconify-icon icon="solar:widget-5-broken"></iconify-icon>
                                    </span>
@@ -207,10 +220,10 @@
                               <div class="collapse" id="sidebarlocation">
                                    <ul class="nav sub-navbar-nav">
                                         <li class="sub-nav-item">
-                                             <a class="sub-nav-link" href="{{ route('area.index')}}">Area</a>
+                                             <a class="sub-nav-link" href="{{ route('city.index')}}">City</a>
                                         </li>
                                         <li class="sub-nav-item">
-                                             <a class="sub-nav-link" href="{{ route('city.index')}}">City</a>
+                                             <a class="sub-nav-link" href="{{ route('area.index')}}">Area</a>
                                         </li>
                                    </ul>
                               </div>

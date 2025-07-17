@@ -70,7 +70,6 @@ class VendorLoginController extends Controller
 
     public function VerifyOtp(Request $request)
     {
-        // $vendor = Venues::where('phone', $request->phone)->where('otp', $request->otp)->first();
         $vendor = Venues::where(function ($query) use ($request) {
         $query->where('owner_phone', $request->phone)
               ->orWhere('vendor_id', $request->phone);
@@ -134,10 +133,6 @@ class VendorLoginController extends Controller
             'vendorid' => 'required|string', 
         ]);
 
-        // $vendor = Venues::where('phone', $request->vendorid)
-        //             // ->orWhere('email', $request->vendorid)
-        //             ->orWhere('vendor_id', $request->vendorid)
-        //             ->first();
         $vendor = Venues::where(function ($query) use ($request) {
                     $query->where('owner_phone', $request->vendorid)
                         ->orWhere('vendor_id', $request->vendorid);
@@ -169,7 +164,6 @@ class VendorLoginController extends Controller
             'newpass' => 'required|confirmed|min:6',
         ]);
 
-        // $vendor = Venues::where(column: 'phone', $request->vendorid)->first();
         $vendor = Venues::where(function ($query) use ($request) {
                 $query->where('owner_phone', $request->vendorid)
                     ->orWhere('vendor_id', $request->vendorid);
@@ -191,5 +185,4 @@ class VendorLoginController extends Controller
             'redirect' => route('vendor.login')
         ]);
     }
-
 }   

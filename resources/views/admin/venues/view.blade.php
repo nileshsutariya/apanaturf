@@ -32,13 +32,13 @@
                 <div class="col-md-6">
                 <div class="mb-3">
                     <label for="simpleinput" class="form-label">Vendor ID</label>
-                    <input type="text" id="vendor_id" class="form-control" value="{{ $vendor->vendor_id }}" readonly>
+                    <input type="text" id="vendor_id" class="form-control" value="{{ $vendor->vendor_id }}" {{ $vendor->status != 2 ? 'readonly' : '' }}>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="mb-3">
                     <label for="example-email" class="form-label">Name</label>
-                    <input type="email" id="owner_name" class="form-control" value="{{ $vendor->owner_name }}" readonly>
+                    <input type="text" id="owner_name" class="form-control" value="{{ $vendor->owner_name }}" {{ $vendor->status != 2 ? 'readonly' : '' }}>
                 </div>
             </div>
         </div>
@@ -46,13 +46,13 @@
             <div class="col-md-6">
                 <div class="mb-3">
                     <label for="simpleinput" class="form-label">email</label>
-                    <input type="text" id="owner_email" class="form-control" value="{{ $vendor->owner_email }}" readonly>
+                    <input type="text" id="owner_email" class="form-control" value="{{ $vendor->owner_email }}" {{ $vendor->status != 2 ? 'readonly' : '' }}>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="mb-3">
                     <label for="example-email" class="form-label">Phone</label>
-                    <input type="text" id="owner_phone" class="form-control" value="{{ $vendor->owner_phone }}" readonly>
+                    <input type="text" id="owner_phone" class="form-control" value="{{ $vendor->owner_phone }}" {{ $vendor->status != 2 ? 'readonly' : '' }}>
                 </div>
             </div>
         </div>
@@ -60,13 +60,13 @@
             <div class="col-md-6">
                 <div class="mb-3">
                     <label for="simpleinput" class="form-label">Location text</label>
-                    <input type="text" id="location_text" class="form-control" value="{{ $vendor->location_text }}" readonly>
+                    <input type="text" id="location_text" class="form-control" value="{{ $vendor->location_text }}" {{ $vendor->status != 2 ? 'readonly' : '' }}>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="mb-3">
                     <label for="example-email" class="form-label">Location Link</label>
-                    <input type="text" id="location_link" class="form-control" value="{{ $vendor->location_link }}" readonly>
+                    <input type="text" id="location_link" class="form-control" value="{{ $vendor->location_link }}" {{ $vendor->status != 2 ? 'readonly' : '' }}>
                 </div>
             </div>
         </div>
@@ -77,7 +77,7 @@
                     @if (!empty($vendor->turf_images) && count($vendor->turf_images))
                         <a href="#" class="btn btn-link view-turf-images" 
                         data-images='@json($vendor->turf_images)'>
-                            Turf Images {{ count($vendor->turf_images) }}(s)
+                            Turf Images ({{ count($vendor->turf_images) }})
                         </a>
                     @else
                         <p>No images available.</p>
@@ -89,19 +89,19 @@
             <div class="col-md-4">
                 <div class="mb-3">
                     <label for="simpleinput" class="form-label">City</label>
-                    <input type="text" id="city_name" class="form-control" value="{{ $vendor->city_name }}" readonly>
+                    <input type="text" id="city_name" class="form-control" value="{{ $vendor->city_name }}" {{ $vendor->status != 2 ? 'readonly' : '' }}>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="mb-3">
                     <label for="example-email" class="form-label">Area</label>
-                    <input type="text" id="area_name" class="form-control" value="{{ $vendor->area_name }}" readonly>
+                    <input type="text" id="area_name" class="form-control" value="{{ $vendor->area_name }}" {{ $vendor->status != 2 ? 'readonly' : '' }}>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="mb-3">
                     <label for="example-email" class="form-label">Pincode</label>
-                    <input type="text" id="pincode" class="form-control" value="{{ $vendor->pincode }}" readonly>
+                    <input type="text" id="pincode" class="form-control" value="{{ $vendor->pincode }}" {{ $vendor->status != 2 ? 'readonly' : '' }}>
                 </div>
             </div>
         </div>
@@ -162,7 +162,7 @@
                         <i class='bx bxs-x-circle bx-xs'></i> Disapprove
                     </button>
                 @endif
-            @elseif($vendor->status == 2)
+            {{-- @elseif($vendor->status == 2)
                 <a class="btn btn-soft-primary btn-sm editvenues" data-bs-target="#venues"
                     data-venues='@json($vendor)'>
                     <i class='bx bxs-pencil bx-xs'></i> Edit
@@ -170,20 +170,20 @@
                 <button class="btn btn-soft-danger btn-sm" id="deletevenues"
                     value="{{ $vendor->id }}">
                     <i class='bx bxs-trash bx-xs'></i> Delete
-                </button>
-            @else
+                </button> --}}
+            {{-- @else
                 <button class="btn btn-soft-info btn-sm approveVendor" value="{{ $vendor->id }}">
                     <i class='bx bx-refresh bx-xs'></i> Re-approve
                 </button>
-                <button class="btn btn-soft-danger btn-sm deleteVendor" value="{{ $vendor->id }}">
+                <button class="btn btn-soft-danger btn-sm `deleteVendor" value="{{ $vendor->id }}">
                     <i class='bx bxs-trash bx-xs'></i> Delete
-                </button>
+                </button> --}}
             @endif
         </div>
         {{-- @endforeach --}}
     </form>
 
-     <div class="modal fade" id="imagePreviewModal" tabindex="-1" aria-hidden="true">
+    <div class="modal fade" id="imagePreviewModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-md">
         <div class="modal-content">
         <div class="modal-header">
@@ -248,7 +248,7 @@
                 const isActive = index === 0 ? 'active' : '';
                 const imageTag = `
                     <div class="carousel-item ${isActive}">
-                        <img src="{{ asset('storage') }}/${img.image_path}" class="d-block w-100" alt="Turf Image">
+                        <img src="{{ asset('storage') }}/${img.image_path}" class="d-block w-100" alt="Turf Image" height="280">
                     </div>`;
                 carouselInner.append(imageTag);
             });

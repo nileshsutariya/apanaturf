@@ -15,7 +15,7 @@ class Customer extends Authenticatable implements JWTSubject
     use HasApiTokens, WithPagination, WithoutUrlPagination; 
     protected $table = 'customer';
     protected $primaryKey = 'id';
-    protected $fillable = ['name', 'email', 'phone', 'balance'];
+    protected $fillable = ['name', 'email', 'phone', 'password', 'otp', 'otp_send_at'];
     
     public function getJWTIdentifier()
     {

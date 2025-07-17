@@ -15,7 +15,8 @@ class AmenitiesController extends Controller
     public function index(Request $request)
     {
         $amenities = Amenity::leftJoin('images', 'amenities.image_id', '=', 'images.id')
-            ->select('amenities.*', 'images.image_path')->get();
+                            ->select('amenities.*', 'images.image_path')
+                            ->get();
         if ($request->ajax()) {
             return view('admin.amenities.amenities', compact('amenities'))->render();
         } else {
@@ -25,11 +26,9 @@ class AmenitiesController extends Controller
 
     public function store(Request $request)
     {
-
         // print_r($request->all());die;
-
         $validator = Validator::make($request->all(), [
-            'name' => 'required',
+            'name' => 'required|alpha',
             'amenities_image' => 'required|image|dimensions:width=150,height=150',
         ], [
             'amenities_image.dimensions' => 'The image must be exactly 150x150 pixels.',
@@ -80,8 +79,6 @@ class AmenitiesController extends Controller
                 }
             }
         }
-
-        // Store image in public/storage/admin_images
 
         $filename = time() . '_' . $file->getClientOriginalName();
         $filepath = $file->storeAs('admin_image', $filename, 'public');

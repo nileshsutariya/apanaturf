@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use Illuminate\Http\Request;
 use App\Models\PermissionGroup;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 
@@ -17,7 +18,7 @@ class PermissionGroupController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'required'
+            'name' => 'required|alpha'
         ])->validate();
 
         $permissiongroup = $request->id ? PermissionGroup::find($request->id) : new PermissionGroup();
@@ -40,6 +41,8 @@ class PermissionGroupController extends Controller
             return response()->json(['error' => 'Permission group not found.'], 404);
         }
 
+        DB::table('permission')->where('permission_group_id', $permissionGroup->id)->delete();
+        // print_r("vfcdxsza"); die;
         $permissionGroup->delete();
 
         return response()->json(['success' => true]);

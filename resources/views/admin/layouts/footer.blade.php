@@ -7,7 +7,7 @@
         </div>
     </div>
 </footer>
-<!-- ========== Footer End ========== -->
+
 </div>
 <!-- End Page Content -->
 </div>
@@ -15,10 +15,8 @@
 <script src="{{ asset('asset/js/vendor.js') }}"></script>
 <script src="{{ asset('asset/js/app.js') }}"></script>
 
-<script src="{{asset('asset/js/pages/dashboard.js')}}"></script>
-
 <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+{{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script> --}}
 
 </body>
 

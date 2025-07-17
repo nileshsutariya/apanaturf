@@ -23,31 +23,32 @@ class PermissionsController extends Controller
         });
 
         $routes = $routes->pluck('action.as')->all();
+        $users = User::select('id', 'name')->get();
+        $group = PermissionGroup::select('id', 'name')->get();
 
         $permission = Permission::leftJoin('permission_group', 'permission.permission_group_id', '=', 'permission_group.id')
-            ->leftJoin('users', 'permission.user_id', '=', 'users.id')
-            ->select('permission.*', 'permission_group.name as group_name', 'users.name as user_name')
-            ->where('permission.name', 'like', '%' . $request->search . '%')
-            ->orWhere('users.name', 'like', '%' . $request->search . '%')
-            ->orWhere('permission_group.name', 'like', $request->search . '%')->paginate(10);
+                ->leftJoin('users', 'permission.user_id', '=', 'users.id')
+                ->select('permission.*', 'permission_group.name as group_name', 'users.name as user_name')
+                ->where('permission.name', 'like', '%' . $request->search . '%')
+                ->orWhere('users.name', 'like', '%' . $request->search . '%')
+                ->orWhere('permission_group.name', 'like', $request->search . '%')->paginate(10);
             
         if ($request->ajax()) {
-            return view('admin.permissions.permission', compact('permission', 'routes'))->render();
+            return view('admin.permissions.permission', compact('permission', 'routes', 'users', 'group'))->render();
         } else {
-            return view('admin.permissions.permission', compact('permission', 'routes'));
+            return view('admin.permissions.permission', compact('permission', 'routes', 'users', 'group'));
         }
-
     }
-
 
     public function store(Request $request)
     {
-        // print_r($request->routes);die;
+        // print_r($request->routes);die;   
         $validator = Validator::make($request->all(), [
             'routes' => $request->id ? 'sometimes' : 'required',
             'group' => 'required',
             'user' => 'required',
         ])->validate();
+        
         $permissions = $request->id ? Permission::find($request->id) : new Permission();
         if ($request->routes != null) {
             $permissions->name = $request->routes;

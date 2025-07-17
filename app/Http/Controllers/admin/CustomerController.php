@@ -45,11 +45,12 @@ class CustomerController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'required',
-            'phone' => 'required',
-            'balance' => 'required',
+            'name' => 'required|alpha',
+            'phone' => 'required|digits:10',
+            'balance' => 'required|digits:5',
             'email' => 'required|email|unique:customer,email' . ($request->id ? ',' . $request->id : ''),
         ])->validate();
+
         $customer = $request->id ? Customer::find($request->id) : new Customer();
         $customer->name = $request->name;
         $customer->unique_id = uniqid();

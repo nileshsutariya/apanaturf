@@ -74,7 +74,7 @@
                     @if (!empty($turf->turf_images) && count($turf->turf_images))
                         <a href="#" class="btn btn-link view-turf-images"
                         data-images='@json($turf->turf_images)'>
-                            Turf Images {{ count($turf->turf_images) }}(s)
+                            Turf Images ({{ count($turf->turf_images) }})
                         </a>
                     @else
                         <p>No images available.</p>
@@ -142,7 +142,7 @@
                         <i class='bx bxs-x-circle bx-xs'></i> Disapprove
                     </button>
                 @endif
-            @elseif($turf->status == 2)
+            {{-- @elseif($turf->status == 2)
                 <a class="btn btn-soft-primary btn-sm editvenues" data-bs-target="#venues"
                     data-venues='@json($turf)'>
                     <i class='bx bxs-pencil bx-xs'></i> Edit
@@ -150,14 +150,14 @@
                 <button class="btn btn-soft-danger btn-sm" id="deletevenues"
                     value="{{ $turf->id }}">
                     <i class='bx bxs-trash bx-xs'></i> Delete
-                </button>
-            @else
-                <button class="btn btn-soft-info btn-sm approveTurf" value="{{ $turf->id }}">
+                </button> --}}
+            {{-- @else --}}
+                {{-- <button class="btn btn-soft-info btn-sm approveTurf" value="{{ $turf->id }}">
                     <i class='bx bx-refresh bx-xs'></i> Re-approve
                 </button>
                 <button class="btn btn-soft-danger btn-sm deleteTurf" value="{{ $turf->id }}">
                     <i class='bx bxs-trash bx-xs'></i> Delete
-                </button>
+                </button> --}}
             @endif
         </div>
         @endforeach
@@ -168,7 +168,7 @@
     <div class="modal-dialog modal-md modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Turf Image Preview</h5>
+                <h5 class="modal-title">Turf Images</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body">
@@ -201,7 +201,7 @@
                 const isActive = index === 0 ? 'active' : '';
                 const imageTag = `
                     <div class="carousel-item ${isActive}">
-                        <img src="{{ asset('storage') }}/${img.image_path}" class="d-block w-100" alt="Turf Image">
+                        <img src="{{ asset('storage') }}/${img.image_path}" class="d-block w-100" alt="Turf Image" height="280">
                     </div>`;
                 carouselInner.append(imageTag);
             });

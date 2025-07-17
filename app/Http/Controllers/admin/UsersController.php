@@ -44,11 +44,12 @@ class UsersController extends Controller
     {
         // print_r($request->all());die;
         $validator = Validator::make($request->all(), [
-            'name' => 'required',
-            'phone' => 'required',
+            'name' => 'required|alpha',
+            'phone' => 'required|digits:10',
             'role' => 'required',
             'email' => 'required|email|unique:users,email' . ($request->id ? ',' . $request->id : ''),
         ])->validate();
+
         $users = $request->id ? User::find($request->id) : new User();
         $users->name = $request->name;
         $users->unique_id = uniqid();
@@ -62,6 +63,21 @@ class UsersController extends Controller
         }
         $users->save();
         return redirect()->route('users.index');
+    }
+    
+    public function delete(Request $request)
+    {
+        $user = User::find($request->id);
+
+        if (!$user) {
+            return response()->json(['message' => 'User not found.'], 404);
+        }
+
+        DB::table('permission')->where('user_id', $user->id)->delete();
+
+        $user->delete();
+
+        return response()->json(['success' => true]);
     }
 
 }

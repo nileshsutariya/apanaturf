@@ -80,5 +80,4 @@ class TurfController extends Controller
         return response()->json(['success' => true, 'message' => 'Vendor disapproved.']);
     }
 
-
 }

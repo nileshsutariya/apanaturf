@@ -14,7 +14,8 @@ class BannerController extends Controller
     public function index(Request $request)
     {
         $banner = Banner::leftJoin('images', 'banner.image_id', '=', 'images.id')
-            ->select('banner.*', 'images.image_path')->get();
+                        ->select('banner.*', 'images.image_path')
+                        ->get();
         if ($request->ajax()) {
             return view('admin.banner.banner', compact('banner'))->render();
         } else {
@@ -23,9 +24,6 @@ class BannerController extends Controller
     }
     public function store(Request $request)
     {
-
-        // print_r($request->all());die;
-
         $validator = Validator::make($request->all(), [
             'event_id' => 'required',
             'banner_image' => 'required|image',
@@ -53,11 +51,10 @@ class BannerController extends Controller
         $i->save();
 
         return redirect()->route('banners.index');
-
     }
 
-    public function delete(Request $request){
-        // print_r($requexst->id);die;
+    public function delete(Request $request)
+    {
         $banner = banner::find($request->id);
         $image = Images::find($banner->image_id);
         $banner->delete();
@@ -68,7 +65,7 @@ class BannerController extends Controller
             }
             $image->delete();
         }
-        return redirect()->route('banners.index');
+        return response()->json(['success' => true]);
     }
 
 }

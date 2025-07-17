@@ -30,17 +30,9 @@
         overflow-y: scroll !important;
         scrollbar-width: none;
     }
-
-
     .modal-dialog-scrollable .modal-body {
         scrollbar-width: none !important;
     }
-
-    .coupon-card,
-    #formErrors {
-        margin: 10px 30px 0 28px;
-    }
-
     .choices__list {
         padding-left: 10px;
     }
@@ -104,12 +96,6 @@
             </a>
         </div>
         <div class="card-body pt-0">
-            <!-- <p class="text-muted">The most basic list group is an unordered list with list items and
-                the proper classes. Build upon it with the options that follow, or with your own CSS
-                as needed.</p>
-            <div class="py-3">
-                <div id="table-fixed-header"></div>
-            </div> -->
             <div class="search">
                 <input class="form-control ml-auto" type="search" id="search" name="search" placeholder="Search"><br>
             </div>
@@ -137,7 +123,7 @@
                                         {{ date('d-m-Y', strtotime($value->created_at)) }}
                                     </td>
                                     <td>
-                                        {{ $value->role_name }}
+                                        {{ $value->created_by_type }}
                                     </td>
                                     <td>
                                         {{ $value->coupons_name }}
@@ -159,9 +145,9 @@
                                                 data-coupons='@json($value)'>
                                                 <i class='bx bxs-pencil bx-xs'></i>
                                             </a>
-                                            <a href="#!" class="btn btn-soft-danger btn-sm">
+                                            {{-- <a href="" class="btn btn-soft-danger btn-sm">
                                                 <i class='bx bxs-trash bx-xs'></i>
-                                            </a>
+                                            </a> --}}
                                         </div>
                                     </td>
                                 </tr>
@@ -281,23 +267,23 @@
     </div>
 </div>
 <div class="modal fade" id="couponsview" tabindex="-1" aria-labelledby="couponsTitle" aria-hidden="false">
-    <div class="modal-dialog modal-dialog-scrollable" style="justify-items:center; padding-top: 70px;">
+    <div class="modal-dialog modal-dialog-scrollable" style="justify-items:center;">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="couponsTitle">View of Coupon</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="card bg-dark coupon-card">
-                        <div class="card-body pb-0 ">
+            <div class="row" style="padding: 12px;">
+                <div class="col-sm-10" style="margin: auto;">
+                    <div class="card bg-dark coupon-card" style="margin-bottom: 0px !important;">
+                        <div class="card-body pb-0" style="padding: 16px;">
                             <div class="d-flex justify-content-between">
                                 <div>
-                                    <h4 class=" mb-1 text-success i_percentage"></h4>
+                                    <h4 class="mb-1 text-success i_percentage"></h4>
                                     <p class="i_max"></p>
                                 </div>
                                 <div style="justify-items: end;">
-                                    <h4 class=" mb-1 text-info i_code "></h4>
+                                    <h4 class="mb-1 text-info i_code"></h4>
                                     <p class="i_date" style="text-align: right;"></p>
                                 </div>
                             </div>
@@ -308,7 +294,7 @@
                     </div>
                 </div>
             </div>
-            <div class="modal-body mt-3 pl-5 pt-0" style="scrollbar-width: none;">
+            <div class="modal-body mt-2 ml-2 pl-5 pt-0" style="scrollbar-width: none;">
                 <div style="color: #333; padding-left:5px!important;" class="info_view">
                     <div>
                         <strong>Created By :</strong>
@@ -431,6 +417,9 @@
 
     $('#coupons').on('hidden.bs.modal', function () {
         $('#couponsForm')[0].reset();
+        $('#couponsForm input[name="id"]').val(''); 
+        $('#couponsTitle').text('Add New coupons');
+
         roleChoices.setChoiceByValue('');
         typeChoices.setChoiceByValue('');
         let code = generateCouponCode();
@@ -491,6 +480,9 @@
                         $('#formErrors ul').html(errorHtml);
                         $('#formErrors').removeClass('d-none');
                         $('#formErrors').fadeIn('slow');
+                        $('.modal-body').animate({
+                            scrollTop: $('#formErrors').position().top
+                        }, 600);
 
                         setTimeout(function () {
                             $('#formErrors').fadeOut('slow');
@@ -577,7 +569,7 @@
 
             roleChoices.setChoiceByValue(coupon.turf_id.toString());
             cityChoices.setChoiceByValue(coupon.city_id.toString());
-            typeChoices.setChoiceByValue(coupon.type);
+            typeChoices.setChoiceByValue(coupon.discount_type);
 
             flatpickr("#valid-datepicker", {
                 dateFormat: "d-m-Y",
@@ -605,36 +597,5 @@
     });
 
 </script>
-<!-- 
-    <div class="row">
-        <div class="col-md-6 col-xl-4">
-            <div class="card bg-dark ">
-                <span class="coupon-close">
-                <button type="button" title="Delete" class="deletesport"
-                        style="position: absolute; background: none; border: none; color: #d8dfe7; font-size: 25px; font-weight: 400; cursor: pointer; z-index: 10;">&times;</button>                            </span>
-                <div class="card-body pb-0 ">
-                    <div class="d-flex justify-content-between">
-                        <div>
-                            <h4 class=" mb-1 text-success">20% OFF</h4>
-                            <p class="">MAX ₹500</p>
-                        </div>
-                        <div style="justify-items: end;">
-                            <h4 class=" mb-1 text-info ">END02</h4>
-                            <p class="">Coupon Expires 01/03</p>
-                        </div>
-                    </div>
-                    <div>
-                        <h5 class="text-info">End Of New Year</h5>
-                    </div>
-                </div>
-                <div class="card-footer">
-                    <a href="#" class="btn btn-success">View Plan</a>
-                </div>
-                <div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div> -->
 
 @include('admin.layouts.footer')

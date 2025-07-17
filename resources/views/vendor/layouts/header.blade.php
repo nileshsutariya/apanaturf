@@ -108,16 +108,17 @@
 
         .app-topbar .app-search .form-control {
             height: 35px;
-            border-radius: 10px 0 0 10px;
+            border-radius: 10px;
             background-color: white;
             box-shadow: 0 4px 5px rgba(209, 209, 209, 0.2);
         }
 
-        .app-topbar .app-search .btn-icon {
+        /* .app-topbar .app-search .btn-icon {
+            height: 40px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-            border-radius: 0 10px 10px 0;
+            border-radius: 10px;
             background-color: white;
-        }
+        } */
 
         .notification-icon {
             height: 20px;
@@ -212,7 +213,7 @@
                     </li>
                     
                     <li class="side-nav-item">
-                        <a href="" class="side-nav-link">
+                        <a href="{{route('request.index')}}" class="side-nav-link">
                             <span class="menu-icon"><img src="{{asset('assets/image/client/bell.svg')}}"
                             alt="transaction"></span>
                             <span class="menu-text mt-2"> Request </span>
@@ -233,7 +234,7 @@
                         </a>
                     </li>
                     <li class="side-nav-item">
-                        <a href="" class="side-nav-link">
+                        <a href="{{route('offers.index')}}" class="side-nav-link">
                             <span class="menu-icon"><img src="{{asset('assets/image/client/ticket.svg')}}"
                                     alt="coupons"></span>
                             <span class="menu-text mt-2">Coupons & Offers</span>
@@ -359,19 +360,14 @@
                         <form class="app-search">
                             <div class="app-search-box">
                                 <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Search...">
-                                    <div class="input-group-append"
-                                        style="box-shadow: 0 4px 5px rgba(209, 209, 209, 0.2); ">
-                                        <button class="btn btn-icon" type="submit">
-                                            <i class="fas fa-search" style="margin-bottom: 5px !important;"></i>
-                                        </button>
-                                    </div>
+                                    <input type="text" class="form-control" placeholder="Search..." style="border-radius: 10px !important; padding-right: 36px;">
                                 </div>
+                                <i class="fas fa-search" 
+                                   style="margin-bottom: 5px !important; position: absolute; right: 11px; top: 27px; z-index: 10;">
+                                </i>
                             </div>
                         </form>
                     </div>
-
-
                     <div class="topbar-item nav-user">
                         <div class="dropdown">
                             

@@ -23,7 +23,7 @@ class User extends Authenticatable implements JWTSubject
     protected $table = 'users';
     protected $primaryKey = 'id';
     protected $fillable = [
-        'unique_id', 'name', 'email', 'phone', 'role_id'
+        'unique_id', 'name', 'email', 'phone', 'profile_image'
     ];
     public function permissions()
     {
@@ -38,6 +38,18 @@ class User extends Authenticatable implements JWTSubject
     public function role()
     {
         return $this->belongsTo(RoleType::class, 'role_id', 'id');
+    }
+    public function city()
+    {
+        return $this->belongsTo(City::class, 'city_id', 'id');
+    }
+    public function area()
+    {
+        return $this->belongsTo(Area::class, 'area_id', 'id');
+    }
+    public function coupons()
+    {
+        return $this->morphMany(Coupons::class, 'creator');
     }
     /**
      * The attributes that should be hidden for serialization.
@@ -70,38 +82,5 @@ class User extends Authenticatable implements JWTSubject
     {
         return [];
     }
-    public static function getdata() {
-        return self::all();
-    }
-
-    public static function storeUser($data)
-    {
-        $role = RoleType::where('name', $data['role_id'])->first();
-
-        return self::create([
-            // 'unique_id' => Str::uuid(), 
-            'unique_id' => uniqid(),
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'phone' => $data['phone'],
-            'role_id' => $data['role_id'], 
-        ]);
-    }   
-
-    public static function editUser($id)
-    {
-        return self::findOrFail($id);
-    }
-
-    public static function updateUser($id, $data)
-    {
-        return self::where('id', $id)->update([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'phone' => $data['phone'],
-            'role_id' => $data['role_id'],
-        ]);
-    }
-    
 
 }

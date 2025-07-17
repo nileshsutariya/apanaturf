@@ -18,8 +18,9 @@ class CityController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'required',
+            'name' => 'required|alpha',
         ])->validate();
+        
         $city = $request->id ? City::find($request->id) : new City();
         $city->city_name = $request->name;
         $city->save();

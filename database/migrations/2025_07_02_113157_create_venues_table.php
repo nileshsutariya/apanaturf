@@ -36,6 +36,7 @@ return new class extends Migration
             $table->foreign('Aadhaar_card')->references('id')->on('images');
             $table->unsignedBigInteger('vendor_image')->nullable();
             $table->foreign('vendor_image')->references('id')->on('images');
+            // $table->json('turf_image')->nullable();
             $table->unsignedBigInteger('turf_image')->nullable();
             $table->foreign('turf_image')->references('id')->on('images');
             $table->unsignedBigInteger('created_by')->nullable();

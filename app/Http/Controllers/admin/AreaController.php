@@ -16,19 +16,21 @@ class AreaController extends Controller
         $city = DB::table('city')->get();
 
         $area = Area::leftJoin('city', 'area.city_id', '=', 'city.id')
-                ->select('area.*', 'city.city_name as city_name', 'city.id as city_id')
-                ->where('area', 'like', '%' . $request->search . '%')
-                ->orWhere('pincode', 'like', '%' . $request->search . '%')->paginate(10);
+                    ->select('area.*', 'city.city_name as city_name', 'city.id as city_id')
+                    ->where('area', 'like', '%' . $request->search . '%')
+                    ->orWhere('pincode', 'like', '%' . $request->search . '%')
+                    ->paginate(10);
 
         return $request->ajax() ? view('admin.area.area', compact('area', 'city'))->render() : view('admin.area.area', compact('area', 'city'));
     }
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'required',
-            'pincode' => 'required',
+            'name' => 'required|alpha',
+            'pincode' => 'required|digits:6',
             'city' => 'required',
         ])->validate();
+        
         $area = $request->id ? area::find($request->id) : new area();
         $area->area = $request->name;
         $area->pincode = $request->pincode;
@@ -39,9 +41,10 @@ class AreaController extends Controller
     public function delete(Request $request)
     {
         $area = Area::find($request->id);
-
-        return !$request->id ? response()->json(['error' => 'ID is required.'], 400) :
-                (!$area ? response()->json(['error' => 'Area not found.'], 404) :
-                ($area->delete() && response()->json(['success' => true])));
+        if (!$area) {
+            return response()->json(['error' => 'Area not found.'], 404);
         }
+        $area->delete();
+        return response()->json(['success' => true]);
+    }
 }

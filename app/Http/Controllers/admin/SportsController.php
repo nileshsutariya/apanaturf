@@ -27,7 +27,7 @@ class SportsController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'required',
+            'name' => 'required|alpha',
             'sport_image' => 'required|image|dimensions:width=150,height=150',
         ], [
             'sport_image.dimensions' => 'The image must be exactly 150x150 pixels.',
@@ -79,8 +79,6 @@ class SportsController extends Controller
             }
         }
 
-        // Store image in public/storage/admin_images
-
         $filename = time() . '_' . $file->getClientOriginalName();
         $filepath = $file->storeAs('admin_image', $filename, 'public');
         
@@ -102,7 +100,6 @@ class SportsController extends Controller
         $i->save();
 
         return redirect()->route('sports.index');
-
     }
 
     public function delete(Request $request){

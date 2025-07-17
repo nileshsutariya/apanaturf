@@ -7,13 +7,9 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.css"
     integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-{{-- @if(session('success'))
-<p>{{ session('success') }}</p>
-@endif --}}
 <style>
     .swal2-title {
         font-size: 14px !important;
-        /* Adjust as needed */
         font-weight: 500;
     }
 
@@ -240,7 +236,9 @@
     });
 
     $('#permissiongroup').on('hidden.bs.modal', function () {
-        $('#permissiongroupForm').find('input[name="id"], input[name="name"]').val('');
+        $('#permissiongroupForm')[0].reset();
+        $('#permissiongroupTitle').text('Add New Permission Group');
+        $('#permissiongroupForm input[name="id"]').val('');
         $('#formErrors').addClass('d-none').find('ul').html('');
     });
 
@@ -357,7 +355,7 @@
         }
 
         let permissiongroup = $(this).data('permissiongroup');
-        $('#permissiongroupTitle').text('Edit Permission Group'); // Corrected line
+        $('#permissiongroupTitle').text('Edit Permission Group');
 
         $('#permissiongroupForm input[name="id"]').val(permissiongroup.id);
         $('#permissiongroupForm input[name="name"]').val(permissiongroup.name);
@@ -373,6 +371,19 @@
         e.preventDefault();
         let button = $(this);
         let id = button.data('id');
+        var hasPermission = @json(Auth::user() && Auth::user()->hasPermissionTo('permissiongroup.delete'));
+
+        if (!hasPermission) {
+            Swal.fire({
+                title: "403 Unauthorized",
+                text: "You do not have permission to delete a permission group.",
+                icon: "error",
+                timer: 3000,
+                timerProgressBar: true,
+                confirmButtonText: "Close"
+            });
+            return;
+        }
 
         $.ajax({
             headers: {

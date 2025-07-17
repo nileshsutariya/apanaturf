@@ -383,4 +383,4 @@
         }
     });
 </script>
- @include('vendor.layouts.footer')
+@include('vendor.layouts.footer')

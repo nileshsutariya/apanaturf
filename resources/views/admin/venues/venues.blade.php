@@ -5,6 +5,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css" />
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+
 <style>
     #modalImage {
         height: 300px;
@@ -49,7 +50,12 @@
     #search {
         width: 20%;
     }
-
+    .choices__inner {
+        min-height: auto !important;
+    }
+    .choices {
+        margin-bottom: 0px !important;
+    }
     .choices__list {
         padding-left: 10px;
     }
@@ -188,7 +194,7 @@
                                     <td>
                                         <div class="d-flex gap-2">
                                             @php
-                                                $turfImagesJson = htmlspecialchars(json_encode($value->turf_images), ENT_QUOTES, 'UTF-8');
+                                                $turfImagesJson = htmlspecialchars(json_encode($value->turf_image), ENT_QUOTES, 'UTF-8');
                                             @endphp
                                             <a class="btn btn-soft-secondary btn-sm viewVendor" href="{{route('vendor.view', encrypt($value->id))}}">
                                                 <i class="bi bi-eye-fill" style="font-size: medium"></i> 
@@ -246,6 +252,7 @@
                     <form id="venuesForm" method="POST" enctype="multipart/form-data">
                         @csrf
                         <input type="hidden" class="form-control" name="id" readonly>
+                        <div id="error-container"></div>
 
                         <div>
                             <div class="tab-content mb-0">
@@ -264,7 +271,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-lg-6">
-                                            <div class="mb-3">
+                                            <div class="mt-3">
                                                 <label>City</label>
                                                 <select class="form-control cityselect" data-choices name="city"
                                                     id="choices-single-default">
@@ -277,10 +284,11 @@
                                                         @endforeach
                                                     @endif
                                                 </select>
+                                                <div class="text-danger error-city"></div>
                                             </div>
                                         </div>
                                         <div class="col-lg-6 arealist">
-                                            <div class="mb-3">
+                                            <div class="mt-3">
                                                 <label>Area</label>
                                                 <select class="form-control areaselect" data-choices name="area"
                                                     id="choices-single-default">
@@ -293,23 +301,25 @@
                                                         @endforeach
                                                     @endif
                                                 </select>
+                                                <div class="text-danger error-area"></div>
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
-                                            <div class="mb-3">
+                                            <div class="mt-3">
                                                 <label for="basicUser" class="form-label">Location text</label>
                                                 <input id="basicUser" type="text" class="form-control"
                                                     placeholder="Enter location in text" name="location_text">
+                                                <div class="text-danger error-location_text"></div>                                            
                                             </div>
                                         </div>
 
                                         <div class="col-lg-6">
-                                            <div class="mb-3">
+                                            <div class="mt-3">
                                                 <label for="basicUser" class="form-label me-2">Map Location</label>
                                                 <div class="input-group">
                                                     <input id="clipboard_example" type="text" class="form-control copy"
                                                         name="location_link"
-                                                        placeholder="https://maps.app.goo.gl/8pibjs1BtBRH5dLh7"
+                                                        placeholder="Enter location link"
                                                         style="height: 47.5px;" />
                                                     <button type="button" class="btn btn-light btn-copy-clipboard"
                                                         onclick="copylink()"
@@ -319,13 +329,14 @@
                                                             class="bi bi-link-45deg"></i>
                                                     </button>
                                                 </div>
+                                                <div class="text-danger error-location_link"></div>
                                             </div>
                                         </div>
-                                        <div class="col-lg-4 col-md-12 col-sm-12" style="justify-items: center;">
+                                        <div class="col-lg-12 mt-2 col-md-12 col-sm-12 text-center mt-3" style="justify-items: center;">
                                             <span style="font-weight: 500;">Turf Image</span><br>
                                             <div id="turf-dropzone" class="dropzone p-0 mt-1">
                                                 <div class="fallback">
-                                                    <input type="file" name="turf_images[]" class="form-control" multiple>
+                                                    <input type="file" name="turf_image[]" class="form-control" multiple>
                                                 </div>
                                                 <div class="dz-message needsclick">
                                                     <i class="h1 bx bx-cloud-upload"></i>
@@ -337,6 +348,8 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="text-danger error-turf_image"></div>
+                                        <span id="turf-previews" class="d-flex flex-wrap gap-2 mt-2"></span>
                                     </div>
                                 </div>
                                 <div class="tab-pane " id="basictab2" role="tabpanel">
@@ -360,6 +373,7 @@
                                                 <label class="form-label" for="basicFname">Name</label>
                                                 <input type="text" id="turfname" name="name" class="form-control"
                                                     placeholder="Enter Your Name">
+                                                    <div class="text-danger error-name"></div>
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
@@ -367,6 +381,7 @@
                                                 <label for="basicEmail" class="form-label">Email</label>
                                                 <input id="basicEmail" name="email" type="email" class="form-control"
                                                     placeholder="Enter your email">
+                                                <div class="text-danger error-email"></div>
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
@@ -375,8 +390,9 @@
                                                 <input type="text" id="basicLname" name="mobileno" class="form-control"
                                                     placeholder="Enter Moblie No."
                                                     oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                                                <div class="text-danger error-mobileno"></div>
                                             </div>
-                                        </div><!-- end col -->
+                                        </div>
                                     </div>
                                     <div class="uploadfiles">
                                         <hr>
@@ -384,9 +400,9 @@
                                             <strong> Upload Documents </strong>
                                         </p>
                                         <hr>
-                                    </div><!-- end row -->
-                                    <div class="row uploadfiles">
-                                        <div class="col-lg-4 col-md-12 col-sm-12 " style="justify-items: center;">
+                                    </div>
+                                    <div class="row uploadfiles mt-3 text-center">
+                                        <div class="col-lg-4 col-md-12 col-sm-12" style="justify-items: center;">
                                             <span style="font-weight: 500;">Profile Image</span><br>
                                             <div id="your-dropzone" class="dropzone p-0 mt-1">
                                                 <div class="fallback">
@@ -417,6 +433,7 @@
                                                     </span>
                                                 </div>
                                             </div>
+                                            <div class="text-danger error-pancard_image"></div>
                                         </div>
                                         <div class="col-lg-4 col-md-12 col-sm-12" style="justify-items: center;">
                                             <span style="font-weight: 500;">Aadhaar Card Image</span><br>
@@ -433,10 +450,11 @@
                                                     </span>
                                                 </div>
                                             </div>
+                                            <div class="text-danger error-aadhaar_image"></div>
                                         </div>
                                     </div>
                                 </div>
-                            </div> <!-- end row -->
+                            </div>
                         </div>
                     </form>
                 </div>
@@ -462,8 +480,6 @@
             </div>
         </div>
     </div>
-
-
 </div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -473,20 +489,50 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/min/dropzone.min.js"></script>
 
 <script>
+    let turfDZ, imageDZ, pancardDZ, aadhaarDZ;
+
     document.addEventListener("DOMContentLoaded", function () {
         Dropzone.autoDiscover = false;
         Dropzone.instances.forEach(dz => dz.destroy());
 
         turfDZ = new Dropzone("#turf-dropzone", {
-            url: "{{route('vendor.store')}}", 
-            paramName: "turf_images[]",
-            maxFiles: 10,
+            url: "{{route('vendor.store')}}",  
+            paramName: "turf_image[]",
             autoProcessQueue: false,
             clickable: true,
-            uploadMultiple: false,
-            addRemoveLinks: true,
+            uploadMultiple: false, 
+            parallelUploads: 10,
+            maxFiles: 10,
             acceptedFiles: "image/*",
-            parallelUploads: 10
+            addRemoveLinks: false,     
+            previewsContainer: false  
+        });
+
+        turfDZ.on("addedfile", function(file) {
+            let reader = new FileReader();
+            reader.onload = function(e) {
+                let previewHtml = `
+                    <div class="position-relative uploaded-image-box" style="height: 100px; width: 176px;">
+                        <img src="${e.target.result}" class="rounded border" style="width: 100%; height: 100%; object-fit: cover;">
+                        <button type="button" class="position-absolute top-0 end-0 remove-preview-btn" title="Remove" 
+                                style="font-size: 20px;
+                                padding: 0px 10px 0px 0px;
+                                background: transparent;
+                                border: none;
+                                color: #d1cdcd;"
+                            >&times;
+                        </button>
+                    </div>
+                `;
+                $('#turf-previews').append(previewHtml);
+            };
+            reader.readAsDataURL(file);
+        });
+
+        $(document).on('click', '.remove-preview-btn', function() {
+            let index = $(this).closest('.uploaded-image-box').index();
+            turfDZ.removeFile(turfDZ.files[index]);  
+            $(this).closest('.uploaded-image-box').remove(); 
         });
 
         imageDZ = new Dropzone("#your-dropzone", {
@@ -587,6 +633,8 @@
         if (hasPermission) {
             $('#venuesForm')[0].reset();
             $('#formErrors').addClass('d-none').find('ul').html('');
+            turfDZ.removeAllFiles(true); 
+            $('#turf-previews').html('');   
             $('#horizontalwizard a[href="#basictab1"]').tab('show');
             $('input[name="vendor_id"]').val('APN' + Math.floor(100000 + Math.random() * 900000));
             $('.vendor_id_show').text('APN' + Math.floor(100000 + Math.random() * 900000));
@@ -650,7 +698,7 @@
             let formData = new FormData(form);
 
             turfDZ.getAcceptedFiles().forEach((file, index) => {
-                formData.append('turf_images[]', file);
+                formData.append('turf_image[]', file);
             });
             imageDZ.getAcceptedFiles().forEach((file) => {
                 formData.append('profile_image', file);
@@ -692,26 +740,28 @@
                 }, error: function (xhr) {
                     if (xhr.status === 422) {
                         let errors = xhr.responseJSON.errors;
-                        let errorHtml = '';
-
+                        $('.text-danger').html('');
+                        
                         $.each(errors, function (key, value) {
-                            errorHtml += `<li>${value[0]}</li>`;
+                            $('.error-' + key).html(value[0]);
                         });
-
-                        $('#formErrors ul').html(errorHtml);
-                        $('#formErrors').removeClass('d-none');
-                        $('#formErrors').fadeIn('slow');
-
-                        setTimeout(function () {
-                            $('#formErrors').fadeOut('slow');
-                        }, 7000);
                     } else {
-                         $('#error-container').html(`
-                            <div class="alert alert-danger">
-                                ${response.error} <br> Line: ${response.line}
-                            </div>
-                        `);
+                        // $('#error-container').html(`
+                        //     <div class="alert alert-danger">
+                        //         ${xhr.responseJSON?.error || 'An unexpected error occurred.'}
+                        //     </div>
+                        // `);
                     }
+                }
+
+            });
+        });
+        $(document).ready(function () {
+            $('#venuesForm').on('input change', 'input, select, textarea', function () {
+                const fieldName = $(this).attr('name');
+                if (fieldName) {
+                    $('.error-' + fieldName).html('');
+                    $(this).removeClass('is-invalid');
                 }
             });
         });
@@ -793,7 +843,7 @@
     $(document).on('click', '.editvenues', function () {
 
         var hasPermission = @json(Auth::user() && Auth::user()->hasPermissionTo('venues.edit'));
-        
+
         if (hasPermission) {
             let venues = $(this).data('venues');
             let city = venues.city_id;
@@ -825,8 +875,6 @@
             $('.uploadfiles').addClass('d-none');
             updateWizardButtons(0);
             $('#venues').modal('show');
-
-
         } else {
             Swal.fire({
                 title: "403 Unauthorized",
@@ -902,6 +950,7 @@
         );
     });
 </script>
+
 
 <script>
     function initDataTable() {

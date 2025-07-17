@@ -25,7 +25,8 @@ class VenuesController extends Controller
             ->leftJoin('area', 'venues.area_id', '=', 'area.id')
             ->select('venues.*', 'city.city_name as city_name', 'city.id as city_id', 'area.area as area_name', 'area.id as area_id');
 
-        if ($user->role_id == 1) $query->where('venues.status', 2);
+        if ($user->role_id == 1) 
+            $query->where('venues.status', 2);
         elseif ($user->role_id == 2)
             $query->whereIn('venues.created_by', DB::table('users')->where('role_id', 3)->where('created_by', $user->id)->pluck('id'));
         elseif ($user->role_id == 3)
@@ -52,13 +53,12 @@ class VenuesController extends Controller
             $v->pancard_image_data = $images[$v->pancard]       ?? null;
             $v->aadhaar_image_data = $images[$v->Aadhaar_card]  ?? null;
             $turf = is_array($v->turf_image) ? $v->turf_image : explode(',', $v->turf_image ?? '');
-            $v->turf_images = collect($turf)->map(fn($id) => $images[(int)$id] ?? null)->filter();
+            $v->turf_image = collect($turf)->map(fn($id) => $images[(int)$id] ?? null)->filter();
             return $v;
         });
 
         $city = DB::table('city')->get();
         $area = $request->city ? Area::where('city_id', $request->city)->get() : Area::all();
-
         return view('admin.venues.venues', compact('venues', 'city', 'area'));
     }
 
@@ -71,8 +71,8 @@ class VenuesController extends Controller
                 'area'           => 'required',
                 'location_text'  => 'required|string',
                 'location_link'  => 'required|url',
-                'turf_images.*'  => 'image|mimes:jpeg,png,jpg,webp,svg',
-                'name'           => 'required|string|max:255',
+                'turf_image.*'   => 'image|mimes:jpeg,png,jpg,webp,svg',
+                'name'           => 'required|string|alpha',
                 'email'          => 'required|email',
                 'mobileno'       => 'required|digits:10',
                 'profile_image'  => 'required|image|mimes:jpeg,png,jpg,webp,svg',
@@ -88,10 +88,20 @@ class VenuesController extends Controller
             if ($duplicateVenue) {
                 return response()->json([
                     'error' => 'Venue with the same name already exists in this area.',
-                ], 422);
+                ]);
             }
 
+            // print_r($request->all()); die;
+
             $venues = $request->id ? Venues::find($request->id) : new Venues();
+
+            $user = Auth::user();
+            if ($user && $user->role_id == 1) {
+                $venues->status = 2;
+            } else {
+                $venues->status = $request->status == 'on' ? 1 : 0;
+            }
+            
             $venues->owner_phone = $request->mobileno;
             $venues->password = Hash::make($request['mobileno']);
             $venues->owner_email = $request->email;
@@ -99,7 +109,7 @@ class VenuesController extends Controller
             $venues->vendor_ID = $request->vendor_id;
             $venues->city_id = $request->city;
             $venues->area_id = $request->area;
-            $venues->status = $request->status == 'on' ? 1 : 0;
+            // $venues->status = $request->status == 'on' ? 1 : 0;
             $venues->location_link = $request->location_link;
             $venues->location_text = $request->location_text;
 
@@ -125,14 +135,14 @@ class VenuesController extends Controller
 
             $imageIds = [];
 
-            if ($request->hasFile('turf_images')) {
-                foreach ($request->file('turf_images') as $image) {
+            if ($request->hasFile('turf_image')) {
+                foreach ($request->file('turf_image') as $image) {
                     $filename = time() . '_' . $image->getClientOriginalName();
-                    $image->storeAs('public/turf_images', $filename);
+                    $image->storeAs('public/turf_image', $filename);
 
                     $img = new Images();
                     $img->image_name = $filename;
-                    $img->image_path = 'turf_images/' . $filename;
+                    $img->image_path = 'turf_image/' . $filename;
                     $img->reference_name = 'venues';
                     $img->reference_id = $venues->id;
                     $img->save();
@@ -140,7 +150,7 @@ class VenuesController extends Controller
                     $imageIds[] = $img->id;
                 }
 
-                $venues->turf_image = $imageIds;
+                $venues->turf_image = json_encode($imageIds);
                 $venues->save();
             }
 
@@ -208,7 +218,6 @@ class VenuesController extends Controller
         return response()->json(['success' => true, 'message' => 'Venue approved successfully.']);
     }
 
-
    public function disapprove(Request $request)
     {
         $user = auth()->user();
@@ -233,29 +242,51 @@ class VenuesController extends Controller
         }
 
         $user = auth()->user();
+
         $vendor = Venues::leftJoin('city', 'venues.city_id', '=', 'city.id')
             ->leftJoin('area', 'venues.area_id', '=', 'area.id')
-            ->select('venues.*', 'city.city_name as city_name', 'city.id as city_id', 'area.area as area_name', 'area.id as area_id')
-            ->where('venues.id', $id)->firstOrFail();
+            ->select(
+                'venues.*',
+                'city.city_name as city_name',
+                'city.id as city_id',
+                'area.area as area_name',
+                'area.id as area_id'
+            )
+            ->where('venues.id', $id)
+            ->firstOrFail();
 
-        if ($user->role_id == 2 && !DB::table('users')->where('role_id', 3)->where('created_by', $user->id)->pluck('id')->contains($vendor->created_by))
-            abort(403, 'Unauthorized access.');
-        if ($user->role_id == 3 && $vendor->created_by != $user->id)
-            abort(403, 'Unauthorized access.');
+        $turfImageIds = is_array($vendor->turf_image)
+            ? $vendor->turf_image
+            : json_decode($vendor->turf_image, true) ?? [];
 
-        $imgIds = is_array($vendor->turf_image) ? $vendor->turf_image : explode(',', $vendor->turf_image ?? '');
-        $imgIds = array_filter([$vendor->vendor_image, $vendor->pancard, $vendor->Aadhaar_card, ...$imgIds]);
+        $turfImageIds = array_map(function ($img) {
+            return is_array($img) ? ($img['id'] ?? null) : (is_object($img) ? ($img->id ?? null) : $img);
+        }, $turfImageIds);
+        $turfImageIds = array_filter($turfImageIds);
+
+        $imgIds = array_filter([
+            $vendor->vendor_image,
+            $vendor->pancard,
+            $vendor->Aadhaar_card,
+            ...$turfImageIds
+        ]);
+
         $imgs = DB::table('images')->whereIn('id', $imgIds)->get()->keyBy('id');
 
-        $vendor->vendor_image_data = $imgs[$vendor->vendor_image] ?? null;
+        $vendor->vendor_image_data  = $imgs[$vendor->vendor_image] ?? null;
         $vendor->pancard_image_data = $imgs[$vendor->pancard] ?? null;
         $vendor->aadhaar_image_data = $imgs[$vendor->Aadhaar_card] ?? null;
-        $vendor->turf_images = collect($imgIds)->map(fn($id) => $imgs[(int)$id] ?? null)->filter();
+        $vendor->turf_images = collect($turfImageIds)
+            ->map(fn($id) => $imgs[(int)$id] ?? null)
+            ->filter()
+            ->values();
 
+        // print_r($vendor); die;
         $city = DB::table('city')->get();
         $area = $request->city ? Area::where('city_id', $request->city)->get() : Area::all();
 
         return view('admin.venues.view', compact('vendor', 'user', 'city', 'area'));
     }
+
 
 }

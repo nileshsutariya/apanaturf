@@ -24,7 +24,7 @@ class Venues extends Authenticatable
     ];
     public function coupons()
     {
-        return $this->hasOne(Coupons::class, 'turf_id', 'turf_id');
+        return $this->morphMany(Coupons::class, 'creator');
     }
     public function turfImages()
     {

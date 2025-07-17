@@ -11,7 +11,6 @@
 <style>
     .swal2-title {
         font-size: 14px !important;
-        /* Adjust as needed */
         font-weight: 500;
     }
 
@@ -152,13 +151,17 @@
                                             data-bs-target="#wallet" data-user='@json($value)'>
                                             <i class='bx bx-wallet bx-xs'></i>
                                         </a>
-                                        <a class="btn btn-soft-primary btn-sm edituser" data-bs-target="#user"
+                                        <a class="btn btn-soft-primary btn-sm edituser" data-bs-target="#user" data-bs-toggle="modal"
                                             data-user='@json($value)'>
                                             <i class='bx bxs-pencil bx-xs'></i>
                                         </a>
-                                        <a href="#!" class="btn btn-soft-danger btn-sm">
+                                        <button class="btn btn-soft-danger btn-sm deleteuser" id="deleteuser"
+                                            value="{{ $value->id }}">
                                             <i class='bx bxs-trash bx-xs'></i>
-                                        </a>
+                                        </button>
+                                        {{-- <a href="" class="btn btn-soft-danger btn-sm">
+                                            <i class='bx bxs-trash bx-xs'></i>
+                                        </a> --}}
                                     </div>
                                 </td>
                             </tr>
@@ -189,7 +192,7 @@
             <div class="modal-body">
                 <form id="userForm" method="POST">
                     @csrf
-                    <input type="hidden" class="form-control" name="id">
+                    <input type="hidden" class="form-control" name="id" value="">
                     <div style="margin-bottom: 12px;">
                         <label class="mb-1">Name</label>
                         <input type="text" class="form-control" name="name" placeholder="Enter The Name">
@@ -312,7 +315,6 @@
 </div>
 
 
-
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/responsive/2.5.0/js/dataTables.responsive.min.js"></script>
@@ -373,7 +375,9 @@
 
         if (hasPermission) {
             $('#userForm')[0].reset();
+            $('#userForm input[name="id"]').val(''); 
             $('#formErrors').addClass('d-none').find('ul').html('');
+            $('#userTitle').text('Add New user');
             const filteredAreas = allAreas;
             areaChoices.clearStore();
             areaChoices.setChoices(
@@ -553,6 +557,59 @@
             });
         }
     });
+</script>
+<script>
+    $(document).on('click', '.deleteuser', function (e) {
+            e.preventDefault();
+            var id = $(this).val();
+            var search = $('#search').val();
+            var hasPermission = @json(Auth::user() && Auth::user()->hasPermissionTo('users.delete'));
+
+            if (!hasPermission) {
+                Swal.fire({
+                    title: "403 Unauthorized",
+                    text: "You do not have permission to delete a user.",
+                    icon: "error",
+                    timer: 3000,
+                    timerProgressBar: true,
+                    confirmButtonText: "Close"
+                });
+                return;
+            }
+
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                url: '{{  route('users.delete') }}',
+                type: 'POST',
+                data: {
+                    id: id,
+                    search: search
+                }, success: function (response) {
+                    $('#example').html($(response).find('#example').html());
+                    Swal.fire({
+                        toast: true,
+                        position: 'top-end',
+                        icon: 'success',
+                        title: 'User Deleted Successfully!',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
+                    });
+                },
+                error: function (xhr) {
+                    if (xhr.status === 422) {
+                        console('all done')
+                    } else {
+                        alert("Something went wrong.");
+                                console.log(xhr.responseText);
+
+                    }
+                }
+            });
+        });
+
 </script>
 
 

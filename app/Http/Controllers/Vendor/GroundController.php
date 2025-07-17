@@ -51,9 +51,8 @@ class GroundController extends Controller
             // 'turfs.*.unit' => 'required',
             'turfs.*.sports' => 'array',
             'turfs.*.amenities' => 'array',
+            // 'turfs.*.turf_images' => 'array|min:4',
             'turfs.*.turf_images.*' => 'image|mimes:jpeg,png,jpg,webp',
-            // 'removed_existing_images' => 'array',
-            // 'removed_existing_images.*' => 'integer|exists:images,id',
         ], [
             'turfs.*.name.required' => 'The turf name field is required.',
             'turfs.*.name.string' => 'The turf name must be a valid string.',
@@ -75,6 +74,7 @@ class GroundController extends Controller
             'turfs.*.amenities.array' => 'The amenities field must be a valid list.',
             'turfs.*.turf_images.*.image' => 'Each image must be a valid image file.',
             'turfs.*.turf_images.*.mimes' => 'Images must be in jpeg, png, jpg, or webp format.',
+            // 'turfs.*.turf_images.min' => 'Each turf must have at least 4 images.',
         ]);
 
         if ($validator->fails()) {
@@ -134,6 +134,7 @@ class GroundController extends Controller
                     'booking_price' => $turfData['booking_price'] ?? 0,
                     'unit' => $turfData['unit'] ?? 'Hour',
                     'turf_image' => json_encode($turfImageIDs),
+                    'feature_image' => $turfImageIDs[0] ?? null,
                     'sports_ids' => json_encode($sportIDs),
                     'amenities_ids' => json_encode($amenityIDs),
                 ];
@@ -164,7 +165,7 @@ class GroundController extends Controller
             return redirect()->back()->with('success', 'Turfs saved successfully!');
         } catch (\Exception $e) {
             DB::rollBack();
-            \Log::error('Turf store error: ' . $e->getMessage() . ' at line ' . $e->getLine());
+            // \Log::error('Turf store error: ' . $e->getMessage() . ' at line ' . $e->getLine());
             return back()->with('error', 'Error: ' . $e->getMessage());
         }
     }

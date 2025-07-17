@@ -11,7 +11,6 @@
 <style>
     .swal2-title {
         font-size: 14px !important;
-        /* Adjust as needed */
         font-weight: 500;
     }
 
@@ -173,7 +172,7 @@
                     <input type="hidden" class="form-control" name="id" readonly>
                     <div style="margin-bottom: 12px;">
                         <label class="mb-1">Modules Group</label>
-                        <select class="form-control groupselect" data-choices name="group" id="choices-single-default">
+                        <select class="form-control groupselect" data-choices name="group" id="group-select">
                             <option value=""> Select Module</option>
                             @if (isset($group))
                                 @foreach ($group as $r)
@@ -187,7 +186,7 @@
 
                     <div style="margin-bottom: 12px;" class="routelist">
                         <label class="mb-1">Routes</label>
-                        <select class="form-control routestypes" data-choices name="routes" id="choices-single-default">
+                        <select class="form-control routestypes" data-choices name="routes" id="routes-select">
                             <option value="">Select Permission</option>
                             @if (isset($routes))
                                 @foreach ($routes as $r)
@@ -201,7 +200,7 @@
 
                     <div style="margin-bottom: 12px;">
                         <label class="mb-1">User Name</label>
-                        <select class="form-control userselect" data-choices name="user" id="choices-single-default">
+                        <select class="form-control userselect" data-choices name="user" id="user-select">
                             <option value="">Select User</option>
                             @if (isset($users))
                                 @foreach ($users as $r)
@@ -288,8 +287,12 @@
                 'label',
                 true
             );
+            
             $('#formErrors').addClass('d-none').find('ul').html('');
             $('#permissionForm')[0].reset();
+            $('#permissionForm input[name="id"]').val('');
+            $('#permissionTitle').text('Add New Permission');
+ 
             $('#permission').modal('show');
         } else {
             Swal.fire({

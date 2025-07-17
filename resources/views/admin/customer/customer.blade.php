@@ -1,9 +1,7 @@
 @include('admin.layouts.header')
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<!-- DataTables -->
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
 <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
-<!-- Responsive Extension -->
 <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.5.0/css/responsive.dataTables.min.css">
 <script src="https://cdn.datatables.net/responsive/2.5.0/js/dataTables.responsive.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -14,7 +12,6 @@
 <style>
     .swal2-title {
         font-size: 14px !important;
-        /* Adjust as needed */
         font-weight: 500;
     }
 
@@ -107,12 +104,6 @@
             {{-- @endif --}}
         </div>
         <div class="card-body pt-0">
-            <!-- <p class="text-muted">The most basic list group is an unordered list with list items and
-                the proper classes. Build upon it with the options that follow, or with your own CSS
-                as needed.</p>
-            <div class="py-3">
-                <div id="table-fixed-header"></div>
-            </div> -->
             <div class="search">
                 <input class="form-control ml-auto" type="search" id="search" name="search" placeholder="Search"><br>
             </div>
@@ -125,7 +116,9 @@
                             <th class="gridjs-th">Phone</th>
                             <th class="gridjs-th">Type</th>
                             <th class="gridjs-th">Balance</th>
-                            <th class="gridjs-th">Action</th>
+                            <th class="gridjs-th">City</th>
+                            <th class="gridjs-th">Area</th>
+                            {{-- <th class="gridjs-th">Action</th> --}}
                         </tr>
                     </thead>
                     <tbody id="customerdata">
@@ -149,6 +142,12 @@
                                     {{ $value->balance }}
                                 </td>
                                 <td>
+                                    {{ $value->city_name }}
+                                </td>
+                                <td>
+                                    {{ $value->area_name }}
+                                </td>
+                                {{-- <td>
                                     <div class="d-flex gap-2">
                                         <a class="btn btn-soft-primary btn-sm editcustomer" data-bs-target="#customer"
                                             data-customer='@json($value)'>
@@ -158,7 +157,7 @@
                                             <i class='bx bxs-trash bx-xs'></i>
                                         </a>
                                     </div>
-                                </td>
+                                </td> --}}
                             </tr>
                         @endforeach
                     </tbody>
@@ -394,6 +393,7 @@
             });
         });
     });
+    
     $(document).on('click', '.editcustomer', function () {
         var hasPermission = @json(Auth::user() && Auth::user()->hasPermissionTo('customer.edit'));
 
@@ -445,6 +445,7 @@
             });
         }
     });
+    
     $('.city').on('change', function () {
         const selectedCityId = $(this).val();
         const filteredAreas = allAreas.filter(area => area.city_id == selectedCityId);

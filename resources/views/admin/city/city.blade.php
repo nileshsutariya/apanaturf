@@ -11,7 +11,6 @@
 <style>
     .swal2-title {
         font-size: 14px !important;
-        /* Adjust as needed */
         font-weight: 500;
     }
 
@@ -138,10 +137,10 @@
                                             data-city='@json($value)'>
                                             <i class='bx bxs-pencil bx-xs'></i>
                                         </a>
-                                        <button type="button" class="btn btn-soft-danger btn-sm deletecity"
+                                        {{-- <button type="button" class="btn btn-soft-danger btn-sm deletecity"
                                             data-id="{{ $value->id }}">
                                             <i class='bx bxs-trash bx-xs'></i>
-                                        </button>
+                                        </button> --}}
                                     </div>
                                 </td>
                             </tr>
@@ -201,9 +200,26 @@
 
         $(document).on('click', '.addcity', function () {
             var hasPermission = @json(Auth::user() && Auth::user()->hasPermissionTo('city.store'));
-            hasPermission ? $('#city').modal('show') : Swal.fire({ icon: 'error', title: '403 Unauthorized', text: 'You do not have permission to add a city.', timer: 3000, timerProgressBar: true, confirmButtonText: 'OK' });
-        });
 
+            if (hasPermission) {
+                $('#cityForm')[0].reset();
+                $('#cityForm input[name="id"]').val(''); 
+                $('#formErrors').addClass('d-none').find('ul').html('');
+                $('#cityTitle').text('Add New city'); 
+
+                $('#city').modal('show');
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: '403 Unauthorized',
+                    text: 'You do not have permission to add a city.',
+                    timer: 3000,
+                    timerProgressBar: true,
+                    confirmButtonText: 'OK'
+                });
+            }
+        });
+        
         $(document).on('click', '.pagination a', function (e) {
             e.preventDefault();
             let page = $(this).attr('href').split('page=')[1];
@@ -293,6 +309,9 @@
                     } else {
                         console.log('Error:', res.error);
                     }
+                    setTimeout(function () {
+                        location.reload();
+                    }, 1000);
                 },
                 error: function (xhr) {
                     alert("Something went wrong.");

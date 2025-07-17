@@ -12,29 +12,26 @@ class LoginController extends Controller
         return view('admin.unauthorized');
     }
     public function login(){
-        if(Auth::check()){ 
+        if(Auth::check()) { 
             return redirect()->route('admin.dashboard');
-        }else{
+        } else {
             return view('admin.login');
         }
     }
 
     public function logincheck(Request $request)
     {
-        // Validate the form input
         $request->validate([
             'email' => 'required|email',
-            'password' => 'required',
+            'password' => 'required|min:6',
         ]);
     
-        // Get credentials
         $credentials = $request->only('email', 'password');
-        // Attempt login
+
         if (Auth::attempt($credentials)) {
-                return redirect()->route('admin.dashboard');
+            return redirect()->route('admin.dashboard');
         }
     
-        // Authentication failed
         return back()->withErrors([
             'email' => 'The provided credentials do not match our records.',
         ]);
@@ -43,10 +40,9 @@ class LoginController extends Controller
     public function logout(){
         Auth::logout();
         return redirect()->route('admin.login');
-
     }
 
     public function dashboard(){
-            return view('admin.dashboard');
+        return view('admin.dashboard');
     }
 }

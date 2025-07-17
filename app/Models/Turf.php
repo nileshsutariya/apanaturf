@@ -16,7 +16,7 @@ class Turf extends Model
         'amenities_ids',
         'location_link',
         'location_text',
-        // 'feature_image',
+        'feature_image',
         'turf_image',
         'height',
         'width',

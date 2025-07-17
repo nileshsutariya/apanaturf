@@ -1,12 +1,10 @@
 @include('admin.layouts.header')
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.css"
-    integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 <style>
     .swal2-title {
         font-size: 14px !important;
-        /* Adjust as needed */
         font-weight: 500;
     }
 
@@ -40,6 +38,7 @@
         text-align: center;
     }
 </style>
+
 <div class="container-fluid">
     <div class="row">
         <div class="col-12">
@@ -62,23 +61,15 @@
             </a>
         </div>
         <div class="card-body pt-0">
-            <div class="d-flex flex-wrap align-items-center  gap-3 mb-3">
+            <div class="d-flex flex-wrap align-items-center gap-3 mb-3">
                 <div class="row" id="example">
                     @if(isset($banner))
-                        <!-- <div class="col-sm-3">
-                                                    <div class="card " data-bs-toggle="modal" data-bs-target="#banner">
-                                                        <div class="card-body d-flex flex-column align-items-center justify-content-center p-0">
-                                                            <img class="m-1" src="{{asset('asset/images/add.png')}}" alt="football"
-                                                                style="width: 100%; height: 200px; object-fit: cover;">
-                                                        </div>
-                                                    </div>
-                                                </div> -->
                         @foreach ($banner as $value)
-                            <div class="col-lg-3 col-md-3 col-sm-6">
-                                <img src="{{ asset('storage/' . $value->image_path) }}" alt="football" width="100%"
+                            <div class="col-lg-3 col-md-4 col-sm-6">
+                                <img src="{{ asset('storage/' . $value->image_path) }}" alt="football" style="width:223px; height:131px"
                                     class="rounded mb-3">
                                 <span class="close-icon" id="deletebanner" value="{{ $value->id }}"
-                                    style="position: absolute; top: -6px; right: 24px; font-size: 25px; cursor: pointer;">&times;
+                                    style="position: absolute; top: -6px; left: 211px; font-size: 25px; cursor: pointer;">&times;
                                 </span>
                             </div>
                         @endforeach
@@ -268,17 +259,24 @@
                     type: 'POST',
                     data: {
                         id: id
-                    }, success: function (response) {
-                        $('#example').html($(response).find('#example').html());
-                        Swal.fire({
-                            toast: true,
-                            position: 'top-end',
-                            icon: 'success',
-                            title: 'Banner Deleted Successfully!',
-                            showConfirmButton: false,
-                            timer: 3000,
-                            timerProgressBar: true,
-                        });
+                    }, 
+                    success: function (response) {
+                        if (response.success) {
+                            $('#example').html(response.html);
+
+                            Swal.fire({
+                                toast: true,
+                                position: 'top-end',
+                                icon: 'success',
+                                title: 'Banner Deleted Successfully!',
+                                showConfirmButton: false,
+                                timer: 3000,
+                                timerProgressBar: true,
+                            });
+                            setTimeout(function () {
+                            location.reload(); // OR manually reload just #example via AJAX if needed
+                        }, 1000);
+                        }
 
                     },
                     error: function (xhr) {

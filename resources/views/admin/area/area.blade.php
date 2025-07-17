@@ -1,7 +1,5 @@
 @include('admin.layouts.header')
-<!-- DataTables -->
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
-<!-- Responsive Extension -->
 <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.5.0/css/responsive.dataTables.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css" />
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -11,7 +9,6 @@
 <style>
     .swal2-title {
         font-size: 14px !important;
-        /* Adjust as needed */
         font-weight: 500;
     }
 
@@ -145,10 +142,10 @@
                                             data-area='@json($value)'>
                                             <i class='bx bxs-pencil bx-xs'></i>
                                         </a>
-                                        <button type="button" class="btn btn-soft-danger btn-sm deletearea"
+                                        {{-- <button type="button" class="btn btn-soft-danger btn-sm deletearea"
                                             data-id="{{ $value->id }}">
                                             <i class='bx bxs-trash bx-xs'></i>
-                                        </button>
+                                        </button> --}}
                                     </div>
                                 </td>
                             </tr>
@@ -248,9 +245,11 @@
     });
 
     $('#area').on('hidden.bs.modal', function () {
-        $('#areaForm').find('input[name="id"], input[name="name"], input[name="pincode"]').val('');
+        $('#areaForm')[0].reset();
+        $('#areaForm input[name="id"]').val('');
         roleChoices.setChoiceByValue('');
         $('#formErrors').addClass('d-none').find('ul').html('');
+        $('#areaTitle').text('Add New area');
     });
 
     $(document).ready(function () {
@@ -367,11 +366,14 @@
                         toast: true,
                         position: 'top-end',
                         icon: 'success',
-                        title: 'Permissiongroup Deleted Successfully!',
+                        title: 'Area Deleted Successfully!',
                         showConfirmButton: false,
                         timer: 3000,
                         timerProgressBar: true,
                     });
+                    // setTimeout(function () {
+                    //     location.reload(); 
+                    // }, 1000);
                 } else {
                     console.log('Error:', response.error);
                 }
