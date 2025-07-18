@@ -14,9 +14,9 @@ class PermissionSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+        // DB::statement('SET FOREIGN_KEY_CHECKS=0;');
 
-        DB::table('permission')->truncate(); 
+        // DB::table('permission')->truncate(); 
 
         $admin = [
             'customer.index', 'customer.store','customer.edit',
