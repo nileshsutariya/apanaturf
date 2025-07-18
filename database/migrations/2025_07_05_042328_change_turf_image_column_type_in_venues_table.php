@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::table('venues', function (Blueprint $table) {
             $table->dropForeign(['turf_image']); 
-            $table->dropColumn('turf_image');
+            // $table->dropColumn('turf_image');
 
-            $table->json('turf_image')->after('vendor_image')->nullable();
+            $table->json('turf_image')->change()->nullable();
         });
     }
 

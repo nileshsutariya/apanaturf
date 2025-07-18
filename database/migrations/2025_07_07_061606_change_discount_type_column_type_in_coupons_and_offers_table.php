@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('coupons_and_offers', function (Blueprint $table) {
-            $table->dropColumn('discount_type');
-            $table->string('discount_type')->after('discount');
+            // $table->dropColumn('discount_type');
+            $table->string('discount_type')->change();
         });
     }
 

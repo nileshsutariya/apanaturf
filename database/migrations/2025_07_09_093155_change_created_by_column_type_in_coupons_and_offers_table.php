@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::table('coupons_and_offers', function (Blueprint $table) {
             $table->dropForeign(['created_by']); 
-            $table->unsignedBigInteger('created_by')->change();
+            $table->unsignedBigInteger('created_by')->after('city_id');
             $table->string('created_by_type')->after('created_by');
         });
     }
