@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('coupons_and_offers', function (Blueprint $table) {
-            $table->dropColumn('created_by');
-            $table->unsignedBigInteger('created_by')->after('city_id');
+            $table->dropForeign(['created_by']); 
+            $table->unsignedBigInteger('created_by')->change();
             $table->string('created_by_type')->after('created_by');
         });
     }

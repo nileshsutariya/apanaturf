@@ -102,7 +102,7 @@
                 <div class="row mb-3">
                     <div class="col-md-6">
                         <div class="label">Phone</div>
-                        <input type="text" class="form-control" value="{{Auth::user()->phone}}" name="phone" readonly>
+                        <input type="text" class="form-control" value="{{Auth::user()->phone}}" name="phone">
                     </div>
                     <div class="col-md-6">
                         <div class="label">Role</div>

@@ -29,7 +29,6 @@ return new class extends Migration
             $table->string('user_limit')->nullable();
             $table->string('transaction_limit')->nullable();
             $table->boolean('status')->comment('0 is Deactive, 1 is Active')->default(1);
-             
             $table->timestamps();
         });
     }

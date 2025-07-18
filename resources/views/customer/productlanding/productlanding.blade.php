@@ -1457,10 +1457,10 @@
 
     </section>
 </div>
-<div id="addBanner" class="modal-demo">
+<div id="addBanner" class="modal-demo" style="font-family: 'poppins', sans-serif !important;">
 
+    <h6 class="mb-2" style="font-weight: 500; margin: 0; font-size:20px;">Order Confirmation</h6>
     <div style="display: flex; justify-content: space-between; align-items: center; mb-5">
-        <h6 class="mb-2" style="font-weight: 400; margin: 0; font-size:20px;">Order Confirmation</h6>
         <button type="button" class="btn-close close-modal" onclick="Custombox.modal.close();"></button>
     </div>
 
