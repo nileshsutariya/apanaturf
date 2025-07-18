@@ -24,7 +24,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('coupons_and_offers', function (Blueprint $table) {
-            $table->dropColumn('created_by');
+            $table->dropColumn('created_by_type');
         });
     }
 };
