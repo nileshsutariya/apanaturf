@@ -48,11 +48,11 @@
                                              @if ($image)
                                                   <img class="rounded-circle" width="35" height="35" src="{{ asset('storage/' . $image->image_path) }}" alt="avatar">
                                              @else
-                                                  {!! Avatar::create(Str::upper(Str::substr(Auth::user()->name, 0, 1)))->setDimension(35, 35)->setFontSize(15)->toSvg() !!}
+                                             {{-- {!! Avatar::create(Str::upper(Str::substr(Auth::user()->name, 0, 1)))->setDimension(35, 35)->setFontSize(15)->toSvg() !!} --}}
+                                             <img class="rounded-circle" width="32"
+                                             src="{{ asset('asset/images/users/avatar-1.jpg') }}" alt="avatar-3">
                                              @endif
 
-                                             {{-- <img class="rounded-circle" width="32"
-                                             src="{{ asset('asset/images/users/avatar-1.jpg') }}" alt="avatar-3"> --}}
                                         </span>
                                    </a>
                                    <div class="dropdown-menu dropdown-menu-end">

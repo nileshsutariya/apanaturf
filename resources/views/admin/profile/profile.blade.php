@@ -59,10 +59,7 @@
                                 <img class="rounded-circle" id="profileImagePreview" src="{{ asset('storage/' . $image->image_path) }}" alt="avatar">
                             @else
                                 <div class="avatar-circle">
-                                    {{-- {!! Avatar::create(Str::upper(Str::substr(Auth::user()->name, 0, 1)))
-                                        ->setDimension(99, 99)
-                                        ->setFontSize(50)
-                                        ->toSvg() !!} --}}
+                                    <img src="{{asset('asset/images/users/avatar-1.jpg')}}" alt="user">
                                 </div>                       
                             @endif
                             <label class="edit-icon" for="profileImageInput">
