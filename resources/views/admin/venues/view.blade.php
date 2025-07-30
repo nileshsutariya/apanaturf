@@ -27,18 +27,18 @@
     <form>
         {{-- @foreach ($vendor as $vendor) --}}
         <div class="vendorFormWrapper" id="vendorForm">
-            <a href="{{route('vendor.index')}}" class="btn btn-sm btn-primary backToTable mb-3"> Back </a href="{{route('vendor.index')}}">
+            <a href="{{route('vendor.index')}}" class="btn btn-sm btn-primary backToTable mb-3"> Back </a href="{{route('vendor.index')}}" readonly>
             <div class="row">
                 <div class="col-md-6">
                 <div class="mb-3">
                     <label for="simpleinput" class="form-label">Vendor ID</label>
-                    <input type="text" id="vendor_id" class="form-control" value="{{ $vendor->vendor_id }}" {{ $vendor->status != 2 ? 'readonly' : '' }}>
+                    <input type="text" id="vendor_id" class="form-control" value="{{ $vendor->vendor_id }}" {{ $vendor->status != 2 ? 'readonly' : '' }} readonly>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="mb-3">
                     <label for="example-email" class="form-label">Name</label>
-                    <input type="text" id="owner_name" class="form-control" value="{{ $vendor->owner_name }}" {{ $vendor->status != 2 ? 'readonly' : '' }}>
+                    <input type="text" id="owner_name" class="form-control" value="{{ $vendor->owner_name }}" {{ $vendor->status != 2 ? 'readonly' : '' }} readonly>
                 </div>
             </div>
         </div>
@@ -46,13 +46,13 @@
             <div class="col-md-6">
                 <div class="mb-3">
                     <label for="simpleinput" class="form-label">email</label>
-                    <input type="text" id="owner_email" class="form-control" value="{{ $vendor->owner_email }}" {{ $vendor->status != 2 ? 'readonly' : '' }}>
+                    <input type="text" id="owner_email" class="form-control" value="{{ $vendor->owner_email }}" {{ $vendor->status != 2 ? 'readonly' : '' }} readonly>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="mb-3">
                     <label for="example-email" class="form-label">Phone</label>
-                    <input type="text" id="owner_phone" class="form-control" value="{{ $vendor->owner_phone }}" {{ $vendor->status != 2 ? 'readonly' : '' }}>
+                    <input type="text" id="owner_phone" class="form-control" value="{{ $vendor->owner_phone }}" {{ $vendor->status != 2 ? 'readonly' : '' }} readonly>
                 </div>
             </div>
         </div>
@@ -60,13 +60,13 @@
             <div class="col-md-6">
                 <div class="mb-3">
                     <label for="simpleinput" class="form-label">Location text</label>
-                    <input type="text" id="location_text" class="form-control" value="{{ $vendor->location_text }}" {{ $vendor->status != 2 ? 'readonly' : '' }}>
+                    <input type="text" id="location_text" class="form-control" value="{{ $vendor->location_text }}" {{ $vendor->status != 2 ? 'readonly' : '' }} readonly>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="mb-3">
                     <label for="example-email" class="form-label">Location Link</label>
-                    <input type="text" id="location_link" class="form-control" value="{{ $vendor->location_link }}" {{ $vendor->status != 2 ? 'readonly' : '' }}>
+                    <input type="text" id="location_link" class="form-control" value="{{ $vendor->location_link }}" {{ $vendor->status != 2 ? 'readonly' : '' }} readonly>
                 </div>
             </div>
         </div>
@@ -89,19 +89,19 @@
             <div class="col-md-4">
                 <div class="mb-3">
                     <label for="simpleinput" class="form-label">City</label>
-                    <input type="text" id="city_name" class="form-control" value="{{ $vendor->city_name }}" {{ $vendor->status != 2 ? 'readonly' : '' }}>
+                    <input type="text" id="city_name" class="form-control" value="{{ $vendor->city_name }}" {{ $vendor->status != 2 ? 'readonly' : '' }} readonly>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="mb-3">
                     <label for="example-email" class="form-label">Area</label>
-                    <input type="text" id="area_name" class="form-control" value="{{ $vendor->area_name }}" {{ $vendor->status != 2 ? 'readonly' : '' }}>
+                    <input type="text" id="area_name" class="form-control" value="{{ $vendor->area_name }}" {{ $vendor->status != 2 ? 'readonly' : '' }} readonly>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="mb-3">
                     <label for="example-email" class="form-label">Pincode</label>
-                    <input type="text" id="pincode" class="form-control" value="{{ $vendor->pincode }}" {{ $vendor->status != 2 ? 'readonly' : '' }}>
+                    <input type="text" id="pincode" class="form-control" value="{{ $vendor->pincode }}" {{ $vendor->status != 2 ? 'readonly' : '' }} readonly>
                 </div>
             </div>
         </div>

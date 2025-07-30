@@ -34,6 +34,10 @@ class Customer extends Authenticatable implements JWTSubject
     {
         return $this->hasOne(LocationHistory::class)->latestOfMany();
     }
+    public function image()
+    {
+        return $this->belongsTo(Images::class, 'profile_image');
+    }
     public static function createCustomer($data)
     {
         return self::create([

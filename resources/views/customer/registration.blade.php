@@ -116,92 +116,14 @@
 
             <button type="submit" class="btn next-btn w-100">Registration</button>
         </form>
+
+        <div class="mt-3 text-center" style="font-size: 14px;">
+            Already Have an Account?
+            <a href="{{route('customer.login')}}" class="text-success" style="text-decoration: none; font-weight: 600; color: ;"> 
+                Sign In 
+            </a>
+        </div>
     </div>
-
-    <div class="otp-container">
-        <form action="{{route('customer.otp.verify')}}" method="POST" id="otpForm">
-            <div class="mb-3">
-                <input type="text" name="phone" id="otpPhone">
-                <label for="otp" class="form-label">OTP</label>
-                <input type="text" class="form-control" id="otp" name="otp" placeholder="Enter the Otp here"
-                    style="border: 2px solid #D0D5DD;">
-            </div>
-            <button type="submit" class="btn login-btn w-100">Save</button>
-        </form>
-    </div>
-
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-    <script>
-        $('#registerForm').on('submit', function(e) {
-            e.preventDefault();
-
-            $.ajax({
-                url: '{{ route("customer.add") }}',
-                type: 'POST',
-                data: $(this).serialize(),
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                success: function(response) {
-                    if (response.status === 'success') {
-                        $('.register-container').hide();
-
-                        $('.otp-container').show();
-                        $('#otpPhone').val($('#phone').val());
-
-                        alert('Registration successful! Please enter the OTP.');
-                    }
-                },
-
-                error: function(xhr) {
-                    let errors = xhr.responseJSON.errors;
-                    let errorMsg = '';
-                    for (let field in errors) {
-                        errorMsg += errors[field][0] + '\n';
-                    }
-                    alert(errorMsg);
-                }
-            });
-        });
-        
-        document.getElementById("otpForm").addEventListener("submit", function (e) {
-            e.preventDefault();
-
-            const phone = document.getElementById("otpPhone").value;
-            const otp = document.getElementById("otp").value;
-            const csrf = document.querySelector('meta[name="csrf-token"]').content;
-
-            if (!otp) {
-                showErrorMessages(["OTP field is required."]);
-                return;
-            }
-
-            fetch("{{ route('customer.otp.verify') }}", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "X-CSRF-TOKEN": csrf
-                },
-                body: JSON.stringify({ phone, otp })
-            })
-            .then(res => res.json())
-            .then(data => {
-                if (data.success) {
-                    document.querySelector(".otp-container").style.display = "none";
-                    // if (data.redirect) {
-                    //     window.location.href = data.redirect;
-                    // } else {
-                        showSuccessMessages([data.message || "OTP Verified."]);
-                    // }                
-                }
-                else {
-                    showErrorMessages([data.message || "No Record found."]);
-                }
-            })
-        });
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>

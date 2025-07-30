@@ -19,7 +19,8 @@ class ProfileController extends Controller
         $user = Auth::user();
         $roles = RoleType::all();
         $cities = City::all();
-        $areas = Area::all();
+        $areas = Area::all()->groupBy('city_id');
+
         return view('admin.profile.profile', compact('user', 'roles', 'cities', 'areas'));
     }
 
@@ -29,7 +30,11 @@ class ProfileController extends Controller
             'name'     => 'required|string',
             'email'    => 'required|email|unique:users,email,' . Auth::id(),
             'phone'    => 'required|string|max:10',
+            'role_id'  => 'nullable|exists:role_type,id',
+            'city_id'  => 'nullable|exists:city,id',
+            'area_id'  => 'nullable|exists:area,id',
         ]);
+        // print_r($request->all()); die;
         
         $user = Auth::user();
         $user->update([

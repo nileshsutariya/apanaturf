@@ -51,19 +51,27 @@ class BookingTurfController extends Controller
     {
         $turf = Turf::with('venue')->findOrFail($id);
 
-        $imageIds = json_decode($turf->turf_image ?? '[]');
+        $imageIds = json_decode($turf->turf_image ?? '[]' , true);
         $turf->turf_images = Images::whereIn('id', $imageIds)->get();
         $turf->first_image = $turf->turf_images->first();
 
-        $amenityIds = json_decode($turf->amenities_ids ?? '[]');
+        $amenityIds = json_decode($turf->amenities_ids ?? '[]' , true);
         $amenities = \App\Models\Amenity::whereIn('id', $amenityIds)->get();
 
         foreach ($amenities as $amenity) {
             $imgId = $amenity->image_id;
             $amenity->image_data = Images::find($imgId);
         }
+        
+        $sportsIds = json_decode($turf->sports_ids ?? '[]' , true);
+        $sports = \App\Models\Sports::whereIn('id', $sportsIds)->get();
 
-        return view('customer.productlanding.productlanding', compact('turf', 'amenities'));
+        foreach ($sports as $sport) {
+            $imgId = $sport->image_id;
+            $sport->image_data = Images::find($imgId);
+        }
+
+        return view('customer.productlanding.productlanding', compact('turf', 'amenities', 'sports'));
     }
 
 }

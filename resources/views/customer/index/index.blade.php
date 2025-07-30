@@ -306,7 +306,6 @@
         width: auto;
     }
 
-    /* Responsive Fix */
     @media (max-width: 767px) { 
         .frame {
             top: 100px !important;

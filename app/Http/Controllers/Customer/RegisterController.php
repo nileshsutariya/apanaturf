@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use App\Models\Customer;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -36,33 +37,9 @@ class RegisterController extends Controller
         $customer->phone = $request['phone'];
         $customer->password = Hash::make($request['password']);
         $customer->balance = $request['balance'] ?? 100;
-        $customer->otp = 1234;
-        $customer->otp_send_at = Carbon::now();
         $customer->save();
 
-        return response()->json(['status' => 'success']);
-    }
-
-    public function VerifyOtp(Request $request)
-    {
-        $customer = Customer::where(function ($query) use ($request) {
-        $query->where('phone', $request->phone);
-            })->where('otp', $request->otp)->first();     
-
-        if ($customer) {
-            $customer->otp = null;
-            $customer->otp_send_at = null;
-            $customer->otp_verified_at = now();
-            $customer->save();
-
-            return response()->json([
-                'success' => true,
-                // 'redirect' => route('customer.login'),
-                // 'message' => 'OTP verified successfully.'
-            ]);
-        }
-
-        return response()->json(['success' => false, 'message' => 'Incorrect OTP']);
+        return redirect()->route('customer.login');
     }
 
 }

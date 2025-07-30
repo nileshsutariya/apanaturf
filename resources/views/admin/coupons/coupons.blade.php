@@ -346,11 +346,13 @@
 <script>
     flatpickr("#valid-datepicker", {
         dateFormat: "d-m-Y",
-        allowInput: true
+        allowInput: true,
+        disableMobile: true
     });
     flatpickr("#expire-datepicker", {
         dateFormat: "d-m-Y",
-        allowInput: true
+        allowInput: true,
+        disableMobile: true
     });
 
     function generateCouponCode() {

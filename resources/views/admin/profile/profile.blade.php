@@ -89,11 +89,11 @@
                 <div class="row mb-3">
                     <div class="col-md-6">
                         <div class="label">Name</div>
-                        <input type="text" class="form-control" value="{{Auth::user()->name}}" name="name" readonly>
+                        <input type="text" class="form-control" value="{{Auth::user()->name}}" name="name">
                     </div>
                     <div class="col-md-6">
                         <div class="label">Email</div>
-                        <input type="text" class="form-control" value="{{Auth::user()->email}}" name="email" readonly>
+                        <input type="text" class="form-control" value="{{Auth::user()->email}}" name="email">
                     </div>
                 </div>
                 <div class="row mb-3">
@@ -103,17 +103,39 @@
                     </div>
                     <div class="col-md-6">
                         <div class="label">Role</div>
-                        <input type="text" class="form-control" value="{{Auth::user()->role->name   }}" name="role_id" readonly>
+                        <select class="form-select" name="role_id">
+                            @foreach ($roles as $role)
+                                <option value="{{ $role->id }}" {{ Auth::user()->role_id == $role->id ? 'selected' : '' }}>
+                                    {{ ucfirst($role->name) }}
+                                </option>
+                            @endforeach
+                        </select>
                     </div>
                 </div>
                 <div class="row mb-4">
                     <div class="col-md-6">
                         <div class="label">City</div>
-                        <input type="text" class="form-control" value="{{Auth::user()->city->city_name}}" name="city" readonly>
+                        <select class="form-select" name="city_id" id="city-select">
+                            <option value="">Select City</option>
+                            @foreach ($cities as $city)
+                                <option value="{{ $city->id }}" {{ $user->city_id == $city->id ? 'selected' : '' }}>
+                                    {{ $city->city_name }}
+                                </option>
+                            @endforeach
+                        </select>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-6" id="area-container">
                         <div class="label">Area</div>
-                        <input type="text" class="form-control" value="{{Auth::user()->area->area}}" name="area" readonly>
+                        <select class="form-select" name="area_id" id="area-select">
+                            <option value="">Select Area</option>
+                            @if($user->city_id && isset($areas[$user->city_id]))
+                                @foreach ($areas[$user->city_id] as $area)
+                                    <option value="{{ $area->id }}" {{ $user->area_id == $area->id ? 'selected' : '' }}>
+                                        {{ $area->area }}
+                                    </option>
+                                @endforeach
+                            @endif
+                        </select>
                     </div>
                 </div>
                 <button class="btn btn-primary px-5">Save</button>
@@ -121,4 +143,29 @@
         </div>
     </div>
 </div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const citySelect = document.getElementById('city-select');
+        const areaSelect = document.getElementById('area-select');
+
+        const areasByCity = @json($areas);
+
+        citySelect.addEventListener('change', function () {
+            const cityId = this.value;
+
+            areaSelect.innerHTML = '<option value="">Select Area</option>';
+
+            if (cityId && areasByCity[cityId]) {
+                areasByCity[cityId].forEach(area => {
+                    const option = document.createElement('option');
+                    option.value = area.id;
+                    option.textContent = area.area;
+                    areaSelect.appendChild(option);
+                });
+            }
+        });
+    });
+</script>
+
 @include('admin.layouts.footer')

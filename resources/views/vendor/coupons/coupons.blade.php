@@ -132,36 +132,40 @@
         font-weight: 600;
     }
 
-    .coupon-close {
+    .coupon-close { 
         position: absolute !important;
         top: 9px;
         right: 9px;
         cursor: pointer;
     }
-    @media(max-width:470px) {
-    
+
+    @media(max-width:343px) {
         .coupon-close{
-            top:8px;
-            right:19px;
+            top:9px;
+            right:63px;
         }
         .code,.expire{
             text-align: left;
         }
-        .discount,.code{
-            font-size: 20px;
+        .code {
+            font-size: 17px;
+        }
+        .discount {
+            font-size: 17px;
+            margin-left: 60px;
         }
         .max,.expire{
-            font-size: 10px;
+            font-size: 7px;
         }
         .desc{
             font-size: 15px;
             margin-top: 0px
         }
         .coupons-container, .coupon{
-            width: 310px;
+            width: 400px;
         }
-
     }
+
     @media (max-width:390px) {
         .actions{
             display: block;
@@ -181,36 +185,59 @@
     </div>
     <div class="card mb-5 pb-5 pl-0" style="background-color: #F5F5F5; box-shadow: none; padding-top :0px !important;;">
         <div class="row">
-            @foreach ($coupons as $value)
-            <div class="col-md-6 col-lg-4 mb-2">
-                <div class="container coupons-container">
-                    <img src="{{asset('assets/image/client/Rectangle 2802.svg')}}" alt="Coupon Background"
-                        class="coupon-img">
-                    <div class="coupon">
-                        <span class="coupon-close">
-                            <img src="{{asset('assets/image/client/close-circle.svg')}}" alt="Close" height="25px">
-                        </span>
-                        <div class="coupon-content">
-                            <div>
-                                <div class="discount">{{$value->discount}}
-                                    @if ($value->discount_type == 'Flat')
-                                        ₹
-                                    @else
-                                        %
-                                    @endif OFF
+            @forelse  ($coupons as $value)
+                <div class="col-md-6 col-lg-4 col-sm-12 mb-2">
+                    <div class="container coupons-container">
+                        <img src="{{asset('assets/image/client/Rectangle 2802.svg')}}" alt="Coupon Background"
+                            class="coupon-img">
+                        <div class="coupon">
+                            <span class="coupon-close">
+                                <img src="{{asset('assets/image/client/close-circle.svg')}}" alt="Close" height="25px">
+                            </span>
+                            <div class="coupon-content">
+                                <div>
+                                    <div class="discount">{{$value->discount}}
+                                        @if ($value->discount_type == 'Flat')
+                                            ₹
+                                        @else
+                                            %
+                                        @endif OFF
+                                    </div>
+                                    <div class="max">MAX ₹{{$value->min_order}}</div>
                                 </div>
-                                <div class="max">MAX ₹{{$value->min_order}}</div>
+                                <div>
+                                    <div class="code">{{$value->coupons_code}}</div>
+                                    <div class="expire">Coupon Expires {{$value->end_date}}</div>
+                                </div>
                             </div>
-                            <div>
-                                <div class="code">{{$value->coupons_code}}</div>
-                                <div class="expire">Coupon Expires {{$value->end_date}}</div>
-                            </div>
+                            <div class="desc">{{$value->coupons_name}}</div>
                         </div>
-                        <div class="desc">{{$value->coupons_name}}</div>
                     </div>
                 </div>
-            </div>
-            @endforeach
+            @empty
+                <div class="col-md-12 col-lg-6 col-sm-12 mb-2">
+                    <div class="container coupons-container">
+                        <img src="{{asset('assets/image/client/Rectangle 2802.svg')}}" alt="Coupon Background"
+                            class="coupon-img">
+                        <div class="coupon">
+                            <span class="coupon-close">
+                                <img src="{{asset('assets/image/client/close-circle.svg')}}" alt="Close">
+                            </span>
+                            <div class="coupon-content">
+                                <div>
+                                    <div class="discount">20% OFF</div>
+                                    <div class="max">MAX ₹500</div>
+                                </div>
+                                <div>
+                                    <div class="code">END02</div>
+                                    <div class="expire">Coupon Expires 01/03</div>
+                                </div>
+                            </div>
+                            <div class="desc">End Of New Year</div>
+                        </div>
+                    </div>
+                </div>
+            @endforelse 
         </div>
     </div>
     <div class="d-flex align-items-sm-center flex-sm-row flex-column gap-2">
@@ -311,11 +338,13 @@
 <script>
     flatpickr("#valid-datepicker", {
         dateFormat: "d-m-Y",
-        allowInput: true
+        allowInput: true,
+        disableMobile: true
     });
     flatpickr("#expire-datepicker", {
         dateFormat: "d-m-Y",
-        allowInput: true
+        allowInput: true,
+        disableMobile: true
     });
 
     function generateCouponCode() {

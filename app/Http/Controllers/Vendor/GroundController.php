@@ -51,7 +51,7 @@ class GroundController extends Controller
             // 'turfs.*.unit' => 'required',
             'turfs.*.sports' => 'array',
             'turfs.*.amenities' => 'array',
-            // 'turfs.*.turf_images' => 'array|min:4',
+            'turfs.*.turf_images' => 'array',
             'turfs.*.turf_images.*' => 'image|mimes:jpeg,png,jpg,webp',
         ], [
             'turfs.*.name.required' => 'The turf name field is required.',

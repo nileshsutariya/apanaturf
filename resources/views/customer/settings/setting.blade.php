@@ -10,7 +10,7 @@
 
     .form-label {
         font-size: 15px;
-        color: #878787;
+        /* color: #878787; */
         font-weight: 500;
     }
 
@@ -89,80 +89,89 @@
 </style>
 <div class="page-content" id="mainContent">
     <div class="page-container" style="background-color: transparent;">
-        <div class="row">
-            <div class="col-lg-12 col-md-12 col-sm-12">
-                <h4 class="mb-0 ml-3" style=" font-family: 'Poppins', serif !important; font-size: 22px;">Setting</h4>
-                <div class="ml-3 pb-2"
-                    style="font-size: 14px; color: rgb(184, 180, 180); font-family: 'Poppins', serif !important;">
-                    Update any changes
-                </div>
-                <div class="card p-2 mt-2 ml-3"
-                    style=" border-radius: 13px; height: auto; box-shadow: 0 15px 15px rgba(0, 0, 0, 0.3);">
-                    <div class="card-body">
-
-                        <div class="row">
-                            <div class="col-md-5">
-                                <div id="account" class="headeruser active" style="padding-left: 15px;"> Account </div>
-                            </div>
-                            <div class="col-md-7">
-                                <div id="account" class="headeruser "> Your Profile Picture</div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-5" style="font-size: 12px;">
-                                <div class="mb-3">
-                                    <label class="form-label">Full Name</label>
-                                    <input type="text" class="form-control" placeholder="Abhishek Guleria"
-                                        style=" letter-spacing: 0.7px; font-size: 12px; border: none;">
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label">Email</label>
-                                    <input type="text" class="form-control" placeholder="abhishekguleria1599@gmail.com"
-                                        style=" letter-spacing: 0.7px; font-size: 12px; border: none;">
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label">Vender ID</label>
-                                    <input type="text" class="form-control" placeholder="098765"
-                                        style=" letter-spacing: 0.7px; font-size: 12px; border: none;">
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label">Phone Number</label>
-                                    <input type="text" class="form-control" placeholder="1234567890"
-                                        style=" letter-spacing: 0.7px; font-size: 12px; border: none;">
-                                </div>
-                            </div>
-
-                            <div class="col-md-7">
-                                <div class="d-flex mt-1 mb-5" style="margin-left: 2px;">
-                                    <label for="uploadInput"
-                                        style="width: 120px; height: 110px; border: 2px dashed #706d6d; border-radius: 10px; display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer;">
-                                        <img src="{{ asset('assets/image/gallery-add.svg')}}" alt="dashboard"
-                                            data-bs-toggle="modal" data-bs-target="#editModal"
-                                            style="cursor: pointer; height: 25px; width: 25px;">
-                                        <span
-                                            style="font-size: 10px; color: #cac9c9; margin-top: 7px; font-size: 7px;">Upload
-                                            your
-                                            image</span>
-                                        <input type="file" id="uploadInput" style="display: none;">
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
+        <form action="{{route('settings.store')}}" method="POST" enctype="multipart/form-data">
+            @csrf
+            <div class="row">
+                <div class="col-lg-10 col-md-10 col-sm-10">
+                    <h4 class="mb-0 ml-3" style=" font-family: 'Poppins', serif !important; font-size: 20px;">Settings</h4>
+                    <div class="ml-3 mt-1 pb-2"
+                        style="font-size: 12px; color: rgb(184, 180, 180); font-family: 'Poppins', serif !important;">
+                        Update any changes
                     </div>
-                    <div class="card-footer ml-auto">
-                        <a href="#addBanner" class="add-banner waves-effect waves-light" data-animation="blur"
-                            data-plugin="custommodal" data-overlaySpeed="100" data-overlayColor="#36404a">
-                            <button type="button" class="btn  ml-auto save">Save</button>
-                        </a>
+                    <div class="card p-2 mt-2 ml-3"
+                        style="border-radius: 13px; height: auto; box-shadow: 0 15px 15px rgba(0, 0, 0, 0.3);">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-lg-5" style="font-size: 12px;">
+                                    <h5>Profile Info</h5>
+                                    <div class="mb-3 mt-3">
+                                        <label class="form-label">Full Name</label>
+                                        <input type="text" class="form-control" placeholder="Abhishek Guleria" name="name"
+                                            style="letter-spacing: 0.7px; font-size: 12px; border: none;" value="{{$customer->name}}">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Email</label>
+                                        <input type="text" class="form-control" placeholder="abhishekguleria1599@gmail.com" name="email"
+                                            style="letter-spacing: 0.7px; font-size: 12px; border: none;" value="{{$customer->email}}">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Phone Number</label>
+                                        <input type="text" class="form-control" placeholder="1234567890" name="phone"
+                                            style="letter-spacing: 0.7px; font-size: 12px; border: none;"  value="{{$customer->phone}}">
+                                    </div>
+                                </div>
+                                <div class="col-lg-7">
+                                    <h5>Your Profile Picture</h5>
+                                    <div class="d-flex mt-3 mb-3" style="margin-left: 2px;">
+                                        <label for="uploadInput"
+                                        style="width: 100px; height: 90px; border: 2px dashed #706d6d; border-radius: 10px; display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer;">
+                                            @if ($customer->image && $customer->image->image_path)
+                                                <img id="profilePreview" src="{{ asset('storage/' . $customer->image->image_path) }}"
+                                                    alt="Profile"
+                                                    style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+                                                    <button onclick="removeImage()" 
+                                                        style="position: absolute; top: 40px; left: 92px; 
+                                                                color: rgba(0,0,0,0.6); background: transparent; 
+                                                                border: none; border-radius: 50%; width: 24px; height: 24px; 
+                                                                font-weight: bold; cursor: pointer; line-height: 1;">
+                                                        ×
+                                                    </button>
+
+                                            @else
+                                                <img id="profilePreview" src="{{ asset('assets/image/gallery-add.svg') }}"
+                                                    alt="Upload Icon"
+                                                    style="cursor: pointer; height: 25px; width: 25px;">
+                                                <span style="font-size: 10px; color: #cac9c9; margin-top: 7px; font-size: 7px;">
+                                                    Upload image
+                                                </span>
+                                            @endif
+                                            <input type="file" name="profile_image" id="uploadInput" style="display: none;">
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr style="width: 95%;">
+                            <h5>Change Password</h5>
+                            <div class="mb-3 mt-3">
+                                <label class="form-label">Old Password</label>
+                                <input type="password" class="form-control" name="oldpassword" placeholder="123456"
+                                    style="letter-spacing: 0.7px; font-size: 12px; border: none;">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">New Password</label>
+                                <input type="password" class="form-control" name="newpassword" placeholder="123456"
+                                    style="letter-spacing: 0.7px; font-size: 12px; border: none;">
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <button type="submit" class="btn save">Save</button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </form>
     </div>
 </div>
-</div>
-
 
 <div id="addBanner" class="modal-demo">
     <div style="display: flex; justify-content: space-between; align-items: center; ">
@@ -189,7 +198,6 @@
 </script>
 
 
-
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/custombox@4.0.3/dist/custombox.min.js"></script>
 
@@ -202,7 +210,6 @@
 <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
 
 <script>
-
     function showTab(tabName) {
         document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
         document.querySelectorAll('.content').forEach(content => content.classList.remove('active'));
@@ -210,10 +217,24 @@
         document.querySelector(`[onclick="showTab('${tabName}')"]`).classList.add('active');
         document.getElementById(tabName).classList.add('active');
     }
-
-
-
 </script>
+<script>
+    document.getElementById('uploadInput').addEventListener('change', function(event) {
+        const file = event.target.files[0];
+        if (!file) return;
 
+        const preview = document.getElementById('profilePreview');
+        const reader = new FileReader();
+
+        reader.onload = function(e) {
+            preview.src = e.target.result;
+            preview.style.width = '100%';
+            preview.style.height = '100%';
+            preview.style.objectFit = 'cover';
+        };
+
+        reader.readAsDataURL(file);
+    });
+</script>
 
 @include('customer.layouts.userfooter')

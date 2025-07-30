@@ -627,9 +627,7 @@
         </div>
         <div class="col-md-12 col-lg-8 col-sm-12">
             <table class="table table-hover text-nowrap">
-
                 <tbody>
-
                     <div class="row" style="font-family: 'Poppins', sans-serif !important; overflow-x: auto !important;">
                         <div class="container week-calendar">
                             <div id="weekDates" class="week-container">
@@ -638,7 +636,6 @@
 
                             <div class="calendar" id="schedular"></div>
                         </div>
-
 
 
                         <div id="payment-withdraw" class="modal-demo">
@@ -783,7 +780,7 @@
                                             <div class="row">
                                                 <div class="col-md-12 d-flex action-buttons">
                                                     <button class="btn save mr-2 cancel-button"
-                                                        style="width: 100%;">Cancel</button>
+                                                           style="width: 100%;">Cancel</button>
                                                     {{-- <button class="btn pay mr-3 book-btn" style="width: 100%;"
                                                         onclick="switchToBooking();"> --}}
                                                         <button class="btn pay mr-3 book-btn" style="width: 100%;"
@@ -798,7 +795,7 @@
                             </div>
                         </div>
 
-                </tbody>
+                    </tbody>
             </table>
         </div>
     </div>
@@ -848,6 +845,17 @@
 </script>
 
 <script>
+
+    function formatHour(hour) {
+        const period = hour >= 12 ? 'PM' : 'AM';
+        let formatted = hour % 12;
+        if (formatted === 0) formatted = 12;
+        return `${formatted}${period}`;
+    }
+
+    console.log(formatHour(11));
+    console.log(formatHour(12));
+
     document.addEventListener("DOMContentLoaded", function () {
         const calendar = document.getElementById("schedular");
         const weekContainer = document.getElementById("weekDates");
@@ -861,14 +869,14 @@
         let selectedTimeSlot = null;
         let events = {};
 
-        bookingsFromDB.forEach(booking => {
-            const bookingDate = new Date(booking.booking_on);
-            const dayName = bookingDate.toLocaleString('en-US', { weekday: 'short' });
-            const dayNumber = bookingDate.getDate();
+        // bookingsFromDB.forEach(booking => {
+        //     const bookingDate = new Date(booking.booking_on);
+        //     const dayName = bookingDate.toLocaleString('en-US', { weekday: 'short' });
+        //     const dayNumber = bookingDate.getDate();
 
-            const key = `${dayName} ${dayNumber}-${booking.time_in}`;
-            events[key] = booking.customer_name;
-        });
+        //     const key = `${dayName} ${dayNumber}-${booking.time_in}`;
+        //     events[key] = booking.customer_name;
+        // });
 
         function getNext10Days() {
             let dayElements = document.getElementsByClassName('calendar-selected');
@@ -903,6 +911,24 @@
 
         const days = getNext10Days().map(date => `${date.dayName} ${date.dayNumber}`);
         const times = ["7AM", "8AM", "9AM", "10AM", "11AM", "12PM", "1PM", "2PM", "3PM", "4PM", "5PM", "6PM", "7PM", "8PM", "9PM", "10PM", "11PM"];
+
+        function timeToIndex(timeStr) {
+            return times.indexOf(timeStr);
+        }
+
+        bookingsFromDB.forEach(booking => {
+            const bookingDate = new Date(booking.booking_on);
+            const dayName = bookingDate.toLocaleString('en-US', { weekday: 'short' });
+            const dayNumber = bookingDate.getDate();
+
+            const startIndex = timeToIndex(booking.time_in);
+            const endIndex = timeToIndex(booking.time_out); 
+
+            for(let i = startIndex; i < endIndex; i++) {
+                const key = `${dayName} ${dayNumber}-${times[i]}`;
+                events[key] = booking.customer_name;
+            }
+        });
 
         function renderCalendar(weekDates = getNext10Days()) {
             calendar.innerHTML = "";

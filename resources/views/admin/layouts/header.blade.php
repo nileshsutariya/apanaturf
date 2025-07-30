@@ -80,8 +80,11 @@
                <!-- Sidebar Logo -->
                <div class="logo-box">
                     <a href="#" class="logo-dark">
-                         <img src="{{ asset('asset/images/logo-sm.png') }}" class="logo-sm" alt="logo sm">
-                         <img src="{{ asset('asset/images/logo-dark.png') }}" class="logo-lg" alt="logo dark">
+                         <img src="{{asset('assets/image/logo/Apna-Turf.png')}}" height="60" 
+                              class="d-inline-block align-top my-2" style="margin-left: 50px;" alt="">
+
+                         {{-- <img src="{{ asset('asset/images/logo-sm.png') }}" class="logo-sm" alt="logo sm">
+                         <img src="{{ asset('asset/images/logo-dark.png') }}" class="logo-lg" alt="logo dark"> --}}
                     </a>
 
                     <a href="#" class="logo-light">

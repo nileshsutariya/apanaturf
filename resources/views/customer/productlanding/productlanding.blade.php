@@ -64,11 +64,11 @@
     .amemity {
         display: flex;
         gap: 10px;
-        padding: 15px;
+        padding: 4px 10px;
         border: 2px solid #D0D5DD;
         border-radius: 100px;
         text-align: center;
-        margin-bottom: 20px;
+        margin-bottom: 17px;
         margin-right: 10px;
         width: 130px
     }
@@ -94,8 +94,8 @@
 
     .turfbtn {
         font-size: 14px;
-        width: 35%;
-        padding: 12px 25px 12px 20px;
+        /* width: 35%; */
+        padding: 10px 15px 10px 15px;
         border-radius: 10px;
         border: #E0F1E8;
         background-color: #E0F1E8;
@@ -109,15 +109,14 @@
     }
 
 
-
     .bigimage {
         width: -webkit-fill-available;
-        height: 520px;
+        height: 530px;
     }
 
     .imgsport {
         background-color: #E0F1E8;
-        padding: 15px 18px;
+        padding: 12px 15px;
         border-radius: 12px;
         margin-right: 20px;
     }
@@ -378,7 +377,7 @@
         }
 
         .turfbtn {
-            width: 46%;
+            width: 40%;
         }
 
         .booking-date {
@@ -405,7 +404,7 @@
         }
 
         .bigimage {
-            height: 520px !important;
+            height: 530px !important;
         }
 
         .booking-date {
@@ -951,7 +950,8 @@
         display: none;
     }
 
-    @media (max-width:650px) {
+    /* @media (max-width:650px) { */
+    @media (max-width:991px) {
 
         .rowdate,
         .booking-icon {
@@ -1031,21 +1031,37 @@
                     <button class="turfbtn"><b>Turf B : </b> 600x600</button>
                 </div>
                 @php
-                    $amenityIds = json_decode($turf->amenities_ids ?? '[]');
+                    $amenityIds = json_decode($turf->amenities_ids ?? '[]' ,true);
                     $amenities = \App\Models\Amenity::whereIn('id', $amenityIds)->get();
+                    foreach ($amenities as $amenity) {
+                        $imgId = $amenity->image_id;
+                        $amenity->image_data = \App\Models\Images::find($imgId);
+                    }
                 @endphp
                 <h6 class="mt-3">Amenities</h6>
                 <div class="row" style="margin-left: 2px;">
                     @foreach($amenities as $amenity)
-                        {{-- <img src="{{ asset('storage/' . $amenity->image_path) }}" alt="{{ $amenity->name }}" style="width:40px; height:40px;"> --}}
-                        <div class="amemity">{{ $amenity->name }}</div>
+                        <div class="amemity">
+                            <img src="{{ asset('storage/' . $amenity->image_data->image_path) }}" alt="{{ $amenity->name }}" style="width:25px; height:25px;">
+                            {{ $amenity->name }}
+                        </div>
                     @endforeach
                 </div>
-                <h6 class="mt-3">Select Sports</h6>
+
+                @php
+                    $sportsIds = json_decode($turf->sports_ids ?? '[]', true);
+                    $sports = \App\Models\Sports::whereIn('id', $sportsIds)->get();
+
+                    foreach ($sports as $sport) {
+                        $imgId = $sport->image_id;
+                        $sport->image_data = \App\Models\Images::find($imgId);
+                    }
+                @endphp
+                <h6 class="mt-3">Selected Sport</h6>
                 <div class="sports d-flex">
-                    <div class="imgsport"><img src="{{ asset('assets/image/users/img 7.svg') }}"></div>
-                    <div class="imgsport active"><img src="{{ asset('assets/image/users/cricket-bat.svg') }}"></div>
+                    <div class="imgsport mt-2"><img src="{{ asset('storage/' . $sport->image_data->image_path) }}" alt="{{ $sport->name }}" style="width:33px; height:33px;"></div>
                 </div>
+                {{-- <button class="btn btn-success">book now</button> --}}
             </div>
             <div class="col-xl-1 col-lg-2 col-md-12 col-sm-12 align-items-center justify-items-center booknow-turf ">
                 <a href="#addBanner" class="add-banner waves-effect waves-light" data-animation="blur"
@@ -1074,15 +1090,13 @@
                     <div class="row date-selection" id="dateSelection">
                     </div>
                 </div>
-                <div class="col-md-12 col-lg-12 col-sm-12 date-picker">
+                <div class="col-lg-12 col-md-12 col-sm-12 date-picker">
                     <div class="calendar-container" id="calendar"
                         style="font-size: 12px !important;  box-shadow: 0px 25px 30px #00000040;">
                         <div class="calendar-header">
                             <img class="mr-2" src="{{ asset('assets/image/client/calendargreen.svg') }}" alt="dashboard"
                                 height="">
                             <div class="month-year">
-                                <!-- <select id="monthSelector" onchange="updateCalendar()"></select>
-                            <select id="yearSelector" onchange="updateCalendar()"></select> -->
                                 <select id="monthSelector"></select>
                                 <select id="yearSelector"></select>
                             </div>
@@ -1459,8 +1473,8 @@
 </div>
 <div id="addBanner" class="modal-demo" style="font-family: 'poppins', sans-serif !important;">
 
-    <h6 class="mb-2" style="font-weight: 500; margin: 0; font-size:20px;">Order Confirmation</h6>
     <div style="display: flex; justify-content: space-between; align-items: center; mb-5">
+        <h6 class="mb-2" style="font-weight: 500; margin: 0; font-size:20px;">Order Confirmation</h6>
         <button type="button" class="btn-close close-modal" onclick="Custombox.modal.close();"></button>
     </div>
 
@@ -1549,6 +1563,7 @@
 
 <!-- App js -->
 <script src="{{asset('assets/js/app2.js')}}"></script>
+
 
 
 <script>
@@ -1662,16 +1677,54 @@
     }
     generateCurrentWeek();
 </script>
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const bookingTimes = document.querySelectorAll(".booking-time");
 
-        bookingTimes.forEach(time => {
-            time.addEventListener("click", function () {
-                this.classList.toggle("selected");
-            });
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const bookingTimes = document.querySelectorAll(".booking-time");
+    let firstSelectedIndex = null;
+
+    bookingTimes.forEach((time, index) => {
+        time.dataset.index = index;
+
+        time.addEventListener("click", function () {
+            const currentIndex = parseInt(this.dataset.index);
+
+            if (firstSelectedIndex === null) {
+                // First selection
+                firstSelectedIndex = currentIndex;
+                this.classList.add("selected");
+            } else {
+                if (currentIndex > firstSelectedIndex) {
+                    // Select range from firstSelectedIndex to currentIndex
+                    bookingTimes.forEach((t, i) => {
+                        if (i >= firstSelectedIndex && i <= currentIndex) {
+                            t.classList.add("selected");
+                        } else {
+                            t.classList.remove("selected");
+                        }
+                    });
+                } else {
+                    // New selection is before the first one → reset and select only current
+                    bookingTimes.forEach(t => t.classList.remove("selected"));
+                    this.classList.add("selected");
+                    firstSelectedIndex = currentIndex;
+                }
+            }
         });
     });
+});
+</script>
+
+<script>
+    // document.addEventListener("DOMContentLoaded", function () {
+    //     const bookingTimes = document.querySelectorAll(".booking-time");
+
+    //     bookingTimes.forEach(time => {
+    //         time.addEventListener("click", function () {
+    //             this.classList.toggle("selected");
+    //         });
+    //     });
+    // });
     document.addEventListener("DOMContentLoaded", function () {
         const bookingTimes = document.querySelectorAll(".booking-date");
 

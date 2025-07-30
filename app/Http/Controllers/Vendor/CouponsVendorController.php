@@ -45,7 +45,7 @@ class CouponsVendorController extends Controller
             ->get();
 
         $turf = Turf::where('created_by', $vendor->id)
-                    ->where('status', 1)
+                    ->where('status', 2)
                     ->get();
 
         $city = City::all();

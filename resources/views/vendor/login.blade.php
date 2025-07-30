@@ -19,7 +19,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 90vh;
+            height: 70vh;
             font-size: 16px
         }
 
@@ -94,14 +94,12 @@
         .form-control {
             padding-right: 2.5rem; 
         }
-        
     </style>
-
 </head>
 
 <body>  
     <div class="login-container">
-        <h1 class="logo">ApnaTurf</h1>
+        <h1 class="logo"><img src="{{asset('assets/image/logo/Apna-Turf.png')}}" height="80"></h1>
         <form id="loginForm" action="{{route('vendor.logincheck')}}" method="POST">
             @csrf
             <div class="mb-3">

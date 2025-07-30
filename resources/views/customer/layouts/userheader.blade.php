@@ -227,7 +227,7 @@
 <body>
   <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #F5F5F5;">
     <a class="navbar-brand logo" href="#">
-      <img src="{{asset('assets/image/users/logo.svg')}}" class="d-inline-block align-top" alt="">
+      <img src="{{asset('assets/image/logo/Apna-Turf.png')}}" height="70" class="d-inline-block align-top" style="margin-left: 100px;" alt="">
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -249,6 +249,14 @@
         </li>
         <li class="nav-item">
             <button type="button" class="btn book-now">Book Now</button>
+        </li>
+        <li class="nav-item">
+            <form action="{{ route('customer.logout') }}" method="POST" id="logoutForm" style="display: inline;">
+                @csrf
+                <button class="nav-link mt-2 me-0" type="submit" style="border: none; background: none; padding: 0; cursor: pointer; width: 100%;">
+                    <span class="menu-text"> Logout </span>
+                </button>
+            </form>
         </li>
       </ul>
     

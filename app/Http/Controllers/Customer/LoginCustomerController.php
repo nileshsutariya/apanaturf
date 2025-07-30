@@ -20,40 +20,25 @@ class LoginCustomerController extends Controller
             'phone' => 'required',
             'password' => 'required|min:6',
         ]);
-        
-        $customer = Customer::where(function ($query) use ($request) {
-                    $query->where('phone', $request->phone);
-                })->first();
+
+        $customer = Customer::where('phone', $request->phone)->first();
 
         if ($customer && Hash::check($request->password, $customer->password)) {
+            Auth::guard('customer_web')->login($customer);
 
-            if ($customer->password_update) {
-                Auth::guard('customer')->login($customer);
-
-                return response()->json([
-                    'success' => true,
-                    'message' => 'Sign in Successfully!',
-                    'redirect' => route('customerindex') 
-                ]);
-            } else {
-                $otp = 1234;
-                $customer->otp = $otp;
-                $customer->otp_send_at = now();
-                $customer->save();
-
-                return response()->json([
-                    'success' => true,
-                    'password_updated' => false 
-                ]);
-            }
+            return response()->json([
+                'success' => true,
+                'redirect' => route('customerindex') 
+            ]);
         }
 
         return response()->json(['success' => false, 'message' => 'Invalid credentials']);
     }
 
+
     public function logout(Request $request)
     {
-        Auth::guard('customer')->logout();
+        Auth::guard('customer_web')->logout();
         return redirect()->route('customer.login')->with('success', 'Logout Successfully.');
     }
 
@@ -135,7 +120,7 @@ class LoginCustomerController extends Controller
             $customer->password_update = now();
             $customer->save();
 
-            Auth::guard('customer')->login($customer);
+            Auth::guard('customer_web')->login($customer);
 
             return response()->json([
                 'success' => true,

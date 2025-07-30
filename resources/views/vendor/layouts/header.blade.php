@@ -83,7 +83,7 @@
 
         .side-nav {
             height: 30px;
-            padding-top: 71px;
+            padding-top: 25px;
         }
 
         .side-nav .side-nav-item .side-nav-link {
@@ -196,6 +196,8 @@
     <div class="wrapper">
         <div class="sidenav-menu" id="sidebar" style="background-color: rgb(24, 24, 24);">
             <div data-simplebar>
+                <img src="{{asset('assets/image/logo/Apna-Turf.png')}}" height="60" class="d-inline-block align-top mt-3" style="margin-left: 90px;" alt="">
+
                 <ul class="side-nav">
                     <li class="side-nav-item">
                         <a href="{{route('vendor.dashboard')}}" class="side-nav-link">
@@ -220,14 +222,14 @@
                         </a>
                     </li>
                     <li class="side-nav-item">
-                        <a href="" class="side-nav-link">
+                        <a href="#" class="side-nav-link">
                             <span class="menu-icon"><img src="{{asset('assets/image/client/wallet-remove.svg')}}"
                             alt="transaction"></span>
                             <span class="menu-text mt-2"> Payment </span>
                         </a>
                     </li>
                     <li class="side-nav-item">
-                        <a href="" class="side-nav-link">
+                        <a href="#" class="side-nav-link">
                             <span class="menu-icon"><img src="{{asset('assets/image/client/Transaction.svg')}}"
                             alt="transaction"></span>
                             <span class="menu-text mt-2"> Transactions </span>
@@ -251,7 +253,7 @@
                     <li class="side-nav-item">
                         <form action="{{ route('vendor.logout') }}" method="POST" id="logoutForm" style="display: inline;">
                             @csrf
-                            <button type="submit" class="side-nav-link mb-5" style="margin-top: 150px; border: none; background: none; padding: 0; cursor: pointer; width: 100%; text-align: left;">
+                            <button type="submit" class="side-nav-link mb-5" style="margin-top: 70px; border: none; background: none; padding: 0; cursor: pointer; width: 100%; text-align: left;">
                                 <span class="menu-icon">
                                     <img src="{{ asset('assets/image/client/Logout.svg') }}" alt="logout">
                                 </span>
@@ -278,7 +280,7 @@
                     <div class="footer-content d-flex flex-column flex-grow-1 ml-2" style="text-align: left !important;">
                         <span class="menu-text text-white" style="font-size: 14px;">{{ ucfirst(auth('vendor')->user()->owner_name)}}</span>
 
-                        <a href="" class="text-muted" style="font-size: 11px;">View Profile</a>
+                        <a href="{{route('profile.index.vendor')}}" class="text-muted" style="font-size: 11px;">View Profile</a>
                     </div>
                     <div class="footer-dot text-white" style="font-size: 20px;">
                         <i class="bi bi-three-dots-vertical"></i>

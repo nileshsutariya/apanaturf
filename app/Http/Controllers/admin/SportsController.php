@@ -39,7 +39,7 @@ class SportsController extends Controller
 
         $hasTransparency = false;
 
-        if (in_array($mime, ['image/png', 'image/jpg', 'image/webp', 'image/jpeg', 'image/svg'])) {
+        if (in_array($mime, haystack: ['image/png', 'image/jpg', 'image/webp', 'image/jpeg', 'image/svg'])) {
             $image = null;
 
             if ($mime === 'image/png') {

@@ -36,12 +36,10 @@ use App\Http\Controllers\admin\PermissionGroupController;
 
 Route::prefix('customer')->group(function () {
 
-    Route::get('/index', [RegisterController::class, 'index'])->name('customerindex');
-
     Route::get('/register', [RegisterController::class, 'register'])->name('customer.register');
     Route::post('/register/check', [RegisterController::class, 'registercheck'])->name('customer.add');
-
-    Route::post('/otpverify', [RegisterController::class, 'VerifyOtp'])->name('register.otp.verify');
+    
+    // Route::post('/otpverify', [RegisterController::class, 'VerifyOtp'])->name('register.otp.verify');
     
     Route::get('/login', [LoginCustomerController::class, 'login'])->name('customer.login');
     Route::post('/login/check', [LoginCustomerController::class, 'logincheck'])->name('customer.logincheck');
@@ -49,41 +47,47 @@ Route::prefix('customer')->group(function () {
     
     Route::post('/forgotpassword', [LoginCustomerController::class, 'ForgotPassword'])->name('customer.forgot.password');
     Route::post('/resetpassword', [LoginCustomerController::class, 'ResetPassword'])->name('customer.reset.password');
+    
+    Route::middleware(['web.customer.login'])->group(function () {
 
-    Route::prefix('/bookingturf')->controller(BookingTurfController::class)->name('bookingturf.')->group(function () {
-        Route::get('/', 'index')->name('index');
-        Route::get('/product/{id}', 'product')->name('product');
-    });
-    
-    Route::prefix('/terms')->controller(TermsController::class)->name('terms.')->group(function () {
-        Route::get('/', 'index')->name('index');
-    });
-    
-    Route::prefix('/about')->controller(AboutController::class)->name('about.')->group(function () {
-        Route::get('/', 'index')->name('index');
-    });
+        Route::get('/index', [RegisterController::class, 'index'])->name('customerindex');
+        Route::post('/logout', [LoginCustomerController::class, 'logout'])->name('customer.logout');
 
-    
-    Route::prefix('/matches')->controller(MatchesController::class)->name('matches.')->group(function () {
-        Route::get('/', 'index')->name('index');
+        Route::prefix('/bookingturf')->controller(BookingTurfController::class)->name('bookingturf.')->group(function () {
+            Route::get('/', 'index')->name('index');
+            Route::get('/product/{id}', 'product')->name('product');
+        });
+        
+        Route::prefix('/terms')->controller(TermsController::class)->name('terms.')->group(function () {
+            Route::get('/', 'index')->name('index');
+        });
+        
+        Route::prefix('/about')->controller(AboutController::class)->name('about.')->group(function () {
+            Route::get('/', 'index')->name('index');
+        });
+
+        Route::prefix('/matches')->controller(MatchesController::class)->name('matches.')->group(function () {
+            Route::get('/', 'index')->name('index');
+        });
+        
+        Route::prefix('/wallet')->controller(WalletController::class)->name('wallet.')->group(function () {
+            Route::get('/', 'index')->name('index');
+        });
+        
+        Route::prefix('/split')->controller(SplitController::class)->name('split.')->group(function () {
+            Route::get('/', 'index')->name('index');
+        });
+        
+        Route::prefix('/settings')->controller(SettingsController::class)->name('settings.')->group(function () {
+            Route::get('/', 'index')->name('index');
+            Route::post('/store', 'store')->name('store');
+        });
+        
+        Route::prefix('/refer')->controller(ReferController::class)->name('refer.')->group(function () {
+            Route::get('/', 'index')->name('index');
+        });
+
     });
-    
-    Route::prefix('/wallet')->controller(WalletController::class)->name('wallet.')->group(function () {
-        Route::get('/', 'index')->name('index');
-    });
-    
-    Route::prefix('/split')->controller(SplitController::class)->name('split.')->group(function () {
-        Route::get('/', 'index')->name('index');
-    });
-    
-    Route::prefix('/settings')->controller(SettingsController::class)->name('settings.')->group(function () {
-        Route::get('/', 'index')->name('index');
-    });
-    
-    Route::prefix('/refer')->controller(ReferController::class)->name('refer.')->group(function () {
-        Route::get('/', 'index')->name('index');
-    });
-    
 });
 
 
@@ -121,8 +125,8 @@ Route::prefix('vendor')->group(function () {
         });
        
         Route::prefix('/profile')->controller(ProfileVendorController::class)->name('profile.')->group(function () {
-            Route::get('/', 'index')->name('index');
-            Route::post('/store', 'store')->name('store');
+            Route::get('/', 'index')->name('index.vendor');
+            Route::post('/store', 'store')->name('store.vendor');
         });
 
     });

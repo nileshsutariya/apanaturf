@@ -1,5 +1,6 @@
 @include('customer.layouts.userheader')
 <link href="https://fonts.googleapis.com/css2?family=Monda:wght@400..700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 
 <style>
     @font-face {
@@ -287,7 +288,7 @@
                             <label>Date</label>
                             <div class="position-relative mb-2">
                                 <img src="{{ asset('assets/image/users/note.svg') }}" alt="Icon" class="input-icon">
-                                <input type="text" class="form-control input-with-icon" placeholder="DD/MM/YYYY" id="dateInput">
+                                <input type="text" aria-autocomplete=""class="form-control input-with-icon" placeholder="DD/MM/YYYY" id="dateInput">
                             </div>
                         </div>
                         <hr>
@@ -372,16 +373,59 @@
     </div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script>
-    $('#dateInput, #timeInput').on('change', function () {
-        const date = $('#dateInput').val();
-        const time = $('#timeInput').val();
+    flatpickr("#dateInput", {
+        dateFormat: "d-m-Y",
+        allowInput: true,
+        disableMobile: true
+    });
+    flatpickr("#timeInput", {
+        enableTime: true,
+        noCalendar: true,
+        dateFormat: "h:i K",
+        time_24hr: false,
+        allowInput: true,
+        minuteIncrement: 30,
+        disableMobile: true
+    });
+</script>
+<script>
+    function applyFilter() {
+        const date = document.getElementById('dateInput').value;
+        const time = document.getElementById('timeInput').value;
 
         if (date && time) {
             const url = `{{ route('bookingturf.index') }}?date=${encodeURIComponent(date)}&time=${encodeURIComponent(time)}`;
             window.location.href = url;
         }
+    }
+
+    document.getElementById('dateInput').addEventListener('keydown', function (e) {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            applyFilter();
+        }
     });
+
+    document.getElementById('timeInput').addEventListener('keydown', function (e) {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            applyFilter();
+        }
+    });
+</script>
+
+<script>
+    // $('#dateInput, #timeInput').on('change', function () {
+    //     const date = $('#dateInput').val();
+    //     const time = $('#timeInput').val();
+
+    //     if (date && time) {
+    //         const url = `{{ route('bookingturf.index') }}?date=${encodeURIComponent(date)}&time=${encodeURIComponent(time)}`;
+    //         window.location.href = url;
+    //     }
+    // });
     // window.addEventListener('load', function () {
     //     if (window.location.search.includes('date=') || window.location.search.includes('time=')) {
     //         setTimeout(() => {

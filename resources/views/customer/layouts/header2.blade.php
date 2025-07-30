@@ -7,20 +7,15 @@
     <title>Sidebar Collapse with Main Content Shift</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
-    <!-- Bootstrap JS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
     <link rel="shortcut icon" href="{{asset('assets/images/favicon.ico')}}">
 
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
-        rel="stylesheet">
-
-    <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Monda:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
     <style>
         html {
@@ -342,56 +337,21 @@
             filter: brightness(0) invert(1);
         }
 
-.sidebar-link:hover {
-    background-color: rgba(29, 185, 84, 0.1);
-    color: #079666;
-}
+        .sidebar-link:hover {
+            background-color: rgba(29, 185, 84, 0.1);
+            color: #079666;
+        }
     </style>
 </head>
 
 <body>
 
     <div class="wrapper">
-        {{-- <nav class="d-flex navbar navbar-expand-lg navbar-light">
-            <a class="navbar-brand logo" href="#">
-                <img src="{{asset('assets/image/users/logo2.svg')}}" class="d-inline-block align-top m-3" alt="logo"
-                    class="logo-img">
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav mr-5 pr-5">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Home <span class="sr-only"></span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Turf <span class="sr-only"></span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Terms & Conditions <span class="sr-only"></span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">About <span class="sr-only"></span></a>
-                    </li>
-                </ul>
-            </div>
-            <div class="mr-4">
-                <img src="{{asset('assets/image/users/Image.svg')}}" alt="profile" class="rounded-circle"
-                    style="width: 40px; height: 40px; border: 2px solid #ccc;">
-                <span class=" profilename ml-2" style="color:#10998B; font-size: 15px; font-weight:500;">Abhishek</span>
-            </div>
-        </nav> --}}
-
-
         <nav class="navbar navbar-expand-lg navbar-light bg-white">
             <div class="container-fluid d-flex align-items-center">
 
-                <a class="navbar-brand logo me-auto" href="#">
-                    <img src="{{asset('assets/image/users/logo2.svg')}}" class="d-inline-block align-top m-3 logo-img"
-                        alt="logo" style="max-height: 50px;">
-                </a>
+                <img src="{{asset('assets/image/logo/Apna-Turf.png')}}" height="68" 
+                    class="d-inline-block align-top my-2" style="margin-left: 60px;" alt="">
 
                 <button class="navbar-toggler nav-btn mx-5" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
@@ -399,13 +359,21 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
-                <div class="d-flex align-items-center order-lg-2 mx-4">
-                    <img src="{{asset('assets/image/users/Image.svg')}}" alt="profile" class="rounded-circle"
-                        style="width: 40px; height: 40px; border: 2px solid #ccc;">
-                    <span class="profilename ms-2"
-                        style="color:#10998B; font-size: 15px; font-weight:500;">Abhishek</span>
+                <div class="d-flex align-items-center order-lg-2 mx-4 position-relative">
+                    {{-- <img id="profileImage" src="{{ asset('storage/' . $customer->image->image_path) }}"
+                        alt="Profile" class="rounded-circle"
+                        style="width: 40px; height: 40px; border: 2px solid #ccc; cursor: pointer;"> --}}
+                    
+                    <div id="customDropdown" class="dropdown-menu show"
+                        style="font-size: 12px; display: none; position: absolute; top: 45px; left: -81px; min-width: 125px; z-index: 1000; border: 1px solid #ddd; border-radius: 5px; background: white; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+                        <form action="{{ route('customer.logout') }}" method="POST" id="logoutForm" style="display: inline;">
+                            @csrf
+                            <a class="nav-link dropdown-item" type="submit" style="border: none; background: none; cursor: pointer; width: 100%;">
+                                <span class="menu-text text-danger"><i class="fas fa-sign-out-alt"></i> Logout </span>
+                            </a>
+                        </form>
+                    </div>
                 </div>
-
 
                 <div class="collapse navbar-collapse justify-content-center order-lg-1" id="navbarNav">
                     <ul class="navbar-nav mx-auto text-center">
@@ -419,7 +387,6 @@
             </div>
         </nav>
 
-
         <div class="line">
             <div class="row" style="height: 60px;">
                 <div class="col-md-12" style="justify-items: baseline;">
@@ -428,14 +395,15 @@
                             data-bs-toggle="collapse" data-bs-target="#collapseCard">
                             <i class="bi bi-list menu" style="color: #000; font-size: 25px;"></i>
                         </button>
-
                         <a class="line-link mr-3 ml-3" href="#"
-                            style="align-self: center; color: rgb(148, 147, 147); font-size: 13px;">Home <span
-                                class="sr-only">(current)</span></a>
+                            style="align-self: center; color: rgb(148, 147, 147); font-size: 13px;">Home 
+                            <span class="sr-only">(current)</span>
+                        </a>
                         <img class="mr-3" src="{{asset('assets/image/users/arrow.svg')}}" alt="profile">
                         <a class="line-link" href="#"
                             style="align-self: center; color: rgb(148, 147, 147); font-size: 13px;">Terms & Conditions
-                            <span class="sr-only">(current)</span></a>
+                            <span class="sr-only">(current)</span>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -446,11 +414,11 @@
             <div class="sidenav-menu sidebar" id="sidebar" style="height: auto;">
                 <div data-simplebar class="flex-grow-1">
                     <ul class="side-nav" style="padding-bottom: 200px;" id="ul">
-                        <a href="" class="pb-3 side-nav-link">
+                        <a href="#" class="pb-3 side-nav-link">
                             <img src="{{asset('assets/image/users/element-3.svg')}}" class="nav-icon ml-4" alt="user">
                             <span class="menu-text ml-1">Dashboard</span>
                         </a>
-                        <a href="" class="pb-3 side-nav-link">
+                        <a href="#" class="pb-3 side-nav-link">
                             <img src="{{asset('assets/image/users/calendar.svg')}}" class="nav-icon ml-4" alt="user">
                             <span class="menu-text ml-1">Booking</span>
                         </a>
@@ -486,14 +454,18 @@
                     <div class="side-nav-item d-flex align-items-center justify-content-between">
                         <div class="d-flex align-items-center">
                             <span class="menu-icon me-3">
-                                <img src="{{asset('assets/image/Image.svg')}}" alt="profile" class="rounded-circle"
-                                    style="width: 40px; height:40px; border: 2px solid #ccc;">
+                                {{-- <img src="{{ asset('storage/' . $customer->image->image_path) }}"
+                                    alt="Profile" class="rounded-circle"
+                                        style="width: 40px; height: 40px; border: 2px solid #ccc;"> --}}
+
+                                {{-- <img src="{{asset('assets/image/Image.svg')}}" alt="profile" class="rounded-circle"
+                                    style="width: 40px; height:40px; border: 2px solid #ccc;"> --}}
                             </span>
                         </div>
 
                         <div class="footer-content d-flex flex-column flex-grow-1">
-                            <span class="menu-text" style="font-size: 12px;">Abhishek Guleria</span>
-                            <a href="" class="text-muted" style="font-size: 11px;">View Profile</a>
+                            <span class="menu-text" style="font-size: 12px;">{{ucfirst(auth('customer_web')->user()->name)}}</span>
+                            {{-- <a href="" class="text-muted" style="font-size: 11px;">View Profile</a> --}}
                         </div>
                     </div>
                 </div>
@@ -562,4 +534,33 @@
                 })
 
             </script>
+            <script>
+                document.addEventListener('DOMContentLoaded', function () {
+                    const profileImg = document.getElementById('profileImage');
+                    const dropdown = document.getElementById('customDropdown');
+
+                    document.addEventListener('click', function (e) {
+                        if (profileImg && profileImg.contains(e.target)) {
+                            dropdown && (dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block');
+                        } else if (dropdown && !dropdown.contains(e.target)) {
+                            dropdown.style.display = 'none';
+                        }
+                    });
+                });
+            </script>
             
+            
+            {{-- <script>   
+                document.addEventListener('DOMContentLoaded', function () {
+                    const profileImg = document.getElementById('profileImage');
+                    const dropdown = document.getElementById('customDropdown');
+
+                    document.addEventListener('click', function (e) {
+                        if (profileImg.contains(e.target)) {
+                            dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+                        } else if (!dropdown.contains(e.target)) {
+                            dropdown.style.display = 'none';
+                        }
+                    });
+                });
+            </script> --}}

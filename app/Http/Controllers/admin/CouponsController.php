@@ -49,6 +49,7 @@ class CouponsController extends Controller
             'expire_date' => 'required|date|after_or_equal:valid_date',
             'discount' => 'required|numeric|min:0',
             'min_order' => 'required|numeric|digits:5',
+            'user_limit' => 'nullable|digits:1'
         ]);
         $validator->sometimes('discount', 'max:100', function ($input) {
             return $input->discount_type === 'Percentage';

@@ -48,6 +48,8 @@ class UsersController extends Controller
             'phone' => 'required|digits:10',
             'role' => 'required',
             'email' => 'required|email|unique:users,email' . ($request->id ? ',' . $request->id : ''),
+            'city_id' => 'required',
+            'area_id' => 'required'
         ])->validate();
 
         $users = $request->id ? User::find($request->id) : new User();

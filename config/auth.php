@@ -48,6 +48,10 @@ return [
             'driver' => 'jwt',
             'provider' => 'customers',
         ],
+        'customer_web' => [
+            'driver' => 'session',
+            'provider' => 'customers',
+        ],
         'vendor' => [
             'driver' => 'session',
             'provider' => 'vendors',
@@ -83,11 +87,7 @@ return [
         'vendors' => [
             'driver' => 'eloquent',
             'model' => App\Models\Venues::class,
-        ],
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+        ]
     ],
 
     /*

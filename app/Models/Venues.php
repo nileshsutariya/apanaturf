@@ -30,4 +30,8 @@ class Venues extends Authenticatable
     {
         return $this->hasMany(Images::class);
     }
+    public function image()
+    {
+        return $this->belongsTo(Images::class, 'vendor_image');
+    }
 }
